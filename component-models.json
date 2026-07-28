@@ -162,18 +162,6 @@
         "name": "description",
         "label": "Description",
         "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "ctaLabel",
-        "label": "CTA Label",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "ctaLink",
-        "label": "CTA Link",
-        "valueType": "string"
       }
     ]
   },
