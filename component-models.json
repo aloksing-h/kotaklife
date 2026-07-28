@@ -250,5 +250,15 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "search",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "source",
+        "label": "Search Index"
+      }
+    ]
   }
 ]
