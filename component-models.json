@@ -153,14 +153,16 @@
       },
       {
         "component": "text",
-        "name": "title",
-        "label": "Title",
-        "valueType": "string"
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
       },
       {
         "component": "richtext",
-        "name": "description",
-        "label": "Description",
+        "name": "text",
+        "value": "",
+        "label": "Text",
         "valueType": "string"
       }
     ]
