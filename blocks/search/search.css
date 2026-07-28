@@ -1,0 +1,150 @@
+/* stylelint-disable  */
+@import "../../../styles/fonts.css";
+
+.search .search-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1ch;
+  align-items: center;
+}
+
+.search .search-box input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.5em;
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  transition: border-color 0.2s;
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+.search .search-box input:hover {
+  border-color: var(--text-color);
+}
+
+
+
+.search ul.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  gap: 24px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.search ul.search-results>li {
+  border: 1px solid #dadada;
+}
+
+.search ul.search-results>li>a {
+  display: block;
+  height: 100%;
+  background-color: transparent;
+  color: currentcolor;
+  cursor: pointer;
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+.search ul.search-results>li>a:hover,
+.search ul.search-results>li>a:focus {
+  text-decoration: none;
+}
+
+.search ul.search-results>li .search-result-title,
+.search ul.search-results>li p {
+  padding: 0 16px;
+}
+
+.search ul.search-results>li .search-result-title {
+  font-size: var(--body-font-size-m);
+  font-weight: normal;
+}
+
+.search ul.search-results>li .search-result-title a {
+  color: currentcolor;
+  text-decoration: none;
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+.search ul.search-results>li p {
+  font-size: var(--body-font-size-s);
+}
+
+.search ul.search-results>li .search-result-image {
+  aspect-ratio: 4/3;
+}
+
+.search ul.search-results>li picture img {
+  display: block;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+
+
+.search ul.search-results.no-results {
+  display: block;
+  margin-left: 34px;
+}
+
+.search ul.search-results.no-results>li {
+  border: none;
+}
+
+
+
+.search.minimal ul.search-results {
+  display: block;
+  padding-left: 34px;
+}
+
+.search.minimal ul.search-results>li {
+  position: relative;
+  border: none;
+}
+
+.search.minimal ul.search-results>li .search-result-title,
+.search.minimal ul.search-results>li p {
+  padding: unset;
+}
+
+.search.minimal ul.search-results>li .search-result-title a {
+  color: var(--link-color);
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+
+.search.minimal ul.search-results>li>a {
+  background-color: unset;
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+.search.minimal ul.search-results>li>a:hover a,
+.search.minimal ul.search-results>li>a:focus a {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.search.minimal ul.search-results>li .search-result-image {
+  position: absolute;
+  top: 2px;
+  left: -34px;
+}
+
+.search.minimal ul.search-results>li picture img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.search.minimal ul.search-results .search-result-title+p {
+  margin-top: 0.25em;
+}
+
+/*# sourceMappingURL=search.css.map */
