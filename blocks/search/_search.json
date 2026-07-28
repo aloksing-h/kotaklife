@@ -28,5 +28,12 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "search",
+      "components": [
+        "search"
+      ]
+    }
+  ]
 }
