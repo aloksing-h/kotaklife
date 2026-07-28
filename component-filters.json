@@ -15,9 +15,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "banner",
-      "search"
+      "fragment"
     ]
   },
   {
@@ -45,6 +43,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "search",
+    "components": [
+      "search"
     ]
   }
 ]
