@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import dataMapKotakObj from '../../scripts/constant.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -131,10 +132,26 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
+
+    // Set up the class prefixes for your dataMapKotakObj utility.
+    if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
+      dataMapKotakObj.CLASS_PREFIXES = [
+        'navbrand-cont',
+        'navbrand-sec',
+        'navbrand-sub',
+        'navbrand-inner-net',
+        'navbrand-list',
+        'navbrand-list-content',
+      ];
+      dataMapKotakObj.addIndexed(navBrand);
+    }
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');
