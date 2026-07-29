@@ -136,6 +136,18 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Header Brand",
+            "value": "header-brand"
+          },
+          {
+            "name": "Header Nav",
+            "value": "header-nav"
+          },
+          {
+            "name": "Header Toolbar",
+            "value": "header-toolbar"
           }
         ]
       }
