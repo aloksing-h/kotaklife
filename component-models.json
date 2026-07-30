@@ -136,6 +136,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Term Insurance",
+            "value": "term-insurance"
           }
         ]
       }
