@@ -1,4 +1,14 @@
 /* header and nav layout */
+
+/* header.header-wrapper {
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+} */
+
 header .nav-wrapper {
   /* background-color: var(--background-color); */
   background: #da251c;
@@ -30,9 +40,9 @@ header nav[aria-expanded='true'] {
 }
 
 @media (width >=900px) {
-  header .nav-wrapper {
+  /* header .nav-wrapper {
     position: relative;
-  }
+  } */
 
   header nav {
     display: flex;

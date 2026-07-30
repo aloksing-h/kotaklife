@@ -47,12 +47,20 @@
         "image",
         "button",
         "title",
-        "hero",
-        "cards",
-        "columns",
-        "fragment",
+        "accordion",
         "banner",
-        "search"
+        "cards",
+        "carousel",
+        "columns",
+        "embed",
+        "form",
+        "fragment",
+        "hero",
+        "quote",
+        "search",
+        "table",
+        "tabs",
+        "video"
       ]
     }
   ]
