@@ -136,38 +136,6 @@
           {
             "name": "Highlight",
             "value": "highlight"
-          },
-          {
-            "name": "Dsp None",
-            "value": "dsp-none"
-          },
-          {
-            "name": "Dsp None Appear",
-            "value": "dsp-none-appear"
-          },
-          {
-            "name": "Term Insurance",
-            "value": "term-insurance"
-          },
-          {
-            "name": "Insurance Plans",
-            "value": "insurance-plans"
-          },
-          {
-            "name": "Claims",
-            "value": "claims"
-          },
-          {
-            "name": "Fund Performance",
-            "value": "fund-performance"
-          },
-          {
-            "name": "How Do It",
-            "value": "how-do-it"
-          },
-          {
-            "name": "Loans",
-            "value": "loans"
           }
         ]
       }
@@ -273,16 +241,28 @@
         "valueType": "array",
         "options": [
           {
-            "name": "AI Solutions",
-            "value": "ai-solutions"
+            "name": "Tab One",
+            "value": "tab-one"
           },
           {
-            "name": "AI Solutions Content",
-            "value": "ai-solutions-content"
+            "name": "Tab Two",
+            "value": "tab-two"
           },
           {
-            "name": "AI Solutions Cards",
-            "value": "ai-solutions-cards"
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
           }
         ]
       },

@@ -152,8 +152,14 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 /* brand */
-.term-insurance{
-  display: none;
+
+.term-insurance {
+  background: #FFF;
+  max-height: 100%;
+}
+
+.term-insurance .tabs-wrapper {
+  background: #FFF;
 }
 
 header .nav-brand {
