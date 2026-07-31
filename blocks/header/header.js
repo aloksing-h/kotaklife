@@ -155,14 +155,43 @@ export default async function decorate(block) {
   }
 
   const navSections = nav.querySelector('.nav-sections');
+
   if (navSections) {
+    const showSection = (navSection) => {
+      // Hide all target sections first (optional)
+      document.querySelectorAll('.term-insurance').forEach((section) => {
+        section.style.display = 'block';
+      });
+
+      const className = navSection.textContent
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+
+      const targetSection = document.querySelector(`.${className}`);
+      if (targetSection) {
+        targetSection.style.display = 'block';
+      }
+    };
+
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+      }
+
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        }
+
+        showSection(navSection);
+      });
+
+      navSection.addEventListener('mouseenter', () => {
+        if (isDesktop.matches) {
+          showSection(navSection);
         }
       });
     });

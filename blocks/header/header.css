@@ -152,6 +152,10 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 /* brand */
+.term-insurance{
+  display: none;
+}
+
 header .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
