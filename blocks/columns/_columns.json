@@ -21,6 +21,26 @@
       "id": "columns",
       "fields": [
         {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Block Options",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "AI Solutions",
+              "value": "ai-solutions"
+            },
+            {
+              "name": "AI Solutions Content",
+              "value": "ai-solutions-content"
+            },
+            {
+              "name": "AI Solutions Cards",
+              "value": "ai-solutions-cards"
+            }
+          ]
+        },
+        {
           "component": "text",
           "valueType": "number",
           "name": "columns",

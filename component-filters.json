@@ -12,12 +12,26 @@
       "image",
       "button",
       "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
+      "accordion",
       "banner",
-      "search"
+      "cards",
+      "carousel",
+      "columns",
+      "embed",
+      "form",
+      "fragment",
+      "hero",
+      "quote",
+      "search",
+      "table",
+      "tabs",
+      "video"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
     ]
   },
   {
@@ -30,6 +44,12 @@
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "carousel-slide"
     ]
   },
   {
@@ -48,9 +68,15 @@
     ]
   },
   {
-    "id": "search",
+    "id": "table",
     "components": [
-      "search"
+      "table-row"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
     ]
   }
 ]

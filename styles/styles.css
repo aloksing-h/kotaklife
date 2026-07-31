@@ -84,6 +84,14 @@ body.appear {
   display: block;
 }
 
+.dsp-none {
+  display: none;
+}
+
+.dsp-none.appear {
+  display: block;
+}
+
 header {
   height: var(--nav-height);
 }
