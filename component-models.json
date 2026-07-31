@@ -138,8 +138,36 @@
             "value": "highlight"
           },
           {
+            "name": "Dsp None",
+            "value": "dsp-none"
+          },
+          {
+            "name": "Dsp None Appear",
+            "value": "dsp-none-appear"
+          },
+          {
             "name": "Term Insurance",
             "value": "term-insurance"
+          },
+          {
+            "name": "Insurance Plans",
+            "value": "insurance-plans"
+          },
+          {
+            "name": "Claims",
+            "value": "claims"
+          },
+          {
+            "name": "Fund Performance",
+            "value": "fund-performance"
+          },
+          {
+            "name": "How Do It",
+            "value": "how-do-it"
+          },
+          {
+            "name": "Loans",
+            "value": "loans"
           }
         ]
       }
