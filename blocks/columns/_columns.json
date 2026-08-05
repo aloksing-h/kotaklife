@@ -14,58 +14,12 @@
           }
         }
       }
-    },
-    {
-      "title": "Column",
-      "id": "column",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/columns/v1/columns/item",
-            "template": {
-              "model": "column"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
     {
       "id": "columns",
       "fields": [
-        {
-          "component": "multiselect",
-          "name": "classes",
-          "label": "Block Options",
-          "valueType": "array",
-          "options": [
-            {
-              "name": "Tab One",
-              "value": "tab-one"
-            },
-            {
-              "name": "Tab Two",
-              "value": "tab-two"
-            },
-            {
-              "name": "Tab Three",
-              "value": "tab-three"
-            },
-            {
-              "name": "Tab Four",
-              "value": "tab-four"
-            },
-            {
-              "name": "Tab Five",
-              "value": "tab-five"
-            },
-            {
-              "name": "Tab Six",
-              "value": "tab-six"
-            }
-          ]
-        },
         {
           "component": "text",
           "valueType": "number",
@@ -81,10 +35,6 @@
           "label": "Rows"
         }
       ]
-    },
-    {
-      "id": "column",
-      "fields": []
     }
   ],
   "filters": [

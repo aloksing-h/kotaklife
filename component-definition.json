@@ -203,20 +203,6 @@
           }
         },
         {
-          "title": "Column",
-          "id": "column",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/columns/v1/columns/item",
-                "template": {
-                  "model": "column"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Embed",
           "id": "embed",
           "plugins": {
