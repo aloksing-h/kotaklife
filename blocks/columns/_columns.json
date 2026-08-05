@@ -22,7 +22,9 @@
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/columns/v1/columns/item",
-            "template": {}
+            "template": {
+              "model": "column"
+            }
           }
         }
       }
