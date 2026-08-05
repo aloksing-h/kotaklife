@@ -130,13 +130,11 @@
       },
       {
         "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "name": "classes",
+        "label": "CSS Classes",
+        "description": "Add custom CSS classes to this section",
+        "valueType": "array",
         "options": [
-          {
-            "name": "Highlight",
-            "value": "highlight"
-          },
           {
             "name": "Dsp None",
             "value": "dsp-none"
@@ -168,6 +166,17 @@
           {
             "name": "Loans",
             "value": "loans"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
           }
         ]
       }
@@ -266,26 +275,6 @@
   {
     "id": "columns",
     "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Block Options",
-        "valueType": "array",
-        "options": [
-          {
-            "name": "AI Solutions",
-            "value": "ai-solutions"
-          },
-          {
-            "name": "AI Solutions Content",
-            "value": "ai-solutions-content"
-          },
-          {
-            "name": "AI Solutions Cards",
-            "value": "ai-solutions-cards"
-          }
-        ]
-      },
       {
         "component": "text",
         "valueType": "number",

@@ -152,8 +152,14 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 /* brand */
-.term-insurance{
-  display: none;
+
+.term-insurance {
+  background: #FFF;
+  max-height: 100%;
+}
+
+.term-insurance .tabs-wrapper {
+  background: #FFF;
 }
 
 header .nav-brand {
@@ -305,6 +311,15 @@ header nav .nav-sections ul>li>ul>li {
   font-weight: 400;
 }
 
+/* Fragment container styling for mobile */
+header nav .nav-sections .nav-fragment-container {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 16px 0;
+  margin-top: 8px;
+}
+
 @media (width >=900px) {
   header nav .nav-sections {
     display: block;
@@ -362,7 +377,9 @@ header nav .nav-sections ul>li>ul>li {
     display: block;
     position: absolute;
     left: -24px;
-    width: 200px;
+    width: auto;
+    min-width: 200px;
+    max-width: 800px;
     top: 150%;
     padding: 16px;
     background-color: var(--light-color);
@@ -383,6 +400,19 @@ header nav .nav-sections ul>li>ul>li {
 
   header nav .nav-sections .default-content-wrapper>ul>li>ul>li {
     padding: 8px 0;
+  }
+
+  /* Fragment container styling for desktop - inside li element */
+  header nav .nav-sections .default-content-wrapper>ul>li>ul>li .nav-fragment-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-width: 400px;
+    max-width: 800px;
+    margin: 8px 0 0;
+    padding: 16px 0;
+    background: #fff;
+    white-space: normal;
   }
 }
 

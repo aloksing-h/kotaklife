@@ -27,6 +27,47 @@
         },
         {
           "component": "multiselect",
+          "name": "classes",
+          "label": "CSS Classes",
+          "description": "Add custom CSS classes to this section",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "Dsp None",
+              "value": "dsp-none"
+            },
+            {
+              "name": "Dsp None Appear",
+              "value": "dsp-none-appear"
+            },
+            {
+              "name": "Term Insurance",
+              "value": "term-insurance"
+            },
+            {
+              "name": "Insurance Plans",
+              "value": "insurance-plans"
+            },
+            {
+              "name": "Claims",
+              "value": "claims"
+            },
+            {
+              "name": "Fund Performance",
+              "value": "fund-performance"
+            },
+            {
+              "name": "How Do It",
+              "value": "how-do-it"
+            },
+            {
+              "name": "Loans",
+              "value": "loans"
+            }
+          ]
+        },
+        {
+          "component": "multiselect",
           "name": "style",
           "label": "Style",
           "options": [
