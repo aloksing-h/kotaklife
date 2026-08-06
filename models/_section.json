@@ -27,11 +27,21 @@
         },
         {
           "component": "multiselect",
-          "name": "classes",
-          "label": "CSS Classes",
-          "description": "Add custom CSS classes to this section",
-          "valueType": "array",
+          "name": "style",
+          "label": "Style",
           "options": [
+            {
+              "name": "Highlight",
+              "value": "highlight"
+            },
+            {
+              "name": "Term Insurance Plans",
+              "value": "term-insurance-plans"
+            },
+            {
+              "name": "Insurance Plans New",
+              "value": "insurance-plans-new"
+            },
             {
               "name": "Dsp None",
               "value": "dsp-none"
@@ -87,25 +97,6 @@
             {
               "name": "Tab Six",
               "value": "tab-six"
-            }
-          ]
-        },
-        {
-          "component": "multiselect",
-          "name": "style",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Highlight",
-              "value": "highlight"
-            },
-            {
-              "name": "Term Insurance Plans",
-              "value": "term-insurance-plans"
-            },
-            {
-              "name": "Insurance Plans New",
-              "value": "insurance-plans-new"
             }
           ]
         }
