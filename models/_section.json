@@ -63,6 +63,30 @@
             {
               "name": "Loans",
               "value": "loans"
+            },
+            {
+              "name": "Tab One",
+              "value": "tab-one"
+            },
+            {
+              "name": "Tab Two",
+              "value": "tab-two"
+            },
+            {
+              "name": "Tab Three",
+              "value": "tab-three"
+            },
+            {
+              "name": "Tab Four",
+              "value": "tab-four"
+            },
+            {
+              "name": "Tab Five",
+              "value": "tab-five"
+            },
+            {
+              "name": "Tab Six",
+              "value": "tab-six"
             }
           ]
         },
@@ -74,6 +98,14 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Term Insurance Plans",
+              "value": "term-insurance-plans"
+            },
+            {
+              "name": "Insurance Plans New",
+              "value": "insurance-plans-new"
             }
           ]
         }
