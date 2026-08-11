@@ -68,6 +68,12 @@
     ]
   },
   {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
+    ]
+  },
+  {
     "id": "table",
     "table": {
       "toolbar": {
@@ -155,12 +161,6 @@
     },
     "components": [
       "richtext"
-    ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "tabs-item"
     ]
   }
 ]
