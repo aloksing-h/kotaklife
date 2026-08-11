@@ -74,8 +74,8 @@
     ]
   },
   {
-    "id": "table",
-    "table": {
+    "id": "rte",
+    "rte": {
       "toolbar": {
         "list": [
           "bullet_list",

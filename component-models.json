@@ -81,7 +81,7 @@
     ]
   },
   {
-    "id": "table",
+    "id": "rte",
     "fields": [
       {
         "component": "richtext",

@@ -12,6 +12,6 @@
     "...": "../blocks/*/_*.json#/filters"
   },
   {
-    "...": "./_table.json#/filters"
+    "...": "./_rte.json#/filters"
   }
 ]

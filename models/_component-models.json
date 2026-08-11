@@ -9,7 +9,7 @@
     "...": "./_title.json#/models"
   },
   {
-    "...": "./_table.json#/models"
+    "...": "./_rte.json#/models"
   },
   {
     "...": "./_text.json#/models"
