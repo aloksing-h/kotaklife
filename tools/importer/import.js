@@ -28,7 +28,6 @@ const stripBoilerplate = (main) => {
     '.bttm_sticky_product',
     '.new_banner_bottom',
     '.go_to_top',
-    // 'iframe',
     'script',
     'style',
     'noscript',
@@ -107,60 +106,9 @@ const appendKotakPromos = (main, document) => {
   }
 };
 
-const createAccordionBlock = (document, items, blockName) => {
-  const block = document.createElement('table');
-  const headerRow = document.createElement('tr');
-  const headerCell = document.createElement('td');
-
-  headerCell.textContent = blockName;
-  headerRow.append(headerCell);
-  block.append(headerRow);
-
-  items.forEach(({ question, answer }) => {
-    const row = document.createElement('tr');
-    const questionCell = document.createElement('td');
-    const answerCell = document.createElement('td');
-
-    if (question) {
-      questionCell.append(question.cloneNode(true));
-    }
-
-    if (answer) {
-      answerCell.append(answer.cloneNode(true));
-    }
-
-    row.append(questionCell, answerCell);
-    block.append(row);
-  });
-
-  return block;
-};
-
-const appendDisclaimerAccordion = (main, document) => {
-  const sourceSection = document.querySelector('section.abovespace');
-  const disclaimerButton = sourceSection?.querySelector('button.collapsible.terms-txt');
-  const disclaimerBody = sourceSection?.querySelector('.content-col');
-
-  if (!sourceSection || !disclaimerButton || !disclaimerBody) {
-    return;
-  }
-
-  const accordionBlock = createAccordionBlock(document, [
-    {
-      question: disclaimerButton,
-      answer: disclaimerBody,
-    },
-  ], 'Accordion');
-
-  accordionBlock.className = 'accordion disclaimer-accordion';
-
-  sourceSection.replaceWith(accordionBlock);
-
-  if (!main.contains(accordionBlock)) {
-    main.append(accordionBlock);
-  }
-};
-
+/**
+ * Transforms FAQ sections into an Accordion block
+ */
 const appendFaqAccordion = (main, document) => {
   const sourceBlock = document.querySelector('.accordion-div');
 
@@ -170,14 +118,14 @@ const appendFaqAccordion = (main, document) => {
 
   const items = [...sourceBlock.querySelectorAll('.bor')]
     .map((item) => {
-      const question = item.querySelector('.accordion h3');
+      const question = item.querySelector('.accordion h3, h3');
       const answer = item.querySelector('.panel');
 
       if (!question || !answer) {
         return null;
       }
 
-      return { question, answer };
+      return [question.cloneNode(true), answer.cloneNode(true)];
     })
     .filter(Boolean);
 
@@ -185,14 +133,80 @@ const appendFaqAccordion = (main, document) => {
     return;
   }
 
-  const accordionBlock = createAccordionBlock(document, items, 'Accordion');
-  accordionBlock.className = 'accordion faq-accordion';
+  const accordionBlock = WebImporter.DOMUtils.createTable([
+    ['Accordion'],
+    ...items,
+  ], document);
 
   sourceBlock.replaceWith(accordionBlock);
+};
 
-  if (!main.contains(accordionBlock)) {
-    main.append(accordionBlock);
+/**
+ * Transforms Disclaimer section into an Accordion block
+ */
+const appendDisclaimerAccordion = (main, document) => {
+  const sourceSection = document.querySelector('section.abovespace');
+  const disclaimerButton = sourceSection?.querySelector('button.collapsible.terms-txt');
+  const disclaimerBody = sourceSection?.querySelector('.content-col');
+
+  if (!sourceSection || !disclaimerButton || !disclaimerBody) {
+    return;
   }
+
+  const accordionBlock = WebImporter.DOMUtils.createTable([
+    ['Accordion'],
+    [[disclaimerButton.cloneNode(true), disclaimerBody.cloneNode(true)]],
+  ], document);
+
+  sourceSection.replaceWith(accordionBlock);
+};
+
+/**
+ * Converts iframe elements into an Embed block
+ */
+const createEmbedBlocks = (main, document) => {
+  const iframes = [...main.querySelectorAll('iframe')];
+
+  iframes.forEach((iframe) => {
+    const src = iframe.getAttribute('src');
+    if (!src) return;
+
+    const link = document.createElement('a');
+    link.href = src;
+    link.textContent = src;
+
+    const embedBlock = WebImporter.DOMUtils.createTable([
+      ['Embed'],
+      [link],
+    ], document);
+
+    iframe.replaceWith(embedBlock);
+  });
+};
+
+/**
+ * Wraps content HTML tables into an RTE block
+ */
+const createRTEBlocks = (main, document) => {
+  const tables = [...main.querySelectorAll('table')];
+
+  tables.forEach((table) => {
+    // Avoid double-wrapping tables that are already EDS block tables
+    const firstCell = table.querySelector('tr:first-child th, tr:first-child td');
+    const firstCellText = firstCell?.textContent?.trim().toLowerCase();
+
+    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte'];
+    if (knownBlocks.some((block) => firstCellText === block || firstCellText?.startsWith(block))) {
+      return;
+    }
+
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE'],
+      [table.cloneNode(true)],
+    ], document);
+
+    table.replaceWith(rteBlock);
+  });
 };
 
 const appendAlsoRead = (main, document) => {
@@ -236,10 +250,15 @@ export default {
 
     const main = selectContentRoot(document);
 
+    // 1. Convert custom and embedded components into EDS blocks
     appendMetadataBlock(main, document);
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
     appendFaqAccordion(main, document);
+    createEmbedBlocks(main, document);
+    createRTEBlocks(main, document);
+
+    // 2. Structural & cleanup tasks
     appendAlsoRead(main, document);
     stripBoilerplate(main);
 
