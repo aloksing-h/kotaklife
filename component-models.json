@@ -454,52 +454,30 @@
     "id": "table",
     "fields": [
       {
-        "component": "select",
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
         "name": "classes",
-        "label": "Header",
+        "label": "Style",
         "options": [
           {
-            "name": "With header row",
-            "value": ""
+            "name": "Background Semantic Green",
+            "value": "background-semantic-green"
           },
           {
-            "name": "No header row",
-            "value": "no-header"
+            "name": "Background Semantic Orange",
+            "value": "background-semantic-orange"
+          },
+          {
+            "name": "Form Step",
+            "value": "form-step"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "table-row",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "cell1",
-        "value": "",
-        "label": "Cell 1",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "cell2",
-        "value": "",
-        "label": "Cell 2",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "cell3",
-        "value": "",
-        "label": "Cell 3",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "cell4",
-        "value": "",
-        "label": "Cell 4",
-        "valueType": "string"
       }
     ]
   },
