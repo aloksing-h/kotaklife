@@ -79,6 +79,9 @@ const buildTokenCard = (document, token) => {
   return card;
 };
 
+/**
+ * Transforms Kotak Promos into a valid EDS Cards block
+ */
 const appendKotakPromos = (main, document) => {
   const sourceSection = document.querySelector('section.consumer.top-0.saving-token.ktk_tkn_card');
 
@@ -92,12 +95,12 @@ const appendKotakPromos = (main, document) => {
     return;
   }
 
-  const cardsBlock = document.createElement('div');
-  cardsBlock.className = 'cards saving-token ktk_tkn_card';
+  const rows = tokens.map((token) => [buildTokenCard(document, token)]);
 
-  tokens.forEach((token) => {
-    cardsBlock.append(buildTokenCard(document, token));
-  });
+  const cardsBlock = WebImporter.DOMUtils.createTable([
+    ['Cards'],
+    ...rows,
+  ], document);
 
   sourceSection.replaceWith(cardsBlock);
 
@@ -162,11 +165,9 @@ const appendDisclaimerAccordion = (main, document) => {
     return;
   }
 
-  // Create clean heading for question column
   const question = document.createElement('h3');
   question.textContent = disclaimerButton.textContent.trim() || 'Disclaimer';
 
-  // Build standard EDS Accordion block: [['Accordion'], [Question, Answer]]
   const accordionBlock = WebImporter.DOMUtils.createTable([
     ['Accordion'],
     [question, disclaimerBody.cloneNode(true)],
@@ -204,23 +205,24 @@ const createEmbedBlocks = (main, document) => {
 };
 
 /**
- * Wraps content HTML tables into an RTE block
+ * Wraps content HTML tables into the 'RTE' block matching the Universal Editor definition
  */
 const createRTEBlocks = (main, document) => {
   const tables = [...main.querySelectorAll('table')];
 
   tables.forEach((table) => {
-    // Avoid double-wrapping tables that are already EDS block tables
+    // Prevent re-wrapping tables that are already standard EDS blocks
     const firstCell = table.querySelector('tr:first-child th, tr:first-child td');
-    const firstCellText = firstCell?.textContent?.trim().toLowerCase();
+    const firstCellText = firstCell?.textContent?.trim().toLowerCase() || '';
 
-    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte'];
-    if (knownBlocks.some((block) => firstCellText === block || firstCellText?.startsWith(block))) {
+    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte', 'table'];
+    if (knownBlocks.some((block) => firstCellText.startsWith(block))) {
       return;
     }
 
+    // Wraps raw table into the 'RTE' block matching definition title: "RTE"
     const rteBlock = WebImporter.DOMUtils.createTable([
-      ['RTE'],
+      ['RTE'], 
       [table.cloneNode(true)],
     ], document);
 
@@ -269,7 +271,7 @@ export default {
 
     const main = selectContentRoot(document);
 
-    // 1. Convert components into EDS blocks
+    // 1. Convert components into valid EDS / AEM blocks
     appendMetadataBlock(main, document);
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
