@@ -139,26 +139,45 @@ const appendFaqAccordion = (main, document) => {
   ], document);
 
   sourceBlock.replaceWith(accordionBlock);
+
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
 };
 
 /**
  * Transforms Disclaimer section into an Accordion block
  */
 const appendDisclaimerAccordion = (main, document) => {
-  const sourceSection = document.querySelector('section.abovespace');
-  const disclaimerButton = sourceSection?.querySelector('button.collapsible.terms-txt');
-  const disclaimerBody = sourceSection?.querySelector('.content-col');
+  const disclaimerContainer = document.querySelector('#terms-conditions, section.abovespace, .terms');
 
-  if (!sourceSection || !disclaimerButton || !disclaimerBody) {
+  if (!disclaimerContainer) {
     return;
   }
 
+  const disclaimerButton = disclaimerContainer.querySelector('.collapsible, button.terms-txt, .terms-txt');
+  const disclaimerBody = disclaimerContainer.querySelector('.content-col, .terms-para');
+
+  if (!disclaimerButton || !disclaimerBody) {
+    return;
+  }
+
+  // Create clean heading for question column
+  const question = document.createElement('h3');
+  question.textContent = disclaimerButton.textContent.trim() || 'Disclaimer';
+
+  // Build standard EDS Accordion block: [['Accordion'], [Question, Answer]]
   const accordionBlock = WebImporter.DOMUtils.createTable([
     ['Accordion'],
-    [[disclaimerButton.cloneNode(true), disclaimerBody.cloneNode(true)]],
+    [question, disclaimerBody.cloneNode(true)],
   ], document);
 
-  sourceSection.replaceWith(accordionBlock);
+  const targetToRemove = disclaimerContainer.closest('section') || disclaimerContainer;
+  targetToRemove.replaceWith(accordionBlock);
+
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
 };
 
 /**
@@ -250,7 +269,7 @@ export default {
 
     const main = selectContentRoot(document);
 
-    // 1. Convert custom and embedded components into EDS blocks
+    // 1. Convert components into EDS blocks
     appendMetadataBlock(main, document);
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
@@ -258,7 +277,7 @@ export default {
     createEmbedBlocks(main, document);
     createRTEBlocks(main, document);
 
-    // 2. Structural & cleanup tasks
+    // 2. Cleanups and additional appendings
     appendAlsoRead(main, document);
     stripBoilerplate(main);
 
