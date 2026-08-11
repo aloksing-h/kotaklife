@@ -513,15 +513,15 @@ header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper {
   align-items: flex-start;
 }
 
-header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper>div {
+header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper .tab-one {
   display: flex;
   gap: 24px;
   width: 100%;
 }
 
-header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper>div>div {
+/* header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper>div>div {
   flex: 1;
-}
+} */
 
 /* First column - Popular Plans */
 header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper>div>div:first-child {
