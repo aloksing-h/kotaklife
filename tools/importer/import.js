@@ -97,8 +97,8 @@ const buildHeroBanner = (main, document) => {
       const subUl = document.createElement('ul');
       menuItems.forEach((item, index) => {
         const subLi = document.createElement('li');
-        const itemText = item.querySelector('span:last-child')?.textContent.trim() 
-          || item.querySelector('a')?.textContent.trim() 
+        const itemText = item.querySelector('span:last-child')?.textContent.trim()
+          || item.querySelector('a')?.textContent.trim()
           || item.textContent.trim();
 
         const iconName = index === 0 ? ':economic-crisis:' : `:economic-crisis${index}:`;
@@ -163,6 +163,8 @@ const buildRteCardBorderRed = (main, document) => {
       ['RTE (card border red)'],
       [container.cloneNode(true)],
     ], document);
+
+    
 
     container.replaceWith(block);
   });
@@ -244,22 +246,22 @@ const appendKotakPromos = (main, document) => {
 };
 
 /**
- * FIXED: Transforms Disclaimer section into an 'Accordion (disclaimer)' block
+ * Transforms Disclaimer section into an Accordion block
  * and guarantees it gets placed inside main so it is included in export.
  */
 const appendDisclaimerAccordion = (main, document) => {
   const disclaimerContainer = document.querySelector(
-    '#terms-conditions, section.abovespace, .terms, .accordion.disclaimer, [class*="disclaimer"]'
+    '#terms-conditions, section.abovespace, .terms, .accordion.disclaimer, [class*="disclaimer"]',
   );
 
   if (!disclaimerContainer) return;
 
   const disclaimerButton = disclaimerContainer.querySelector(
-    '.collapsible, button.terms-txt, .terms-txt, summary, .accordion-item-label, h2, h3, h4'
+    '.collapsible, button.terms-txt, .terms-txt, summary, .accordion-item-label, h2, h3, h4',
   );
-  
+
   let disclaimerBody = disclaimerContainer.querySelector(
-    '.content-col, .terms-para, .accordion-item-body, .accordion-item-body-content'
+    '.content-col, .terms-para, .accordion-item-body, .accordion-item-body-content',
   );
 
   // Fallback: If body container selector missed, extract all paragraphs
@@ -278,7 +280,7 @@ const appendDisclaimerAccordion = (main, document) => {
   label.textContent = labelText.replace(/[\n\r\t]+/g, ' ') || 'Disclaimer';
 
   const accordionBlock = WebImporter.DOMUtils.createTable([
-    ['Accordion (disclaimer)'],
+    ['Accordion'],
     [label, disclaimerBody.cloneNode(true)],
   ], document);
 
@@ -330,19 +332,18 @@ const protectAndWrapContentTables = (main, document) => {
     const rows = [...table.querySelectorAll('tr')];
     if (!rows.length) return;
 
-    const matrix = rows.map((row) =>
-      [...row.querySelectorAll('th, td')].map((cell) => cell.innerHTML.trim().replace(/\|/g, '\\|').replace(/\n+/g, ' '))
-    );
+    const matrix = rows.map((row) => [...row.querySelectorAll('th, td')]
+      .map((cell) => cell.innerHTML.trim().replace(/\|/g, '\\|').replace(/\n+/g, ' ')));
 
     if (matrix.length > 0) {
       const header = matrix[0];
       const mdLines = [];
-      mdLines.push('| ' + header.join(' | ') + ' |');
-      mdLines.push('| ' + header.map(() => '---').join(' | ') + ' |');
+      mdLines.push(`| ${header.join(' | ')} |`);
+      mdLines.push(`| ${header.map(() => '---').join(' | ')} |`);
 
-      for (let i = 1; i < matrix.length; i++) {
-        mdLines.push('| ' + matrix[i].join(' | ') + ' |');
-      }
+      matrix.slice(1).forEach((row) => {
+        mdLines.push(`| ${row.join(' | ')} |`);
+      });
 
       const container = document.createElement('div');
       container.innerHTML = mdLines.join('<br>');
