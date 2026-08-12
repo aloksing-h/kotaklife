@@ -48,6 +48,10 @@
             {
               "name":"Bookmarks Links",
               "value":"bookmarks-links"
+            },
+            {
+              "name":"Card Border Red",
+              "value":"card-border-red"
             }
           ]
         }
