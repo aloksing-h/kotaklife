@@ -43,7 +43,7 @@ const selectContentRoot = (document) => document.querySelector('section.best-inv
   || document.body;
 
 /**
- * Parses section.blog-head into 'RTE (hero-banner)' block with 'text' field
+ * Parses section.blog-head and formats it into an 'RTE (hero banner)' block
  */
 const buildHeroBanner = (main, document) => {
   const blogHead = document.querySelector('section.blog-head') || main.querySelector('.hero-banner');
@@ -112,16 +112,15 @@ const buildHeroBanner = (main, document) => {
     heroContainer.append(mainUl);
   }
 
-  // Row 1: Block Header matching JSON class variant 'hero-banner'
-  // Row 2: ['text', content] matching field name 'text' in _rte.json
+  // Build table block named 'RTE (hero banner)'
   const rteHeroBlock = WebImporter.DOMUtils.createTable([
-    ['RTE (hero-banner)'],
-    ['text', heroContainer],
+    ['RTE (hero banner)'],
+    [heroContainer],
   ], document);
 
   blogHead.replaceWith(rteHeroBlock);
 
-  // Section break (---)
+  // Insert section break (---) after hero block
   const hr = document.createElement('hr');
   rteHeroBlock.after(hr);
 };
@@ -150,15 +149,15 @@ const createEmbedBlocks = (main, document) => {
 };
 
 /**
- * Transforms red card containers into 'RTE (card-border-red)' block
+ * Transforms red card containers into 'RTE (card border red)' block
  */
 const buildRteCardBorderRed = (main, document) => {
   const borderRedContainers = [...main.querySelectorAll('.card-border-red, .red-card-wrapper')];
 
   borderRedContainers.forEach((container) => {
     const block = WebImporter.DOMUtils.createTable([
-      ['RTE (card-border-red)'],
-      ['text', container.cloneNode(true)],
+      ['RTE (card border red)'],
+      [container.cloneNode(true)],
     ], document);
 
     container.replaceWith(block);
@@ -262,15 +261,15 @@ const appendDisclaimerAccordion = (main, document) => {
 };
 
 /**
- * Transforms Bookmark Link sections into 'RTE (bookmarks-links)' blocks
+ * Transforms Bookmark Link sections into 'RTE (bookmarks links)' blocks
  */
 const buildBookmarksRte = (main, document) => {
   const bookmarkContainers = [...main.querySelectorAll('.bookmarks-links, .calculator-bookmarks')];
 
   bookmarkContainers.forEach((container) => {
     const block = WebImporter.DOMUtils.createTable([
-      ['RTE (bookmarks-links)'],
-      ['text', container.cloneNode(true)],
+      ['RTE (bookmarks links)'],
+      [container.cloneNode(true)],
     ], document);
 
     container.replaceWith(block);
@@ -278,7 +277,9 @@ const buildBookmarksRte = (main, document) => {
 };
 
 /**
- * Wraps raw content HTML tables into 'RTE' blocks with the 'text' key
+ * SOLVES THE 'modelId' ERROR:
+ * Converts inner HTML content tables into Markdown tables before placing them
+ * inside the RTE block so that no nested <table> DOM nodes trigger block scanning.
  */
 const protectAndWrapContentTables = (main, document) => {
   const tables = [...main.querySelectorAll('table')];
@@ -288,18 +289,40 @@ const protectAndWrapContentTables = (main, document) => {
     const firstCell = firstRow?.querySelector('th, td');
     const firstCellText = firstCell?.textContent?.trim().toLowerCase() || '';
 
-    // Skip tables that are already generated EDS blocks
+    // Skip tables that are already top-level EDS blocks created by importer
     const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte'];
     if (knownBlocks.some((block) => firstCellText.startsWith(block))) {
       return;
     }
 
-    const rteBlock = WebImporter.DOMUtils.createTable([
-      ['RTE'],
-      ['text', table.cloneNode(true)],
-    ], document);
+    // Extract table rows and convert to Markdown table format
+    const rows = [...table.querySelectorAll('tr')];
+    if (!rows.length) return;
 
-    table.replaceWith(rteBlock);
+    const matrix = rows.map((row) =>
+      [...row.querySelectorAll('th, td')].map((cell) => cell.innerHTML.trim().replace(/\|/g, '\\|').replace(/\n+/g, ' '))
+    );
+
+    if (matrix.length > 0) {
+      const header = matrix[0];
+      const mdLines = [];
+      mdLines.push('| ' + header.join(' | ') + ' |');
+      mdLines.push('| ' + header.map(() => '---').join(' | ') + ' |');
+
+      for (let i = 1; i < matrix.length; i++) {
+        mdLines.push('| ' + matrix[i].join(' | ') + ' |');
+      }
+
+      const container = document.createElement('div');
+      container.innerHTML = mdLines.join('<br>');
+
+      const rteBlock = WebImporter.DOMUtils.createTable([
+        ['RTE'],
+        [container],
+      ], document);
+
+      table.replaceWith(rteBlock);
+    }
   });
 };
 
@@ -348,7 +371,7 @@ export default {
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
 
-    // 3. Process Bookmark Links and raw HTML tables
+    // 3. Process Bookmark Links and raw HTML tables (sanitized to avoid nested <table> nodes)
     buildBookmarksRte(main, document);
     protectAndWrapContentTables(main, document);
 
