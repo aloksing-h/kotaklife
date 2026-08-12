@@ -290,6 +290,7 @@ main img {
   max-width: 100%;
   width: auto;
   height: auto;
+  width: 712px;
 }
 
 .icon {
@@ -320,7 +321,7 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 10px 32px;
   }
 }
 
