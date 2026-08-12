@@ -88,6 +88,66 @@
     text-transform: uppercase;
 }
 
+.rte.card-border-red.block {
+    color: #40536b;
+}
+
+.rte.card-border-red.block h2 {
+    margin: 0 0 24px;
+    color: #0d1f3f;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.rte.card-border-red.block > div > div > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rte.card-border-red.block > div > div > ul > li {
+    margin: 0 0 18px;
+    padding: 22px 24px;
+    border: 1px solid #ccc;
+    border-left: 3px solid #da251c;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 180ms ease;
+}
+
+.rte.card-border-red.block > div > div > ul > li:hover,
+.rte.card-border-red.block > div > div > ul > li:focus-within {
+    border-color: #ed1c24;
+}
+
+.rte.card-border-red.block > div > div > ul > li > h3 {
+    margin: 0;
+    color: #0d1f3f;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    width: fit-content;
+    border-bottom: 2px solid #0b396b;
+}
+
+.rte.card-border-red.block > div > div > ul > li > ul {
+    margin: 12px 0 0;
+    padding-left: 0;
+    list-style: none;
+    color: #40536b;
+}
+
+.rte.card-border-red.block > div > div > ul > li > ul > li {
+    padding-left: 4px;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.rte.card-border-red.block a {
+    color: #ed1c24;
+}
+
 .rte.block table {
     width: 100%;
     min-width: 640px;
@@ -178,5 +238,32 @@
     .rte.bookmarks-links.block .bookmarks-show-more {
         margin-top: 16px;
         font-size: 20px;
+    }
+
+    .rte.card-border-red.block h2 {
+        font-size: 24px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li {
+        padding: 18px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rte.card-border-red.block h2 {
+        margin-bottom: 18px;
+        font-size: 22px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li {
+        padding: 16px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li > h3 {
+        font-size: 18px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li > ul > li {
+        font-size: 15px;
     }
 }
