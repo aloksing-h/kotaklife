@@ -112,7 +112,7 @@
           }
         }
       },
-      "components": ["richtext"]
+      "components": ["richtext", "accordion", "accordion-item"]
     }
   ]
 }

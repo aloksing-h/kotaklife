@@ -154,7 +154,9 @@
       }
     },
     "components": [
-      "richtext"
+      "richtext",
+      "accordion",
+      "accordion-item"
     ]
   },
   {
