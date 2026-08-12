@@ -25,7 +25,7 @@ function decorateBookmarksLinks(block) {
 }
 
 export default function decorate(block) {
-	// if (block.classList.contains('bookmarks-links')) {
+	 if (block.classList.contains('bookmarks-links')) {
 		decorateBookmarksLinks(block);
-	//}
+	}
 }
