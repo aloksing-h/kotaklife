@@ -310,6 +310,26 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Profile Cards",
+            "value": "profile-cards"
+          },
+          {
+            "name": "Financial Cards",
+            "value": "financial-cards"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
