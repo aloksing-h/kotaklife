@@ -120,6 +120,10 @@ const buildHeroBanner = (main, document) => {
 
   blogHead.replaceWith(rteHeroBlock);
 
+  if (!main.contains(rteHeroBlock)) {
+    main.prepend(rteHeroBlock);
+  }
+
   // Insert section break (---) after hero block
   const hr = document.createElement('hr');
   rteHeroBlock.after(hr);
@@ -191,6 +195,10 @@ const appendFaqAccordion = (main, document) => {
   ], document);
 
   sourceBlock.replaceWith(accordionBlock);
+
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
 };
 
 /**
@@ -236,20 +244,38 @@ const appendKotakPromos = (main, document) => {
 };
 
 /**
- * Transforms Disclaimer section into an 'Accordion (disclaimer)' block
+ * FIXED: Transforms Disclaimer section into an 'Accordion (disclaimer)' block
+ * and guarantees it gets placed inside main so it is included in export.
  */
 const appendDisclaimerAccordion = (main, document) => {
-  const disclaimerContainer = document.querySelector('#terms-conditions, section.abovespace, .terms, .accordion.disclaimer');
+  const disclaimerContainer = document.querySelector(
+    '#terms-conditions, section.abovespace, .terms, .accordion.disclaimer, [class*="disclaimer"]'
+  );
 
   if (!disclaimerContainer) return;
 
-  const disclaimerButton = disclaimerContainer.querySelector('.collapsible, button.terms-txt, .terms-txt, summary');
-  const disclaimerBody = disclaimerContainer.querySelector('.content-col, .terms-para, .accordion-item-body');
+  const disclaimerButton = disclaimerContainer.querySelector(
+    '.collapsible, button.terms-txt, .terms-txt, summary, .accordion-item-label, h2, h3, h4'
+  );
+  
+  let disclaimerBody = disclaimerContainer.querySelector(
+    '.content-col, .terms-para, .accordion-item-body, .accordion-item-body-content'
+  );
 
-  if (!disclaimerButton || !disclaimerBody) return;
+  // Fallback: If body container selector missed, extract all paragraphs
+  if (!disclaimerBody) {
+    const paragraphs = disclaimerContainer.querySelectorAll('p');
+    if (paragraphs.length > 0) {
+      disclaimerBody = document.createElement('div');
+      paragraphs.forEach((p) => disclaimerBody.append(p.cloneNode(true)));
+    }
+  }
+
+  if (!disclaimerBody) return;
 
   const label = document.createElement('h3');
-  label.textContent = disclaimerButton.textContent.trim() || 'Disclaimer';
+  const labelText = disclaimerButton ? disclaimerButton.textContent.trim() : 'Disclaimer';
+  label.textContent = labelText.replace(/[\n\r\t]+/g, ' ') || 'Disclaimer';
 
   const accordionBlock = WebImporter.DOMUtils.createTable([
     ['Accordion (disclaimer)'],
@@ -258,6 +284,11 @@ const appendDisclaimerAccordion = (main, document) => {
 
   const targetToRemove = disclaimerContainer.closest('section') || disclaimerContainer;
   targetToRemove.replaceWith(accordionBlock);
+
+  // Ensure block is attached to main output container
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
 };
 
 /**
@@ -371,7 +402,7 @@ export default {
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
 
-    // 3. Process Bookmark Links and raw HTML tables (sanitized to avoid nested <table> nodes)
+    // 3. Process Bookmark Links and raw HTML tables
     buildBookmarksRte(main, document);
     protectAndWrapContentTables(main, document);
 
