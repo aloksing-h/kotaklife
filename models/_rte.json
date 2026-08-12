@@ -46,16 +46,16 @@
               "value": "form-step"
             },
             {
-              "name": "Bookmarks Links",
-              "value": "bookmarks-links"
+              "name":"Bookmarks Links",
+              "value":"bookmarks-links"
             },
             {
-              "name": "Card Border Red",
-              "value": "card-border-red"
+              "name":"Card Border Red",
+              "value":"card-border-red"
             },
             {
-              "name": "Hero Banner",
-              "value": "hero-banner"
+              "name":"Hero Banner",
+              "value":"hero-banner"
             }
           ]
         }
