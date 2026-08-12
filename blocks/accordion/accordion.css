@@ -20,13 +20,17 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 46px 16px 0;
+  padding: 10px 46px 10px 0;
   cursor: pointer;
   list-style: none;
   font-weight: 600;
   font-size: 1.1rem;
   line-height: 1.4;
   transition: background-color 0.2s;
+}
+
+.accordion details summary p{
+  margin: 0;
 }
 
 .accordion details summary:focus,

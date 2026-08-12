@@ -1,27 +1,66 @@
-.cards > ul {
+/* Container layout */
+.cards.block ul {
+  display: flex;
+  gap: 24px; /* Space between cards */
   list-style: none;
-  margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  margin: 0;
 }
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+/* Individual card styling */
+.cards.block li {
+  flex: 1; /* Makes all cards equal width */
+  border: 1px solid #a82024; /* Deep red border matching the image */
+  border-radius: 8px; /* Rounded corners */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.cards.block .cards-card-image {
+  margin-bottom: 16px;
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.cards.block .cards-card-image img {
+  width: 64px; /* Constrain the massive image */
+  height: 64px;
+  object-fit: contain;
+  border-radius: 50%; /* Circle shape if your image has a background */
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.cards.block .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.cards.block .cards-card-body h3 {
+  font-size: 1.25rem;
+  margin: 0 0 12px 0;
+  color: #000000;
+}
+
+.cards.block .cards-card-body p:first-of-type {
+  margin: 0 0 24px 0;
+  color: #333333;
+  line-height: 1.5;
+  flex-grow: 1; /* Pushes the button to the bottom */
+}
+
+/* Turn the link into a pill button */
+.cards.block .cards-card-body a {
+  display: inline-block;
+  background-color: #b72025; /* Red button color */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 24px; /* Creates the pill shape */
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.cards.block .cards-card-body a:hover {
+  background-color: #8f191d; /* Slightly darker on hover */
 }
