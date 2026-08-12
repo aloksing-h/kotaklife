@@ -237,6 +237,22 @@
     ]
   },
   {
+    "id": "accordion",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Disclaimer",
+            "value": "disclaimer"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "accordion-item",
     "fields": [
       {
