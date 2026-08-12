@@ -14,7 +14,7 @@
     padding: 0 0 14px;
     border-bottom: 1px solid #ed1c24;
     color: #0d1f3f;
-    font-size: 34px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
@@ -43,7 +43,7 @@
 
 .rte.bookmarks-links.block li a {
     color: #081f44;
-    font-size: 38px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.2;
     text-decoration: none;
@@ -81,7 +81,7 @@
     cursor: pointer;
     margin-top: 20px;
     color: #ed1c24;
-    font-size: 38px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: 1.2px;
@@ -102,7 +102,7 @@
     .rte.bookmarks-links.block h4,
     .rte.bookmarks-links.block h5,
     .rte.bookmarks-links.block h6 {
-        font-size: 26px;
+        font-size: 16px;
         padding-bottom: 12px;
     }
 
@@ -111,11 +111,11 @@
     }
 
     .rte.bookmarks-links.block li a {
-        font-size: 30px;
+        font-size: 16px;
     }
 
     .rte.bookmarks-links.block .bookmarks-show-more {
         margin-top: 16px;
-        font-size: 30px;
+        font-size: 20px;
     }
 }
