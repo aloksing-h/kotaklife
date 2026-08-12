@@ -320,6 +320,10 @@
           {
             "name": "Profile Cards",
             "value": "profile-cards"
+          },
+          {
+            "name": "Financial Cards",
+            "value": "financial-cards"
           }
         ]
       }
