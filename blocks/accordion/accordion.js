@@ -5,19 +5,34 @@
  */
 
 export default function decorate(block) {
+  let index = 1;
   [...block.children].forEach((row) => {
-    // decorate accordion item label
     const label = row.children[0];
+    const body = row.children[1];
+    if (!label) return;
+
     const summary = document.createElement('summary');
     summary.className = 'accordion-item-label';
+
+    const number = document.createElement('span');
+    number.className = 'accordion-item-number';
+    number.textContent = index;
+    summary.append(number);
     summary.append(...label.childNodes);
-    // decorate accordion item body
-    const body = row.children[1];
-    body.className = 'accordion-item-body';
-    // decorate accordion item
+    label.remove();
+
+    if (body) {
+      body.className = 'accordion-item-body';
+    }
+
     const details = document.createElement('details');
     details.className = 'accordion-item';
-    details.append(summary, body);
+    if (body) {
+      details.append(summary, body);
+    } else {
+      details.append(summary);
+    }
     row.append(details);
+    index += 1;
   });
 }
