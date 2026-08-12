@@ -88,10 +88,7 @@
     text-transform: uppercase;
 }
 
-.rte.bookmarks-links.block .bookmarks-show-more:hover,
-.rte.bookmarks-links.block .bookmarks-show-more:focus-visible {
-    text-decoration: underline;
-}
+
 
 @media (max-width: 1024px) {
     .rte.bookmarks-links.block {
