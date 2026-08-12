@@ -81,49 +81,6 @@
     ]
   },
   {
-    "id": "rte",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Background Semantic Green",
-            "value": "background-semantic-green"
-          },
-          {
-            "name": "Background Semantic Orange",
-            "value": "background-semantic-orange"
-          },
-          {
-            "name": "Form Step",
-            "value": "form-step"
-          },
-          {
-            "name": "Bookmarks Links",
-            "value": "bookmarks-links"
-          },
-          {
-            "name": "Card Border Red",
-            "value": "card-border-red"
-          },
-          {
-            "name": "Hero Banner",
-            "value": "hero-banner"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "button",
     "fields": [
       {
@@ -516,6 +473,49 @@
         "value": "",
         "label": "Attribution",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "rte",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Background Semantic Green",
+            "value": "background-semantic-green"
+          },
+          {
+            "name": "Background Semantic Orange",
+            "value": "background-semantic-orange"
+          },
+          {
+            "name": "Form Step",
+            "value": "form-step"
+          },
+          {
+            "name": "Bookmarks Links",
+            "value": "bookmarks-links"
+          },
+          {
+            "name": "Card Border Red",
+            "value": "card-border-red"
+          },
+          {
+            "name": "Hero Banner",
+            "value": "hero-banner"
+          }
+        ]
       }
     ]
   },

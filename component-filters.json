@@ -68,12 +68,6 @@
     ]
   },
   {
-    "id": "tabs",
-    "components": [
-      "tabs-item"
-    ]
-  },
-  {
     "id": "rte",
     "rte": {
       "toolbar": {
@@ -161,6 +155,12 @@
     },
     "components": [
       "richtext"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
     ]
   }
 ]

@@ -11,9 +11,6 @@
           "...": "./_title.json#/definitions"
         },
         {
-          "...": "./_rte.json#/definitions"
-        },
-        {
           "...": "./_image.json#/definitions"
         },
         {
