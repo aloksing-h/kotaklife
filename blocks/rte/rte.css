@@ -1,0 +1,269 @@
+.rte.bookmarks-links.block {
+    background: #f4f4f4;
+    border-radius: 18px;
+    padding: 28px 28px 22px;
+}
+
+.rte.bookmarks-links.block h1,
+.rte.bookmarks-links.block h2,
+.rte.bookmarks-links.block h3,
+.rte.bookmarks-links.block h4,
+.rte.bookmarks-links.block h5,
+.rte.bookmarks-links.block h6 {
+    margin: 0;
+    padding: 0 0 14px;
+    border-bottom: 1px solid #ed1c24;
+    color: #0d1f3f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.rte.bookmarks-links.block ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rte.bookmarks-links.block li {
+    margin: 0;
+    border-bottom: 1px solid #cfd3db;
+}
+
+.rte.bookmarks-links.block li p {
+    margin: 0;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.rte.bookmarks-links.block li a {
+    color: #081f44;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.rte.bookmarks-links.block li a:hover,
+.rte.bookmarks-links.block li a:focus-visible {
+    text-decoration: underline;
+}
+
+.rte.bookmarks-links.block .icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rte.bookmarks-links.block .icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.rte.bookmarks-links.block:not(.is-expanded) li:nth-child(n + 7) {
+    display: none;
+}
+
+.rte.bookmarks-links.block .bookmarks-show-more {
+    display: inline-flex;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #ed1c24;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.rte.card-border-red.block {
+    color: #40536b;
+}
+
+.rte.card-border-red.block h2 {
+    margin: 0 0 24px;
+    color: #0d1f3f;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.rte.card-border-red.block > div > div > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rte.card-border-red.block > div > div > ul > li {
+    margin: 0 0 18px;
+    padding: 22px 24px;
+    border: 1px solid #ccc;
+    border-left: 3px solid #da251c;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 180ms ease;
+}
+
+.rte.card-border-red.block > div > div > ul > li:hover,
+.rte.card-border-red.block > div > div > ul > li:focus-within {
+    border-color: #ed1c24;
+}
+
+.rte.card-border-red.block > div > div > ul > li > h3 {
+    margin: 0;
+    color: #0d1f3f;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    width: fit-content;
+    border-bottom: 2px solid #0b396b;
+}
+
+.rte.card-border-red.block > div > div > ul > li > ul {
+    margin: 12px 0 0;
+    padding-left: 0;
+    list-style: none;
+    color: #40536b;
+}
+
+.rte.card-border-red.block > div > div > ul > li > ul > li {
+    padding-left: 4px;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.rte.card-border-red.block a {
+    color: #ed1c24;
+}
+
+.rte.block table {
+    width: 100%;
+    min-width: 640px;
+    margin: 24px 0;
+    border: 1px solid #c8c8c8;
+    border-collapse: collapse;
+    color: #40536b;
+    font-size: 18px;
+    line-height: 1.25;
+    table-layout: fixed;
+}
+
+.rte.block table td,
+.rte.block table th {
+    width: 50%;
+    padding: 14px 28px;
+    border: 1px solid #c8c8c8;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.rte.block table tr:first-child td,
+.rte.block table tr:first-child th {
+    background: #eeeeee;
+    font-weight: 600;
+    text-align: center;
+}
+
+.rte.block table td p,
+.rte.block table th p {
+    margin: 0;
+}
+
+.rte.block table a {
+    color: inherit;
+}
+
+@media (max-width: 1024px) {
+    .rte.block table {
+        font-size: 16px;
+    }
+
+    .rte.block table td,
+    .rte.block table th {
+        padding: 12px 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rte.block table {
+        min-width: 560px;
+        margin: 20px 0;
+        font-size: 15px;
+    }
+
+    .rte.block table td,
+    .rte.block table th {
+        padding: 12px 14px;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    .rte.bookmarks-links.block {
+        padding: 22px 18px 18px;
+        border-radius: 14px;
+    }
+
+    .rte.bookmarks-links.block h1,
+    .rte.bookmarks-links.block h2,
+    .rte.bookmarks-links.block h3,
+    .rte.bookmarks-links.block h4,
+    .rte.bookmarks-links.block h5,
+    .rte.bookmarks-links.block h6 {
+        font-size: 16px;
+        padding-bottom: 12px;
+    }
+
+    .rte.bookmarks-links.block li p {
+        min-height: 52px;
+    }
+
+    .rte.bookmarks-links.block li a {
+        font-size: 16px;
+    }
+
+    .rte.bookmarks-links.block .bookmarks-show-more {
+        margin-top: 16px;
+        font-size: 20px;
+    }
+
+    .rte.card-border-red.block h2 {
+        font-size: 24px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li {
+        padding: 18px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rte.card-border-red.block h2 {
+        margin-bottom: 18px;
+        font-size: 22px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li {
+        padding: 16px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li > h3 {
+        font-size: 18px;
+    }
+
+    .rte.card-border-red.block > div > div > ul > li > ul > li {
+        font-size: 15px;
+    }
+}
