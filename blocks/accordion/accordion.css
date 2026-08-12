@@ -11,7 +11,12 @@
   border-top: 1px solid #dadada;
 }
 
+.accordion details:last-child {
+  border-bottom: none;
+}
+
 .accordion details p {
+  text-align: justify;
   margin-bottom: 0.8em;
 }
 
@@ -74,10 +79,54 @@
 }
 
 .accordion details .accordion-item-body {
-  padding: 0 0 16px 40px;
+  display: grid;
+  grid-template-rows: 0fr; /* Start collapsed */
+  opacity: 0;
+  padding: 0 0 0 40px; 
+  transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+/* The inner wrapper must hide overflow for the grid animation to shrink it */
+.accordion details .accordion-item-body-content {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .accordion details[open] .accordion-item-body {
+  grid-template-rows: 1fr; /* Expand perfectly to content height */
+  opacity: 1;
+  padding: 0 0 16px 40px;
   border-top: none;
   background-color: transparent;
+}
+
+.accordion details.closing .accordion-item-body {
+  grid-template-rows: 0fr; /* Collapse smoothly */
+  opacity: 0;
+  padding: 0 0 0 40px;
+}
+
+.disclaimer.block .accordion-item .accordion-item-number {
+    display: none;
+}
+
+.disclaimer.block .accordion-item .accordion-item-label {
+    background-color: #036;
+    color: #fff;
+    text-transform: capitalize;
+    height: auto;
+    padding: 16px 34px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .32px;
+    line-height: 24px;
+    border-radius: 4px;
+}
+
+.disclaimer.block details summary::after {
+    color: white;
+}
+
+.disclaimer.block details .accordion-item-body{
+  padding: 0;
 }

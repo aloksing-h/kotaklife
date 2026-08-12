@@ -1,9 +1,3 @@
-/*
- * Accordion Block
- * Recreate an accordion
- * https://www.hlx.live/developer/block-collection/accordion
- */
-
 export default function decorate(block) {
   let index = 1;
   [...block.children].forEach((row) => {
@@ -22,16 +16,39 @@ export default function decorate(block) {
     label.remove();
 
     if (body) {
+      // --- NEW WRAPPER FOR CSS GRID ANIMATION ---
+      const wrapper = document.createElement('div');
+      wrapper.className = 'accordion-item-body-content';
+      wrapper.append(...body.childNodes);
+      body.append(wrapper);
+      // ------------------------------------------
       body.className = 'accordion-item-body';
     }
 
     const details = document.createElement('details');
     details.className = 'accordion-item';
+    
     if (body) {
       details.append(summary, body);
     } else {
       details.append(summary);
     }
+    
+    // Custom click listener for smooth closing
+    summary.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      
+      if (details.hasAttribute('open')) {
+        details.classList.add('closing');
+        setTimeout(() => {
+          details.removeAttribute('open');
+          details.classList.remove('closing');
+        }, 300); 
+      } else {
+        details.setAttribute('open', '');
+      }
+    });
+
     row.append(details);
     index += 1;
   });
