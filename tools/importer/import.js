@@ -43,7 +43,20 @@ const selectContentRoot = (document) => document.querySelector('section.best-inv
   || document.body;
 
 /**
- * Parses section.blog-head and formats it into an 'RTE (hero banner)' block
+ * HELPER: Creates a Section Metadata table and appends a section break (---)
+ */
+const appendSectionMetadata = (element, style, document) => {
+  const sectionMetaData = WebImporter.DOMUtils.createTable([
+    ['Section Metadata'],
+    ['Style', style],
+  ], document);
+  
+  element.append(sectionMetaData);
+  element.append(document.createElement('hr'));
+};
+
+/**
+ * Parses section.blog-head and appends a 'hero-banner' Section Metadata
  */
 const buildHeroBanner = (main, document) => {
   const blogHead = document.querySelector('section.blog-head') || main.querySelector('.hero-banner');
@@ -112,21 +125,14 @@ const buildHeroBanner = (main, document) => {
     heroContainer.append(mainUl);
   }
 
-  // Build table block named 'RTE (hero banner)'
-  const rteHeroBlock = WebImporter.DOMUtils.createTable([
-    ['RTE (hero banner)'],
-    [heroContainer],
-  ], document);
+  // Append Section Metadata instead of a Block Table
+  appendSectionMetadata(heroContainer, 'hero-banner', document);
 
-  blogHead.replaceWith(rteHeroBlock);
+  blogHead.replaceWith(heroContainer);
 
-  if (!main.contains(rteHeroBlock)) {
-    main.prepend(rteHeroBlock);
+  if (!main.contains(heroContainer)) {
+    main.prepend(heroContainer);
   }
-
-  // Insert section break (---) after hero block
-  const hr = document.createElement('hr');
-  rteHeroBlock.after(hr);
 };
 
 /**
@@ -153,20 +159,13 @@ const createEmbedBlocks = (main, document) => {
 };
 
 /**
- * Transforms red card containers into 'RTE (card border red)' block
+ * Transforms red card containers by applying 'card-border-red' Section Metadata
  */
-const buildRteCardBorderRed = (main, document) => {
+const formatCardBorderRed = (main, document) => {
   const borderRedContainers = [...main.querySelectorAll('.card-border-red, .red-card-wrapper')];
 
   borderRedContainers.forEach((container) => {
-    const block = WebImporter.DOMUtils.createTable([
-      ['RTE (card border red)'],
-      [container.cloneNode(true)],
-    ], document);
-
-    
-
-    container.replaceWith(block);
+    appendSectionMetadata(container, 'card-border-red', document);
   });
 };
 
@@ -246,8 +245,7 @@ const appendKotakPromos = (main, document) => {
 };
 
 /**
- * Transforms Disclaimer section into an Accordion block
- * and guarantees it gets placed inside main so it is included in export.
+ * Transforms Disclaimer section into an 'Accordion (disclaimer)' block
  */
 const appendDisclaimerAccordion = (main, document) => {
   const disclaimerContainer = document.querySelector(
@@ -264,7 +262,6 @@ const appendDisclaimerAccordion = (main, document) => {
     '.content-col, .terms-para, .accordion-item-body, .accordion-item-body-content',
   );
 
-  // Fallback: If body container selector missed, extract all paragraphs
   if (!disclaimerBody) {
     const paragraphs = disclaimerContainer.querySelectorAll('p');
     if (paragraphs.length > 0) {
@@ -280,32 +277,26 @@ const appendDisclaimerAccordion = (main, document) => {
   label.textContent = labelText.replace(/[\n\r\t]+/g, ' ') || 'Disclaimer';
 
   const accordionBlock = WebImporter.DOMUtils.createTable([
-    ['Accordion'],
+    ['Accordion (disclaimer)'], // UPDATED HERE
     [label, disclaimerBody.cloneNode(true)],
   ], document);
 
   const targetToRemove = disclaimerContainer.closest('section') || disclaimerContainer;
   targetToRemove.replaceWith(accordionBlock);
 
-  // Ensure block is attached to main output container
   if (!main.contains(accordionBlock)) {
     main.append(accordionBlock);
   }
 };
 
 /**
- * Transforms Bookmark Link sections into 'RTE (bookmarks links)' blocks
+ * Transforms Bookmark Link sections by applying 'bookmarks-links' Section Metadata
  */
-const buildBookmarksRte = (main, document) => {
+const formatBookmarks = (main, document) => {
   const bookmarkContainers = [...main.querySelectorAll('.bookmarks-links, .calculator-bookmarks')];
 
   bookmarkContainers.forEach((container) => {
-    const block = WebImporter.DOMUtils.createTable([
-      ['RTE (bookmarks links)'],
-      [container.cloneNode(true)],
-    ], document);
-
-    container.replaceWith(block);
+    appendSectionMetadata(container, 'bookmarks-links', document);
   });
 };
 
@@ -322,13 +313,11 @@ const protectAndWrapContentTables = (main, document) => {
     const firstCell = firstRow?.querySelector('th, td');
     const firstCellText = firstCell?.textContent?.trim().toLowerCase() || '';
 
-    // Skip tables that are already top-level EDS blocks created by importer
-    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte'];
+    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte', 'section metadata'];
     if (knownBlocks.some((block) => firstCellText.startsWith(block))) {
       return;
     }
 
-    // Extract table rows and convert to Markdown table format
     const rows = [...table.querySelectorAll('tr')];
     if (!rows.length) return;
 
@@ -398,13 +387,13 @@ export default {
 
     // 2. Process inline EDS blocks
     createEmbedBlocks(main, document);
-    buildRteCardBorderRed(main, document);
+    formatCardBorderRed(main, document);
     appendFaqAccordion(main, document);
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
 
     // 3. Process Bookmark Links and raw HTML tables
-    buildBookmarksRte(main, document);
+    formatBookmarks(main, document);
     protectAndWrapContentTables(main, document);
 
     // 4. Remove boilerplate noise
