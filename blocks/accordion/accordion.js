@@ -27,23 +27,23 @@ export default function decorate(block) {
 
     const details = document.createElement('details');
     details.className = 'accordion-item';
-    
+
     if (body) {
       details.append(summary, body);
     } else {
       details.append(summary);
     }
-    
+
     // Custom click listener for smooth closing
     summary.addEventListener('click', (e) => {
-      e.preventDefault(); 
-      
+      e.preventDefault();
+
       if (details.hasAttribute('open')) {
         details.classList.add('closing');
         setTimeout(() => {
           details.removeAttribute('open');
           details.classList.remove('closing');
-        }, 300); 
+        }, 300);
       } else {
         details.setAttribute('open', '');
       }

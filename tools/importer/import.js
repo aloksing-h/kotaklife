@@ -50,7 +50,7 @@ const appendSectionMetadata = (element, style, document) => {
     ['Section Metadata'],
     ['Style', style],
   ], document);
-  
+
   element.append(sectionMetaData);
   element.append(document.createElement('hr'));
 };

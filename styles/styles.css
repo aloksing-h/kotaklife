@@ -288,7 +288,6 @@ button.button.accent:disabled:focus-visible {
 
 main img {
   max-width: 100%;
-  width: auto;
   height: auto;
   width: 712px;
 }
@@ -332,6 +331,7 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
 /* 
 .bookmarks-links {
     background: #f4f4f4;
