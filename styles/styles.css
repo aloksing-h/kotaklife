@@ -482,7 +482,7 @@ main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-trigger .icon {
 
 main .section.hero-banner .hero-dropdown-panel {
   position: absolute;
-  z-index: 20;
+  z-index: 1;
   top: calc(100% + 12px);
   left: 0;
   min-width: 220px;
