@@ -110,6 +110,71 @@ export function decorateButtons(main) {
 }
 
 /**
+ * Decorates hero-banner sections: wraps the meta icon + trailing text into a
+ * `.hero-badge` pill and wires up the "Get Lumpsum Return" style dropdown lists.
+ * @param {Element} main The main element
+ */
+function decorateHeroBanner(main) {
+  main.querySelectorAll('.section.hero-banner').forEach((section) => {
+    const wrapper = section.querySelector(':scope > .default-content-wrapper') || section;
+
+    const metaIcon = wrapper.querySelector(':scope > p > .icon');
+    if (metaIcon) {
+      const p = metaIcon.closest('p');
+      const badge = document.createElement('span');
+      badge.className = 'hero-badge';
+      while (metaIcon.nextSibling) badge.append(metaIcon.nextSibling);
+      badge.prepend(metaIcon);
+      p.append(badge);
+    }
+
+    const dropdowns = [...wrapper.querySelectorAll(':scope > ul > li')]
+      .filter((li) => li.querySelector(':scope > ul'));
+    if (!dropdowns.length) return;
+
+    const closeAll = (except) => {
+      dropdowns.forEach((li) => {
+        if (li === except) return;
+        li.classList.remove('is-open');
+        li.querySelector(':scope > p')?.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    dropdowns.forEach((li) => {
+      const panel = li.querySelector(':scope > ul');
+      const trigger = li.querySelector(':scope > p');
+      li.classList.add('hero-dropdown');
+      trigger.classList.add('hero-dropdown-trigger');
+      panel.classList.add('hero-dropdown-panel');
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('tabindex', '0');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      const toggle = () => {
+        const isOpen = !li.classList.contains('is-open');
+        closeAll(li);
+        li.classList.toggle('is-open', isOpen);
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      trigger.addEventListener('click', toggle);
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        } else if (e.key === 'Escape') {
+          closeAll();
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!section.contains(e.target)) closeAll();
+    });
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -120,6 +185,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateHeroBanner(main);
 }
 
 /**

@@ -212,6 +212,10 @@
           {
             "name": "Hero Banner",
             "value": "hero-banner"
+          },
+          {
+            "name": "Hero Banner",
+            "value": "hero-banner"
           }
         ]
       }
@@ -514,6 +518,10 @@
           {
             "name": "Form Step",
             "value": "form-step"
+          },
+          {
+            "name": "Hero Banner",
+            "value": "hero-banner"
           }
         ]
       }

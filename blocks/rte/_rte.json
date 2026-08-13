@@ -44,6 +44,10 @@
             {
               "name": "Form Step",
               "value": "form-step"
+            },
+             {
+              "name":"Hero Banner",
+              "value":"hero-banner"
             }
           ]
         }

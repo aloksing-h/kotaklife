@@ -91,6 +91,26 @@ export default function decorate(block) {
   const link = block.querySelector('a').href;
   block.textContent = '';
 
+  // if (placeholder) {
+  //   const wrapper = document.createElement('div');
+  //   wrapper.className = 'embed-placeholder';
+  //   wrapper.innerHTML = '<div class="embed-placeholder-play">'
+  //     + '<button type="button" title="Play"></button></div>';
+  //   wrapper.prepend(placeholder);
+  //   wrapper.addEventListener('click', () => {
+  //     loadEmbed(block, link, true);
+  //   });
+  //   block.append(wrapper);
+  // } else {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     if (entries.some((e) => e.isIntersecting)) {
+  //       observer.disconnect();
+  //       loadEmbed(block, link);
+  //     }
+  //   });
+  //   observer.observe(block);
+  // }
+
   // Directly observe the block and load the native embed (Image 2 style)
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
