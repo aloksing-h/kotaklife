@@ -52,10 +52,6 @@
             {
               "name":"Card Border Red",
               "value":"card-border-red"
-            },
-            {
-              "name":"Hero Banner",
-              "value":"hero-banner"
             }
           ]
         }

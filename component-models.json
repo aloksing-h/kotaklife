@@ -114,10 +114,6 @@
           {
             "name": "Card Border Red",
             "value": "card-border-red"
-          },
-          {
-            "name": "Hero Banner",
-            "value": "hero-banner"
           }
         ]
       }
@@ -243,6 +239,10 @@
           {
             "name": "Tab Six",
             "value": "tab-six"
+          },
+          {
+            "name": "Hero Banner",
+            "value": "hero-banner"
           }
         ]
       }
