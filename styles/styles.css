@@ -332,3 +332,88 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+/* 
+.bookmarks-links {
+    background: #f4f4f4;
+    border-radius: 18px;
+    padding: 28px 28px 22px;
+}
+
+.bookmarks-links h3{
+    margin: 0;
+    padding: 0 0 14px;
+    border-bottom: 1px solid #ed1c24;
+    color: #0d1f3f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.bookmarks-links ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bookmarks-links li {
+    margin: 0;
+    border-bottom: 1px solid #cfd3db;
+}
+
+.bookmarks-links li p {
+    margin: 0;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.bookmarks-links li a {
+    color: #081f44;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.bookmarks-links li a:hover,
+.bookmarks-links li a:focus-visible {
+    text-decoration: underline;
+}
+
+.bookmarks-links .icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmarks-links .icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.bookmarks-links:not(.is-expanded) li:nth-child(n + 7) {
+    display: none;
+}
+
+.bookmarks-links .bookmarks-show-more {
+    display: inline-flex;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #ed1c24;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+} */
