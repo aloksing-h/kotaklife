@@ -164,8 +164,6 @@ const buildRteCardBorderRed = (main, document) => {
       [container.cloneNode(true)],
     ], document);
 
-    
-
     container.replaceWith(block);
   });
 };

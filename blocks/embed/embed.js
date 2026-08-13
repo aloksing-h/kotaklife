@@ -88,14 +88,14 @@ const loadEmbed = (block, link, autoplay) => {
 };
 
 export default function decorate(block) {
-  const placeholder = block.querySelector('picture');
   const link = block.querySelector('a').href;
   block.textContent = '';
 
   // if (placeholder) {
   //   const wrapper = document.createElement('div');
   //   wrapper.className = 'embed-placeholder';
-  //   wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
+  //   wrapper.innerHTML = '<div class="embed-placeholder-play">'
+  //     + '<button type="button" title="Play"></button></div>';
   //   wrapper.prepend(placeholder);
   //   wrapper.addEventListener('click', () => {
   //     loadEmbed(block, link, true);
@@ -111,7 +111,6 @@ export default function decorate(block) {
   //   observer.observe(block);
   // }
 
-  
   // Directly observe the block and load the native embed (Image 2 style)
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
