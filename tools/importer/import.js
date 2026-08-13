@@ -11,6 +11,10 @@ const getPathname = (value) => {
   return pathname || '/';
 };
 
+const removeGlobalNoise = (document) => {
+  WebImporter.DOMUtils.remove(document.body, []);
+};
+
 const stripBoilerplate = (main) => {
   WebImporter.DOMUtils.remove(main, [
     'header',
@@ -23,7 +27,6 @@ const stripBoilerplate = (main) => {
     '.blog-bradcrumb',
     '.menu.bottomRight',
     '.reddiv',
-    '.consumer',
     '.consumer-text',
     '.bttm_sticky_product',
     '.new_banner_bottom',
@@ -39,150 +42,95 @@ const selectContentRoot = (document) => document.querySelector('section.best-inv
   || document.querySelector('main')
   || document.body;
 
-const appendPopularSearches = (main, document) => {
-  const popularList = document.querySelector('.popular_list');
-
-  if (popularList && !main.contains(popularList)) {
-    main.append(popularList);
-  }
-};
-
-const buildTokenCard = (document, token) => {
-  const card = document.createElement('div');
-  const imageCell = document.createElement('div');
-  const bodyCell = document.createElement('div');
-  const image = token.querySelector('.tokenImg img');
-  const title = token.querySelector('h4');
-  const description = token.querySelector('p');
-  const link = token.querySelector('a.tokensInvest');
-
-  if (image) {
-    const picture = document.createElement('picture');
-    picture.append(image.cloneNode(true));
-    imageCell.append(picture);
-  }
-
-  if (title) {
-    bodyCell.append(title.cloneNode(true));
-  }
-
-  if (description) {
-    bodyCell.append(description.cloneNode(true));
-  }
-
-  if (link) {
-    bodyCell.append(link.cloneNode(true));
-  }
-
-  card.append(imageCell, bodyCell);
-
-  return card;
-};
-
 /**
- * Transforms Kotak Promos into a valid EDS Cards block
+ * Parses section.blog-head and formats it into an 'RTE (hero banner)' block
  */
-const appendKotakPromos = (main, document) => {
-  const sourceSection = document.querySelector('section.consumer.top-0.saving-token.ktk_tkn_card');
+const buildHeroBanner = (main, document) => {
+  const blogHead = document.querySelector('section.blog-head') || main.querySelector('.hero-banner');
 
-  if (!sourceSection) {
-    return;
+  if (!blogHead) return;
+
+  const heroContainer = document.createElement('div');
+
+  // 1. Heading (H1)
+  const h1 = blogHead.querySelector('h1');
+  if (h1) {
+    heroContainer.append(h1.cloneNode(true));
   }
 
-  const tokens = [...sourceSection.querySelectorAll('.product-tokens > .tokens')];
-
-  if (!tokens.length) {
-    return;
+  // 2. Subtitle / Description Paragraph
+  const desc = blogHead.querySelector('.text-center > p');
+  if (desc) {
+    heroContainer.append(desc.cloneNode(true));
   }
 
-  const rows = tokens.map((token) => [buildTokenCard(document, token)]);
+  // 3. Metadata (Views, Date & AI Badge)
+  const viewsLi = blogHead.querySelector('.blogs-ul li:first-child');
+  const smileSpan = blogHead.querySelector('.smile_ai span');
 
-  const cardsBlock = WebImporter.DOMUtils.createTable([
-    ['Cards'],
-    ...rows,
+  if (viewsLi || smileSpan) {
+    const metaP = document.createElement('p');
+    let metaText = viewsLi ? viewsLi.textContent.trim() : '';
+    if (smileSpan) {
+      metaText += ` :smile-grey: ${smileSpan.textContent.trim()}`;
+    }
+    metaP.textContent = metaText;
+    heroContainer.append(metaP);
+  }
+
+  // 4. Nested Dropdown Menu
+  const drpwnWrapper = blogHead.querySelector('.drpwn-wrapper');
+  if (drpwnWrapper) {
+    const mainUl = document.createElement('ul');
+    const mainLi = document.createElement('li');
+
+    const labelLink = drpwnWrapper.querySelector('.drpwn-label a, .drpwn-label');
+    const mainLabelText = labelLink ? labelLink.textContent.trim() : 'Get Lumpsum Return';
+
+    const labelP = document.createElement('p');
+    labelP.textContent = `${mainLabelText} :chevron-down:`;
+    mainLi.append(labelP);
+
+    // Child menu items
+    const menuItems = [...drpwnWrapper.querySelectorAll('.drpwn-menu li')];
+    if (menuItems.length) {
+      const subUl = document.createElement('ul');
+      menuItems.forEach((item, index) => {
+        const subLi = document.createElement('li');
+        const itemText = item.querySelector('span:last-child')?.textContent.trim()
+          || item.querySelector('a')?.textContent.trim()
+          || item.textContent.trim();
+
+        const iconName = index === 0 ? ':economic-crisis:' : `:economic-crisis${index}:`;
+        subLi.textContent = `${iconName} ${itemText}`;
+        subUl.append(subLi);
+      });
+      mainLi.append(subUl);
+    }
+
+    mainUl.append(mainLi);
+    heroContainer.append(mainUl);
+  }
+
+  // Build table block named 'RTE (hero banner)'
+  const rteHeroBlock = WebImporter.DOMUtils.createTable([
+    ['RTE (hero banner)'],
+    [heroContainer],
   ], document);
 
-  sourceSection.replaceWith(cardsBlock);
+  blogHead.replaceWith(rteHeroBlock);
 
-  if (!main.contains(cardsBlock)) {
-    main.append(cardsBlock);
+  if (!main.contains(rteHeroBlock)) {
+    main.prepend(rteHeroBlock);
   }
+
+  // Insert section break (---) after hero block
+  const hr = document.createElement('hr');
+  rteHeroBlock.after(hr);
 };
 
 /**
- * Transforms FAQ sections into an Accordion block
- */
-const appendFaqAccordion = (main, document) => {
-  const sourceBlock = document.querySelector('.accordion-div');
-
-  if (!sourceBlock) {
-    return;
-  }
-
-  const items = [...sourceBlock.querySelectorAll('.bor')]
-    .map((item) => {
-      const question = item.querySelector('.accordion h3, h3');
-      const answer = item.querySelector('.panel');
-
-      if (!question || !answer) {
-        return null;
-      }
-
-      return [question.cloneNode(true), answer.cloneNode(true)];
-    })
-    .filter(Boolean);
-
-  if (!items.length) {
-    return;
-  }
-
-  const accordionBlock = WebImporter.DOMUtils.createTable([
-    ['Accordion'],
-    ...items,
-  ], document);
-
-  sourceBlock.replaceWith(accordionBlock);
-
-  if (!main.contains(accordionBlock)) {
-    main.append(accordionBlock);
-  }
-};
-
-/**
- * Transforms Disclaimer section into an Accordion block
- */
-const appendDisclaimerAccordion = (main, document) => {
-  const disclaimerContainer = document.querySelector('#terms-conditions, section.abovespace, .terms');
-
-  if (!disclaimerContainer) {
-    return;
-  }
-
-  const disclaimerButton = disclaimerContainer.querySelector('.collapsible, button.terms-txt, .terms-txt');
-  const disclaimerBody = disclaimerContainer.querySelector('.content-col, .terms-para');
-
-  if (!disclaimerButton || !disclaimerBody) {
-    return;
-  }
-
-  const question = document.createElement('h3');
-  question.textContent = disclaimerButton.textContent.trim() || 'Disclaimer';
-
-  const accordionBlock = WebImporter.DOMUtils.createTable([
-    ['Accordion'],
-    [question, disclaimerBody.cloneNode(true)],
-  ], document);
-
-  const targetToRemove = disclaimerContainer.closest('section') || disclaimerContainer;
-  targetToRemove.replaceWith(accordionBlock);
-
-  if (!main.contains(accordionBlock)) {
-    main.append(accordionBlock);
-  }
-};
-
-/**
- * Converts iframe elements into an Embed block
+ * Transforms iframe elements into an 'Embed' block
  */
 const createEmbedBlocks = (main, document) => {
   const iframes = [...main.querySelectorAll('iframe')];
@@ -205,52 +153,222 @@ const createEmbedBlocks = (main, document) => {
 };
 
 /**
- * Wraps content HTML tables into the 'RTE' block matching the Universal Editor definition
+ * Transforms red card containers into 'RTE (card border red)' block
  */
-const createRTEBlocks = (main, document) => {
+const buildRteCardBorderRed = (main, document) => {
+  const borderRedContainers = [...main.querySelectorAll('.card-border-red, .red-card-wrapper')];
+
+  borderRedContainers.forEach((container) => {
+    const block = WebImporter.DOMUtils.createTable([
+      ['RTE (card border red)'],
+      [container.cloneNode(true)],
+    ], document);
+
+    
+
+    container.replaceWith(block);
+  });
+};
+
+/**
+ * Transforms FAQs into an 'Accordion' block
+ */
+const appendFaqAccordion = (main, document) => {
+  const sourceBlock = document.querySelector('.accordion-div, .faq-accordion');
+
+  if (!sourceBlock) return;
+
+  const items = [...sourceBlock.querySelectorAll('.bor, .accordion-item')]
+    .map((item) => {
+      const question = item.querySelector('.accordion h3, h3, .accordion-item-label, summary');
+      const answer = item.querySelector('.panel, .accordion-item-body');
+
+      if (!question || !answer) return null;
+
+      return [question.cloneNode(true), answer.cloneNode(true)];
+    })
+    .filter(Boolean);
+
+  if (!items.length) return;
+
+  const accordionBlock = WebImporter.DOMUtils.createTable([
+    ['Accordion'],
+    ...items,
+  ], document);
+
+  sourceBlock.replaceWith(accordionBlock);
+
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
+};
+
+/**
+ * Transforms promo tokens / cards into a 'Cards' block
+ */
+const appendKotakPromos = (main, document) => {
+  const sourceSection = document.querySelector('section.consumer.top-0.saving-token.ktk_tkn_card, .cards-wrapper');
+
+  if (!sourceSection) return;
+
+  const tokens = [...sourceSection.querySelectorAll('.product-tokens > .tokens, .cards.block ul li')];
+
+  if (!tokens.length) return;
+
+  const rows = tokens.map((token) => {
+    const imageCell = document.createElement('div');
+    const textCell = document.createElement('div');
+
+    const image = token.querySelector('.tokenImg img, img');
+    const title = token.querySelector('h4, h3');
+    const description = token.querySelector('p');
+    const link = token.querySelector('a');
+
+    if (image) {
+      const picture = document.createElement('picture');
+      picture.append(image.cloneNode(true));
+      imageCell.append(picture);
+    }
+
+    if (title) textCell.append(title.cloneNode(true));
+    if (description) textCell.append(description.cloneNode(true));
+    if (link) textCell.append(link.cloneNode(true));
+
+    return [imageCell, textCell];
+  });
+
+  const cardsBlock = WebImporter.DOMUtils.createTable([
+    ['Cards'],
+    ...rows,
+  ], document);
+
+  sourceSection.replaceWith(cardsBlock);
+};
+
+/**
+ * Transforms Disclaimer section into an Accordion block
+ * and guarantees it gets placed inside main so it is included in export.
+ */
+const appendDisclaimerAccordion = (main, document) => {
+  const disclaimerContainer = document.querySelector(
+    '#terms-conditions, section.abovespace, .terms, .accordion.disclaimer, [class*="disclaimer"]',
+  );
+
+  if (!disclaimerContainer) return;
+
+  const disclaimerButton = disclaimerContainer.querySelector(
+    '.collapsible, button.terms-txt, .terms-txt, summary, .accordion-item-label, h2, h3, h4',
+  );
+
+  let disclaimerBody = disclaimerContainer.querySelector(
+    '.content-col, .terms-para, .accordion-item-body, .accordion-item-body-content',
+  );
+
+  // Fallback: If body container selector missed, extract all paragraphs
+  if (!disclaimerBody) {
+    const paragraphs = disclaimerContainer.querySelectorAll('p');
+    if (paragraphs.length > 0) {
+      disclaimerBody = document.createElement('div');
+      paragraphs.forEach((p) => disclaimerBody.append(p.cloneNode(true)));
+    }
+  }
+
+  if (!disclaimerBody) return;
+
+  const label = document.createElement('h3');
+  const labelText = disclaimerButton ? disclaimerButton.textContent.trim() : 'Disclaimer';
+  label.textContent = labelText.replace(/[\n\r\t]+/g, ' ') || 'Disclaimer';
+
+  const accordionBlock = WebImporter.DOMUtils.createTable([
+    ['Accordion'],
+    [label, disclaimerBody.cloneNode(true)],
+  ], document);
+
+  const targetToRemove = disclaimerContainer.closest('section') || disclaimerContainer;
+  targetToRemove.replaceWith(accordionBlock);
+
+  // Ensure block is attached to main output container
+  if (!main.contains(accordionBlock)) {
+    main.append(accordionBlock);
+  }
+};
+
+/**
+ * Transforms Bookmark Link sections into 'RTE (bookmarks links)' blocks
+ */
+const buildBookmarksRte = (main, document) => {
+  const bookmarkContainers = [...main.querySelectorAll('.bookmarks-links, .calculator-bookmarks')];
+
+  bookmarkContainers.forEach((container) => {
+    const block = WebImporter.DOMUtils.createTable([
+      ['RTE (bookmarks links)'],
+      [container.cloneNode(true)],
+    ], document);
+
+    container.replaceWith(block);
+  });
+};
+
+/**
+ * SOLVES THE 'modelId' ERROR:
+ * Converts inner HTML content tables into Markdown tables before placing them
+ * inside the RTE block so that no nested <table> DOM nodes trigger block scanning.
+ */
+const protectAndWrapContentTables = (main, document) => {
   const tables = [...main.querySelectorAll('table')];
 
   tables.forEach((table) => {
-    // Prevent re-wrapping tables that are already standard EDS blocks
-    const firstCell = table.querySelector('tr:first-child th, tr:first-child td');
+    const firstRow = table.querySelector('tr');
+    const firstCell = firstRow?.querySelector('th, td');
     const firstCellText = firstCell?.textContent?.trim().toLowerCase() || '';
 
-    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte', 'table'];
+    // Skip tables that are already top-level EDS blocks created by importer
+    const knownBlocks = ['accordion', 'embed', 'metadata', 'cards', 'rte'];
     if (knownBlocks.some((block) => firstCellText.startsWith(block))) {
       return;
     }
 
-    // Wraps raw table into the 'RTE' block matching definition title: "RTE"
-    const rteBlock = WebImporter.DOMUtils.createTable([
-      ['RTE'], 
-      [table.cloneNode(true)],
-    ], document);
+    // Extract table rows and convert to Markdown table format
+    const rows = [...table.querySelectorAll('tr')];
+    if (!rows.length) return;
 
-    table.replaceWith(rteBlock);
+    const matrix = rows.map((row) => [...row.querySelectorAll('th, td')]
+      .map((cell) => cell.innerHTML.trim().replace(/\|/g, '\\|').replace(/\n+/g, ' ')));
+
+    if (matrix.length > 0) {
+      const header = matrix[0];
+      const mdLines = [];
+      mdLines.push(`| ${header.join(' | ')} |`);
+      mdLines.push(`| ${header.map(() => '---').join(' | ')} |`);
+
+      matrix.slice(1).forEach((row) => {
+        mdLines.push(`| ${row.join(' | ')} |`);
+      });
+
+      const container = document.createElement('div');
+      container.innerHTML = mdLines.join('<br>');
+
+      const rteBlock = WebImporter.DOMUtils.createTable([
+        ['RTE'],
+        [container],
+      ], document);
+
+      table.replaceWith(rteBlock);
+    }
   });
 };
 
-const appendAlsoRead = (main, document) => {
-  const alsoRead = document.querySelector('.also-readd');
-
-  if (alsoRead && !main.contains(alsoRead)) {
-    main.append(alsoRead);
-  }
-};
-
-const removeGlobalNoise = (document) => {
-  WebImporter.DOMUtils.remove(document.body, []);
-};
-
-const appendMetadataBlock = (main, document) => {
+/**
+ * Appends Metadata block at the bottom of the main document
+ */
+const appendMetadataBlockAtBottom = (main, document) => {
   const metadata = {};
+
   const title = document.querySelector('title');
   const description = document.querySelector('meta[name="description"], meta[property="og:description"]');
   const image = document.querySelector('meta[property="og:image"]');
 
-  if (title?.textContent) {
-    metadata.Title = title.textContent.trim();
-  }
+  metadata.Title = title?.textContent ? title.textContent.trim() : 'Blog Details';
 
   if (description?.content) {
     metadata.Description = description.content.trim();
@@ -262,7 +380,11 @@ const appendMetadataBlock = (main, document) => {
     metadata.Image = img;
   }
 
-  main.prepend(WebImporter.Blocks.getMetadataBlock(document, metadata));
+  metadata['Published Time'] = new Date().toISOString();
+  metadata['Modified Time'] = new Date().toISOString();
+
+  const metadataBlock = WebImporter.Blocks.getMetadataBlock(document, metadata);
+  main.append(metadataBlock);
 };
 
 export default {
@@ -271,16 +393,21 @@ export default {
 
     const main = selectContentRoot(document);
 
-    // 1. Convert components into valid EDS / AEM blocks
-    appendMetadataBlock(main, document);
+    // 1. Process Hero Banner block
+    buildHeroBanner(main, document);
+
+    // 2. Process inline EDS blocks
+    createEmbedBlocks(main, document);
+    buildRteCardBorderRed(main, document);
+    appendFaqAccordion(main, document);
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
-    appendFaqAccordion(main, document);
-    createEmbedBlocks(main, document);
-    createRTEBlocks(main, document);
 
-    // 2. Cleanups and additional appendings
-    appendAlsoRead(main, document);
+    // 3. Process Bookmark Links and raw HTML tables
+    buildBookmarksRte(main, document);
+    protectAndWrapContentTables(main, document);
+
+    // 4. Remove boilerplate noise
     stripBoilerplate(main);
 
     WebImporter.DOMUtils.remove(main, [
@@ -290,7 +417,8 @@ export default {
       '.col-md-6 form',
     ]);
 
-    appendPopularSearches(main, document);
+    // 5. Append Metadata block at bottom
+    appendMetadataBlockAtBottom(main, document);
 
     return main;
   },
