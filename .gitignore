@@ -4,6 +4,7 @@ logs/*
 node_modules/*
 
 helix-importer-ui
+certs/*
 .DS_Store
 *.bak
 .idea
