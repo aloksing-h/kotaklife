@@ -332,6 +332,237 @@ main .section.highlight {
   padding: 40px 0;
 }
 
+/* ==========================================================================
+   Hero Banner (section style: "hero-banner")
+   Full-bleed intro banner authored as plain section content, structure:
+   main > .section.hero-banner > .default-content-wrapper
+   The icon badge and dropdown classes below are applied by
+   decorateHeroBanner() in scripts.js.
+   ========================================================================== */
+
+main .section.hero-banner {
+  margin: 0;
+  padding: 48px 0 40px;
+  background-color: var(--light-color);
+  text-align: center;
+}
+
+/* re-center the content to match the rest of the page */
+main .section.hero-banner .default-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+main .section.hero-banner h1 {
+  margin: 0 0 16px;
+  color: #0d1f3f;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* intro paragraph */
+main .section.hero-banner .default-content-wrapper > p:first-of-type {
+  margin: 0 auto 16px;
+  max-width: 760px;
+  color: #40536b;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* views / updated-on / badge meta line */
+main .section.hero-banner .default-content-wrapper > p:has(.icon) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  color: #6b7686;
+  font-size: 15px;
+}
+
+/* "Human expertise, no AI" pill (icon + trailing text wrapped by JS) */
+main .section.hero-banner .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d7dbe2;
+  border-radius: 999px;
+  padding: 4px 14px;
+  background-color: #fff;
+  color: #6b7686;
+  font-size: 14px;
+}
+
+main .section.hero-banner .hero-badge .icon{
+      display: flex;
+    align-items: center;
+    width: 16px;
+}
+
+main .section.hero-banner .hero-badge .icon img {
+  width: 16px;
+  height: 16px;
+}
+
+/* CTA button (author a bold link, e.g. **[Start Your E-Term Plan](/path)**) */
+main .section.hero-banner .button-wrapper {
+  margin: 8px 0 0;
+}
+
+main .section.hero-banner .button-wrapper .button {
+  border: 0;
+  border-radius: 999px;
+  padding: 16px 40px;
+  background-color: #ed1c24;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+main .section.hero-banner .button-wrapper .button:hover,
+main .section.hero-banner .button-wrapper .button:focus-visible {
+  background-color: #c8151b;
+}
+
+/* "Get Lumpsum Return" dropdown list */
+main .section.hero-banner .default-content-wrapper > ul {
+  display: inline-flex;
+  justify-content: center;
+  margin: 24px auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+main .section.hero-banner .hero-dropdown {
+  position: relative;
+}
+
+main .section.hero-banner .hero-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 12px 14px 28px;
+  background-color: #ed1c24;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+
+main .section.hero-banner .hero-dropdown-trigger .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 20%);
+  transition: transform 180ms ease;
+}
+
+main .section.hero-banner .hero-dropdown-trigger .icon img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-trigger .icon {
+  transform: rotate(180deg);
+}
+
+main .section.hero-banner .hero-dropdown-panel {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 220px;
+  margin: 0;
+  padding: 8px 20px;
+  list-style: none;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 20px 40px rgb(13 31 63 / 15%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+}
+
+main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+main .section.hero-banner .hero-dropdown-panel li {
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 0;
+}
+
+main .section.hero-banner .hero-dropdown-panel li:last-child {
+  border-bottom: 0;
+}
+
+main .section.hero-banner .hero-dropdown-panel p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 16px 4px;
+  color: #0d1f3f;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+main .section.hero-banner .hero-dropdown-panel .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-color: #f1f2f5;
+}
+
+main .section.hero-banner .hero-dropdown-panel .icon img {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 600px) {
+  main .section.hero-banner {
+    padding: 32px 0;
+  }
+
+  main .section.hero-banner .default-content-wrapper {
+    padding: 0 18px;
+  }
+
+  main .section.hero-banner h1 {
+    font-size: 24px;
+  }
+
+  main .section.hero-banner .hero-dropdown-panel {
+    left: 50%;
+    min-width: 260px;
+    transform: translateX(-50%) translateY(-8px);
+  }
+
+  main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-panel {
+    transform: translateX(-50%) translateY(0);
+  }
+}
 /* 
 .bookmarks-links {
     background: #f4f4f4;
