@@ -47,7 +47,7 @@ const selectContentRoot = (document) => document.querySelector('section.best-inv
  */
 const appendSectionMetadata = (element, style, document) => {
   const sectionMetaData = WebImporter.DOMUtils.createTable([
-    ['Section Metadata (hero-banner)'],
+    ['Section Metadata'],
     ['Style', style],
   ], document);
 
