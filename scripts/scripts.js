@@ -143,6 +143,7 @@ function decorateHeroBanner(main) {
     dropdowns.forEach((li) => {
       const panel = li.querySelector(':scope > ul');
       const trigger = li.querySelector(':scope > p');
+      if (!trigger || !panel) return;
       li.classList.add('hero-dropdown');
       trigger.classList.add('hero-dropdown-trigger');
       panel.classList.add('hero-dropdown-panel');
