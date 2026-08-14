@@ -1,5 +1,5 @@
 /* Container layout */
-.cards.block ul {
+.financial-cards ul {
   display: flex;
   gap: 24px; /* Space between cards */
   list-style: none;
@@ -8,7 +8,7 @@
 }
 
 /* Individual card styling */
-.cards.block li {
+.financial-cards li {
   flex: 1; /* Makes all cards equal width */
   border: 1px solid #a82024; /* Deep red border matching the image */
   border-radius: 8px; /* Rounded corners */
@@ -18,30 +18,30 @@
   background-color: #fff;
 }
 
-.cards.block .cards-card-image {
+.financial-cards .cards-card-image {
   margin-bottom: 16px;
 }
 
-.cards.block .cards-card-image img {
+.financial-cards .cards-card-image img {
   width: 64px; /* Constrain the massive image */
   height: 64px;
   object-fit: contain;
   border-radius: 50%; /* Circle shape if your image has a background */
 }
 
-.cards.block .cards-card-body {
+.financial-cards .cards-card-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1; 
 }
 
-.cards.block .cards-card-body h3 {
+.financial-cards .cards-card-body h3 {
   font-size: 1.25rem;
   margin: 0 0 12px;
   color: #000;
 }
 
-.cards.block .cards-card-body p:first-of-type {
+.financial-cards .cards-card-body p:first-of-type {
   margin: 0 0 24px;
   color: #333;
   line-height: 1.5;
@@ -49,7 +49,7 @@
 }
 
 /* Turn the link into a pill button */
-.cards.block .cards-card-body a {
+.financial-cards .cards-card-body a {
   display: inline-block;
   background-color: #b72025; /* Red button color */
   color: #fff;
@@ -61,6 +61,6 @@
   transition: background-color 0.2s ease;
 }
 
-.cards.block .cards-card-body a:hover {
+.financial-cards .cards-card-body a:hover {
   background-color: #8f191d; /* Slightly darker on hover */
 }
