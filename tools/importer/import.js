@@ -52,7 +52,7 @@ const appendSectionMetadata = (element, style, document) => {
   ], document);
 
   element.append(sectionMetaData);
-  element.append(document.createElement('hr'));
+  element.after(document.createElement('hr')); // section break must be a sibling, not nested inside the section
 };
 
 /**
@@ -125,14 +125,14 @@ const buildHeroBanner = (main, document) => {
     heroContainer.append(mainUl);
   }
 
-  // Append Section Metadata instead of a Block Table
-  appendSectionMetadata(heroContainer, 'hero-banner', document);
-
   blogHead.replaceWith(heroContainer);
 
   if (!main.contains(heroContainer)) {
     main.prepend(heroContainer);
   }
+
+  // Append Section Metadata instead of a Block Table
+  appendSectionMetadata(heroContainer, 'hero-banner', document);
 };
 
 /**
