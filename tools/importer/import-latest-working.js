@@ -102,29 +102,24 @@ const buildHeroBanner = (main, document) => {
   const viewsLi = blogHead.querySelector('.blogs-ul li:first-child');
   const smileDiv = blogHead.querySelector('.smile_div, .smile_ai');
 
+  // Combine both into a single paragraph so they render on the same line
   if (viewsLi || smileDiv) {
     const metaP = document.createElement('p');
+    let metaText = '';
 
     if (viewsLi) {
-      metaP.append(document.createTextNode(viewsLi.textContent.trim() + ' '));
+      metaText += viewsLi.textContent.trim();
     }
 
     if (smileDiv) {
       const smileText = smileDiv.querySelector('span')?.textContent.trim() || 'Human expertise, no AI';
-
-      // Create standard AEM icon span (:smile-grey:)
-      const iconSpan = document.createElement('span');
-      iconSpan.className = 'icon icon-smile-grey';
-
-      const img = document.createElement('img');
-      img.src = '/assets/images/homepageV2/smile-grey.svg';
-      img.alt = 'Human expertise, no AI';
-      iconSpan.append(img);
-
-      metaP.append(iconSpan);
-      metaP.append(document.createTextNode(` ${smileText}`));
+      if (metaText.length > 0) {
+        metaText += ' '; // Add space between date and icon
+      }
+      metaText += `:smile-grey: ${smileText}`;
     }
 
+    metaP.textContent = metaText;
     heroContainer.append(metaP);
   }
 
@@ -137,24 +132,35 @@ const buildHeroBanner = (main, document) => {
       
       const labelLink = drpwnWrapper.querySelector('.drpwn-label a');
       if (labelLink) {
-        mainLi.append(labelLink.cloneNode(true));
+        const clonedLink = labelLink.cloneNode(true);
+        clonedLink.textContent = clonedLink.textContent.trim();
+        mainLi.append(clonedLink);
+        // Place the icon shorthand outside the link
+        mainLi.append(document.createTextNode(' :chevron-down:'));
       } else {
         const labelText = drpwnWrapper.querySelector('.drpwn-label')?.textContent.trim();
-        if (labelText) mainLi.textContent = labelText;
+        if (labelText) mainLi.textContent = `${labelText} :chevron-down:`;
       }
       
       const menuItems = [...drpwnWrapper.querySelectorAll('.drpwn-menu li a')];
       if (menuItems.length > 0) {
         const subUl = document.createElement('ul');
-        menuItems.forEach((item) => {
+        menuItems.forEach((item, index) => {
           const subLi = document.createElement('li');
           const textSpan = item.querySelector('span:not(.drpwn-icon)');
           
           const cleanLink = document.createElement('a');
           cleanLink.href = item.href;
-          cleanLink.textContent = textSpan ? textSpan.textContent.trim() : item.textContent.trim();
           
+          const iconName = index === 0 ? 'economic-crisis' : `economic-crisis${index}`;
+          const linkText = textSpan ? textSpan.textContent.trim() : item.textContent.trim();
+          
+          cleanLink.textContent = linkText;
+          
+          // Prepend the icon shorthand outside the link
+          subLi.append(document.createTextNode(`:${iconName}: `));
           subLi.append(cleanLink);
+          
           subUl.append(subLi);
         });
         mainLi.append(subUl);
