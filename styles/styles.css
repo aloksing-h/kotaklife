@@ -563,14 +563,14 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     transform: translateX(-50%) translateY(0);
   }
 }
-/* 
-.bookmarks-links {
+
+.bookmarks-links > div {
     background: #f4f4f4;
     border-radius: 18px;
     padding: 28px 28px 22px;
 }
 
-.bookmarks-links h3{
+.bookmarks-links > div h3{
     margin: 0;
     padding: 0 0 14px;
     border-bottom: 1px solid #ed1c24;
@@ -582,18 +582,18 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     letter-spacing: 0.2px;
 }
 
-.bookmarks-links ul {
+.bookmarks-links > div ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.bookmarks-links li {
+.bookmarks-links > div li {
     margin: 0;
     border-bottom: 1px solid #cfd3db;
 }
 
-.bookmarks-links li p {
+.bookmarks-links > div li p {
     margin: 0;
     min-height: 64px;
     display: flex;
@@ -602,7 +602,7 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     gap: 14px;
 }
 
-.bookmarks-links li a {
+.bookmarks-links > div li a {
     color: #081f44;
     font-size: 16px;
     font-weight: 500;
@@ -610,12 +610,12 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     text-decoration: none;
 }
 
-.bookmarks-links li a:hover,
-.bookmarks-links li a:focus-visible {
+.bookmarks-links > div li a:hover,
+.bookmarks-links > div li a:focus-visible {
     text-decoration: underline;
 }
 
-.bookmarks-links .icon {
+.bookmarks-links > div .icon {
     flex: 0 0 auto;
     width: 24px;
     height: 24px;
@@ -624,17 +624,17 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     justify-content: center;
 }
 
-.bookmarks-links .icon img {
+.bookmarks-links > div .icon img {
     width: 20px;
     height: 20px;
     object-fit: contain;
 }
 
-.bookmarks-links:not(.is-expanded) li:nth-child(n + 7) {
+.bookmarks-links > div:not(.is-expanded) li:nth-child(n + 7) {
     display: none;
 }
 
-.bookmarks-links .bookmarks-show-more {
+.bookmarks-links > div .bookmarks-show-more {
     display: inline-flex;
     border: 0;
     background: transparent;
@@ -647,4 +647,4 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     line-height: 1.1;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-} */
+}

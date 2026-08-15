@@ -118,6 +118,7 @@ function decorateHeroBanner(main) {
   main.querySelectorAll('.section.hero-banner').forEach((section) => {
     const wrapper = section.querySelector(':scope > .default-content-wrapper') || section;
 
+    // 1. Badge Pill Handling
     const metaIcon = wrapper.querySelector(':scope > p > .icon');
     if (metaIcon) {
       const p = metaIcon.closest('p');
@@ -128,6 +129,7 @@ function decorateHeroBanner(main) {
       p.append(badge);
     }
 
+    // 2. Dropdown Lists Handling
     const dropdowns = [...wrapper.querySelectorAll(':scope > ul > li')]
       .filter((li) => li.querySelector(':scope > ul'));
     if (!dropdowns.length) return;
@@ -136,30 +138,67 @@ function decorateHeroBanner(main) {
       dropdowns.forEach((li) => {
         if (li === except) return;
         li.classList.remove('is-open');
-        li.querySelector(':scope > p')?.setAttribute('aria-expanded', 'false');
+        const trigger = li.querySelector('.hero-dropdown-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
       });
     };
 
     dropdowns.forEach((li) => {
       const panel = li.querySelector(':scope > ul');
-      const trigger = li.querySelector(':scope > p');
-      if (!trigger || !panel) return;
-      li.classList.add('hero-dropdown');
-      trigger.classList.add('hero-dropdown-trigger');
-      panel.classList.add('hero-dropdown-panel');
-      trigger.setAttribute('role', 'button');
-      trigger.setAttribute('tabindex', '0');
-      trigger.setAttribute('aria-expanded', 'false');
+      if (!panel) return;
 
+      li.classList.add('hero-dropdown');
+      panel.classList.add('hero-dropdown-panel');
+
+      // Find the trigger content (link or paragraph)
+      const existingTriggerNode = li.querySelector(':scope > a, :scope > p');
+      const triggerP = document.createElement('p');
+      triggerP.className = 'hero-dropdown-trigger';
+      triggerP.setAttribute('role', 'button');
+      triggerP.setAttribute('tabindex', '0');
+      triggerP.setAttribute('aria-expanded', 'false');
+
+      // Preserve label text
+      const labelText = existingTriggerNode ? existingTriggerNode.textContent.trim() : li.firstChild.textContent.trim();
+      triggerP.textContent = labelText;
+
+      // Add Chevron Icon Span
+      const chevronIcon = document.createElement('span');
+      chevronIcon.className = 'icon icon-chevron-down';
+      triggerP.appendChild(chevronIcon);
+
+      // Replace old trigger element with new interactive trigger paragraph
+      if (existingTriggerNode) {
+        existingTriggerNode.replaceWith(triggerP);
+      } else {
+        li.insertBefore(triggerP, panel);
+      }
+
+      // 3. Decorate Sub-Menu Items with Icons
+      [...panel.querySelectorAll(':scope > li')].forEach((subLi, index) => {
+        const link = subLi.querySelector('a');
+        if (link) {
+          const text = link.textContent.trim();
+          const href = link.href;
+          const iconName = index === 0 ? 'economic-crisis' : `economic-crisis${index}`;
+          subLi.innerHTML = `<a href="${href}"><span class="icon icon-${iconName}"></span>${text}</a>`;
+        }
+      });
+
+      // 4. Interaction Logic
       const toggle = () => {
         const isOpen = !li.classList.contains('is-open');
         closeAll(li);
         li.classList.toggle('is-open', isOpen);
-        trigger.setAttribute('aria-expanded', String(isOpen));
+        triggerP.setAttribute('aria-expanded', String(isOpen));
       };
 
-      trigger.addEventListener('click', toggle);
-      trigger.addEventListener('keydown', (e) => {
+      triggerP.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      triggerP.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           toggle();
@@ -169,9 +208,13 @@ function decorateHeroBanner(main) {
       });
     });
 
+    // Close when clicking outside section
     document.addEventListener('click', (e) => {
       if (!section.contains(e.target)) closeAll();
     });
+
+    // Render icon SVG graphics dynamically
+    decorateIcons(section);
   });
 }
 
