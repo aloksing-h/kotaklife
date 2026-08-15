@@ -117,7 +117,7 @@ const buildHeroBanner = (main, document) => {
       iconSpan.className = 'icon icon-smile-grey';
 
       const img = document.createElement('img');
-      img.src = 'https://www.kotaklife.com/assets/images/homepageV2/smile-grey.svg';
+      img.src = '/assets/images/homepageV2/smile-grey.svg';
       img.alt = 'Human expertise, no AI';
       iconSpan.append(img);
 
