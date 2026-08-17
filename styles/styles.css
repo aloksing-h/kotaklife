@@ -53,7 +53,7 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 18px;
@@ -120,12 +120,29 @@ h6 {
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
 
 p,
 dl,
@@ -150,7 +167,7 @@ pre {
   white-space: pre;
 }
 
-main > div {
+main>div {
   margin: 40px 16px;
 }
 
@@ -304,22 +321,22 @@ main img {
 }
 
 /* sections */
-main > .section {
+main>.section {
   margin: 40px 0;
 }
 
-main > .section > div {
+main>.section>div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
 }
 
-main > .section:first-of-type {
+main>.section:first-of-type {
   margin-top: 35px;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
+@media (width >=900px) {
+  main>.section>div {
     padding: 10px 32px;
   }
 }
@@ -362,8 +379,19 @@ main .section.hero-banner h1 {
   line-height: 1.25;
 }
 
+main .section.hero-banner .hero-dropdown-panel p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 16px 4px;
+  color: #0d1f3f;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 /* intro paragraph */
-main .section.hero-banner .default-content-wrapper > p:first-of-type {
+main .section.hero-banner .default-content-wrapper>p:first-of-type {
   margin: 0 auto 16px;
   max-width: 760px;
   color: #40536b;
@@ -372,7 +400,7 @@ main .section.hero-banner .default-content-wrapper > p:first-of-type {
 }
 
 /* views / updated-on / badge meta line */
-main .section.hero-banner .default-content-wrapper > p:has(.icon) {
+main .section.hero-banner .default-content-wrapper>p:has(.icon) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,10 +424,10 @@ main .section.hero-banner .hero-badge {
   font-size: 14px;
 }
 
-main .section.hero-banner .hero-badge .icon{
-      display: flex;
-    align-items: center;
-    width: 16px;
+main .section.hero-banner .hero-badge .icon {
+  display: flex;
+  align-items: center;
+  width: 16px;
 }
 
 main .section.hero-banner .hero-badge .icon img {
@@ -428,7 +456,7 @@ main .section.hero-banner .button-wrapper .button:focus-visible {
 }
 
 /* "Get Lumpsum Return" dropdown list */
-main .section.hero-banner .default-content-wrapper > ul {
+main .section.hero-banner .default-content-wrapper>ul {
   display: inline-flex;
   justify-content: center;
   margin: 24px auto 0;
@@ -475,6 +503,17 @@ main .section.hero-banner .hero-dropdown-trigger .icon img {
   filter: brightness(0) invert(1);
 }
 
+main .section.hero-banner .hero-dropdown-panel .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-color: #f1f2f5;
+}
+
 main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-trigger .icon {
   transform: rotate(180deg);
 }
@@ -513,34 +552,12 @@ main .section.hero-banner .hero-dropdown-panel li:last-child {
   border-bottom: 0;
 }
 
-main .section.hero-banner .hero-dropdown-panel p {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0;
-  padding: 16px 4px;
-  color: #0d1f3f;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-main .section.hero-banner .hero-dropdown-panel .icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background-color: #f1f2f5;
-}
-
 main .section.hero-banner .hero-dropdown-panel .icon img {
   width: 22px;
   height: 22px;
 }
 
-@media (max-width: 600px) {
+@media (width <=600px) {
   main .section.hero-banner {
     padding: 32px 0;
   }
@@ -563,88 +580,3 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     transform: translateX(-50%) translateY(0);
   }
 }
-/* 
-.bookmarks-links {
-    background: #f4f4f4;
-    border-radius: 18px;
-    padding: 28px 28px 22px;
-}
-
-.bookmarks-links h3{
-    margin: 0;
-    padding: 0 0 14px;
-    border-bottom: 1px solid #ed1c24;
-    color: #0d1f3f;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-}
-
-.bookmarks-links ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.bookmarks-links li {
-    margin: 0;
-    border-bottom: 1px solid #cfd3db;
-}
-
-.bookmarks-links li p {
-    margin: 0;
-    min-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-}
-
-.bookmarks-links li a {
-    color: #081f44;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2;
-    text-decoration: none;
-}
-
-.bookmarks-links li a:hover,
-.bookmarks-links li a:focus-visible {
-    text-decoration: underline;
-}
-
-.bookmarks-links .icon {
-    flex: 0 0 auto;
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bookmarks-links .icon img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.bookmarks-links:not(.is-expanded) li:nth-child(n + 7) {
-    display: none;
-}
-
-.bookmarks-links .bookmarks-show-more {
-    display: inline-flex;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-    margin-top: 20px;
-    color: #ed1c24;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-} */
