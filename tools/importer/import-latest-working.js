@@ -251,9 +251,23 @@ const buildProfileCards = (main, document) => {
     const imageCell = document.createElement('div');
     const textCell = document.createElement('div');
 
-    const img = box.querySelector('img');
+    // 1. Get Image
+    const img = box.querySelector('.authorImg img');
     if (img) imageCell.append(img.cloneNode(true));
 
+    // 2. Get "Reviewed By :" Text
+    const titleDiv = box.querySelector('.nameTitle div');
+    if (titleDiv) {
+      // Cleans up the HTML comments and gets the raw text
+      const reviewedText = titleDiv.textContent.replace(/<!--[\s\S]*?-->/g, '').trim();
+      if (reviewedText) {
+        const reviewedP = document.createElement('p');
+        reviewedP.textContent = reviewedText;
+        textCell.append(reviewedP);
+      }
+    }
+
+    // 3. Get Author Name
     const nameElement = box.querySelector('.nameTag');
     if (nameElement) {
       const nameP = document.createElement('p');
@@ -261,9 +275,32 @@ const buildProfileCards = (main, document) => {
       textCell.append(nameP);
     }
 
-    const descElement = box.querySelector('.tooltiptext p');
-    if (descElement) textCell.append(descElement.cloneNode(true));
+    // 4. Get Tooltip Description & LinkedIn icon into a SINGLE paragraph
+    const descElement = box.querySelector('.tooltiptext p:first-of-type');
+    const linkedinElement = box.querySelector('.tooltiptext a.linkedin');
 
+    if (descElement || linkedinElement) {
+      const tooltipContainer = document.createElement('p');
+      
+      if (descElement) {
+        tooltipContainer.innerHTML = descElement.innerHTML;
+      }
+      
+      if (linkedinElement) {
+        tooltipContainer.appendChild(document.createElement('br'));
+        
+        // Insert the :linkedin: SVG format inside a span instead of a link
+        const linkedinSpan = document.createElement('span');
+        linkedinSpan.className = 'linkedin-icon';
+        linkedinSpan.textContent = ':linkedin:'; 
+        
+        tooltipContainer.appendChild(linkedinSpan);
+      }
+      
+      textCell.append(tooltipContainer);
+    }
+
+    // 5. Build Block
     const profileBlock = WebImporter.DOMUtils.createTable([
       ['Cards (profile cards)'],
       [imageCell, textCell],
@@ -273,10 +310,11 @@ const buildProfileCards = (main, document) => {
 
     // BREAK THE SECTION HERE:
     // Append Section Metadata and an <hr> right after the profile cards block
-    appendSectionMetadata(profileBlock, 'column-left-section', document);
+    if (typeof appendSectionMetadata === 'function') {
+      appendSectionMetadata(profileBlock, 'column-left-section', document);
+    }
   });
 };
-
 /**
  * 6. PROMOTIONAL TOKENS 
  */
