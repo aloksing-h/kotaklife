@@ -110,6 +110,11 @@
               "name": "Hero Banner",
               "value": "hero-banner"
 
+            },
+            {
+              "name": "Youtube Video",
+              "value": "youtube-video"
+
             }
           ]
         }
