@@ -212,10 +212,6 @@
           {
             "name": "Hero Banner",
             "value": "hero-banner"
-          },
-          {
-            "name": "Youtube Video",
-            "value": "yt-video"
           }
         ]
       }
@@ -423,6 +419,17 @@
         "component": "aem-content",
         "name": "link",
         "label": "Embed URL"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Youtube Video",
+            "value": "yt-video"
+          }
+        ]
       }
     ]
   },
