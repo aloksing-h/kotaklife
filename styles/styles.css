@@ -580,3 +580,84 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
     transform: translateX(-50%) translateY(0);
   }
 }
+
+/* stylelint-disable no-descending-specificity -- popular-search targets a different section than hero-banner */
+
+/* ==========================================================================
+   Popular Searches (section style: "popular-search")
+   Light gray rounded container with pipe-separated links below the disclaimer.
+   DOM: .default-content-wrapper > ul > li (first li = label, rest = links)
+   ========================================================================== */
+
+main .section.popular-search .default-content-wrapper {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 40px;
+}
+
+main .section.popular-search .default-content-wrapper>ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 20px 24px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+main .section.popular-search .default-content-wrapper>ul>li {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+main .section.popular-search .default-content-wrapper>ul>li:first-child {
+  border-left: 0;
+  padding-left: 0;
+  color: #003366;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+main .section.popular-search .default-content-wrapper>ul>li:nth-child(2) {
+  border-left: 0;
+  padding-left: 0;
+}
+
+main .section.popular-search .default-content-wrapper>ul>li>a {
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+main .section.popular-search .default-content-wrapper>ul>li>a:hover {
+  color: #ed1c24;
+  text-decoration: underline;
+}
+
+@media (width <=600px) {
+  main .section.popular-search .default-content-wrapper {
+    padding: 16px;
+  }
+
+  main .section.popular-search .default-content-wrapper>ul>li {
+    padding: 4px 10px;
+    line-height: 1.5;
+  }
+
+  main .section.popular-search .default-content-wrapper>ul>li>a {
+    font-size: var(--body-font-size-xs);
+    white-space: normal;
+  }
+}
+
+/* stylelint-enable no-descending-specificity */
