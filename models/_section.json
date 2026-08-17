@@ -110,6 +110,10 @@
               "name": "Hero Banner",
               "value": "hero-banner"
 
+            },
+            {
+              "name": "Column Left Section",
+              "value":"column-left-section"
             }
           ]
         }
