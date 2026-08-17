@@ -1,11 +1,12 @@
 /* --- BANNER SECTION DARK THEME CONTAINER --- */
-/*.section.banner-container {
+
+/* .section.banner-container {
    background-color: #1a1a1a; 
   color: #fff; 
   padding: 64px 24px 80px;
   font-family: "Proxima Nova", sans-serif;
   box-sizing: border-box;
-}*/
+} */
 
 .banner-wrapper {
   max-width: 1240px;

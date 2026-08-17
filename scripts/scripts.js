@@ -159,7 +159,9 @@ function decorateHeroBanner(main) {
       triggerP.setAttribute('aria-expanded', 'false');
 
       // Preserve label text
-      const labelText = existingTriggerNode ? existingTriggerNode.textContent.trim() : li.firstChild.textContent.trim();
+      const labelText = existingTriggerNode
+        ? existingTriggerNode.textContent.trim()
+        : li.firstChild.textContent.trim();
       triggerP.textContent = labelText;
 
       // Add Chevron Icon Span
@@ -179,7 +181,7 @@ function decorateHeroBanner(main) {
         const link = subLi.querySelector('a');
         if (link) {
           const text = link.textContent.trim();
-          const href = link.href;
+          const { href } = link;
           const iconName = index === 0 ? 'economic-crisis' : `economic-crisis${index}`;
           subLi.innerHTML = `<a href="${href}"><span class="icon icon-${iconName}"></span>${text}</a>`;
         }

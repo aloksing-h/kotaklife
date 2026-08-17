@@ -1,3 +1,9 @@
+/* Base paragraph reset (kept low-specificity, must precede .financial-cards p:first-of-type) */
+.profile-cards .cards-card-body p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* Container layout */
 .financial-cards ul {
   display: flex;
@@ -32,7 +38,7 @@
 .financial-cards .cards-card-body {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .financial-cards .cards-card-body h3 {
@@ -99,11 +105,6 @@
   position: relative; /* Crucial for anchoring the absolute tooltip */
 }
 
-.profile-cards .cards-card-body p {
-  margin: 0;
-  line-height: 1.5;
-}
-
 /* Element 1: "Reviewed By :" */
 .profile-cards .cards-card-body p:nth-child(1) {
   font-size: 0.9rem;
@@ -127,13 +128,13 @@
   z-index: 10;
   width: 450px;
   padding: 16px;
-  background: #ffffff;
-  color: #555555;
+  background: #fff;
+  color: #555;
   font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.6;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 15%);
   border: 1px solid #eaeaea;
   visibility: hidden;
   opacity: 0;
@@ -148,15 +149,15 @@
   left: 65px; /* Adjust to align directly under the name */
   width: 14px;
   height: 14px;
-  background: #ffffff;
+  background: #fff;
   border-top: 1px solid #eaeaea;
   border-left: 1px solid #eaeaea;
   transform: rotate(45deg);
 }
 
 /* Tooltip Hover Logic (Hover the Name to show Tooltip) */
-.profile-cards .cards-card-body p:nth-child(2):hover + p:nth-child(3),
-.profile-cards .cards-card-body p:nth-child(3):hover {
+.profile-cards .cards-card-body p:nth-child(3):hover,
+.profile-cards .cards-card-body p:nth-child(2):hover + p:nth-child(3) {
   visibility: visible;
   opacity: 1;
 }

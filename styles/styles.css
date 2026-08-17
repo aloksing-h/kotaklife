@@ -308,6 +308,91 @@ main > .section {
   margin: 40px 0;
 }
 
+.bookmarks-links > div {
+    background: #f4f4f4;
+    border-radius: 18px;
+    padding: 28px 28px 22px;
+}
+
+.bookmarks-links > div h3{
+    margin: 0;
+    padding: 0 0 14px;
+    border-bottom: 1px solid #ed1c24;
+    color: #0d1f3f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.bookmarks-links > div ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bookmarks-links > div li {
+    margin: 0;
+    border-bottom: 1px solid #cfd3db;
+}
+
+.bookmarks-links > div li p {
+    margin: 0;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.bookmarks-links > div li a {
+    color: #081f44;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.bookmarks-links > div li a:hover,
+.bookmarks-links > div li a:focus-visible {
+    text-decoration: underline;
+}
+
+.bookmarks-links > div .icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmarks-links > div .icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.bookmarks-links > div:not(.is-expanded) li:nth-child(n + 7) {
+    display: none;
+}
+
+.bookmarks-links > div .bookmarks-show-more {
+    display: inline-flex;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #ed1c24;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
 main > .section > div {
   max-width: 1200px;
   margin: auto;
@@ -360,6 +445,33 @@ main .section.hero-banner h1 {
   font-size: 32px;
   font-weight: 700;
   line-height: 1.25;
+}
+
+main .section.hero-banner .hero-dropdown-panel p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 16px 4px;
+  color: #0d1f3f;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+main .section.hero-banner .hero-dropdown-panel .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-color: #f1f2f5;
+}
+
+main .section.hero-banner .hero-dropdown-panel .icon img {
+  width: 22px;
+  height: 22px;
 }
 
 /* intro paragraph */
@@ -513,34 +625,7 @@ main .section.hero-banner .hero-dropdown-panel li:last-child {
   border-bottom: 0;
 }
 
-main .section.hero-banner .hero-dropdown-panel p {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0;
-  padding: 16px 4px;
-  color: #0d1f3f;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-main .section.hero-banner .hero-dropdown-panel .icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background-color: #f1f2f5;
-}
-
-main .section.hero-banner .hero-dropdown-panel .icon img {
-  width: 22px;
-  height: 22px;
-}
-
-@media (max-width: 600px) {
+@media (width <= 600px) {
   main .section.hero-banner {
     padding: 32px 0;
   }
@@ -562,89 +647,4 @@ main .section.hero-banner .hero-dropdown-panel .icon img {
   main .section.hero-banner .hero-dropdown.is-open .hero-dropdown-panel {
     transform: translateX(-50%) translateY(0);
   }
-}
-
-.bookmarks-links > div {
-    background: #f4f4f4;
-    border-radius: 18px;
-    padding: 28px 28px 22px;
-}
-
-.bookmarks-links > div h3{
-    margin: 0;
-    padding: 0 0 14px;
-    border-bottom: 1px solid #ed1c24;
-    color: #0d1f3f;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-}
-
-.bookmarks-links > div ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.bookmarks-links > div li {
-    margin: 0;
-    border-bottom: 1px solid #cfd3db;
-}
-
-.bookmarks-links > div li p {
-    margin: 0;
-    min-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-}
-
-.bookmarks-links > div li a {
-    color: #081f44;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2;
-    text-decoration: none;
-}
-
-.bookmarks-links > div li a:hover,
-.bookmarks-links > div li a:focus-visible {
-    text-decoration: underline;
-}
-
-.bookmarks-links > div .icon {
-    flex: 0 0 auto;
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bookmarks-links > div .icon img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.bookmarks-links > div:not(.is-expanded) li:nth-child(n + 7) {
-    display: none;
-}
-
-.bookmarks-links > div .bookmarks-show-more {
-    display: inline-flex;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-    margin-top: 20px;
-    color: #ed1c24;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
 }

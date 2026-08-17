@@ -11,31 +11,29 @@ const getPathname = (value) => {
 /**
  * 1. RESILIENT CONTENT ROOT
  */
-const selectContentRoot = (document) => {
-  return document.querySelector('.best-invest.best-invest1.outer') || document.body;
-};
+const selectContentRoot = (document) => document.querySelector('.best-invest.best-invest1.outer') || document.body;
 
 /**
  * 2. NOISE REMOVAL
  */
 const removeGlobalNoise = (main) => {
   WebImporter.DOMUtils.remove(main, [
-    '.blog-bradcrumb',          
-    '.menu.bottomRight',        
-    '.kotak-eterm-plan-popup',  
-    '.blog-social-meida',       
-    '.reddiv',                  
+    '.blog-bradcrumb',
+    '.menu.bottomRight',
+    '.kotak-eterm-plan-popup',
+    '.blog-social-meida',
+    '.reddiv',
     '.hide-mobile',
-    '.kotak-e-term-plan',             
-    '.also-read',               
-    '#leadformem',              
-    'script', 'style', 'noscript', 'form'
+    '.kotak-e-term-plan',
+    '.also-read',
+    '#leadformem',
+    'script', 'style', 'noscript', 'form',
   ]);
 };
 
 /**
  * SANITIZE MALFORMED HEADINGS
- * Fixes broken source HTML where an <h2> tag illegally wraps <div> containers 
+ * Fixes broken source HTML where an <h2> tag illegally wraps <div> containers
  * (such as Accordions or Suggested Readings sections).
  */
 const fixMalformedHeadings = (main) => {
@@ -53,12 +51,12 @@ const fixMalformedHeadings = (main) => {
 
 /**
  * SANITIZE REDUNDANT HEADING FORMATTING
- * Removes <b> and <strong> tags from inside headings to prevent 
+ * Removes <b> and <strong> tags from inside headings to prevent
  * the markdown parser from escaping them into literal text.
  */
 const cleanHeadingFormatting = (main) => {
   const headings = [...main.querySelectorAll('h1, h2, h3, h4, h5, h6')];
-  
+
   headings.forEach((heading) => {
     const boldTags = [...heading.querySelectorAll('b, strong')];
     boldTags.forEach((b) => {
@@ -67,7 +65,6 @@ const cleanHeadingFormatting = (main) => {
     });
   });
 };
-
 
 /**
  * HELPER: Creates a Section Metadata table and appends a section break (---)
@@ -80,7 +77,7 @@ const appendSectionMetadata = (element, style, document) => {
   ], document);
 
   element.after(sectionMetaData);
-  sectionMetaData.after(document.createElement('hr')); 
+  sectionMetaData.after(document.createElement('hr'));
 };
 
 /**
@@ -124,54 +121,53 @@ const buildHeroBanner = (main, document) => {
   }
 
   const drpwnWrapper = blogHead.querySelector('.drpwn-wrapper');
-  const btnLink = blogHead.querySelector('.btnLink a'); 
-  
-  if (drpwnWrapper) {
-      const mainUl = document.createElement('ul');
-      const mainLi = document.createElement('li');
-      
-      const labelLink = drpwnWrapper.querySelector('.drpwn-label a');
-      if (labelLink) {
-        const clonedLink = labelLink.cloneNode(true);
-        clonedLink.textContent = clonedLink.textContent.trim();
-        mainLi.append(clonedLink);
-        // Place the icon shorthand outside the link
-        mainLi.append(document.createTextNode(' :chevron-down:'));
-      } else {
-        const labelText = drpwnWrapper.querySelector('.drpwn-label')?.textContent.trim();
-        if (labelText) mainLi.textContent = `${labelText} :chevron-down:`;
-      }
-      
-      const menuItems = [...drpwnWrapper.querySelectorAll('.drpwn-menu li a')];
-      if (menuItems.length > 0) {
-        const subUl = document.createElement('ul');
-        menuItems.forEach((item, index) => {
-          const subLi = document.createElement('li');
-          const textSpan = item.querySelector('span:not(.drpwn-icon)');
-          
-          const cleanLink = document.createElement('a');
-          cleanLink.href = item.href;
-          
-          const iconName = index === 0 ? 'economic-crisis' : `economic-crisis${index}`;
-          const linkText = textSpan ? textSpan.textContent.trim() : item.textContent.trim();
-          
-          cleanLink.textContent = linkText;
-          
-          // Prepend the icon shorthand outside the link
-          subLi.append(document.createTextNode(`:${iconName}: `));
-          subLi.append(cleanLink);
-          
-          subUl.append(subLi);
-        });
-        mainLi.append(subUl);
-      }
-      mainUl.append(mainLi);
-      heroContainer.append(mainUl);
+  const btnLink = blogHead.querySelector('.btnLink a');
 
+  if (drpwnWrapper) {
+    const mainUl = document.createElement('ul');
+    const mainLi = document.createElement('li');
+
+    const labelLink = drpwnWrapper.querySelector('.drpwn-label a');
+    if (labelLink) {
+      const clonedLink = labelLink.cloneNode(true);
+      clonedLink.textContent = clonedLink.textContent.trim();
+      mainLi.append(clonedLink);
+      // Place the icon shorthand outside the link
+      mainLi.append(document.createTextNode(' :chevron-down:'));
+    } else {
+      const labelText = drpwnWrapper.querySelector('.drpwn-label')?.textContent.trim();
+      if (labelText) mainLi.textContent = `${labelText} :chevron-down:`;
+    }
+
+    const menuItems = [...drpwnWrapper.querySelectorAll('.drpwn-menu li a')];
+    if (menuItems.length > 0) {
+      const subUl = document.createElement('ul');
+      menuItems.forEach((item, index) => {
+        const subLi = document.createElement('li');
+        const textSpan = item.querySelector('span:not(.drpwn-icon)');
+
+        const cleanLink = document.createElement('a');
+        cleanLink.href = item.href;
+
+        const iconName = index === 0 ? 'economic-crisis' : `economic-crisis${index}`;
+        const linkText = textSpan ? textSpan.textContent.trim() : item.textContent.trim();
+
+        cleanLink.textContent = linkText;
+
+        // Prepend the icon shorthand outside the link
+        subLi.append(document.createTextNode(`:${iconName}: `));
+        subLi.append(cleanLink);
+
+        subUl.append(subLi);
+      });
+      mainLi.append(subUl);
+    }
+    mainUl.append(mainLi);
+    heroContainer.append(mainUl);
   } else if (btnLink) {
-      const btnP = document.createElement('p');
-      btnP.append(btnLink.cloneNode(true)); 
-      heroContainer.append(btnP);
+    const btnP = document.createElement('p');
+    btnP.append(btnLink.cloneNode(true));
+    heroContainer.append(btnP);
   }
 
   blogHead.replaceWith(heroContainer);
@@ -211,7 +207,7 @@ const appendFaqAccordion = (main, document) => {
   if (!borItems.length) return;
 
   const items = [];
-  
+
   borItems.forEach((item) => {
     const question = item.querySelector('.accordion h3, h3, h4');
     const answer = item.querySelector('.panel');
@@ -281,22 +277,22 @@ const buildProfileCards = (main, document) => {
 
     if (descElement || linkedinElement) {
       const tooltipContainer = document.createElement('p');
-      
+
       if (descElement) {
         tooltipContainer.innerHTML = descElement.innerHTML;
       }
-      
+
       if (linkedinElement) {
         tooltipContainer.appendChild(document.createElement('br'));
-        
+
         // Insert the :linkedin: SVG format inside a span instead of a link
         const linkedinSpan = document.createElement('span');
         linkedinSpan.className = 'linkedin-icon';
-        linkedinSpan.textContent = ':linkedin:'; 
-        
+        linkedinSpan.textContent = ':linkedin:';
+
         tooltipContainer.appendChild(linkedinSpan);
       }
-      
+
       textCell.append(tooltipContainer);
     }
 
@@ -316,7 +312,7 @@ const buildProfileCards = (main, document) => {
   });
 };
 /**
- * 6. PROMOTIONAL TOKENS 
+ * 6. PROMOTIONAL TOKENS
  */
 const appendKotakPromos = (main, document) => {
   const sourceSection = document.querySelector('.saving-token');
@@ -348,7 +344,7 @@ const appendKotakPromos = (main, document) => {
   ], document);
 
   sourceSection.replaceWith(cardsBlock);
-  main.append(cardsBlock); 
+  main.append(cardsBlock);
 };
 
 /**
@@ -379,16 +375,16 @@ const appendDisclaimerAccordion = (main, document) => {
   label.textContent = 'Disclaimer';
 
   const disclaimerBody = disclaimerContainer.querySelector('.content-col');
-  
-  if (disclaimerBody) {
-      const accordionBlock = WebImporter.DOMUtils.createTable([
-        ['Accordion (disclaimer)'],
-        [label, disclaimerBody.cloneNode(true)],
-      ], document);
 
-      const targetToRemove = document.querySelector('.abovespace') || disclaimerContainer;
-      targetToRemove.replaceWith(accordionBlock);
-      main.append(accordionBlock); 
+  if (disclaimerBody) {
+    const accordionBlock = WebImporter.DOMUtils.createTable([
+      ['Accordion (disclaimer)'],
+      [label, disclaimerBody.cloneNode(true)],
+    ], document);
+
+    const targetToRemove = document.querySelector('.abovespace') || disclaimerContainer;
+    targetToRemove.replaceWith(accordionBlock);
+    main.append(accordionBlock);
   }
 };
 
@@ -414,12 +410,12 @@ const appendMetadataBlockAtBottom = (main, document) => {
 };
 /**
  * ABSOLUTE IMAGE URL NORMALIZER
- * Converts relative image URLs (e.g. assets/images/...) into absolute URLs 
+ * Converts relative image URLs (e.g. assets/images/...) into absolute URLs
  * so the AEM html2md delivery service can fetch and validate them during publication.
  */
 const makeImageUrlsAbsolute = (main, origin = 'https://www.kotaklife.com') => {
   const images = [...main.querySelectorAll('img')];
-  
+
   images.forEach((img) => {
     const src = img.getAttribute('src');
     if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('data:')) {
@@ -442,19 +438,19 @@ export default {
       sec.replaceWith(div);
     });
     makeImageUrlsAbsolute(main, 'https://www.kotaklife.com');
-    // 2. FIX MALFORMED HTML 
-    fixMalformedHeadings(main);     // Neutralizes <h2> tags wrapping <div>s
-    cleanHeadingFormatting(main);   // Removes <b>/<strong> tags from inside headings
+    // 2. FIX MALFORMED HTML
+    fixMalformedHeadings(main); // Neutralizes <h2> tags wrapping <div>s
+    cleanHeadingFormatting(main); // Removes <b>/<strong> tags from inside headings
     // 3. Remove global noise
     removeGlobalNoise(main);
 
     // 4. Run Block Transformations
     buildHeroBanner(main, document);
-    createEmbedBlocks(main, document); 
+    createEmbedBlocks(main, document);
     appendFaqAccordion(main, document);
     buildProfileCards(main, document);
     formatBookmarks(main, document);
-    
+
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
 
