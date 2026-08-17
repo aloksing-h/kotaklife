@@ -114,6 +114,10 @@
             {
               "name": "Popular Search",
               "value": "popular-search"
+            },
+            {
+              "name": "Column Left Section",
+              "value":"column-left-section"
             }
           ]
         }
