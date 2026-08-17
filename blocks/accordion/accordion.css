@@ -1,63 +1,59 @@
-.accordion {
+/* Shared base for both accordion variants */
+.accordion.faq-accordion,
+.disclaimer.block {
   counter-reset: accordion-counter;
 }
 
-.accordion details {
+.accordion.faq-accordion details,
+.disclaimer.block details {
   border: none;
   border-bottom: 1px solid #dadada;
 }
 
-.accordion details:first-child {
+.accordion.faq-accordion details:first-child,
+.disclaimer.block details:first-child {
   border-top: 1px solid #dadada;
 }
 
-.accordion details:last-child {
+.accordion.faq-accordion details:last-child,
+.disclaimer.block details:last-child {
   border-bottom: none;
 }
 
-.accordion details p {
+.accordion.faq-accordion details p,
+.disclaimer.block details p {
   text-align: justify;
   margin-bottom: 0.8em;
 }
 
-.accordion details summary {
+.accordion.faq-accordion details summary,
+.disclaimer.block details summary {
   position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 46px 10px 0;
   cursor: pointer;
   list-style: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  line-height: 1.4;
   transition: background-color 0.2s;
 }
 
-.accordion details summary p{
+.accordion.faq-accordion details summary p,
+.disclaimer.block details summary p {
   margin: 0;
 }
 
-.accordion details summary:focus,
-.accordion details summary:hover {
-  background-color: var(--light-color, #f5f5f5);
-}
-
-.accordion details summary::-webkit-details-marker {
+.accordion.faq-accordion details summary::-webkit-details-marker,
+.disclaimer.block details summary::-webkit-details-marker {
   display: none;
 }
 
-.accordion details summary::marker {
+.accordion.faq-accordion details summary::marker,
+.disclaimer.block details summary::marker {
   content: '';
 }
 
-.accordion-item-number {
-  font-weight: 700;
-  min-width: 28px;
-  flex-shrink: 0;
-}
-
-.accordion details summary::after {
+.accordion.faq-accordion details summary::after,
+.disclaimer.block details summary::after {
   content: '+';
   position: absolute;
   top: 50%;
@@ -65,7 +61,6 @@
   transform: translateY(-50%);
   font-size: 1.5rem;
   font-weight: 300;
-  color: #e31837;
   line-height: 1;
   transition: transform 0.2s;
   width: auto;
@@ -73,60 +68,108 @@
   border: none;
 }
 
-.accordion details[open] summary::after {
-  content: '\2212';
-  transform: translateY(-50%);
-}
-
-.accordion details .accordion-item-body {
+.accordion.faq-accordion details .accordion-item-body,
+.disclaimer.block details .accordion-item-body {
   display: grid;
-  grid-template-rows: 0fr; /* Start collapsed */
+  grid-template-rows: 0fr;
   opacity: 0;
-  padding: 0 0 0 40px; 
-  transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+  transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* The inner wrapper must hide overflow for the grid animation to shrink it */
-.accordion details .accordion-item-body-content {
+.accordion.faq-accordion details .accordion-item-body-content,
+.disclaimer.block details .accordion-item-body-content {
   min-height: 0;
   overflow: hidden;
 }
 
-.accordion details[open] .accordion-item-body {
-  grid-template-rows: 1fr; /* Expand perfectly to content height */
+/* Disclaimer variant */
+.disclaimer.block details summary {
+  padding: 16px 34px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: .32px;
+  text-transform: capitalize;
+  background-color: #036;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.disclaimer.block .accordion-item-number {
+  display: none;
+}
+
+.disclaimer.block details summary::after {
+  color: #fff;
+}
+
+.accordion.faq-accordion details summary::after {
+  color: #e31837;
+}
+
+.disclaimer.block details[open] summary::after {
+  content: '\2212';
+  transform: translateY(-50%);
+}
+
+.disclaimer.block details .accordion-item-body {
+  padding: 0;
+}
+
+.accordion.faq-accordion details .accordion-item-body {
+  padding: 0 0 0 40px;
+  transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.disclaimer.block details[open] .accordion-item-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  padding: 0;
+  border-top: none;
+  background-color: transparent;
+}
+
+.disclaimer.block details.closing .accordion-item-body {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  padding: 0;
+}
+
+/* faq-accordion variant */
+.accordion.faq-accordion details summary {
+  padding: 10px 46px 10px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.accordion.faq-accordion details summary:focus,
+.accordion.faq-accordion details summary:hover {
+  background-color: var(--light-color, #f5f5f5);
+}
+
+.accordion.faq-accordion .accordion-item-number {
+  font-weight: 700;
+  min-width: 28px;
+  flex-shrink: 0;
+}
+
+.accordion.faq-accordion details[open] summary::after {
+  content: '\2212';
+  transform: translateY(-50%);
+}
+
+
+.accordion.faq-accordion details[open] .accordion-item-body {
+  grid-template-rows: 1fr;
   opacity: 1;
   padding: 0 0 16px 40px;
   border-top: none;
   background-color: transparent;
 }
 
-.accordion details.closing .accordion-item-body {
-  grid-template-rows: 0fr; /* Collapse smoothly */
+.accordion.faq-accordion details.closing .accordion-item-body {
+  grid-template-rows: 0fr;
   opacity: 0;
   padding: 0 0 0 40px;
-}
-
-.disclaimer.block .accordion-item .accordion-item-number {
-    display: none;
-}
-
-.disclaimer.block .accordion-item .accordion-item-label {
-    background-color: #036;
-    color: #fff;
-    text-transform: capitalize;
-    height: auto;
-    padding: 16px 34px;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: .32px;
-    line-height: 24px;
-    border-radius: 4px;
-}
-
-.disclaimer.block details summary::after {
-    color: white;
-}
-
-.disclaimer.block details .accordion-item-body{
-  padding: 0;
 }

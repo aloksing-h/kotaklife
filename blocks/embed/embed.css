@@ -1,9 +1,8 @@
 .embed {
-    text-align: center;
-    max-width: 800px;
-
-    /* margin: 32px auto; */
-    width: 560px;
+  width: unset;
+  text-align: center;
+  max-width: 800px;
+  margin: 32px auto;
 }
 
 .embed > div {
@@ -60,4 +59,9 @@
   border-left: 6px solid;
   top: 4px;
   left: 7px;
+}
+
+.embed.yt-video {
+  margin: 0;
+  width: 50%;
 }
