@@ -212,6 +212,10 @@
           {
             "name": "Hero Banner",
             "value": "hero-banner"
+          },
+          {
+            "name": "Popular Links",
+            "value": "popular-links"
           }
         ]
       }
