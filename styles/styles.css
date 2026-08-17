@@ -520,7 +520,7 @@ main .section.hero-banner .hero-badge .icon img {
   height: 16px;
 }
 
-/* CTA button (author a bold link, e.g. **[Start Your E-Term Plan](/path)**) */
+/* CTA button (bold link gets button-wrapper class; plain link auto-styled via :last-child) */
 main .section.hero-banner .button-wrapper {
   margin: 8px 0 0;
 }
@@ -538,6 +538,22 @@ main .section.hero-banner .button-wrapper .button {
 main .section.hero-banner .button-wrapper .button:hover,
 main .section.hero-banner .button-wrapper .button:focus-visible {
   background-color: #c8151b;
+}
+
+/* auto-style plain CTA link when no dropdown is authored (last <p> child) */
+main .section.hero-banner .default-content-wrapper > p:last-child > a:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 16px 40px;
+  background-color: #ed1c24;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* "Get Lumpsum Return" dropdown list */
