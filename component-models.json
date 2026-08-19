@@ -512,6 +512,37 @@
     ]
   },
   {
+    "id": "rteV2",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Background Semantic Green",
+            "value": "background-semantic-green"
+          },
+          {
+            "name": "Background Semantic Orange",
+            "value": "background-semantic-orange"
+          },
+          {
+            "name": "Form Step",
+            "value": "form-step"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "rte",
     "fields": [
       {
