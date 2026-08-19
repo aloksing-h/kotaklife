@@ -462,7 +462,7 @@ const buildTableInsideRteBlock = (main, document) => {
     // Row 1: The block name ('Rte')
     // Row 2: A single cell containing a clone of the entire original table
     const blockRows = [
-      ['RTE'],
+      ['RTE V2'],
       [table.cloneNode(true)] 
     ];
 
