@@ -4,6 +4,12 @@
   counter-reset: accordion-counter;
 }
 
+.accordion.faq-accordion h3, .accordion.block h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .accordion.faq-accordion details,
 .disclaimer.block details {
   border: none;

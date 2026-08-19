@@ -190,7 +190,7 @@ const createEmbedBlocks = (main, document) => {
     link.textContent = src;
 
     const embedBlock = WebImporter.DOMUtils.createTable([
-      ['Embed'],
+      ['Embed (yt-video)'],
       [link],
     ], document);
 
@@ -220,7 +220,7 @@ const appendFaqAccordion = (main, document) => {
   if (!items.length) return;
 
   const accordionBlock = WebImporter.DOMUtils.createTable([
-    ['Accordion'],
+    ['Accordion (faq-accordion)'],
     ...items,
   ], document);
 
@@ -389,6 +389,24 @@ const appendDisclaimerAccordion = (main, document) => {
 };
 
 /**
+ * POPULAR SEARCHES SECTION
+ * Converts the popular searches list into a default-content section
+ * styled with the 'popular-search' Section Metadata. The label list item
+ * (e.g. "POPULAR SEARCHES :") is preserved untouched.
+ */
+const appendPopularSearches = (main, document) => {
+  const source = document.querySelector('.popular_list, .popular_searches_new');
+  if (!source) return;
+
+  const list = source.querySelector('ul');
+  if (!list) return;
+
+  source.replaceWith(list);
+  main.append(list);
+  appendSectionMetadata(list, 'popular-search', document);
+};
+
+/**
  * 9. METADATA EXTRACTION
  */
 const appendMetadataBlockAtBottom = (main, document) => {
@@ -453,6 +471,7 @@ export default {
 
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);
+    appendPopularSearches(main, document);
 
     // 5. Append Metadata
     appendMetadataBlockAtBottom(main, document);
