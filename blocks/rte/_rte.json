@@ -10,7 +10,9 @@
             "template": {
               "name": "RTE",
               "model": "rte",
-              "filter": "rte"
+              "filter": "rte",
+              "modelId": "rte",
+              "filterId": "rte"
             }
           }
         }
