@@ -443,6 +443,36 @@ const makeImageUrlsAbsolute = (main, origin = 'https://www.kotaklife.com') => {
     }
   });
 };
+
+/**
+ * 10. WRAP DATA TABLES IN RTE BLOCK
+ * Places a standard data table inside a single-cell 'Rte' block.
+ */
+const buildTableInsideRteBlock = (main, document) => {
+  const sourceTables = [...main.querySelectorAll('table')];
+
+  sourceTables.forEach((table) => {
+    // Safety check: if the table is completely empty, remove it
+    if (table.querySelectorAll('tr').length === 0) {
+      table.remove();
+      return;
+    }
+
+    // Create the block structure:
+    // Row 1: The block name ('Rte')
+    // Row 2: A single cell containing a clone of the entire original table
+    const blockRows = [
+      ['RTE'],
+      [table.cloneNode(true)] 
+    ];
+
+    // Build the AEM Block wrapping the table
+    const rteBlock = WebImporter.DOMUtils.createTable(blockRows, document);
+    
+    // Replace the original table with our new wrapped block
+    table.replaceWith(rteBlock);
+  });
+};
 export default {
   transformDOM: ({ document }) => {
     const main = selectContentRoot(document);
@@ -461,6 +491,8 @@ export default {
     cleanHeadingFormatting(main); // Removes <b>/<strong> tags from inside headings
     // 3. Remove global noise
     removeGlobalNoise(main);
+
+    buildTableInsideRteBlock(main, document);
 
     // 4. Run Block Transformations
     buildHeroBanner(main, document);
