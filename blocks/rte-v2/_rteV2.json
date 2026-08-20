@@ -52,6 +52,10 @@
             {
               "name":"Bullet Pink",
               "value":"bullet-pink"
+            },
+            {
+              "name": "Card Border Red",
+              "value": "card-border-red"
             }
           ]
         }

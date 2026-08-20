@@ -10,7 +10,7 @@
 .rte-v2.block table th,
 .rte-v2.block table td {
   border: 1px solid #dcdfe3; /* Light grey borders matching the image */
-  padding: 20px 24px; /* Generous padding for that airy look */
+  padding: 20px 22px; /* Generous padding for that airy look */
   text-align: left;
   vertical-align: middle;
 }
@@ -74,6 +74,8 @@
 }
 
 .rte-v2.bookmarks-links.block li {
+    display: flex;
+    justify-content: space-between;
     margin: 0;
     border-bottom: 1px solid #cfd3db;
 }

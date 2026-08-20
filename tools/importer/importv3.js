@@ -239,6 +239,28 @@ const appendFaqAccordion = (main, document) => {
 };
 
 /**
+ * 12. INSURANCE SECTIONS TO RTE V2
+ * Wraps .insuranceSections elements inside an RTE V2 block with the 'card-border-red' class.
+ */
+const buildInsuranceSectionsBlocks = (main, document) => {
+  const insuranceSections = [...main.querySelectorAll('.insuranceSections')];
+  if (!insuranceSections.length) return;
+
+  insuranceSections.forEach((section) => {
+    // Create the block structure:
+    // Row 1: The block name with the class applied ('RTE V2 (card-border-red)')
+    // Row 2: A single cell containing a clone of the original section
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (card-border-red)'],
+      [section.cloneNode(true)] 
+    ], document);
+
+    // Replace the original section with the new RTE wrapped block
+    section.replaceWith(rteBlock);
+  });
+};
+
+/**
  * 5. AUTHOR PROFILE CARDS
  * Converts author box to Profile Cards block and seals the first column section.
  */
@@ -352,25 +374,34 @@ const appendKotakPromos = (main, document) => {
 
 /**
  * 7. BOOKMARKS SECTION
- * Wraps bookmark containers inside an RTE V2 block and adds a section break after the last one.
+ * Wraps bookmark containers inside an RTE V2 block, applies 'bookmark-section' 
+ * style to the section, and injects an arrow icon after each link.
  */
 const formatBookmarks = (main, document) => {
   const bookmarkContainers = [...main.querySelectorAll('.check-calculators')];
   if (!bookmarkContainers.length) return;
 
   bookmarkContainers.forEach((container, index) => {
+    
+    // --- NEW LOGIC: Inject icon after links ---
+    // Find all the links inside the unordered lists in this specific container
+    const listLinks = container.querySelectorAll('ul li a');
+    listLinks.forEach((link) => {
+      // Append the icon text shorthand directly after the </a> tag
+      link.after(document.createTextNode(' :rightarrowblack: '));
+    });
+    // ------------------------------------------
+
     // Create the block structure:
-    // Row 1: The block name ('RTE V2')
-    // Row 2: A single cell containing a clone of the original bookmark container
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bookmarks-links)'],
-      [container.cloneNode(true)],
+      [container.cloneNode(true)] 
     ], document);
 
     // Replace the original container with the new RTE wrapped block
     container.replaceWith(rteBlock);
 
-    // Add a section break (---) after the very last bookmark
+    // Add Section Metadata and a section break (---) after the very last bookmark
     if (index === bookmarkContainers.length - 1) {
       appendSectionMetadata(rteBlock, 'bookmark-section', document);
     }
@@ -531,6 +562,7 @@ export default {
     // 4. Run Block Transformations
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
+    buildInsuranceSectionsBlocks(main, document);
     appendFaqAccordion(main, document);
     buildPinkBulletRteBlocks(main, document);
     buildProfileCards(main, document);
