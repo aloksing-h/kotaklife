@@ -438,6 +438,28 @@ const appendMetadataBlockAtBottom = (main, document) => {
   const metadataBlock = WebImporter.Blocks.getMetadataBlock(document, metadata);
   main.append(metadataBlock);
 };
+
+/**
+ * 11. PINK BULLET LISTS
+ * Wraps <ul class="bullet-pink"> elements inside an RTE V2 block.
+ */
+const buildPinkBulletRteBlocks = (main, document) => {
+  const pinkLists = [...main.querySelectorAll('ul.bullet-pink')];
+  if (!pinkLists.length) return;
+
+  pinkLists.forEach((list) => {
+    // Create the block structure:
+    // Row 1: The block name with the class applied ('RTE V2 (bullet-pink)')
+    // Row 2: A single cell containing a clone of the original list
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (bullet-pink)'],
+      [list.cloneNode(true)] 
+    ], document);
+
+    // Replace the original list with the new RTE wrapped block
+    list.replaceWith(rteBlock);
+  });
+};
 /**
  * ABSOLUTE IMAGE URL NORMALIZER
  * Converts relative image URLs (e.g. assets/images/...) into absolute URLs
@@ -510,6 +532,7 @@ export default {
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
     appendFaqAccordion(main, document);
+    buildPinkBulletRteBlocks(main, document);
     buildProfileCards(main, document);
     formatBookmarks(main, document);
 

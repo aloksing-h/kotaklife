@@ -545,6 +545,10 @@
           {
             "name": "Bookmarks Links",
             "value": "bookmarks-links"
+          },
+          {
+            "name": "Bullet Pink",
+            "value": "bullet-pink"
           }
         ]
       }
