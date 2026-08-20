@@ -352,8 +352,7 @@ main>.section {
    Shifts the middle sections into columns.
 ========================================= */
 
-@media (min-width: 900px) {
-  
+@media (width >= 900px) {
   /* Hero stays full width */
   .hero-banner.section {
     margin-bottom: 40px; /* Slightly larger space below hero on desktop */
