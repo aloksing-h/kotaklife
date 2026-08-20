@@ -453,7 +453,7 @@ const buildPinkBulletRteBlocks = (main, document) => {
     // Row 2: A single cell containing a clone of the original list
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bullet-pink)'],
-      [list.cloneNode(true)] 
+      [list.cloneNode(true)],
     ], document);
 
     // Replace the original list with the new RTE wrapped block
