@@ -1,0 +1,40 @@
+/* 1. Main Table Wrapper */
+.rte-v2.block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0; /* Adds breathing room around the table */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2. Shared Cell Styling (Borders & Spacing) */
+.rte-v2.block table th,
+.rte-v2.block table td {
+  border: 1px solid #dcdfe3; /* Light grey borders matching the image */
+  padding: 20px 24px; /* Generous padding for that airy look */
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* 3. Header Row Styling */
+.rte-v2.block table thead th {
+  background-color: #f4f6f8; /* Cool-toned light grey background */
+  color: #5c6873; /* Slate grey text */
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* 4. Data Row Styling */
+.rte-v2.block table tbody td {
+  background-color: #ffffff;
+  color: #4a5560; /* Slightly softer dark grey for readability */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* 5. Mobile Responsiveness */
+/* Targets the exact inner div (cell) that directly contains the table */
+.rte-v2.block > div > div:has(> table) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%; /* Ensures the wrapper takes full available width */
+}
