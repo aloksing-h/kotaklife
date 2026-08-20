@@ -132,3 +132,10 @@
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
+.rte-v2.bullet-pink ul {
+    background-color: #fff7f6;
+    padding: 40px;
+    border-left: 1px solid #ed3237;
+    display: inline-block;
+}
