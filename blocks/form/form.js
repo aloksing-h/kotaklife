@@ -1,4 +1,4 @@
-import { toCamelCase, toClassName } from '../../scripts/aem.js';
+import { toCamelCase, toClassName, decorateIcons } from '../../scripts/aem.js';
 
 /**
  * Creates an HTML element with an optional class name
@@ -125,7 +125,23 @@ function buildOptions(field, controlled) {
   const {
     type, options, label, required,
   } = field;
-  if (!options) return null;
+  if (!options) {
+    if (type === 'checkbox') {
+      const fieldset = createElement('fieldset', `form-field ${type}-field`);
+      if (controlled) {
+        const controller = controlled.split('-')[0];
+        fieldset.dataset.controller = controller;
+        fieldset.dataset.condition = controlled;
+      }
+      const input = buildOptionInput(field, 'true');
+      const span = createElement('span');
+      const labelEl = buildLabel(label, 'label', input.id);
+      labelEl.prepend(input, span);
+      fieldset.append(labelEl);
+      return fieldset;
+    }
+    return null;
+  }
 
   const fieldset = createElement('fieldset', `form-field ${type}-field`);
   if (controlled) {
@@ -541,6 +557,23 @@ function buildField(field) {
   } = field;
   const controlled = conditional || null;
 
+  // heading renders as h3 (trim handles trailing non-breaking space from spreadsheet)
+  if (type.trim() === 'heading') {
+    const heading = createElement('h3', 'form-heading');
+    heading.textContent = label;
+    return heading;
+  }
+
+  // help text renders as a paragraph
+  if (type.trim() === 'help') {
+    const note = createElement('p', 'spam-note');
+    if (field.icon) {
+      note.append(createElement('span', `icon icon-${field.icon}`));
+    }
+    note.append(label);
+    return note;
+  }
+
   // submit/reset buttons stand alone
   if (type === 'submit' || type === 'reset') {
     return buildButton(field);
@@ -656,6 +689,12 @@ export default function decorate(block) {
             if (!data) throw new Error(`No form fields at ${source}`);
             const form = buildForm(data, submit);
             block.replaceChildren(form);
+            const spamNote = form.querySelector('.spam-note');
+            const emailField = form.querySelector('.email-field');
+            if (spamNote && emailField) {
+              emailField.after(spamNote);
+            }
+            decorateIcons(block);
             block.removeAttribute('style');
           } catch (error) {
             // eslint-disable-next-line no-console
