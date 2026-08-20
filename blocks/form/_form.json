@@ -29,6 +29,17 @@
           "component": "aem-content",
           "name": "submit",
           "label": "Submit URL"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Lead Form",
+              "value": "lead-form"
+            }
+          ]
         }
       ]
     }
