@@ -325,6 +325,62 @@ main>.section {
   margin: 40px 0;
 }
 
+/* =========================================
+   1. MOBILE LAYOUT (Base Styles)
+   By default, sections stack sequentially.
+   We just need to ensure they are full width 
+   and have some breathing room between them.
+========================================= */
+
+.hero-banner.section,
+.column-left-section.section,
+.bookmark-section.section,
+.popular-search.section {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 32px; /* Adds space below each section on mobile */
+}
+
+/* Remove the bottom margin from the very last section */
+.popular-search.section {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   2. DESKTOP LAYOUT (900px and up)
+   Shifts the middle sections into columns.
+========================================= */
+
+@media (min-width: 900px) {
+  
+  /* Hero stays full width */
+  .hero-banner.section {
+    margin-bottom: 40px; /* Slightly larger space below hero on desktop */
+  }
+
+  /* Left column takes up 65% and floats left */
+  .column-left-section.section {
+    width: 65%;
+    float: left;
+    padding-right: 40px; /* Creates the gap between the two columns */
+    margin-bottom: 0; /* Let the bottom section handle the vertical spacing */
+  }
+
+  /* Right column (bookmarks) takes up 35% and floats right */
+  .bookmark-section.section {
+    width: 35%;
+    float: right;
+    margin-bottom: 0;
+  }
+
+  /* Popular searches clears the floats to drop down below the columns */
+  .popular-search.section {
+    clear: both; 
+    padding-top: 40px; /* Adds space above the bottom section */
+  }
+}
+
 .bookmarks-links > div {
     background: #f4f4f4;
     border-radius: 18px;

@@ -70,14 +70,17 @@ const cleanHeadingFormatting = (main) => {
  * HELPER: Creates a Section Metadata table and appends a section break (---)
  * STRICT PLACEMENT: Must be siblings of the content wrapper.
  */
-const appendSectionMetadata = (element, style, document) => {
+const appendSectionMetadata = (element, style, document, addBreak = true) => {
   const sectionMetaData = WebImporter.DOMUtils.createTable([
     ['Section Metadata'],
     ['style', style], // Lowercase 'style' is safer for AEM scripts.js
   ], document);
 
   element.after(sectionMetaData);
-  sectionMetaData.after(document.createElement('hr'));
+  // Only add the hr if requested
+  if (addBreak) {
+    sectionMetaData.after(document.createElement('hr'));
+  }
 };
 
 /**
@@ -349,21 +352,30 @@ const appendKotakPromos = (main, document) => {
 
 /**
  * 7. BOOKMARKS SECTION
- * Strictly isolates bookmarks into separate sections so styles do not bleed into the main article.
+ * Wraps bookmark containers inside an RTE V2 block and adds a section break after the last one.
  */
 const formatBookmarks = (main, document) => {
   const bookmarkContainers = [...main.querySelectorAll('.check-calculators')];
   if (!bookmarkContainers.length) return;
 
-  // CRITICAL: Insert a section break BEFORE the first bookmark to isolate the main article content
-  bookmarkContainers[0].before(document.createElement('hr'));
+  bookmarkContainers.forEach((container, index) => {
+    // Create the block structure:
+    // Row 1: The block name ('RTE V2')
+    // Row 2: A single cell containing a clone of the original bookmark container
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (bookmarks-links)'],
+      [container.cloneNode(true)],
+    ], document);
 
-  // Wrap each individual bookmark container in its own section metadata
-  bookmarkContainers.forEach((container) => {
-    appendSectionMetadata(container, 'bookmarks-links', document);
+    // Replace the original container with the new RTE wrapped block
+    container.replaceWith(rteBlock);
+
+    // Add a section break (---) after the very last bookmark
+    if (index === bookmarkContainers.length - 1) {
+      appendSectionMetadata(rteBlock, 'bookmark-section', document);
+    }
   });
 };
-
 /**
  * 8. DISCLAIMER ACCORDION
  */
@@ -403,7 +415,7 @@ const appendPopularSearches = (main, document) => {
 
   source.replaceWith(list);
   main.append(list);
-  appendSectionMetadata(list, 'popular-search', document);
+  appendSectionMetadata(list, 'popular-search', document, false);
 };
 
 /**
@@ -425,6 +437,28 @@ const appendMetadataBlockAtBottom = (main, document) => {
 
   const metadataBlock = WebImporter.Blocks.getMetadataBlock(document, metadata);
   main.append(metadataBlock);
+};
+
+/**
+ * 11. PINK BULLET LISTS
+ * Wraps <ul class="bullet-pink"> elements inside an RTE V2 block.
+ */
+const buildPinkBulletRteBlocks = (main, document) => {
+  const pinkLists = [...main.querySelectorAll('ul.bullet-pink')];
+  if (!pinkLists.length) return;
+
+  pinkLists.forEach((list) => {
+    // Create the block structure:
+    // Row 1: The block name with the class applied ('RTE V2 (bullet-pink)')
+    // Row 2: A single cell containing a clone of the original list
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (bullet-pink)'],
+      [list.cloneNode(true)] 
+    ], document);
+
+    // Replace the original list with the new RTE wrapped block
+    list.replaceWith(rteBlock);
+  });
 };
 /**
  * ABSOLUTE IMAGE URL NORMALIZER
@@ -498,6 +532,7 @@ export default {
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
     appendFaqAccordion(main, document);
+    buildPinkBulletRteBlocks(main, document);
     buildProfileCards(main, document);
     formatBookmarks(main, document);
 

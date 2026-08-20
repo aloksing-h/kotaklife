@@ -221,51 +221,6 @@ function decorateHeroBanner(main) {
 }
 
 /**
- * Decorates bookmarks-links sections: adds a Show More / Show Less
- * toggle for long calculator bookmark lists.
- * @param {Element} main The main element
- */
-function decorateBookmarksLinks(main) {
-  const VISIBLE_ITEMS = 6;
-
-  main.querySelectorAll('.bookmarks-links').forEach((section) => {
-    const wrapper = section.querySelector(':scope > .default-content-wrapper') || section;
-    const list = wrapper.querySelector('ul');
-    if (!list) return;
-
-    const items = [...list.querySelectorAll(':scope > li')];
-
-    const button = document.createElement('button');
-    button.className = 'bookmarks-show-more';
-    button.type = 'button';
-    button.setAttribute('aria-expanded', 'false');
-    button.textContent = 'SHOW MORE +';
-
-    if (items.length <= VISIBLE_ITEMS) {
-      const orphan = wrapper.querySelector('p, .bookmarks-show-more');
-      if (orphan && /show more/i.test(orphan.textContent)) orphan.remove();
-      return;
-    }
-
-    wrapper.classList.remove('is-expanded');
-
-    const showMoreP = [...wrapper.querySelectorAll('p')]
-      .find((p) => /show more/i.test(p.textContent));
-    if (showMoreP) {
-      showMoreP.replaceWith(button);
-    } else {
-      list.after(button);
-    }
-
-    button.addEventListener('click', () => {
-      const isExpanded = wrapper.classList.toggle('is-expanded');
-      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-      button.textContent = isExpanded ? 'SHOW LESS -' : 'SHOW MORE +';
-    });
-  });
-}
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -277,7 +232,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateButtons(main);
   decorateHeroBanner(main);
-  decorateBookmarksLinks(main);
 }
 
 /**

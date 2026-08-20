@@ -118,6 +118,10 @@
             {
               "name": "Column Left Section",
               "value":"column-left-section"
+            },
+            {
+              "name":"Bookmark Section",
+              "value":"bookmark-section"
             }
           ]
         }
@@ -144,6 +148,7 @@
         "quote",
         "search",
         "rte",
+        "rteV2",
         "tabs",
         "video"
       ]
