@@ -70,14 +70,17 @@ const cleanHeadingFormatting = (main) => {
  * HELPER: Creates a Section Metadata table and appends a section break (---)
  * STRICT PLACEMENT: Must be siblings of the content wrapper.
  */
-const appendSectionMetadata = (element, style, document) => {
+const appendSectionMetadata = (element, style, document , addBreak = true) => {
   const sectionMetaData = WebImporter.DOMUtils.createTable([
     ['Section Metadata'],
     ['style', style], // Lowercase 'style' is safer for AEM scripts.js
   ], document);
 
   element.after(sectionMetaData);
-  sectionMetaData.after(document.createElement('hr'));
+  // Only add the hr if requested
+  if (addBreak) {
+    sectionMetaData.after(document.createElement('hr'));
+  }
 };
 
 /**
@@ -360,7 +363,7 @@ const formatBookmarks = (main, document) => {
     // Row 1: The block name ('RTE V2')
     // Row 2: A single cell containing a clone of the original bookmark container
     const rteBlock = WebImporter.DOMUtils.createTable([
-      ['RTE V2'],
+      ['RTE V2 (bookmarks-links)'],
       [container.cloneNode(true)] 
     ], document);
 
@@ -369,7 +372,7 @@ const formatBookmarks = (main, document) => {
 
     // Add a section break (---) after the very last bookmark
     if (index === bookmarkContainers.length - 1) {
-      rteBlock.after(document.createElement('hr'));
+      appendSectionMetadata(rteBlock, 'bookmark-section', document);
     }
   });
 };
@@ -412,7 +415,7 @@ const appendPopularSearches = (main, document) => {
 
   source.replaceWith(list);
   main.append(list);
-  appendSectionMetadata(list, 'popular-search', document);
+  appendSectionMetadata(list, 'popular-search', document , false);
 };
 
 /**

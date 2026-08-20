@@ -38,3 +38,97 @@
   -webkit-overflow-scrolling: touch;
   width: 100%; /* Ensures the wrapper takes full available width */
 }
+
+
+/* Variant styles are grouped per modifier class, so source order is intentional. */
+/* stylelint-disable no-descending-specificity */
+
+.rte-v2.bookmarks-links.block {
+    background: #f4f4f4;
+    border-radius: 18px;
+    padding: 28px 28px 22px;
+}
+
+.rte-v2.bookmarks-links.block h1,
+.rte-v2.bookmarks-links.block h2,
+.rte-v2.bookmarks-links.block h3,
+.rte-v2.bookmarks-links.block h4,
+.rte-v2.bookmarks-links.block h5,
+.rte-v2.bookmarks-links.block h6 {
+    margin: 0;
+    padding: 0 0 14px;
+    border-bottom: 1px solid #ed1c24;
+    color: #0d1f3f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.rte-v2.bookmarks-links.block ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rte-v2.bookmarks-links.block li {
+    margin: 0;
+    border-bottom: 1px solid #cfd3db;
+}
+
+.rte-v2.bookmarks-links.block li p {
+    margin: 0;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.rte-v2.bookmarks-links.block li a {
+    color: #081f44;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.rte-v2.bookmarks-links.block li a:hover,
+.rte-v2.bookmarks-links.block li a:focus-visible {
+    text-decoration: underline;
+}
+
+.rte-v2.bookmarks-links.block .icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rte-v2.bookmarks-links.block .icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.rte-v2.bookmarks-links.block:not(.is-expanded) li:nth-child(n + 7) {
+    display: none;
+}
+
+.rte-v2.bookmarks-links.block .bookmarks-show-more {
+    display: inline-flex;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #ed1c24;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
