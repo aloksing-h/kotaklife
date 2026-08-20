@@ -54,7 +54,7 @@ function decorateBookmarksLinks(block) {
       // Toggle visibility of the extra items
       items.forEach((item, index) => {
         if (index >= VISIBLE_ITEMS) {
-          item.style.display = isExpanded ? 'list-item' : 'none';
+          item.style.display = isExpanded ? 'flex' : 'none';
         }
       });
     });
