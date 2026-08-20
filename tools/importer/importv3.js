@@ -70,7 +70,7 @@ const cleanHeadingFormatting = (main) => {
  * HELPER: Creates a Section Metadata table and appends a section break (---)
  * STRICT PLACEMENT: Must be siblings of the content wrapper.
  */
-const appendSectionMetadata = (element, style, document , addBreak = true) => {
+const appendSectionMetadata = (element, style, document, addBreak = true) => {
   const sectionMetaData = WebImporter.DOMUtils.createTable([
     ['Section Metadata'],
     ['style', style], // Lowercase 'style' is safer for AEM scripts.js
@@ -364,7 +364,7 @@ const formatBookmarks = (main, document) => {
     // Row 2: A single cell containing a clone of the original bookmark container
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bookmarks-links)'],
-      [container.cloneNode(true)] 
+      [container.cloneNode(true)],
     ], document);
 
     // Replace the original container with the new RTE wrapped block
@@ -415,7 +415,7 @@ const appendPopularSearches = (main, document) => {
 
   source.replaceWith(list);
   main.append(list);
-  appendSectionMetadata(list, 'popular-search', document , false);
+  appendSectionMetadata(list, 'popular-search', document, false);
 };
 
 /**
@@ -475,12 +475,12 @@ const buildTableInsideRteBlock = (main, document) => {
     // Row 2: A single cell containing a clone of the entire original table
     const blockRows = [
       ['RTE V2'],
-      [table.cloneNode(true)] 
+      [table.cloneNode(true)],
     ];
 
     // Build the AEM Block wrapping the table
     const rteBlock = WebImporter.DOMUtils.createTable(blockRows, document);
-    
+
     // Replace the original table with our new wrapped block
     table.replaceWith(rteBlock);
   });

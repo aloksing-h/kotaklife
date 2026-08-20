@@ -463,12 +463,12 @@ const buildTableInsideRteBlock = (main, document) => {
     // Row 2: A single cell containing a clone of the entire original table
     const blockRows = [
       ['RTE V2'],
-      [table.cloneNode(true)] 
+      [table.cloneNode(true)],
     ];
 
     // Build the AEM Block wrapping the table
     const rteBlock = WebImporter.DOMUtils.createTable(blockRows, document);
-    
+
     // Replace the original table with our new wrapped block
     table.replaceWith(rteBlock);
   });
