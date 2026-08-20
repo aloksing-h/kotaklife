@@ -239,6 +239,28 @@ const appendFaqAccordion = (main, document) => {
 };
 
 /**
+ * 12. INSURANCE SECTIONS TO RTE V2
+ * Wraps .insuranceSections elements inside an RTE V2 block with the 'card-border-red' class.
+ */
+const buildInsuranceSectionsBlocks = (main, document) => {
+  const insuranceSections = [...main.querySelectorAll('.insuranceSections')];
+  if (!insuranceSections.length) return;
+
+  insuranceSections.forEach((section) => {
+    // Create the block structure:
+    // Row 1: The block name with the class applied ('RTE V2 (card-border-red)')
+    // Row 2: A single cell containing a clone of the original section
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (card-border-red)'],
+      [section.cloneNode(true)] 
+    ], document);
+
+    // Replace the original section with the new RTE wrapped block
+    section.replaceWith(rteBlock);
+  });
+};
+
+/**
  * 5. AUTHOR PROFILE CARDS
  * Converts author box to Profile Cards block and seals the first column section.
  */
@@ -540,6 +562,7 @@ export default {
     // 4. Run Block Transformations
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
+    buildInsuranceSectionsBlocks(main, document);
     appendFaqAccordion(main, document);
     buildPinkBulletRteBlocks(main, document);
     buildProfileCards(main, document);
