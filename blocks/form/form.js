@@ -671,6 +671,6 @@ export default function decorate(block) {
   } else {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    block.parentElement.remove();
+    // block.parentElement.remove();
   }
 }
