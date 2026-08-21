@@ -7,7 +7,8 @@
 /* Container layout */
 .financial-cards ul {
   display: flex;
-  gap: 24px; /* Space between cards */
+  flex-wrap: wrap;
+  gap: 24px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -15,13 +16,19 @@
 
 /* Individual card styling */
 .financial-cards li {
-  flex: 1; /* Makes all cards equal width */
-  border: 1px solid #a82024; /* Deep red border matching the image */
-  border-radius: 8px; /* Rounded corners */
+  width: 100%;
+  border: 1px solid #a82024;
+  border-radius: 8px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
+}
+
+@media (width >= 900px) {
+  .financial-cards li {
+    width: calc((100% - 48px) / 3);
+  }
 }
 
 .financial-cards .cards-card-image {
