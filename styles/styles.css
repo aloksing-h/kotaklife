@@ -380,7 +380,10 @@ main>.section {
     padding-top: 40px; /* Adds space above the bottom section */
   }
 }
-
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+}
 main > .section > div {
   max-width: 1200px;
   margin: auto;
