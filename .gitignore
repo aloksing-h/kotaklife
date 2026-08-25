@@ -8,6 +8,7 @@ certs/*
 .DS_Store
 *.bak
 .idea
+token.txt
 
 # Ensure these files are tracked
 !CLAUDE.md

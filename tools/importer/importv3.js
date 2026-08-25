@@ -491,23 +491,7 @@ const buildPinkBulletRteBlocks = (main, document) => {
     list.replaceWith(rteBlock);
   });
 };
-/**
- * ABSOLUTE IMAGE URL NORMALIZER
- * Converts relative image URLs (e.g. assets/images/...) into absolute URLs
- * so the AEM html2md delivery service can fetch and validate them during publication.
- */
-const makeImageUrlsAbsolute = (main, origin = 'https://www.kotaklife.com') => {
-  const images = [...main.querySelectorAll('img')];
 
-  images.forEach((img) => {
-    const src = img.getAttribute('src');
-    if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('data:')) {
-      // Clean leading slashes if present and append the origin domain
-      const cleanSrc = src.startsWith('/') ? src : `/${src}`;
-      img.src = `${origin}${cleanSrc}`;
-    }
-  });
-};
 
 /**
  * 10. WRAP DATA TABLES IN RTE BLOCK
@@ -550,7 +534,6 @@ export default {
       div.append(...sec.childNodes);
       sec.replaceWith(div);
     });
-    makeImageUrlsAbsolute(main, 'https://www.kotaklife.com');
     // 2. FIX MALFORMED HTML
     fixMalformedHeadings(main); // Neutralizes <h2> tags wrapping <div>s
     cleanHeadingFormatting(main); // Removes <b>/<strong> tags from inside headings
