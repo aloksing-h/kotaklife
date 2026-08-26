@@ -32,6 +32,29 @@ const removeGlobalNoise = (main) => {
 };
 
 /**
+ * SVG ICON NORMALIZATION
+ * Converts every <img src="*.svg"> into the ":slug:" icon shorthand (matching
+ * the convention used elsewhere in this file, e.g. :chevron-down:, :linkedin:)
+ * so it resolves to /icons/{slug}.svg instead of failing html2md image
+ * validation / DAM upload. Must run before any block builder clones images.
+ */
+// const normalizeSvgIcons = (main, document) => {
+//   const svgImages = [...main.querySelectorAll('img[src$=".svg"]')];
+//   svgImages.forEach((img) => {
+//     const src = img.getAttribute('src');
+//     if (!src) return;
+//     // Slug must match audit-svgs.cjs / download-icons.cjs normalization exactly
+//     const slug = src.split('/').pop().replace(/\.svg$/i, '')
+//       .toLowerCase()
+//       .replace(/[^a-z0-9]+/g, '-')
+//       .replace(/^-+|-+$/g, '');
+//     img.replaceWith(document.createTextNode(` :${slug}: `));
+//   });
+// };
+
+
+
+/**
  * SANITIZE MALFORMED HEADINGS
  * Fixes broken source HTML where an <h2> tag illegally wraps <div> containers
  * (such as Accordions or Suggested Readings sections).
@@ -539,6 +562,12 @@ export default {
     cleanHeadingFormatting(main); // Removes <b>/<strong> tags from inside headings
     // 3. Remove global noise
     removeGlobalNoise(main);
+    
+
+    // 3b. Normalize SVGs to icon shorthand BEFORE any block builder clones images
+    // not needed normalize svg for now for now
+    
+    //normalizeSvgIcons(main, document);
 
     buildTableInsideRteBlock(main, document);
 
