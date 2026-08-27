@@ -8,14 +8,9 @@ const getPathname = (value) => {
   return strippedValue.split(/[?#]/)[0] || '/';
 };
 
-/**
- * 1. RESILIENT CONTENT ROOT
- */
+// Falls back to <body> if the expected wrapper class is missing
 const selectContentRoot = (document) => document.querySelector('.best-invest.best-invest1.outer') || document.body;
 
-/**
- * 2. NOISE REMOVAL
- */
 const removeGlobalNoise = (main) => {
   WebImporter.DOMUtils.remove(main, [
     '.blog-bradcrumb',
@@ -30,29 +25,6 @@ const removeGlobalNoise = (main) => {
     'script', 'style', 'noscript', 'form',
   ]);
 };
-
-/**
- * SVG ICON NORMALIZATION
- * Converts every <img src="*.svg"> into the ":slug:" icon shorthand (matching
- * the convention used elsewhere in this file, e.g. :chevron-down:, :linkedin:)
- * so it resolves to /icons/{slug}.svg instead of failing html2md image
- * validation / DAM upload. Must run before any block builder clones images.
- */
-// const normalizeSvgIcons = (main, document) => {
-//   const svgImages = [...main.querySelectorAll('img[src$=".svg"]')];
-//   svgImages.forEach((img) => {
-//     const src = img.getAttribute('src');
-//     if (!src) return;
-//     // Slug must match audit-svgs.cjs / download-icons.cjs normalization exactly
-//     const slug = src.split('/').pop().replace(/\.svg$/i, '')
-//       .toLowerCase()
-//       .replace(/[^a-z0-9]+/g, '-')
-//       .replace(/^-+|-+$/g, '');
-//     img.replaceWith(document.createTextNode(` :${slug}: `));
-//   });
-// };
-
-
 
 /**
  * SANITIZE MALFORMED HEADINGS
@@ -106,9 +78,6 @@ const appendSectionMetadata = (element, style, document, addBreak = true) => {
   }
 };
 
-/**
- * 3. HERO BANNER HANDLING
- */
 const buildHeroBanner = (main, document) => {
   const blogHead = main.querySelector('.blog-head');
   if (!blogHead) return;
@@ -200,9 +169,6 @@ const buildHeroBanner = (main, document) => {
   appendSectionMetadata(heroContainer, 'hero-banner', document);
 };
 
-/**
- * IFRAME EMBEDS
- */
 const createEmbedBlocks = (main, document) => {
   const iframes = [...main.querySelectorAll('iframe')];
   iframes.forEach((iframe) => {
@@ -261,32 +227,22 @@ const appendFaqAccordion = (main, document) => {
   borItems.slice(1).forEach((bor) => bor.remove());
 };
 
-/**
- * 12. INSURANCE SECTIONS TO RTE V2
- * Wraps .insuranceSections elements inside an RTE V2 block with the 'card-border-red' class.
- */
+// Wraps .insuranceSections elements inside an RTE V2 block with the 'card-border-red' class
 const buildInsuranceSectionsBlocks = (main, document) => {
   const insuranceSections = [...main.querySelectorAll('.insuranceSections')];
   if (!insuranceSections.length) return;
 
   insuranceSections.forEach((section) => {
-    // Create the block structure:
-    // Row 1: The block name with the class applied ('RTE V2 (card-border-red)')
-    // Row 2: A single cell containing a clone of the original section
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (card-border-red)'],
       [section.cloneNode(true)] 
     ], document);
 
-    // Replace the original section with the new RTE wrapped block
     section.replaceWith(rteBlock);
   });
 };
 
-/**
- * 5. AUTHOR PROFILE CARDS
- * Converts author box to Profile Cards block and seals the first column section.
- */
+// Converts author box to Profile Cards block and seals the first column section
 const buildProfileCards = (main, document) => {
   const authorBoxes = [...main.querySelectorAll('.authorBox')];
   if (!authorBoxes.length) return;
@@ -295,14 +251,12 @@ const buildProfileCards = (main, document) => {
     const imageCell = document.createElement('div');
     const textCell = document.createElement('div');
 
-    // 1. Get Image
     const img = box.querySelector('.authorImg img');
     if (img) imageCell.append(img.cloneNode(true));
 
-    // 2. Get "Reviewed By :" Text
     const titleDiv = box.querySelector('.nameTitle div');
     if (titleDiv) {
-      // Cleans up the HTML comments and gets the raw text
+      // Strip HTML comments left in the source markup
       const reviewedText = titleDiv.textContent.replace(/<!--[\s\S]*?-->/g, '').trim();
       if (reviewedText) {
         const reviewedP = document.createElement('p');
@@ -311,7 +265,6 @@ const buildProfileCards = (main, document) => {
       }
     }
 
-    // 3. Get Author Name
     const nameElement = box.querySelector('.nameTag');
     if (nameElement) {
       const nameP = document.createElement('p');
@@ -319,7 +272,7 @@ const buildProfileCards = (main, document) => {
       textCell.append(nameP);
     }
 
-    // 4. Get Tooltip Description & LinkedIn icon into a SINGLE paragraph
+    // Tooltip description and LinkedIn icon are combined into a single paragraph
     const descElement = box.querySelector('.tooltiptext p:first-of-type');
     const linkedinElement = box.querySelector('.tooltiptext a.linkedin');
 
@@ -333,7 +286,7 @@ const buildProfileCards = (main, document) => {
       if (linkedinElement) {
         tooltipContainer.appendChild(document.createElement('br'));
 
-        // Insert the :linkedin: SVG format inside a span instead of a link
+        // Use icon shorthand span instead of the original link
         const linkedinSpan = document.createElement('span');
         linkedinSpan.className = 'linkedin-icon';
         linkedinSpan.textContent = ':linkedin:';
@@ -344,7 +297,6 @@ const buildProfileCards = (main, document) => {
       textCell.append(tooltipContainer);
     }
 
-    // 5. Build Block
     const profileBlock = WebImporter.DOMUtils.createTable([
       ['Cards (profile cards)'],
       [imageCell, textCell],
@@ -352,16 +304,12 @@ const buildProfileCards = (main, document) => {
 
     box.replaceWith(profileBlock);
 
-    // BREAK THE SECTION HERE:
-    // Append Section Metadata and an <hr> right after the profile cards block
     if (typeof appendSectionMetadata === 'function') {
       appendSectionMetadata(profileBlock, 'column-left-section', document);
     }
   });
 };
-/**
- * 6. PROMOTIONAL TOKENS
- */
+
 const appendKotakPromos = (main, document) => {
   const sourceSection = document.querySelector('.saving-token');
   if (!sourceSection) return;
@@ -396,8 +344,7 @@ const appendKotakPromos = (main, document) => {
 };
 
 /**
- * 7. BOOKMARKS SECTION
- * Wraps bookmark containers inside an RTE V2 block, applies 'bookmark-section' 
+ * Wraps bookmark containers inside an RTE V2 block, applies 'bookmark-section'
  * style to the section, and injects an arrow icon after each link.
  */
 const formatBookmarks = (main, document) => {
@@ -405,34 +352,25 @@ const formatBookmarks = (main, document) => {
   if (!bookmarkContainers.length) return;
 
   bookmarkContainers.forEach((container, index) => {
-    
-    // --- NEW LOGIC: Inject icon after links ---
-    // Find all the links inside the unordered lists in this specific container
     const listLinks = container.querySelectorAll('ul li a');
     listLinks.forEach((link) => {
-      // Append the icon text shorthand directly after the </a> tag
       link.after(document.createTextNode(' :rightarrowblack: '));
     });
-    // ------------------------------------------
 
-    // Create the block structure:
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bookmarks-links)'],
       [container.cloneNode(true)] 
     ], document);
 
-    // Replace the original container with the new RTE wrapped block
     container.replaceWith(rteBlock);
 
-    // Add Section Metadata and a section break (---) after the very last bookmark
+    // Only the last bookmark container gets the section break
     if (index === bookmarkContainers.length - 1) {
       appendSectionMetadata(rteBlock, 'bookmark-section', document);
     }
   });
 };
-/**
- * 8. DISCLAIMER ACCORDION
- */
+
 const appendDisclaimerAccordion = (main, document) => {
   const disclaimerContainer = document.querySelector('.abovespace .terms');
   if (!disclaimerContainer) return;
@@ -472,9 +410,6 @@ const appendPopularSearches = (main, document) => {
   appendSectionMetadata(list, 'popular-search', document, false);
 };
 
-/**
- * 9. METADATA EXTRACTION
- */
 const appendMetadataBlockAtBottom = (main, document) => {
   const metadata = {};
   const title = document.querySelector('title');
@@ -493,63 +428,46 @@ const appendMetadataBlockAtBottom = (main, document) => {
   main.append(metadataBlock);
 };
 
-/**
- * 11. PINK BULLET LISTS
- * Wraps <ul class="bullet-pink"> elements inside an RTE V2 block.
- */
+// Wraps <ul class="bullet-pink"> elements inside an RTE V2 block
 const buildPinkBulletRteBlocks = (main, document) => {
   const pinkLists = [...main.querySelectorAll('ul.bullet-pink')];
   if (!pinkLists.length) return;
 
   pinkLists.forEach((list) => {
-    // Create the block structure:
-    // Row 1: The block name with the class applied ('RTE V2 (bullet-pink)')
-    // Row 2: A single cell containing a clone of the original list
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bullet-pink)'],
       [list.cloneNode(true)] 
     ], document);
 
-    // Replace the original list with the new RTE wrapped block
     list.replaceWith(rteBlock);
   });
 };
 
-
-/**
- * 10. WRAP DATA TABLES IN RTE BLOCK
- * Places a standard data table inside a single-cell 'Rte' block.
- */
+// Places a standard data table inside a single-cell RTE V2 block
 const buildTableInsideRteBlock = (main, document) => {
   const sourceTables = [...main.querySelectorAll('table')];
 
   sourceTables.forEach((table) => {
-    // Safety check: if the table is completely empty, remove it
     if (table.querySelectorAll('tr').length === 0) {
       table.remove();
       return;
     }
 
-    // Create the block structure:
-    // Row 1: The block name ('Rte')
-    // Row 2: A single cell containing a clone of the entire original table
     const blockRows = [
       ['RTE V2'],
       [table.cloneNode(true)],
     ];
 
-    // Build the AEM Block wrapping the table
     const rteBlock = WebImporter.DOMUtils.createTable(blockRows, document);
-
-    // Replace the original table with our new wrapped block
     table.replaceWith(rteBlock);
   });
 };
+
 export default {
   transformDOM: ({ document }) => {
     const main = selectContentRoot(document);
 
-    // 1. Convert native <section> tags to <div> to prevent unwanted '---' breaks
+    // Convert native <section> tags to <div> to prevent unwanted '---' breaks
     [...main.querySelectorAll('section')].forEach((sec) => {
       const div = document.createElement('div');
       div.className = sec.className;
@@ -557,21 +475,13 @@ export default {
       div.append(...sec.childNodes);
       sec.replaceWith(div);
     });
-    // 2. FIX MALFORMED HTML
-    fixMalformedHeadings(main); // Neutralizes <h2> tags wrapping <div>s
-    cleanHeadingFormatting(main); // Removes <b>/<strong> tags from inside headings
-    // 3. Remove global noise
-    removeGlobalNoise(main);
-    
 
-    // 3b. Normalize SVGs to icon shorthand BEFORE any block builder clones images
-    // not needed normalize svg for now for now
-    
-    //normalizeSvgIcons(main, document);
+    fixMalformedHeadings(main);
+    cleanHeadingFormatting(main);
+    removeGlobalNoise(main);
 
     buildTableInsideRteBlock(main, document);
 
-    // 4. Run Block Transformations
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
     buildInsuranceSectionsBlocks(main, document);
@@ -584,7 +494,6 @@ export default {
     appendDisclaimerAccordion(main, document);
     appendPopularSearches(main, document);
 
-    // 5. Append Metadata
     appendMetadataBlockAtBottom(main, document);
 
     return main;
