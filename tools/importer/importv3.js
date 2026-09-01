@@ -233,9 +233,31 @@ const buildInsuranceSectionsBlocks = (main, document) => {
   if (!insuranceSections.length) return;
 
   insuranceSections.forEach((section) => {
+    const blogBoxes = [...section.querySelectorAll('.blogBox')];
+    const list = document.createElement('ul');
+
+    blogBoxes.forEach((box) => {
+      const heading = box.querySelector('h3');
+      if (!heading) return;
+
+      const li = document.createElement('li');
+      li.append(heading.cloneNode(true));
+
+      const paragraph = box.querySelector('p');
+      if (paragraph) {
+        const innerLi = document.createElement('li');
+        innerLi.append(...paragraph.cloneNode(true).childNodes);
+        const innerUl = document.createElement('ul');
+        innerUl.append(innerLi);
+        li.append(innerUl);
+      }
+
+      list.append(li);
+    });
+
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (card-border-red)'],
-      [section.cloneNode(true)] 
+      [list],
     ], document);
 
     section.replaceWith(rteBlock);

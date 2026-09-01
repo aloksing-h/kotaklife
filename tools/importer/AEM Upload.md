@@ -79,7 +79,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 ---
 
-## 4. SVG Handling Strategy for Bulk Migration (1,200 pages)
+## 4. SVG Handling Strategy for Bulk Migration (1,200 pages) (Optional For now)
 
 ### Decision: Extension-only (no size/content classification)
 
