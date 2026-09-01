@@ -506,6 +506,21 @@ const buildTableInsideRteBlock = (main, document) => {
   });
 };
 
+// Wraps <blockquote> elements inside an RTE V2 block with the 'blockquote' class
+const buildBlockquoteRteBlocks = (main, document) => {
+  const blockquotes = [...main.querySelectorAll('blockquote')];
+  if (!blockquotes.length) return;
+
+  blockquotes.forEach((bq) => {
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (blockquote)'],
+      [bq.cloneNode(true)],
+    ], document);
+
+    bq.replaceWith(rteBlock);
+  });
+};
+
 export default {
   transformDOM: ({ document }) => {
     const main = selectContentRoot(document);
@@ -526,6 +541,7 @@ export default {
 
     buildTableInsideRteBlock(main, document);
 
+    buildBlockquoteRteBlocks(main, document);
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
     buildInsuranceSectionsBlocks(main, document);
