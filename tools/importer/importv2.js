@@ -44,6 +44,104 @@ const fixMalformedHeadings = (main) => {
   });
 };
 
+const ASSET_PATH_MARKER = '/assets/images/';
+const ASSET_ORIGIN = 'https://www.kotaklife.com';
+const FILE_LINK_EXTENSIONS = /\.(pdf|docx?|xlsx?|csv|zip|pptx?)(\?|#|$)/i;
+
+const isExternalUrl = (rawUrl) => /^(https?:)?\/\//i.test(rawUrl || '');
+
+// Resolves against the page's own URL first (like `img.src` does), because the bad
+// intermediate directory only shows up once a path-relative src gets resolved
+const resolveAssetUrl = (rawUrl, document) => {
+  if (!rawUrl || rawUrl.startsWith('data:') || rawUrl.startsWith('#')) return null;
+  let absolute;
+  try {
+    absolute = new URL(rawUrl, document.baseURI).href;
+  } catch {
+    return null;
+  }
+  if (!absolute.includes(ASSET_PATH_MARKER)) return null;
+  return `${ASSET_ORIGIN}${absolute.substring(absolute.indexOf(ASSET_PATH_MARKER))}`;
+};
+
+const rewriteUrlAttr = (el, attr, label, warnings, document) => {
+  const value = el.getAttribute(attr);
+  if (!value) return;
+  const resolved = resolveAssetUrl(value, document);
+  if (resolved) {
+    el.setAttribute(attr, resolved);
+  } else if (!isExternalUrl(value) && !value.startsWith('data:') && !value.startsWith('#')) {
+    warnings.push(`Unresolved relative asset: ${label}[${attr}]="${value}"`);
+  }
+};
+
+const rewriteSrcsetAttr = (el, attr, label, warnings, document) => {
+  const value = el.getAttribute(attr);
+  if (!value) return;
+  const rewritten = value.split(',').map((candidate) => {
+    const trimmed = candidate.trim();
+    if (!trimmed) return trimmed;
+    const [url, descriptor] = trimmed.split(/\s+/, 2);
+    const resolved = resolveAssetUrl(url, document);
+    if (resolved) return descriptor ? `${resolved} ${descriptor}` : resolved;
+    if (!isExternalUrl(url) && !url.startsWith('data:')) {
+      warnings.push(`Unresolved relative asset: ${label}[${attr}]="${url}"`);
+    }
+    return trimmed;
+  }).join(', ');
+  el.setAttribute(attr, rewritten);
+};
+
+/**
+ * RELATIVE ASSET URL NORMALIZER
+ * Rewrites known /assets/images/ paths to absolute kotaklife.com URLs across every
+ * element that can carry an asset reference (not just <img src>), and pushes anything
+ * it can't confidently resolve into `warnings` for the import report instead of guessing.
+ */
+const fixAssetUrls = (main, document, warnings) => {
+  main.querySelectorAll('img').forEach((img) => {
+    rewriteUrlAttr(img, 'src', 'img', warnings, document);
+    rewriteSrcsetAttr(img, 'srcset', 'img', warnings, document);
+  });
+
+  main.querySelectorAll('source').forEach((source) => {
+    rewriteUrlAttr(source, 'src', 'source', warnings, document);
+    rewriteSrcsetAttr(source, 'srcset', 'source', warnings, document);
+  });
+
+  main.querySelectorAll('video[poster]').forEach((video) => {
+    rewriteUrlAttr(video, 'poster', 'video', warnings, document);
+  });
+
+  main.querySelectorAll('a[href]').forEach((a) => {
+    if (FILE_LINK_EXTENSIONS.test(a.getAttribute('href') || '')) {
+      rewriteUrlAttr(a, 'href', 'a', warnings, document);
+    }
+  });
+
+  main.querySelectorAll('[style*="background-image"]').forEach((el) => {
+    const style = el.getAttribute('style');
+    const updated = style.replace(/background-image\s*:\s*url\((['"]?)([^'")]+)\1\)/i, (match, quote, url) => {
+      const resolved = resolveAssetUrl(url, document);
+      if (resolved) return `background-image: url(${quote}${resolved}${quote})`;
+      if (!isExternalUrl(url) && !url.startsWith('data:')) {
+        warnings.push(`Unresolved relative asset: ${el.tagName.toLowerCase()}[style background-image]="${url}"`);
+      }
+      return match;
+    });
+    el.setAttribute('style', updated);
+  });
+};
+
+// Runs fn in isolation so one broken block builder can't abort the whole page transform
+const runSafely = (label, fn, warnings) => {
+  try {
+    fn();
+  } catch (err) {
+    warnings.push(`${label}: ${err.message}`);
+  }
+};
+
 /**
  * SANITIZE REDUNDANT HEADING FORMATTING
  * Removes <b> and <strong> tags from inside headings to prevent
@@ -227,11 +325,7 @@ const appendFaqAccordion = (main, document) => {
   borItems.slice(1).forEach((bor) => bor.remove());
 };
 
-/**
- * Rebuilds each .blogBox as <li>heading<ul><li>paragraph text</li></ul></li>
- * so headings become list items instead of raw prose, then wraps the whole
- * list inside an RTE V2 (card-border-red) block.
- */
+// Wraps .insuranceSections elements inside an RTE V2 block with the 'card-border-red' class
 const buildInsuranceSectionsBlocks = (main, document) => {
   const insuranceSections = [...main.querySelectorAll('.insuranceSections')];
   if (!insuranceSections.length) return;
@@ -312,12 +406,15 @@ const buildProfileCards = (main, document) => {
       if (linkedinElement) {
         tooltipContainer.appendChild(document.createElement('br'));
 
-        // Use icon shorthand span instead of the original link
-        const linkedinSpan = document.createElement('span');
-        linkedinSpan.className = 'linkedin-icon';
-        linkedinSpan.textContent = ':linkedin:';
+        // Keep the icon shorthand clickable by wrapping it in the original profile link
+        const linkedinLink = document.createElement('a');
+        linkedinLink.href = linkedinElement.href;
+        linkedinLink.target = '_blank';
+        linkedinLink.rel = 'nofollow noopener';
+        linkedinLink.className = 'linkedin-icon';
+        linkedinLink.textContent = ':linkedin:';
 
-        tooltipContainer.appendChild(linkedinSpan);
+        tooltipContainer.appendChild(linkedinLink);
       }
 
       textCell.append(tooltipContainer);
@@ -454,23 +551,6 @@ const appendMetadataBlockAtBottom = (main, document) => {
   main.append(metadataBlock);
 };
 
-/**
- * ABSOLUTE IMAGE URL NORMALIZER
- * Converts relative image URLs (e.g. assets/images/...) into absolute URLs
- * so the AEM html2md delivery service can fetch and validate them during publication.
- */
-const makeImageUrlsAbsolute = (main, origin = 'https://www.kotaklife.com') => {
-  const images = [...main.querySelectorAll('img')];
-
-  images.forEach((img) => {
-    const src = img.getAttribute('src');
-    if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('data:')) {
-      const cleanSrc = src.startsWith('/') ? src : `/${src}`;
-      img.src = `${origin}${cleanSrc}`;
-    }
-  });
-};
-
 // Wraps <ul class="bullet-pink"> elements inside an RTE V2 block
 const buildPinkBulletRteBlocks = (main, document) => {
   const pinkLists = [...main.querySelectorAll('ul.bullet-pink')];
@@ -521,47 +601,79 @@ const buildBlockquoteRteBlocks = (main, document) => {
   });
 };
 
+// Replaces plain-text numbered <p> links with a real <ol>, since look-alike numbered
+// paragraphs get merged by the docx/Word ingestion pipeline instead of staying separate
+const buildSuggestedReadingsList = (main, document) => {
+  const containers = [...main.querySelectorAll('.suggestion')];
+  if (!containers.length) return;
+
+  containers.forEach((container) => {
+    const links = [...container.querySelectorAll('a[href]')];
+    if (!links.length) return;
+
+    const list = document.createElement('ol');
+    links.forEach((link) => {
+      const li = document.createElement('li');
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.textContent.trim();
+      li.append(anchor);
+      list.append(li);
+    });
+
+    container.querySelectorAll('p').forEach((p) => p.remove());
+    container.append(list);
+  });
+};
+
 export default {
-  transformDOM: ({ document }) => {
+  transform: ({ document, url, params }) => {
+    const warnings = [];
     const main = selectContentRoot(document);
 
     // Convert native <section> tags to <div> to prevent unwanted '---' breaks
-    [...main.querySelectorAll('section')].forEach((sec) => {
-      const div = document.createElement('div');
-      div.className = sec.className;
-      div.id = sec.id;
-      div.append(...sec.childNodes);
-      sec.replaceWith(div);
-    });
+    runSafely('section-normalization', () => {
+      [...main.querySelectorAll('section')].forEach((sec) => {
+        const div = document.createElement('div');
+        div.className = sec.className;
+        div.id = sec.id;
+        div.append(...sec.childNodes);
+        sec.replaceWith(div);
+      });
+    }, warnings);
 
-    makeImageUrlsAbsolute(main, 'https://www.kotaklife.com');
-    fixMalformedHeadings(main);
-    cleanHeadingFormatting(main);
-    removeGlobalNoise(main);
+    runSafely('fixAssetUrls', () => fixAssetUrls(main, document, warnings), warnings);
+    runSafely('fixMalformedHeadings', () => fixMalformedHeadings(main), warnings);
+    runSafely('cleanHeadingFormatting', () => cleanHeadingFormatting(main), warnings);
+    runSafely('removeGlobalNoise', () => removeGlobalNoise(main), warnings);
 
-    buildTableInsideRteBlock(main, document);
+    runSafely('buildTableInsideRteBlock', () => buildTableInsideRteBlock(main, document), warnings);
+    runSafely('buildBlockquoteRteBlocks', () => buildBlockquoteRteBlocks(main, document), warnings);
+    runSafely('buildHeroBanner', () => buildHeroBanner(main, document), warnings);
+    runSafely('createEmbedBlocks', () => createEmbedBlocks(main, document), warnings);
+    runSafely('buildInsuranceSectionsBlocks', () => buildInsuranceSectionsBlocks(main, document), warnings);
+    runSafely('appendFaqAccordion', () => appendFaqAccordion(main, document), warnings);
+    runSafely('buildPinkBulletRteBlocks', () => buildPinkBulletRteBlocks(main, document), warnings);
+    runSafely('buildProfileCards', () => buildProfileCards(main, document), warnings);
+    runSafely('formatBookmarks', () => formatBookmarks(main, document), warnings);
+    runSafely('buildSuggestedReadingsList', () => buildSuggestedReadingsList(main, document), warnings);
 
-    buildBlockquoteRteBlocks(main, document);
-    buildHeroBanner(main, document);
-    createEmbedBlocks(main, document);
-    buildInsuranceSectionsBlocks(main, document);
-    appendFaqAccordion(main, document);
-    buildPinkBulletRteBlocks(main, document);
-    buildProfileCards(main, document);
-    formatBookmarks(main, document);
+    runSafely('appendKotakPromos', () => appendKotakPromos(main, document), warnings);
+    runSafely('appendDisclaimerAccordion', () => appendDisclaimerAccordion(main, document), warnings);
+    runSafely('appendPopularSearches', () => appendPopularSearches(main, document), warnings);
 
-    appendKotakPromos(main, document);
-    appendDisclaimerAccordion(main, document);
-    appendPopularSearches(main, document);
+    runSafely('appendMetadataBlockAtBottom', () => appendMetadataBlockAtBottom(main, document), warnings);
 
-    appendMetadataBlockAtBottom(main, document);
-
-    return main;
-  },
-
-  generateDocumentPath: ({ url, params }) => {
     const pathname = getPathname(params?.originalURL || url);
     const documentPath = pathname === '/' ? '/index' : pathname.replace(/\/$/, '');
-    return WebImporter.FileUtils.sanitizePath(documentPath);
+
+    return [{
+      element: main,
+      path: WebImporter.FileUtils.sanitizePath(documentPath),
+      report: {
+        title: document.title,
+        warnings: warnings.length ? warnings.join(' | ') : '',
+      },
+    }];
   },
 };
