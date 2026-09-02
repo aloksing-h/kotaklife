@@ -19,5 +19,16 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
+  
   block.replaceChildren(ul);
+
+  // target/rel attributes don't survive Word/Google Docs authoring, so set them at render time
+  if (block.classList.contains('profile-cards')) {
+    const linkedInLinks = block.querySelectorAll('.cards-card-body a');
+  
+  linkedInLinks.forEach((link) => {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+  }
 }

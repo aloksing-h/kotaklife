@@ -330,12 +330,15 @@ const buildProfileCards = (main, document) => {
       if (linkedinElement) {
         tooltipContainer.appendChild(document.createElement('br'));
 
-        // Use icon shorthand span instead of the original link
-        const linkedinSpan = document.createElement('span');
-        linkedinSpan.className = 'linkedin-icon';
-        linkedinSpan.textContent = ':linkedin:';
+        // Keep the icon shorthand clickable by wrapping it in the original profile link
+        const linkedinLink = document.createElement('a');
+        linkedinLink.href = linkedinElement.href;
+        linkedinLink.target = '_blank';
+        linkedinLink.rel = 'nofollow noopener';
+        linkedinLink.className = 'linkedin-icon';
+        linkedinLink.textContent = ':linkedin:';
 
-        tooltipContainer.appendChild(linkedinSpan);
+        tooltipContainer.appendChild(linkedinLink);
       }
 
       textCell.append(tooltipContainer);

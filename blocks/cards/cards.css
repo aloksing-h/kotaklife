@@ -175,3 +175,20 @@
   width: 20px;
   fill: #0a66c2; /* Standard LinkedIn Blue */
 }
+
+/* Align the LinkedIn anchor to the right */
+.profile-cards .cards-card-body p:nth-child(3) a {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px; /* Adds space above the icon */
+  text-decoration: none;
+}
+
+/* Optional: Add hover effect to the icon itself */
+.profile-cards .cards-card-body p:nth-child(3) a .icon-linkedin {
+  transition: transform 0.2s ease;
+}
+
+.profile-cards .cards-card-body p:nth-child(3) a:hover .icon-linkedin {
+  transform: scale(1.1);
+}
