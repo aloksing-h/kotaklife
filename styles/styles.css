@@ -341,6 +341,10 @@ main>.section {
   margin-bottom: 32px; /* Adds space below each section on mobile */
 }
 
+.column-left-section.section a{
+  color: #c8151b;
+}
+
 /* Remove the bottom margin from the very last section */
 .popular-search.section {
   margin-bottom: 0;
