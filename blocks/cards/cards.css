@@ -192,3 +192,24 @@
 .profile-cards .cards-card-body p:nth-child(3) a:hover .icon-linkedin {
   transform: scale(1.1);
 }
+
+/* --- Mobile View Adjustments --- */
+@media (max-width: 768px) {
+  .profile-cards .cards-card-body p:nth-child(3) {
+    width: max-content; /* Overrides the 450px fixed width */
+    max-width: 200px;    /* Ensures it never exceeds 85% of the screen width */
+    left: -70px;        /* Shifts it left so it doesn't overflow the right edge */
+    pointer-events: none; /* Prevents the invisible tooltip from blocking taps */
+  }
+
+  /* Allow clicks only when the tooltip is visible */
+  .profile-cards .cards-card-body p:nth-child(3):hover,
+  .profile-cards .cards-card-body p:nth-child(2):hover + p:nth-child(3) {
+    pointer-events: auto;
+  }
+
+  /* Re-align the tooltip arrow to point at the name */
+  .profile-cards .cards-card-body p:nth-child(3)::before {
+    left: 85px; /* Aligns the arrow properly under the text */
+  }
+}
