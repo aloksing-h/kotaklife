@@ -92,14 +92,21 @@
 .rte-v2.bookmarks-links.block li a {
     color: #081f44;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.2;
     text-decoration: none;
 }
 
-.rte-v2.bookmarks-links.block li a:hover,
-.rte-v2.bookmarks-links.block li a:focus-visible {
-    text-decoration: underline;
+.rte-v2.bookmarks-links.block li:hover a,
+.rte-v2.bookmarks-links.block li a:focus-visible,
+.rte-v2.bookmarks-links.block li a:hover {
+    color: #ed1c24;
+}
+
+.rte-v2.bookmarks-links.block li:hover .icon img,
+.rte-v2.bookmarks-links.block li a:hover + .icon img {
+    /* This specific filter chain converts black to #ed1c24 (Red) */
+    filter: invert(18%) sepia(87%) saturate(5318%) hue-rotate(348deg) brightness(94%) contrast(96%);
 }
 
 .rte-v2.bookmarks-links.block .icon {
@@ -202,4 +209,12 @@
 
 .rte-v2.card-border-red.block a {
     color: #ed1c24;
+}
+.rte-v2.blockquote.block{
+    background-color: #eff8ff;
+    border-left: 1px solid #19507b;
+    padding: 20px;
+    display: block;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
 }

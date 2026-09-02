@@ -45,6 +45,28 @@ const fixMalformedHeadings = (main) => {
 };
 
 /**
+ * FIX RELATIVE IMAGE PATHS
+ * Strips out incorrect intermediate page paths (like /insurance-guide/protection/)
+ * and forces the image to resolve from the absolute /assets/images/ root.
+ */
+const fixImageUrls = (main) => {
+  const images = [...main.querySelectorAll('img')];
+  
+  images.forEach((img) => {
+    const currentSrc = img.src || img.getAttribute('src');
+    
+    // Check if the image contains the standard asset path but is resolving wrong
+    if (currentSrc && currentSrc.includes('/assets/images/')) {
+      // Extract everything from '/assets/images/' to the end of the URL
+      const assetPath = currentSrc.substring(currentSrc.indexOf('/assets/images/'));
+      
+      // Rewrite the src to point to the correct absolute URL
+      img.src = `https://www.kotaklife.com${assetPath}`;
+    }
+  });
+};
+
+/**
  * SANITIZE REDUNDANT HEADING FORMATTING
  * Removes <b> and <strong> tags from inside headings to prevent
  * the markdown parser from escaping them into literal text.
@@ -485,6 +507,46 @@ const buildTableInsideRteBlock = (main, document) => {
   });
 };
 
+// Wraps <blockquote> elements inside an RTE V2 block with the 'blockquote' class
+const buildBlockquoteRteBlocks = (main, document) => {
+  const blockquotes = [...main.querySelectorAll('blockquote')];
+  if (!blockquotes.length) return;
+
+  blockquotes.forEach((bq) => {
+    const rteBlock = WebImporter.DOMUtils.createTable([
+      ['RTE V2 (blockquote)'],
+      [bq.cloneNode(true)],
+    ], document);
+
+    bq.replaceWith(rteBlock);
+  });
+};
+
+// Replaces plain-text numbered <p> links with a real <ol>, since look-alike numbered
+// paragraphs get merged by the docx/Word ingestion pipeline instead of staying separate
+const buildSuggestedReadingsList = (main, document) => {
+  const containers = [...main.querySelectorAll('.suggestion')];
+  if (!containers.length) return;
+
+  containers.forEach((container) => {
+    const links = [...container.querySelectorAll('a[href]')];
+    if (!links.length) return;
+
+    const list = document.createElement('ol');
+    links.forEach((link) => {
+      const li = document.createElement('li');
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.textContent.trim();
+      li.append(anchor);
+      list.append(li);
+    });
+
+    container.querySelectorAll('p').forEach((p) => p.remove());
+    container.append(list);
+  });
+};
+
 export default {
   transformDOM: ({ document }) => {
     const main = selectContentRoot(document);
@@ -497,13 +559,15 @@ export default {
       div.append(...sec.childNodes);
       sec.replaceWith(div);
     });
-
+    fixImageUrls(main);
     fixMalformedHeadings(main);
     cleanHeadingFormatting(main);
     removeGlobalNoise(main);
 
     buildTableInsideRteBlock(main, document);
 
+
+    buildBlockquoteRteBlocks(main, document);
     buildHeroBanner(main, document);
     createEmbedBlocks(main, document);
     buildInsuranceSectionsBlocks(main, document);
@@ -511,6 +575,7 @@ export default {
     buildPinkBulletRteBlocks(main, document);
     buildProfileCards(main, document);
     formatBookmarks(main, document);
+    buildSuggestedReadingsList(main, document);
 
     appendKotakPromos(main, document);
     appendDisclaimerAccordion(main, document);

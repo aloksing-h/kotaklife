@@ -564,6 +564,10 @@
           {
             "name": "Card Border Red",
             "value": "card-border-red"
+          },
+          {
+            "name": "Block Quote",
+            "value": "blockquote"
           }
         ]
       }
