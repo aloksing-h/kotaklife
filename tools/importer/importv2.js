@@ -482,7 +482,7 @@ const formatBookmarks = (main, document) => {
 
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bookmarks-links)'],
-      [container.cloneNode(true)] 
+      [container.cloneNode(true)],
     ], document);
 
     container.replaceWith(rteBlock);
@@ -559,7 +559,7 @@ const buildPinkBulletRteBlocks = (main, document) => {
   pinkLists.forEach((list) => {
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bullet-pink)'],
-      [list.cloneNode(true)] 
+      [list.cloneNode(true)],
     ], document);
 
     list.replaceWith(rteBlock);

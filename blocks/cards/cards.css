@@ -194,7 +194,7 @@
 }
 
 /* --- Mobile View Adjustments --- */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .profile-cards .cards-card-body p:nth-child(3) {
     width: max-content; /* Overrides the 450px fixed width */
     max-width: 200px;    /* Ensures it never exceeds 85% of the screen width */

@@ -25,13 +25,14 @@
 
 /* 4. Data Row Styling */
 .rte-v2.block table tbody td {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #4a5560; /* Slightly softer dark grey for readability */
   font-size: 16px;
   line-height: 1.6;
 }
 
 /* 5. Mobile Responsiveness */
+
 /* Targets the exact inner div (cell) that directly contains the table */
 .rte-v2.block > div > div:has(> table) {
   overflow-x: auto;
@@ -209,11 +210,11 @@
 .rte-v2.card-border-red.block a {
     color: #ed1c24;
 }
+
 .rte-v2.blockquote.block{
     background-color: #eff8ff;
     border-left: 1px solid #19507b;
     padding: 20px;
     display: block;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
+    margin-inline: 40px;
 }
