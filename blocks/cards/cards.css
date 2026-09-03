@@ -27,7 +27,7 @@
 
 @media (width >= 900px) {
   .financial-cards li {
-    width: calc((100% - 48px) / 3);
+    width: calc((100% - 200px) / 3);
   }
 }
 

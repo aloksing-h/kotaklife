@@ -40,8 +40,6 @@ function decorateBookmarksLinks(block) {
     showMoreEl.remove();
   }
 
-
-  
   // --- YOUR CONDITIONALS END HERE ---
 
   // Only attach the click listener if the button was actually added to the page

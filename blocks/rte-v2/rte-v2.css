@@ -210,11 +210,11 @@
 .rte-v2.card-border-red.block a {
     color: #ed1c24;
 }
+
 .rte-v2.blockquote.block{
     background-color: #eff8ff;
     border-left: 1px solid #19507b;
     padding: 20px;
     display: block;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
+    margin-inline: 40px;
 }

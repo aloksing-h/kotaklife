@@ -51,15 +51,15 @@ const fixMalformedHeadings = (main) => {
  */
 const fixImageUrls = (main) => {
   const images = [...main.querySelectorAll('img')];
-  
+
   images.forEach((img) => {
     const currentSrc = img.src || img.getAttribute('src');
-    
+
     // Check if the image contains the standard asset path but is resolving wrong
     if (currentSrc && currentSrc.includes('/assets/images/')) {
       // Extract everything from '/assets/images/' to the end of the URL
       const assetPath = currentSrc.substring(currentSrc.indexOf('/assets/images/'));
-      
+
       // Rewrite the src to point to the correct absolute URL
       img.src = `https://www.kotaklife.com${assetPath}`;
     }
@@ -403,7 +403,7 @@ const formatBookmarks = (main, document) => {
 
     const rteBlock = WebImporter.DOMUtils.createTable([
       ['RTE V2 (bookmarks-links)'],
-      [container.cloneNode(true)] 
+      [container.cloneNode(true)],
     ], document);
 
     container.replaceWith(rteBlock);
@@ -565,7 +565,6 @@ export default {
     removeGlobalNoise(main);
 
     buildTableInsideRteBlock(main, document);
-
 
     buildBlockquoteRteBlocks(main, document);
     buildHeroBanner(main, document);
