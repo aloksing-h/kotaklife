@@ -368,11 +368,11 @@
         "value": ""
       },
       {
-        "component": "aem-content-reference",
+        "component": "reference",
         "valueType": "string",
         "name": "link",
-        "label": "Embed URL",
-        "rootPath": "/content/dam"
+        "label": "Embed URL or DAM Video",
+        "multi": false
       }
     ]
   },
