@@ -65,7 +65,8 @@
 .section.banner-video,
 .section.banner-video *{
   min-height: 670px;
-  height: auto;
+  max-height: 670px;
+  height: 670px;
 }
 
 main > .section:first-of-type.banner-video{
