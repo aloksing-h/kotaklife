@@ -1,8 +1,187 @@
-.video-banner-media video,
-.video-banner-media picture,
-.video-banner-media img {
+/* =========================================
+   MOBILE FIRST (Base Styles)
+   ========================================= */
+
+/* Ensure the main block container is relative so absolute children map to it */
+.autoplay.video-banner {
+  position: relative;
+  overflow: hidden;
+  display: block; /* Let it naturally grow with the video */
+}
+
+/* The media wrapper just acts as a regular block element */
+.autoplay .video-banner-media {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
+  display: block;
+}
+
+/* Let the video drive the height based on its natural aspect ratio */
+.autoplay .video-banner-media video,
+.autoplay .video-banner-media picture,
+.autoplay .video-banner-media img {
+  width: 100%;
+  height: auto;
   object-fit: cover;
   display: block;
+}
+
+/* Content overlay - Mobile view defaults (100% width, transparent background) */
+.autoplay .video-banner-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding-top: 60px;
+
+  
+}
+
+
+.autoplay .video-banner-content div {
+  margin-left: 50px;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.autoplay .video-banner-content p {
+    margin: 0;
+  color: white;
+}
+
+/* Typography - Mobile defaults */
+.autoplay .video-banner-content p:nth-child(1) {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.36;
+}
+
+.autoplay .video-banner-content p:nth-child(1) > strong {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.36;
+}
+
+/* Second paragraph configuration */
+.autoplay .video-banner-content p:nth-child(2) {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.28;
+  margin: 0;
+  padding-left: 80px; 
+  text-indent: -60px;
+}
+
+/* Red circle - Mobile defaults */
+.autoplay .video-banner-content p:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #ff0033;
+  top: -15px;
+  left: 0;
+}
+
+
+/* =========================================
+   DESKTOP OVERRIDES (min-width: 900px)
+   ========================================= */
+@media (min-width: 900px) {
+  
+  /* 1. Disable mouse events on the video so the right side ignores the cursor */
+  .autoplay .video-banner-media {
+    pointer-events: none;
+  }
+
+  /* 2. Create an invisible hit-zone covering ONLY the left 50% of the video */
+  .autoplay .video-banner-media::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: auto; /* Re-enable the mouse exclusively on this left half */
+    z-index: 1;
+  }
+
+  /* 3. Base state for content (hidden to the left) */
+  .autoplay .video-banner-content {
+    width: 50%;
+    height: auto; 
+    padding-top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-image: conic-gradient(at 1px 1px, transparent 270deg, rgba(0, 0, 0, 0.85) 270deg);
+    background-size: 4px 4px;
+    background-position: 0 0;
+    
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-out;
+  }
+
+  /* 4. Trigger slide-in when hovering the left hit-zone OR while hovering the text itself */
+  .autoplay .video-banner-media:hover + .video-banner-content,
+  .autoplay .video-banner-content:hover {
+    transform: translateX(0);
+  }
+
+  /* Reset inner div to standard block layout without flex gap */
+  .autoplay .video-banner-content div {
+    display: block;
+  }
+
+  /* Typography - Desktop sizing */
+  .autoplay .video-banner-content p:nth-child(1) {
+    font-size: 40px;
+    line-height: 1.6;
+  }
+
+  .autoplay .video-banner-content p:nth-child(1) > strong {
+    font-size: 48px;
+    line-height: 1.6;
+  }
+
+  .autoplay .video-banner-content p:nth-child(2) {
+    font-size: 48px;
+    line-height: 1.48;
+  }
+
+  /* Red circle - Desktop sizing */
+  .autoplay .video-banner-content p:nth-child(2)::before {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+.video-banner-wrapper:has(.autoplay){
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+
+}
+
+.section:has( .video-banner-wrapper > .autoplay){
+    max-width: 100%;
+}
+
+main:has(.section > .video-banner-wrapper > .autoplay){
+    max-width: 100%;
 }

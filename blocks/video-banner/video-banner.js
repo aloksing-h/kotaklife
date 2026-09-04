@@ -9,7 +9,8 @@ async function resolveMediaUrl(href) {
     if (url.pathname.startsWith('/content/')) {
       let domain = await getRespectiveDomain();
       if (domain === true) {
-        domain = 'https://publish-p48457-e1275402.adobeaemcloud.com/';
+        // Removed the trailing slash so it doesn't create "//content/dam..."
+        domain = 'https://publish-p48457-e1275402.adobeaemcloud.com';
       }
       return domain + url.pathname;
     }
@@ -19,42 +20,11 @@ async function resolveMediaUrl(href) {
   }
 }
 
-// Reusable function to create media tags and apply specific class names
-async function createMediaEl(mediaCell, className) {
-  if (!mediaCell) return null;
-  
-  if (isVideoEl(mediaCell)) {
-    const anchor = mediaCell.querySelector('a');
-    const video = document.createElement('video');
-    const src = await resolveMediaUrl(anchor.href);
-    
-    video.setAttribute('autoplay', '');
-    video.setAttribute('loop', '');
-    video.setAttribute('muted', '');
-    video.muted = true;
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-    video.className = className; // 'hero-media-desktop' or 'hero-media-mobile'
-    
-    const source = document.createElement('source');
-    source.setAttribute('src', src);
-    source.setAttribute('type', 'video/mp4');
-    
-    video.appendChild(source);
-    return video;
-  } else if (isPictureEl(mediaCell)) {
-    const picture = mediaCell.querySelector('picture');
-    picture.className = className;
-    return picture;
-  }
-  return null;
-}
-
 export default async function decorate(block) {
-  const rows = [...block.children];
+  if(block.classList.contains('autoplay')){
+    const rows = [...block.children];
   if (!rows.length) return;
 
-  // Extract the 3 rows you authored
   const desktopRow = rows[0];
   const mobileRow = rows[1];
   const contentRow = rows[2];
@@ -62,19 +32,80 @@ export default async function decorate(block) {
   const mediaWrapper = document.createElement('div');
   mediaWrapper.classList.add('video-banner-media');
 
-  // 1. Process Desktop Video
-  if (desktopRow) {
-    const desktopMedia = await createMediaEl(desktopRow.firstElementChild, 'hero-media-desktop');
-    if (desktopMedia) mediaWrapper.appendChild(desktopMedia);
-    desktopRow.remove();
-  }
+  // Helper function to extract the URL or image from a row
+  const getMediaData = async (row) => {
+    const cell = row?.firstElementChild;
+    if (!cell) return null;
+    
+    if (isVideoEl(cell)) {
+      return { type: 'video', src: await resolveMediaUrl(cell.querySelector('a').href) };
+    } else if (isPictureEl(cell)) {
+      return { type: 'image', el: cell.querySelector('picture') };
+    }
+    return null;
+  };
 
-  // 2. Process Mobile Video
-  if (mobileRow) {
-    const mobileMedia = await createMediaEl(mobileRow.firstElementChild, 'hero-media-mobile');
-    if (mobileMedia) mediaWrapper.appendChild(mobileMedia);
-    mobileRow.remove();
-  }
+  // Get data for both views (fallback to desktop if mobile row is empty)
+  const desktopData = await getMediaData(desktopRow);
+  const mobileData = (await getMediaData(mobileRow)) || desktopData;
+
+  // Remove the authored rows from the DOM
+  if (desktopRow) desktopRow.remove();
+  if (mobileRow) mobileRow.remove();
+
+  // Keep track of the currently rendered single tag
+  let activeMediaEl = null;
+
+  // Function to render or update the single media tag based on screen width
+  const renderResponsiveMedia = () => {
+    // Check if screen is mobile (less than or equal to 900px)
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const currentData = isMobile ? mobileData : desktopData;
+
+    if (!currentData) return;
+
+    // Handle Image Fallback
+    if (currentData.type === 'image') {
+      if (activeMediaEl !== currentData.el) {
+        mediaWrapper.innerHTML = ''; // clear wrapper
+        mediaWrapper.appendChild(currentData.el);
+        activeMediaEl = currentData.el;
+      }
+      return;
+    }
+
+    // Handle Video (The core requirement)
+    if (currentData.type === 'video') {
+      if (activeMediaEl && activeMediaEl.tagName === 'VIDEO') {
+        // If the single video tag already exists, just update its source and reload
+        if (activeMediaEl.getAttribute('src') !== currentData.src) {
+          activeMediaEl.setAttribute('src', currentData.src);
+          activeMediaEl.load(); // Forces the browser to load the new video src
+          activeMediaEl.play().catch(() => {}); // Ensure it autoplay continues
+        }
+      } else {
+        // Create the single video tag for the first time
+        mediaWrapper.innerHTML = ''; // clear wrapper
+        const video = document.createElement('video');
+        video.setAttribute('autoplay', '');
+        video.setAttribute('loop', '');
+        video.setAttribute('muted', '');
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('src', currentData.src);
+        
+        mediaWrapper.appendChild(video);
+        activeMediaEl = video;
+      }
+    }
+  };
+
+  // 1. Initial load
+  renderResponsiveMedia();
+
+  // 2. Listen for window resize to swap the video source if crossing 900px
+  window.matchMedia('(max-width: 900px)').addEventListener('change', renderResponsiveMedia);
 
   // 3. Process Overlay Text
   if (contentRow) {
@@ -83,4 +114,6 @@ export default async function decorate(block) {
 
   // Insert media wrapper into the block
   block.prepend(mediaWrapper);
+  }  
+  
 }
