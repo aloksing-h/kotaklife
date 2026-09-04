@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Block Authoring Guide - Kotak Life Insurance</title>
+<style>
+  @page { size: A4; margin: 2.5cm; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.7; color: #1a1a1a; max-width: 210mm; margin: 0 auto; padding: 20px 40px; }
+  h1 { font-size: 20pt; color: #ed1c24; border-bottom: 3px solid #ed1c24; padding-bottom: 6px; margin-top: 40px; }
+  h2 { font-size: 15pt; color: #1a1a1a; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-top: 30px; }
+  h3 { font-size: 12pt; color: #333; margin-top: 20px; }
+  h4 { font-size: 11pt; color: #555; margin-top: 16px; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px 0; font-size: 10pt; }
+  th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background-color: #f5f5f5; font-weight: 600; color: #333; }
+  tr:nth-child(even) { background-color: #fafafa; }
+  pre { background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; font-family: Consolas, 'Courier New', monospace; font-size: 9pt; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
+  code { font-family: Consolas, 'Courier New', monospace; font-size: 9.5pt; background-color: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+  pre code { background: none; padding: 0; }
+  .callout { border-left: 4px solid #ed1c24; background-color: #fff8f8; padding: 12px 16px; margin: 16px 0; font-size: 10pt; }
+  .callout.info { border-left-color: #2196F3; background-color: #f0f7ff; }
+  .callout strong { display: block; margin-bottom: 4px; }
+  .page-break { page-break-before: always; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  p { margin: 8px 0; }
+  .note { color: #666; font-style: italic; font-size: 10pt; border-left: 3px solid #ddd; padding-left: 12px; margin: 12px 0; }
+
+</style>
+</head>
+<body>
+  
+<!-- BLOCK 1 -->
+<div class="page-break"></div>
+<h1>Block 1: Plans Explorer</h1>
+<p><strong>ID:</strong> <code>plans-explorer</code></p>
+<p><strong>What it does:</strong> A tabbed interface where each tab shows a grid of plan cards. Same pattern as the existing <code>tabs</code> block but with a card layer inside each tab.</p>
+
+<h3>blocks/plans-explorer/_plans-explorer.json</h3>
+<pre><code>{
+  "definitions": [
+    {
+      "title": "Plans Explorer",
+      "id": "plans-explorer",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Plans Explorer",
+              "model": "plans-explorer",
+              "filter": "plans-explorer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tab Item",
+      "id": "tab-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Tab Item",
+              "model": "tab-item"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Plan Card",
+      "id": "plan-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Plan Card",
+              "model": "plan-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "plans-explorer",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Title &amp; Description",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "tab-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "tabTitle",
+          "label": "Tab Heading",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "plan-card",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Plan Image",
+          "multi": false,
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "plans-explorer",
+      "components": ["tab-item"]
+    },
+    {
+      "id": "tab-item",
+      "components": ["plan-card"]
+    }
+  ]
+}</code></pre>
+
+<p class="note">Plan card model is identical to the existing <code>cards</code> block card model (image + text). Badge, plan name, description, and link all go inside the richtext. The JS reuses the same <code>createOptimizedPicture()</code> pattern from cards.js.</p>
+
+<h3>Authoring Flow</h3>
+<ol>
+  <li>Insert the <strong>Plans Explorer</strong> block</li>
+  <li>Write the title + description in the RTE - "Find a plan that fits you / Explore across protection, savings, health, and retirement"</li>
+  <li>Add <strong>Tab Item</strong> children - one for each category (write tab label in RTE)</li>
+  <li>Inside each tab, add <strong>Plan Card</strong> items</li>
+  <li>In each plan card: select the image, then write badge + name + description + link in the text RTE</li>
+  <li>Add a <strong>Button</strong> below the block - "Browse All Plans", primary type</li>
+</ol>
+
+<h3>Authored Structure (Document Source)</h3>
+
+<h4>Plans Explorer &mdash; Block Content (RTE)</h4>
+<table>
+  <tr><th>Title &amp; Description (RTE content)</th></tr>
+  <tr><td>&lt;h2&gt;Find a plan that fits you&lt;/h2&gt;&lt;p&gt;Explore across protection, savings, health, and retirement&lt;/p&gt;</td></tr>
+</table>
+
+<h4>Plans Explorer &mdash; Tab Items</h4>
+<table>
+  <tr><th>Tab Heading (RTE)</th></tr>
+  <tr><td>Term Plans</td></tr>
+  <tr><td>Savings &amp; Investment Plans</td></tr>
+  <tr><td>Retirement Plans</td></tr>
+  <tr><td>ULIP Plans</td></tr>
+  <tr><td>Plans for NRI</td></tr>
+</table>
+
+<h4>Tab: Term Plans &mdash; Plan Cards</h4>
+<table>
+  <tr><th>Image</th><th>Text (RTE)</th></tr>
+  <tr>
+    <td>/media/plans/term-salaried.png</td>
+    <td>&lt;span class="badge"&gt;BEST SELLING&lt;/span&gt; &lt;strong&gt;Kotak e-Term Plan&lt;/strong&gt; &lt;p&gt;Simple, affordable protection for your loved ones.&lt;/p&gt; &lt;a href="/plans/kotak-e-term"&gt;View Details&lt;/a&gt;</td>
+  </tr>
+  <tr>
+    <td>/media/plans/term-sig.png</td>
+    <td>&lt;strong&gt;Kotak Signature Term&lt;/strong&gt; &lt;p&gt;Enhanced protection with premium benefits.&lt;/p&gt; &lt;a href="/plans/kotak-signature-term"&gt;View Details&lt;/a&gt;</td>
+  </tr>
+  <tr>
+    <td>/media/plans/term-gen2gen.png</td>
+    <td>&lt;strong&gt;Kotak Gen2Gen Term&lt;/strong&gt; &lt;p&gt;One plan. Protection across generations.&lt;/p&gt; &lt;a href="/plans/kotak-gen2gen"&gt;View Details&lt;/a&gt;</td>
+  </tr>
+  <tr>
+    <td>/media/plans/vital-care.png</td>
+    <td>&lt;strong&gt;Kotak Vital Care&lt;/strong&gt; &lt;p&gt;Protect your family's future and your health.&lt;/p&gt; &lt;a href="/plans/kotak-vital-care"&gt;View Details&lt;/a&gt;</td>
+  </tr>
+</table>
+
+<p class="note">Repeat the same Plan Cards table pattern for each remaining tab (Retirement Plans, ULIP Plans, Plans for NRI).</p>
+
+<!-- BLOCK 2 -->
+<div class="page-break"></div>
+<h1>Block 2: CTA Carousel</h1>
+<p><strong>ID:</strong> <code>cta-carousel</code></p>
+<p><strong>What it does:</strong> A conversion section with a headline, CTA button, and a Swiper.js-powered carousel of offer cards. Pagination and transitions handled by the library.</p>
+
+<h3>blocks/cta-carousel/_cta-carousel.json</h3>
+<pre><code>{
+  "definitions": [
+    {
+      "title": "CTA Carousel",
+      "id": "cta-carousel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "CTA Carousel",
+              "model": "cta-carousel",
+              "filter": "cta-carousel"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "CTA Card",
+      "id": "cta-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "CTA Card",
+              "model": "cta-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "cta-carousel",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Title &amp; Description",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "buttonLink",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "id": "cta-card",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Content",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "cta-carousel",
+      "components": ["cta-card"]
+    }
+  ]
+}</code></pre>
+
+<p class="note">CTA cards can't use the <code>cards</code> block because they need Swiper.js integration. Single RTE is fine here since carousel cards are simpler visually. Image, badge, headline, description, and link all go in the RTE.</p>
+
+<h3>Authoring Flow</h3>
+<ol>
+  <li>Insert the <strong>CTA Carousel</strong> block</li>
+  <li>Write the headline + description in the RTE - "Get &#x20B9;2 Crore cover for &#x20B9;80/day / Description text here"</li>
+  <li>Set the <strong>Button Link</strong> - link to premium calculator</li>
+  <li>Add <strong>CTA Card</strong> items - write badge + offer + description + image + link all in the RTE</li>
+</ol>
+
+<h3>Swiper.js Note</h3>
+<div class="callout info">
+  <strong>Swiper.js Integration:</strong>
+  <ul>
+    <li>The carousel functionality is delegated to Swiper.js - no custom carousel code needed</li>
+    <li>The block JS wraps authored cards in Swiper structure and initializes the library</li>
+    <li>Config: fraction pagination ("01/02/03"), autoplay (4s delay), creative slide effect</li>
+    <li>Mobile shows 1 card at a time, desktop shows partial next card for depth effect</li>
+  </ul>
+</div>
+
+<h3>Authored Structure (Document Source)</h3>
+
+<h4>CTA Carousel &mdash; Block Content</h4>
+<table>
+  <tr><th>Title &amp; Description (RTE)</th><th>Button Link</th></tr>
+  <tr>
+    <td>&lt;h2&gt;Get &#x20B9;2 Crore cover for &#x20B9;80/day&lt;/h2&gt; &lt;p&gt;Life is unpredictable. Your protection shouldn't be.&lt;/p&gt;</td>
+    <td>/premium-calculator</td>
+  </tr>
+</table>
+
+<h4>CTA Carousel &mdash; CTA Cards</h4>
+<table>
+  <tr><th>Content (RTE)</th></tr>
+  <tr>
+    <td>&lt;span class="badge"&gt;TERM PLAN&lt;/span&gt; &lt;h3&gt;Up to &#x20B9;1 Crore life cover starting &#x20B9;499/month&lt;/h3&gt; &lt;p&gt;100% premium refund if you outlive the policy term&lt;/p&gt; &lt;img src="/media/cta/term-plan-bg.png"&gt; &lt;a href="/premium-calculator?plan=term"&gt;Calculate Premium&lt;/a&gt;</td>
+  </tr>
+  <tr>
+    <td>&lt;span class="badge"&gt;ULIP&lt;/span&gt; &lt;h3&gt;Market-linked returns with life protection&lt;/h3&gt; &lt;p&gt;Invest as low as &#x20B9;500/month with fund flexibility&lt;/p&gt; &lt;img src="/media/cta/ulip-bg.png"&gt; &lt;a href="/premium-calculator?plan=ulip"&gt;Calculate Premium&lt;/a&gt;</td>
+  </tr>
+  <tr>
+    <td>&lt;h3&gt;Guaranteed returns up to 7.5% per annum&lt;/h3&gt; &lt;p&gt;Build wealth systematically with life cover&lt;/p&gt; &lt;img src="/media/cta/savings-bg.png"&gt; &lt;a href="/premium-calculator?plan=savings"&gt;Calculate Premium&lt;/a&gt;</td>
+  </tr>
+</table>
+
+<!-- BLOCK 3 -->
+<div class="page-break"></div>
+<h1>Block 3: Company Stats</h1>
+<p><strong>ID:</strong> <code>company-stats</code></p>
+<p><strong>What it does:</strong> A grid with an MD quote card on the left and key statistics cards on the right. Each stat has a value, label, and illustration image.</p>
+
+<h3>blocks/company-stats/_company-stats.json</h3>
+<pre><code>{
+  "definitions": [
+    {
+      "title": "Company Stats",
+      "id": "company-stats",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Company Stats",
+              "model": "company-stats",
+              "filter": "company-stats"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Stat Card",
+      "id": "stat-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Stat Card",
+              "model": "stat-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "company-stats",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Quote + Stats",
+              "value": "quote-stats"
+            },
+            {
+              "name": "Stats Only",
+              "value": "stats-only"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stat-card",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Content",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "company-stats",
+      "components": ["stat-card"]
+    }
+  ]
+}</code></pre>
+
+<p class="note"><strong>MD Quote eliminated.</strong> The first stat-card is the quote card &mdash; block JS detects it by position and applies the quote layout (left column with photo + quote styling). Use "Quote + Stats" style for the full layout, "Stats Only" for a 3-card grid without the quote.</p>
+
+<h3>Authoring Flow</h3>
+<ol>
+  <li>Insert the <strong>Company Stats</strong> block</li>
+  <li>Select <strong>"Quote + Stats"</strong> style from the dropdown</li>
+  <li>Add <strong>Stat Card</strong> children:</li>
+  <li>1st card (quote): write quote + attribution + photo in the RTE</li>
+  <li>2nd-4th cards (stats): write value + label + illustration image in the RTE</li>
+</ol>
+
+<h3>Authoring Notes</h3>
+<ul>
+  <li>The <strong>first child</strong> is always the quote card - block JS applies quote styling to it</li>
+  <li>Use the quote RTE to write: &lt;blockquote&gt;quote text&lt;/blockquote&gt; + &lt;cite&gt;attribution&lt;/cite&gt; + &lt;img src="photo"&gt;</li>
+  <li>Stat cards: write &lt;h2&gt;38 million&lt;/h2&gt; + &lt;p&gt;Lives covered nationwide&lt;/p&gt; + &lt;img src="icon"&gt;</li>
+  <li>Animated counter triggers when stats scroll into view (JS parses the &lt;h2&gt; text for the number)</li>
+  <li>On desktop: quote left column, stats grid right column. On mobile: everything stacks.</li>
+</ul>
+
+<h3>Authored Structure (Document Source)</h3>
+
+<h4>Company Stats &mdash; Stat Cards</h4>
+<table>
+  <tr><th>Content (RTE)</th></tr>
+  <tr>
+    <td>&lt;blockquote&gt;At Kotak Life Insurance, our commitment to customers rests on the following principles...&lt;/blockquote&gt; &lt;cite&gt;Mr. Mahesh Balasubramanian, Managing Director - Kotak Life&lt;/cite&gt; &lt;img src="/media/team/md-mahesh.png"&gt;</td>
+  </tr>
+  <tr>
+    <td>&lt;h2&gt;38 million&lt;/h2&gt; &lt;p&gt;Lives covered nationwide&lt;/p&gt; &lt;img src="/media/stats/icon-lives.png"&gt;</td>
+  </tr>
+  <tr>
+    <td>&lt;h2&gt;99.50%&lt;/h2&gt; &lt;p&gt;Claim settlement ratio&lt;/p&gt; &lt;img src="/media/stats/icon-claims.png"&gt;</td>
+  </tr>
+  <tr>
+    <td>&lt;h2&gt;1 lakh +&lt;/h2&gt; &lt;p&gt;Trusted agents&lt;/p&gt; &lt;img src="/media/stats/icon-agents.png"&gt;</td>
+  </tr>
+</table>
+
+<!-- SUMMARY -->
+<div class="page-break"></div>
+<h1>Quick Reference</h1>
+
+<table>
+  <tr><th></th><th>Plans Explorer</th><th>CTA Carousel</th><th>Company Stats</th></tr>
+  <tr><td><strong>ID</strong></td><td><code>plans-explorer</code></td><td><code>cta-carousel</code></td><td><code>company-stats</code></td></tr>
+  <tr><td><strong>Structure</strong></td><td>3-level: block &rarr; tab &rarr; card</td><td>2-level: block &rarr; card</td><td>2-level: block &rarr; cards</td></tr>
+  <tr><td><strong>Parent fields</strong></td><td><code>content</code> (richtext)</td><td><code>content</code> (richtext) + <code>buttonLink</code> (aem-content)</td><td><code>classes</code> (multiselect)</td></tr>
+  <tr><td><strong>Child fields</strong></td><td>tab-item: <code>tabTitle</code>; plan-card: <code>image</code> + <code>text</code></td><td><code>content</code> (richtext)</td><td><code>content</code> (richtext)</td></tr>
+  <tr><td><strong>Child model</strong></td><td>Same as <code>cards</code> block</td><td>Single RTE</td><td>Single RTE</td></tr>
+  <tr><td><strong>External lib</strong></td><td>None</td><td>Swiper.js</td><td>None</td></tr>
+  <tr><td><strong>Files to create</strong></td><td>3 (.json, .js, .css)</td><td>3 (.json, .js, .css)</td><td>3 (.json, .js, .css)</td></tr>
+  <tr><td colspan="4" style="text-align:right; font-weight:600;">Total new files: <strong>9</strong></td></tr>
+</table>
+
+<h3>Post-Creation Steps</h3>
+<ol>
+  <li>Run <code>npm run build:json</code> to regenerate aggregated component definition/model/filter files.</li>
+  <li>Run <code>npm run lint</code> to validate JSON models and code style.</li>
+  <li>Start dev server with <code>npx -y @adobe/aem-cli up --no-open</code> to test blocks locally.</li>
+  <li>Create test content in <code>drafts/</code> folder with <code>--html-folder drafts</code> flag.</li>
+  <li>For CTA Carousel: verify Swiper.js library loads correctly and carousel renders with pagination.</li>
+</ol>
+
+</body>
+</html>
