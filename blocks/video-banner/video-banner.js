@@ -9,7 +9,7 @@ async function resolveMediaUrl(href) {
     if (url.pathname.startsWith('/content/')) {
       let domain = await getRespectiveDomain();
       if (domain === true) {
-        domain = 'https://author-p48457-e1275402.adobeaemcloud.com';
+        domain = 'https://publish-p48457-e1275402.adobeaemcloud.com/';
       }
       return domain + url.pathname;
     }
