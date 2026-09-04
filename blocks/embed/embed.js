@@ -4,8 +4,7 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-// Replace this with your actual AEM Publish domain
-const PUBLISH_DOMAIN = 'https://publish-p12345-e67890.adobeaemcloud.com';
+const PUBLISH_DOMAIN = 'https://publish-p48457-e1275402.adobeaemcloud.com';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -85,7 +84,7 @@ const loadEmbed = (block, link, autoplay) => {
   }
 
   // Transform DAM link to Publish domain URL
-  const link = resolveDamUrl(link);
+  const resolvedLink = resolveDamUrl(link);
 
   const EMBEDS_CONFIG = [
     {
@@ -106,8 +105,8 @@ const loadEmbed = (block, link, autoplay) => {
     },
   ];
 
-  const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.toLowerCase().includes(match)));
-  const url = new URL(link, window.location.href);
+  const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => resolvedLink.toLowerCase().includes(match)));
+  const url = new URL(resolvedLink, window.location.href);
 
   if (config) {
     block.innerHTML = config.embed(url, autoplay);
