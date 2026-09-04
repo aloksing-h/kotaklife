@@ -4,6 +4,68 @@ How to create new blocks in this AEM Edge Delivery project.
 
 ---
 
+## 0. Before You Create a Block — Reuse First
+
+**Always analyze the design against existing blocks before creating anything new.**
+
+When you receive a UI screenshot or design mockup, break it down into patterns and map each pattern to an existing block. Only create a custom block if no existing block can handle it.
+
+### UI Pattern → Existing Block Mapping
+
+| If you see... | Use this block | How |
+|---------------|---------------|-----|
+| Title + paragraph text | `rte` or `rte-v2` | Write content directly in the RTE |
+| Heading + subheading | `rte` | Use `<h2>` + `<p>` inside the richtext |
+| Image with caption | `rte` | Insert image + text in the RTE |
+| Background image with text overlay | `hero` | Image reference + richtext content |
+| Banner with CTA | `banner` | Background image + button |
+| Grid of cards (image + text) | `cards` | Add card children with image + text |
+| Profile cards (photo + name + role) | `cards` | Use "Profile Cards" variant |
+| Financial cards (icon + number + label) | `cards` | Use "Financial Cards" variant |
+| Image + text side by side | `columns` | 2-column layout with image + RTE |
+| Multi-column content | `columns` | 2, 3, or 4 column layout |
+| Tabbed content | `tabs` | Add tab-item children with richtext |
+| Accordion / FAQ | `accordion` | Add accordion-item children |
+| Quote with attribution | `quote` | Quotation + attribution richtext fields |
+| Video embed | `video` | YouTube or embed URL |
+| External content / iframe | `embed` | oEmbed URL or iframe |
+| Data table | `table` | HTML table markup |
+| Form | `form` | Form fields configuration |
+| Reusable content block | `fragment` | Reference to another content fragment |
+| Popup / modal | `modal` | Triggered by click on another element |
+| Search bar | `search` | Gemini AI powered search |
+
+### Example analysis
+
+**Design shows:** A section with a heading, description, grid of 4 plan cards (each with badge, name, image, description, link), and a "Browse All Plans" button.
+
+**Breakdown:**
+- Heading + description → `rte` block
+- Grid of cards → `cards` block (image + text per card)
+- Button → button component below the block
+
+**Result:** No new block needed. Use existing `rte` + `cards` + button.
+
+### When to create a new block
+
+Create a custom block only when:
+- The pattern has **no match** in the table above
+- The pattern needs **specific JS behavior** that existing blocks don't provide (e.g., animated counters, Swiper.js carousel)
+- The pattern requires **nested child components** that existing blocks can't represent (e.g., tabs containing cards)
+- The pattern needs a **unique layout** that can't be achieved with columns + CSS
+
+### Decision flow
+
+```
+1. Break design into visual sections
+2. For each section, check the mapping table above
+3. If existing block matches → use it
+4. If partially matches → can you add a CSS variant class to the existing block?
+5. If nothing matches → create a new block
+```
+
+---
+
 ## File Structure
 
 Every block lives in `blocks/{blockname}/` and needs **3 files**:
