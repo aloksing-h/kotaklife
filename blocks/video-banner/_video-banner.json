@@ -1,0 +1,103 @@
+{
+  "definitions": [
+    {
+      "title": "Video Banner",
+      "id": "video-banner",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Video Banner",
+              "model": "video-banner"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "video-banner",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Autoplay",
+              "value": "autoplay"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "name": "desktop-media",
+          "label": "Desktop Media (Video/Image)",
+          "valueType": "string",
+          "multi": false
+        },
+        {
+          "component": "container",
+          "name": "desktop-metadata",
+          "label": "Desktop Metadata",
+          "collapsible": true,
+          "fields": [
+            {
+              "component": "text",
+              "name": "desktop-mediaAlt",
+              "label": "Alt Text",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "name": "desktop-mediaTitle",
+              "label": "Title",
+              "value": "",
+              "valueType": "string"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "name": "mobile-media",
+          "label": "Mobile Media (Video/Image)",
+          "valueType": "string",
+          "multi": false
+        },
+        {
+          "component": "container",
+          "name": "mobile-metadata",
+          "label": "Mobile Metadata",
+          "collapsible": true,
+          "fields": [
+            {
+              "component": "text",
+              "name": "mobile-mediaAlt",
+              "label": "Alt Text",
+              "value": "",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "name": "mobile-mediaTitle",
+              "label": "Title",
+              "value": "",
+              "valueType": "string"
+            }
+          ]
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "label": "Text",
+          "value": "",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
