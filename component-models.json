@@ -204,6 +204,14 @@
           {
             "name": "Banner Video",
             "value": "banner-video"
+          },
+          {
+            "name": "Video Autoplay",
+            "value": "autoplay"
+          },
+          {
+            "name": "Hide Video Player Control Bar",
+            "value": "hide-control"
           }
         ]
       }
