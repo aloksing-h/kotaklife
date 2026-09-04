@@ -4,6 +4,9 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
+// Replace this with your actual AEM Publish domain
+const PUBLISH_DOMAIN = 'https://publish-p12345-e67890.adobeaemcloud.com';
+
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
   const script = document.createElement('script');
@@ -14,6 +17,27 @@ const loadScript = (url, callback, type) => {
   script.onload = callback;
   head.append(script);
   return script;
+};
+
+// Helper function to convert internal DAM paths to published URLs
+const resolveDamUrl = (link) => {
+  if (link.startsWith('/content/dam/')) {
+    return `${PUBLISH_DOMAIN}${link}`;
+  }
+  if (link.includes('.aem.page/content/dam/') || link.includes('.aem.live/content/dam/')) {
+    const damPath = link.substring(link.indexOf('/content/dam/'));
+    return `${PUBLISH_DOMAIN}${damPath}`;
+  }
+  return link;
+};
+
+// Handler for DAM MP4 videos
+const embedMp4 = (url, autoplay) => {
+  const autoPlayAttrs = autoplay ? 'autoplay muted loop playsinline' : 'controls';
+  return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+      <video src="${url.href}" ${autoPlayAttrs} style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; object-fit: cover;">
+      </video>
+    </div>`;
 };
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
@@ -60,6 +84,9 @@ const loadEmbed = (block, link, autoplay) => {
     return;
   }
 
+  // Transform DAM link to Publish domain URL
+  const link = resolveDamUrl(link);
+
   const EMBEDS_CONFIG = [
     {
       match: ['youtube', 'youtu.be'],
@@ -73,13 +100,18 @@ const loadEmbed = (block, link, autoplay) => {
       match: ['twitter'],
       embed: embedTwitter,
     },
+    {
+      match: ['.mp4'],
+      embed: embedMp4,
+    },
   ];
 
-  const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
-  const url = new URL(link);
+  const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.toLowerCase().includes(match)));
+  const url = new URL(link, window.location.href);
+
   if (config) {
     block.innerHTML = config.embed(url, autoplay);
-    block.classList = `block embed embed-${config.match[0]}`;
+    block.classList = `block embed embed-${config.match[0].replace('.', '')}`;
   } else {
     block.innerHTML = getDefaultEmbed(url);
     block.classList = 'block embed';
