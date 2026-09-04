@@ -97,6 +97,10 @@
             {
               "name": "Tab Six",
               "value": "tab-six"
+            },
+            {
+              "name": "Banner Video",
+              "value": "banner-video"
             }
           ]
         }
