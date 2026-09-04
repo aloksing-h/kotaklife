@@ -1,73 +1,86 @@
-/**
- * Checks if the element contains a valid video link.
- */
-const isVideoEl = (el) =>
-  /\.(mp4|webm|ogg)(\?|$)/i.test(
-    el?.querySelector('a')?.getAttribute('href') || ''
-  );
+import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
 
-/**
- * Checks if the element contains an authored image.
- */
+const isVideoEl = (el) => /\.(mp4|webm|ogg)(\?|$)/i.test(el?.querySelector('a')?.getAttribute('href') || '');
 const isPictureEl = (el) => !!el?.querySelector('picture');
 
-/**
- * Builds the <video> DOM element.
- */
-function createVideoEl(href) {
-  const video = document.createElement('video');
-  
-  // Standard banner video attributes
-  video.setAttribute('autoplay', '');
-  video.setAttribute('loop', '');
-  video.setAttribute('muted', '');
-  video.muted = true;
-  video.setAttribute('playsinline', '');
-  video.setAttribute('webkit-playsinline', '');
-  
-  const source = document.createElement('source');
-  source.setAttribute('src', href);
-  source.setAttribute('type', 'video/mp4');
-  
-  video.appendChild(source);
-  return video;
+async function resolveMediaUrl(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    if (url.pathname.startsWith('/content/')) {
+      let domain = await getRespectiveDomain();
+      if (domain === true) {
+        domain = 'https://author-p48457-e1275402.adobeaemcloud.com';
+      }
+      return domain + url.pathname;
+    }
+    return url.href;
+  } catch {
+    return href;
+  }
 }
 
-/**
- * Video Banner block decorator.
- */
-export default function decorate(block) {
+// Reusable function to create media tags and apply specific class names
+async function createMediaEl(mediaCell, className) {
+  if (!mediaCell) return null;
+  
+  if (isVideoEl(mediaCell)) {
+    const anchor = mediaCell.querySelector('a');
+    const video = document.createElement('video');
+    const src = await resolveMediaUrl(anchor.href);
+    
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('muted', '');
+    video.muted = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.className = className; // 'hero-media-desktop' or 'hero-media-mobile'
+    
+    const source = document.createElement('source');
+    source.setAttribute('src', src);
+    source.setAttribute('type', 'video/mp4');
+    
+    video.appendChild(source);
+    return video;
+  } else if (isPictureEl(mediaCell)) {
+    const picture = mediaCell.querySelector('picture');
+    picture.className = className;
+    return picture;
+  }
+  return null;
+}
+
+export default async function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
-  const mediaRow = rows[0];
-  const mediaCell = mediaRow.firstElementChild;
-  
-  // Create a wrapper for our background media
+  // Extract the 3 rows you authored
+  const desktopRow = rows[0];
+  const mobileRow = rows[1];
+  const contentRow = rows[2];
+
   const mediaWrapper = document.createElement('div');
   mediaWrapper.classList.add('video-banner-media');
 
-  // 1. Handle Video
-  if (isVideoEl(mediaCell)) {
-    const anchor = mediaCell.querySelector('a');
-    const video = createVideoEl(anchor.href);
-    mediaWrapper.appendChild(video);
-  } 
-  // 2. Handle Image Fallback
-  else if (isPictureEl(mediaCell)) {
-    const picture = mediaCell.querySelector('picture');
-    mediaWrapper.appendChild(picture);
+  // 1. Process Desktop Video
+  if (desktopRow) {
+    const desktopMedia = await createMediaEl(desktopRow.firstElementChild, 'hero-media-desktop');
+    if (desktopMedia) mediaWrapper.appendChild(desktopMedia);
+    desktopRow.remove();
   }
 
-  // Remove the authored media row so it doesn't duplicate in the DOM
-  mediaRow.remove();
+  // 2. Process Mobile Video
+  if (mobileRow) {
+    const mobileMedia = await createMediaEl(mobileRow.firstElementChild, 'hero-media-mobile');
+    if (mobileMedia) mediaWrapper.appendChild(mobileMedia);
+    mobileRow.remove();
+  }
 
-  // If there is a second row, treat it as overlay content
-  const contentRow = block.children[0]; // now index 0 after removing mediaRow
+  // 3. Process Overlay Text
   if (contentRow) {
     contentRow.classList.add('video-banner-content');
   }
 
-  // Insert media at the very top of the block
+  // Insert media wrapper into the block
   block.prepend(mediaWrapper);
 }

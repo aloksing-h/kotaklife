@@ -153,3 +153,10 @@ export function thead(...items) { return domEl('thead', ...items); }
 export function th(...items) { return domEl('th', ...items); }
 export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
+export async function getRespectiveDomain(type = 'domainUrl') {
+  const isDomain = ['aem.page', 'aem.live', 'localhost'].some(domain =>
+    window.location.origin.includes(domain),
+  );
+
+  return (isDomain) || window.location.origin;
+}
