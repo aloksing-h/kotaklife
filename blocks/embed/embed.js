@@ -121,7 +121,7 @@ const loadEmbed = (block, link, autoplay, hideControls) => {
 export default function decorate(block) {
   const placeholder = block.querySelector('picture');
   const link = block.querySelector('a').href;
-  const section = block.closest('section');
+  const section = block.closest('.section');
   const autoplay = section?.classList.contains('autoplay');
   const hideControls = section?.classList.contains('hide-control');
   block.textContent = '';
