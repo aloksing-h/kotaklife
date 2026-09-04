@@ -31,10 +31,10 @@ const resolveDamUrl = (link) => {
 };
 
 // Handler for DAM MP4 videos
-const embedMp4 = (url, autoplay) => {
-  const autoPlayAttrs = autoplay ? 'autoplay muted loop playsinline' : 'controls';
+const embedMp4 = (url, autoplay, hideControls) => {
+  const videoAttrs = autoplay ? 'autoplay muted loop playsinline' : (hideControls ? '' : 'controls');
   return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <video src="${url.href}" ${autoPlayAttrs} style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; object-fit: cover;">
+      <video src="${url.href}" ${videoAttrs} style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; object-fit: cover;">
       </video>
     </div>`;
 };
@@ -78,7 +78,7 @@ const embedTwitter = (url) => {
   return embedHTML;
 };
 
-const loadEmbed = (block, link, autoplay) => {
+const loadEmbed = (block, link, autoplay, hideControls) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
@@ -109,7 +109,7 @@ const loadEmbed = (block, link, autoplay) => {
   const url = new URL(resolvedLink, window.location.href);
 
   if (config) {
-    block.innerHTML = config.embed(url, autoplay);
+    block.innerHTML = config.embed(url, autoplay, hideControls);
     block.classList = `block embed embed-${config.match[0].replace('.', '')}`;
   } else {
     block.innerHTML = getDefaultEmbed(url);
@@ -121,6 +121,9 @@ const loadEmbed = (block, link, autoplay) => {
 export default function decorate(block) {
   const placeholder = block.querySelector('picture');
   const link = block.querySelector('a').href;
+  const section = block.closest('section');
+  const autoplay = section?.classList.contains('autoplay');
+  const hideControls = section?.classList.contains('hide-control');
   block.textContent = '';
 
   if (placeholder) {
@@ -129,14 +132,14 @@ export default function decorate(block) {
     wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
     wrapper.prepend(placeholder);
     wrapper.addEventListener('click', () => {
-      loadEmbed(block, link, true);
+      loadEmbed(block, link, autoplay, hideControls);
     });
     block.append(wrapper);
   } else {
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
         observer.disconnect();
-        loadEmbed(block, link);
+        loadEmbed(block, link, autoplay, hideControls);
       }
     });
     observer.observe(block);
