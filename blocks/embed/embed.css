@@ -5,7 +5,7 @@
   margin: 32px auto;
 }
 
-.embed > div {
+.embed>div {
   display: flex;
   justify-content: center;
 }
@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.embed .embed-placeholder > * {
+.embed .embed-placeholder>* {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,4 +59,15 @@
   border-left: 6px solid;
   top: 4px;
   left: 7px;
+}
+
+.section.banner-video .embed-wrapper,
+.section.banner-video .embed {
+  max-width: 100%;
+  padding: 0;
+}
+
+.section.banner-video .embed video{
+  min-height: 670px;
+  height: auto;
 }
