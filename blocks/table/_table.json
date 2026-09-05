@@ -1,0 +1,98 @@
+{
+  "definitions": [
+    {
+      "title": "Table",
+      "id": "table",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Table",
+              "model": "table",
+              "filter": "table"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Table Row",
+      "id": "table-row",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Table Row",
+              "model": "table-row"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "table",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Header",
+          "options": [
+            {
+              "name": "With header row",
+              "value": ""
+            },
+            {
+              "name": "No header row",
+              "value": "no-header"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table-row",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "cell1",
+          "value": "",
+          "label": "Cell 1",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "cell2",
+          "value": "",
+          "label": "Cell 2",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "cell3",
+          "value": "",
+          "label": "Cell 3",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "cell4",
+          "value": "",
+          "label": "Cell 4",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "table",
+      "components": [
+        "table-row"
+      ]
+    }
+  ]
+}

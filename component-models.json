@@ -138,18 +138,89 @@
             "value": "highlight"
           },
           {
-            "name": "Header Brand",
-            "value": "header-brand"
+            "name": "Term Insurance Plans",
+            "value": "term-insurance-plans"
           },
           {
-            "name": "Header Nav",
-            "value": "header-nav"
+            "name": "Insurance Plans New",
+            "value": "insurance-plans-new"
           },
           {
-            "name": "Header Toolbar",
-            "value": "header-toolbar"
+            "name": "Dsp None",
+            "value": "dsp-none"
+          },
+          {
+            "name": "Dsp None Appear",
+            "value": "dsp-none-appear"
+          },
+          {
+            "name": "Term Insurance",
+            "value": "term-insurance"
+          },
+          {
+            "name": "Insurance Plans",
+            "value": "insurance-plans"
+          },
+          {
+            "name": "Claims",
+            "value": "claims"
+          },
+          {
+            "name": "Fund Performance",
+            "value": "fund-performance"
+          },
+          {
+            "name": "How Do It",
+            "value": "how-do-it"
+          },
+          {
+            "name": "Loans",
+            "value": "loans"
+          },
+          {
+            "name": "Tab One",
+            "value": "tab-one"
+          },
+          {
+            "name": "Tab Two",
+            "value": "tab-two"
+          },
+          {
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "label",
+        "value": "",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "body",
+        "value": "",
+        "label": "Body",
+        "valueType": "string"
       }
     ]
   },
@@ -199,8 +270,66 @@
     ]
   },
   {
+    "id": "carousel-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Block Options",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Tab One",
+            "value": "tab-one"
+          },
+          {
+            "name": "Tab Two",
+            "value": "tab-two"
+          },
+          {
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
+          }
+        ]
+      },
       {
         "component": "text",
         "valueType": "number",
@@ -214,6 +343,45 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "embed",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Placeholder Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Embed URL"
+      }
+    ]
+  },
+  {
+    "id": "form",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "source",
+        "label": "Form Definition"
+      },
+      {
+        "component": "aem-content",
+        "name": "submit",
+        "label": "Submit URL"
       }
     ]
   },
@@ -254,12 +422,145 @@
     ]
   },
   {
+    "id": "quote",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "quotation",
+        "value": "",
+        "label": "Quotation",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "attribution",
+        "value": "",
+        "label": "Attribution",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "search",
     "fields": [
       {
         "component": "aem-content",
         "name": "source",
         "label": "Search Index"
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Header",
+        "options": [
+          {
+            "name": "With header row",
+            "value": ""
+          },
+          {
+            "name": "No header row",
+            "value": "no-header"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table-row",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cell1",
+        "value": "",
+        "label": "Cell 1",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "cell2",
+        "value": "",
+        "label": "Cell 2",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "cell3",
+        "value": "",
+        "label": "Cell 3",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "cell4",
+        "value": "",
+        "label": "Cell 4",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "fields": []
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Tab Title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Tab Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Placeholder Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Video URL"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Playback",
+        "options": [
+          {
+            "name": "Click to play",
+            "value": ""
+          },
+          {
+            "name": "Autoplay background",
+            "value": "autoplay"
+          }
+        ]
       }
     ]
   }

@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import dataMapKotakObj from '../../scripts/constant.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -9,11 +10,13 @@ function closeOnEscape(e) {
     const nav = document.getElementById('nav');
     const navSections = nav.querySelector('.nav-sections');
     if (!navSections) return;
+
     const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
     if (navSectionExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleAllNavSections(navSections);
       navSectionExpanded.focus();
+      document.body.classList.remove('no-scroll');
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections);
@@ -27,10 +30,12 @@ function closeOnFocusLost(e) {
   if (!nav.contains(e.relatedTarget)) {
     const navSections = nav.querySelector('.nav-sections');
     if (!navSections) return;
+
     const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
     if (navSectionExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleAllNavSections(navSections, false);
+      document.body.classList.remove('no-scroll');
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections, false);
@@ -109,6 +114,16 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Checks if a path is a fragment path that should be loaded dynamically
+ * @param {string} path The URL path to check
+ * @returns {boolean} True if the path is a fragment path
+ */
+function isFragmentPath(path) {
+  if (!path) return false;
+  return path.includes('/nav/fragment/') || path.includes('/content/kotak-life/nav/fragment/');
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -131,23 +146,148 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
+
+    // Set up the class prefixes for your dataMapKotakObj utility.
+    if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
+      dataMapKotakObj.CLASS_PREFIXES = [
+        'navbrand-cont',
+        'navbrand-sec',
+        'navbrand-sub',
+        'navbrand-inner-net',
+        'navbrand-list',
+        'navbrand-list-content',
+      ];
+      dataMapKotakObj.addIndexed(navBrand);
+    }
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');
+  let leaveTimer = null; // Timer for delayed menu closing
+
   if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
+    // Add data indexing for nav-sections
+    if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
+      dataMapKotakObj.CLASS_PREFIXES = [
+        'nav-sec',
+        'nav-sub',
+        'nav-inner',
+        'nav-list',
+        'nav-content',
+      ];
+      dataMapKotakObj.addIndexed(navSections);
+    }
+
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach(async (navSection) => {
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+        navSection.removeAttribute('aria-expanded');
+        navSection.removeAttribute('tabindex');
+
+        // Check if this nav-drop has a fragment link
+        const firstLink = navSection.querySelector('ul li a');
+        const fragmentHref = firstLink ? firstLink.getAttribute('href') : null;
+        const hasFragmentLink = isFragmentPath(fragmentHref);
+
+        // Load fragment on initialization if it's a fragment path
+        if (hasFragmentLink) {
+          const linkLi = firstLink.closest('li');
+          const fragmentContent = await loadFragment(fragmentHref);
+
+          if (fragmentContent) {
+            // Create fragment container
+            const fragmentContainer = document.createElement('div');
+            fragmentContainer.className = 'nav-fragment-container';
+            fragmentContainer.setAttribute('data-fragment-path', fragmentHref);
+
+            // Add fragment content
+            while (fragmentContent.firstChild) {
+              fragmentContainer.appendChild(fragmentContent.firstChild);
+            }
+
+            // Remove the original link from DOM completely
+            firstLink.remove();
+
+            // Append fragment container to li
+            linkLi.appendChild(fragmentContainer);
+
+            // Prevent clicks inside fragment from bubbling up
+            fragmentContainer.addEventListener('click', (e) => {
+              e.stopPropagation();
+            });
+          }
+        }
+      }
+
+      // --- Desktop Hover Logic ---
+      navSection.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
+          // Cancel any pending timer to close a menu
+          clearTimeout(leaveTimer);
+
+          // Close all other menus first
+          toggleAllNavSections(navSections, false);
+
+          // Prevent body scrolling while menu is open
+          document.body.classList.add('no-scroll');
+
+          // Open current menu
+          if (navSection.querySelector('ul')) {
+            navSection.setAttribute('aria-expanded', 'true');
+            navSection.setAttribute('data-aria-expanded', 'true');
+          }
+        }
+      });
+
+      // --- Desktop Mouse Leave Logic ---
+      navSection.addEventListener('mouseleave', () => {
+        if (isDesktop.matches) {
+          // Set a timer to close the menu after a delay
+          leaveTimer = setTimeout(() => {
+            navSection.setAttribute('aria-expanded', 'false');
+            navSection.setAttribute('data-aria-expanded', 'false');
+            document.body.classList.remove('no-scroll');
+          }, 300); // 300ms delay before closing
+        }
+      });
+
+      // --- Mobile Click Logic ---
+      navSection.addEventListener('click', (e) => {
+        // Don't close if clicking inside the fragment container
+        const clickedInsideFragment = e.target.closest('.nav-fragment-container');
+        if (clickedInsideFragment) {
+          return; // Allow interaction with fragment content
+        }
+
+        if (!isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
+    });
+
+    // Close all menus when mouse leaves the entire nav sections area
+    navSections.addEventListener('mouseleave', () => {
+      if (isDesktop.matches) {
+        leaveTimer = setTimeout(() => {
+          toggleAllNavSections(navSections, false);
+          document.body.classList.remove('no-scroll');
+        }, 300);
+      }
+    });
+
+    // Cancel timer when mouse re-enters nav sections
+    navSections.addEventListener('mouseenter', () => {
+      if (isDesktop.matches) {
+        clearTimeout(leaveTimer);
+      }
     });
   }
 

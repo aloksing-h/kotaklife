@@ -84,6 +84,14 @@ body.appear {
   display: block;
 }
 
+.dsp-none {
+  display: none;
+}
+
+.dsp-none.appear {
+  display: block;
+}
+
 header {
   height: var(--nav-height);
 }
@@ -307,7 +315,7 @@ main > .section > div {
 }
 
 main > .section:first-of-type {
-  margin-top: 0;
+  margin-top: 35px;
 }
 
 @media (width >= 900px) {
