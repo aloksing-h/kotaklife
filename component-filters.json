@@ -13,6 +13,7 @@
       "button",
       "title",
       "accordion",
+      "advisor-cta",
       "banner",
       "cards",
       "carousel",
@@ -32,6 +33,12 @@
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "advisor-cta",
+    "components": [
+      "advisor-cta"
     ]
   },
   {

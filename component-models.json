@@ -225,6 +225,51 @@
     ]
   },
   {
+    "id": "advisor-cta",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heading",
+        "label": "Heading",
+        "description": "Main headline, e.g. Join kotak life insurance as a life advisor"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subheading",
+        "label": "Subheading",
+        "description": "Supporting line, e.g. Start a successful work-from-home career."
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Button Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Button Text",
+        "value": "Join Now"
+      }
+    ]
+  },
+  {
     "id": "banner",
     "fields": [
       {
