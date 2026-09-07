@@ -25,3 +25,44 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+.cards.image-card.block > ul{
+  display: flex;
+  gap: 40px;
+}
+
+.cards.image-card.block > ul > li  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 348px;
+  max-width: 190px;
+  width: 100%;
+  background-color: #EFF8FF;
+  border-radius: 8px;
+  border: none;
+}
+
+.cards.image-card.block > ul > li:nth-child(2n){
+  background: linear-gradient(360deg, #FB2C47 0%, #FA1432 36%, #7F2224 100%);
+  border-radius: 8px;
+  margin-top:-70px
+}
+
+.cards.image-card.block .cards-card-image{
+  padding-bottom: 20px;
+}
+.cards.image-card.block .cards-card-image img{
+ scale: 1.1684;
+ height: 100%;
+ width: 100%;
+ object-fit: cover;
+ 
+}
+.cards.image-card.block .cards-card-body{
+  order: -1;
+}
+
+.cards.image-card.block > ul > li:nth-child(2n) .cards-card-body{
+  color: #FFF;
+}

@@ -200,6 +200,10 @@
           {
             "name": "Tab Six",
             "value": "tab-six"
+          },
+          {
+            "name": "CSR Layout",
+            "value": "csr-layout"
           }
         ]
       }
