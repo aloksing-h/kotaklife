@@ -1,0 +1,85 @@
+.advisor-cta {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "heading"
+    "image"
+    "cta";
+  gap: 16px;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.advisor-cta > div:nth-child(1) {
+  grid-area: image;
+}
+
+/* imageAlt field is authoring-only metadata, never rendered visually */
+.advisor-cta > div:nth-child(2) {
+  display: none;
+}
+
+.advisor-cta > div:nth-child(3) {
+  grid-area: heading;
+}
+
+.advisor-cta > div:nth-child(4) {
+  grid-area: subheading;
+  display: none;
+}
+
+.advisor-cta > div:nth-child(5) {
+  grid-area: cta;
+}
+
+.advisor-cta img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.advisor-cta > div:nth-child(3) p {
+  font-family: Manrope, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #181d27;
+  margin: 0;
+}
+
+.advisor-cta > div:nth-child(4) p {
+  font-family: Manrope, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #181d27;
+  margin: 0;
+}
+
+.advisor-cta a.button.primary {
+  background-color: #e1122d;
+  border-color: #e1122d;
+  font-weight: 800;
+}
+
+.advisor-cta a.button.primary:hover,
+.advisor-cta a.button.primary:focus-visible {
+  background-color: #b70e24;
+  border-color: #b70e24;
+}
+
+@media (width >= 900px) {
+  .advisor-cta {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "image heading"
+      "image subheading"
+      "image cta";
+    gap: 24px;
+    padding: 40px 32px;
+  }
+
+  .advisor-cta > div:nth-child(4) {
+    display: block;
+  }
+}
