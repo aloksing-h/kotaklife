@@ -13,7 +13,6 @@
       "button",
       "title",
       "accordion",
-      "advisor-cta",
       "banner",
       "cards",
       "carousel",
@@ -22,6 +21,7 @@
       "form",
       "fragment",
       "hero",
+      "popular-search",
       "quote",
       "search",
       "table",
@@ -33,12 +33,6 @@
     "id": "accordion",
     "components": [
       "accordion-item"
-    ]
-  },
-  {
-    "id": "advisor-cta",
-    "components": [
-      "advisor-cta"
     ]
   },
   {
@@ -72,6 +66,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "popular-search",
+    "components": [
+      "popular-search"
     ]
   },
   {
