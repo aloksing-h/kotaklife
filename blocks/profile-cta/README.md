@@ -6,6 +6,7 @@ Flexible image + rich text + button card. Supports both a marketing call-to-acti
 
 | Field | Type | Description |
 |---|---|---|
+| Block Options | Select (multiselect) | Optional layout modifier. `Reverse Layout (Image Right)` swaps the image to the right on desktop. |
 | Image | Reference | Photo or decorative composite image |
 | Alt | Text | Alt text for the image |
 | Heading & Description | Rich Text | Format the first line as a Heading (e.g. H2/H3). Add further paragraphs as needed (e.g. role, description) - all optional. |

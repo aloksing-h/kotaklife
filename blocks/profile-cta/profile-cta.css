@@ -115,4 +115,9 @@
     gap: 24px;
     padding: 40px 32px;
   }
+
+  .profile-cta.reverse {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "text image" "cta image";
+  }
 }

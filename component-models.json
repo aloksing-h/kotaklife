@@ -444,6 +444,18 @@
     "id": "profile-cta",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Block Options",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Reverse Layout (Image Right)",
+            "value": "reverse"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
