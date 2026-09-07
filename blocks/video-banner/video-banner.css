@@ -7,6 +7,7 @@
   position: relative;
   overflow: hidden;
   display: block; /* Let it naturally grow with the video */
+  
 }
 
 /* The media wrapper just acts as a regular block element */
@@ -15,6 +16,7 @@
   z-index: 1;
   width: 100%;
   display: block;
+ 
 }
 
 /* Let the video drive the height based on its natural aspect ratio */
@@ -22,7 +24,7 @@
 .autoplay .video-banner-media picture,
 .autoplay .video-banner-media img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -109,7 +111,12 @@
   /* 1. Disable mouse events on the video so the right side ignores the cursor */
   .autoplay .video-banner-media {
     pointer-events: none;
+    
+    max-height: 670px;
+    height: 100%;
   }
+
+  
 
   /* 2. Create an invisible hit-zone covering ONLY the left 50% of the video */
   .autoplay .video-banner-media::after {
