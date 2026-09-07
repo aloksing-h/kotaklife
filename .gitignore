@@ -10,6 +10,12 @@ certs/*
 .idea
 token.txt
 
+# Contains API keys/tokens, never commit
+.vscode/mcp.json
+
+# Temporary Figma preview exports, not source content
+tmp-figma-preview/
+
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
