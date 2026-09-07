@@ -1,8 +1,8 @@
-.advisor-cta {
+.profile-cta {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    "heading"
+    "text"
     "image"
     "cta";
   gap: 16px;
@@ -10,52 +10,68 @@
   padding: 24px 16px;
 }
 
-.advisor-cta > div:nth-child(1) {
+.profile-cta > div:nth-child(1) {
   grid-area: image;
 }
 
-.advisor-cta > div:nth-child(2) {
-  grid-area: heading;
+.profile-cta > div:nth-child(2) {
+  grid-area: text;
 }
 
-.advisor-cta > div:nth-child(3) {
-  grid-area: subheading;
-  display: none;
-}
-
-.advisor-cta > div:nth-child(4) {
+.profile-cta > div:nth-child(3) {
   grid-area: cta;
 }
 
-.advisor-cta img {
+.profile-cta img {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 8px;
 }
 
-.advisor-cta > div:nth-child(2) p {
+.profile-cta > div:nth-child(2) h1,
+.profile-cta > div:nth-child(2) h2,
+.profile-cta > div:nth-child(2) h3,
+.profile-cta > div:nth-child(2) h4 {
   font-family: Manrope, sans-serif;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.15;
   color: #181d27;
+  margin: 0 0 8px;
+}
+
+.profile-cta > div:nth-child(2) p {
+  margin: 0 0 12px;
+}
+
+.profile-cta > div:nth-child(3) p {
   margin: 0;
 }
 
-.advisor-cta > div:nth-child(3) p {
+/* first paragraph after the heading acts as the subheading / role line */
+.profile-cta > div:nth-child(2) p:first-of-type {
   font-family: Manrope, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 1.15;
   color: #181d27;
-  margin: 0;
 }
 
-.advisor-cta > div:nth-child(4) p {
-  margin: 0;
+/* any further paragraphs are treated as body / description copy */
+.profile-cta > div:nth-child(2) p:not(:first-of-type) {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #414651;
 }
 
-.advisor-cta > div:nth-child(4) a {
+.profile-cta > div:nth-child(2) p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-cta > div:nth-child(3) a {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -69,7 +85,7 @@
   border-radius: 999px;
 }
 
-.advisor-cta > div:nth-child(4) a::after {
+.profile-cta > div:nth-child(3) a::after {
   content: "\2192";
   display: inline-flex;
   align-items: center;
@@ -82,28 +98,21 @@
   font-size: 16px;
 }
 
-.advisor-cta > div:nth-child(4) a:hover,
-.advisor-cta > div:nth-child(4) a:focus-visible {
+.profile-cta > div:nth-child(3) a:hover,
+.profile-cta > div:nth-child(3) a:focus-visible {
   background-color: #b70e24;
 }
 
-.advisor-cta > div:nth-child(4) a:focus-visible {
+.profile-cta > div:nth-child(3) a:focus-visible {
   outline: 2px solid #181d27;
   outline-offset: 2px;
 }
 
 @media (width >= 900px) {
-  .advisor-cta {
+  .profile-cta {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "image heading"
-      "image subheading"
-      "image cta";
+    grid-template-areas: "image text" "image cta";
     gap: 24px;
     padding: 40px 32px;
-  }
-
-  .advisor-cta > div:nth-child(3) {
-    display: block;
   }
 }
