@@ -486,6 +486,10 @@
           {
             "name": "Form Step",
             "value": "form-step"
+          },
+          {
+            "name": "Explore CTA",
+            "value": "explore-cta"
           }
         ]
       }
