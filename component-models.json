@@ -259,7 +259,7 @@
         "label": "Style",
         "options": [
           {
-            "name": "Card with Image",
+            "name": "Image Card",
             "value": "image-card"
           }
         ]
