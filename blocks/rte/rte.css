@@ -1,0 +1,44 @@
+/* Vision section - RTE block styles */
+.vision .rte {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.vision .rte h1 {
+  font-family: Manrope, sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.vision .rte h1 strong {
+  font-weight: 700;
+}
+
+.vision .rte p {
+  max-width: 400px;
+  text-align: right;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (width < 900px) {
+  .vision .rte {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .vision .rte h1 {
+    font-size: 32px;
+  }
+
+  .vision .rte p {
+    text-align: left;
+    max-width: none;
+  }
+}

@@ -54,6 +54,17 @@
               "value": "h6"
             }
           ]
+        },
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Default Title",
+              "value": "default-title"
+            }
+          ]
         }
       ]
     }
