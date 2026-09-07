@@ -88,3 +88,67 @@
   padding: 0;
 }
 
+@media (width <=900px) {
+    .csr-layout.section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .csr-layout.section .rte-wrapper{
+      max-width: 100%;
+      
+    }
+
+    .csr-layout.section .cards-wrapper{
+      max-width: 100%;
+      
+    }
+
+
+    .cards.image-card.block > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Aligns top edges together */
+    gap: 16px; 
+  }
+
+  .cards.image-card.block > ul > li {
+    /* Ensures two cards fit side-by-side on typical mobile screens */
+    /* width: calc(50% - 8px);  */
+    max-width: 152px; /* Prevents them from getting too wide */
+    height: auto; /* Overrides the 348px desktop height */
+    max-height: none;
+    overflow: visible;
+  }
+
+  .cards.image-card.block > ul > li:nth-child(2) {
+    margin-bottom: 0;
+  }
+
+  .cards.image-card.block > ul > li:nth-child(3) {
+    /* Since flex-wrap is on and justify-content is center, 
+       this forces the 3rd card to sit centered on a new row */
+    margin-top: 10px; 
+  }
+
+  .cards.image-card.block .cards-card-image{
+    padding-bottom: 0;
+  }
+  
+  .cards.image-card.block .cards-card-image img{
+    scale: 1.11;
+    transform-origin: bottom center;
+    height: 108px;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+ 
+} 
+
+  .cards.image-card.block .cards-card-body p{
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin: 0;
+  }
+
+}

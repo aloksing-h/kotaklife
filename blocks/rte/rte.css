@@ -1,0 +1,49 @@
+.rte.explore-cta.block .cta-container {
+    width: fit-content;
+    background-color: #E61731; /* Target design red */
+    border-radius: 50px;
+    margin: 0;
+}
+
+.rte.explore-cta.block .cta-container a {
+    color: white;
+    display: flex;
+    align-items: center; /* Vertically centers the text and the circle */
+    padding: 6px 6px 6px 24px; /* Asymmetric padding: tight on the right, wide on the left */
+    gap: 16px;
+    text-decoration: none; /* Removes default link underline */
+}
+
+.rte.explore-cta.block .cta-container span {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the arrow perfectly inside the white circle */
+    height: 32px;
+    width: 32px;
+    background-color: white;
+    border-radius: 50%;
+    flex-shrink: 0; /* Prevents the circle from squishing */
+}
+
+.rte.explore-cta.block .cta-container img {
+    height: 20px; /* Forces the arrow to stay a sensible icon size */
+    width: 20px;
+    object-fit: contain;
+}
+
+@media (width<=900px) {
+    .rte.explore-cta.block h1{
+        font-size: 1.875rem;
+        line-height: 2.375rem;
+    }
+
+    .rte.explore-cta.block p{
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+    }
+
+    .rte.explore-cta.block .cta-container a{
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+}
