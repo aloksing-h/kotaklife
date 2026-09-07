@@ -27,79 +27,77 @@
 }
 
 /* ============================================
-   Vision section - Cards block styles
+   Vision section - Layout & Cards block styles
    ============================================ */
 
-/* Container: 3-column grid, top/bottom borders */
-.vision .cards > ul {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+.vision {
+  --vision-stroke: #d5d7da;
+  --vision-accent: #fa1432;
+  --vision-radius: 40px;
+
+  overflow: hidden;
 }
 
-/* Card base + vertical dividers */
+
+/* Strip bleeds edge-to-edge of the viewport; padding re-aligns cards with the content column */
+.vision .cards > ul {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--vision-stroke);
+  border-bottom: 1px solid var(--vision-stroke);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
 .vision .cards > ul > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
   border: none;
   background: transparent;
-  border-right: 1px solid #e0e0e0;
-  padding: 32px 24px;
+  padding: 40px;
   position: relative;
 }
 
-.vision .cards > ul > li:last-child {
-  border-right: none;
-  border-bottom-right-radius: 24px;
-}
-
-/* First card: bottom-left rounded corner + pink curve */
-.vision .cards > ul > li:first-child {
-  border-bottom-left-radius: 24px;
-}
-
-.vision .cards > ul > li:first-child::after {
+/* 1px ring: rounded on top, grey base with a red glow at one corner */
+.vision .cards > ul > li::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-bottom-left-radius: 24px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 0 65 Q 0 0 65 0' fill='none' stroke='%23e8a0a0' stroke-width='1'/%3E%3C/svg%3E") no-repeat bottom left;
-  background-size: 70% 70%;
+  inset: -1px 0;
+  padding: 1px;
+  background: var(--vision-stroke);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
   pointer-events: none;
 }
 
-.vision .cards > ul > li:last-child::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border-bottom-right-radius: 24px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 100 65 Q 100 0 35 0' fill='none' stroke='%23e8a0a0' stroke-width='1'/%3E%3C/svg%3E") no-repeat bottom right;
-  background-size: 70% 70%;
-  pointer-events: none;
+/* Collapse the doubled hairline where two cards meet */
+.vision .cards > ul > li:first-child::before {
+  background:
+    radial-gradient(180px 130px at 100% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+    var(--vision-stroke);
+  border-top-right-radius: var(--vision-radius);
 }
 
-/* Middle card(s): pink arch at top */
-.vision .cards > ul > li:not(:first-child, :last-child)::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M 0 40 Q 100 0 200 40' fill='none' stroke='%23e8a0a0' stroke-width='1'/%3E%3C/svg%3E") no-repeat top center;
-  background-size: 100% 100%;
-  pointer-events: none;
+.vision .cards > ul > li:nth-child(2)::before {
+    background: radial-gradient(460px 90px at 50% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%), transparent;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
 }
 
-/* Card image: constrain to icon size */
+.vision .cards > ul > li:last-child::before {
+  background:
+    radial-gradient(180px 130px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+    var(--vision-stroke);
+  border-top-left-radius: var(--vision-radius);
+}
+
+/* Icon */
 .vision .cards .cards-card-image {
-  width: 48px;
-  height: 48px;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
   line-height: 0;
 }
 
@@ -110,44 +108,72 @@
   aspect-ratio: auto;
 }
 
-/* Card body text */
+/* Body: <strong> is the title, the text after <br> is the description */
 .vision .cards .cards-card-body {
   margin: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .vision .cards .cards-card-body p {
   margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #717680;
+  overflow-wrap: break-word;
 }
 
-.vision .cards .cards-card-body p:first-child {
+.vision .cards .cards-card-body p strong {
+  display: block;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.4;
-  color: var(--text-color);
+  color: #181d27;
+  margin-bottom: 12px;
 }
 
-.vision .cards .cards-card-body p:last-child {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-  margin-top: 8px;
+.vision .cards .cards-card-body p br {
+  display: none;
 }
 
-/* Mobile: single column */
 @media (width < 900px) {
   .vision .cards > ul {
-    grid-template-columns: 1fr;
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    margin: 0;
+    grid-template-columns: minmax(0, 1fr);
+    border-top: none;
+    border-bottom: none;
   }
 
   .vision .cards > ul > li {
-    border-right: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-left: 1px solid #D5D7DA;
     padding: 24px 20px;
   }
 
-  .vision .cards > ul > li:last-child {
-    border-bottom: none;
+  /* Cards stack vertically: the ring hugs each card and the curve moves to the left edge */
+  .vision .cards > ul > li::before {
+    inset: 0;
+  }
+
+  .vision .cards > ul > li:first-child::before {
+    padding-top: 0;
+    background:
+      radial-gradient(130px 180px at 0 100%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      var(--vision-stroke);
+    border-radius: 0 0 0 var(--vision-radius);
+  }
+
+  .vision .cards > ul > li:nth-child(2)::before {
+    background:
+      radial-gradient(90px 260px at 0 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      var(--vision-stroke);
+    border-radius: var(--vision-radius) 0 0 var(--vision-radius);
+  }
+
+  .vision .cards > ul > li:last-child::before {
+    padding-bottom: 0;
+    background:
+      radial-gradient(130px 180px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      var(--vision-stroke);
+    border-radius: var(--vision-radius) 0 0 0;
   }
 }

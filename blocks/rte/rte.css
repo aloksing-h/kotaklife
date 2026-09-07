@@ -1,44 +1,60 @@
 /* Vision section - RTE block styles */
-.vision .rte {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
+.vision .rte-wrapper {
+  max-width: unset;
+  margin: 0;
+  padding: 0 50px;
+  margin-bottom: 48px;
 }
 
-.vision .rte h1 {
+/* Heading left, description right */
+.vision .rte.default-title > div > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  width: 100%;
+}
+
+.vision .rte.default-title h1 {
   font-family: Manrope, sans-serif;
   font-weight: 300;
   font-size: 48px;
   line-height: 1.1;
+  color: #181d27;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
-.vision .rte h1 strong {
-  font-weight: 700;
+.vision .rte.default-title h1 strong {
+  font-weight: 600;
 }
 
-.vision .rte p {
-  max-width: 400px;
-  text-align: right;
-  color: #555;
+.vision .rte.default-title p {
+  color: #535862;
   font-size: 16px;
   line-height: 1.5;
+  max-width: 580px;
+  justify-self: end;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 @media (width < 900px) {
-  .vision .rte {
-    flex-direction: column;
+  .vision .rte-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .vision .rte.default-title > div > div {
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .vision .rte h1 {
+  .vision .rte.default-title h1 {
     font-size: 32px;
   }
 
-  .vision .rte p {
-    text-align: left;
+  .vision .rte.default-title p {
     max-width: none;
+    justify-self: start;
   }
 }
