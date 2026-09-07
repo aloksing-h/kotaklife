@@ -46,6 +46,10 @@
             {
               "name": "Form Step",
               "value": "form-step"
+            },
+            {
+              "name": "Default Title",
+              "value": "default-title"
             }
           ]
         }
