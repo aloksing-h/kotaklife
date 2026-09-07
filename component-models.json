@@ -260,7 +260,7 @@
         "options": [
           {
             "name": "Card with Image",
-            "value": "card--image"
+            "value": "card-image"
           }
         ]
       }
