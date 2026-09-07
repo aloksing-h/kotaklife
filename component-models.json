@@ -260,7 +260,7 @@
         "name": "cta",
         "value": "",
         "label": "Button",
-        "description": "Author a bold link"
+        "description": "Author a link, e.g. Join Now"
       }
     ]
   },

@@ -14,21 +14,16 @@
   grid-area: image;
 }
 
-/* imageAlt field is authoring-only metadata, never rendered visually */
 .advisor-cta > div:nth-child(2) {
-  display: none;
-}
-
-.advisor-cta > div:nth-child(3) {
   grid-area: heading;
 }
 
-.advisor-cta > div:nth-child(4) {
+.advisor-cta > div:nth-child(3) {
   grid-area: subheading;
   display: none;
 }
 
-.advisor-cta > div:nth-child(5) {
+.advisor-cta > div:nth-child(4) {
   grid-area: cta;
 }
 
@@ -38,7 +33,7 @@
   display: block;
 }
 
-.advisor-cta > div:nth-child(3) p {
+.advisor-cta > div:nth-child(2) p {
   font-family: Manrope, sans-serif;
   font-size: 32px;
   font-weight: 600;
@@ -47,7 +42,7 @@
   margin: 0;
 }
 
-.advisor-cta > div:nth-child(4) p {
+.advisor-cta > div:nth-child(3) p {
   font-family: Manrope, sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -56,16 +51,45 @@
   margin: 0;
 }
 
-.advisor-cta a.button.primary {
-  background-color: #e1122d;
-  border-color: #e1122d;
-  font-weight: 800;
+.advisor-cta > div:nth-child(4) p {
+  margin: 0;
 }
 
-.advisor-cta a.button.primary:hover,
-.advisor-cta a.button.primary:focus-visible {
+.advisor-cta > div:nth-child(4) a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #e1122d;
+  color: #fff;
+  font-family: Manrope, sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 12px 4px 12px 20px;
+  border-radius: 999px;
+}
+
+.advisor-cta > div:nth-child(4) a::after {
+  content: "\2192";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  color: #e1122d;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+.advisor-cta > div:nth-child(4) a:hover,
+.advisor-cta > div:nth-child(4) a:focus-visible {
   background-color: #b70e24;
-  border-color: #b70e24;
+}
+
+.advisor-cta > div:nth-child(4) a:focus-visible {
+  outline: 2px solid #181d27;
+  outline-offset: 2px;
 }
 
 @media (width >= 900px) {
@@ -79,7 +103,7 @@
     padding: 40px 32px;
   }
 
-  .advisor-cta > div:nth-child(4) {
+  .advisor-cta > div:nth-child(3) {
     display: block;
   }
 }

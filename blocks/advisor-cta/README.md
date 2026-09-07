@@ -10,7 +10,7 @@ Promotional call-to-action block inviting visitors to join Kotak Life Insurance 
 | Alt | Text | Alt text for the image |
 | Heading | Text | e.g. Join kotak life insurance as a life advisor |
 | Subheading | Text | e.g. Start a successful work-from-home career. (desktop only) |
-| Button | Rich Text | Author a bold link, e.g. **[Join Now](https://example.com)** |
+| Button | Rich Text | Author a link, e.g. Join Now |
 
 ## Responsive Behaviour
 
