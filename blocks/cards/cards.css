@@ -25,130 +25,128 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-
-.cards.image-card.block > ul{
+.cards.image-card.block > ul {
   display: flex;
-  align-items: flex-end;
-  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.cards.image-card.block > ul > li  {
+.cards.image-card.block > ul > li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 348px;
-  max-width: 190px;
   width: 100%;
+  max-width: 152px;
+  height: auto;
   background-color: #EFF8FF;
   border-radius: 8px;
   border: none;
+  overflow: visible;
 }
 
-.cards.image-card.block > ul > li:nth-child(2){
+.cards.image-card.block > ul > li:nth-child(2) {
   background: linear-gradient(360deg, #FB2C47 0%, #FA1432 36%, #7F2224 100%);
   border-radius: 8px;
-  margin-bottom: 70px;
+  margin-bottom: 0;
 }
 
-.cards.image-card.block .cards-card-image{
-  padding-bottom: 20px;
+.cards.image-card.block > ul > li:nth-child(3) {
+  margin-top: 10px;
 }
-.cards.image-card.block .cards-card-image img{
- scale: 1.1684;
- height: 100%;
- width: 100%;
- object-fit: cover;
- 
+
+.cards.image-card.block .cards-card-image {
+  padding-bottom: 0;
 }
-.cards.image-card.block .cards-card-body{
+
+.cards.image-card.block .cards-card-image img {
+  scale: 1.11;
+  transform-origin: bottom center;
+  height: 108px;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.cards.image-card.block .cards-card-body {
   order: -1;
 }
 
-.cards.image-card.block > ul > li:nth-child(2) .cards-card-body{
+.cards.image-card.block .cards-card-body p {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  margin: 0;
+}
+
+.cards.image-card.block > ul > li:nth-child(2) .cards-card-body {
   color: #FFF;
 }
 
 .csr-layout.section {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   margin: 0 auto;
   max-width: 1100px;
+  gap: 42px;
 }
 
 .csr-layout.section .rte-wrapper {
-   max-width: 435px;
-   margin: 0 ;
-   padding: 0;
+  max-width: 100%;
+
 }
 
 .csr-layout.section .cards-wrapper {
-  max-width: 698px;
+  max-width: 100%;
   width: 100%;
-  margin: 120px 0 auto 0;
-  padding: 0;
+
+
 }
 
-@media (width <=900px) {
-    .csr-layout.section {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .csr-layout.section .rte-wrapper{
-      max-width: 100%;
-      
-    }
-
-    .csr-layout.section .cards-wrapper{
-      max-width: 100%;
-      
-    }
-
-
-    .cards.image-card.block > ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start; /* Aligns top edges together */
-    gap: 16px; 
+/* Desktop Overrides */
+@media (width >=900px) {
+  .cards.image-card.block > ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 40px;
   }
 
   .cards.image-card.block > ul > li {
-    /* Ensures two cards fit side-by-side on typical mobile screens */
-    /* width: calc(50% - 8px);  */
-    max-width: 152px; /* Prevents them from getting too wide */
-    height: auto; /* Overrides the 348px desktop height */
-    max-height: none;
-    overflow: visible;
+    max-width: 190px;
+    height: 348px;
   }
 
   .cards.image-card.block > ul > li:nth-child(2) {
-    margin-bottom: 0;
+    margin-bottom: 70px;
   }
 
   .cards.image-card.block > ul > li:nth-child(3) {
-    /* Since flex-wrap is on and justify-content is center, 
-       this forces the 3rd card to sit centered on a new row */
-    margin-top: 10px; 
+    margin-top: 0;
   }
 
-  .cards.image-card.block .cards-card-image{
-    padding-bottom: 0;
-  }
-  
-  .cards.image-card.block .cards-card-image img{
-    scale: 1.11;
-    transform-origin: bottom center;
-    height: 108px;
-    width: 100%;
-    object-fit: cover;
-    overflow: hidden;
- 
-} 
-
-  .cards.image-card.block .cards-card-body p{
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    margin: 0;
+  .cards.image-card.block .cards-card-image {
+    padding-bottom: 20px;
   }
 
+  .cards.image-card.block .cards-card-image img {
+    scale: 1.1684;
+    transform-origin: 50% 50%; /* Resets origin to default */
+    height: 100%;
+  }
+
+  .csr-layout.section {
+    flex-direction: row;
+  }
+
+  .csr-layout.section .rte-wrapper {
+    max-width: 435px;
+    margin: 0 auto;
+  }
+
+  .csr-layout.section .cards-wrapper {
+    max-width: 698px;
+    margin: 120px 0 auto 0;
+  }
 }
