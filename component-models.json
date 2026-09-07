@@ -200,6 +200,10 @@
           {
             "name": "Tab Six",
             "value": "tab-six"
+          },
+          {
+            "name": "Our Vision",
+            "value": "vision"
           }
         ]
       }
@@ -466,10 +470,6 @@
           {
             "name": "Form Step",
             "value": "form-step"
-          },
-          {
-            "name": "Our Vision",
-            "value": "vision"
           }
         ]
       }
