@@ -718,16 +718,48 @@
   },
   {
     "id": "timeline",
-    "fields": []
-  },
-  {
-    "id": "timeline-year",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "year",
-        "label": "Year"
+        "component": "container",
+        "name": "years",
+        "multi": true,
+        "label": "Timeline Years",
+        "fields": [
+          {
+            "component": "richtext",
+            "name": "year",
+            "value": "",
+            "label": "Year",
+            "valueType": "string"
+          },
+          {
+            "component": "container",
+            "name": "items",
+            "multi": true,
+            "label": "Award Items",
+            "fields": [
+              {
+                "component": "reference",
+                "valueType": "string",
+                "name": "image",
+                "label": "Image",
+                "multi": false
+              },
+              {
+                "component": "text",
+                "name": "imageAlt",
+                "label": "Alt Text"
+              },
+              {
+                "component": "richtext",
+                "name": "text",
+                "value": "",
+                "label": "Text",
+                "valueType": "string"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

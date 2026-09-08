@@ -193,17 +193,5 @@
     "components": [
       "tabs-item"
     ]
-  },
-  {
-    "id": "timeline",
-    "components": [
-      "timeline-year"
-    ]
-  },
-  {
-    "id": "timeline-year",
-    "components": [
-      "cards"
-    ]
   }
 ]
