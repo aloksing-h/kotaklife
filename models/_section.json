@@ -35,6 +35,19 @@
               "value": "highlight"
             },
             {
+              "name": "Header Varient",
+              "children": [
+                {
+                  "name": "Grey Header",
+                  "value": "grey-nav"
+                },
+                {
+                  "name": "White Header",
+                  "value": "white-nav"
+                }
+              ]
+            },
+            {
               "name": "Term Insurance Plans",
               "value": "term-insurance-plans"
             },
