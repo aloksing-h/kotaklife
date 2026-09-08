@@ -1,0 +1,129 @@
+{
+  "definitions": [
+    {
+      "title": "Custom Cards",
+      "id": "custom-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Custom Cards",
+              "filter": "custom-card"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Custom Card",
+      "id": "custom-card-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Custom Card",
+              "model": "custom-card-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "custom-card-item",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Card Variation",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "Featured",
+              "value": "featured"
+            },
+            {
+              "name": "Horizontal",
+              "value": "horizontal"
+            },
+            {
+              "name": "Image Overlay",
+              "value": "image-overlay"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "col1_image1",
+          "label": "Image 1",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_image1Alt",
+          "label": "Image 1 Alt Text",
+          "description": "Describe the image, or leave empty only when it is decorative."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "col1_image2",
+          "label": "Image 2",
+          "description": "Optional secondary image.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_image2Alt",
+          "label": "Image 2 Alt Text",
+          "description": "Describe Image 2 when it conveys information."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col2_title",
+          "label": "Title"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "col2_description",
+          "label": "Description",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "col3_link",
+          "label": "Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col3_cta",
+          "label": "CTA Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col3_linkTitle",
+          "label": "Link Title",
+          "description": "Accessible link purpose when the CTA label needs more context."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "custom-card",
+      "components": [
+        "custom-card-item"
+      ]
+    }
+  ]
+}
