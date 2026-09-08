@@ -458,6 +458,207 @@ header nav .nav-header-top {
   /* display: none; */
 }
 
-.nav-header-top .default-content-wrapper{
+/* Styling header top */
+
+header nav{
+  padding: 0 16px;
+}
+
+nav .nav-header-top .default-content-wrapper {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-header-top .default-content-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li {
+  position: relative;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li ul{
+  position: absolute;
+  top: 100%;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  padding: 6px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.06);
+  flex-direction: column;
+  gap: 6px;
+  min-width: 150px;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li ul::before{
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  background-image: url('../../icons/polygon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 17px;
+  height: 11px;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li ul li{
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 9px;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li ul li:hover{
+  background-color: rgba(209, 233, 255, 1);
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li p {
+  font-family: Manrope;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li {
+  display: flex;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1),
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2){
+  border-right: 1px solid;
+  padding-right: 2px;
+}
+
+.nav-header-top .default-content-wrapper>ul:first-child li p span {
+  display: none;
+  width: 12px;
+  min-width: 12px;
+  height: 12px;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1) p span,
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2) p span,
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2) ul,
+.nav-header-top .default-content-wrapper>ul:first-child li ul {
+  display: none;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p,
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p a {
+  font-family: Manrope;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p a {
+  padding: 5px 12px;
+  display: block;
+  min-width: 143px;
+  box-sizing: border-box;
+}
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-family: Manrope;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) ul,
+.nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p span{
+  display: none;
+}
+
+/* check white / Grey */
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:first-child li p,
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p,
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p a {
+  color: rgba(24, 29, 39, 1);
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:first-child li p span.icon-small-downarrow-black {
+  display: block;
+}
+
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:first-child li p,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(3) p a {
+  color: rgba(255, 255, 255, 1);
+}
+
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:first-child li p span.icon-small-downarrow-white {
+  display: block;
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1) p span.icon-search-black,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1) p span.icon-search-white,
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2) p span.icon-call-black,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2) p span.icon-call-white,
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p span.icon-user-black,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p span.icon-user-white {
+  display: block;
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p{
+  border-color: rgba(24, 29, 39, 1);
+  color: rgba(24, 29, 39, 1);
+}
+
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(4) p{
+  border-color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1),
+nav.white-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2){
+  border-color: rgba(213, 215, 218, 1);
+}
+
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(1),
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:last-child li:nth-child(2){
+  border-color: rgba(65, 70, 81, 1);
+}
+
+/* Active State display block / flex */
+
+.nav-header-top .default-content-wrapper>ul:first-child li.active ul{
+  display: flex;
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:first-child li.active p,
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:first-child li.active p{
+  color: rgba(200, 16, 40, 1);
+}
+
+nav.white-nav .nav-header-top .default-content-wrapper>ul:first-child li.active p span:not(.icon-small-downarrow-red),
+nav.grey-nav .nav-header-top .default-content-wrapper>ul:first-child li.active p span:not(.icon-small-downarrow-red){
+  display: none;
 }

@@ -145,6 +145,18 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
+  // Move white/grey color class from first section to nav
+  const firstSection = nav.children[0];
+  if (firstSection) {
+    const colorClass = Array.from(firstSection.classList).find(
+      (cls) => cls === 'white-nav' || cls === 'grey-nav'
+    );
+    if (colorClass) {
+      nav.classList.add(colorClass);
+      firstSection.classList.remove(colorClass);
+    }
+  }
+
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
