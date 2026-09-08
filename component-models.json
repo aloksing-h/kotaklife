@@ -696,7 +696,19 @@
   },
   {
     "id": "tabs",
-    "fields": []
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Timeline",
+            "value": "timeline"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tabs-item",

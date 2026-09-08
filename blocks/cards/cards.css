@@ -25,6 +25,7 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
 .cards.image-card.block > ul {
   display: flex;
   flex-wrap: wrap;
@@ -152,6 +153,6 @@
 
   .csr-layout.section .cards-wrapper {
     max-width: 698px;
-    margin: 120px 0 auto 0;
+    margin: 120px 0 auto;
   }
 }
