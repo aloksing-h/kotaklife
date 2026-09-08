@@ -455,4 +455,5 @@ header nav .nav-header-top {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: none;
 }
