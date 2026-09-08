@@ -17,10 +17,13 @@
       "cards",
       "carousel",
       "columns",
+      "custom-rte",
       "embed",
       "form",
       "fragment",
       "hero",
+      "popular-search",
+      "profile-cta",
       "quote",
       "search",
       "table",
@@ -66,6 +69,26 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "custom-rte",
+    "components": [
+      "custom-rte-item",
+      "custom-image-item",
+      "rte-image-item"
+    ]
+  },
+  {
+    "id": "popular-search",
+    "components": [
+      "popular-search"
+    ]
+  },
+  {
+    "id": "profile-cta",
+    "components": [
+      "profile-cta"
     ]
   },
   {
