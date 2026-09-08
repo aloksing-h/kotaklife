@@ -426,24 +426,6 @@
         "name": "col2_description",
         "label": "Description",
         "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "col3_link",
-        "label": "Link"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "col3_cta",
-        "label": "CTA Label"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "col3_linkTitle",
-        "label": "Link Title",
-        "description": "Accessible link purpose when the CTA label needs more context."
       }
     ]
   },
