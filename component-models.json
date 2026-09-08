@@ -363,11 +363,11 @@
     ]
   },
   {
-    "id": "custom-card-item",
+    "id": "custom-cards-item",
     "fields": [
       {
         "component": "multiselect",
-        "name": "classes",
+        "name": "col1_classes",
         "label": "Card Variation",
         "valueType": "array",
         "options": [
@@ -426,6 +426,18 @@
         "name": "col2_description",
         "label": "Description",
         "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "col2_link",
+        "label": "Card Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "col2_linkText",
+        "label": "Card Link Text",
+        "valueType": "string"
       }
     ]
   },
