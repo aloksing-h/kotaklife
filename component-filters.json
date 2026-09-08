@@ -29,7 +29,8 @@
       "table",
       "tabs",
       "video",
-      "rte"
+      "rte",
+      "timeline"
     ]
   },
   {
@@ -191,6 +192,18 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "timeline",
+    "components": [
+      "timeline-year"
+    ]
+  },
+  {
+    "id": "timeline-year",
+    "components": [
+      "cards"
     ]
   }
 ]

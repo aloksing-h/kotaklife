@@ -717,6 +717,21 @@
     ]
   },
   {
+    "id": "timeline",
+    "fields": []
+  },
+  {
+    "id": "timeline-year",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "year",
+        "label": "Year"
+      }
+    ]
+  },
+  {
     "id": "video",
     "fields": [
       {

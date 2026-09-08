@@ -1,0 +1,159 @@
+.timeline {
+  --timeline-line-color: #d5d7da;
+  --timeline-line-active-color: #fa1432;
+  --timeline-active-gradient: linear-gradient(-36deg, #fb2c47 0%, #fa1432 0%, #7f2224 100%);
+  --timeline-glow-gradient: radial-gradient(circle at 50% 46%, rgb(209 233 255 / 100%) 0%, rgb(132 202 255 / 100%) 100%);
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.timeline .timeline-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+}
+
+.timeline .timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 56px;
+  height: 1px;
+  background-image: linear-gradient(to right, var(--timeline-line-color) 0 6px, transparent 6px 8px);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+.timeline .timeline-markers {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.timeline .timeline-marker-btn {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background-color: var(--background-color, #fff);
+  color: #666;
+  font-family: Manrope, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.timeline .timeline-marker-btn[aria-selected='true'] {
+  background: var(--timeline-active-gradient);
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 14px;
+}
+
+.timeline .timeline-arrows {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+}
+
+.timeline .timeline-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.timeline .timeline-arrow img {
+  width: 16px;
+  height: 16px;
+}
+
+.timeline .timeline-arrow-prev img {
+  transform: rotate(180deg);
+}
+
+.timeline .timeline-panel[aria-hidden='true'] {
+  display: none;
+}
+
+.timeline .timeline-panel .timeline-year > div:first-child {
+  display: none;
+}
+
+/* nested Cards block reused for award cards within the active year */
+.timeline .timeline-panel .cards > ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.timeline .timeline-panel .cards > ul > li {
+  position: relative;
+  flex: 1 1 240px;
+  max-width: 260px;
+  border: 1px solid #e9eaeb;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 1px 12px rgb(0 0 0 / 6%);
+}
+
+.timeline .timeline-panel .cards > ul > li::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 75px;
+  background-image: var(--timeline-glow-gradient);
+  filter: blur(16px);
+  transform: translate(-50%, -50%);
+}
+
+.timeline .timeline-panel .cards > ul > li:nth-child(even) {
+  margin-top: 40px;
+}
+
+@media (width >= 600px) {
+  .timeline .timeline-marker-btn {
+    font-size: 14px;
+  }
+}
+
+@media (width >= 900px) {
+  .timeline .timeline-markers {
+    overflow-x: visible;
+  }
+
+  .timeline .timeline-panel .cards > ul {
+    flex-wrap: nowrap;
+  }
+
+  .timeline .timeline-panel .cards > ul > li:nth-child(odd) {
+    margin-top: -20px;
+  }
+
+  .timeline .timeline-panel .cards > ul > li:nth-child(even) {
+    margin-top: 60px;
+  }
+}

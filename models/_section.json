@@ -132,7 +132,8 @@
         "table",
         "tabs",
         "video",
-        "rte"
+        "rte",
+        "timeline"
       ]
     }
   ]
