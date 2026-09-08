@@ -101,6 +101,10 @@
             {
               "name": "Our Vision",
               "value": "vision"
+            },
+            {
+              "name": "Why Trust",
+              "value": "trust"
             }
           ]
         }
