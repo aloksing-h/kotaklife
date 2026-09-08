@@ -17,6 +17,7 @@
       "cards",
       "carousel",
       "columns",
+      "custom-rte",
       "embed",
       "form",
       "fragment",
@@ -67,6 +68,14 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "custom-rte",
+    "components": [
+      "custom-rte-item",
+      "custom-image-item",
+      "rte-image-item"
     ]
   },
   {

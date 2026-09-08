@@ -347,6 +347,76 @@
     ]
   },
   {
+    "id": "custom-rte",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Blog Detail Group Image",
+            "value": "detail-grp-img"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-rte-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "RTE Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "custom-image-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt"
+      }
+    ]
+  },
+  {
+    "id": "rte-image-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "RTE Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "embed",
     "fields": [
       {
