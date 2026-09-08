@@ -52,11 +52,11 @@
 .vision .cards > ul > li {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 18px;
   min-width: 0;
   border: none;
   background: transparent;
-  padding: 40px;
+  padding: 42px 28px;
   position: relative;
 }
 
@@ -95,9 +95,9 @@
 
 /* Icon */
 .vision .cards .cards-card-image {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   line-height: 0;
 }
 
@@ -117,9 +117,10 @@
 
 .vision .cards .cards-card-body p {
   margin: 0;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 1.5;
-  color: #717680;
+  line-height: 1.286;
+  color: #535862;
   overflow-wrap: break-word;
 }
 
@@ -127,9 +128,9 @@
   display: block;
   font-weight: 600;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.25;
   color: #181d27;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .vision .cards .cards-card-body p br {
@@ -146,7 +147,14 @@
 
   .vision .cards > ul > li {
     border-left: 1px solid #D5D7DA;
-    padding: 24px 20px;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .vision .cards .cards-card-image {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
   }
 
   /* Cards stack vertically: the ring hugs each card and the curve moves to the left edge */
