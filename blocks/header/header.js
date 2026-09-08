@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import dataMapKotakObj from '../../scripts/constant.js';
+// import { dataMapKotakObj } from '../../scripts/constant.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -150,17 +150,17 @@ export default async function decorate(block) {
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
 
     // Set up the class prefixes for your dataMapKotakObj utility.
-    if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
-      dataMapKotakObj.CLASS_PREFIXES = [
-        'navbrand-cont',
-        'navbrand-sec',
-        'navbrand-sub',
-        'navbrand-inner-net',
-        'navbrand-list',
-        'navbrand-list-content',
-      ];
-      dataMapKotakObj.addIndexed(navBrand);
-    }
+    // if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
+    //   dataMapKotakObj.CLASS_PREFIXES = [
+    //     'navbrand-cont',
+    //     'navbrand-sec',
+    //     'navbrand-sub',
+    //     'navbrand-inner-net',
+    //     'navbrand-list',
+    //     'navbrand-list-content',
+    //   ];
+    //   dataMapKotakObj.addIndexed(navBrand);
+    // }
     const brandLink = navBrand.querySelector('.button');
     if (brandLink) {
       brandLink.className = '';
@@ -173,16 +173,16 @@ export default async function decorate(block) {
 
   if (navSections) {
     // Add data indexing for nav-sections
-    if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
-      dataMapKotakObj.CLASS_PREFIXES = [
-        'nav-sec',
-        'nav-sub',
-        'nav-inner',
-        'nav-list',
-        'nav-content',
-      ];
-      dataMapKotakObj.addIndexed(navSections);
-    }
+    // if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
+    //   dataMapKotakObj.CLASS_PREFIXES = [
+    //     'nav-sec',
+    //     'nav-sub',
+    //     'nav-inner',
+    //     'nav-list',
+    //     'nav-content',
+    //   ];
+    //   dataMapKotakObj.addIndexed(navSections);
+    // }
 
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach(async (navSection) => {
       if (navSection.querySelector('ul')) {
@@ -308,4 +308,6 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  
 }
