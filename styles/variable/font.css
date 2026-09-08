@@ -1,0 +1,72 @@
+/*
+ * Typography design tokens
+ * Source: Figma "Kotak Website - Design System V1" — Typography page (node 47:3867)
+ */
+
+:root {
+  /* ===== Font families ===== */
+  --font-family-manrope: "Manrope", sans-serif;
+  --font-family-inter: "Inter", sans-serif;
+
+  /* ===== Font weights ===== */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ===== Type scale: Heading 1 (48 / 60) ===== */
+  --heading-1-font-size: 3rem;
+  --heading-1-line-height: 3.75rem;
+
+  /* ===== Type scale: Heading 2 (40 / 48) ===== */
+  --heading-2-font-size: 2.5rem;
+  --heading-2-line-height: 3rem;
+
+  /* ===== Type scale: Heading 3 (32 / 36) ===== */
+  --heading-3-font-size: 2rem;
+  --heading-3-line-height: 2.25rem;
+  --heading-3-letter-spacing: -0.02em;
+
+  /* ===== Type scale: Heading 4 (24 / 28) ===== */
+  --heading-4-font-size: 1.5rem;
+  --heading-4-line-height: 1.75rem;
+
+  /* ===== Type scale: Sub Heading 1 (20 / 24) ===== */
+  --sub-heading-1-font-size: 1.25rem;
+  --sub-heading-1-line-height: 1.5rem;
+  --sub-heading-1-letter-spacing: -0.02em;
+
+  /* ===== Type scale: Sub Heading 2 (18 / 20) ===== */
+  --sub-heading-2-font-size: 1.125rem;
+  --sub-heading-2-line-height: 1.25rem;
+
+  /* ===== Type scale: Body 1 (16 / 20) ===== */
+  --body-1-font-size: 1rem;
+  --body-1-line-height: 1.25rem;
+
+  /* ===== Type scale: Body 2 (14 / 18) ===== */
+  --body-2-font-size: 0.875rem;
+  --body-2-line-height: 1.125rem;
+
+  /* ===== Type scale: Button 1 (16 / 18) ===== */
+  --button-1-font-size: 1rem;
+  --button-1-line-height: 1.125rem;
+
+  /* ===== Type scale: Button 2 (14 / 16) ===== */
+  --button-2-font-size: 0.875rem;
+  --button-2-line-height: 1rem;
+
+  /* ===== Type scale: Button 3 (12 / 14) ===== */
+  --button-3-font-size: 0.75rem;
+  --button-3-line-height: 0.875rem;
+
+  /* ===== Type scale: Caption (12 / 14) ===== */
+  --caption-font-size: 0.75rem;
+  --caption-line-height: 0.875rem;
+
+  /* ===== Type scale: Disclaimer (10 / 12) ===== */
+  --disclaimer-font-size: 0.625rem;
+  --disclaimer-line-height: 0.75rem;
+}

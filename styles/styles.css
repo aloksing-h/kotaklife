@@ -10,6 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
+@import url('variable/color.css');
+@import url('variable/font.css');
+@import url('variable/base.css');
+
 :root {
   /* colors */
   --background-color: white;

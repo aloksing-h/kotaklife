@@ -38,15 +38,16 @@
   overflow: hidden;
 }
 
+.vision .cards-wrapper {
+    padding: 0 50px;
+}
 
 /* Strip bleeds edge-to-edge of the viewport; padding re-aligns cards with the content column */
 .vision .cards > ul {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: 1px solid var(--vision-stroke);
-  border-bottom: 1px solid var(--vision-stroke);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  border-bottom: 1px solid var(--vision-stroke)
 }
 
 .vision .cards > ul > li {
@@ -76,12 +77,12 @@
 .vision .cards > ul > li:first-child::before {
   background:
     radial-gradient(180px 130px at 100% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-    var(--vision-stroke);
+    transparent;
   border-top-right-radius: var(--vision-radius);
 }
 
 .vision .cards > ul > li:nth-child(2)::before {
-    background: radial-gradient(460px 90px at 50% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%), transparent;
+    background: radial-gradient(310px 90px at 50% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%), var(--vision-stroke);
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 }
@@ -89,7 +90,7 @@
 .vision .cards > ul > li:last-child::before {
   background:
     radial-gradient(180px 130px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-    var(--vision-stroke);
+    transparent;
   border-top-left-radius: var(--vision-radius);
 }
 
@@ -190,6 +191,16 @@
    Why Trust section - Layout & Cards block styles
    ============================================ */
 
+main > .section.trust {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trust .cards-wrapper {
+  max-width: 1200px;
+  padding: 0;
+}
+
 .trust .cards > ul {
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
@@ -271,25 +282,20 @@
 }
 
 @media (width >= 900px) {
-  .trust .cards-wrapper {
-    max-width: unset;
-    padding: 0;
-  }
-
   .trust .cards > ul {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     border: none;
     border-top: 1px solid #e9eaeb;
     border-bottom: 1px solid #e9eaeb;
     padding: 0 50px;
+    max-height: 277px;
   }
 
   .trust .cards > ul > li {
-    justify-content: flex-end;
-    gap: 0;
-    min-height: 277px;
-    padding: 16px 16px 24px;
+    justify-content: space-between;
+    padding: 24px 16px;
     border-right: 1px solid #e9eaeb;
+    gap: 105px;
   }
 
   .trust .cards > ul > li:last-child {
@@ -305,9 +311,6 @@
   }
 
   .trust .cards .cards-card-image {
-    position: absolute;
-    top: 24px;
-    left: 16px;
     flex: 0 0 48px;
     width: 48px;
     height: 48px;

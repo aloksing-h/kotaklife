@@ -1,9 +1,7 @@
 /* Vision section - RTE block styles */
 .vision .rte-wrapper {
-  max-width: unset;
-  margin: 0;
   padding: 0 50px;
-  margin-bottom: 48px;
+  margin-bottom: 50px;
 }
 
 /* Heading left, description right - shared by any section using default-title (vision, trust) */
@@ -63,14 +61,7 @@
 /* ============================================
    Why Trust section - RTE block styles
    ============================================ */
-
-.trust.section {
-  padding: 0 20px;
-}
-
 .trust .rte-wrapper {
-  max-width: unset;
-  margin: 0;
   padding: 0;
   margin-bottom: 40px;
 }
@@ -89,7 +80,7 @@
 
 @media (width >= 900px) {
   .trust .rte-wrapper {
-    margin-bottom: 68px;
+    margin-bottom: 50px;
   }
 }
 
