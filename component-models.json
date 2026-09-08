@@ -138,12 +138,16 @@
             "value": "highlight"
           },
           {
-            "name": "Insights Impact Plans",
+            "name": "Insights & Impact Plans",
             "value": "insights-impact-plans"
           },
           {
-            "name": "Popular Searches",
-            "value": "popular-searches"
+            "name": "Term Insurance Plans",
+            "value": "term-insurance-plans"
+          },
+          {
+            "name": "Insurance Plans New",
+            "value": "insurance-plans-new"
           },
           {
             "name": "Dsp None",
@@ -154,12 +158,12 @@
             "value": "dsp-none-appear"
           },
           {
-            "name": "Life Advisor",
-            "value": "life-advisor"
+            "name": "Term Insurance",
+            "value": "term-insurance"
           },
           {
-            "name": "Customer Says",
-            "value": "customer-says"
+            "name": "Insurance Plans",
+            "value": "insurance-plans"
           },
           {
             "name": "Claims",
