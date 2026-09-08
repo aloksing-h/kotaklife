@@ -13,15 +13,17 @@
       "button",
       "title",
       "accordion",
-      "advisor-cta",
       "banner",
       "cards",
       "carousel",
       "columns",
+      "custom-rte",
       "embed",
       "form",
       "fragment",
       "hero",
+      "popular-search",
+      "profile-cta",
       "quote",
       "search",
       "table",
@@ -33,12 +35,6 @@
     "id": "accordion",
     "components": [
       "accordion-item"
-    ]
-  },
-  {
-    "id": "advisor-cta",
-    "components": [
-      "advisor-cta"
     ]
   },
   {
@@ -72,6 +68,26 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "custom-rte",
+    "components": [
+      "custom-rte-item",
+      "custom-image-item",
+      "rte-image-item"
+    ]
+  },
+  {
+    "id": "popular-search",
+    "components": [
+      "popular-search"
+    ]
+  },
+  {
+    "id": "profile-cta",
+    "components": [
+      "profile-cta"
     ]
   },
   {
