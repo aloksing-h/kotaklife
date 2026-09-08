@@ -30,7 +30,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 14px 34px;
 }
 
 .cards.image-card.block > ul > li {
@@ -100,7 +100,7 @@
 .csr-layout.section .cards-wrapper {
   max-width: 100%;
   width: 100%;
-
+  padding: 0;
 
 }
 
@@ -128,6 +128,11 @@
 
   .cards.image-card.block .cards-card-image {
     padding-bottom: 20px;
+  }
+
+  .cards.image-card.block .cards-card-body p {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 
   .cards.image-card.block .cards-card-image img {

@@ -47,10 +47,17 @@
 @media (width >= 900px) {
   /* Reverts the mobile font-sizes so your global desktop typography can take over. 
      You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
-  .rte.explore-cta.block h1,
-  .rte.explore-cta.block p,
-  .rte.explore-cta.block .cta-container a {
-    font-size: unset; 
-    line-height: unset;
+  .rte.explore-cta.block h1{
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
+
+  .rte.explore-cta.block p{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .rte.explore-cta.block .cta-container a{
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
