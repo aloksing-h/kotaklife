@@ -1,97 +1,54 @@
-// import { decorateBlock, loadBlock, decorateIcons } from '../../scripts/aem.js';
+export default function decorate(block) {
+  const items = [...block.children];
 
-// function showYear(block, index) {
-//   const markers = block.querySelectorAll('.timeline-marker-btn');
-//   const panels = block.querySelectorAll('.timeline-panel');
-//   const total = markers.length;
-//   const activeIndex = ((index % total) + total) % total;
+  items.forEach((item) => {
+    item.classList.add('timeline-item');
 
-//   markers.forEach((marker, i) => {
-//     marker.setAttribute('aria-selected', i === activeIndex);
-//   });
-//   panels.forEach((panel, i) => {
-//     panel.setAttribute('aria-hidden', i !== activeIndex);
-//   });
-//   block.dataset.activeYear = activeIndex;
-//   markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
-// }
+    const title = item.children[0];
+    if (title) {
+      title.classList.add('timeline-item__title');
+    }
 
-// export default async function decorate(block) {
-//   const rows = [...block.children];
-//   const nestedBlockLoads = [];
+    const cardsContainer = item.children[1];
+    if (!cardsContainer) return;
 
-//   const nav = document.createElement('div');
-//   nav.className = 'timeline-nav';
+    cardsContainer.classList.add('timeline-item__cards');
 
-//   const line = document.createElement('div');
-//   line.className = 'timeline-line';
+    const children = [...cardsContainer.children];
+    const cards = [];
+    let currentCard = [];
 
-//   const markerList = document.createElement('ol');
-//   markerList.className = 'timeline-markers';
-//   markerList.setAttribute('role', 'tablist');
+    children.forEach((child) => {
+      if (child.tagName === 'HR') {
+        if (currentCard.length > 0) {
+          cards.push(currentCard);
+          currentCard = [];
+        }
+      } else {
+        currentCard.push(child);
+      }
+    });
 
-//   const arrows = document.createElement('div');
-//   arrows.className = 'timeline-arrows';
-//   const prevButton = document.createElement('button');
-//   prevButton.type = 'button';
-//   prevButton.className = 'timeline-arrow timeline-arrow-prev';
-//   prevButton.setAttribute('aria-label', 'Previous year');
-//   prevButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
-//   const nextButton = document.createElement('button');
-//   nextButton.type = 'button';
-//   nextButton.className = 'timeline-arrow timeline-arrow-next';
-//   nextButton.setAttribute('aria-label', 'Next year');
-//   nextButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
-//   arrows.append(prevButton, nextButton);
+    if (currentCard.length > 0) {
+      cards.push(currentCard);
+    }
 
-//   const panelsWrapper = document.createElement('div');
-//   panelsWrapper.className = 'timeline-panels';
+    cardsContainer.innerHTML = '';
+    cards.forEach((cardElements, index) => {
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'timeline-card';
 
-//   rows.forEach((row, index) => {
-//     const yearBlock = row.querySelector('.timeline-year');
-//     const yearText = yearBlock?.children[0]?.textContent.trim() || '';
+      cardElements.forEach((el) => {
+        if (el.querySelector('picture')) {
+          el.classList.add('timeline-card__image');
+        } else {
+          el.classList.add('timeline-card__text');
+        }
+        cardDiv.appendChild(el);
+      });
 
-//     const cardsBlock = yearBlock?.querySelector('.cards');
-//     if (cardsBlock) {
-//       decorateBlock(cardsBlock);
-//       nestedBlockLoads.push(loadBlock(cardsBlock));
-//     }
-
-//     const markerItem = document.createElement('li');
-//     markerItem.className = 'timeline-marker';
-//     const markerButton = document.createElement('button');
-//     markerButton.type = 'button';
-//     markerButton.className = 'timeline-marker-btn';
-//     markerButton.id = `timeline-year-${index}`;
-//     markerButton.setAttribute('role', 'tab');
-//     markerButton.setAttribute('aria-controls', `timeline-panel-${index}`);
-//     markerButton.textContent = yearText;
-//     markerButton.addEventListener('click', () => showYear(block, index));
-//     markerItem.append(markerButton);
-//     markerList.append(markerItem);
-
-//     const panel = document.createElement('div');
-//     panel.className = 'timeline-panel';
-//     panel.id = `timeline-panel-${index}`;
-//     panel.setAttribute('role', 'tabpanel');
-//     panel.setAttribute('aria-labelledby', markerButton.id);
-//     if (yearBlock) panel.append(yearBlock);
-//     panelsWrapper.append(panel);
-
-//     row.remove();
-//   });
-
-//   nav.append(line, markerList, arrows);
-//   block.append(nav, panelsWrapper);
-
-//   prevButton.addEventListener('click', () => {
-//     showYear(block, parseInt(block.dataset.activeYear, 10) - 1);
-//   });
-//   nextButton.addEventListener('click', () => {
-//     showYear(block, parseInt(block.dataset.activeYear, 10) + 1);
-//   });
-
-//   decorateIcons(block);
-//   await Promise.all(nestedBlockLoads);
-//   showYear(block, Math.floor((rows.length - 1) / 2));
-// }
+      cardDiv.dataset.index = index;
+      cardsContainer.appendChild(cardDiv);
+    });
+  });
+}
