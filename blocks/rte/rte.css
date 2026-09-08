@@ -6,8 +6,8 @@
   margin-bottom: 48px;
 }
 
-/* Heading left, description right */
-.vision .rte.default-title > div > div {
+/* Heading left, description right - shared by any section using default-title (vision, trust) */
+.rte.default-title > div > div {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
@@ -45,7 +45,7 @@
     margin-bottom: 40px;
   }
 
-  .vision .rte.default-title > div > div {
+  .rte.default-title > div > div {
     grid-template-columns: 1fr;
     gap: 16px;
   }
@@ -56,6 +56,55 @@
 
   .vision .rte.default-title p {
     max-width: none;
+    justify-self: start;
+  }
+}
+
+/* ============================================
+   Why Trust section - RTE block styles
+   ============================================ */
+
+.trust.section {
+  padding: 0 20px;
+}
+
+.trust .rte-wrapper {
+  max-width: unset;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.trust .rte.default-title p {
+  color: #535862;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  max-width: 420px;
+  text-align: right;
+  justify-self: end;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+@media (width >= 900px) {
+  .trust .rte-wrapper {
+    margin-bottom: 68px;
+  }
+}
+
+@media (width < 900px) {
+  .trust .rte.default-title h1 {
+    line-height: 1.125;
+  }
+
+  .trust .rte.default-title p {
+    color: #717680;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.286;
+    max-width: none;
+    text-align: left;
     justify-self: start;
   }
 }

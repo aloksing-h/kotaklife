@@ -172,7 +172,7 @@
 
   .vision .cards > ul > li:nth-child(2)::before {
     background:
-      radial-gradient(90px 260px at 0 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      radial-gradient(90px 60px at 0 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
       var(--vision-stroke);
     border-radius: var(--vision-radius) 0 0 var(--vision-radius);
   }
@@ -183,5 +183,137 @@
       radial-gradient(130px 180px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
       var(--vision-stroke);
     border-radius: var(--vision-radius) 0 0 0;
+  }
+}
+
+/* ============================================
+   Why Trust section - Layout & Cards block styles
+   ============================================ */
+
+.trust .cards > ul {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid #e9eaeb;
+  margin: 0;
+}
+
+.trust .cards > ul > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 16px;
+  padding: 16px 20px;
+  background-color: #fff;
+  border: none;
+  overflow: hidden;
+}
+
+/* Blurred gradient blob behind the content: blue for odd cards, pink for even */
+.trust .cards > ul > li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../icons/blue-bg-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.trust .cards > ul > li:nth-child(even)::before {
+  background-image: url('../../icons/pink-bg-mobile.svg');
+}
+
+/* Icon */
+.trust .cards .cards-card-image {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+}
+
+.trust .cards .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: auto;
+}
+
+/* Body: <strong> is the title, the text after <br> is the description */
+.trust .cards .cards-card-body {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.trust .cards .cards-card-body p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.286;
+  color: #535862;
+  overflow-wrap: break-word;
+}
+
+.trust .cards .cards-card-body p strong {
+  display: block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.111;
+  color: #181d27;
+  margin-bottom: 12px;
+}
+
+.trust .cards .cards-card-body p br {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .trust .cards-wrapper {
+    max-width: unset;
+    padding: 0;
+  }
+
+  .trust .cards > ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: none;
+    border-top: 1px solid #e9eaeb;
+    border-bottom: 1px solid #e9eaeb;
+    padding: 0 50px;
+  }
+
+  .trust .cards > ul > li {
+    justify-content: flex-end;
+    gap: 0;
+    min-height: 277px;
+    padding: 16px 16px 24px;
+    border-right: 1px solid #e9eaeb;
+  }
+
+  .trust .cards > ul > li:last-child {
+    border-right: none;
+  }
+
+  .trust .cards > ul > li::before {
+    background-image: url('../../icons/blue-bg.svg');
+  }
+
+  .trust .cards > ul > li:nth-child(even)::before {
+    background-image: url('../../icons/pink-bg.svg');
+  }
+
+  .trust .cards .cards-card-image {
+    position: absolute;
+    top: 24px;
+    left: 16px;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .trust .cards .cards-card-body p strong {
+    margin-bottom: 20px;
   }
 }
