@@ -193,5 +193,11 @@
     "components": [
       "tabs-item"
     ]
+  },
+  {
+    "id": "timeline",
+    "components": [
+      "timeline-item"
+    ]
   }
 ]

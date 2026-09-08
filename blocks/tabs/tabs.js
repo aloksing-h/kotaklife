@@ -59,7 +59,7 @@ async function decorateTimeline(block) {
     const button = document.createElement('button');
     button.className = 'tabs-tab timeline-marker-btn';
     button.id = `tab-${id}`;
-    button.innerHTML = `<span class="timeline-marker-dot"></span>${tab.innerHTML}`;
+    button.innerHTML = `<span class="timeline-marker-text">${tab.innerHTML}</span><span class="timeline-marker-dot"></span>`;
     button.setAttribute('aria-controls', `tabpanel-${id}`);
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
@@ -74,9 +74,12 @@ async function decorateTimeline(block) {
     panel.setAttribute('aria-hidden', !!i);
     panel.setAttribute('role', 'tabpanel');
 
+    const description = panel.children[1];
     const cardsContainer = document.createElement('div');
     cardsContainer.className = 'timeline-cards';
-    cardsContainer.innerHTML = panel.innerHTML;
+    if (description) {
+      cardsContainer.innerHTML = description.innerHTML;
+    }
     panel.innerHTML = '';
     panel.append(cardsContainer);
   });
@@ -88,11 +91,13 @@ async function decorateTimeline(block) {
   prevButton.className = 'timeline-arrow timeline-arrow-prev';
   prevButton.type = 'button';
   prevButton.setAttribute('aria-label', 'Previous year');
+  prevButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
 
   const nextButton = document.createElement('button');
   nextButton.className = 'timeline-arrow timeline-arrow-next';
   nextButton.type = 'button';
   nextButton.setAttribute('aria-label', 'Next year');
+  nextButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
 
   arrows.append(prevButton, nextButton);
   tablist.append(arrows);

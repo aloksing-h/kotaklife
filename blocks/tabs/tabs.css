@@ -66,9 +66,11 @@
 
 .tabs.timeline {
   --timeline-line-color: #d5d7da;
-  --timeline-line-active-color: #fa1432;
   --timeline-active-gradient: linear-gradient(-36deg, #fb2c47 0%, #fa1432 0%, #7f2224 100%);
   --timeline-glow-gradient: radial-gradient(circle at 50% 46%, rgb(209 233 255 / 100%) 0%, rgb(132 202 255 / 100%) 100%);
+  --timeline-dot-inactive-stroke: #1e4679;
+  --timeline-active-shadow: #fa1432;
+  --timeline-active-border: #fed0d6;
 
   max-width: 1200px;
   margin: 0 auto;
@@ -81,13 +83,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 24px 0;
+  padding: 24px 0 40px;
 }
 
 /* Dotted Line */
 .tabs.timeline .timeline-line {
   position: absolute;
-  top: 50%;
+  bottom: 16px;
   left: 0;
   right: 56px;
   height: 1px;
@@ -104,7 +106,7 @@
 .tabs.timeline .tabs-list {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
   list-style: none;
   margin: 0;
@@ -115,15 +117,20 @@
 
 /* Marker Button */
 .tabs.timeline .timeline-marker-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   flex: 0 0 auto;
   border: none;
-  border-radius: 999px;
-  padding: 6px 10px;
-  background-color: var(--background-color, #fff);
+  border-radius: 20px;
+  padding: 5px 12px;
+  background-color: transparent;
   color: #666;
   font-family: Manrope, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 18px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
@@ -132,15 +139,21 @@
   margin: 0;
 }
 
+/* Marker Text */
+.tabs.timeline .timeline-marker-text {
+  display: block;
+  white-space: nowrap;
+}
+
 /* Marker Dot */
 .tabs.timeline .timeline-marker-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
+  display: block;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: var(--timeline-line-color);
-  margin-right: 8px;
-  transition: background 0.2s;
+  background-color: #fff;
+  border: 1px solid var(--timeline-dot-inactive-stroke);
+  transition: background 0.2s, border-color 0.2s, width 0.2s, height 0.2s;
 }
 
 /* Active Marker */
@@ -148,11 +161,17 @@
   background: var(--timeline-active-gradient);
   color: #fff;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 5px 16px;
+  border: 1px solid var(--timeline-active-border);
+  border-radius: 20px;
 }
 
 .tabs.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
-  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  background-color: var(--timeline-active-shadow);
+  border: 1px solid var(--timeline-active-shadow);
+  filter: blur(10px);
 }
 
 /* Navigation Arrows */
@@ -175,26 +194,13 @@
   cursor: pointer;
 }
 
-.tabs.timeline .timeline-arrow::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-top: 2px solid #666;
-  border-right: 2px solid #666;
-  transition: border-color 0.2s;
+.tabs.timeline .timeline-arrow img {
+  width: 16px;
+  height: 16px;
 }
 
-.tabs.timeline .timeline-arrow:hover::before {
-  border-color: #333;
-}
-
-.tabs.timeline .timeline-arrow-prev::before {
-  transform: rotate(-135deg);
-}
-
-.tabs.timeline .timeline-arrow-next::before {
-  transform: rotate(45deg);
+.tabs.timeline .timeline-arrow-prev img {
+  transform: rotate(180deg);
 }
 
 /* Panel */
@@ -211,20 +217,15 @@
 
 /* Cards Container */
 .tabs.timeline .timeline-cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 32px 0;
 }
 
 /* Card Items */
 .tabs.timeline .timeline-cards ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding: 0;
   list-style: none;
@@ -232,18 +233,55 @@
 
 .tabs.timeline .timeline-cards ul li {
   position: relative;
-  flex: 1 1 240px;
-  max-width: 260px;
-  border: 1px solid #e9eaeb;
-  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
   background-color: #fff;
-  box-shadow: 0 1px 12px rgb(0 0 0 / 6%);
-  padding: 16px;
+  box-shadow: 0 15px 40px rgb(180 210 240 / 40%);
+  padding: 30px 40px 30px 140px;
 }
 
-/* Staggered Effect */
-.tabs.timeline .timeline-cards ul li:nth-child(even) {
+/* Card Image */
+.tabs.timeline .timeline-cards ul li > img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Overlap Effect - Icon breaks out of card */
+.tabs.timeline .timeline-cards ul li .icon {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-block;
+  width: 160px;
+  height: auto;
+}
+
+.tabs.timeline .timeline-cards ul li .icon img {
+  width: 100%;
+  height: auto;
+}
+
+/* Staggered Effect - 2 per row pattern */
+.tabs.timeline .timeline-cards ul li:nth-child(4n+1),
+.tabs.timeline .timeline-cards ul li:nth-child(4n+3) {
+  margin-top: 0;
+}
+
+.tabs.timeline .timeline-cards ul li:nth-child(4n+2),
+.tabs.timeline .timeline-cards ul li:nth-child(4n+4) {
   margin-top: 40px;
+}
+
+/* Center last card if odd number */
+.tabs.timeline .timeline-cards ul li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: calc(50% - 12px);
 }
 
 .tabs.timeline .timeline-cards ul li::before {
@@ -259,19 +297,14 @@
   transform: translate(-50%, -50%);
 }
 
-/* Card Image */
-.tabs.timeline .timeline-cards ul li img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
 /* Card Text */
 .tabs.timeline .timeline-cards ul li p {
-  margin: 8px 0 0;
-  color: #333;
-  font-size: 14px;
-  line-height: 1.5;
+  margin: 0;
+  color: #535862;
+  font-family: Manrope, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 /* ============================================
@@ -290,14 +323,21 @@
   }
 
   .tabs.timeline .timeline-cards ul {
-    flex-wrap: nowrap;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .tabs.timeline .timeline-cards ul li:nth-child(odd) {
+  .tabs.timeline .timeline-cards ul li:nth-child(4n+1),
+  .tabs.timeline .timeline-cards ul li:nth-child(4n+3) {
     margin-top: -20px;
   }
 
-  .tabs.timeline .timeline-cards ul li:nth-child(even) {
+  .tabs.timeline .timeline-cards ul li:nth-child(4n+2),
+  .tabs.timeline .timeline-cards ul li:nth-child(4n+4) {
     margin-top: 60px;
+  }
+
+  .tabs.timeline .timeline-cards ul li p {
+    font-size: 20px;
+    line-height: 24px;
   }
 }

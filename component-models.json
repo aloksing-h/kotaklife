@@ -732,44 +732,52 @@
     "id": "timeline",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Awards",
+            "value": "awards"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "timeline-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
         "component": "container",
-        "name": "years",
+        "name": "cards",
         "multi": true,
-        "label": "Timeline Years",
+        "label": "Timeline Cards",
         "fields": [
           {
-            "component": "richtext",
-            "name": "year",
-            "value": "",
-            "label": "Year",
-            "valueType": "string"
+            "component": "reference",
+            "valueType": "string",
+            "name": "image",
+            "label": "Image",
+            "multi": false
           },
           {
-            "component": "container",
-            "name": "items",
-            "multi": true,
-            "label": "Award Items",
-            "fields": [
-              {
-                "component": "reference",
-                "valueType": "string",
-                "name": "image",
-                "label": "Image",
-                "multi": false
-              },
-              {
-                "component": "text",
-                "name": "imageAlt",
-                "label": "Alt Text"
-              },
-              {
-                "component": "richtext",
-                "name": "text",
-                "value": "",
-                "label": "Text",
-                "valueType": "string"
-              }
-            ]
+            "component": "text",
+            "name": "imageAlt",
+            "label": "Alt Text"
+          },
+          {
+            "component": "richtext",
+            "name": "text",
+            "value": "",
+            "label": "Text",
+            "valueType": "string"
           }
         ]
       }
