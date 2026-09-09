@@ -13,19 +13,20 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 112px;
   padding: 24px 0;
+  overflow: hidden;
 }
 
 .timeline .timeline-line {
   position: absolute;
-  top: 50%;
+  bottom: 27%; /* Adjust this slightly if the line doesn't hit the center of the dots perfectly */
   left: 0;
   right: 56px;
-  height: 1px;
-  background-image: linear-gradient(to right, var(--timeline-line-color) 0 6px, transparent 6px 8px);
-  background-size: 8px 1px;
-  background-repeat: repeat-x;
+  height: 6px; /* Height of the tick marks */
+  /* Creates the ruler tick mark effect */
+  background-image: repeating-linear-gradient(to right, var(--timeline-line-color) 0, var(--timeline-line-color) 1px, transparent 1px, transparent 8px);
+  z-index: 1;
 }
 
 .timeline .timeline-markers {
@@ -41,24 +42,101 @@
 }
 
 .timeline .timeline-marker-btn {
+  display: flex;
+  flex-direction: column; /* Stacks year on top of dot */
+  align-items: center;
+  gap: 11px; /* Distance between year and dot */
   flex: 0 0 auto;
   border: none;
-  border-radius: 999px;
-  padding: 6px 10px;
-  background-color: var(--background-color, #fff);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-text{
+  background: linear-gradient(7deg, var(--Decorative-Red-decorative-red-400, #FB2C47) -43.93%, var(--Decorative-Red-decorative-red-500, #FA1432) 3.36%, var(--Decorative-Red-decorative-red-900, #7F2224) 88.98%);
+  color: white;
+  font-weight: 600;
+}
+
+/* Remove default paragraph margins inside the button */
+.timeline .timeline-marker-btn .timeline-marker-text {
+  margin: 0;
   color: #666;
   font-family: Manrope, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.timeline .timeline-marker-btn .timeline-marker-text p{
+  margin: 0;
+  padding: 5px 12px;
 }
 
 .timeline .timeline-marker-btn[aria-selected='true'] {
-  background: var(--timeline-active-gradient);
-  color: #fff;
+  background: transparent;
+  color: #666;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 5px 16px;
+}
+/* Add new dot styles (after line 62) */
+.timeline .timeline-marker-btn .timeline-marker-dot {
+  display: block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 1px solid #1E4679;
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.2s;
+  transform-style: preserve-3d;
+}
+
+.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
+width: 12px;
+  height: 12px;
+  background-color: #FA1432;
+  border: 1px solid #FA1432;
+  /* Creates the soft red glow without blurring the dot itself */
+  box-shadow: 0 0 15px 6px rgba(250, 20, 50, 0.25);
+  
+}
+.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(-1px);;
+  
+  /* Covers exactly 7 ticks (3 left + center hidden by dot + 3 right at 8px each) */
+  width: 56px; 
+  /* Taller than the 6px gray track to ensure it fully covers it */
+  height: 8px; 
+  
+  /* 1. Solid background erases the out-of-phase gray lines */
+  background-color: var(--background-color, #fff); 
+  
+  /* 2. Repeating gradient draws perfectly symmetrical red ticks */
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 3px,
+    #FA1432 3px,
+    #FA1432 5px,  /* Creates a 2px wide red tick */
+    transparent 5px,
+    transparent 8px
+  );
+  background-size: 100% 10px; /* Red ticks are 10px tall */
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Remove the previous box-shadow approach */
+  box-shadow: none; 
+  z-index: -2;
 }
 
 .timeline .timeline-arrows {
@@ -244,7 +322,9 @@
   }
 
   .timeline .timeline-cards-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 550px);
+    margin: auto;
+    gap: 0;
   }
 
   .timeline .timeline-card-item:nth-child(4n+1)
@@ -255,6 +335,19 @@
   .timeline .timeline-card-item:nth-child(4n+2),
   .timeline .timeline-card-item:nth-child(4n+4) {
     margin-top: 0px;
+  }
+
+  .timeline .timeline-card-item:nth-child(4n+2){
+    margin-left: 10px;
+  }
+
+  .timeline .timeline-card-item:nth-child(4n+3){
+    margin-left: 42%;
+  }
+
+  
+  .timeline .timeline-card-item:nth-child(4n+4){
+    margin-left: 36%;
   }
 
   .timeline .timeline-card-item p {
