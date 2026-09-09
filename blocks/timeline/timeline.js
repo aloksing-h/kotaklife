@@ -51,29 +51,32 @@ export default function decorate(block) {
   const years = [];
   let currentYear = null;
 
+  // 1. Parse the flat authoring structure
   items.forEach((item) => {
-    const title = item.children[0];
-    const cardsContainer = item.children[1];
+    const firstCol = item.children[0];
+    const secondCol = item.children[1];
 
-    if (!cardsContainer) {
-      const titleText = title ? title.textContent.trim() : '';
+    // Detect if this is a "Year" row (second column is missing or completely empty)
+    const isYearRow = !secondCol || (secondCol.textContent.trim() === '' && secondCol.children.length === 0);
+
+    if (isYearRow) {
+      const titleText = firstCol ? firstCol.textContent.trim() : '';
       if (!titleText) return;
 
-      const existingYear = years.find((y) => y.title === titleText);
-      if (existingYear) {
-        currentYear = existingYear;
+      currentYear = { title: titleText, cards: [], originalElement: item };
+      years.push(currentYear);
+    } else {
+      if (currentYear) {
+        currentYear.cards.push(item);
       } else {
-        currentYear = { title: titleText, cards: [], originalElement: item };
+        // Fallback if cards are authored before any year header
+        currentYear = { title: 'Other', cards: [item], originalElement: item };
         years.push(currentYear);
       }
-    } else if (currentYear) {
-      currentYear.cards.push(item);
-    } else {
-      currentYear = { title: 'Other', cards: [item], originalElement: item };
-      years.push(currentYear);
     }
   });
 
+  // 2. Build the Navigation Tablist
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list timeline-nav';
   tablist.setAttribute('role', 'tablist');
@@ -84,14 +87,16 @@ export default function decorate(block) {
 
   const fragment = document.createDocumentFragment();
 
+  // 3. Construct Panels and Cards
   years.forEach((year, i) => {
     const id = `${toClassName(year.title)}-${i}`;
 
+    // --- Create Nav Button ---
     const button = document.createElement('button');
     button.className = 'tabs-tab timeline-marker-btn';
     button.id = `tab-${id}`;
     button.setAttribute('aria-controls', `tabpanel-${id}`);
-    button.setAttribute('aria-selected', !i);
+    button.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
     button.addEventListener('click', () => showYear(block, i));
@@ -109,12 +114,14 @@ export default function decorate(block) {
     button.appendChild(markerDot);
     tablist.append(button);
 
+    // --- Create Panel for the Year ---
     const panel = document.createElement('div');
     panel.className = 'tabs-panel timeline-panel';
     panel.id = `tabpanel-${id}`;
-    panel.setAttribute('aria-hidden', !!i);
+    panel.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
     panel.setAttribute('role', 'tabpanel');
 
+    // Transfer AEM instrumentation from the authored year row to the new panel
     if (year.originalElement) {
       moveInstrumentation(year.originalElement, panel);
     }
@@ -125,10 +132,12 @@ export default function decorate(block) {
     const cardsList = document.createElement('ul');
     cardsList.className = 'timeline-cards-list';
 
+    // --- Construct Cards ---
     year.cards.forEach((card) => {
       const cardItem = document.createElement('li');
       cardItem.className = 'timeline-card-item';
 
+      // Transfer AEM instrumentation from the authored card row to the list item
       moveInstrumentation(card, cardItem);
 
       const imageContainer = card.children[0];
@@ -140,7 +149,6 @@ export default function decorate(block) {
         while (imageContainer.firstElementChild) {
           cardImage.append(imageContainer.firstElementChild);
         }
-        moveInstrumentation(imageContainer, cardImage);
         cardItem.appendChild(cardImage);
       }
 
@@ -150,7 +158,6 @@ export default function decorate(block) {
         while (textContainer.firstElementChild) {
           cardBody.append(textContainer.firstElementChild);
         }
-        moveInstrumentation(textContainer, cardBody);
         cardItem.appendChild(cardBody);
       }
 
@@ -162,6 +169,7 @@ export default function decorate(block) {
     fragment.appendChild(panel);
   });
 
+  // 4. Create Arrows
   const arrows = document.createElement('div');
   arrows.className = 'timeline-arrows';
 
@@ -194,6 +202,7 @@ export default function decorate(block) {
   arrows.append(prevButton, nextButton);
   tablist.append(arrows);
 
+  // 5. Final Assembly
   block.innerHTML = '';
   block.prepend(tablist);
   block.append(fragment);
