@@ -30,16 +30,9 @@
 }
 
 .custom-cards .custom-cards-card-image picture.secondary-image {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 44px;
-  height: 44px;
-  z-index: 2;
-  background-color: var(--background-color);
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .custom-cards .custom-cards-card-image picture.secondary-image img {
@@ -59,7 +52,7 @@
 /* Card Variations */
 
 /* 1. Horizontal Layout */
-@media (width >=600px) {
+@media (width >=900px) {
   .custom-cards>ul>li.horizontal {
     flex-direction: row;
   }
@@ -104,3 +97,4 @@
 .custom-cards>ul>li.image-overlay .custom-cards-card-body a {
   color: #fff;
 }
+
