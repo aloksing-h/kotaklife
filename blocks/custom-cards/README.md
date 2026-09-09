@@ -1,6 +1,6 @@
 # Custom Cards
 
-The Custom Cards block displays fixed-state Insights & Impact cards in a desktop row and a Swiper carousel on mobile.
+The Custom Cards block displays cards with images, badges, and action links. Cards render in a desktop grid and mobile Swiper carousel when within a `.custom-cards-section`.
 
 ## Universal Editor — Authoring View
 
@@ -28,14 +28,20 @@ The container has no authored fields. Add one or more Custom Card child items.
 | Card Link | AEM Content | Destination opened by the circular card action. |
 | Card Link Text | Text | Accessible label for the card action link. |
 
-The item renders as two authored columns: variation and images in column 1, then badge, title, description, and card link in column 2. Card colors and artwork do not change on hover.
+The item renders as two authored columns: variation and images in column 1, then badge, title, description, and card link in column 2.
 
 ## Responsive Behaviour
 
 | Breakpoint | Behaviour |
 |---|---|
-| Mobile (< 900px) | 280 x 260 cards use Swiper with accessible pagination. |
-| Desktop (>= 900px) | Three 356px cards display in one row; Featured is 382px tall. |
+| Mobile (< 600px) | 280 x 260 cards use Swiper with accessible pagination when within `.custom-cards-section`. |
+| Desktop (>= 600px) | Cards display in a flexible grid layout. |
+
+## Styling & Variants
+
+- **Featured variant**: Apply the `featured` class to a card to display the red treatment (height 382px on desktop).
+- **Badge**: Identified automatically as short text (≤ 20 characters) in the body without links.
+- **Action**: Identified automatically as any link in the body, displayed as a circular button at bottom-left.
 
 ## File Structure
 

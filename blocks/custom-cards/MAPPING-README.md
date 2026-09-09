@@ -2,20 +2,19 @@
 
 ## Source Mapping
 
-The mapping is based on the supplied rendered HTML for the Insights & Impact section.
+The custom-cards block follows the Adobe cards component pattern for simplicity and reusability.
 
 | Source element | EDS mapping | Notes |
 |---|---|---|
 | `.custom-cards` | `custom-cards` block | Matches the EDS block asset folder and selectors. |
-| Direct child row | `custom-cards-item` | One repeatable card. |
-| First cell | Variation and images | `col1_classes` prevents a separate metadata cell. Only Image 1 displays. |
-| Second cell first paragraph | Badge | Category text such as VIDEO, PODCAST, or BLOGS. |
-| Second cell heading | Title | Preserved as the accessible card heading. |
-| Second cell description | Description | Supporting rich text. |
-| Second cell link | Card Link and Card Link Text | Destination and accessible action label. |
-| `.swiper-wrapper` | Slider track | Generated decoration; not authored. |
-| `.swiper-slide` | Slider item | Generated decoration; not authored. |
-| `.swiper-pagination` | Slider pagination | Generated decoration; not authored. |
+| Direct child row | Card item (li element) | One repeatable card. |
+| First div (picture) | `.custom-cards-card-image` | Image positioned absolute, bottom-right. |
+| Second div (content) | `.custom-cards-card-body` | Badge, title, description, and action link. |
+| Badge (short text) | `.custom-cards-card-badge` | Identified automatically: ≤ 20 character paragraph without links. |
+| Link in body | `.custom-cards-card-action` | Wrapped in `.custom-cards-card-action-wrapper`. |
+| `.swiper-wrapper` | Slider track | Generated only on mobile within `.custom-cards-section`. |
+| `.swiper-slide` | Slider item | Generated only on mobile within `.custom-cards-section`. |
+| `.custom-cards-pagination` | Slider pagination | Generated only on mobile within `.custom-cards-section`. |
 
 ## EDS Authoring Structure
 
@@ -25,11 +24,11 @@ The mapping is based on the supplied rendered HTML for the Insights & Impact sec
 
 ## Reuse Guidance
 
-Reuse this block for editorial cards with category badges, illustrations, fixed color states, and a mobile slider. Swiper behavior uses its standard classes so the same slider conventions can be reused elsewhere.
+Reuse this block for editorial cards with badges, images, and action links. Swiper behavior is conditional on the section context (`.custom-cards-section`), allowing the block to be used standalone without mobile carousel.
 
 ## Variants
 
 | Value | Behaviour |
 |---|---|
-| `featured` | Permanently applies the taller red card treatment. |
-| Default | Permanently applies the light-blue card treatment. |
+| `featured` | Applies the taller red card treatment with white text. |
+| Default | Applies the light-blue card treatment. |
