@@ -118,7 +118,7 @@
   margin-bottom: 36px;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
     flex-direction: row;
     align-items: center;
@@ -157,7 +157,7 @@
   margin: 0;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .insights-impact-plans.custom-cards-container .default-content-wrapper p {
     max-width: 460px;
     text-align: right;
@@ -172,7 +172,7 @@
   width: 100%;
 }
 
-.insights-impact-plans .custom-cards > ul {
+.insights-impact-plans .custom-cards>ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -181,14 +181,14 @@
   gap: 24px;
 }
 
-@media (width >= 900px) {
-  .insights-impact-plans .custom-cards > ul {
+@media (width >=900px) {
+  .insights-impact-plans .custom-cards>ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Card Container Base */
-.insights-impact-plans .custom-cards > ul > li {
+.insights-impact-plans .custom-cards>ul>li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -204,7 +204,7 @@
 }
 
 /* Card Content Body */
-.insights-impact-plans .custom-cards-card-body {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -214,7 +214,7 @@
 }
 
 /* Category Pill Tag (First Paragraph in Body) */
-.insights-impact-plans .custom-cards-card-body > p:first-child {
+.insights-impact-plans .custom-cards-card-body>p:first-child {
   display: inline-flex;
   align-items: center;
   border: 1px solid #181d27;
@@ -230,7 +230,7 @@
 }
 
 /* Card Title */
-.insights-impact-plans .custom-cards-card-body h4 {
+.insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: 24px;
   font-weight: 600;
@@ -265,7 +265,7 @@
 }
 
 /* Card Artwork / Media Area */
-.insights-impact-plans .custom-cards-card-image {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image {
   position: absolute;
   right: 16px;
   bottom: 16px;
@@ -275,19 +275,19 @@
   pointer-events: none;
 }
 
-.insights-impact-plans .custom-cards-card-image p {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image p {
   margin: 0;
   width: 100%;
   height: 100%;
 }
 
-.insights-impact-plans .custom-cards-card-image picture {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.insights-impact-plans .custom-cards-card-image img {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -295,11 +295,11 @@
 }
 
 /* Primary vs Secondary Image Visibility */
-.insights-impact-plans .custom-cards-card-image picture.primary-image {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture.primary-image {
   display: block;
 }
 
-.insights-impact-plans .custom-cards-card-image picture.secondary-image {
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture.secondary-image {
   display: none;
 }
 
@@ -307,31 +307,36 @@
    Hover State (Vibrant Red Gradient & Image Toggle)
    ========================================================================== */
 
-.insights-impact-plans .custom-cards > ul > li:hover {
-  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+.insights-impact-plans .custom-cards>ul>li:hover {
+  border-radius: var(--radius-md, 8px);
+  background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(227, 24, 55, 25%);
 }
 
 /* Category Badge Hover */
-.insights-impact-plans .custom-cards > ul > li:hover .custom-cards-card-body > p:first-child {
-  border-color: rgba(255, 255, 255, 80%);
-  color: #fff;
-  background-color: rgba(255, 255, 255, 10%);
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child {
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--border-border-brand-blue, #1E4679);
+  background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
 }
 
 /* Title and Text Hover */
-.insights-impact-plans .custom-cards > ul > li:hover .custom-cards-card-body h4,
-.insights-impact-plans .custom-cards > ul > li:hover .custom-cards-card-body p {
-  color: #fff;
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body h4,
+.insights-impact-plans.section .custom-cards>ul>li:hover .custom-cards-card-body p {
+  color: var(--text-text-tertiary, #535862);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-caption, 12px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-caption, 14px);
 }
 
 /* Image Swap on Hover */
-.insights-impact-plans .custom-cards > ul > li:hover .custom-cards-card-image picture.primary-image {
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
   display: none;
 }
 
-.insights-impact-plans .custom-cards > ul > li:hover .custom-cards-card-image picture.secondary-image {
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
   display: block;
 }
 
@@ -339,19 +344,19 @@
    Mobile Swiper Styling (< 900px)
    ========================================================================== */
 
-@media (width <= 899px) {
+@media (width <=899px) {
   .insights-impact-plans .custom-cards.swiper {
     overflow: visible;
     padding-bottom: 40px;
   }
 
-  .insights-impact-plans .custom-cards > ul.swiper-wrapper {
+  .insights-impact-plans .custom-cards>ul.swiper-wrapper {
     display: flex;
     grid-template-columns: none;
     gap: 0;
   }
 
-  .insights-impact-plans .custom-cards > ul > li.swiper-slide {
+  .insights-impact-plans .custom-cards>ul>li.swiper-slide {
     flex-shrink: 0;
     height: auto;
   }
@@ -395,11 +400,6 @@
   margin-bottom: 0;
 }
 
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child p {
-  text-align: center;
-  margin: 0;
-}
-
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
   display: inline-flex;
   align-items: center;
@@ -420,5 +420,4 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
   background-color: #e31837;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(227, 24, 55, 20%);
 }
