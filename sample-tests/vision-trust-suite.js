@@ -13,10 +13,10 @@
   let fail = 0;
 
   function check(name, actual, expected, tolerance) {
-    if (tolerance === undefined) tolerance = TOLERANCE_PX;
+    const tol = tolerance !== undefined ? tolerance : TOLERANCE_PX;
     const diff = Math.abs(actual - expected);
-    const ok = diff <= tolerance;
-    if (ok) pass++; else fail++;
+    const ok = diff <= tol;
+    if (ok) pass += 1; else fail += 1;
     results.push({
       name,
       actual: Math.round(actual * 10) / 10,
@@ -31,15 +31,18 @@
     let hex = expectedHex.replace('#', '');
     if (hex.length === 3) hex = hex.split('').map((c) => c + c).join('');
     const n = parseInt(hex, 16);
+    // eslint-disable-next-line no-bitwise
     const r = (n >> 16) & 255;
+    // eslint-disable-next-line no-bitwise
     const g = (n >> 8) & 255;
+    // eslint-disable-next-line no-bitwise
     const b = n & 255;
     // Browser may return rgb(r, g, b) or rgba(r, g, b, a)
     const normalised = actualStr.replace(/\s+/g, '').toLowerCase();
     const expected1 = (`rgb(${r},${g},${b})`).toLowerCase();
     const expected2 = (`rgba(${r},${g},${b},1)`).toLowerCase();
     const ok = (normalised === expected1 || normalised === expected2);
-    if (ok) pass++; else fail++;
+    if (ok) pass += 1; else fail += 1;
     results.push({
       name,
       actual: actualStr,
