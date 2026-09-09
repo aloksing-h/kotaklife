@@ -1,101 +1,115 @@
-/* Vision section - RTE block styles */
+/* ============================================
+   Vision section - RTE block styles
+   ============================================ */
+
 .vision .rte-wrapper {
-  padding: 0 50px;
-  margin-bottom: 50px;
+  margin-bottom: var(--spacing-5xl);
+  padding: 0 var(--spacing-2xl);
+}
+.vision .cards-wrapper {
+  padding: 0 var(--spacing-2xl);
 }
 
-/* Heading left, description right - shared by any section using default-title (vision, trust) */
 .rte.default-title > div > div {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   align-items: start;
-  gap: 40px;
+  gap: var(--spacing-xl);
   width: 100%;
 }
 
 .rte.default-title h1 {
-  font-family: Manrope, sans-serif;
-  font-weight: 300;
-  font-size: 48px;
-  line-height: 1.25;
-  color: #181d27;
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
   margin: 0;
   overflow-wrap: break-word;
 }
 
 .rte.default-title h1 strong {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-3-letter-spacing);
 }
 
 .vision .rte.default-title p {
-  color: #717680;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  max-width: 580px;
-  justify-self: end;
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  max-width: none;
+  justify-self: start;
   margin: 0;
   overflow-wrap: break-word;
-}
-
-@media (width < 900px) {
-  .vision .rte-wrapper {
-    margin-bottom: 40px;
-  }
-
-  .rte.default-title > div > div {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .rte.default-title h1 {
-    font-size: 32px;
-  }
-
-  .vision .rte.default-title p {
-    max-width: none;
-    justify-self: start;
-  }
 }
 
 /* ============================================
    Why Trust section - RTE block styles
    ============================================ */
+
 .trust .rte-wrapper {
-  padding: 0;
-  margin-bottom: 40px;
+  padding: 0 var(--spacing-2xl);
+  margin-bottom: var(--spacing-5xl);
 }
 
 .trust .rte.default-title p {
-  color: #535862;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
+  color: var(--text-quaternary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  max-width: 420px;
+  margin: 0;
+}
+
+/* ============================================
+   Desktop overrides (>= 900px) - all sections
+   ============================================ */
+
+@media (width >= 900px) {
+  /* Vision: heading left, description right */
+  .vision .rte-wrapper {
+    margin-bottom: 50px;
+    padding: 0 50px;
+  }
+
+  .rte.default-title > div > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--spacing-5xl);
+    align-items: center;
+  }
+
+  .rte.default-title h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+  }
+
+  .rte.default-title h1 strong {
+    letter-spacing: normal;
+  }
+
+  .vision .rte.default-title p {
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+    max-width: 580px;
+    justify-self: end;
+  }
+
+  /* Trust */
+  .trust .rte-wrapper {
+    padding: 0 50px;
+    margin-bottom: 50px;
+  }
+  
+  .trust .rte.default-title p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-1-font-size);
+  line-height: var(--body-1-line-height);
   max-width: 420px;
   text-align: right;
   justify-self: end;
   margin: 0;
   overflow-wrap: break-word;
 }
-
-@media (width >= 900px) {
-  .trust .rte-wrapper {
-    margin-bottom: 50px;
-  }
-}
-
-@media (width < 900px) {
-  .trust .rte.default-title h1 {
-    line-height: 1.125;
-  }
-
-  .trust .rte.default-title p {
-    color: #717680;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.286;
-    max-width: none;
-    text-align: left;
-    justify-self: start;
-  }
 }

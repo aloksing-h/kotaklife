@@ -4,16 +4,16 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  gap: var(--spacing-3xl);
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  border: 1px solid var(--border-primary);
   background-color: var(--background-color);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: var(--spacing-xl);
 }
 
 .cards .cards-card-image {
@@ -31,37 +31,35 @@
    ============================================ */
 
 .vision {
-  --vision-stroke: #d5d7da;
-  --vision-accent: #fa1432;
+  --vision-stroke: var(--border-primary);
+  --vision-accent: var(--brand-red-500);
   --vision-radius: 40px;
 
   overflow: hidden;
 }
 
-.vision .cards-wrapper {
-    padding: 0 50px;
-}
-
-/* Strip bleeds edge-to-edge of the viewport; padding re-aligns cards with the content column */
 .vision .cards > ul {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
-  border-top: 1px solid var(--vision-stroke);
-  border-bottom: 1px solid var(--vision-stroke)
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid var(--vision-stroke);
+  border-right: 1px solid var(--vision-stroke);
 }
 
 .vision .cards > ul > li {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: var(--spacing-xl);
   min-width: 0;
   border: none;
   background: transparent;
-  padding: 42px 28px;
+  padding: var(--spacing-xl);
   position: relative;
 }
 
-/* 1px ring: rounded on top, grey base with a red glow at one corner */
+/* Left-side glow ring */
 .vision .cards > ul > li::before {
   content: '';
   position: absolute;
@@ -73,32 +71,38 @@
   pointer-events: none;
 }
 
-/* Collapse the doubled hairline where two cards meet */
 .vision .cards > ul > li:first-child::before {
+  inset: 0 0 1px;
+  padding: 0 1px 1px;
   background:
-    radial-gradient(180px 130px at 100% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-    transparent;
-  border-top-right-radius: var(--vision-radius);
+    radial-gradient(130px 180px at 0 100%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+    var(--vision-stroke);
+  border-bottom-left-radius: var(--vision-radius);
 }
 
 .vision .cards > ul > li:nth-child(2)::before {
-    background: radial-gradient(310px 90px at 50% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%), var(--vision-stroke);
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+  background:
+  radial-gradient(90px 60px at 0 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+  radial-gradient(90px 60px at 100% 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+  var(--vision-stroke);
+  border-top-left-radius: var(--vision-radius);
+  border-bottom-left-radius: var(--vision-radius);
 }
 
 .vision .cards > ul > li:last-child::before {
   background:
-    radial-gradient(180px 130px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-    transparent;
-  border-top-left-radius: var(--vision-radius);
+    radial-gradient(130px 180px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+    var(--vision-stroke);
+    border-top-left-radius: var(--vision-radius);
 }
 
 /* Icon */
 .vision .cards .cards-card-image {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
   line-height: 0;
 }
 
@@ -111,6 +115,8 @@
 
 /* Body: <strong> is the title, the text after <br> is the description */
 .vision .cards .cards-card-body {
+  position: relative;
+  z-index: 1;
   margin: 0;
   flex: 1;
   min-width: 0;
@@ -118,73 +124,24 @@
 
 .vision .cards .cards-card-body p {
   margin: 0;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.286;
-  color: #535862;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color: var(--text-tertiary);
   overflow-wrap: break-word;
 }
 
 .vision .cards .cards-card-body p strong {
   display: block;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #181d27;
-  margin-bottom: 20px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--body-1-font-size);
+  line-height: var(--body-1-line-height);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
 }
 
 .vision .cards .cards-card-body p br {
   display: none;
-}
-
-@media (width < 900px) {
-  .vision .cards > ul {
-    margin: 0;
-    grid-template-columns: minmax(0, 1fr);
-    border-top: none;
-    border-bottom: none;
-  }
-
-  .vision .cards > ul > li {
-    border-left: 1px solid #D5D7DA;
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .vision .cards .cards-card-image {
-    flex: 0 0 32px;
-    width: 32px;
-    height: 32px;
-  }
-
-  /* Cards stack vertically: the ring hugs each card and the curve moves to the left edge */
-  .vision .cards > ul > li::before {
-    inset: 0;
-  }
-
-  .vision .cards > ul > li:first-child::before {
-    padding-top: 0;
-    background:
-      radial-gradient(130px 180px at 0 100%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-      var(--vision-stroke);
-    border-radius: 0 0 0 var(--vision-radius);
-  }
-
-  .vision .cards > ul > li:nth-child(2)::before {
-    background:
-      radial-gradient(90px 60px at 0 50%, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-      var(--vision-stroke);
-    border-radius: var(--vision-radius) 0 0 var(--vision-radius);
-  }
-
-  .vision .cards > ul > li:last-child::before {
-    padding-bottom: 0;
-    background:
-      radial-gradient(130px 180px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
-      var(--vision-stroke);
-    border-radius: var(--vision-radius) 0 0 0;
-  }
 }
 
 /* ============================================
@@ -204,20 +161,25 @@ main > .section.trust {
 .trust .cards > ul {
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
-  border: 1px solid #e9eaeb;
-  margin: 0;
+  border-left: 1px solid var(--border-secondary);
+  border-right: 1px solid var(--border-secondary);
+  margin: 0 var(--spacing-2xl);
+  padding: var(--spacing-lg) 0;
 }
 
 .trust .cards > ul > li {
+  box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  gap: 16px;
-  padding: 16px 20px;
-  background-color: #fff;
+  min-height: 156px;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  background-color: var(--bg-primary);
   border: none;
   overflow: hidden;
+  isolation: isolate;
 }
 
 /* Blurred gradient blob behind the content: blue for odd cards, pink for even */
@@ -233,6 +195,18 @@ main > .section.trust {
 
 .trust .cards > ul > li:nth-child(even)::before {
   background-image: url('../../icons/pink-bg-mobile.svg');
+}
+
+/* Glass ribbing: screen-blended so it only reads over the colored gradient, not plain white */
+.trust .cards > ul > li::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../icons/glass-effect-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 /* Icon */
@@ -261,41 +235,105 @@ main > .section.trust {
 
 .trust .cards .cards-card-body p {
   margin: 0;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.286;
-  color: #535862;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color: var(--text-tertiary);
   overflow-wrap: break-word;
 }
 
 .trust .cards .cards-card-body p strong {
   display: block;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.111;
-  color: #181d27;
-  margin-bottom: 12px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--sub-heading-2-font-size);
+  line-height: var(--sub-heading-2-line-height);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
 }
 
 .trust .cards .cards-card-body p br {
   display: none;
 }
 
+/* ============================================
+   Desktop overrides (>= 900px) - all sections
+   ============================================ */
+
 @media (width >= 900px) {
+  /* Vision: 3-column grid with top-edge glow ring */
+  .vision .cards > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--vision-stroke);
+    border-bottom: 1px solid var(--vision-stroke);
+    border-left: none;
+    border-right: none;
+  }
+
+  .vision .cards > ul > li {
+    gap: 18px;
+    padding: 42px 28px;
+  }
+
+  .vision .cards > ul > li::before {
+    inset: -1px 0;
+    padding: 1px;
+    background: var(--vision-stroke);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .vision .cards > ul > li:first-child::before {
+    padding-top: 1px;
+    background:
+      radial-gradient(180px 130px at 100% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      transparent;
+    border-top-right-radius: var(--vision-radius);
+    border-bottom-left-radius: 0;
+    inset: -1px 0px 0px;
+  }
+
+  .vision .cards > ul > li:nth-child(2)::before {
+    background: radial-gradient(310px 90px at 50% 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%), var(--vision-stroke);
+    border-top-left-radius: var(--vision-radius);
+    border-top-right-radius: var(--vision-radius);
+    border-bottom-left-radius: 0;
+  }
+
+  .vision .cards > ul > li:last-child::before {
+    padding-bottom: 1px;
+    background:
+      radial-gradient(180px 130px at 0 0, var(--vision-accent), rgb(250 20 50 / 0%) 70%),
+      transparent;
+    border-top-left-radius: var(--vision-radius);
+    border-bottom-left-radius: 0;
+  }
+
+  .vision .cards .cards-card-image {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .vision .cards .cards-card-body p strong {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  /* Trust: 4-column grid */
   .trust .cards > ul {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     border: none;
-    border-top: 1px solid #e9eaeb;
-    border-bottom: 1px solid #e9eaeb;
+    border-top: 1px solid var(--border-secondary);
+    border-bottom: 1px solid var(--border-secondary);
+    margin: 0;
     padding: 0 50px;
-    max-height: 277px;
   }
 
   .trust .cards > ul > li {
     justify-content: space-between;
-    padding: 24px 16px;
-    border-right: 1px solid #e9eaeb;
-    gap: 105px;
+    min-height: 277px;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+    border-right: 1px solid var(--border-secondary);
   }
 
   .trust .cards > ul > li:last-child {
@@ -310,6 +348,10 @@ main > .section.trust {
     background-image: url('../../icons/pink-bg.svg');
   }
 
+  .trust .cards > ul > li::after {
+    background-image: url('../../icons/glass-effect.svg');
+  }
+
   .trust .cards .cards-card-image {
     flex: 0 0 48px;
     width: 48px;
@@ -317,6 +359,6 @@ main > .section.trust {
   }
 
   .trust .cards .cards-card-body p strong {
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-2xl);
   }
 }
