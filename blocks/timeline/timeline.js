@@ -51,7 +51,6 @@ export default function decorate(block) {
   const years = [];
   let currentYear = null;
 
-  // Group items by year (preserve original elements for moveInstrumentation)
   items.forEach((item) => {
     const title = item.children[0];
     const cardsContainer = item.children[1];
@@ -75,23 +74,19 @@ export default function decorate(block) {
     }
   });
 
-  // Create tablist for navigation
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list timeline-nav';
   tablist.setAttribute('role', 'tablist');
 
-  // Create timeline line
   const line = document.createElement('div');
   line.className = 'timeline-line';
   tablist.append(line);
 
-  // Create document fragment for panels
   const fragment = document.createDocumentFragment();
 
   years.forEach((year, i) => {
     const id = `${toClassName(year.title)}-${i}`;
 
-    // Create tab button
     const button = document.createElement('button');
     button.className = 'tabs-tab timeline-marker-btn';
     button.id = `tab-${id}`;
@@ -114,23 +109,19 @@ export default function decorate(block) {
     button.appendChild(markerDot);
     tablist.append(button);
 
-    // Create panel
     const panel = document.createElement('div');
     panel.className = 'tabs-panel timeline-panel';
     panel.id = `tabpanel-${id}`;
     panel.setAttribute('aria-hidden', !!i);
     panel.setAttribute('role', 'tabpanel');
 
-    // Transfer instrumentation from year's original element to panel
     if (year.originalElement) {
       moveInstrumentation(year.originalElement, panel);
     }
 
-    // Create cards container
     const cardsContainer = document.createElement('div');
     cardsContainer.className = 'timeline-cards';
 
-    // Create cards list
     const cardsList = document.createElement('ul');
     cardsList.className = 'timeline-cards-list';
 
@@ -138,7 +129,6 @@ export default function decorate(block) {
       const cardItem = document.createElement('li');
       cardItem.className = 'timeline-card-item';
 
-      // Transfer instrumentation from card to cardItem
       moveInstrumentation(card, cardItem);
 
       const imageContainer = card.children[0];
@@ -147,11 +137,9 @@ export default function decorate(block) {
       if (imageContainer) {
         const cardImage = document.createElement('div');
         cardImage.className = 'card-image';
-        // Move original elements (preserves instrumentation)
         while (imageContainer.firstElementChild) {
           cardImage.append(imageContainer.firstElementChild);
         }
-        // Transfer instrumentation from imageContainer to cardImage
         moveInstrumentation(imageContainer, cardImage);
         cardItem.appendChild(cardImage);
       }
@@ -159,11 +147,9 @@ export default function decorate(block) {
       if (textContainer) {
         const cardBody = document.createElement('div');
         cardBody.className = 'card-body';
-        // Move original elements (preserves richtext instrumentation)
         while (textContainer.firstElementChild) {
           cardBody.append(textContainer.firstElementChild);
         }
-        // Transfer instrumentation from textContainer to cardBody
         moveInstrumentation(textContainer, cardBody);
         cardItem.appendChild(cardBody);
       }
@@ -176,7 +162,6 @@ export default function decorate(block) {
     fragment.appendChild(panel);
   });
 
-  // Create navigation arrows
   const arrows = document.createElement('div');
   arrows.className = 'timeline-arrows';
 
@@ -209,12 +194,10 @@ export default function decorate(block) {
   arrows.append(prevButton, nextButton);
   tablist.append(arrows);
 
-  // NOW clear block and rebuild (after transferring instrumentation)
   block.innerHTML = '';
   block.prepend(tablist);
   block.append(fragment);
 
-  // Initialize Swiper and show first year
   initSwiper(block);
   showYear(block, 0);
 }

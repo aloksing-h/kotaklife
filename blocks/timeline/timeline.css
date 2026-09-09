@@ -238,11 +238,6 @@ width: 12px;
   margin-top: 40px;
 }
 
-.timeline .timeline-card-item:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: calc(50% - 12px);
-}
 
 .timeline .timeline-card-item::before {
   content: '';
