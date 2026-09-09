@@ -13,42 +13,21 @@ export default function decorate(block) {
     if (!cardsContainer) return;
 
     cardsContainer.classList.add('timeline-item__cards');
+  });
 
-    const children = [...cardsContainer.children];
-    const cards = [];
-    let currentCard = [];
-
-    children.forEach((child) => {
-      if (child.tagName === 'HR') {
-        if (currentCard.length > 0) {
-          cards.push(currentCard);
-          currentCard = [];
-        }
-      } else {
-        currentCard.push(child);
-      }
-    });
-
-    if (currentCard.length > 0) {
-      cards.push(currentCard);
+  // Process timeline cards
+  const cards = block.querySelectorAll('.timeline-card');
+  cards.forEach((card, index) => {
+    const image = card.querySelector('picture');
+    if (image) {
+      image.parentElement.classList.add('timeline-card__image');
     }
 
-    cardsContainer.innerHTML = '';
-    cards.forEach((cardElements, index) => {
-      const cardDiv = document.createElement('div');
-      cardDiv.className = 'timeline-card';
+    const text = card.querySelector('p:not(:has(picture))');
+    if (text) {
+      text.classList.add('timeline-card__text');
+    }
 
-      cardElements.forEach((el) => {
-        if (el.querySelector('picture')) {
-          el.classList.add('timeline-card__image');
-        } else {
-          el.classList.add('timeline-card__text');
-        }
-        cardDiv.appendChild(el);
-      });
-
-      cardDiv.dataset.index = index;
-      cardsContainer.appendChild(cardDiv);
-    });
+    card.dataset.index = index;
   });
 }

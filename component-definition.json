@@ -489,8 +489,22 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Timeline Item",
-                  "model": "timeline-item",
-                  "filter": "timeline-item"
+                  "model": "timeline-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Timeline Card",
+          "id": "timeline-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Timeline Card",
+                  "model": "timeline-card"
                 }
               }
             }

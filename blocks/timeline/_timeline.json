@@ -10,7 +10,7 @@
             "template": {
               "name": "Timeline",
               "model": "timeline",
-              "filter":"timeline"
+              "filter": "timeline"
             }
           }
         }
@@ -25,8 +25,22 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Timeline Item",
-              "model": "timeline-item",
-              "filter":"timeline-item"
+              "model": "timeline-item"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Timeline Card",
+      "id": "timeline-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Timeline Card",
+              "model": "timeline-card"
             }
           }
         }
@@ -35,9 +49,9 @@
   ],
   "models": [
     {
-      "id":"timeline",
-      "fields":[
-          {
+      "id": "timeline",
+      "fields": [
+        {
           "component": "multiselect",
           "name": "classes",
           "label": "Style",
@@ -59,33 +73,30 @@
           "value": "",
           "label": "Title",
           "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "timeline-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
         },
         {
-          "component": "container",
-          "name": "cards",
-          "multi": true,
-          "label": "Timeline Cards",
-          "fields": [
-            {
-              "component": "reference",
-              "valueType": "string",
-              "name": "image",
-              "label": "Image",
-              "multi": false
-            },
-            {
-              "component": "text",
-              "name": "imageAlt",
-              "label": "Alt Text"
-            },
-            {
-              "component": "richtext",
-              "name": "text",
-              "value": "",
-              "label": "Text",
-              "valueType": "string"
-            }
-          ]
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Alt Text"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
         }
       ]
     }
@@ -94,7 +105,8 @@
     {
       "id": "timeline",
       "components": [
-        "timeline-item"
+        "timeline-item",
+        "timeline-card"
       ]
     }
   ]

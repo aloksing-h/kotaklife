@@ -753,33 +753,30 @@
         "value": "",
         "label": "Title",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "timeline-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
-        "component": "container",
-        "name": "cards",
-        "multi": true,
-        "label": "Timeline Cards",
-        "fields": [
-          {
-            "component": "reference",
-            "valueType": "string",
-            "name": "image",
-            "label": "Image",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "name": "imageAlt",
-            "label": "Alt Text"
-          },
-          {
-            "component": "richtext",
-            "name": "text",
-            "value": "",
-            "label": "Text",
-            "valueType": "string"
-          }
-        ]
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   },

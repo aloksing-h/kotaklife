@@ -197,7 +197,8 @@
   {
     "id": "timeline",
     "components": [
-      "timeline-item"
+      "timeline-item",
+      "timeline-card"
     ]
   }
 ]
