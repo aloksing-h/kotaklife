@@ -36,6 +36,18 @@
       "id": "card",
       "fields": [
         {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Block Options",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "insights-impact",
+              "value": "class-insights-impact"
+            }
+          ]
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "image",

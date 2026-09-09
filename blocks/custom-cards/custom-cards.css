@@ -1,0 +1,423 @@
+/* Base Grid Container (Matches standard EDS cards) */
+
+/* eslint-disable */
+.custom-cards>ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.custom-cards>ul>li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--light-color);
+  background-color: var(--background-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image Column & Dual Image Support */
+.custom-cards .custom-cards-card-image {
+  position: relative;
+  line-height: 0;
+}
+
+.custom-cards .custom-cards-card-image picture.primary-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.custom-cards .custom-cards-card-image picture.secondary-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.custom-cards .custom-cards-card-image picture.secondary-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Content Body Column */
+.custom-cards .custom-cards-card-body {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Card Variations */
+
+/* 1. Horizontal Layout */
+@media (width >=900px) {
+  .custom-cards>ul>li.horizontal {
+    flex-direction: row;
+  }
+
+  .custom-cards>ul>li.horizontal .custom-cards-card-image {
+    width: 40%;
+    flex-shrink: 0;
+  }
+
+  .custom-cards>ul>li.horizontal .custom-cards-card-body {
+    width: 60%;
+  }
+}
+
+/* 2. Featured Full-Width Card */
+.custom-cards>ul>li.featured {
+  grid-column: 1 / -1;
+}
+
+/* 3. Image Overlay Card */
+.custom-cards>ul>li.image-overlay {
+  display: grid;
+  grid-template-areas: "card-content";
+}
+
+.custom-cards>ul>li.image-overlay .custom-cards-card-image,
+.custom-cards>ul>li.image-overlay .custom-cards-card-body {
+  grid-area: card-content;
+}
+
+.custom-cards>ul>li.image-overlay .custom-cards-card-body {
+  z-index: 1;
+  margin: 0;
+  padding: 24px;
+  background: linear-gradient(180deg,
+      rgb(0 0 0 / 0%) 0%,
+      rgb(0 0 0 / 80%) 100%);
+  color: #fff;
+  justify-content: flex-end;
+}
+
+.custom-cards>ul>li.image-overlay .custom-cards-card-body a {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Section Level Scoped Styles (.insights-impact-plans)
+   ========================================================================== */
+
+.insights-impact-plans.custom-cards-container {
+  padding: 48px 0;
+  background-color: #fff;
+}
+
+/* Top Header Layout (Title + Subtitle) */
+.insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+@media (width >=900px) {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper h1,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h2,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h3,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
+  width: auto;
+  color: var(--text-text-primary, #181d27);
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper h1 strong,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h2 strong,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h3 strong,
+.insights-impact-plans.custom-cards-container .default-content-wrapper h4 strong {
+  color: var(--text-text-primary, #181d27);
+  font-weight: 700;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper p {
+  color: var(--text-text-tertiary, #535862);
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (width >=900px) {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper p {
+    max-width: 460px;
+    text-align: right;
+  }
+}
+
+/* ==========================================================================
+   Block & Cards Layout
+   ========================================================================== */
+
+.insights-impact-plans .custom-cards-wrapper .custom-cards {
+  width: 100%;
+}
+
+.insights-impact-plans .custom-cards>ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (width >=900px) {
+  .insights-impact-plans .custom-cards>ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card Container Base */
+.insights-impact-plans .custom-cards>ul>li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f4f8fa;
+  border-radius: 20px;
+  padding: 28px;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: background 0.35s ease, transform 0.3s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+/* Card Content Body */
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Category Pill Tag (First Paragraph in Body) */
+.insights-impact-plans .custom-cards-card-body>p:first-child {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #181d27;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #181d27;
+  margin: 0 0 4px;
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Card Title */
+.insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: #181d27;
+  margin: 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+/* Card Description */
+.insights-impact-plans .custom-cards-card-body p:nth-child(3) {
+  font-size: 15px;
+  color: #535862;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Play / Action Icon Wrapper (Last Child in Body) */
+.insights-impact-plans .custom-cards-card-body p:last-child {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.insights-impact-plans .custom-cards-card-body .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease;
+}
+
+/* Card Artwork / Media Area */
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 180px;
+  height: 140px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image p {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Primary vs Secondary Image Visibility */
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture.primary-image {
+  display: block;
+}
+
+.insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture.secondary-image {
+  display: none;
+}
+
+/* ==========================================================================
+   Hover State (Vibrant Red Gradient & Image Toggle)
+   ========================================================================== */
+
+.insights-impact-plans .custom-cards>ul>li:hover {
+  border-radius: var(--radius-md, 8px);
+  background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+  transform: translateY(-6px);
+}
+
+/* Category Badge Hover */
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child {
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--border-border-brand-blue, #1E4679);
+  background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+}
+
+/* Title and Text Hover */
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body h4,
+.insights-impact-plans.section .custom-cards>ul>li:hover .custom-cards-card-body p {
+  color: var(--text-text-tertiary, #535862);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-caption, 12px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-caption, 14px);
+}
+
+/* Image Swap on Hover */
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
+  display: none;
+}
+
+.insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
+  display: block;
+}
+
+/* ==========================================================================
+   Mobile Swiper Styling (< 900px)
+   ========================================================================== */
+
+@media (width <=899px) {
+  .insights-impact-plans .custom-cards.swiper {
+    overflow: visible;
+    padding-bottom: 40px;
+  }
+
+  .insights-impact-plans .custom-cards>ul.swiper-wrapper {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+  }
+
+  .insights-impact-plans .custom-cards>ul>li.swiper-slide {
+    flex-shrink: 0;
+    height: auto;
+  }
+
+  /* Swiper Pagination Dots */
+  .insights-impact-plans .custom-cards .swiper-pagination {
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .insights-impact-plans .custom-cards .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #d1d5db;
+    opacity: 1;
+    border-radius: 50%;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+  }
+
+  .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {
+    width: 28px;
+    height: 8px;
+    background-color: #e31837;
+    border-radius: 4px;
+  }
+}
+
+/* ==========================================================================
+   Bottom "Know More" CTA Button
+   ========================================================================== */
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36px;
+  margin-bottom: 0;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 1.5px solid #e31837;
+  border-radius: 30px;
+  color: #e31837;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
+  background-color: #e31837;
+  color: #fff;
+}
