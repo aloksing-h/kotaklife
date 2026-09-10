@@ -328,8 +328,6 @@ width: 12px;
   margin-top: 40px;
 }
 
-
-@media (width >= 900px) {
   .timeline.awards.block .timeline-markers {
     overflow-x: visible;
   }
@@ -371,5 +369,86 @@ width: 12px;
   .timeline.awards.block .timeline-panel .cards > ul {
     flex-wrap: nowrap;
   }
+@media (width <= 900px) {
+  .timeline.awards.block{
+    padding: 0;
+  }
+  .timeline.awards.block .timeline-nav{
+    padding-bottom: 40px;
+  }
+  /* 1. Move arrows to the top right */
+  .timeline.awards.block .timeline-arrows {
+    top: -27px; 
+    right: 16px;
+  }
+  .timeline.awards.block .timeline-cards{
+    padding: 0;
+  }
 
+  /* 2. Tighten track space */
+  .timeline.awards.block .timeline-track {
+    gap: 67px; 
+  }
+  .timeline.awards.block .timeline-marker-btn[aria-selected='true']{
+    padding: 0;
+  }
+  /* 3. Force single-column list */
+  .timeline.awards.block .timeline-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+  }
+
+  /* 4. Parent item needs a hard height to prevent collapsing! */
+  .timeline.awards.block .timeline-card-item {
+    width: 188px; 
+    max-width: 188px;
+    max-height: 100px;
+  }
+
+  /* 5. Staggered layout (added !important to ensure desktop margins don't bleed in) */
+  .timeline.awards.block .timeline-card-item:nth-child(odd) {
+    margin: 0 0 0 90px; 
+  }
+  .timeline.awards.block .timeline-card-item:nth-child(even) {
+    margin: 0 auto 0 0 ; 
+  }
+
+  /* 6. Card Body Settings */
+  .timeline.awards.block .timeline-card-item .card-body {
+    position: absolute;
+    left: 23%;
+    top: 64%;     
+    right: 0;
+    bottom: auto;       
+    transform: translateY(-50%);
+    width: 79px;    
+    padding: 12px 12px 12px 52px;
+    box-sizing: content-box;
+  }
+
+  /* 7. Cleaned up paragraph text size */
+  .timeline.awards.block .timeline-card-item .card-body p {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+  }
+
+  /* 8. Image vertical centering */
+  .timeline.awards.block .timeline-card-item .card-image {
+    position: absolute;
+    left: 0;
+    top: 50%; /* Centers the image perfectly relative to the new 110px height */
+    transform: translateY(-50%); /* Safely counters the 50% drop */
+    max-width: 86px;
+    max-height: 100px;
+    z-index: 2;
+  }
+
+  .timeline.awards.block .timeline-card-item::before{
+    width: 100px;
+    height: 50px;
+    top: 63%;
+  }
 }
