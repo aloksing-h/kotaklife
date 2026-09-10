@@ -467,7 +467,7 @@
     "id": "tab-panel",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "name": "tab-label",
         "label": "Label"
       }
