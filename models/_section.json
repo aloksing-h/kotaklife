@@ -137,7 +137,8 @@
         "search",
         "table",
         "tabs",
-        "video"
+        "video",
+        "tab-list"
       ]
     }
   ]
