@@ -115,7 +115,7 @@
               "value": "subnav"
             },
             {
-              "Name":"Slider Title",
+              "name":"Slider Title",
               "value":"slider-title"
             }
           ]
