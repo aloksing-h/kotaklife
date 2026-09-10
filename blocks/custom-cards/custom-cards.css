@@ -111,7 +111,7 @@
 
 /* Top Header Layout (Title + Subtitle) */
 .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   gap: 16px;

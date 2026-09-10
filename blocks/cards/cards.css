@@ -58,6 +58,7 @@
   font-weight: 300;
   line-height: 1.25;
   margin: 0;
+  padding: 0 24px;
 }
 
 .growing-insurance-company .default-content-wrapper h3 strong {
@@ -73,11 +74,13 @@
   font-weight: 500;
   line-height: 1.5;
   margin: 0;
+  padding: 0 24px;
 }
 
 .growing-insurance-company .cards-wrapper {
   order: 3;
-  width: 100%;
+
+  /* width: 100%; */
 }
 
 /* CTA "Know More" Button (Mobile Bottom Centered) */
