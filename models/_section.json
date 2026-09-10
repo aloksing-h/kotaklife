@@ -13,6 +13,23 @@
           }
         }
       }
+    },
+    {
+      "title": "Tab Panel",
+      "id": "tab-panel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "name": "Tab Panel",
+              "model": "tab-panel",
+              "filter": "section",
+              "tab-label": "Tab"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
