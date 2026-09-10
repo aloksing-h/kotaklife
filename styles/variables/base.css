@@ -5,6 +5,9 @@
  *   - Effect styles / Shadows page (node 47:3868)
  */
 
+@import url('./colors.css');
+@import url('./fonts.css');
+
 :root {
   /* ===== Spacing primitives (rem scale) ===== */
   --spacing-0: 0rem;
