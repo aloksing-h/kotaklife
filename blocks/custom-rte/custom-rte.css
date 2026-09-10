@@ -1,0 +1,270 @@
+/* ==========================================================================
+   Get Cover Plans Section Baseline (Mobile First < 900px)
+   ========================================================================== */
+
+.get-cover-plans.section {
+  padding: 40px 16px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.get-cover-plans .default-content-wrapper {
+  margin-bottom: 36px;
+}
+
+/* Headings & Subtitles */
+.get-cover-plans .default-content-wrapper h3 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 300;
+  color: #181d27;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.get-cover-plans .default-content-wrapper h3 strong {
+  font-weight: 700;
+  color: #181d27;
+}
+
+.get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  color: #535862;
+  margin: 12px 0 24px;
+  line-height: 1.5;
+}
+
+/* CTA "Calculate Your Premium" Pill Button */
+.get-cover-plans .default-content-wrapper a.get-cover-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 24px;
+  background-color: #e31837;
+  color: #fff;
+  border-radius: 30px;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+
+  /* box-shadow: 0 4px 14px rgba(227, 24, 55, 0.25); */
+  transition: all 0.3s ease;
+}
+
+.get-cover-plans .default-content-wrapper a.get-cover-cta:hover {
+  background-color: #a71930;
+
+  /* box-shadow: 0 6px 18px rgba(167, 25, 48, 0.35); */
+}
+
+.get-cover-plans .default-content-wrapper .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  color: #e31837;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   3D Card Deck Stack Styling
+   ========================================================================== */
+
+.get-cover-plans .custom-rte-wrapper {
+  width: 100%;
+}
+
+.get-cover-plans .custom-rte {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.get-cover-plans .custom-rte-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: 330px;
+}
+
+/* Stack Card Base */
+.get-cover-plans .custom-rte-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 32px);
+  height: 290px;
+  border-radius: 20px;
+  padding: 28px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              z-index 0.4s ease,
+              background 0.4s ease,
+              opacity 0.4s ease;
+}
+
+/* 1. Active / Front Card (Gradient Red) */
+.get-cover-plans .custom-rte-card.is-active {
+  z-index: 3;
+  transform: translate(0, 0) scale(1);
+  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+
+  /* box-shadow: 0 16px 32px rgba(167, 25, 48, 0.3); */
+  color: #fff;
+}
+
+/* 2. Middle Card Layer (Dark Navy) */
+.get-cover-plans .custom-rte-card.stack-layer-1 {
+  z-index: 2;
+  transform: translate(14px, 6px) scale(0.98);
+  background: #102a45;
+  color: #fff;
+  opacity: 0.95;
+}
+
+/* 3. Back Card Layer (Dark Burgundy) */
+.get-cover-plans .custom-rte-card.stack-layer-2 {
+  z-index: 1;
+  transform: translate(26px, 12px) scale(0.96);
+  background: #6b1220;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.get-cover-plans .custom-rte-card.stack-hidden {
+  z-index: 0;
+  transform: translate(32px, 16px) scale(0.94);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Top-Right Plan Badge */
+.get-cover-plans .plan-badge {
+  align-self: flex-end;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Card Body Typography */
+.get-cover-plans .plan-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.get-cover-plans .plan-card-body li {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.get-cover-plans .plan-card-body li strong {
+  font-weight: 700;
+}
+
+.get-cover-plans .plan-card-body li:last-child {
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* Step Pagination Indicator (01 -- 02 03) */
+.get-cover-plans .plan-pagination {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 12px;
+  margin-top: 16px;
+}
+
+.get-cover-plans .steps-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.get-cover-plans .step-indicator {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: #98a2b3;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.get-cover-plans .step-indicator.is-active {
+  color: #e31837;
+  font-size: 15px;
+}
+
+.get-cover-plans .progress-track {
+  width: 80px;
+  height: 2px;
+  background-color: #eaecf0;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Desktop Layer Extensions (@media (min-width: 900px))
+   ========================================================================== */
+
+@media (width >= 900px) {
+  .get-cover-plans.section {
+    padding: 64px 32px;
+  }
+
+  .get-cover-plans.section > div {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .get-cover-plans .default-content-wrapper {
+    margin-bottom: 0;
+  }
+
+  .get-cover-plans .default-content-wrapper h3 {
+    font-size: 48px;
+  }
+
+  .get-cover-plans .custom-rte {
+    max-width: 420px;
+    margin-left: auto;
+  }
+
+  .get-cover-plans .custom-rte-cards {
+    height: 350px;
+  }
+
+  .get-cover-plans .custom-rte-card {
+    height: 320px;
+  }
+}
