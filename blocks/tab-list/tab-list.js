@@ -83,9 +83,9 @@ export default async function decorate(block) {
     // Add image if available
     if (image) {
       const imgElement = document.createElement('img');
-      // Remove query parameters from the image URL to make it domain-agnostic
-      const [cleanImageSrc] = image.split('?');
-      imgElement.src = cleanImageSrc;
+      // Extract just the path from the full URL (removes domain and query parameters)
+      const [imageUrl] = image.split('?');
+      imgElement.src = new URL(imageUrl).pathname;
       imgElement.alt = tabLabel;
       imgElement.classList.add('tab-image');
       tabItem.appendChild(imgElement);
