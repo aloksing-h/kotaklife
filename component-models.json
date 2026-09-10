@@ -259,6 +259,27 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Block Options",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Trust Style",
+            "value": "trust-style"
+          },
+          {
+            "name": "Vision Style",
+            "value": "vision-style"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
