@@ -31,12 +31,6 @@
     ]
   },
   {
-    "id": "tab-panel",
-    "components": [
-      "tab-list"
-    ]
-  },
-  {
     "id": "accordion",
     "components": [
       "accordion-item"

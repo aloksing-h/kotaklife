@@ -157,12 +157,6 @@
         "video",
         "tab-list"
       ]
-    },
-    {
-      "id": "tab-panel",
-      "components": [
-        "tab-list"
-      ]
     }
   ]
 }
