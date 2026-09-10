@@ -110,7 +110,7 @@
 }
 
 /* Top Header Layout (Title + Subtitle) */
-.insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+.insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -121,7 +121,7 @@
 }
 
 @media (width >=900px) {
-  .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -251,17 +251,6 @@
   margin-bottom: 8px;
 }
 
-/* Card Description */
-.insights-impact-plans .custom-cards-card-body p:nth-child(3) {
-  font-family: var(--font-family-font-family-body, Manrope);
-  font-size: 16px;
-  color: #535862;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
 /* Play / Action Icon Wrapper (Last Child in Body) */
 .insights-impact-plans .custom-cards-card-body p:last-child {
   position: absolute;
@@ -270,6 +259,18 @@
   margin: 0;
   width: 36px;
   height: 36px;
+}
+
+/* Card Description */
+.insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4 + p,
+.insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 16px;
+  color: #535862;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+  transition: color 0.3s ease;
 }
 
 .insights-impact-plans .custom-cards-card-body .icon {
@@ -405,7 +406,7 @@
     border-radius: 4px;
   }
 
-  .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
     padding-inline: 16px;
     gap: 8px;
     margin-bottom: 25px;
@@ -433,7 +434,8 @@
     line-height: 20px;
   }
 
-  .insights-impact-plans .custom-cards-card-body p:nth-child(3) {
+  .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4 +p,
+  .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
     line-height: 18px;
   }
