@@ -264,8 +264,7 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "label": "Block Options",
-        "valueType": "array",
+        "label": "Style",
         "options": [
           {
             "name": "Trust Style",
