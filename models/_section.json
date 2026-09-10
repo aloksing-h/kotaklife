@@ -137,7 +137,12 @@
         "search",
         "table",
         "tabs",
-        "video",
+        "video"
+      ]
+    },
+    {
+      "id": "tab-panel",
+      "components": [
         "tab-list"
       ]
     }

@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tab-panel"
     ]
   },
   {
@@ -25,7 +26,12 @@
       "search",
       "table",
       "tabs",
-      "video",
+      "video"
+    ]
+  },
+  {
+    "id": "tab-panel",
+    "components": [
       "tab-list"
     ]
   },
