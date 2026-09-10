@@ -1,11 +1,23 @@
 .rte.explore-cta.block h1 {
-  font-size: 1.875rem;
-  line-height: 2.375rem;
+  
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  font-weight: var(--font-weight-light);
+  margin: 0 0 6px 0 ;
+}
+
+.rte.explore-cta.block h1 strong{
+  margin: 0;
+  font-weight: 600;
 }
 
 .rte.explore-cta.block p {
-  font-size: 0.875rem;
-  line-height: 1.5rem;
+  margin: 0 0 20px 0;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color:var(--gray-600);
+  font-weight: var(--font-weight-medium);
+
 }
 
 .rte.explore-cta.block .cta-container {
@@ -22,8 +34,9 @@
   padding: 6px 6px 6px 24px;
   gap: 16px;
   text-decoration: none;
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-2-font-size);
+  line-height: var(--button-2-line-height);
 }
 
 .rte.explore-cta.block .cta-container span {
@@ -48,18 +61,23 @@
   /* Reverts the mobile font-sizes so your global desktop typography can take over. 
      You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
   .rte.explore-cta.block h1{
-    font-size: 3rem;
-    line-height: 3.75rem;
+      margin: 0 0 8px 0 ;
+      font-size: var(--heading-1-font-size);
+      line-height: var(--heading-1-line-height);
+      font-weight: var(--font-weight-light);
   }
 
   .rte.explore-cta.block p{
-    font-size: 1rem;
-    line-height: 1.5rem;
+    margin: 0 0 16px 0;
+  font-size: var(--body-1-font-size);
+  line-height: var(--body-1-line-height);
+  
   }
 
   .rte.explore-cta.block .cta-container a{
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-1-font-size);
+  line-height: var(--button-1-line-height);
   }
 }/* ============================================
    Vision section - RTE block styles

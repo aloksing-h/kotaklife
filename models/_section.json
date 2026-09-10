@@ -113,6 +113,10 @@
             {
               "name": "Sub navigation",
               "value": "subnav"
+            },
+            {
+              "Name":"Slider Title",
+              "value":"slider-title"
             }
           ]
         }
