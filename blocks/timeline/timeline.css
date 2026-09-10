@@ -340,6 +340,8 @@ width: 12px;
 }
 
 .slider-title.section h1{
+  margin: 0;
+  padding-right:80px ;
   font-size: var(--heading-3-font-size);
   line-height: var(--heading-3-line-height);
   font-weight: var(--font-weight-light);
@@ -358,8 +360,10 @@ width: 12px;
     padding: 24px 0 64px;
   }
 
+  /* margin-left leaves room for the absolutely positioned slider-title heading */
   .timeline.awards.block .timeline-track {
     gap: 112px;
+    margin-left: 260px;
   }
 
   .timeline.awards.block .timeline-markers {
@@ -435,16 +439,36 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-card-item .card-body p {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+    font-weight: var(--font-weight-regular);
   }
 
   .timeline.awards.block .timeline-panel .cards > ul {
     flex-wrap: nowrap;
   }
+  .slider-title.section{
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 50px;
 
+  }
   .slider-title.section h1{
-  font-size: var(--heading-1-font-size);
-  line-height: var(--heading-1-line-height);
-}
+    padding: 0;
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+  }
+
+  /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
+  .slider-title.section > div:first-child {
+    position: absolute;
+    top: 24px;
+    left: 51px;
+    max-width: 342px;
+    margin: 0;
+    padding: 0;
+    z-index: 5;
+    background-color: var(--base-white);
+  }
 }
