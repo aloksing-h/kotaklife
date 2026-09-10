@@ -464,6 +464,27 @@
     ]
   },
   {
+    "id": "tab-panel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tab-label",
+        "label": "Label"
+      }
+    ]
+  },
+  {
+    "id": "tab-list",
+    "fields": [
+      {
+        "component": "boolean",
+        "name": "classes_showAll",
+        "label": "Show All?",
+        "description": "When enabled, the tab list will prepend a show all button."
+      }
+    ]
+  },
+  {
     "id": "table",
     "fields": [
       {
