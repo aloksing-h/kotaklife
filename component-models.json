@@ -204,6 +204,18 @@
           {
             "name": "CSR Layout",
             "value": "csr-layout"
+          },
+          {
+            "name": "Our Vision",
+            "value": "vision"
+          },
+          {
+            "name": "Why Trust",
+            "value": "trust"
+          },
+          {
+            "name": "Sub navigation",
+            "value": "subnav"
           }
         ]
       }
@@ -258,10 +270,23 @@
     "id": "cards",
     "fields": [
       {
-        "component": "multiselect",
+        "component": "select",
         "name": "classes",
         "label": "Style",
+        "valueType": "string",
         "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Trust Style",
+            "value": "trust-style"
+          },
+          {
+            "name": "Vision Style",
+            "value": "vision-style"
+          },
           {
             "name": "Image Card",
             "value": "image-card"
@@ -626,6 +651,10 @@
           {
             "name": "Explore CTA",
             "value": "explore-cta"
+          },
+          {
+            "name": "Default Title",
+            "value": "default-title"
           }
         ]
       }

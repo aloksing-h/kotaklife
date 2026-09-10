@@ -50,6 +50,10 @@
             {
               "name": "Explore CTA",
               "value":"explore-cta"
+            },
+            {
+              "name": "Default Title",
+              "value": "default-title"
             }
           ]
         }

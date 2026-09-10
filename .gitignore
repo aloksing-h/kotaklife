@@ -17,3 +17,6 @@ token.txt
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# Visual test artifacts
+tests/*

@@ -101,6 +101,18 @@
             {
                 "name":"CSR Layout",
                 "value":"csr-layout"
+            },
+            {
+              "name": "Our Vision",
+              "value": "vision"
+            },
+            {
+              "name": "Why Trust",
+              "value": "trust"
+            },
+            {
+              "name": "Sub navigation",
+              "value": "subnav"
             }
           ]
         }
@@ -131,6 +143,7 @@
         "search",
         "table",
         "tabs",
+        "subnav",
         "video",
         "rte",
         "timeline"
