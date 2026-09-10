@@ -265,6 +265,7 @@
         "component": "multiselect",
         "name": "classes",
         "label": "Style",
+        "valueType": "string",
         "options": [
           {
             "name": "Trust Style",
