@@ -50,6 +50,10 @@
             {
               "name": "Default Title",
               "value": "default-title"
+            },
+            {
+              "name": "Sub Navigation",
+              "value": "subnav"
             }
           ]
         }
