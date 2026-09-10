@@ -358,15 +358,17 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-cards-list {
-    display: grid;
-    grid-template-columns: repeat(2, 550px);
+    display: flex;
+    flex-flow: row wrap;
+    width: 1100px;
     margin: auto;
     gap: 0;
     padding: 0;
   }
 
   .timeline.awards.block .timeline-card-item {
-    width: auto;
+    flex: 0 0 auto;
+    width: 319px;
     max-width: 319px;
     max-height: none;
   }
@@ -388,20 +390,21 @@ width: 12px;
     padding: 26px 23px 26px 92px;
   }
 
+  /* Left margins place each card within its 550px half of the 1100px row */
   .timeline.awards.block .timeline-card-item:nth-child(4n+1) {
-    margin: 46.33px 0 0 0;
+    margin: 46.33px 0 0;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+2) {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 238px;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+3) {
-    margin: 0 0 0 42%;
+    margin: 0 0 0 340px;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
-    margin: 0 0 0 36%;
+    margin: 0 0 0 122px;
   }
 
   .timeline.awards.block .timeline-card-item::before {
