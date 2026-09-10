@@ -40,7 +40,7 @@
           "component": "multiselect",
           "name": "classes",
           "label": "Style",
-          "valueType": "string",
+          "valueType": "array",
           "options": [
             {
               "name": "Trust Style",
