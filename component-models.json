@@ -208,6 +208,10 @@
           {
             "name": "Why Trust",
             "value": "trust"
+          },
+          {
+            "name": "Sub navigation",
+            "value": "subnav"
           }
         ]
       }
@@ -651,18 +655,6 @@
         "component": "aem-content",
         "name": "source",
         "label": "Search Index"
-      }
-    ]
-  },
-  {
-    "id": "subnav",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "links",
-        "value": "",
-        "label": "Navigation Links",
-        "description": "Add a list of links. Each list item becomes a tab."
       }
     ]
   },

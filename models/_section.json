@@ -105,6 +105,10 @@
             {
               "name": "Why Trust",
               "value": "trust"
+            },
+            {
+              "name": "Sub navigation",
+              "value": "subnav"
             }
           ]
         }
