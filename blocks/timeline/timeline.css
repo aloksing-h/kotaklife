@@ -1,35 +1,42 @@
-.timeline {
+@import url('./swiper.css');
+
+.timeline.awards.block {
   --timeline-line-color: #d5d7da;
   --timeline-line-active-color: #fa1432;
   --timeline-active-gradient: linear-gradient(-36deg, #fb2c47 0%, #fa1432 0%, #7f2224 100%);
   --timeline-glow-gradient: radial-gradient(circle at 50% 46%, rgb(209 233 255 / 100%) 0%, rgb(132 202 255 / 100%) 100%);
-
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
-.timeline .timeline-nav {
+.timeline.awards.block .timeline-nav {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 112px;
-  padding: 24px 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  padding: 24px 0 64px 0;
 }
 
-.timeline .timeline-line {
+.timeline.awards.block .timeline-line {
   position: absolute;
-  bottom: 27%; /* Adjust this slightly if the line doesn't hit the center of the dots perfectly */
-  left: 0;
-  right: 56px;
-  height: 6px; /* Height of the tick marks */
-  /* Creates the ruler tick mark effect */
+  bottom: 11%; 
+  height: 6px;
+  left: 25px; 
+  right: 25px;
   background-image: repeating-linear-gradient(to right, var(--timeline-line-color) 0, var(--timeline-line-color) 1px, transparent 1px, transparent 8px);
   z-index: 1;
 }
 
-.timeline .timeline-markers {
+.timeline.awards.block .timeline-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 112px;
+  width: max-content; /* Forces parent to be exactly as wide as the items + gaps */
+  min-width: 100%;
+}
+
+.timeline.awards.block .timeline-markers {
   position: relative;
   display: flex;
   align-items: center;
@@ -41,7 +48,7 @@
   scroll-behavior: smooth;
 }
 
-.timeline .timeline-marker-btn {
+.timeline.awards.block .timeline-marker-btn {
   display: flex;
   flex-direction: column; /* Stacks year on top of dot */
   align-items: center;
@@ -53,14 +60,14 @@
   cursor: pointer;
 }
 
-.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-text{
+.timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-text{
   background: linear-gradient(7deg, var(--Decorative-Red-decorative-red-400, #FB2C47) -43.93%, var(--Decorative-Red-decorative-red-500, #FA1432) 3.36%, var(--Decorative-Red-decorative-red-900, #7F2224) 88.98%);
   color: white;
   font-weight: 600;
 }
 
 /* Remove default paragraph margins inside the button */
-.timeline .timeline-marker-btn .timeline-marker-text {
+.timeline.awards.block .timeline-marker-btn .timeline-marker-text {
   margin: 0;
   color: #666;
   font-family: Manrope, sans-serif;
@@ -71,19 +78,19 @@
   border-radius: 20px;
 }
 
-.timeline .timeline-marker-btn .timeline-marker-text p{
+.timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
   margin: 0;
   padding: 5px 12px;
 }
 
-.timeline .timeline-marker-btn[aria-selected='true'] {
+.timeline.awards.block .timeline-marker-btn[aria-selected='true'] {
   background: transparent;
   color: #666;
   font-weight: 600;
   padding: 5px 16px;
 }
 /* Add new dot styles (after line 62) */
-.timeline .timeline-marker-btn .timeline-marker-dot {
+.timeline.awards.block .timeline-marker-btn .timeline-marker-dot {
   display: block;
   position: relative;
   width: 12px;
@@ -96,7 +103,7 @@
   transform-style: preserve-3d;
 }
 
-.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
+.timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
 width: 12px;
   height: 12px;
   background-color: #FA1432;
@@ -105,7 +112,7 @@ width: 12px;
   box-shadow: 0 0 15px 6px rgba(250, 20, 50, 0.25);
   
 }
-.timeline .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot::before {
+.timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -139,14 +146,16 @@ width: 12px;
   z-index: -2;
 }
 
-.timeline .timeline-arrows {
-  position: relative;
+.timeline.awards.block .timeline-arrows {
+  position: absolute;
+  right: 16px;
+  top: 110px; /* Adjust this value up or down to align perfectly below your timeline track */
   display: flex;
-  flex: 0 0 auto;
-  gap: 2px;
+  gap: 16px;
+  z-index: 10;
+  background: transparent;
 }
-
-.timeline .timeline-arrow {
+.timeline.awards.block .timeline-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,27 +167,41 @@ width: 12px;
   cursor: pointer;
 }
 
-.timeline .timeline-arrow .icon {
+/* Base settings for the icon spans to display background images */
+.timeline.awards.block .timeline-arrow .icon {
+  display: inline-block;
   width: 16px;
   height: 16px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.timeline .timeline-arrow-prev .icon {
+.timeline.awards.block .timeline-arrow .icon.icon-arrow_right {
+  background-image: url(../../icons/arrow-left-2.svg);
+}
+
+.timeline.awards.block .timeline-arrow-next .icon {
   transform: rotate(180deg);
 }
 
-.timeline .timeline-panel[aria-hidden='true'] {
+/* Optional hover effect for the buttons */
+.timeline.awards.block .timeline-arrow:hover {
+  background-color: #f3f4f6; 
+}
+
+.timeline.awards.block .timeline-panel[aria-hidden='true'] {
   display: none;
 }
 
 /* Timeline Cards */
-.timeline .timeline-cards {
+.timeline.awards.block .timeline-cards {
   max-width: 1100px;
   margin: 0 auto;
   padding: 32px 0;
 }
 
-.timeline .timeline-cards-list {
+.timeline.awards.block .timeline-cards-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
@@ -186,7 +209,7 @@ width: 12px;
   list-style: none;
 }
 
-.timeline .timeline-card-item {
+.timeline.awards.block .timeline-card-item {
   position: relative;
   display: flex;
   align-items: center;
@@ -196,7 +219,7 @@ width: 12px;
   height: 160px;
 }
 
-.timeline .timeline-card-item .card-image {
+.timeline.awards.block .timeline-card-item .card-image {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -206,12 +229,12 @@ width: 12px;
   height: 100%;
 }
 
-.timeline .timeline-card-item .card-image img {
+.timeline.awards.block .timeline-card-item .card-image img {
   width: 100%;
   height: auto;
 }
 
-.timeline .timeline-card-item .card-body {
+.timeline.awards.block .timeline-card-item .card-body {
   position: absolute;
   left: 22%;
   top: 38%;
@@ -228,18 +251,18 @@ width: 12px;
   
 }
 
-.timeline .timeline-card-item:nth-child(4n+1),
-.timeline .timeline-card-item:nth-child(4n+3) {
+.timeline.awards.block .timeline-card-item:nth-child(4n+1),
+.timeline.awards.block .timeline-card-item:nth-child(4n+3) {
   margin-top: 0;
 }
 
-.timeline .timeline-card-item:nth-child(4n+2),
-.timeline .timeline-card-item:nth-child(4n+4) {
+.timeline.awards.block .timeline-card-item:nth-child(4n+2),
+.timeline.awards.block .timeline-card-item:nth-child(4n+4) {
   margin-top: 40px;
 }
 
 
-.timeline .timeline-card-item::before {
+.timeline.awards.block .timeline-card-item::before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -252,7 +275,7 @@ width: 12px;
   transform: translate(-50%, -50%);
 }
 
-.timeline .timeline-card-item .card-body p {
+.timeline.awards.block .timeline-card-item .card-body p {
   margin: 0;
   color: #535862;
   font-family: Manrope, sans-serif;
@@ -264,12 +287,12 @@ width: 12px;
   
 }
 
-.timeline .timeline-panel .timeline-year > div:first-child {
+.timeline.awards.block .timeline-panel .timeline-year > div:first-child {
   display: none;
 }
 
 /* nested Cards block reused for award cards within the active year */
-.timeline .timeline-panel .cards > ul {
+.timeline.awards.block .timeline-panel .cards > ul {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -278,7 +301,7 @@ width: 12px;
   padding: 32px 0;
 }
 
-.timeline .timeline-panel .cards > ul > li {
+.timeline.awards.block .timeline-panel .cards > ul > li {
   position: relative;
   flex: 1 1 240px;
   max-width: 260px;
@@ -288,7 +311,7 @@ width: 12px;
   box-shadow: 0 1px 12px rgb(0 0 0 / 6%);
 }
 
-.timeline .timeline-panel .cards > ul > li::before {
+.timeline.awards.block .timeline-panel .cards > ul > li::before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -301,56 +324,51 @@ width: 12px;
   transform: translate(-50%, -50%);
 }
 
-.timeline .timeline-panel .cards > ul > li:nth-child(even) {
+.timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
   margin-top: 40px;
 }
 
-@media (width >= 600px) {
-  .timeline .timeline-marker-btn {
-    font-size: 14px;
-  }
-}
 
 @media (width >= 900px) {
-  .timeline .timeline-markers {
+  .timeline.awards.block .timeline-markers {
     overflow-x: visible;
   }
 
-  .timeline .timeline-cards-list {
+  .timeline.awards.block .timeline-cards-list {
     grid-template-columns: repeat(2, 550px);
     margin: auto;
     gap: 0;
   }
 
-  .timeline .timeline-card-item:nth-child(4n+1)
+  .timeline.awards.block .timeline-card-item:nth-child(4n+1)
   {
     margin-top: 46.33px; 
   }
 
-  .timeline .timeline-card-item:nth-child(4n+2),
-  .timeline .timeline-card-item:nth-child(4n+4) {
+  .timeline.awards.block .timeline-card-item:nth-child(4n+2),
+  .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
     margin-top: 0px;
   }
 
-  .timeline .timeline-card-item:nth-child(4n+2){
+  .timeline.awards.block .timeline-card-item:nth-child(4n+2){
     margin-left: 10px;
   }
 
-  .timeline .timeline-card-item:nth-child(4n+3){
+  .timeline.awards.block .timeline-card-item:nth-child(4n+3){
     margin-left: 42%;
   }
 
   
-  .timeline .timeline-card-item:nth-child(4n+4){
+  .timeline.awards.block .timeline-card-item:nth-child(4n+4){
     margin-left: 36%;
   }
 
-  .timeline .timeline-card-item p {
+  .timeline.awards.block .timeline-card-item p {
     font-size: 20px;
     line-height: 24px;
   }
 
-  .timeline .timeline-panel .cards > ul {
+  .timeline.awards.block .timeline-panel .cards > ul {
     flex-wrap: nowrap;
   }
 

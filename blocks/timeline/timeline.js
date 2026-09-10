@@ -1,8 +1,8 @@
-/* global Swiper */
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
 // eslint-disable-next-line import/no-unresolved
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import Swiper from './swiper.js';
 
 function showYear(block, index) {
   const markers = block.querySelectorAll('.timeline-marker-btn');
@@ -23,10 +23,9 @@ function showYear(block, index) {
 
 function initSwiper(block) {
   const swiperEl = block.querySelector('.timeline-nav');
-  if (!swiperEl || typeof Swiper === 'undefined') return;
+  if (!swiperEl) return;
 
-  // eslint-disable-next-line no-new
-  new Swiper(swiperEl, {
+  Swiper(swiperEl, {
     slidesPerView: 'auto',
     spaceBetween: 24,
     navigation: {
@@ -34,10 +33,6 @@ function initSwiper(block) {
       prevEl: '.timeline-arrow-prev',
     },
     breakpoints: {
-      600: {
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-      },
       900: {
         slidesPerView: 'auto',
         spaceBetween: 32,
@@ -47,7 +42,7 @@ function initSwiper(block) {
 }
 
 export default function decorate(block) {
-  if(block.classlist.contains('awards')){
+  if(block.classList.contains('awards')){
     const items = [...block.children];
   const years = [];
   let currentYear = null;
@@ -81,10 +76,13 @@ export default function decorate(block) {
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list timeline-nav';
   tablist.setAttribute('role', 'tablist');
-
+  const track = document.createElement('div');
+  track.classList.add('timeline-track'); // New inner wrapper
+  
   const line = document.createElement('div');
   line.className = 'timeline-line';
-  tablist.append(line);
+  track.append(line);
+  tablist.append(track);
 
   const fragment = document.createDocumentFragment();
 
@@ -113,7 +111,7 @@ export default function decorate(block) {
 
     button.appendChild(markerText);
     button.appendChild(markerDot);
-    tablist.append(button);
+    track.append(button);
 
     // --- Create Panel for the Year ---
     const panel = document.createElement('div');
@@ -201,15 +199,17 @@ export default function decorate(block) {
   });
 
   arrows.append(prevButton, nextButton);
-  tablist.append(arrows);
+  // tablist.append(arrows);
 
   // 5. Final Assembly
   block.innerHTML = '';
   block.prepend(tablist);
+  block.append(arrows);
   block.append(fragment);
 
   initSwiper(block);
   showYear(block, 0);
-  }
   
+  }
+
 }
