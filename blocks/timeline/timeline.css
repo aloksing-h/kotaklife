@@ -8,13 +8,13 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0;
 }
 
 .timeline.awards.block .timeline-nav {
   position: relative;
   overflow-x: hidden;
-  padding: 24px 0 64px 0;
+  padding: 24px 0 40px;
 }
 
 .timeline.awards.block .timeline-line {
@@ -31,7 +31,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 112px;
+  gap: 67px;
   width: max-content; /* Forces parent to be exactly as wide as the items + gaps */
   min-width: 100%;
 }
@@ -87,7 +87,7 @@
   background: transparent;
   color: #666;
   font-weight: 600;
-  padding: 5px 16px;
+  padding: 0;
 }
 /* Add new dot styles (after line 62) */
 .timeline.awards.block .timeline-marker-btn .timeline-marker-dot {
@@ -149,7 +149,7 @@ width: 12px;
 .timeline.awards.block .timeline-arrows {
   position: absolute;
   right: 16px;
-  top: 110px; /* Adjust this value up or down to align perfectly below your timeline track */
+  top: -27px;
   display: flex;
   gap: 16px;
   z-index: 10;
@@ -198,14 +198,14 @@ width: 12px;
 .timeline.awards.block .timeline-cards {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 32px 0;
+  padding: 0;
 }
 
 .timeline.awards.block .timeline-cards-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0 0;
   list-style: none;
 }
 
@@ -214,18 +214,21 @@ width: 12px;
   display: flex;
   align-items: center;
   border: none;
-  
-  max-width: 319px;
+  width: 188px;
+  max-width: 188px;
   height: 160px;
+  max-height: 100px;
 }
 
 .timeline.awards.block .timeline-card-item .card-image {
   position: absolute;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
   display: inline-block;
-  max-width: 138px;
+  max-width: 86px;
+  max-height: 100px;
   height: 100%;
 }
 
@@ -236,9 +239,11 @@ width: 12px;
 
 .timeline.awards.block .timeline-card-item .card-body {
   position: absolute;
-  left: 22%;
-  top: 38%;
-  bottom: 4%;
+  left: 23%;
+  top: 64%;
+  right: 0;
+  bottom: auto;
+  transform: translateY(-50%);
   z-index: 1;
   display: flex;
   align-items: center;
@@ -246,30 +251,27 @@ width: 12px;
   background-color: #fff;
   border: 1px solid var(--Border-border-secondary, #E9EAEB);
   box-shadow: 0 15px 40px rgb(180 210 240 / 40%);
-  padding: 26px 23px 26px 92px;
-  max-width: 134px;
-  
+  width: 79px;
+  padding: 12px 12px 12px 52px;
+  box-sizing: content-box;
 }
 
-.timeline.awards.block .timeline-card-item:nth-child(4n+1),
-.timeline.awards.block .timeline-card-item:nth-child(4n+3) {
-  margin-top: 0;
+.timeline.awards.block .timeline-card-item:nth-child(odd) {
+  margin: 0 0 0 90px;
 }
 
-.timeline.awards.block .timeline-card-item:nth-child(4n+2),
-.timeline.awards.block .timeline-card-item:nth-child(4n+4) {
-  margin-top: 40px;
+.timeline.awards.block .timeline-card-item:nth-child(even) {
+  margin: 0 auto 0 0;
 }
-
 
 .timeline.awards.block .timeline-card-item::before {
   content: '';
   position: absolute;
   z-index: -1;
-  top: 70%;
+  top: 63%;
   left: 50%;
-  width: 160px;
-  height: 75px;
+  width: 100px;
+  height: 50px;
   background-image: var(--timeline-glow-gradient);
   filter: blur(16px);
   transform: translate(-50%, -50%);
@@ -279,12 +281,10 @@ width: 12px;
   margin: 0;
   color: #535862;
   font-family: Manrope, sans-serif;
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 16px;
   word-break: break-word;
-  
-  
 }
 
 .timeline.awards.block .timeline-panel .timeline-year > div:first-child {
@@ -328,127 +328,94 @@ width: 12px;
   margin-top: 40px;
 }
 
+@media (width >= 900px) {
+  .timeline.awards.block {
+    padding: 0 16px;
+  }
+
+  .timeline.awards.block .timeline-nav {
+    padding: 24px 0 64px;
+  }
+
+  .timeline.awards.block .timeline-track {
+    gap: 112px;
+  }
+
   .timeline.awards.block .timeline-markers {
     overflow-x: visible;
   }
 
+  .timeline.awards.block .timeline-marker-btn[aria-selected='true'] {
+    padding: 5px 16px;
+  }
+
+  .timeline.awards.block .timeline-arrows {
+    top: 110px;
+  }
+
+  .timeline.awards.block .timeline-cards {
+    padding: 32px 0;
+  }
+
   .timeline.awards.block .timeline-cards-list {
+    display: grid;
     grid-template-columns: repeat(2, 550px);
     margin: auto;
     gap: 0;
+    padding: 0;
   }
 
-  .timeline.awards.block .timeline-card-item:nth-child(4n+1)
-  {
-    margin-top: 46.33px; 
+  .timeline.awards.block .timeline-card-item {
+    width: auto;
+    max-width: 319px;
+    max-height: none;
   }
 
-  .timeline.awards.block .timeline-card-item:nth-child(4n+2),
+  .timeline.awards.block .timeline-card-item .card-image {
+    left: auto;
+    max-width: 138px;
+    max-height: none;
+  }
+
+  .timeline.awards.block .timeline-card-item .card-body {
+    left: 22%;
+    top: 38%;
+    right: auto;
+    bottom: 4%;
+    transform: none;
+    width: auto;
+    max-width: 134px;
+    padding: 26px 23px 26px 92px;
+  }
+
+  .timeline.awards.block .timeline-card-item:nth-child(4n+1) {
+    margin: 46.33px 0 0 0;
+  }
+
+  .timeline.awards.block .timeline-card-item:nth-child(4n+2) {
+    margin: 0 0 0 10px;
+  }
+
+  .timeline.awards.block .timeline-card-item:nth-child(4n+3) {
+    margin: 0 0 0 42%;
+  }
+
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
-    margin-top: 0px;
+    margin: 0 0 0 36%;
   }
 
-  .timeline.awards.block .timeline-card-item:nth-child(4n+2){
-    margin-left: 10px;
+  .timeline.awards.block .timeline-card-item::before {
+    top: 70%;
+    width: 160px;
+    height: 75px;
   }
 
-  .timeline.awards.block .timeline-card-item:nth-child(4n+3){
-    margin-left: 42%;
-  }
-
-  
-  .timeline.awards.block .timeline-card-item:nth-child(4n+4){
-    margin-left: 36%;
-  }
-
-  .timeline.awards.block .timeline-card-item p {
+  .timeline.awards.block .timeline-card-item .card-body p {
     font-size: 20px;
     line-height: 24px;
   }
 
   .timeline.awards.block .timeline-panel .cards > ul {
     flex-wrap: nowrap;
-  }
-@media (width <= 900px) {
-  .timeline.awards.block{
-    padding: 0;
-  }
-  .timeline.awards.block .timeline-nav{
-    padding-bottom: 40px;
-  }
-  /* 1. Move arrows to the top right */
-  .timeline.awards.block .timeline-arrows {
-    top: -27px; 
-    right: 16px;
-  }
-  .timeline.awards.block .timeline-cards{
-    padding: 0;
-  }
-
-  /* 2. Tighten track space */
-  .timeline.awards.block .timeline-track {
-    gap: 67px; 
-  }
-  .timeline.awards.block .timeline-marker-btn[aria-selected='true']{
-    padding: 0;
-  }
-  /* 3. Force single-column list */
-  .timeline.awards.block .timeline-cards-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 16px;
-  }
-
-  /* 4. Parent item needs a hard height to prevent collapsing! */
-  .timeline.awards.block .timeline-card-item {
-    width: 188px; 
-    max-width: 188px;
-    max-height: 100px;
-  }
-
-  /* 5. Staggered layout (added !important to ensure desktop margins don't bleed in) */
-  .timeline.awards.block .timeline-card-item:nth-child(odd) {
-    margin: 0 0 0 90px; 
-  }
-  .timeline.awards.block .timeline-card-item:nth-child(even) {
-    margin: 0 auto 0 0 ; 
-  }
-
-  /* 6. Card Body Settings */
-  .timeline.awards.block .timeline-card-item .card-body {
-    position: absolute;
-    left: 23%;
-    top: 64%;     
-    right: 0;
-    bottom: auto;       
-    transform: translateY(-50%);
-    width: 79px;    
-    padding: 12px 12px 12px 52px;
-    box-sizing: content-box;
-  }
-
-  /* 7. Cleaned up paragraph text size */
-  .timeline.awards.block .timeline-card-item .card-body p {
-    font-size: 12px;
-    line-height: 16px;
-    margin: 0;
-  }
-
-  /* 8. Image vertical centering */
-  .timeline.awards.block .timeline-card-item .card-image {
-    position: absolute;
-    left: 0;
-    top: 50%; /* Centers the image perfectly relative to the new 110px height */
-    transform: translateY(-50%); /* Safely counters the 50% drop */
-    max-width: 86px;
-    max-height: 100px;
-    z-index: 2;
-  }
-
-  .timeline.awards.block .timeline-card-item::before{
-    width: 100px;
-    height: 50px;
-    top: 63%;
   }
 }
