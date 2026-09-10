@@ -167,6 +167,7 @@ width: 12px;
   cursor: pointer;
 }
 
+
 /* Base settings for the icon spans to display background images */
 .timeline.awards.block .timeline-arrow .icon {
   display: inline-block;
@@ -178,8 +179,18 @@ width: 12px;
 }
 
 .timeline.awards.block .timeline-arrow .icon.icon-arrow_right {
-  background-image: url(../../icons/arrow-left-2.svg);
+  background-image: none;
+  background-color: currentcolor;
+  mask-image: url('../../icons/arrow-left-2.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
+
+.timeline.awards.block .timeline-arrow:hover .icon.icon-arrow_right {
+  background-color: var(--brand-red-600);
+}
+
 
 .timeline.awards.block .timeline-arrow-next .icon {
   transform: rotate(180deg);
