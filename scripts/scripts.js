@@ -16,6 +16,41 @@ import {
  * @param {Element} from the element to copy attributes from
  * @param {Element} to the element to copy attributes to
  */
+
+//  tablist start
+function buildTabs(main) {
+  function getTabLabel(section) {
+    return section?.dataset?.tabLabel || null;
+    // const metadataBlock = section.querySelector('.section-metadata');
+    // const metadata = metadataBlock ? readBlockConfig(metadataBlock) : {};
+    // return metadata['tab-label'];
+  }
+
+  for (let i = 0; i < main.children.length; i += 1) {
+    const section = main.children[i];
+    const tabLabel = getTabLabel(section);
+    const previousSection = i > 0 ? main.children[i - 1] : null;
+    const previousTabLabel = previousSection
+      ? getTabLabel(previousSection)
+      : null;
+
+    if (tabLabel && !previousTabLabel) {
+      // found first tab panel of a list of consecutive tab panels
+      // create a tab list block if non exists as last child
+      let previousBlock = previousSection?.lastElementChild;
+      if (previousBlock?.matches('.section-metadata')) { previousBlock = previousBlock.previousElementSibling; }
+      if (!previousBlock?.matches('.tab-list')) {
+        const tabListBlock = document.createElement('div');
+        tabListBlock.className = 'tab-list block';
+        const newSection = document.createElement('div');
+        newSection.className = 'section';
+        newSection.appendChild(tabListBlock);
+        section.before(newSection);
+      }
+    }
+  }
+}
+//  tablist end
 export function moveAttributes(from, to, attributes) {
   if (!attributes) {
     // eslint-disable-next-line no-param-reassign
@@ -61,9 +96,10 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
+    buildTabs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
