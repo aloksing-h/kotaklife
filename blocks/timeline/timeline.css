@@ -61,42 +61,39 @@
 }
 
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-text{
-  background: linear-gradient(7deg, var(--Decorative-Red-decorative-red-400, #FB2C47) -43.93%, var(--Decorative-Red-decorative-red-500, #FA1432) 3.36%, var(--Decorative-Red-decorative-red-900, #7F2224) 88.98%);
-  color: white;
-  font-weight: 600;
+  background: linear-gradient(7deg, var(--brand-red-400) -43.93%, var(--brand-red-500) 3.36%, var(--red-900) 88.98%);
+  color: var(--base-white);
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Remove default paragraph margins inside the button */
 .timeline.awards.block .timeline-marker-btn .timeline-marker-text {
   margin: 0;
-  color: #666;
-  font-family: Manrope, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  color: var(--gray-600);
   transition: all 0.2s;
-  padding: 5px 12px;
-  border-radius: 20px;
+  border-radius: var(--radius-2xl);
 }
 
 .timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
   margin: 0;
-  padding: 5px 12px;
+  padding: 5px 8px;
+  font-size: var(--caption-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--caption-line-height);
 }
 
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] {
   background: transparent;
-  color: #666;
-  font-weight: 600;
   padding: 0;
 }
 /* Add new dot styles (after line 62) */
 .timeline.awards.block .timeline-marker-btn .timeline-marker-dot {
   display: block;
   position: relative;
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  border: 1px solid #1E4679;
+  width: 10px;
+  height: 10px;
+  background-color: var(--base-white);
+  border: 1px solid var(--brand-blue-500);
   border-radius: 50%;
   z-index: 2;
   transition: all 0.2s;
@@ -106,8 +103,8 @@
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
 width: 12px;
   height: 12px;
-  background-color: #FA1432;
-  border: 1px solid #FA1432;
+  background-color: var(--brand-red-500);
+  border: 1px solid var(--brand-red-500);
   /* Creates the soft red glow without blurring the dot itself */
   box-shadow: 0 0 15px 6px rgba(250, 20, 50, 0.25);
   
@@ -125,15 +122,15 @@ width: 12px;
   height: 8px; 
   
   /* 1. Solid background erases the out-of-phase gray lines */
-  background-color: var(--background-color, #fff); 
+  background-color: var(--base-white); 
   
   /* 2. Repeating gradient draws perfectly symmetrical red ticks */
   background-image: repeating-linear-gradient(
     to right,
     transparent 0px,
     transparent 3px,
-    #FA1432 3px,
-    #FA1432 5px,  /* Creates a 2px wide red tick */
+    var(--brand-red-500) 3px,
+    var(--brand-red-500) 5px,  /* Creates a 2px wide red tick */
     transparent 5px,
     transparent 8px
   );
@@ -151,7 +148,7 @@ width: 12px;
   right: 16px;
   top: -27px;
   display: flex;
-  gap: 16px;
+  gap: 2px;
   z-index: 10;
   background: transparent;
 }
@@ -180,7 +177,7 @@ width: 12px;
 
 .timeline.awards.block .timeline-arrow .icon.icon-arrow_right {
   background-image: none;
-  background-color: currentcolor;
+  background-color: var(--gray-400);
   mask-image: url('../../icons/arrow-left-2.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -196,10 +193,6 @@ width: 12px;
   transform: rotate(180deg);
 }
 
-/* Optional hover effect for the buttons */
-.timeline.awards.block .timeline-arrow:hover {
-  background-color: #f3f4f6; 
-}
 
 .timeline.awards.block .timeline-panel[aria-hidden='true'] {
   display: none;
@@ -259,8 +252,8 @@ width: 12px;
   display: flex;
   align-items: center;
   border-radius: 12px;
-  background-color: #fff;
-  border: 1px solid var(--Border-border-secondary, #E9EAEB);
+  background-color: var(--base-white);
+  border: 1px solid var(--gray-200);
   box-shadow: 0 15px 40px rgb(180 210 240 / 40%);
   width: 79px;
   padding: 12px 12px 12px 52px;
@@ -290,11 +283,11 @@ width: 12px;
 
 .timeline.awards.block .timeline-card-item .card-body p {
   margin: 0;
-  color: #535862;
+  color: var(--gray-600);
   font-family: Manrope, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
+  font-size: var(--button-3-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--button-2-line-height);
   word-break: break-word;
 }
 
@@ -312,36 +305,13 @@ width: 12px;
   padding: 32px 0;
 }
 
-.timeline.awards.block .timeline-panel .cards > ul > li {
-  position: relative;
-  flex: 1 1 240px;
-  max-width: 260px;
-  border: 1px solid #e9eaeb;
-  border-radius: 14px;
-  background-color: #fff;
-  box-shadow: 0 1px 12px rgb(0 0 0 / 6%);
-}
-
-.timeline.awards.block .timeline-panel .cards > ul > li::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: 160px;
-  height: 75px;
-  background-image: var(--timeline-glow-gradient);
-  filter: blur(16px);
-  transform: translate(-50%, -50%);
-}
-
 .timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
   margin-top: 40px;
 }
 
 .slider-title.section h1{
   margin: 0;
-  padding-right:80px ;
+  padding-right:66px;
   font-size: var(--heading-3-font-size);
   line-height: var(--heading-3-line-height);
   font-weight: var(--font-weight-light);
@@ -368,6 +338,10 @@ width: 12px;
 
   .timeline.awards.block .timeline-markers {
     overflow-x: visible;
+  }
+  .timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
+    font-size: var(--body-2-font-size);
+    line-height: var(--body-2-line-height);
   }
 
   .timeline.awards.block .timeline-marker-btn[aria-selected='true'] {
