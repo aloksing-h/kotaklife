@@ -115,7 +115,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 36px;
+  padding-inline: 50px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
 }
 
 @media (width >=900px) {
@@ -133,9 +135,9 @@
   width: auto;
   color: var(--text-text-primary, #181d27);
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
-  font-size: clamp(32px, 3.5vw, 48px);
+  font-size: 48px;
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 60px;
   margin: 0;
   padding: 0;
 }
@@ -144,8 +146,7 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper h2 strong,
 .insights-impact-plans.custom-cards-container .default-content-wrapper h3 strong,
 .insights-impact-plans.custom-cards-container .default-content-wrapper h4 strong {
-  color: var(--text-text-primary, #181d27);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper p {
@@ -153,7 +154,7 @@
   font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 20px;
   margin: 0;
 }
 
@@ -168,8 +169,12 @@
    Block & Cards Layout
    ========================================================================== */
 
-.insights-impact-plans .custom-cards-wrapper .custom-cards {
+.insights-impact-plans .custom-cards-wrapper {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-inline: 50px;
 }
 
 .insights-impact-plans .custom-cards>ul {
@@ -178,7 +183,7 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 16px;
 }
 
 @media (width >=900px) {
@@ -194,8 +199,8 @@
   justify-content: space-between;
   background-color: #f4f8fa;
   border-radius: 20px;
-  padding: 28px;
-  min-height: 380px;
+  padding: 26px;
+  min-height: 334px;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -208,25 +213,30 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0;
   z-index: 2;
   width: 100%;
+  margin: 0;
 }
 
 /* Category Pill Tag (First Paragraph in Body) */
 .insights-impact-plans .custom-cards-card-body>p:first-child {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #181d27;
-  border-radius: 20px;
-  padding: 4px 14px;
+  font-family: var(--font-family-font-family-body, Manrope);
+  padding: 4px 8px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.5px;
+  line-height: 14px;
   text-transform: uppercase;
-  color: #181d27;
+  color: var(--text-text-tertiary, #535862);
   margin: 0 0 4px;
   transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--border-border-brand-blue, #1E4679);
+  background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+  margin-bottom: 15px;
 }
 
 /* Card Title */
@@ -236,23 +246,30 @@
   font-weight: 600;
   color: #181d27;
   margin: 0;
-  line-height: 1.3;
+  line-height: 28px;
   transition: color 0.3s ease;
+  margin-bottom: 8px;
 }
 
 /* Card Description */
 .insights-impact-plans .custom-cards-card-body p:nth-child(3) {
-  font-size: 15px;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 16px;
   color: #535862;
-  line-height: 1.5;
+  font-weight: 400;
+  line-height: 20px;
   margin: 0;
   transition: color 0.3s ease;
 }
 
 /* Play / Action Icon Wrapper (Last Child in Body) */
 .insights-impact-plans .custom-cards-card-body p:last-child {
-  margin-top: auto;
-  padding-top: 16px;
+  position: absolute;
+  bottom: 27px;
+  padding: 0;
+  margin: 0;
+  width: 36px;
+  height: 36px;
 }
 
 .insights-impact-plans .custom-cards-card-body .icon {
@@ -268,11 +285,11 @@
 .insights-impact-plans.section.custom-cards-container .custom-cards-card-image {
   position: absolute;
   right: 16px;
-  bottom: 16px;
-  width: 180px;
-  height: 140px;
+  bottom: 0;
   z-index: 1;
   pointer-events: none;
+  margin-inline-end: -26px;
+  padding-left: 40px;
 }
 
 .insights-impact-plans.section.custom-cards-container .custom-cards-card-image p {
@@ -310,7 +327,7 @@
 .insights-impact-plans .custom-cards>ul>li:hover {
   border-radius: var(--radius-md, 8px);
   background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
-  transform: translateY(-6px);
+  transform: translateY(20px);
 }
 
 /* Category Badge Hover */
@@ -322,13 +339,8 @@
 
 /* Title and Text Hover */
 .insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body h4,
-.insights-impact-plans.section .custom-cards>ul>li:hover .custom-cards-card-body p {
-  color: var(--text-text-tertiary, #535862);
-  font-family: var(--font-family-font-family-body, Manrope);
-  font-size: var(--font-size-caption, 12px);
-  font-style: normal;
-  font-weight: 500;
-  line-height: var(--line-height-caption, 14px);
+.insights-impact-plans.section .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
+  color: #fff;
 }
 
 /* Image Swap on Hover */
@@ -345,8 +357,14 @@
    ========================================================================== */
 
 @media (width <=899px) {
+  .insights-impact-plans .custom-cards-wrapper {
+    overflow: hidden;
+    padding-right: 0;
+    padding-inline-start: 16px;
+  }
+
   .insights-impact-plans .custom-cards.swiper {
-    overflow: visible;
+    overflow: hidden;
     padding-bottom: 40px;
   }
 
@@ -386,6 +404,46 @@
     background-color: #e31837;
     border-radius: 4px;
   }
+
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:first-child {
+    padding-inline: 16px;
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+
+  .insights-impact-plans.custom-cards-container .default-content-wrapper h1, .insights-impact-plans.custom-cards-container .default-content-wrapper h2, .insights-impact-plans.custom-cards-container .default-content-wrapper h3, .insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    line-height: 36px;
+  }
+
+  .insights-impact-plans.custom-cards-container .default-content-wrapper p {
+    color: var(--text-text-primary, #181D27);
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .insights-impact-plans .custom-cards>ul>li {
+    padding: 24px;
+    min-height: 260px;
+  }
+
+  .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .insights-impact-plans .custom-cards-card-body p:nth-child(3) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .insights-impact-plans.section.custom-cards-container .custom-cards-card-image img {
+    width: 154px;
+    height: 154px;
+    aspect-ratio: unset;
+    object-fit: unset;
+  }
 }
 
 /* ==========================================================================
@@ -404,20 +462,55 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border: 1.5px solid #e31837;
+  gap: 18px;
+  padding: 4px 4px 4px 20px;
+  border: 1px solid var(--button-btn-brand-red, #E1122D);
   border-radius: 30px;
-  color: #e31837;
+  color: var(--button-btn-brand-red, #E1122D);
   font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: none;
   background-color: #fff;
   transition: all 0.3s ease;
+  position: relative;
+  line-height: 18px;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+  content:'';
+  background-image: url("/icons/write-arrow-right.svg");
+  position: absolute;
+  right: 9px;
+  width: 20px;
+  height: 20px;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
+  content:'';
+  display: flex;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 11.429px;
+  border-radius: 50%;
+  background: var(--button-btn-brand-red, #E1122D);
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
   background-color: #e31837;
   color: #fff;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
+  background-color: #fff;
+  color: #e31837;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
+  background-image: url("/icons/red-arrow-right.svg");
+  width: 27px;
+  height: 28px;
+  right: 10px;
 }
