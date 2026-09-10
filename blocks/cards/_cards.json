@@ -37,19 +37,14 @@
       "id": "cards",
       "fields": [
         {
-          "component": "multiselect",
+          "component": "select",
           "name": "classes",
           "label": "Style",
-          "valueType": "array",
+          "valueType": "string",
           "options": [
-            {
-              "name": "Trust Style",
-              "value": "trust-style"
-            },
-            {
-              "name": "Vision Style",
-              "value": "vision-style"
-            }
+            { "name": "Default", "value": "" },
+            { "name": "Trust Style", "value": "trust-style" },
+            { "name": "Vision Style", "value": "vision-style" }
           ]
         }
       ]

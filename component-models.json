@@ -262,11 +262,15 @@
     "id": "cards",
     "fields": [
       {
-        "component": "multiselect",
+        "component": "select",
         "name": "classes",
         "label": "Style",
-        "valueType": "array",
+        "valueType": "string",
         "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
           {
             "name": "Trust Style",
             "value": "trust-style"
