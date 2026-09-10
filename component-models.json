@@ -603,6 +603,17 @@
     "id": "tab-panel",
     "fields": [
       {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
         "component": "richtext",
         "name": "tab-label",
         "label": "Label"
