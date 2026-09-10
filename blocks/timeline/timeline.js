@@ -47,7 +47,8 @@ function initSwiper(block) {
 }
 
 export default function decorate(block) {
-  const items = [...block.children];
+  if(block.classlist.contains('awards')){
+    const items = [...block.children];
   const years = [];
   let currentYear = null;
 
@@ -209,4 +210,6 @@ export default function decorate(block) {
 
   initSwiper(block);
   showYear(block, 0);
+  }
+  
 }

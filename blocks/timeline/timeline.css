@@ -354,11 +354,4 @@ width: 12px;
     flex-wrap: nowrap;
   }
 
-  .timeline .timeline-panel .cards > ul > li:nth-child(odd) {
-    
-  }
-
-  .timeline .timeline-panel .cards > ul > li:nth-child(even) {
-    
-  }
 }
