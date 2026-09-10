@@ -56,9 +56,9 @@ export default async function decorate(block) {
   const section = block.closest('.section');
   let nextSection = section.nextElementSibling;
   while (nextSection) {
-    const { tabLabel } = nextSection.dataset;
+    const { tabLabel, image } = nextSection.dataset;
     if (tabLabel) {
-      tabPanels.push([tabLabel, nextSection]);
+      tabPanels.push([tabLabel, nextSection, image]);
       nextSection = nextSection.nextElementSibling;
     } else {
       break;
@@ -69,7 +69,7 @@ export default async function decorate(block) {
   const tabList = document.createElement('ul');
   tabList.role = 'tablist';
   tabList.id = `${tabsPrefix}-tablist`;
-  tabPanels.forEach(([tabLabel, tabPanel], i) => {
+  tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}`;
     // build the tabs as buttons and append them to the tab list
@@ -79,7 +79,20 @@ export default async function decorate(block) {
     tabItem.ariaSelected = i === 0;
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
-    tabItem.textContent = tabLabel;
+    
+    // Add image if available
+    if (image) {
+      const imgElement = document.createElement('img');
+      // Remove query parameters from the image URL to make it domain-agnostic
+      const [cleanImageSrc] = image.split('?');
+      imgElement.src = cleanImageSrc;
+      imgElement.alt = tabLabel;
+      imgElement.classList.add('tab-image');
+      tabItem.appendChild(imgElement);
+    }
+    
+    // Add text content
+    tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
     const li = document.createElement('li');
     li.appendChild(tabItem);
