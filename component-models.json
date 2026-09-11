@@ -138,12 +138,16 @@
             "value": "highlight"
           },
           {
-            "name": "Term Insurance Plans",
-            "value": "term-insurance-plans"
+            "name": "Insights & Impact Plans",
+            "value": "insights-impact-plans"
           },
           {
-            "name": "Insurance Plans New",
-            "value": "insurance-plans-new"
+            "name": "Growing Insurance Company",
+            "value": "growing-insurance-company"
+          },
+          {
+            "name": "Advisor",
+            "value": "advisor"
           },
           {
             "name": "Dsp None",
@@ -154,52 +158,28 @@
             "value": "dsp-none-appear"
           },
           {
-            "name": "Term Insurance",
-            "value": "term-insurance"
+            "name": "Customer Say",
+            "value": "customer-say"
           },
           {
-            "name": "Insurance Plans",
-            "value": "insurance-plans"
+            "name": "Start Investing",
+            "value": "start-investing"
           },
           {
-            "name": "Claims",
-            "value": "claims"
+            "name": "Get Cover Plans",
+            "value": "get-cover-plans"
           },
           {
-            "name": "Fund Performance",
-            "value": "fund-performance"
+            "name": "Find A Plan",
+            "value": "find-a-plan"
           },
           {
-            "name": "How Do It",
-            "value": "how-do-it"
+            "name": "Protection Plans",
+            "value": "protection-plans"
           },
           {
             "name": "Loans",
             "value": "loans"
-          },
-          {
-            "name": "Tab One",
-            "value": "tab-one"
-          },
-          {
-            "name": "Tab Two",
-            "value": "tab-two"
-          },
-          {
-            "name": "Tab Three",
-            "value": "tab-three"
-          },
-          {
-            "name": "Tab Four",
-            "value": "tab-four"
-          },
-          {
-            "name": "Tab Five",
-            "value": "tab-five"
-          },
-          {
-            "name": "Tab Six",
-            "value": "tab-six"
           }
         ]
       }
@@ -343,6 +323,85 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "custom-cards-item",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "col1_classes",
+        "label": "Card Variation",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Featured",
+            "value": "featured"
+          },
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          },
+          {
+            "name": "Image Overlay",
+            "value": "image-overlay"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_image1",
+        "label": "Image 1",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col1_image1Alt",
+        "label": "Image 1 Alt Text",
+        "description": "Describe the image, or leave empty only when it is decorative."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_image2",
+        "label": "Image 2",
+        "description": "Optional secondary image.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col1_image2Alt",
+        "label": "Image 2 Alt Text",
+        "description": "Describe Image 2 when it conveys information."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col2_title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "col2_description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "col2_link",
+        "label": "Card Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "col2_linkText",
+        "label": "Card Link Text",
+        "valueType": "string"
       }
     ]
   },
