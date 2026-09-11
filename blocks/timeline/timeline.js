@@ -171,7 +171,7 @@ export default function decorate(block) {
     arrows.className = 'timeline-arrows';
 
     const prevIcon = document.createElement('span');
-    prevIcon.className = 'icon icon-arrow_right';
+    prevIcon.className = 'icon icon-arrow-right';
 
     const prevButton = document.createElement('button');
     prevButton.className = 'timeline-arrow timeline-arrow-prev';
@@ -184,7 +184,7 @@ export default function decorate(block) {
     });
 
     const nextIcon = document.createElement('span');
-    nextIcon.className = 'icon icon-arrow_right';
+    nextIcon.className = 'icon icon-arrow-right';
 
     const nextButton = document.createElement('button');
     nextButton.className = 'timeline-arrow timeline-arrow-next';

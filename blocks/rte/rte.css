@@ -69,88 +69,7 @@
   }
 }
 
-.rte.explore-cta.block h1 {
-  
-  font-size: var(--heading-3-font-size);
-  line-height: var(--heading-3-line-height);
-  font-weight: var(--font-weight-light);
-  margin: 0 0 6px 0 ;
-}
-
-.rte.explore-cta.block h1 strong{
-  margin: 0;
-  font-weight: 600;
-}
-
-.rte.explore-cta.block p {
-  margin: 0 0 20px 0;
-  font-size: var(--body-2-font-size);
-  line-height: var(--body-2-line-height);
-  color:var(--gray-600);
-  font-weight: var(--font-weight-medium);
-
-}
-
-.rte.explore-cta.block .cta-container {
-  width: fit-content;
-  background-color: #E61731;
-  border-radius: 50px;
-  margin: 0;
-}
-
-.rte.explore-cta.block .cta-container a {
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 6px 6px 6px 24px;
-  gap: 16px;
-  text-decoration: none;
-  font-weight: var(--font-weight-extrabold);
-  font-size: var(--button-2-font-size);
-  line-height: var(--button-2-line-height);
-}
-
-.rte.explore-cta.block .cta-container span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-  background-color:var(--base-white);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.rte.explore-cta.block .cta-container img {
-  height: 20px;
-  width: 20px;
-  object-fit: contain;
-}
-
-/* Desktop Overrides */
-@media (width >= 900px) {
-  /* Reverts the mobile font-sizes so your global desktop typography can take over. 
-     You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
-  .rte.explore-cta.block h1{
-      margin: 0 0 8px 0 ;
-      font-size: var(--heading-1-font-size);
-      line-height: var(--heading-1-line-height);
-      font-weight: var(--font-weight-light);
-  }
-
-  .rte.explore-cta.block p{
-    margin: 0 0 16px 0;
-  font-size: var(--body-1-font-size);
-  line-height: var(--body-1-line-height);
-  
-  }
-
-  .rte.explore-cta.block .cta-container a{
-    font-weight: var(--font-weight-extrabold);
-  font-size: var(--button-1-font-size);
-  line-height: var(--button-1-line-height);
-  }
-}/* ============================================
+/* ============================================
    Vision section - RTE block styles
    ============================================ */
 
@@ -215,6 +134,92 @@
   line-height: var(--body-2-line-height);
   max-width: 420px;
   margin: 0;
+}
+
+/* ============================================
+   Explore CTA section - RTE block styles
+   ============================================ */
+
+.rte.explore-cta.block h1 {
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  font-weight: var(--font-weight-light);
+  margin: 0 0 6px;
+}
+
+.rte.explore-cta.block h1 strong{
+  margin: 0;
+  font-weight: 600;
+}
+
+.rte.explore-cta.block p {
+  margin: 0 0 20px;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color:var(--gray-600);
+  font-weight: var(--font-weight-medium);
+
+}
+
+.rte.explore-cta.block .cta-container {
+  width: fit-content;
+  background-color: #E61731;
+  border-radius: 50px;
+  margin: 0;
+}
+
+.rte.explore-cta.block .cta-container a {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 6px 6px 6px 24px;
+  gap: 16px;
+  text-decoration: none;
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-2-font-size);
+  line-height: var(--button-2-line-height);
+}
+
+.rte.explore-cta.block .cta-container span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  background-color:var(--base-white);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rte.explore-cta.block .cta-container img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
+/* Desktop Overrides */
+@media (width >= 900px) {
+  /* Reverts the mobile font-sizes so your global desktop typography can take over. 
+     You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
+  .rte.explore-cta.block h1{
+      margin: 0 0 8px;
+      font-size: var(--heading-1-font-size);
+      line-height: var(--heading-1-line-height);
+      font-weight: var(--font-weight-light);
+  }
+
+  .rte.explore-cta.block p{
+    margin: 0 0 16px;
+  font-size: var(--body-1-font-size);
+  line-height: var(--body-1-line-height);
+  
+  }
+
+  .rte.explore-cta.block .cta-container a{
+    font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-1-font-size);
+  line-height: var(--button-1-line-height);
+  }
 }
 
 /* ============================================
