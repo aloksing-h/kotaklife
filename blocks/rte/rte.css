@@ -9,7 +9,7 @@
     margin: 0;
 }
 
-.subnav .rte ul {
+.subnav.rte ul {
   display: flex;
   gap: 16px;
   list-style: none;
@@ -21,19 +21,19 @@
   scrollbar-width: none;
 }
 
-.subnav .rte ul::-webkit-scrollbar {
+.subnav.rte ul::-webkit-scrollbar {
   display: none;
 }
 
-.subnav .rte ul li {
+.subnav.rte ul li {
   flex: 0 0 auto;
 }
 
-.subnav .rte ul li p {
+.subnav.rte ul li p {
   margin: 0;
 }
 
-.subnav .rte a {
+.subnav.rte a {
   display: flex;
   align-items: center;
   height: 55px;
@@ -47,11 +47,11 @@
   white-space: nowrap;
 }
 
-.subnav .rte a:hover {
+.subnav.rte a:hover {
   text-decoration: none;
 }
 
-.subnav .rte a.rte-sub-nav-active::after {
+.subnav.rte a.rte-sub-nav-active::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -63,7 +63,7 @@
 }
 
 @media (width >= 900px) {
-  .subnav .rte ul {
+  .subnav.rte ul {
     justify-content: center;
     padding: 0;
   }
