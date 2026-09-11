@@ -339,6 +339,9 @@ header nav .nav-sections .nav-fragment-container {
   header nav .nav-sections .nav-drop::after {
     content: '';
     display: inline-block;
+    position: absolute;
+    top: 3px;
+    right: 2px;
     transform: rotate(135deg);
     width: 5px;
     height: 5px;

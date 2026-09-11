@@ -1,5 +1,46 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';
+
+function isFragmentPath(path) {
+  return !!path && path.startsWith('/') && !path.startsWith('//');
+}
+
+function hasOnlyFragmentLinkContent(element, link) {
+  if (!element || !link) return false;
+  const allLinks = [...element.querySelectorAll('a')];
+  if (allLinks.length !== 1) return false;
+
+  const [onlyLink] = allLinks;
+  const linkText = onlyLink.textContent.trim();
+  const elementText = element.textContent.trim();
+
+  return elementText === linkText && onlyLink.getAttribute('href') === link.getAttribute('href');
+}
+
+async function decorateFragmentLinks(panel) {
+  const links = [...panel.querySelectorAll('a[href]')].filter((link) => isFragmentPath(link.getAttribute('href')));
+
+  await Promise.all(links.map(async (link) => {
+    const fragment = await loadFragment(link.getAttribute('href'));
+    if (!fragment) return;
+
+    const fragmentContainer = document.createElement('div');
+    fragmentContainer.className = 'tabs-fragment-container';
+
+    while (fragment.firstChild) {
+      fragmentContainer.appendChild(fragment.firstChild);
+    }
+
+    const replacementTarget = link.closest('p,div,li,td,th') || link;
+    if (replacementTarget !== link && hasOnlyFragmentLinkContent(replacementTarget, link)) {
+      replacementTarget.replaceWith(fragmentContainer);
+      return;
+    }
+
+    link.replaceWith(fragmentContainer);
+  }));
+}
 
 export default async function decorate(block) {
   // build tablist
@@ -9,7 +50,7 @@ export default async function decorate(block) {
 
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
-  tabs.forEach((tab, i) => {
+  await Promise.all(tabs.map(async (tab, i) => {
     const id = toClassName(tab.textContent);
 
     // decorate tabpanel
@@ -41,7 +82,8 @@ export default async function decorate(block) {
     });
     tablist.append(button);
     tab.remove();
-  });
+    await decorateFragmentLinks(tabpanel);
+  }));
 
   block.prepend(tablist);
 }

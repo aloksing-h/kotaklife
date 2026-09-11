@@ -138,6 +138,10 @@
             "value": "highlight"
           },
           {
+            "name": "Insights & Impact Plans",
+            "value": "insights-impact-plans"
+          },
+          {
             "name": "Term Insurance Plans",
             "value": "term-insurance-plans"
           },
@@ -347,6 +351,155 @@
     ]
   },
   {
+    "id": "custom-cards-item",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "col1_classes",
+        "label": "Card Variation",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Featured",
+            "value": "featured"
+          },
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          },
+          {
+            "name": "Image Overlay",
+            "value": "image-overlay"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_image1",
+        "label": "Image 1",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col1_image1Alt",
+        "label": "Image 1 Alt Text",
+        "description": "Describe the image, or leave empty only when it is decorative."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_image2",
+        "label": "Image 2",
+        "description": "Optional secondary image.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col1_image2Alt",
+        "label": "Image 2 Alt Text",
+        "description": "Describe Image 2 when it conveys information."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col2_title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "col2_description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "col2_link",
+        "label": "Card Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "col2_linkText",
+        "label": "Card Link Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "custom-rte",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Blog Detail Group Image",
+            "value": "detail-grp-img"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-rte-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "RTE Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "custom-image-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt"
+      }
+    ]
+  },
+  {
+    "id": "rte-image-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "RTE Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "embed",
     "fields": [
       {
@@ -418,6 +571,72 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "popular-search",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Heading & Description",
+        "description": "Author the heading as a Heading 2 (e.g. Popular searches) followed by a short description paragraph."
+      },
+      {
+        "component": "richtext",
+        "name": "tags",
+        "value": "",
+        "label": "Search Tags",
+        "description": "Author a bullet list of links, one per popular search tag, e.g. #Critical illness"
+      }
+    ]
+  },
+  {
+    "id": "profile-cta",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Block Options",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Reverse Layout (Image Right)",
+            "value": "reverse"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Heading & Description",
+        "valueType": "string",
+        "description": "Format the first line as a Heading (e.g. H2/H3). Add further paragraphs as needed (e.g. role, description) - all optional."
+      },
+      {
+        "component": "richtext",
+        "name": "cta",
+        "value": "",
+        "label": "Button",
+        "valueType": "string",
+        "description": "Author a link, e.g. Join Now"
       }
     ]
   },

@@ -35,6 +35,10 @@
               "value": "highlight"
             },
             {
+              "name": "Insights & Impact Plans",
+              "value": "insights-impact-plans"
+            },
+            {
               "name": "Term Insurance Plans",
               "value": "term-insurance-plans"
             },
@@ -116,10 +120,14 @@
         "cards",
         "carousel",
         "columns",
+        "custom-cards",
+        "custom-rte",
         "embed",
         "form",
         "fragment",
         "hero",
+        "popular-search",
+        "profile-cta",
         "quote",
         "search",
         "table",

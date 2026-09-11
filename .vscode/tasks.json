@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Serve kotaklife Website",
+			"type": "shell",
+			"command": "python3 -m http.server 8080",
+			"isBackground": true
+		}
+	]
+}
