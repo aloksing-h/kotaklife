@@ -18,6 +18,7 @@
       "cards",
       "carousel",
       "columns",
+      "custom-cards",
       "custom-rte",
       "embed",
       "form",
@@ -70,6 +71,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "custom-cards",
+    "components": [
+      "custom-cards-item"
     ]
   },
   {
