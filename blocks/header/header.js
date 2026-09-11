@@ -173,6 +173,28 @@ export default async function decorate(block) {
     }
   }
 
+  function addLayerClasses(element, depth = 1) {
+    if (!element || !element.children) return;
+    const classNameMap = {
+      1: 'list-item',
+      2: 'list-inner',
+      3: 'inner-child',
+      4: 'inner-item',
+      5: 'item',
+      6: 'item-child',
+    };
+    const className = classNameMap[depth] || `level-${depth}`;
+    Array.from(element.children).forEach((child, index) => {
+      child.classList.add(className);
+      child.classList.add(`${className}-${index + 1}`);
+      addLayerClasses(child, depth + 1);
+    });
+  }
+  const topHeader = nav.querySelector('.nav-header-top .default-content-wrapper');
+  if (topHeader) {
+    addLayerClasses(topHeader);
+  }
+
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
