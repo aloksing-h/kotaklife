@@ -23,7 +23,8 @@ export async function createModal(contentNodes) {
   closeButton.type = 'button';
   closeButton.innerHTML = '<span class="icon icon-close"></span>';
   closeButton.addEventListener('click', () => dialog.close());
-  dialog.prepend(closeButton);
+  // dialog.prepend(closeButton);
+  dialogContent.prepend(closeButton);
 
   const block = buildBlock('modal', '');
   document.querySelector('main').append(block);
@@ -68,4 +69,18 @@ export async function openModal(fragmentUrl) {
   const fragment = await loadFragment(path);
   const { showModal } = await createModal(fragment.childNodes);
   showModal();
+}
+
+export function initializeModalHandlers() {
+  document.body.addEventListener('click', async (e) => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+
+    // Check if it's a link to a modal fragment
+    const isThankYouPopupLink = /thank[-_\s]?you[-_\s]?popup/i.test(link.href);
+    if (link.href.includes('/modals/') || isThankYouPopupLink) {
+      e.preventDefault();
+      await openModal(link.href);
+    }
+  });
 }

@@ -120,7 +120,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function isFragmentPath(path) {
   if (!path) return false;
-  return path.includes('/nav/fragment/') || path.includes('/content/kotak-life/nav/fragment/');
+  // Check for fragment paths in any structure (e.g., /in/en/fragment/nav/*, /fragment/*, etc.)
+  return path.includes('/fragment/');
 }
 
 /**

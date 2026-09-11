@@ -200,6 +200,9 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  const { initializeModalHandlers } = await import('../blocks/modal/modal.js');
+  initializeModalHandlers();
 }
 
 /**
