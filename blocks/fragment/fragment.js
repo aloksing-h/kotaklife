@@ -24,13 +24,13 @@ export async function loadFragment(path) {
       const fragmentUrl = `${path}.plain.html`;
       // eslint-disable-next-line no-console
       console.log(`Loading fragment from: ${fragmentUrl}`);
-      
+
       const resp = await fetch(fragmentUrl);
       if (resp.ok) {
         const html = await resp.text();
         // eslint-disable-next-line no-console
         console.log('Fragment HTML loaded:', html.substring(0, 200));
-        
+
         const main = document.createElement('main');
         main.innerHTML = html;
 
@@ -51,11 +51,11 @@ export async function loadFragment(path) {
         decorateMain(main);
         // eslint-disable-next-line no-console
         console.log('After decorateMain, main has children:', main.children.length);
-        
+
         await loadSections(main);
         // eslint-disable-next-line no-console
         console.log('After loadSections, main has children:', main.children.length);
-        
+
         return main;
       }
       // eslint-disable-next-line no-console
@@ -84,10 +84,10 @@ export default async function decorate(block) {
     console.warn('Fragment block: Link has no href attribute');
     return;
   }
-  
+
   // eslint-disable-next-line no-console
   console.log('Fragment block decorate called with path:', path);
-  
+
   const fragment = await loadFragment(path);
   if (fragment) {
     // eslint-disable-next-line no-console

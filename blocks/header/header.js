@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+// eslint-disable-next-line import/no-cycle
 import { loadFragment } from '../fragment/fragment.js';
 // import { dataMapKotakObj } from '../../scripts/constant.js';
 
@@ -47,6 +48,7 @@ function openOnKeydown(e) {
   const focused = document.activeElement;
   const isNavDrop = focused.className === 'nav-drop';
   if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
+    e.preventDefault(); // Prevent default scroll on Space (WCAG 2.2 - 2.1.1 Keyboard)
     const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
     // eslint-disable-next-line no-use-before-define
     toggleAllNavSections(focused.closest('.nav-sections'));
@@ -67,6 +69,13 @@ function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
+    // Update aria-label for screen readers to announce state
+    const button = section.querySelector('button');
+    if (button) {
+      button.setAttribute('aria-expanded', expanded);
+      // Announce state change to assistive technologies
+      section.setAttribute('aria-busy', 'false');
+    }
   });
 }
 
@@ -82,7 +91,10 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  // Update button aria-label for screen readers (WCAG 2.2 - 1.3.1 Info and Relationships)
+  button.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+  button.setAttribute('aria-pressed', expanded ? 'false' : 'true');
+
   // enable nav dropdown keyboard accessibility
   if (navSections) {
     const navDrops = navSections.querySelectorAll('.nav-drop');
@@ -90,6 +102,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
       navDrops.forEach((drop) => {
         if (!drop.hasAttribute('tabindex')) {
           drop.setAttribute('tabindex', 0);
+          drop.setAttribute('role', 'button');
           drop.addEventListener('focus', focusNavSection);
         }
       });
@@ -138,6 +151,8 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+  nav.setAttribute('role', 'navigation');
+  nav.setAttribute('aria-label', 'Main navigation');
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['header-top', 'brand', 'sections', 'tools'];
@@ -150,7 +165,7 @@ export default async function decorate(block) {
   const firstSection = nav.children[0];
   if (firstSection) {
     const colorClass = Array.from(firstSection.classList).find(
-      (cls) => cls === 'white-nav' || cls === 'grey-nav'
+      (cls) => cls === 'white-nav' || cls === 'grey-nav',
     );
     if (colorClass) {
       nav.classList.add(colorClass);
@@ -178,6 +193,11 @@ export default async function decorate(block) {
     if (brandLink) {
       brandLink.className = '';
       brandLink.closest('.button-container').className = '';
+      // Ensure brand link has alt text if it's an image (WCAG 2.2 - 1.1.1 Non-text Content)
+      const brandImg = brandLink.querySelector('img');
+      if (brandImg && !brandImg.getAttribute('alt')) {
+        brandImg.setAttribute('alt', 'Company Logo');
+      }
     }
   }
 
@@ -185,6 +205,9 @@ export default async function decorate(block) {
   let leaveTimer = null; // Timer for delayed menu closing
 
   if (navSections) {
+    // Add proper ARIA attributes to nav-sections (WCAG 2.2 - 4.1.2 Name, Role, Value)
+    navSections.setAttribute('role', 'menubar');
+
     // Add data indexing for nav-sections
     // if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
     //   dataMapKotakObj.CLASS_PREFIXES = [
@@ -203,6 +226,14 @@ export default async function decorate(block) {
         navSection.removeAttribute('aria-expanded');
         navSection.removeAttribute('tabindex');
 
+        // Set proper ARIA attributes for dropdown (WCAG 2.2 - 4.1.2 Name, Role, Value)
+        navSection.setAttribute('role', 'listitem');
+        const dropButton = navSection.querySelector('a') || navSection.querySelector('button');
+        if (dropButton) {
+          dropButton.setAttribute('aria-haspopup', 'true');
+          dropButton.setAttribute('aria-expanded', 'false');
+        }
+
         // Check if this nav-drop has a fragment link
         const firstLink = navSection.querySelector('ul li a');
         const fragmentHref = firstLink ? firstLink.getAttribute('href') : null;
@@ -214,10 +245,12 @@ export default async function decorate(block) {
           const fragmentContent = await loadFragment(fragmentHref);
 
           if (fragmentContent) {
-            // Create fragment container
+            // Create fragment container with proper ARIA attributes
             const fragmentContainer = document.createElement('div');
             fragmentContainer.className = 'nav-fragment-container';
             fragmentContainer.setAttribute('data-fragment-path', fragmentHref);
+            fragmentContainer.setAttribute('role', 'region');
+            fragmentContainer.setAttribute('aria-label', 'Submenu content');
 
             // Add fragment content
             while (fragmentContent.firstChild) {
@@ -254,6 +287,11 @@ export default async function decorate(block) {
           if (navSection.querySelector('ul')) {
             navSection.setAttribute('aria-expanded', 'true');
             navSection.setAttribute('data-aria-expanded', 'true');
+            // Update aria-haspopup button
+            const dropButton = navSection.querySelector('a') || navSection.querySelector('button');
+            if (dropButton) {
+              dropButton.setAttribute('aria-expanded', 'true');
+            }
           }
         }
       });
@@ -265,6 +303,11 @@ export default async function decorate(block) {
           leaveTimer = setTimeout(() => {
             navSection.setAttribute('aria-expanded', 'false');
             navSection.setAttribute('data-aria-expanded', 'false');
+            // Update aria-haspopup button
+            const dropButton = navSection.querySelector('a') || navSection.querySelector('button');
+            if (dropButton) {
+              dropButton.setAttribute('aria-expanded', 'false');
+            }
             document.body.classList.remove('no-scroll');
           }, 300); // 300ms delay before closing
         }
@@ -282,6 +325,11 @@ export default async function decorate(block) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          // Update aria-haspopup button
+          const dropButton = navSection.querySelector('a') || navSection.querySelector('button');
+          if (dropButton) {
+            dropButton.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          }
         }
       });
     });
@@ -307,8 +355,8 @@ export default async function decorate(block) {
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
+  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation menu" aria-pressed="false">
+      <span class="nav-hamburger-icon" aria-hidden="true"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
