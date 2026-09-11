@@ -124,6 +124,44 @@ function isFragmentPath(path) {
 }
 
 /**
+ * Maps sections with tab classes to their corresponding tab panels
+ * @param {Element} container The fragment container element
+ */
+function mapTabSectionsToTabPanels(container) {
+  if (!container) return;
+
+  // Find the tabs block within the container
+  const tabsBlock = container.querySelector('.tabs.block');
+  if (!tabsBlock) return;
+
+  // Get all tab panels
+  const tabPanels = Array.from(tabsBlock.querySelectorAll('.tabs-panel'));
+  if (tabPanels.length === 0) return;
+
+  // Define mapping patterns: tab-one -> first panel, tab-two -> second panel, etc.
+  const tabClassPatterns = ['tab-one', 'tab-two', 'tab-three', 'tab-four', 'tab-five', 'tab-six', 'tab-seven', 'tab-eight', 'tab-nine', 'tab-ten'];
+
+  tabClassPatterns.forEach((tabClass, index) => {
+    // Find sections with this tab class
+    const tabSections = container.querySelectorAll(`.${tabClass}.section`);
+
+    if (tabSections.length > 0 && tabPanels[index]) {
+      tabSections.forEach((section) => {
+        // Clone or move the section content into the corresponding tab panel
+        // We'll append the section's children to maintain the content structure
+        const wrapper = section.querySelector('.columns-wrapper, .default-content-wrapper');
+        if (wrapper) {
+          // Append the wrapper content to the tab panel
+          tabPanels[index].appendChild(wrapper.cloneNode(true));
+          // Optionally remove the original section to avoid duplication
+          section.remove();
+        }
+      });
+    }
+  });
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -221,6 +259,9 @@ export default async function decorate(block) {
             fragmentContainer.addEventListener('click', (e) => {
               e.stopPropagation();
             });
+
+            // Map tab sections to their corresponding tab panels
+            mapTabSectionsToTabPanels(fragmentContainer);
           }
         }
       }

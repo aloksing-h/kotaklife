@@ -18,6 +18,6 @@ export default function decorate(block) {
     const details = document.createElement('details');
     details.className = 'accordion-item';
     details.append(summary, body);
-    row.replaceWith(details);
+    row.append(details);
   });
 }

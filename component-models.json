@@ -142,12 +142,12 @@
             "value": "insights-impact-plans"
           },
           {
-            "name": "Growing Insurance Company",
-            "value": "growing-insurance-company"
+            "name": "Term Insurance Plans",
+            "value": "term-insurance-plans"
           },
           {
-            "name": "Advisor",
-            "value": "advisor"
+            "name": "Insurance Plans New",
+            "value": "insurance-plans-new"
           },
           {
             "name": "Dsp None",
@@ -158,28 +158,52 @@
             "value": "dsp-none-appear"
           },
           {
-            "name": "Customer Say",
-            "value": "customer-say"
+            "name": "Term Insurance",
+            "value": "term-insurance"
           },
           {
-            "name": "Start Investing",
-            "value": "start-investing"
+            "name": "Insurance Plans",
+            "value": "insurance-plans"
           },
           {
-            "name": "Get Cover Plans",
-            "value": "get-cover-plans"
+            "name": "Claims",
+            "value": "claims"
           },
           {
-            "name": "Find A Plan",
-            "value": "find-a-plan"
+            "name": "Fund Performance",
+            "value": "fund-performance"
           },
           {
-            "name": "Protection Plans",
-            "value": "protection-plans"
+            "name": "How Do It",
+            "value": "how-do-it"
           },
           {
             "name": "Loans",
             "value": "loans"
+          },
+          {
+            "name": "Tab One",
+            "value": "tab-one"
+          },
+          {
+            "name": "Tab Two",
+            "value": "tab-two"
+          },
+          {
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
           }
         ]
       }
