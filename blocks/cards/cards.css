@@ -1,14 +1,18 @@
+/* ==========================================================================
+   Standard Cards Base CSS
+   ========================================================================== */
+
 .cards > ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  border: 1px solid var(--light-color);
   background-color: var(--background-color);
 }
 
@@ -20,8 +24,445 @@
   line-height: 0;
 }
 
-.cards > ul > li img {
+.cards .cards-card-image img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* ==========================================================================
+   Growing Insurance Company - Mobile First Base (Default < 900px)
+   ========================================================================== */
+
+.growing-insurance-company.section {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.growing-insurance-company {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.growing-insurance-company .default-content-wrapper {
+  display: contents;
+}
+
+/* Header Typography (Mobile Baseline) */
+.growing-insurance-company .default-content-wrapper h3 {
+  order: 1;
+  color: #181d27;
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: clamp(28px, 6vw, 36px);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.growing-insurance-company .default-content-wrapper h3 strong {
+  color: #181d27;
+  font-weight: 700;
+}
+
+.growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
+  order: 2;
+  color: #535862;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.growing-insurance-company .cards-wrapper {
+  order: 3;
+
+  /* width: 100%; */
+}
+
+/* CTA "Know More" Button (Mobile Bottom Centered) */
+.growing-insurance-company .default-content-wrapper .button-wrapper,
+.growing-insurance-company.section .default-content-wrapper p:has(a) {
+  order: 4;
+  display: flex;
+  justify-content: center;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn,
+.growing-insurance-company .default-content-wrapper a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: 1.5px solid #e31837;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #e31837;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
+.growing-insurance-company .default-content-wrapper a.button:hover {
+  background-color: #e31837;
+  color: #fff;
+
+  /* box-shadow: 0 4px 12px rgba(227, 24, 55, 0.2); */
+}
+
+.growing-insurance-company .default-content-wrapper .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #e31837;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover .btn-arrow {
+  background-color: #fff;
+  color: #e31837;
+}
+
+/* Mobile Cards Grid (2 Columns Base) */
+.growing-insurance-company .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.growing-insurance-company .cards > ul > li {
+  border-radius: 20px;
+  border: none;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.growing-insurance-company .cards > ul > li:hover {
+  transform: translateY(-4px);
+
+  /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
+}
+
+.growing-insurance-company.section .cards .cards-card-image p {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Mobile Grid Positioning */
+.growing-insurance-company .cards > ul > li:nth-child(1) {
+  grid-column: 1 / -1; /* Full width top Executive card */
+  background-color: #f4f8fa;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 24px;
+  min-height: 260px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  z-index: 2;
+  padding-right: 12px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) .quote-mark {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  line-height: 0.8;
+  color: #181d27;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: #181d27;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) p:nth-of-type(1) {
+  font-size: 13px;
+  font-weight: 700;
+  color: #181d27;
+  margin: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) p:nth-of-type(2) {
+  font-size: 12px;
+  font-weight: 500;
+  color: #535862;
+  margin: 2px 0 0 ;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image {
+  width: 140px;
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin: 0;
+  line-height: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Card 2: 38 Million Red Card */
+.growing-insurance-company .cards > ul > li:nth-child(2) {
+  grid-column: 1 / 2;
+  grid-row: 2 / span 2;
+  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: #fff;
+  min-height: 220px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(2) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px ;
+  line-height: 1.2;
+}
+
+.growing-insurance-company.section .cards > ul > li:nth-child(2) p {
+  font-size: 13px;
+  color: #FFF;
+  margin: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-image {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 100%;
+  line-height: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Card 3: 99.50% Light Card */
+.growing-insurance-company .cards > ul > li:nth-child(3) {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background-color: #f4f8fa;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  min-height: 140px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(3) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #181d27;
+  margin: 0 0 4px ;
+  line-height: 1.2;
+}
+
+.growing-insurance-company.section .cards > ul > li:nth-child(3) p {
+  font-size: 12px;
+  color: #535862;
+  margin: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-image {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 100%;
+  line-height: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Card 4: 1 Lakh + Red Card */
+.growing-insurance-company .cards > ul > li:nth-child(4) {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  color: #fff;
+  min-height: 140px;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(4) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px ;
+  line-height: 1.2;
+}
+
+.growing-insurance-company.section .cards > ul > li:nth-child(4) p {
+  font-size: 12px;
+  color: #FFF;
+  margin: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-image {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 100%;
+  line-height: 0;
+}
+
+.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* ==========================================================================
+   Desktop Layer Extensions (@media (min-width: 900px))
+   ========================================================================== */
+
+@media (width >= 900px) {
+  .growing-insurance-company.section {
+    padding: 48px 0;
+  }
+
+  .growing-insurance-company {
+    display: block;
+  }
+
+  /* Desktop Header Grid */
+  .growing-insurance-company .default-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title button"
+      "subtitle button";
+    align-items: center;
+    gap: 8px 24px;
+    margin-bottom: 32px;
+  }
+
+  .growing-insurance-company .default-content-wrapper h3 {
+    grid-area: title;
+    font-size: 44px;
+  }
+
+  .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
+    grid-area: subtitle;
+    font-size: 16px;
+  }
+
+  .growing-insurance-company .default-content-wrapper .button-wrapper,
+  .growing-insurance-company.section .default-content-wrapper p:has(a) {
+    grid-area: button;
+    justify-self: end;
+  }
+
+  /* Desktop 3-Column Asymmetric Grid */
+  .growing-insurance-company .cards > ul {
+    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(1) {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 2;
+    padding: 28px;
+    min-height: 280px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(1) h4 {
+    font-size: 16px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image {
+    width: 170px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+    padding: 28px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(2) h4 {
+    font-size: 36px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(3) {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    padding: 24px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(3) h4 {
+    font-size: 32px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(4) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    padding: 24px;
+  }
+
+  .growing-insurance-company .cards > ul > li:nth-child(4) h4 {
+    font-size: 32px;
+  }
 }
