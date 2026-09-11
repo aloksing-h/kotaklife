@@ -1,10 +1,5 @@
-/* global Swiper */
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
-
-function decorateDefaultTabs(block) {
-  
-}
 
 export default async function decorate(block) {
   const tablist = document.createElement('div');
