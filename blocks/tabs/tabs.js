@@ -2,113 +2,11 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
 
-function showYear(block, index) {
-  const markers = block.querySelectorAll('.timeline-marker-btn');
-  const panels = block.querySelectorAll('.timeline-panel');
-  const total = markers.length;
-  const activeIndex = ((index % total) + total) % total;
-
-  markers.forEach((marker, i) => {
-    marker.setAttribute('aria-selected', i === activeIndex);
-  });
-  panels.forEach((panel, i) => {
-    panel.setAttribute('aria-hidden', i !== activeIndex);
-  });
-  block.dataset.activeYear = activeIndex;
-  markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
-}
-
-function initSwiper(block) {
-  const swiperEl = block.querySelector('.timeline-nav');
-  if (!swiperEl || typeof Swiper === 'undefined') return;
-
-  // eslint-disable-next-line no-new
-  new Swiper(swiperEl, {
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    navigation: {
-      nextEl: '.timeline-arrow-next',
-      prevEl: '.timeline-arrow-prev',
-    },
-    breakpoints: {
-      600: {
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-      },
-      900: {
-        slidesPerView: 'auto',
-        spaceBetween: 32,
-      },
-    },
-  });
-}
-
-async function decorateTimeline(block) {
-  const tablist = document.createElement('div');
-  tablist.className = 'tabs-list timeline-nav';
-  tablist.setAttribute('role', 'tablist');
-
-  const line = document.createElement('div');
-  line.className = 'timeline-line';
-  tablist.append(line);
-
-  const tabs = [...block.children].map((child) => child.firstElementChild);
-  tabs.forEach((tab, i) => {
-    const id = toClassName(tab.textContent);
-
-    const button = document.createElement('button');
-    button.className = 'tabs-tab timeline-marker-btn';
-    button.id = `tab-${id}`;
-    button.innerHTML = `<span class="timeline-marker-text">${tab.innerHTML}</span><span class="timeline-marker-dot"></span>`;
-    button.setAttribute('aria-controls', `tabpanel-${id}`);
-    button.setAttribute('aria-selected', !i);
-    button.setAttribute('role', 'tab');
-    button.setAttribute('type', 'button');
-    button.addEventListener('click', () => showYear(block, i));
-
-    tablist.append(button);
-
-    const panel = block.children[i];
-    panel.className = 'tabs-panel timeline-panel';
-    panel.id = `tabpanel-${id}`;
-    panel.setAttribute('aria-hidden', !!i);
-    panel.setAttribute('role', 'tabpanel');
-
-    const description = panel.children[1];
-    const cardsContainer = document.createElement('div');
-    cardsContainer.className = 'timeline-cards';
-    if (description) {
-      cardsContainer.innerHTML = description.innerHTML;
-    }
-    panel.innerHTML = '';
-    panel.append(cardsContainer);
-  });
-
-  const arrows = document.createElement('div');
-  arrows.className = 'timeline-arrows';
-
-  const prevButton = document.createElement('button');
-  prevButton.className = 'timeline-arrow timeline-arrow-prev';
-  prevButton.type = 'button';
-  prevButton.setAttribute('aria-label', 'Previous year');
-  prevButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
-
-  const nextButton = document.createElement('button');
-  nextButton.className = 'timeline-arrow timeline-arrow-next';
-  nextButton.type = 'button';
-  nextButton.setAttribute('aria-label', 'Next year');
-  nextButton.innerHTML = '<span class="icon icon-arrow_right"></span>';
-
-  arrows.append(prevButton, nextButton);
-  tablist.append(arrows);
-
-  block.prepend(tablist);
-
-  initSwiper(block);
-  showYear(block, 0);
-}
-
 function decorateDefaultTabs(block) {
+  
+}
+
+export default async function decorate(block) {
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
@@ -147,14 +45,4 @@ function decorateDefaultTabs(block) {
   });
 
   block.prepend(tablist);
-}
-
-export default async function decorate(block) {
-  const isTimeline = block.classList.contains('timeline');
-
-  if (isTimeline) {
-    await decorateTimeline(block);
-  } else {
-    decorateDefaultTabs(block);
-  }
 }
