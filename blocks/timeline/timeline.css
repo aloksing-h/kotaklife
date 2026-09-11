@@ -214,6 +214,7 @@ width: 12px;
 .timeline.awards.block .timeline-cards-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
   padding: 16px 0 0;
   list-style: none;
@@ -258,9 +259,10 @@ width: 12px;
   background-color: var(--base-white);
   border: 1px solid var(--gray-200);
   box-shadow: 0 15px 40px rgb(180 210 240 / 40%);
-  width: 79px;
+  max-width: 144px;
+  width: 100%;
   padding: 12px 12px 12px 52px;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(odd) {
@@ -328,7 +330,7 @@ width: 12px;
 
 @media (width >= 900px) {
   .timeline.awards.block {
-    padding: 0 16px;
+    padding: 0;
   }
 
   .timeline.awards.block .timeline-nav {
@@ -365,21 +367,22 @@ width: 12px;
   .timeline.awards.block .timeline-cards-list {
     display: flex;
     flex-flow: row wrap;
-    width: 1100px;
-    margin: auto;
     gap: 0;
     padding: 0;
+    max-width: 1100px;
+    width: 100% ;
   }
 
   .timeline.awards.block .timeline-card-item {
     flex: 0 0 auto;
-    width: 319px;
+    width: 100%;
     max-width: 319px;
     max-height: none;
   }
 
   .timeline.awards.block .timeline-card-item .card-image {
     left: auto;
+    width: 100%;
     max-width: 138px;
     max-height: none;
   }
@@ -387,9 +390,10 @@ width: 12px;
   .timeline.awards.block .timeline-card-item .card-body {
     inset: 38% auto 4% 22%;
     transform: none;
-    width: auto;
-    max-width: 134px;
+    width: 100%;
+    max-width: 250px;
     padding: 26px 23px 26px 92px;
+    box-sizing: border-box;
   }
 
   /* Left margins place each card within its 550px half of the 1100px row */
