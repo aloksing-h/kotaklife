@@ -1,5 +1,6 @@
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import bannerDecorate from './banner.js';
 
 /**
  * Initializes Swiper instance for mobile viewports (< 900px)
@@ -108,6 +109,8 @@ export default async function decorate(block) {
 
   block.textContent = '';
   block.append(ul);
+
+  await bannerDecorate(block);
 
   // Initialize Swiper after DOM setup
   if (section) {

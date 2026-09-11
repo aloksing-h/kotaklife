@@ -150,6 +150,10 @@
             "value": "advisor"
           },
           {
+            "name": "Gemini Search",
+            "value": "gemini-search"
+          },
+          {
             "name": "Looking For",
             "value": "looking-for"
           },

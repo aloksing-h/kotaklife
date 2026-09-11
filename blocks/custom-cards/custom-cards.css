@@ -1,3 +1,6 @@
+@import url('../../styles/variables/base.css');
+@import url('./banner.css');
+
 /* Base Grid Container (Matches standard EDS cards) */
 
 /* eslint-disable */
@@ -421,3 +424,7 @@
   background-color: #e31837;
   color: #fff;
 }
+
+/* .looking-for.custom-cards-container .default-content-wrapper {
+  text-align: center;
+} */
