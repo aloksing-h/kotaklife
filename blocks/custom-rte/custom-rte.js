@@ -11,7 +11,7 @@ function restartProgressAnimation(trackWrapper) {
   if (!trackWrapper) return;
   trackWrapper.classList.remove('animating');
   // Trigger reflow to restart CSS keyframe animation
-  void trackWrapper.offsetWidth;
+  trackWrapper.getBoundingClientRect();
   trackWrapper.classList.add('animating');
 }
 
@@ -87,8 +87,9 @@ export default function decorate(block) {
 
   const rows = [...block.children];
   const cards = [];
+  const steps = [];
 
-  rows.forEach((row, index) => {
+  rows.forEach((row) => {
     const li = document.createElement('li');
     li.className = 'custom-rte-card';
     moveInstrumentation(row, li);
@@ -137,7 +138,6 @@ export default function decorate(block) {
     updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
   };
 
-  const steps = [];
   cards.forEach((_, i) => {
     const stepBtn = document.createElement('button');
     stepBtn.type = 'button';

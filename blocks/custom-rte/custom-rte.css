@@ -275,10 +275,10 @@
 
 /* Active 5-second progress animation fill */
 .get-cover-plans .progress-track-wrapper.animating .progress-bar-fill {
-    animation: progressFill 5s linear forwards;
+    animation: progress-fill 5s linear forwards;
 }
 
-@keyframes progressFill {
+@keyframes progress-fill {
     0% {
         width: 0%;
     }
