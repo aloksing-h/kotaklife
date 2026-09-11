@@ -79,7 +79,9 @@
 }
 
 .vision .cards-wrapper {
-  padding: 0 var(--spacing-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-2xl);
 }
 
 .rte.default-title > div > div {
