@@ -10,16 +10,17 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches
-        && targetTab.closest('header nav');
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches;
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
+    // Accordion: toggle off
     targetTab.setAttribute('aria-selected', 'false');
     targetTabPanelIds.forEach((id) => {
       const panel = document.querySelector(`#${CSS.escape(id)}`);
       if (panel) {
         panel.setAttribute('aria-hidden', 'true');
         panel.setAttribute('hidden', '');
+        panel.classList.add('hidden');
       }
     });
     return;
@@ -33,12 +34,16 @@ export function changeTabs(e) {
   // Hide all tab panels
   document
     .querySelectorAll(`[role="tabpanel"][id^="${tabGroupPrefix}-panel-"]`)
-    .forEach((p) => p.setAttribute('hidden', true));
+    .forEach((p) => {
+      p.setAttribute('hidden', true);
+      p.classList.add('hidden');
+    });
   // Show the selected panel
   targetTabPanelIds.forEach((id) => {
     const panel = document.querySelector(`#${CSS.escape(id)}`);
     if (panel) {
       panel.removeAttribute('hidden');
+      panel.classList.remove('hidden');
       panel.setAttribute('aria-hidden', 'false');
     }
   });
@@ -64,15 +69,23 @@ export default async function decorate(block) {
       break;
     }
   }
-  // create the tab-list DOM iteslf
+  // create the tab-list DOM itself
   const tabsPrefix = `tabs-${(tabsIdx += 1)}`;
   const tabList = document.createElement('ul');
   tabList.role = 'tablist';
   tabList.id = `${tabsPrefix}-tablist`;
+  
+  const tabs = [];
+  const isMobile = !window.matchMedia('(min-width: 900px)').matches;
+  
   tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}`;
-    // build the tabs as buttons and append them to the tab list
+    
+    // Create the list item
+    const li = document.createElement('li');
+    
+    // Build the tab button
     const tabItem = document.createElement('button');
     tabItem.id = tabId;
     tabItem.role = 'tab';
@@ -94,21 +107,39 @@ export default async function decorate(block) {
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
-    const li = document.createElement('li');
+    
+    // Append button to list item
     li.appendChild(tabItem);
-    tabList.appendChild(li);
-    // update the tab panel to use the tab id
+    
+    // Update the tab panel attributes
     tabPanel.id = tabPanelId;
     tabPanel.setAttribute('aria-labelledby', tabId);
-    tabPanel.classList.add('hidden');
-    // update the tab panel to use the tab id
-    tabPanel.id = tabPanelId;
     tabPanel.role = 'tabpanel';
     tabPanel.tabIndex = 0;
-    tabPanel.setAttribute('aria-labelledby', tabId);
-    if (i > 0) tabPanel.setAttribute('hidden', '');
+    
+    // Desktop behavior: first panel shown, others hidden
+    if (i === 0) {
+      tabPanel.removeAttribute('hidden');
+      tabPanel.classList.remove('hidden');
+      tabPanel.setAttribute('aria-hidden', 'false');
+    } else {
+      tabPanel.setAttribute('hidden', '');
+      tabPanel.classList.add('hidden');
+      tabPanel.setAttribute('aria-hidden', 'true');
+    }
+    
+    if (isMobile) {
+      // Mobile: append panel inside li for accordion
+      li.appendChild(tabPanel);
+    }
+    
+    // Append list item to tab list
+    tabList.appendChild(li);
+    
+    // Store tab for later use
+    tabs.push(tabItem);
   });
-  const tabs = [...tabList.querySelectorAll('[role="tab"]')];
+  
   // if the tab-list has the showall class, add a tab for all the tabs
   if (block.classList.contains('showall')) {
     const tabId = `${tabsPrefix}-tab-all`;
