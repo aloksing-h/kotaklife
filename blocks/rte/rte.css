@@ -1,3 +1,74 @@
+/* ============================================
+   Sub Navigation - horizontal tab nav
+   ============================================ */
+
+   /* if we have to keep this in center then give max-width:1200px and mx-auto */
+.fragment-wrapper:has(.subnav) {
+    padding: 0;
+    max-width: unset; 
+    margin: 0;
+}
+
+.subnav.rte ul {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0 16px;
+  background-color: var(--info-50);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.subnav.rte ul::-webkit-scrollbar {
+  display: none;
+}
+
+.subnav.rte ul li {
+  flex: 0 0 auto;
+}
+
+.subnav.rte ul li p {
+  margin: 0;
+}
+
+.subnav.rte a {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  padding: 0 12px;
+  font-family: var(--font-family-manrope);
+  font-size: var(--body-2-font-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+}
+
+.subnav.rte a:hover {
+  text-decoration: none;
+}
+
+.subnav.rte a.rte-sub-nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 4px;
+  background-color: var(--brand-red-500);
+}
+
+@media (width >= 900px) {
+  .subnav.rte ul {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
 .rte.explore-cta.block h1 {
   
   font-size: var(--heading-3-font-size);
@@ -89,7 +160,9 @@
 }
 
 .vision .cards-wrapper {
-  padding: 0 var(--spacing-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-2xl);
 }
 
 .rte.default-title > div > div {
@@ -182,16 +255,16 @@
     padding: 0 50px;
     margin-bottom: 50px;
   }
-  
+
   .trust .rte.default-title p {
-  color: var(--text-tertiary);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--body-1-font-size);
-  line-height: var(--body-1-line-height);
-  max-width: 420px;
-  text-align: right;
-  justify-self: end;
-  margin: 0;
-  overflow-wrap: break-word;
-}
+    color: var(--text-tertiary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+    max-width: 420px;
+    text-align: right;
+    justify-self: end;
+    margin: 0;
+    overflow-wrap: break-word;
+  }
 }

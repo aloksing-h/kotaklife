@@ -214,10 +214,6 @@
             "value": "trust"
           },
           {
-            "name": "Sub navigation",
-            "value": "subnav"
-          },
-          {
             "name": "Slider Title",
             "value": "slider-title"
           }
@@ -659,6 +655,10 @@
           {
             "name": "Default Title",
             "value": "default-title"
+          },
+          {
+            "name": "Sub Navigation",
+            "value": "subnav"
           }
         ]
       }
