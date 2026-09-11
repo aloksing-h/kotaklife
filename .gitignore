@@ -7,7 +7,7 @@ helix-importer-ui
 .DS_Store
 *.bak
 .idea
-
+token.txt
 # Contains API keys/tokens, never commit
 .vscode/mcp.json
 
