@@ -221,5 +221,18 @@ export default async function decorate(block) {
       tabs[tabFocus].click();
     }
   });
-  block.replaceChildren(tabList);
+
+  // Wrap tablist in tablist-wrapper container
+  const tablistWrapper = document.createElement('div');
+  tablistWrapper.className = 'tablist-wrapper';
+  tablistWrapper.appendChild(tabList);
+
+  // Append all tab panels (desktop panels) after the tablist
+  if (!isMobile) {
+    tabPanels.forEach(([, tabPanel]) => {
+      tablistWrapper.appendChild(tabPanel);
+    });
+  }
+
+  block.replaceChildren(tablistWrapper);
 }
