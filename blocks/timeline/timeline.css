@@ -292,6 +292,7 @@ width: 12px;
   font-weight: var(--font-weight-regular);
   line-height: var(--button-2-line-height);
   overflow-wrap: break-word;
+  /* stylelint-disable-next-line declaration-property-value-keyword-no-deprecated -- legacy fallback for browsers without overflow-wrap support */
   word-break: break-word;
 }
 
