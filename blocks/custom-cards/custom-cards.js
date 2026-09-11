@@ -1,12 +1,11 @@
-import { createOptimizedPicture, loadCSS } from '../../scripts/aem.js';
+import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /**
  * Initializes Swiper instance for mobile viewports (< 900px)
  * @param {Element} block The custom-cards block element
- * @param {Function} createSwiper Swiper factory function
  */
-function initInsightsSwiper(block, createSwiper) {
+function initInsightsSwiper(block) {
   const ul = block.querySelector('ul');
   if (!ul) return;
 
@@ -21,24 +20,19 @@ function initInsightsSwiper(block, createSwiper) {
   const mobileQuery = window.matchMedia('(max-width: 899px)');
 
   const enableSwiper = () => {
-    if (!block.clientWidth) {
-      setTimeout(enableSwiper, 50);
-      return;
-    }
-
-    if (!block.swiperInstance && createSwiper) {
+    if (!block.swiperInstance && window.Swiper) {
       block.classList.add('swiper');
       ul.classList.add('swiper-wrapper');
       [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
 
-      block.swiperInstance = createSwiper(block, {
-        slidesPerView: 1.22,
-        spaceBetween: 8,
+      block.swiperInstance = new window.Swiper(block, {
+        slidesPerView: 1.18,
+        spaceBetween: 16,
         grabCursor: true,
         pagination: {
           el: pagination,
           clickable: true,
-        }
+        },
       });
     }
   };
@@ -47,11 +41,9 @@ function initInsightsSwiper(block, createSwiper) {
     if (block.swiperInstance) {
       block.swiperInstance.destroy(true, true);
       block.swiperInstance = null;
-      block.classList.remove('swiper', 'swiper-initialized', 'swiper-horizontal', 'swiper-backface-hidden');
+      block.classList.remove('swiper');
       ul.classList.remove('swiper-wrapper');
       [...ul.children].forEach((li) => li.classList.remove('swiper-slide'));
-      pagination.className = 'swiper-pagination';
-      pagination.textContent = '';
     }
   };
 
@@ -70,15 +62,13 @@ function initInsightsSwiper(block, createSwiper) {
 export default async function decorate(block) {
   const section = block.closest('.insights-impact-plans');
   const codeBase = window.hlx?.codeBasePath || '';
-  let createSwiper;
 
   // Load Swiper CSS and JS at top level if block is inside .insights-impact-plans
   if (section) {
-    const [{ default: swiperFactory }] = await Promise.all([
-      import(`${codeBase}/blocks/swiper/swiper-bundle.min.js`),
+    await Promise.all([
       loadCSS(`${codeBase}/blocks/swiper/swiper-bundle.min.css`),
+      loadScript(`${codeBase}/blocks/swiper/swiper-bundle.min.js`),
     ]);
-    createSwiper = swiperFactory;
   }
 
   /* Transform row structure to ul, li */
@@ -121,6 +111,6 @@ export default async function decorate(block) {
 
   // Initialize Swiper after DOM setup
   if (section) {
-    initInsightsSwiper(block, createSwiper);
+    initInsightsSwiper(block);
   }
 }
