@@ -11,8 +11,9 @@
     background-color: #fff;
     overflow: hidden;
     max-width: 1200px;
+    box-sizing: border-box;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 50px;
 }
 
 .get-cover-plans .default-content-wrapper {
@@ -120,8 +121,8 @@
     left: 0;
     width: calc(100% - 32px);
     height: 290px;
-    border-radius: 20px;
-    padding: 28px;
+    border-radius: 8px;
+    padding: 24px 24px 48px;
     box-sizing: border-box;
     cursor: pointer;
     display: flex;
@@ -201,10 +202,10 @@
 
 .get-cover-plans .plan-card-body li {
     font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: clamp(24px, 5vw, 40px);
     font-weight: 300;
     color: #fff;
-    line-height: 1.25;
+    line-height: 48px;
     margin-bottom: 6px;
 }
 
@@ -228,6 +229,7 @@
     justify-content: flex-start;
     padding-left: 4px;
     margin-top: 16px;
+    margin-left: 40px;
 }
 
 .get-cover-plans .steps-container {
@@ -299,7 +301,7 @@
     }
 
     .get-cover-plans .default-content-wrapper {
-        width: 37.34%;
+        width: 40.7%;
     }
 
     .get-cover-plans .default-content-wrapper h3 {
@@ -307,12 +309,8 @@
         line-height: var(--line-height-heading-1, 60px);
     }
 
-    .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-        width: 69%;
-    }
-
     .get-cover-plans .custom-rte-wrapper {
-        width: 32.7%;
+        width: 35.6%;
         padding: 0;
         margin: 0;
     }
