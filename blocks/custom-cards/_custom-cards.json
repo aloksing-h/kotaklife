@@ -52,6 +52,10 @@
             {
               "name": "Image Overlay",
               "value": "image-overlay"
+            },
+            {
+              "name":"Banner Swiper ",
+              "value":"banner-swiper"
             }
           ]
         },
