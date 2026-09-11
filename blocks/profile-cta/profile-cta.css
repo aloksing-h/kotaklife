@@ -186,7 +186,7 @@
     height: 20px;
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   .profile-cta {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "image text" "image cta";
@@ -257,7 +257,7 @@
   }
 }
 
-@media (width  <= 899px) {
+@media (width  <= 1023px) {
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding: 16px;
   }
