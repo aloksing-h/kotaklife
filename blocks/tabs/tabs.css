@@ -6,13 +6,13 @@
   overflow-x: auto;
 }
 
-@media (width >= 600px) {
+@media (width >=600px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-s);
   }
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
   }
@@ -55,3 +55,75 @@
 .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
 }
+
+.find-a-plan.tabs-container .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 39px;
+}
+
+.find-a-plan.tabs-container .default-content-wrapper h1,
+.find-a-plan.tabs-container .default-content-wrapper h2,
+.find-a-plan.tabs-container .default-content-wrapper h3,
+.find-a-plan.tabs-container .default-content-wrapper h4,
+.find-a-plan.tabs-container .default-content-wrapper h5,
+.find-a-plan.tabs-container .default-content-wrapper h6 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-display, Manrope);
+  font-size: var(--font-size-heading-1, 48px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: var(--line-height-heading-1, 60px);
+}
+
+.find-a-plan.tabs-container .default-content-wrapper h2 strong,
+.find-a-plan.tabs-container .default-content-wrapper h3 strong,
+.find-a-plan.tabs-container .default-content-wrapper h4 strong,
+.find-a-plan.tabs-container .default-content-wrapper h5 strong,
+.find-a-plan.tabs-container .default-content-wrapper h6 strong {
+  color: var(--text-text-primary, #181D27);
+  text-align: center;
+  font-family: var(--font-family-font-family-display, Manrope);
+  font-size: var(--font-size-heading-1, 48px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--line-height-heading-1, 60px);
+}
+
+.find-a-plan.tabs-container .default-content-wrapper p {
+  color: var(--text-text-tertiary, #535862);
+  text-align: center;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-1, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-sub-heading-2, 20px);
+  margin: 0;
+  margin-top: 4px;
+}
+
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid #D2DAE4;
+  background: var(--background-bg-tertiary, #F5F5F5);
+}
+
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab {
+  display: flex;
+  padding: var(--spacing-lg, 12px) var(--spacing-2xl, 20px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: var(--radius-full, 999px);
+  border-bottom: 1px solid #1E4679;
+  background: linear-gradient(90deg,
+      var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%,
+      var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
+}
+
