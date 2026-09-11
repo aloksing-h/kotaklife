@@ -13,7 +13,7 @@ helix-importer-ui
 
 # Temporary Figma preview exports, not source content
 tmp-figma-preview/
-
+token.txt
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
