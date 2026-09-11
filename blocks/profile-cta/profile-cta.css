@@ -290,4 +290,9 @@
   font-weight: 400;
   line-height: var(--line-height-sub-heading-2, 20px);
 }
+
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) {
+  width: 100%;
+  max-width: 100%;
+}
 }
