@@ -305,9 +305,6 @@ main > .section.trust {
   overflow: hidden;
 }
 
-.cards.image-card.block > ul > li:nth-child(2) .cards-card-image img{
-  height: 90px;
-}
 
 .cards.image-card.block .cards-card-body {
   order: -1;
