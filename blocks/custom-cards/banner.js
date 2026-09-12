@@ -1,51 +1,39 @@
 import { decorateIcons } from '../../scripts/aem.js';
-import { div, span } from '../../scripts/dom-helpers.js';
-
+import { div } from '../../scripts/dom-helpers.js';
 /**
  * Decorates the custom-cards block for AEM Edge Delivery Services
  * @param {Element} block The custom-cards block element
  */
 export default async function decorate(block) {
-  const ul = block.querySelector('ul');
-  if (!ul) return;
+  const section = block.closest('.looking-for');
+  const wrapper = block.closest('.custom-cards-wrapper');
 
-  const isBanner = block.closest('.custom-cards-wrapper')?.previousElementSibling?.classList.contains('search-wrapper');
+  if (!section || !wrapper) return;
 
-  if (isBanner) {
-    block.classList.add('custom-cards-banner');
-    const li = ul.querySelector('li');
-    if (!li) return;
+  const isBannerWrapper = wrapper.previousElementSibling?.classList.contains('search-wrapper');
 
-    // Structure banner content for layout overlay
-    const body = li.querySelector('.custom-cards-card-body');
-    const imageContainer = li.querySelector('.custom-cards-card-image');
+  if (isBannerWrapper) {
+    wrapper.classList.add('looking-banner');
+  }
 
-    if (body) {
-      // Inject key metrics overlay above image for commerce proof points
-      const statsOverlay = div(
-        { class: 'banner-stats' },
-        div({ class: 'stat-item' }, span({ class: 'stat-value' }, '27.6%'), span({ class: 'stat-label' }, 'Growth')),
-        div({ class: 'stat-item' }, span({ class: 'stat-value' }, '99.5%'), span({ class: 'stat-label' }, 'Claim Settlement Ratio')),
-      );
+  const isBanner = block.closest('.looking-banner');
+  if (!isBanner) return;
 
-      if (imageContainer) {
-        imageContainer.append(statsOverlay);
-      }
+  const cardLi = block.querySelector('ul > li');
+  if (!cardLi) return;
+
+  const cardBody = cardLi.querySelector('.custom-cards-card-body');
+  const cardImage = cardLi.querySelector('.custom-cards-card-image');
+
+  if (cardBody && cardImage) {
+    // 2. Wrap CTA link and Disclaimer for inline desktop layout
+    const ctaParagraph = cardBody.querySelector('p:has(a)');
+    const disclaimerParagraph = cardBody.querySelector('p:nth-child(3)');
+
+    if (ctaParagraph && disclaimerParagraph) {
+      const ctaGroup = div({ class: 'banner-cta-group' }, ctaParagraph, disclaimerParagraph);
+      cardBody.appendChild(ctaGroup);
     }
-  } else {
-    block.classList.add('custom-cards-grid');
-
-    // Process category items
-    [...ul.children].forEach((li) => {
-      const body = li.querySelector('.custom-cards-card-body');
-      const arrowSpan = body?.querySelector('.icon-red-arrow-up-right');
-
-      // Move top-right action icon to top container level if present
-      if (arrowSpan && body) {
-        li.appendChild(arrowSpan.cloneNode(true));
-        arrowSpan.remove();
-      }
-    });
   }
 
   decorateIcons(block);

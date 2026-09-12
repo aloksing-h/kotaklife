@@ -336,3 +336,233 @@
 .looking-for>.custom-cards-wrapper:nth-of-type(4) .custom-cards-card-body a:hover {
     opacity: 0.9;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   4. Bottom Banner (Targeting the banner-marked custom-cards wrapper)
+   ========================================================================== */
+.looking-for>.custom-cards-wrapper.looking-banner {
+    margin-top: 50px;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+/* .looking-for>.custom-cards-wrapper:nth-of-type(4) .custom-cards li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(180deg, #640814 0%, #122A49 100%);
+    overflow: hidden;
+    color: var(--text-white);
+    padding: var(--spacing-4xl) var(--spacing-2xl);
+} */
+
+/* Banner Images (Absolute Background layers) */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image >p:first-of-type {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Family image */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image .primary-image img {
+    /* position: absolute;
+    bottom: 0;
+    right: 0; */
+    width: 90%;
+    max-width: 400px;
+    object-fit: contain;
+    object-position: bottom right;
+}
+
+/* Abstract wave graphic */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image .secondary-image img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+}
+
+/* Desktop sizing for banner images */
+
+/* @media (width >=900px) {
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image .primary-image img {
+        max-width: 500px;
+        right: 5%;
+    }
+} */
+
+/* Banner Text Content */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    max-width: 100%;
+    padding: 24px;
+    margin: 0;
+}
+
+/* @media (width >=900px) {
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body {
+        max-width: 55%;
+    }
+} */
+
+/* "BEST SELLER" Badge */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:first-child {
+    display: inline-flex;
+    padding: var(--spacing-xxs, 2px) var(--spacing-md, 8px);
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-xs, 4px);
+    border-radius: var(--radius-xxs, 2px);
+    border: 1px solid var(--border-border-white, #FFF);
+    margin: 0;
+    color: var(--text-text-white, #FFF);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-caption, 12px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--font-line-height-caption, 14px);
+}
+
+/* Heading */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body h3 {
+    color: var(--text-primary-inverse-base, #F5F5F5);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-4, 24px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-heading-4, 28px);
+    margin: 0;
+}
+
+/* Disclaimer text */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
+    color: #FFF;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-caption, 14px);
+    margin: 0;
+}
+
+/* Buy Now Button */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body p:last-child{
+    margin: 0;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a {
+    display: inline-flex;
+    height: 32px;
+    padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-xl, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg, 12px);
+    position: relative;
+    transition: opacity 0.2s;
+    border-radius: var(--radius-full, 999px);
+    background: var(--background-bg-primary, #FFF);
+    color: var(--text-text-primary, #181D27);
+    text-align: center;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-button-2, 14px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: var(--line-height-body-2, 16px);
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a::after {
+   content: '';
+    width: 24px;
+    height: 24px;
+    display: flex;
+    background-color: var(--brand-red-500);
+    border-radius: 50%;
+    background-image: url('/icons/write-arrow-right.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a:hover {
+    opacity: 0.9;
+}
+
+@media (width >=900px) {
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards li {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+
+        /* padding: var(--spacing-5xl) var(--spacing-4xl); */
+        background: linear-gradient(90deg, #640814 0%, #122A49 100%);
+    }
+
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image .primary-image img {
+        max-width: 500px;
+        right: 5%;
+    }
+
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body {
+        max-width: 55%;
+        padding: 12px;
+    }
+
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:first-child {
+        padding: var(--spacing-xxs) var(--spacing-md);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-family-inter);
+        font-size: var(--caption-font-size);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0;
+    }
+
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body h3 {
+        font-family: var(--font-family-manrope);
+        font-size: var(--heading-3-font-size);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--heading-3-line-height);
+        margin: 0;
+    }
+
+    .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
+        font-size: var(--disclaimer-font-size);
+        line-height: var(--disclaimer-line-height);
+        opacity: 0.7;
+        margin-top: var(--spacing-4xl);
+    }
+}
