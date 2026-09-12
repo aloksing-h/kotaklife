@@ -20,35 +20,7 @@ function showYear(block, index) {
   markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
 }
 
-// function initSwiper(block) {
-//   const swiperEl = block.querySelector('.timeline-nav');
-//   if (!swiperEl) return;
-
-//   Swiper(swiperEl, {
-//     wrapperClass: 'timeline-track',
-//     slideClass: 'tabs-tab',
-    
-//     // 2. Enable drag and scroll
-//     simulateTouch: true,    // Enables mouse drag
-//     grabCursor: true,       // Shows the 'grab' hand cursor
-//     freeMode: true,
-//     slidesPerView: 'auto',
-//     spaceBetween: 67,
-//     navigation: {
-//       nextEl: '.timeline-arrow-next',
-//       prevEl: '.timeline-arrow-prev',
-//     },
-//     breakpoints: {
-//       900: {
-//         slidesPerView: 'auto',
-//         spaceBetween: 112,
-//       },
-//     },
-//   });
-// }
-
 function initDragScroll(block) {
-  // We apply the scroll to the nav container
   const slider = block.querySelector('.timeline-nav');
   if (!slider) return;
 
@@ -56,9 +28,9 @@ function initDragScroll(block) {
   let startX;
   let scrollLeft;
 
-  // Set initial cursor
   slider.style.cursor = 'grab';
 
+  // --- DESKTOP MOUSE EVENTS ---
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.style.cursor = 'grabbing';
@@ -78,11 +50,34 @@ function initDragScroll(block) {
 
   slider.addEventListener('mousemove', (e) => {
     if (!isDown) return;
-    e.preventDefault(); // Stop text highlighting while dragging
+    e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Multiply by 1.5 to scroll a bit faster
+    const walk = (x - startX) * 1.5; // Scroll speed
     slider.scrollLeft = scrollLeft - walk;
   });
+
+  // --- MOBILE TOUCH EVENTS ---
+  slider.addEventListener('touchstart', (e) => {
+    isDown = true;
+    // e.touches[0] gets the first finger touching the screen
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', () => {
+    isDown = false;
+  });
+
+  slider.addEventListener('touchcancel', () => {
+    isDown = false;
+  });
+
+  slider.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed
+    slider.scrollLeft = scrollLeft - walk;
+  }, { passive: true });
 }
 
 export default function decorate(block) {
