@@ -280,7 +280,7 @@ width: 12px;
   top: 63%;
   left: 50%;
   width: 100px;
-  height: 50px;
+  height: 30px;
   background-image: var(--timeline-glow-gradient);
   filter: blur(16px);
   transform: translate(-50%, -50%);
@@ -315,6 +315,9 @@ width: 12px;
 .timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
   margin-top: 40px;
 }
+.slider-title > div{
+  padding: 0 16px;
+}
 
 .slider-title.section h1{
   margin: 0;
@@ -329,74 +332,35 @@ width: 12px;
 }
 @media (width >=500px) {
   .timeline.awards.block .timeline-card-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border: none;
-  width: 100%;
-  max-width: 250px;
-  min-height: 120px;
-  
-}
+    max-width: 250px;
+    min-height: 120px;
+  }
 
-.timeline.awards.block .timeline-card-item .card-image {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  z-index: 2;
-  display: inline-block;
-  max-width: 86px;
-  max-height: 120px;
-  height: 100%;
-}
+  .timeline.awards.block .timeline-card-item::before {
+    top: 72%;
+    height: 25px;
+  }
+
+  .timeline.awards.block .timeline-card-item .card-image {
+    max-height: 120px;
+  }
 
   .timeline.awards.block .timeline-card-item .card-body {
-  position: absolute;
-  inset: auto auto 4% 18%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  border-radius: 12px;
-  background-color: var(--base-white);
-  border: 1px solid var(--gray-200);
-  box-shadow: 0 15px 40px rgb(180 210 240 / 40%);
-  max-width: 200px;
-  width: 100%;
-  padding: 12px 12px 12px 52px;
-  box-sizing: border-box;
-}
-  
-.timeline.awards.block .timeline-card-item .card-body p {
-  margin: 0;
-  color: var(--gray-600);
-  font-family: Manrope, sans-serif;
-  font-size: var(--button-3-font-size);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--button-2-line-height);
-  overflow-wrap: break-word;
-  /* stylelint-disable-next-line declaration-property-value-keyword-no-deprecated -- legacy fallback for browsers without overflow-wrap support */
-  word-break: break-word;
-}
-  /* nested Cards block reused for award cards within the active year */
-.timeline.awards.block .timeline-panel .cards > ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 24px;
-  padding: 32px 0;
-}
+    inset: auto auto 4% 18%;
+    max-width: 200px;
+  }
 
-.timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
-  margin-top: 40px;
-}
+  .timeline.awards.block .timeline-card-item .card-body p {
+    font-size: var(--button-2-font-size);
+  }
+
   .timeline.awards.block .timeline-card-item:nth-child(odd) {
-  margin: 0 0 0 30%;
-}
+    margin: 0 0 0 30%;
+  }
 
-.timeline.awards.block .timeline-card-item:nth-child(even) {
-  margin: 0 30% 0 0;
-}
+  .timeline.awards.block .timeline-card-item:nth-child(even) {
+    margin: 0 30% 0 0;
+  }
 }
 
 @media (width >= 900px) {
@@ -432,11 +396,10 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-cards {
-    padding: 32px 0;
+    padding: 34px 0;
   }
 
   .timeline.awards.block .timeline-cards-list {
-    display: flex;
     flex-flow: row wrap;
     gap: 0;
     padding: 0;
@@ -489,6 +452,7 @@ width: 12px;
 
   .timeline.awards.block .timeline-card-item::before {
     top: 70%;
+    left: 72%;
     width: 160px;
     height: 75px;
   }
@@ -529,124 +493,23 @@ width: 12px;
 }
 
 @media (width >= 1125px) {
-  .timeline.awards.block {
-    padding: 0;
-  }
-
-  .timeline.awards.block .timeline-nav {
-    padding: 24px 0 64px;
-  }
-
-  .timeline.awards.block .timeline-markers {
-    overflow-x: visible;
-  }
-
-  .timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
-    font-size: var(--body-2-font-size);
-    line-height: var(--body-2-line-height);
-  }
-
-  .timeline.awards.block .timeline-marker-btn[aria-selected='true'] {
-    padding: 5px 16px;
-  }
-
-  .timeline.awards.block .timeline-arrows {
-    top: 110px;
-  }
-
-  .timeline.awards.block .timeline-cards {
-    padding: 32px 0;
-  }
-
-  .timeline.awards.block .timeline-cards-list {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 0;
-    padding: 0;
-    max-width: 1100px;
-    width: 100% ;
-  }
-
-  .timeline.awards.block .timeline-card-item {
-    flex: 0 0 auto;
-    width: 29%;
-    max-width: 319px;
-    max-height: none;
-    min-height: 160px;
-  }
-
-  .timeline.awards.block .timeline-card-item .card-image {
-    left: auto;
-    width: 100%;
-    max-width: 138px;
-    max-height: none;
-  }
-
+  /* everything else here is unchanged from the 900px breakpoint */
   .timeline.awards.block .timeline-card-item .card-body {
     inset: auto auto 4% 22%;
-    transform: none;
-    width: 100%;
-    max-width: 250px;
-    padding: 26px 23px 26px 92px;
-    box-sizing: border-box;
-  }
-/* 3. Apply the adjusted fluid margins */
-  .timeline.awards.block .timeline-card-item:nth-child(4n+1) {
-    margin: 46.33px 0 0 0;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+2) {
     /* 238px is ~21.6%. Dropped to 20% to give breathing room */
-    margin: 0 0 0 238px
+    margin: 0 0 0 238px;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+3) {
     /* 340px is ~30.9%. Dropped to 28% so it shrinks fast enough to prevent wrapping */
-    margin: 0 0 0 340px
+    margin: 0 0 0 340px;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
     /* 122px is ~11.1%. Dropped to 9% */
     margin: 0 0 0 clamp(20px, 9%, 122px);
-  }
-
-  .timeline.awards.block .timeline-card-item::before {
-    top: 70%;
-    width: 160px;
-    height: 75px;
-  }
-
-  .timeline.awards.block .timeline-card-item .card-body p {
-    font-size: var(--sub-heading-1-font-size);
-    line-height: var(--sub-heading-1-line-height);
-    font-weight: var(--font-weight-regular);
-  }
-
-  .timeline.awards.block .timeline-panel .cards > ul {
-    flex-wrap: nowrap;
-  }
-
-  .slider-title.section{
-    position: relative;
-    max-width: 1200px;
-    margin: 40px auto;
-  }
-
-  .slider-title.section h1{
-    padding: 0;
-    font-size: var(--heading-1-font-size);
-    line-height: var(--heading-1-line-height);
-  }
-
-  /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
-  .slider-title.section > div:first-child {
-    position: absolute;
-    top: 24px;
-    left: 51px;
-    max-width: 342px;
-    margin: 0;
-    padding: 0;
-    z-index: 5;
-    background-color: var(--base-white);
   }
 }
