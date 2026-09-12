@@ -13,8 +13,15 @@
 
 .timeline.awards.block .timeline-nav {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: auto;
   padding: 27px 0 40px;
+  /* Hide scrollbar for clean look */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.timeline.awards.block .timeline-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .timeline.awards.block .timeline-line {
