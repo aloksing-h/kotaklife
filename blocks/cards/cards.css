@@ -365,9 +365,8 @@
   }
 }
 
+/* Trust: 2x2 grid on tablet */
 @media (width >=600px) {
-
-  /* Trust: 2x2 grid on tablet */
   .cards.trust-style>ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -403,9 +402,8 @@
    Desktop Overrides (>= 900px)
    ============================================ */
 
+/* Trust: 4-column grid */
 @media (width >=900px) {
-
-  /* Trust: 4-column grid */
   .cards.trust-style>ul {
     padding: 0 50px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -501,8 +499,10 @@
     background: var(--border-primary);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
+    /* stylelint-disable property-no-vendor-prefix */
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
+    /* stylelint-enable property-no-vendor-prefix */
     pointer-events: none;
   }
 
@@ -591,9 +591,8 @@
    Large Desktop Overrides (>= 1200px)
    ============================================ */
 
+/* Trust */
 @media (width >=1200px) {
-
-  /* Trust */
   .cards.trust-style>ul>li {
     min-height: 276px;
     padding: var(--spacing-3xl) var(--spacing-xl);

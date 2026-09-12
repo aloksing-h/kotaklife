@@ -5,6 +5,7 @@
   --timeline-line-active-color: #fa1432;
   --timeline-active-gradient: linear-gradient(-36deg, #fb2c47 0%, #fa1432 0%, #7f2224 100%);
   --timeline-glow-gradient: radial-gradient(circle at 50% 46%, rgb(209 233 255 / 100%) 0%, rgb(132 202 255 / 100%) 100%);
+
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
@@ -19,9 +20,9 @@
 
 .timeline.awards.block .timeline-line {
   position: absolute;
-  bottom: 11%; 
+  bottom: 11%;
   height: 6px;
-  left: 25px; 
+  left: 25px;
   right: 25px;
   background-image: repeating-linear-gradient(to right, var(--timeline-line-color) 0, var(--timeline-line-color) 1px, transparent 1px, transparent 8px);
   z-index: 1;
@@ -32,7 +33,7 @@
   display: flex;
   align-items: center;
   gap: 67px;
-  width: max-content; /* Forces parent to be exactly as wide as the items + gaps */
+  width: max-content;
   min-width: 100%;
 }
 
@@ -50,20 +51,14 @@
 
 .timeline.awards.block .timeline-marker-btn {
   display: flex;
-  flex-direction: column; /* Stacks year on top of dot */
+  flex-direction: column;
   align-items: center;
-  gap: 11px; /* Distance between year and dot */
+  gap: 11px;
   flex: 0 0 auto;
   border: none;
   background: transparent;
   padding: 0;
   cursor: pointer;
-}
-
-.timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-text{
-  background: linear-gradient(7deg, var(--brand-red-400) -43.93%, var(--brand-red-500) 3.36%, var(--red-900) 88.98%);
-  color: var(--base-white);
-  font-weight: var(--font-weight-semibold);
 }
 
 /* Remove default paragraph margins inside the button */
@@ -74,7 +69,7 @@
   border-radius: var(--radius-2xl);
 }
 
-.timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
+.timeline.awards.block .timeline-marker-btn .timeline-marker-text p {
   margin: 0;
   padding: 5px 8px;
   font-size: var(--caption-font-size);
@@ -86,6 +81,13 @@
   background: transparent;
   padding: 0;
 }
+
+.timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-text {
+  background: linear-gradient(7deg, var(--brand-red-400) -43.93%, var(--brand-red-500) 3.36%, var(--red-900) 88.98%);
+  color: var(--base-white);
+  font-weight: var(--font-weight-semibold);
+}
+
 /* Add new dot styles (after line 62) */
 .timeline.awards.block .timeline-marker-btn .timeline-marker-dot {
   display: block;
@@ -101,45 +103,47 @@
 }
 
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
-width: 12px;
+  width: 12px;
   height: 12px;
   background-color: var(--brand-red-500);
   border: 1px solid var(--brand-red-500);
+
   /* Creates the soft red glow without blurring the dot itself */
-  box-shadow: 0 0 15px 6px rgba(250, 20, 50, 0.25);
-  
+  box-shadow: 0 0 15px 6px rgb(250 20 50 / 25%);
 }
+
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) translateZ(-1px);;
-  
+  transform: translate(-50%, -50%) translateZ(-1px);
+
   /* Covers exactly 7 ticks (3 left + center hidden by dot + 3 right at 8px each) */
-  width: 56px; 
+  width: 56px;
+
   /* Taller than the 6px gray track to ensure it fully covers it */
-  height: 8px; 
-  
+  height: 8px;
+
   /* 1. Solid background erases the out-of-phase gray lines */
-  background-color: var(--base-white); 
-  
+  background-color: var(--base-white);
+
   /* 2. Repeating gradient draws perfectly symmetrical red ticks */
-  background-image: repeating-linear-gradient(
-    to right,
-    transparent 0px,
-    transparent 3px,
-    var(--brand-red-500) 3px,
-    var(--brand-red-500) 5px,  /* Creates a 2px wide red tick */
-    transparent 5px,
-    transparent 8px
-  );
-  background-size: 100% 10px; /* Red ticks are 10px tall */
+  background-image:
+    repeating-linear-gradient(to right,
+      transparent 0,
+      transparent 3px,
+      var(--brand-red-500) 3px,
+      var(--brand-red-500) 5px,
+      /* Creates a 2px wide red tick */
+      transparent 5px,
+      transparent 8px);
+  background-size: 100% 10px;
   background-position: center;
   background-repeat: no-repeat;
-  
+
   /* Remove the previous box-shadow approach */
-  box-shadow: none; 
+  box-shadow: none;
   z-index: -2;
 }
 
@@ -152,6 +156,7 @@ width: 12px;
   z-index: 10;
   background: transparent;
 }
+
 .timeline.awards.block .timeline-arrow {
   display: flex;
   align-items: center;
@@ -175,7 +180,7 @@ width: 12px;
   background-repeat: no-repeat;
 }
 
-.timeline.awards.block .timeline-arrow .icon.icon-arrow_right {
+.timeline.awards.block .timeline-arrow .icon.icon-arrow-right {
   background-image: none;
   background-color: var(--gray-400);
   mask-image: url('../../icons/arrow-left-2.svg');
@@ -184,7 +189,7 @@ width: 12px;
   mask-position: center;
 }
 
-.timeline.awards.block .timeline-arrow:hover .icon.icon-arrow_right {
+.timeline.awards.block .timeline-arrow:hover .icon.icon-arrow-right {
   background-color: var(--brand-red-600);
 }
 
@@ -243,10 +248,7 @@ width: 12px;
 
 .timeline.awards.block .timeline-card-item .card-body {
   position: absolute;
-  left: 23%;
-  top: 64%;
-  right: 0;
-  bottom: auto;
+  inset: 64% 0 auto 23%;
   transform: translateY(-50%);
   z-index: 1;
   display: flex;
@@ -288,15 +290,15 @@ width: 12px;
   font-size: var(--button-3-font-size);
   font-weight: var(--font-weight-regular);
   line-height: var(--button-2-line-height);
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-.timeline.awards.block .timeline-panel .timeline-year > div:first-child {
+.timeline.awards.block .timeline-panel .timeline-year>div:first-child {
   display: none;
 }
 
 /* nested Cards block reused for award cards within the active year */
-.timeline.awards.block .timeline-panel .cards > ul {
+.timeline.awards.block .timeline-panel .cards>ul {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -305,23 +307,23 @@ width: 12px;
   padding: 32px 0;
 }
 
-.timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
+.timeline.awards.block .timeline-panel .cards>ul>li:nth-child(even) {
   margin-top: 40px;
 }
 
-.slider-title.section h1{
+.slider-title.section h1 {
   margin: 0;
-  padding-right:66px;
+  padding-right: 66px;
   font-size: var(--heading-3-font-size);
   line-height: var(--heading-3-line-height);
   font-weight: var(--font-weight-light);
 }
 
-.slider-title.section h1 > strong{
+.slider-title.section h1>strong {
   font-weight: var(--font-weight-semibold);
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .timeline.awards.block {
     padding: 0 16px;
   }
@@ -339,7 +341,8 @@ width: 12px;
   .timeline.awards.block .timeline-markers {
     overflow-x: visible;
   }
-  .timeline.awards.block .timeline-marker-btn .timeline-marker-text p{
+
+  .timeline.awards.block .timeline-marker-btn .timeline-marker-text p {
     font-size: var(--body-2-font-size);
     line-height: var(--body-2-line-height);
   }
@@ -379,10 +382,7 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-card-item .card-body {
-    left: 22%;
-    top: 38%;
-    right: auto;
-    bottom: 4%;
+    inset: 38% auto 4% 22%;
     transform: none;
     width: auto;
     max-width: 134px;
@@ -418,22 +418,24 @@ width: 12px;
     font-weight: var(--font-weight-regular);
   }
 
-  .timeline.awards.block .timeline-panel .cards > ul {
+  .timeline.awards.block .timeline-panel .cards>ul {
     flex-wrap: nowrap;
   }
-  .slider-title.section{
+
+  .slider-title.section {
     position: relative;
     max-width: 1200px;
     margin: 40px auto;
   }
-  .slider-title.section h1{
+
+  .slider-title.section h1 {
     padding: 0;
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
   }
 
   /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
-  .slider-title.section > div:first-child {
+  .slider-title.section>div:first-child {
     position: absolute;
     top: 24px;
     left: 51px;

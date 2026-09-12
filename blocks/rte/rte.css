@@ -37,7 +37,6 @@
   display: flex;
   align-items: center;
   height: 55px;
-  /* padding: 0 12px; */
   font-family: var(--font-family-manrope);
   font-size: var(--body-2-font-size);
   font-weight: var(--font-weight-semibold);
@@ -74,7 +73,7 @@
   font-size: var(--heading-3-font-size);
   line-height: var(--heading-3-line-height);
   font-weight: var(--font-weight-light);
-  margin: 0 0 6px 0;
+  margin: 0 0 6px;
 }
 
 .rte.explore-cta.block h1 strong {
@@ -83,7 +82,7 @@
 }
 
 .rte.explore-cta.block p {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
   font-size: var(--body-2-font-size);
   line-height: var(--body-2-line-height);
   color: var(--gray-600);
@@ -126,20 +125,18 @@
   object-fit: contain;
 }
 
-/* Desktop Overrides */
+/* Desktop Overrides:
+   Reverts mobile font-sizes so desktop typography takes over */
 @media (width >=900px) {
-
-  /* Reverts the mobile font-sizes so your global desktop typography can take over. 
-     You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
   .rte.explore-cta.block h1 {
-    margin: 0 0 8px 0;
+    margin: 0 0 8px;
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
     font-weight: var(--font-weight-light);
   }
 
   .rte.explore-cta.block p {
-    margin: 0 0 16px 0;
+    margin: 0 0 16px;
     font-size: var(--body-1-font-size);
     line-height: var(--body-1-line-height);
   }
