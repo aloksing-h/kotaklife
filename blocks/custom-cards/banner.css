@@ -1,3 +1,5 @@
+@import url('../swiper/swiper-bundle.min.css');
+
 /* .looking-for.custom-cards-container {
     text-align: center;
 } */
@@ -328,11 +330,15 @@
     }
 }
 
+/* stylelint-disable no-descending-specificity */
+
 /* ==========================================================================
-   4. Bottom Banner (Targeting the banner-marked custom-cards wrapper)
-   ========================================================================== */
+    4. Bottom Banner (Targeting the banner-marked custom-cards wrapper)
+    ========================================================================== */
 .looking-for>.custom-cards-wrapper.looking-banner {
     margin-top: 50px;
+    margin-bottom: 40px;
+    position: relative;
 }
 
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul {
@@ -346,6 +352,44 @@
     display: flex;
     flex-direction: column-reverse;
     border-radius: 8px;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards.swiper {
+    overflow: hidden;
+    position: unset;
+
+    --swiper-pagination-color: #FA1432;
+    --swiper-pagination-bullet-inactive-color: rgb(255 255 255 / 45%);
+    --swiper-pagination-bullet-horizontal-gap: 3px;
+    --swiper-pagination-bullet-size: 6px;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards .swiper-pagination {
+    left: auto;
+    right: 34px;
+    bottom: -20px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards .swiper-pagination-bullet {
+    width: 4.2px;
+    height: 4.6px;
+    margin: 0 !important;
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    opacity: 1;
+    transition: width 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards .swiper-pagination-bullet-active {
+    width: 32px;
+    height: 6px;
+    border: none;
+    border-radius: var(--radius-full, 999px);
+    background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
 }
 
 /* Banner Images (Absolute Background layers) */
@@ -462,6 +506,8 @@
     font-weight: 500;
     line-height: var(--line-height-caption, 14px);
 }
+
+/* stylelint-enable no-descending-specificity */
 
 /* "BEST SELLER" Badge */
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:first-child {
