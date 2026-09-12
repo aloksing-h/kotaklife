@@ -49,7 +49,7 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 18px;
@@ -116,12 +116,29 @@ h6 {
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
 
 p,
 dl,
@@ -146,7 +163,7 @@ pre {
   white-space: pre;
 }
 
-main > div {
+main>div {
   margin: 40px 16px;
 }
 
@@ -300,23 +317,279 @@ main img {
 }
 
 /* sections */
-main > .section {
-  margin: 40px 0;
+main>.section {
+  margin: 40px auto;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-main > .section > div {
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 24px;
-}
-
-main > .section:first-of-type {
+main>.section:first-of-type {
   margin-top: 35px;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
+main>.section>div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Vision section container:
+   Mobile (360px): 16px padding on left & right -> 328px content width */
+main>.section.vision>div {
+  padding: 0 16px;
+}
+
+/* Trust section container:
+   Mobile (360px): 20px padding on left & right -> 320px content width */
+main>.section.trust>div {
+  padding: 0 20px;
+}
+
+/* ============================================
+   Vision section - Text component styles
+   ============================================ */
+
+.vision .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding: 0;
+}
+
+.vision .default-content-wrapper h1 {
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  overflow-wrap: break-word;
+}
+
+.vision .default-content-wrapper h1 strong {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-1-letter-spacing);
+}
+
+.vision .default-content-wrapper p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   Why Trust section - Text component styles
+   ============================================ */
+
+.trust .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.trust .default-content-wrapper h1 {
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  overflow-wrap: break-word;
+}
+
+.trust .default-content-wrapper h1 strong {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-1-letter-spacing);
+}
+
+.trust .default-content-wrapper p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--body-2-font-size);
+  line-height: 18px;
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* CSR Layout section */
+.csr-layout.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 20px;
+  gap: 42px;
+}
+
+.csr-layout.section .rte-wrapper {
+  max-width: 100%;
+}
+
+.csr-layout.section .cards-wrapper {
+  max-width: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+/* Tablet (>=600px) */
+@media (width >=600px) {
+
+  main>.section>div,
+  main>.section.vision>div,
+  main>.section.trust>div {
     padding: 0 32px;
+  }
+
+  .vision .default-content-wrapper,
+  .trust .default-content-wrapper {
+    margin-bottom: var(--spacing-5xl);
+  }
+
+  .vision .default-content-wrapper h1,
+  .trust .default-content-wrapper h1 {
+    font-size: var(--heading-2-font-size);
+    line-height: var(--heading-2-line-height);
+  }
+
+  .vision .default-content-wrapper p,
+  .trust .default-content-wrapper p {
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+
+  .csr-layout.section {
+    padding: 0 32px;
+  }
+}
+
+/* Desktop (>=900px) - Screen width 1200px basis, 50px left & right padding -> 1100px content width */
+@media (width >=900px) {
+  main>.section {
+    margin: 64px auto;
+  }
+
+  main>.section>div,
+  main>.section.trust>div,
+  main>.section.vision>div {
+    padding: 0 50px;
+  }
+
+  /* Vision: fully stretched cards wrapper across 1200px */
+  main>.section.vision .cards-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0;
+  }
+
+  main>.section.trust .cards-wrapper {
+    padding: 0;
+  }
+
+  /* Vision: 1100px wide box, heading left, description right */
+  .vision .default-content-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-5xl);
+    margin-bottom: 50px;
+  }
+
+
+  .vision .default-content-wrapper h1 {
+    flex: 1;
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: 0;
+  }
+
+  .vision .default-content-wrapper h1 strong {
+    letter-spacing: normal;
+  }
+
+  .vision .default-content-wrapper p {
+    flex: 0 1 450px;
+    margin-left: auto;
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+  }
+
+  /* Trust: 1100px wide box, heading left, description right */
+  .trust .default-content-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-5xl);
+    margin-bottom: 50px;
+  }
+
+  .trust .default-content-wrapper h1 {
+    flex: 1;
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: 0;
+  }
+
+  .trust .default-content-wrapper h1 strong {
+    letter-spacing: normal;
+  }
+
+  .trust .default-content-wrapper p {
+    flex: 0 1 450px;
+    margin-left: auto;
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+  }
+
+  .csr-layout.section {
+    flex-direction: row;
+    padding: 0 50px;
+  }
+
+  .csr-layout.section .rte-wrapper {
+    max-width: 435px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .csr-layout.section .cards-wrapper {
+    max-width: 698px;
+    margin: 120px 0 auto;
+  }
+}
+
+/* Beyond 1200px: strictly confined to 1200px max-width, mx-auto centered */
+@media (width >=1200px) {
+  main>.section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main>.section>div,
+  main>.section.trust>div {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Vision: fully stretched cards wrapper across 1200px */
+  .vision .cards-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
   }
 }
 

@@ -2,11 +2,11 @@
    Sub Navigation - horizontal tab nav
    ============================================ */
 
-   /* if we have to keep this in center then give max-width:1200px and mx-auto */
+/* if we have to keep this in center then give max-width:1200px and mx-auto */
 .fragment-wrapper:has(.subnav) {
-    padding: 0;
-    max-width: unset; 
-    margin: 0;
+  padding: 0;
+  max-width: unset;
+  margin: 0;
 }
 
 .subnav.rte ul {
@@ -14,7 +14,7 @@
   gap: 16px;
   list-style: none;
   margin: 0;
-  padding: 0 16px;
+  padding: 0 24px;
   background-color: var(--info-50);
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   height: 55px;
-  padding: 0 12px;
+  /* padding: 0 12px; */
   font-family: var(--font-family-manrope);
   font-size: var(--body-2-font-size);
   font-weight: var(--font-weight-semibold);
@@ -62,22 +62,22 @@
   background-color: var(--brand-red-500);
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .subnav.rte ul {
     justify-content: center;
     padding: 0;
+    gap: 34px;
   }
 }
 
 .rte.explore-cta.block h1 {
-  
   font-size: var(--heading-3-font-size);
   line-height: var(--heading-3-line-height);
   font-weight: var(--font-weight-light);
-  margin: 0 0 6px 0 ;
+  margin: 0 0 6px 0;
 }
 
-.rte.explore-cta.block h1 strong{
+.rte.explore-cta.block h1 strong {
   margin: 0;
   font-weight: 600;
 }
@@ -86,20 +86,19 @@
   margin: 0 0 20px 0;
   font-size: var(--body-2-font-size);
   line-height: var(--body-2-line-height);
-  color:var(--gray-600);
+  color: var(--gray-600);
   font-weight: var(--font-weight-medium);
-
 }
 
 .rte.explore-cta.block .cta-container {
   width: fit-content;
-  background-color: #E61731;
+  background-color: var(--brand-red-500);
   border-radius: 50px;
   margin: 0;
 }
 
 .rte.explore-cta.block .cta-container a {
-  color: white;
+  color: var(--base-white);
   display: flex;
   align-items: center;
   padding: 6px 6px 6px 24px;
@@ -116,7 +115,7 @@
   justify-content: center;
   height: 32px;
   width: 32px;
-  background-color:var(--base-white);
+  background-color: var(--base-white);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -128,143 +127,26 @@
 }
 
 /* Desktop Overrides */
-@media (width >= 900px) {
+@media (width >=900px) {
+
   /* Reverts the mobile font-sizes so your global desktop typography can take over. 
      You can also explicitly define your desktop sizes (e.g., 2.75rem) here. */
-  .rte.explore-cta.block h1{
-      margin: 0 0 8px 0 ;
-      font-size: var(--heading-1-font-size);
-      line-height: var(--heading-1-line-height);
-      font-weight: var(--font-weight-light);
-  }
-
-  .rte.explore-cta.block p{
-    margin: 0 0 16px 0;
-  font-size: var(--body-1-font-size);
-  line-height: var(--body-1-line-height);
-  
-  }
-
-  .rte.explore-cta.block .cta-container a{
-    font-weight: var(--font-weight-extrabold);
-  font-size: var(--button-1-font-size);
-  line-height: var(--button-1-line-height);
-  }
-}/* ============================================
-   Vision section - RTE block styles
-   ============================================ */
-
-.vision .rte-wrapper {
-  margin-bottom: var(--spacing-5xl);
-  padding: 0 var(--spacing-2xl);
-}
-
-.vision .cards-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-2xl);
-}
-
-.rte.default-title > div > div {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: start;
-  gap: var(--spacing-xl);
-  width: 100%;
-}
-
-.rte.default-title h1 {
-  font-family: var(--font-family-manrope);
-  font-weight: var(--font-weight-light);
-  font-size: var(--heading-3-font-size);
-  line-height: var(--heading-3-line-height);
-  color: var(--text-primary);
-  margin: 0;
-  overflow-wrap: break-word;
-}
-
-.rte.default-title h1 strong {
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--heading-3-letter-spacing);
-}
-
-.vision .rte.default-title p {
-  color: var(--text-tertiary);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--body-2-font-size);
-  line-height: var(--body-2-line-height);
-  max-width: none;
-  justify-self: start;
-  margin: 0;
-  overflow-wrap: break-word;
-}
-
-/* ============================================
-   Why Trust section - RTE block styles
-   ============================================ */
-
-.trust .rte-wrapper {
-  padding: 0 var(--spacing-2xl);
-  margin-bottom: var(--spacing-5xl);
-}
-
-.trust .rte.default-title p {
-  color: var(--text-quaternary);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--body-2-font-size);
-  line-height: var(--body-2-line-height);
-  max-width: 420px;
-  margin: 0;
-}
-
-/* ============================================
-   Desktop overrides (>= 900px) - all sections
-   ============================================ */
-
-@media (width >= 900px) {
-  /* Vision: heading left, description right */
-  .vision .rte-wrapper {
-    margin-bottom: 50px;
-    padding: 0 50px;
-  }
-
-  .rte.default-title > div > div {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--spacing-5xl);
-    align-items: center;
-  }
-
-  .rte.default-title h1 {
+  .rte.explore-cta.block h1 {
+    margin: 0 0 8px 0;
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
+    font-weight: var(--font-weight-light);
   }
 
-  .rte.default-title h1 strong {
-    letter-spacing: normal;
-  }
-
-  .vision .rte.default-title p {
+  .rte.explore-cta.block p {
+    margin: 0 0 16px 0;
     font-size: var(--body-1-font-size);
     line-height: var(--body-1-line-height);
-    max-width: 580px;
-    justify-self: end;
   }
 
-  /* Trust */
-  .trust .rte-wrapper {
-    padding: 0 50px;
-    margin-bottom: 50px;
-  }
-
-  .trust .rte.default-title p {
-    color: var(--text-tertiary);
-    font-weight: var(--font-weight-medium);
-    font-size: var(--body-1-font-size);
-    line-height: var(--body-1-line-height);
-    max-width: 420px;
-    text-align: right;
-    justify-self: end;
-    margin: 0;
-    overflow-wrap: break-word;
+  .rte.explore-cta.block .cta-container a {
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--button-1-font-size);
+    line-height: var(--button-1-line-height);
   }
 }
