@@ -480,7 +480,7 @@ width: 12px;
   }
 
   /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
-  .slider-title.section > div:first-child {
+  .slider-title.section > .default-content-wrapper {
     position: absolute;
     top: 24px;
     left: 51px;
