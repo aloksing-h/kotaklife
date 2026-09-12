@@ -261,11 +261,11 @@ main > .section.trust {
    ============================================ */
 
 .cards.image-card.block > ul {
+  padding-top: 42px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 14px 34px;
 }
 
 .cards.image-card.block > ul > li {
@@ -273,12 +273,14 @@ main > .section.trust {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
   max-width: 152px;
-  height: auto;
+  min-height: 182px;
   background-color: #EFF8FF;
   border-radius: 8px;
   border: none;
   overflow: visible;
+  box-sizing: border-box;
 }
 
 .cards.image-card.block > ul > li:nth-child(2) {
@@ -286,10 +288,6 @@ main > .section.trust {
   border-radius: 8px;
   justify-content: normal;
   margin-bottom: 0;
-}
-
-.cards.image-card.block > ul > li:nth-child(3) {
-  margin-top: 10px;
 }
 
 .cards.image-card.block .cards-card-image {
@@ -308,6 +306,8 @@ main > .section.trust {
 
 .cards.image-card.block .cards-card-body {
   order: -1;
+  margin: 0;
+  padding: 20px 14px 0 14px;
 }
 
 .cards.image-card.block .cards-card-body p {
@@ -328,28 +328,78 @@ main > .section.trust {
   align-items: flex-start;
   margin: 0 auto;
   max-width: 1100px;
-  padding: 0 50px;
+  padding: 0 16px;
+}
+.csr-layout .default-content-wrapper{
+  padding: 0;
+}
+.csr-layout .default-content-wrapper h1 {
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  font-weight: var(--font-weight-light);
+  margin: 0 0 6px;
+}
+.csr-layout .default-content-wrapper h1 strong{
+  margin: 0;
+  font-weight: 600;
+}
+.csr-layout .default-content-wrapper p {
+  margin: 0 0 20px;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color:var(--gray-600);
+  font-weight: var(--font-weight-medium);
 }
 
-.csr-layout.section .rte-wrapper {
-  max-width: 100%;
+.csr-layout .default-content-wrapper p:has(a){
+  width: fit-content;
+  background-color: #E61731;
+  border-radius: 50px;
+  margin: 0;
+}
 
+.csr-layout .default-content-wrapper a{
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 6px 6px 6px 24px;
+  gap: 16px;
+  text-decoration: none;
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-2-font-size);
+  line-height: var(--button-2-line-height);
+}
+
+.csr-layout .default-content-wrapper a span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  background-color:var(--base-white);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.csr-layout .default-content-wrapper a img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
 }
 
 .csr-layout.section .cards-wrapper {
-  max-width: 100%;
-  width: 100%;
   padding: 0;
 
 }
 
 /* Desktop Overrides */
-@media (width >=900px) {
+@media (width >=960px) {
   .cards.image-card.block > ul {
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: flex-end;
     gap: 40px;
+    padding-top: 0;
   }
 
   .cards.image-card.block > ul > li {
@@ -369,6 +419,9 @@ main > .section.trust {
   .cards.image-card.block .cards-card-image {
     padding-bottom: 20px;
   }
+  .cards.image-card.block .cards-card-body{
+    padding: 30px 20px 0 20px;
+  }
 
   .cards.image-card.block .cards-card-body p {
     font-size: var(--sub-heading-1-font-size);
@@ -382,18 +435,46 @@ main > .section.trust {
   }
 
   .csr-layout.section {
+    position: relative;
     flex-direction: row;
+    padding: 0 50px;
+    min-height: 536px;
   }
 
-  .csr-layout.section .rte-wrapper {
+  .csr-layout.section > .default-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50px;
     max-width: 435px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
+    min-height: 224px;
+  }
+
+  .csr-layout.section > .default-content-wrapper h1{
+      margin: 0 0 8px;
+      font-size: var(--heading-1-font-size);
+      line-height: var(--heading-1-line-height);
+      font-weight: var(--font-weight-light);
+  }
+
+  .csr-layout.section > .default-content-wrapper p{
+    margin: 0 0 16px;
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+
+  .csr-layout.section > .default-content-wrapper a{
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--button-1-font-size);
+    line-height: var(--button-1-line-height);
   }
 
   .csr-layout.section .cards-wrapper {
-    max-width: 698px;
-    margin: 120px 0 auto;
+    align-self: flex-end;
+    max-width: 684px;
+    width: 100%;
+    margin: 120px 0 auto auto;
   }
 }
 
