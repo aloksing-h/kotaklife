@@ -2,7 +2,6 @@
 import { toClassName } from '../../scripts/aem.js';
 // eslint-disable-next-line import/no-unresolved
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import Swiper from './swiper.js';
 
 function showYear(block, index) {
   const markers = block.querySelectorAll('.timeline-marker-btn');
@@ -21,23 +20,68 @@ function showYear(block, index) {
   markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
 }
 
-function initSwiper(block) {
-  const swiperEl = block.querySelector('.timeline-nav');
-  if (!swiperEl) return;
+// function initSwiper(block) {
+//   const swiperEl = block.querySelector('.timeline-nav');
+//   if (!swiperEl) return;
 
-  Swiper(swiperEl, {
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    navigation: {
-      nextEl: '.timeline-arrow-next',
-      prevEl: '.timeline-arrow-prev',
-    },
-    breakpoints: {
-      900: {
-        slidesPerView: 'auto',
-        spaceBetween: 32,
-      },
-    },
+//   Swiper(swiperEl, {
+//     wrapperClass: 'timeline-track',
+//     slideClass: 'tabs-tab',
+    
+//     // 2. Enable drag and scroll
+//     simulateTouch: true,    // Enables mouse drag
+//     grabCursor: true,       // Shows the 'grab' hand cursor
+//     freeMode: true,
+//     slidesPerView: 'auto',
+//     spaceBetween: 67,
+//     navigation: {
+//       nextEl: '.timeline-arrow-next',
+//       prevEl: '.timeline-arrow-prev',
+//     },
+//     breakpoints: {
+//       900: {
+//         slidesPerView: 'auto',
+//         spaceBetween: 112,
+//       },
+//     },
+//   });
+// }
+
+function initDragScroll(block) {
+  // We apply the scroll to the nav container
+  const slider = block.querySelector('.timeline-nav');
+  if (!slider) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Set initial cursor
+  slider.style.cursor = 'grab';
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault(); // Stop text highlighting while dragging
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Multiply by 1.5 to scroll a bit faster
+    slider.scrollLeft = scrollLeft - walk;
   });
 }
 
@@ -187,8 +231,8 @@ export default function decorate(block) {
     nextIcon.className = 'icon icon-arrow-right';
 
     const nextButton = document.createElement('button');
+    nextButton.type='button';
     nextButton.className = 'timeline-arrow timeline-arrow-next';
-    nextButton.type = 'button';
     nextButton.setAttribute('aria-label', 'Next year');
     nextButton.appendChild(nextIcon);
     nextButton.addEventListener('click', () => {
@@ -205,7 +249,8 @@ export default function decorate(block) {
     block.append(arrows);
     block.append(fragment);
 
-    initSwiper(block);
+    // initSwiper(block);
+    initDragScroll(block);
     showYear(block, 0);
   }
 }

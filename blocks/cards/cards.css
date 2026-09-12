@@ -274,7 +274,7 @@ main > .section.trust {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  max-width: 152px;
+  max-width: 142px;
   min-height: 182px;
   background-color: #EFF8FF;
   border-radius: 8px;
@@ -295,9 +295,7 @@ main > .section.trust {
 }
 
 .cards.image-card.block .cards-card-image img {
-  scale: 1.11;
-  transform-origin: bottom center;
-  height: 108px;
+  scale: 1.071;
   width: 100%;
   object-fit: cover;
   overflow: hidden;
@@ -429,8 +427,7 @@ main > .section.trust {
   }
 
   .cards.image-card.block .cards-card-image img {
-    scale: 1.1684;
-    transform-origin: 50% 50%; /* Resets origin to default */
+    scale: 1.111; 
     height: 100%;
   }
 
