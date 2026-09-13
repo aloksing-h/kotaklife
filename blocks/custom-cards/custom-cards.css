@@ -1,3 +1,7 @@
+@import url('../../styles/variables/base.css');
+@import url('./banner.css');
+@import url('./infinite-protection.css');
+
 /* Base Grid Container (Matches standard EDS cards) */
 
 /* eslint-disable */
@@ -518,14 +522,6 @@
   color: #fff;
 }
 
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
-  background-color: #fff;
-  color: #e31837;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
-  background-image: url("/icons/red-arrow-right.svg");
-  width: 27px;
-  height: 28px;
-  right: 10px;
-}
+/* .looking-for.custom-cards-container .default-content-wrapper {
+  text-align: center;
+} */
