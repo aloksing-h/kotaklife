@@ -178,6 +178,10 @@
             "value": "find-a-plan"
           },
           {
+            "name": "Video Banner",
+            "value": "video-banner"
+          },
+          {
             "name": "Protection Plans",
             "value": "protection-plans"
           },
@@ -721,6 +725,75 @@
         "value": "",
         "label": "Tab Description",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "video-banner",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktopVideo",
+        "label": "Desktop Video URL (.mp4)",
+        "description": "URL of the desktop MP4 video asset"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileVideo",
+        "label": "Mobile Video URL (.mp4)",
+        "description": "URL of the mobile MP4 video asset"
+      },
+      {
+        "component": "richtext",
+        "name": "heroTitle",
+        "label": "Hero Title (State 1)",
+        "description": "Hero section rich text heading"
+      },
+      {
+        "component": "text",
+        "name": "scrollLabel",
+        "label": "Scroll Down Label",
+        "description": "Label for the scroll indicator button"
+      },
+      {
+        "component": "text",
+        "name": "promoTag",
+        "label": "Promo Card Tag",
+        "description": "Tag badge text displayed on promo card"
+      },
+      {
+        "component": "richtext",
+        "name": "promoTitle",
+        "label": "Promo Card Title (State 2)",
+        "description": "Promo card rich text heading"
+      },
+      {
+        "component": "text",
+        "name": "promoDescription",
+        "label": "Promo Card Description",
+        "description": "Body description for promo card"
+      },
+      {
+        "component": "richtext",
+        "name": "promoHighlight",
+        "label": "Promo Highlight Detail",
+        "description": "Highlight details (e.g. ₹2 Crore Life Cover)"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "promoCTA",
+        "label": "Promo CTA Link",
+        "description": "Action link button for promo card"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "promoImage",
+        "label": "Promo Ambassador Image",
+        "description": "Ambassador media image asset"
       }
     ]
   },

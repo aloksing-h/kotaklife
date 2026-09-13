@@ -75,6 +75,10 @@
               "value": "find-a-plan"
             },
             {
+              "name": "Video Banner",
+              "value": "video-banner"
+            },
+            {
               "name": "Protection Plans",
               "value": "protection-plans"
             },
