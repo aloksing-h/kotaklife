@@ -59,6 +59,39 @@ function initInsightsSwiper(block) {
   mobileQuery.addEventListener('change', handleMediaChange);
 }
 
+/**
+ * Expands the hovered/focused card and shrinks its siblings when the block
+ * is rendered inside a `.find-a-plan` tabs section. Gated at event time
+ * (not decoration time) because fragment-loaded blocks are decorated while
+ * still detached from the live document.
+ * @param {Element} block The custom-cards block element
+ */
+function initFindAPlanExpand(block) {
+  const items = [...block.querySelectorAll(':scope > ul > li')];
+  if (items.length < 2) return;
+
+  const clear = () => items.forEach((el) => el.classList.remove('is-active', 'is-shrunk'));
+
+  const expand = (item) => {
+    if (!block.closest('.find-a-plan')) return;
+    items.forEach((el) => {
+      el.classList.toggle('is-active', el === item);
+      el.classList.toggle('is-shrunk', el !== item);
+    });
+  };
+
+  items.forEach((item) => {
+    item.addEventListener('mouseenter', () => expand(item));
+    item.addEventListener('mouseleave', () => {
+      if (!item.contains(document.activeElement)) clear();
+    });
+    item.addEventListener('focusin', () => expand(item));
+    item.addEventListener('focusout', (evt) => {
+      if (!item.contains(evt.relatedTarget)) clear();
+    });
+  });
+}
+
 export default async function decorate(block) {
   const section = block.closest('.insights-impact-plans');
   const codeBase = window.hlx?.codeBasePath || '';
@@ -113,4 +146,6 @@ export default async function decorate(block) {
   if (section) {
     initInsightsSwiper(block);
   }
+
+  initFindAPlanExpand(block);
 }

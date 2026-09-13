@@ -1,0 +1,11 @@
+{
+  "name": "figma-plugin",
+  "version": "1.0.0",
+  "description": "Figma MCP integration plugin to inspect designs, extract design tokens, and download assets.",
+  "keywords": [
+    "figma",
+    "mcp",
+    "design-to-code",
+    "aem-eds"
+  ]
+}

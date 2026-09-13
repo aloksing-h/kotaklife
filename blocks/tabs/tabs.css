@@ -55,3 +55,179 @@
 .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
 }
+
+/* ==========================================================================
+   Find a Plan (section style) — pill segmented tabs
+   Figma: node 3001-14733 (desktop), node 3001-14651 (mobile)
+   ========================================================================== */
+
+.find-a-plan.tabs-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  text-align: center;
+  
+}
+
+.find-a-plan .default-content-wrapper:first-child h3 {
+  margin: 0;
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: 1.2;
+  letter-spacing: var(--heading-3-letter-spacing);
+  color: var(--gray-900);
+}
+
+.find-a-plan .default-content-wrapper:first-child h3 strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.find-a-plan .default-content-wrapper:first-child p {
+  margin: var(--spacing-md) 0 0;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-600);
+}
+
+.find-a-plan .tabs-list {
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--brand-blue-50);
+  border-radius: var(--radius-full);
+  background-color: rgb(210 218 228 / 15%);
+  padding: 0;
+  font-size: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.find-a-plan .tabs-list button {
+  position: relative;
+  flex: 0 0 max-content;
+  margin: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-lg);
+  background-color: transparent;
+  color: var(--gray-900);
+  font-family: var(--font-family-manrope);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  text-overflow: unset;
+  overflow: visible;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+  z-index: 0;
+}
+
+.find-a-plan .tabs-list button::before,
+.find-a-plan .tabs-list button::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1.3rem);
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.find-a-plan .tabs-list button::before {
+  inset: 30% auto auto 8%;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--info-400);
+}
+
+.find-a-plan .tabs-list button::after {
+  inset: 8% auto auto 55%;
+  width: 3.5rem;
+  height: 2rem;
+  background-color: var(--info-300);
+}
+
+.find-a-plan .tabs-list button[aria-selected='true'] {
+  background: linear-gradient(90deg, rgb(46 144 250 / 30%) 0%, rgb(255 255 255 / 30%) 100%);
+  border-bottom: 1px solid var(--brand-blue-400);
+  color: var(--brand-blue-500);
+  font-weight: var(--font-weight-semibold);
+  cursor: initial;
+}
+
+.find-a-plan .tabs-list button[aria-selected='true']::before,
+.find-a-plan .tabs-list button[aria-selected='true']::after {
+  opacity: 1;
+}
+
+.find-a-plan .tabs-panel {
+  margin: var(--spacing-3xl) 0 0;
+  padding: 0;
+  border: none;
+  overflow: visible;
+}
+
+.find-a-plan > .default-content-wrapper:last-child {
+  margin: 0;
+}
+
+.find-a-plan > .default-content-wrapper:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--brand-red-600);
+  border-radius: var(--radius-full);
+  background-color: var(--base-white);
+  color: var(--brand-red-600);
+  font-family: var(--font-family-manrope);
+  font-size: var(--button-1-font-size);
+  line-height: var(--button-1-line-height);
+  font-weight: var(--font-weight-extrabold);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.find-a-plan > .default-content-wrapper:last-child a:hover {
+  background-color: var(--brand-red-600);
+  color: var(--base-white);
+}
+
+@media (width >= 900px) {
+  .find-a-plan.tabs-container {
+    gap: var(--spacing-4xl);
+  }
+
+  .find-a-plan .default-content-wrapper:first-child h3 {
+    font-size: var(--heading-1-font-size);
+    letter-spacing: normal;
+  }
+
+  .find-a-plan .default-content-wrapper:first-child p {
+    max-width: 27rem;
+    margin-inline: auto;
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+
+  .find-a-plan .tabs-list {
+    background-color: var(--gray-100);
+  }
+
+  .find-a-plan .tabs-list button {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .find-a-plan .tabs-panel {
+    margin-top: var(--spacing-4xl);
+  }
+}

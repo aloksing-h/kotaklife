@@ -421,3 +421,250 @@
   background-color: #e31837;
   color: #fff;
 }
+
+/* ==========================================================================
+   Find a Plan (section style) — plan card row/grid
+   Figma: node 3001-14733 (desktop), node 3001-14651 (mobile)
+   Nested inside a tabs-fragment-container within a `.find-a-plan` tabs section.
+   ========================================================================== */
+
+.find-a-plan .custom-cards-container .custom-cards>ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.find-a-plan .custom-cards-container .custom-cards>ul>li {
+  position: relative;
+  display: block;
+  min-height: 12.6875rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--brand-blue-50);
+  border-radius: var(--radius-md);
+  background-color: var(--base-white);
+  overflow: hidden;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-body {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: var(--spacing-6xl) var(--spacing-xl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: padding-top 0.4s ease;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-body>p:first-child {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 2;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--brand-blue-500);
+  border-radius: var(--radius-full);
+  background-color: var(--base-white);
+  color: var(--brand-blue-500);
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+}
+
+.find-a-plan .custom-cards-container .custom-cards-card-body>p:first-child .icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.find-a-plan .custom-cards-container .custom-cards-card-body>ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type>li:first-child {
+  font-size: var(--body-1-font-size);
+  line-height: var(--body-1-line-height);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-900);
+  transition: color 0.35s ease;
+}
+
+.find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type>li:first-child strong {
+  color: var(--brand-red-500);
+  font-weight: var(--font-weight-semibold);
+  transition: color 0.35s ease;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type>li+li {
+  display: none;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-600);
+}
+
+/* Expanded (hover) content ul — only present when a card authors bullets + CTA */
+.find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type~ul {
+  display: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-image {
+  position: absolute;
+  z-index: 0;
+  inset: auto 0 0;
+  height: 4.25rem;
+  background: linear-gradient(180deg, var(--brand-blue-25) 0%, var(--base-white) 100%);
+  transform: translateY(0);
+  transition: transform 0.4s ease, background 0.35s ease;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-image p {
+  margin: 0;
+  height: 100%;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-image picture {
+  display: block;
+  height: 100%;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.find-a-plan .custom-cards-container .custom-cards-card-image picture.secondary-image {
+  display: none;
+}
+
+@media (width >=900px) {
+  .find-a-plan .custom-cards-container .custom-cards>ul {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li {
+    flex: 1 1 15.5rem;
+    min-height: 19rem;
+    border-radius: var(--radius-xl);
+    transition: flex-grow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type>li:first-child {
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+    letter-spacing: var(--sub-heading-1-letter-spacing);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards-card-body>ul:first-of-type>li+li {
+    display: block;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards-card-image {
+    height: 8.4375rem;
+  }
+}
+
+/* ==========================================================================
+   Find a Plan — hover-expand interaction (desktop, hover-capable pointers)
+   JS toggles `is-active` on the hovered/focused card and `is-shrunk` on siblings.
+   The image slides up from its resting spot at the bottom of the card.
+   ========================================================================== */
+
+@media (width >=900px) and (hover: hover) and (pointer: fine) {
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-shrunk {
+    flex-grow: 0.6;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active {
+    flex-grow: 2.6;
+    border-color: transparent;
+    background: var(--gradient-red-card);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-image {
+    transform: translateY(-8.5625rem);
+    background: transparent;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body {
+    padding-top: 11rem;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>p:first-child {
+    border-color: var(--base-white);
+    background: linear-gradient(92deg, var(--info-200) -55%, var(--base-white) 40%, var(--base-white) 136%);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>ul:first-of-type {
+    display: none;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>ul:first-of-type~ul {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>ul:first-of-type~ul li {
+    color: var(--base-white);
+    font-size: var(--body-2-font-size);
+    line-height: var(--body-2-line-height);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>ul:first-of-type~ul h4 {
+    margin: 0;
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+    font-weight: var(--font-weight-semibold);
+    color: var(--base-white);
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-body>ul:first-of-type~ul a {
+    width: fit-content;
+    margin-top: var(--spacing-xs);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-full);
+    background-color: var(--base-white);
+    color: var(--brand-red-600);
+    font-size: var(--button-2-font-size);
+    line-height: var(--button-2-line-height);
+    font-weight: var(--font-weight-extrabold);
+    text-decoration: none;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-image picture.primary-image {
+    display: none;
+  }
+
+  .find-a-plan .custom-cards-container .custom-cards>ul>li.is-active .custom-cards-card-image picture.secondary-image {
+    display: block;
+  }
+}
