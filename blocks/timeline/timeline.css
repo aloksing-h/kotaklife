@@ -272,7 +272,7 @@ width: 12px;
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(odd) {
-  margin: 0 0 0 90px;
+  margin: 0 0 0 auto;
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(even) {
@@ -321,7 +321,19 @@ width: 12px;
 .timeline.awards.block .timeline-panel .cards > ul > li:nth-child(even) {
   margin-top: 40px;
 }
-.slider-title > div{
+
+.timeline.awards.block .timeline-cards-list:has(> .timeline-card-item:only-child) {
+  /* Add your single-card layout styles here */
+  justify-content: center; /* example */
+}
+
+/* Or target the single item itself */
+.timeline.awards.block .timeline-cards-list > .timeline-card-item:only-child {
+  margin: 0 auto; 
+  max-width: 400px;
+}
+
+.slider-title.section > div{
   padding: 0 16px;
 }
 
@@ -448,12 +460,12 @@ width: 12px;
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+3) {
     /* 340px is ~30.9%. Dropped to 28% so it shrinks fast enough to prevent wrapping */
-    margin: 0 0 0 clamp(20px, 20%, 240px);
+    margin: 0 0 0 clamp(20px, 20%, 300px);
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
     /* 122px is ~11.1%. Dropped to 9% */
-    margin: 0 0 0 clamp(20px, 17%, 120px);
+    margin: 0 0 0 clamp(20px, 15%, 120px);
   }
 
   .timeline.awards.block .timeline-card-item::before {
@@ -489,16 +501,15 @@ width: 12px;
   .slider-title.section > .default-content-wrapper {
     position: absolute;
     top: 24px;
-    left: 51px;
     max-width: 342px;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 50px;
     z-index: 5;
     background-color: var(--base-white);
   }
 }
 
-@media (width >= 1125px) {
+@media (width >= 1200px) {
   /* everything else here is unchanged from the 900px breakpoint */
   .timeline.awards.block .timeline-card-item .card-body {
     inset: auto auto 4% 22%;
@@ -516,6 +527,7 @@ width: 12px;
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
     /* 122px is ~11.1%. Dropped to 9% */
-    margin: 0 0 0 clamp(20px, 9%, 122px);
+    /* margin: 0 0 0 clamp(20px, 9%, 122px); */
+    margin: 0 0 0 122px;
   }
 }

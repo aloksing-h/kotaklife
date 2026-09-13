@@ -266,6 +266,7 @@ main > .section.trust {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  gap: 14px 32px;
 }
 
 .cards.image-card.block > ul > li {
@@ -277,7 +278,7 @@ main > .section.trust {
   max-width: 142px;
   min-height: 182px;
   background-color: #EFF8FF;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: none;
   overflow: visible;
   box-sizing: border-box;
@@ -285,13 +286,16 @@ main > .section.trust {
 
 .cards.image-card.block > ul > li:nth-child(2) {
   background: linear-gradient(360deg, #FB2C47 0%, #FA1432 36%, #7F2224 100%);
-  border-radius: 8px;
-  justify-content: normal;
+  border-radius: var(--radius-md);
   margin-bottom: 0;
 }
 
 .cards.image-card.block .cards-card-image {
-  padding-bottom: 0;
+  padding-bottom: 16px;
+}
+
+.cards.image-card.block > ul > li:nth-child(3) .cards-card-image{
+  padding-bottom: 18px;
 }
 
 .cards.image-card.block .cards-card-image img {
@@ -352,7 +356,7 @@ main > .section.trust {
 .csr-layout .default-content-wrapper p:has(a){
   width: fit-content;
   background-color: #E61731;
-  border-radius: 50px;
+  border-radius: var(--radius-full);
   margin: 0;
 }
 
@@ -394,7 +398,6 @@ main > .section.trust {
 @media (width >=960px) {
   .cards.image-card.block > ul {
     flex-wrap: nowrap;
-    justify-content: space-evenly;
     align-items: flex-end;
     gap: 40px;
     padding-top: 0;
@@ -413,9 +416,11 @@ main > .section.trust {
   .cards.image-card.block > ul > li:nth-child(3) {
     margin-top: 0;
   }
-
+  .cards.image-card.block > ul > li:nth-child(3) .cards-card-image{
+    padding-bottom: 47px;
+  }
   .cards.image-card.block .cards-card-image {
-    padding-bottom: 20px;
+    padding-bottom: 43px;
   }
   .cards.image-card.block .cards-card-body{
     padding: 30px 20px 0 20px;
