@@ -367,6 +367,16 @@
     padding-inline-start: 16px;
   }
 
+  .insights-impact-plans .custom-cards-card-body p:last-child {
+    width: 32px;
+    height: 32px;
+  }
+
+  .insights-impact-plans .custom-cards-card-body .icon {
+    width: 32px;
+    height: 32px;
+  }
+
   .insights-impact-plans .custom-cards.swiper {
     overflow: hidden;
     padding-bottom: 40px;
@@ -448,16 +458,6 @@
     height: 154px;
     aspect-ratio: unset;
     object-fit: unset;
-  }
-
-  .insights-impact-plans .custom-cards-card-body p:last-child {
-    width: 32px;
-    height: 32px;
-  }
-
-  .insights-impact-plans .custom-cards-card-body .icon {
-    width: 32px;
-    height: 32px;
   }
 
   .insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture {

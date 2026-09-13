@@ -260,9 +260,10 @@
 }
 
 .infinite-protection.custom-cards-container .custom-cards-card-image img {
-    max-height: 100%;
-    height: 550px;
-    width: 431.461px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    max-height: 320px;
     aspect-ratio: unset;
 }
 
@@ -277,12 +278,6 @@
 
 .infinite-protection.custom-cards-container .custom-cards .custom-cards-card-image picture.primary-image img {
     aspect-ratio: unset;
-}
-
-.infinite-protection.custom-cards-container .custom-cards-card-image img {
-    object-fit: contain;
-    object-position: center bottom;
-    max-height: 320px;
 }
 
 .infinite-protection.custom-cards-container .custom-cards .swiper-pagination {
