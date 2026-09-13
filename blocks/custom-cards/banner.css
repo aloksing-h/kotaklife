@@ -59,7 +59,7 @@
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li {
     display: flex;
-    flex: 0 0 38%;
+    flex: 0 0 37.5%;
     padding: var(--spacing-xl, 16px);
     flex-direction: column;
     align-items: flex-start;
