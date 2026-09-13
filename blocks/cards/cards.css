@@ -389,6 +389,24 @@ main > .section.trust {
   object-fit: contain;
 }
 
+.csr-layout .default-content-wrapper a span {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.csr-layout .default-content-wrapper a img {
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Change the white circle to black on hover */
+.csr-layout .default-content-wrapper a:hover span {
+  background-color: var(--base-black); 
+}
+
+/* Invert the black arrow SVG to white on hover */
+.csr-layout .default-content-wrapper a:hover img {
+  filter: brightness(0) invert(1);
+}
+
 .csr-layout.section .cards-wrapper {
   padding: 0;
 
