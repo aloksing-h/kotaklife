@@ -756,44 +756,6 @@
         "name": "scrollLabel",
         "label": "Scroll Down Label",
         "description": "Label for the scroll indicator button"
-      },
-      {
-        "component": "text",
-        "name": "promoTag",
-        "label": "Promo Card Tag",
-        "description": "Tag badge text displayed on promo card"
-      },
-      {
-        "component": "richtext",
-        "name": "promoTitle",
-        "label": "Promo Card Title (State 2)",
-        "description": "Promo card rich text heading"
-      },
-      {
-        "component": "text",
-        "name": "promoDescription",
-        "label": "Promo Card Description",
-        "description": "Body description for promo card"
-      },
-      {
-        "component": "richtext",
-        "name": "promoHighlight",
-        "label": "Promo Highlight Detail",
-        "description": "Highlight details (e.g. ₹2 Crore Life Cover)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "promoCTA",
-        "label": "Promo CTA Link",
-        "description": "Action link button for promo card"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "promoImage",
-        "label": "Promo Ambassador Image",
-        "description": "Ambassador media image asset"
       }
     ]
   },
