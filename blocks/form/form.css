@@ -122,6 +122,12 @@
     cursor: pointer;
 }
 
+.form .form-field.toggle-field label input {
+    width: 2em;
+    opacity: 0;
+    border-radius: 50%;
+}
+
 .form .form-field.checkbox-field label input:disabled,
 .form .form-field.radio-field label input:disabled {
     cursor: default;
@@ -146,15 +152,6 @@
     align-items: center;
     gap: 1ch;
     min-height: 44px;
-}
-
-
-/* stylelint-disable-next-line no-descending-specificity */
-
-.form .form-field.toggle-field label input {
-    width: 2em;
-    opacity: 0;
-    border-radius: 50%;
 }
 
 .form .form-field.toggle-field label span {
