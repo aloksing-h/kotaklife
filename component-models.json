@@ -743,7 +743,7 @@
       },
       {
         "component": "richtext",
-        "name": "heroTitle",
+        "name": "title",
         "label": "Hero Title (State 1)",
         "description": "Hero section rich text heading"
       },
