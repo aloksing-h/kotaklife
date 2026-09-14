@@ -1,8 +1,8 @@
 @import url('../swiper/swiper-bundle.min.css');
 
-/* .looking-for.custom-cards-container {
-    text-align: center;
-} */
+.looking-for.section.custom-cards-container {
+    margin-top: 0;
+}
 
 .looking-for.custom-cards-container .default-content-wrapper {
     text-align: center;
@@ -97,25 +97,6 @@
     transition: all 0.3s ease;
 }
 
-.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:first-of-type {
-    display: none;
-}
-
-.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) {
-    display: block;
-    width: 131px;
-    height: 137px;
-    margin: 0;
-}
-
-.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    padding: 0;
-    margin-left: 0;
-}
-
 /* Icons & Images */
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards-card-image {
     overflow: hidden;
@@ -189,6 +170,69 @@
     font-weight: 500;
     line-height: var(--line-height-caption, 14px);
     margin: 0;
+}
+
+/* "BEST SELLER" Badge */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(1) {
+    display: inline-flex;
+    padding: var(--spacing-xxs, 2px) var(--spacing-md, 8px);
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-xs, 4px);
+    border-radius: var(--radius-xxs, 2px);
+    border: 1px solid var(--border-border-white, #FFF);
+    margin: 0;
+    color: var(--text-text-white, #FFF);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-caption, 12px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--font-line-height-caption, 14px);
+}
+
+/* Disclaimer text */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
+    color: #FFF;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-caption, 14px);
+    margin: 0;
+}
+
+/* Buy Now Button */
+.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body p:last-child {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 88%;
+    margin: 0;
+    color: #FFF;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-caption, 14px);
+}
+
+.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:first-of-type {
+    display: none;
+}
+
+.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) {
+    display: block;
+    width: 131px;
+    height: 137px;
+    margin: 0;
+}
+
+.looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 0;
+    margin-left: 0;
 }
 
 @media (width >=900px) {
@@ -301,7 +345,7 @@
         0 2px 2px -1px rgb(10 13 18 / 4%);
 }
 
-.looking-for .search.block .search-box .icon-search img {
+.looking-for .search.block .search-box .icon-search img[data-icon-name="search"] {
     display: none;
 }
 
@@ -556,7 +600,8 @@
 /* stylelint-enable no-descending-specificity */
 
 /* "BEST SELLER" Badge */
-.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:first-child {
+
+/* .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(1) {
     display: inline-flex;
     padding: var(--spacing-xxs, 2px) var(--spacing-md, 8px);
     justify-content: flex-end;
@@ -571,7 +616,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: var(--font-line-height-caption, 14px);
-}
+} */
 
 /* Heading */
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body h3 {
@@ -585,7 +630,8 @@
 }
 
 /* Disclaimer text */
-.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
+
+/* .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
     color: #FFF;
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: 10px;
@@ -593,10 +639,11 @@
     font-weight: 400;
     line-height: var(--line-height-caption, 14px);
     margin: 0;
-}
+} */
 
 /* Buy Now Button */
-.looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body p:last-child {
+
+/* .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body p:last-child {
     position: absolute;
     bottom: 12px;
     left: 12px;
@@ -608,7 +655,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: var(--line-height-caption, 14px);
-}
+} */
 
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a {
     display: inline-flex;

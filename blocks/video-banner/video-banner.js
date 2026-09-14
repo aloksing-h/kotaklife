@@ -20,6 +20,24 @@ async function resolveMediaUrl(href) {
   }
 }
 
+// Mobile-only "scroll to top" indicator: vertical line with a circle that
+// travels up the line on click, then scrolls the page to top.
+function buildScrollIndicator(block) {
+  if (block.querySelector('.scroll-indicator')) return;
+
+  const indicator = document.createElement('div');
+  indicator.className = 'scroll-indicator';
+  indicator.innerHTML = '<button type="button" aria-label="Scroll to top"></button>';
+
+  const button = indicator.querySelector('button');
+  button.addEventListener('click', () => {
+    button.classList.add('is-active');
+    block.classList.add('video-banner-content-up');
+  });
+
+  block.append(indicator);
+}
+
 export default async function decorate(block) {
   if (block.classList.contains('autoplay')) {
     const rows = [...block.children];
@@ -115,4 +133,12 @@ export default async function decorate(block) {
     // Insert media wrapper into the block
     block.prepend(mediaWrapper);
   }
+
+  const revealDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 3000;
+  block.classList.add('video-banner-animate');
+  window.setTimeout(() => {
+    block.classList.add('video-banner-revealed');
+  }, revealDelay);
+
+  buildScrollIndicator(block);
 }
