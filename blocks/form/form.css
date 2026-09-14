@@ -1,54 +1,54 @@
 .form [aria-hidden='true'] {
-  display: none;
+    display: none;
 }
 
 .form input,
 .form textarea,
 .form select,
 .form button {
-  box-sizing: border-box;
-  display: block;
-  max-width: 100%;
-  font: inherit;
+    box-sizing: border-box;
+    display: block;
+    max-width: 100%;
+    font: inherit;
 }
 
 .form input,
 .form textarea,
 .form select {
-  scroll-margin: 1em;
-  width: 100%;
-  border: 1px solid var(--dark-color);
-  border-radius: 4px;
-  padding: 0.5em 0.75em;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-size: var(--body-font-size-s);
+    scroll-margin: 1em;
+    width: 100%;
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+    padding: 0.5em 0.75em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--body-font-size-s);
 }
 
 .form textarea {
-  resize: vertical;
+    resize: vertical;
 }
 
 .form fieldset {
-  appearance: none;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
+    appearance: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
 }
 
 .form input:hover,
 .form textarea:hover,
 .form select:hover,
 .form button:hover {
-  border-color: var(--link-color);
+    border-color: var(--link-color);
 }
 
 .form input:focus,
 .form textarea:focus,
 .form select:focus,
 .form button:focus {
-  outline-offset: 4px;
+    outline-offset: 4px;
 }
 
 .form input:disabled,
@@ -63,218 +63,221 @@
 .form input[readonly],
 .form textarea[readonly],
 .form select[readonly] {
-  border-color: #d1d1d1;
-  background-color: var(--light-color);
-  color: var(--dark-color);
+    border-color: #d1d1d1;
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 .form input[readonly]:focus,
 .form textarea[readonly]:focus,
 .form select[readonly]:focus {
-  outline: 0;
+    outline: 0;
 }
 
 .form input[type='checkbox'],
 .form input[type='radio'] {
-  width: unset;
+    width: unset;
 }
 
 .form label,
 .form legend {
-  display: block;
+    display: block;
 }
 
 .form label[data-required]::after,
 .form legend[data-required]::after {
-  content: '*';
-  margin-left: 0.25ch;
-  color: firebrick;
+    content: '*';
+    margin-left: 0.25ch;
+    color: firebrick;
 }
 
-.form .form-field > label:first-child,
-.form .form-field > legend {
-  font-weight: bold;
+.form .form-field>label:first-child,
+.form .form-field>legend {
+    font-weight: bold;
 }
 
-.form .form-field + .form-field {
-  margin-top: 1em;
+.form .form-field+.form-field {
+    margin-top: 1em;
 }
 
 .form .form-field.checkbox-field label,
 .form .form-field.radio-field label {
-  position: relative;
-  padding-left: calc(1em + 1ch);
-  font-size: var(--body-font-size-s);
-  line-height: 44px;
-  cursor: pointer;
+    position: relative;
+    padding-left: calc(1em + 1ch);
+    font-size: var(--body-font-size-s);
+    line-height: 44px;
+    cursor: pointer;
 }
 
 .form .form-field.checkbox-field label input,
 .form .form-field.radio-field label input,
 .form .form-field.toggle-field label input {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  margin: 0;
-  width: 1em;
-  height: 1em;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
 }
 
 .form .form-field.checkbox-field label input:disabled,
 .form .form-field.radio-field label input:disabled {
-  cursor: default;
+    cursor: default;
 }
 
-@media (width >= 600px) {
-  .form .form-field.checkbox-field,
-  .form .form-field.radio-field {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25ch 1em;
-  }
+@media (width >=600px) {
+    .form .form-field.checkbox-field,
+    .form .form-field.radio-field {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25ch 1em;
+    }
 }
+
 
 /* custom toggle field */
+
 .form .form-field.toggle-field label {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 1ch;
-  min-height: 44px;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1ch;
+    min-height: 44px;
 }
 
+
 /* stylelint-disable-next-line no-descending-specificity */
+
 .form .form-field.toggle-field label input {
-  width: 2em;
-  opacity: 0;
-  border-radius: 50%;
+    width: 2em;
+    opacity: 0;
+    border-radius: 50%;
 }
 
 .form .form-field.toggle-field label span {
-  position: relative;
-  width: calc(2em + (2 * 1px));
-  height: calc(1em + (2 * 1px));
-  border-radius: 1em;
-  border: 1px solid var(--dark-color);
-  background-color: var(--dark-color);
-  transition: background-color 0.2s;
-  cursor: pointer;
+    position: relative;
+    width: calc(2em + (2 * 1px));
+    height: calc(1em + (2 * 1px));
+    border-radius: 1em;
+    border: 1px solid var(--dark-color);
+    background-color: var(--dark-color);
+    transition: background-color 0.2s;
+    cursor: pointer;
 }
 
 .form .form-field.toggle-field label span::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  background-color: var(--background-color);
-  transition: left 0.2s;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    transition: left 0.2s;
 }
 
-.form .form-field.toggle-field label input:checked + span {
-  background-color: var(--link-color);
+.form .form-field.toggle-field label input:checked+span {
+    background-color: var(--link-color);
 }
 
-.form .form-field.toggle-field label input:checked + span::after {
-  left: calc(100% - 1em);
+.form .form-field.toggle-field label input:checked+span::after {
+    left: calc(100% - 1em);
 }
 
-.form .form-field.toggle-field label input:disabled + span {
-  border-color: #d1d1d1;
-  background-color: #d1d1d1;
-  cursor: default;
+.form .form-field.toggle-field label input:disabled+span {
+    border-color: #d1d1d1;
+    background-color: #d1d1d1;
+    cursor: default;
 }
 
-.form .form-field.toggle-field label input:disabled + span::after {
-  background-color: var(--light-color);
+.form .form-field.toggle-field label input:disabled+span::after {
+    background-color: var(--light-color);
 }
 
 .form .field-help-text {
-  margin-top: 0.2em;
-  color: var(--dark-color);
-  font-size: var(--body-font-size-xs);
+    margin-top: 0.2em;
+    color: var(--dark-color);
+    font-size: var(--body-font-size-xs);
 }
 
 .form .button-wrapper {
-  margin-top: 1em;
+    margin-top: 1em;
 }
 
 .form .button-wrapper button {
-  width: 100%;
+    width: 100%;
 }
 
 .form .button-wrapper button.button:disabled,
 .form .button-wrapper button.button:hover:disabled {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--background-color);
-  cursor: progress;
+    border-color: var(--dark-color);
+    background-color: var(--dark-color);
+    color: var(--background-color);
+    cursor: progress;
 }
 
 .form .button-wrapper button.button.secondary:disabled,
 .form .button-wrapper button.button.secondary:hover:disabled {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+    border-color: var(--dark-color);
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
-@media (width >= 600px) {
-  .form .button-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1ch;
-  }
-
-  .form .button-wrapper button {
-    width: max-content;
-  }
+@media (width >=600px) {
+    .form .button-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1ch;
+    }
+    .form .button-wrapper button {
+        width: max-content;
+    }
 }
 
 .date-field {
-  position: relative;
+    position: relative;
 }
 
 .date-field input[type="text"] {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 18px;
-  padding-right: 42px; 
-  cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+    padding-right: 42px;
+    cursor: pointer;
 }
 
 .date-field input[type="date"] {
-  background-image: none;
-  padding-right: 12px;
+    background-image: none;
+    padding-right: 12px;
 }
 
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .button-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: #fff;
-  flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #fff;
+    flex-shrink: 0;
 }
 
 .button-icon[data-icon="arrow-right"] {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e2103f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 16px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e2103f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
 }
