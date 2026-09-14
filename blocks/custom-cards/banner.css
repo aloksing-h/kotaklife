@@ -59,7 +59,7 @@
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li {
     display: flex;
-    flex: 0 0 38%;
+    flex: 0 0 37.5%;
     padding: var(--spacing-xl, 16px);
     flex-direction: column;
     align-items: flex-start;
@@ -68,11 +68,17 @@
     background: var(--base-white, #FFF);
     box-shadow: 0 10px 10px 0 rgb(36 108 216 / 10%);
     backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover {
+    background: linear-gradient(180deg, rgb(225 18 45 / 6%) 0%, rgb(255 255 255 / 100%) 58%);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 16px 40px rgb(225 18 45 / 20%);
+    border-color: #E1122D;
 }
 
 /* Icons & Images */
@@ -104,7 +110,7 @@
 
 
 /* Arrow Icon top right */
-.looking-for .icon-red-arrow-up-right {
+.looking-for>.custom-cards-wrapper:nth-of-type(2) .icon-red-arrow-up-right {
     width: 20px;
     height: 20px;
     display: flex;

@@ -1,0 +1,270 @@
+/* =========================================
+   MOBILE FIRST (Base Styles)
+   ========================================= */
+
+/* Ensure the main block container is relative so absolute children map to it */
+.autoplay.video-banner {
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+}
+
+.section.video-banner-container .video-banner-wrapper {
+    padding: 0;
+}
+
+/* The media wrapper just acts as a regular block element */
+.autoplay .video-banner-media {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: block;
+
+}
+
+/* Let the video drive the height based on its natural aspect ratio */
+.autoplay .video-banner-media video,
+.autoplay .video-banner-media picture,
+.autoplay .video-banner-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content overlay - Mobile view defaults (100% width, transparent background) */
+.autoplay .video-banner-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    padding: 0 16px;
+    padding-top: 60px;
+}
+
+.autoplay .video-banner-content>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.video-banner-animate .video-banner-content {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.video-banner-revealed .video-banner-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typography - Mobile defaults */
+.autoplay .video-banner-content p {
+    margin: 0;
+    color: var(--text-primary-inverse-base, #F5F5F5);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-3, 32px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: var(--line-height-heading-3, 36px);
+}
+
+.autoplay .video-banner-content p>strong {
+    color: var(--text-primary-inverse-base, #F5F5F5);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-3, 32px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-heading-3, 36px);
+    letter-spacing: -0.64px;
+}
+
+/* Second paragraph configuration */
+.autoplay .video-banner-content p:nth-child(4) {
+    margin-top: 22px;
+}
+
+.autoplay .video-banner-content p:nth-child(4) span {
+    display: inline-block;
+    width: 154.337px;
+    height: 66.055px;
+}
+
+/* Scroll button */
+
+.autoplay .video-banner-content p:last-child {
+    /* display: none; */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: -93px;
+    bottom: 24px;
+    color: var(--text-text-white, #FFF);
+    text-align: right;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-button-1, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-body-1, 18px);
+}
+
+/* Mobile-only "scroll to top" indicator: line + traveling circle, scoped to the banner */
+.autoplay .scroll-indicator {
+    display: block;
+    position: absolute;
+    right: 24px;
+    bottom: 30px;
+    width: 42px;
+    height: 180px;
+    z-index: 100;
+}
+
+/* Synchronized with the circle's travel; slides banner content upward */
+.autoplay .video-banner-content-up .video-banner-content {
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-100%);
+}
+
+.scroll-indicator button {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.scroll-indicator button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #fff;
+    transform: translateX(-50%);
+}
+
+.scroll-indicator button::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: transparent;
+    transform: translateX(-50%);
+    transition: bottom 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-indicator button.is-active::after {
+    bottom: calc(100% - 24px);
+}
+
+
+/* =========================================
+   DESKTOP OVERRIDES (min-width: 900px)
+   ========================================= */
+@media (width >=900px) {
+    .autoplay .video-banner-media {
+        pointer-events: none;
+
+        /* max-height: 670px; */
+        height: 100%;
+        height: 100vh;
+    }
+
+    /* 2. Create an invisible hit-zone covering ONLY the left 50% of the video */
+    .autoplay .video-banner-media::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        pointer-events: auto;
+        z-index: 1;
+    }
+
+    /* 3. Content panel occupies left half; text itself animates top-to-bottom via JS-driven classes */
+    .autoplay .video-banner-content {
+        width: 50%;
+        height: auto;
+        padding-top: 0;
+        background-color: rgb(0 0 0 / 30%);
+        background-image: conic-gradient(at 1px 1px, transparent 270deg, rgb(0 0 0 / 85%) 270deg);
+        background-size: 4px 4px;
+        background-position: 0 0;
+        padding-left: 50px;
+    }
+
+    /* Mobile-only widget, hidden at desktop */
+    .autoplay .scroll-indicator {
+        display: none;
+    }
+
+    /* Reset inner div to standard block layout without flex gap */
+    .autoplay .video-banner-content div {
+        display: block;
+    }
+
+    .autoplay .video-banner-content p {
+        font-size: var(--font-size-heading-1, 48px);
+        line-height: var(--line-height-heading-1, 60px);
+    }
+
+    .autoplay .video-banner-content p strong {
+        font-weight: 600;
+        font-size: var(--font-size-heading-1, 48px);
+        line-height: var(--line-height-heading-1, 60px);
+    }
+
+    .autoplay .video-banner-content p:nth-child(4) span {
+        width: 257.434px;
+        height: 112.434px;
+    }
+
+    .autoplay .video-banner-content p:last-child {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: -93px;
+        bottom: 24px;
+    }
+
+    .autoplay .video-banner-content p:last-child span {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.section:has(.video-banner-wrapper > .autoplay) {
+    max-width: 100%;
+    background:
+        linear-gradient(90deg,
+            #02070D 0%,
+            #03111C 50%,
+            #020B15 100%);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0;
+}
+
+main:has(.section > .video-banner-wrapper > .autoplay) {
+    max-width: 100%;
+}
