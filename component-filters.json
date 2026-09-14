@@ -109,11 +109,5 @@
     "components": [
       "tabs-item"
     ]
-  },
-  {
-    "id": "video-banner",
-    "components": [
-      "video-banner"
-    ]
   }
 ]

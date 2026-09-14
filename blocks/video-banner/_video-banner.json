@@ -23,16 +23,26 @@
                 {
                     "component": "reference",
                     "valueType": "string",
-                    "name": "desktopVideo",
-                    "label": "Desktop Video URL (.mp4)",
-                    "description": "URL of the desktop MP4 video asset"
+                    "name": "image",
+                    "label": "Placeholder Image",
+                    "multi": false
                 },
                 {
-                    "component": "reference",
+                    "component": "text",
                     "valueType": "string",
+                    "name": "imageAlt",
+                    "label": "Alt",
+                    "value": ""
+                },
+                {
+                    "component": "aem-content",
+                    "name": "desktopVideo",
+                    "label": "Desktop Video URL (.mp4)"
+                },
+                {
+                    "component": "aem-content",
                     "name": "mobileVideo",
-                    "label": "Mobile Video URL (.mp4)",
-                    "description": "URL of the mobile MP4 video asset"
+                    "label": "Mobile Video URL (.mp4)"
                 },
                 {
                     "component": "richtext",
@@ -41,20 +51,36 @@
                     "description": "Hero section rich text heading"
                 },
                 {
+                    "component": "reference",
+                    "valueType": "string",
+                    "name": "slogan",
+                    "label": "Slogan",
+                    "multi": false
+                },
+                {
                     "component": "text",
-                    "name": "scrollLabel",
-                    "label": "Scroll Down Label",
-                    "description": "Label for the scroll indicator button"
+                    "valueType": "string",
+                    "name": "imageAlt",
+                    "label": "Alt",
+                    "value": ""
+                },
+                {
+                    "component": "select",
+                    "name": "classes",
+                    "label": "Playback",
+                    "options": [
+                        {
+                            "name": "Click to play",
+                            "value": ""
+                        },
+                        {
+                            "name": "Autoplay background",
+                            "value": "autoplay"
+                        }
+                    ]
                 }
             ]
         }
     ],
-    "filters": [
-        {
-            "id": "video-banner",
-            "components": [
-                "video-banner"
-            ]
-        }
-    ]
+    "filters": []
 }
