@@ -1,0 +1,123 @@
+{
+  "definitions": [
+    {
+      "title": "Custom Cards",
+      "id": "custom-cards",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Custom Cards",
+              "filter": "custom-cards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Custom Card",
+      "id": "custom-cards-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Custom Card",
+              "model": "custom-cards-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "custom-cards-item",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "col1_classes",
+          "label": "Card Variation",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "Featured",
+              "value": "featured"
+            },
+            {
+              "name": "Horizontal",
+              "value": "horizontal"
+            },
+            {
+              "name": "Image Overlay",
+              "value": "image-overlay"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "col1_image1",
+          "label": "Image 1",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_image1Alt",
+          "label": "Image 1 Alt Text",
+          "description": "Describe the image, or leave empty only when it is decorative."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "col1_image2",
+          "label": "Image 2",
+          "description": "Optional secondary image.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_image2Alt",
+          "label": "Image 2 Alt Text",
+          "description": "Describe Image 2 when it conveys information."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col2_title",
+          "label": "Title"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "col2_description",
+          "label": "Description",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "col2_link",
+          "label": "Card Link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "col2_linkText",
+          "label": "Card Link Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "custom-cards",
+      "components": [
+        "custom-cards-item"
+      ]
+    }
+  ]
+}

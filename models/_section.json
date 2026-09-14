@@ -35,12 +35,20 @@
               "value": "highlight"
             },
             {
-              "name": "Term Insurance Plans",
-              "value": "term-insurance-plans"
+              "name": "Insights & Impact Plans",
+              "value": "insights-impact-plans"
             },
             {
-              "name": "Insurance Plans New",
-              "value": "insurance-plans-new"
+              "name": "Growing Insurance Company",
+              "value": "growing-insurance-company"
+            },
+            {
+              "name": "Advisor",
+              "value": "advisor"
+            },
+            {
+              "name": "Looking For",
+              "value": "looking-for"
             },
             {
               "name": "Dsp None",
@@ -51,77 +59,32 @@
               "value": "dsp-none-appear"
             },
             {
-              "name": "Term Insurance",
-              "value": "term-insurance"
+              "name": "Customer Say",
+              "value": "customer-say"
             },
             {
-              "name": "Insurance Plans",
-              "value": "insurance-plans"
+              "name": "Start Investing",
+              "value": "start-investing"
             },
             {
-              "name": "Claims",
-              "value": "claims"
+              "name": "Get Cover Plans",
+              "value": "get-cover-plans"
             },
             {
-              "name": "Fund Performance",
-              "value": "fund-performance"
+              "name": "Find A Plan",
+              "value": "find-a-plan"
             },
             {
-              "name": "How Do It",
-              "value": "how-do-it"
+              "name": "Video Banner",
+              "value": "video-banner"
+            },
+            {
+              "name": "Protection Plans",
+              "value": "protection-plans"
             },
             {
               "name": "Loans",
               "value": "loans"
-            },
-            {
-              "name": "Tab One",
-              "value": "tab-one"
-            },
-            {
-              "name": "Tab Two",
-              "value": "tab-two"
-            },
-            {
-              "name": "Tab Three",
-              "value": "tab-three"
-            },
-            {
-              "name": "Tab Four",
-              "value": "tab-four"
-            },
-            {
-              "name": "Tab Five",
-              "value": "tab-five"
-            },
-            {
-              "name": "Tab Six",
-              "value": "tab-six"
-            },
-            {
-              "name": "Bookmarks Links",
-              "value": "bookmarks-links"
-            },
-            {
-              "name": "Card Border Red",
-              "value": "card-border-red"
-            },
-            {
-              "name": "Hero Banner",
-              "value": "hero-banner"
-
-            },
-            {
-              "name": "Popular Search",
-              "value": "popular-search"
-            },
-            {
-              "name": "Column Left Section",
-              "value":"column-left-section"
-            },
-            {
-              "name":"Bookmark Section",
-              "value":"bookmark-section"
             }
           ]
         }
@@ -141,10 +104,14 @@
         "cards",
         "carousel",
         "columns",
+        "custom-cards",
+        "custom-rte",
         "embed",
         "form",
         "fragment",
         "hero",
+        "popular-search",
+        "profile-cta",
         "quote",
         "search",
         "rte",

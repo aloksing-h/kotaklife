@@ -1,0 +1,428 @@
+/*
+ * Color design tokens
+ * Source: Figma "Kotak Website - Design System V1" — Colors page (node 47:3865)
+ * Do not hand-edit values here without checking against Figma first.
+ */
+
+:root {
+  /* ===== Base ===== */
+  --base-white: #FFF;
+  --base-black: #000;
+
+  /* ===== Brand - Red ===== */
+  --brand-red-25: #FFE8EB;
+  --brand-red-50: #FED0D6;
+  --brand-red-100: #FEB9C2;
+  --brand-red-200: #FD8A99;
+  --brand-red-300: #FC5B70;
+  --brand-red-400: #FB2C47;
+  --brand-red-500: #FA1432;
+  --brand-red-600: #E1122D;
+  --brand-red-700: #C81028;
+  --brand-red-800: #AF0E23;
+  --brand-red-900: #640814;
+  --brand-red-950: #32040A;
+
+  /* ===== Brand - Blue ===== */
+  --brand-blue-25: #E9EDF2;
+  --brand-blue-50: #D2DAE4;
+  --brand-blue-100: #BCC8D7;
+  --brand-blue-200: #8FA3BC;
+  --brand-blue-300: #627EA1;
+  --brand-blue-400: #355986;
+  --brand-blue-500: #1E4679;
+  --brand-blue-600: #1B3F6D;
+  --brand-blue-700: #183861;
+  --brand-blue-800: #122A49;
+  --brand-blue-900: #0C1C30;
+  --brand-blue-950: #03070C;
+
+  /* ===== Gray ===== */
+  --gray-25: #FDFDFD;
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #E9EAEB;
+  --gray-300: #D5D7DA;
+  --gray-400: #A4A7AE;
+  --gray-500: #717680;
+  --gray-600: #535862;
+  --gray-700: #414651;
+  --gray-800: #252B37;
+  --gray-900: #181D27;
+  --gray-950: #0A0D12;
+
+  /* ===== Error ===== */
+  --error-25: #FFFBFA;
+  --error-50: #FEF3F2;
+  --error-100: #FEE4E2;
+  --error-200: #FECDCA;
+  --error-300: #FDA29B;
+  --error-400: #F97066;
+  --error-500: #F04438;
+  --error-600: #D92D20;
+  --error-700: #B42318;
+  --error-800: #912018;
+  --error-900: #7A271A;
+  --error-950: #55160C;
+
+  /* ===== Warning ===== */
+  --warning-25: #FFFCF5;
+  --warning-50: #FFFAEB;
+  --warning-100: #FEF0C7;
+  --warning-200: #FEDF89;
+  --warning-300: #FEC84B;
+  --warning-400: #FDB022;
+  --warning-500: #F79009;
+  --warning-600: #DC6803;
+  --warning-700: #B54708;
+  --warning-800: #93370D;
+  --warning-900: #7A2E0E;
+  --warning-950: #4E1D09;
+
+  /* ===== Success ===== */
+  --success-25: #F6FEF9;
+  --success-50: #ECFDF3;
+  --success-100: #DCFAE6;
+  --success-200: #ABEFC6;
+  --success-300: #75E0A7;
+  --success-400: #47CD89;
+  --success-500: #17B26A;
+  --success-600: #079455;
+  --success-700: #067647;
+  --success-800: #085D3A;
+  --success-900: #074D31;
+  --success-950: #053321;
+
+  /* ===== Info ===== */
+  --info-25: #F5FAFF;
+  --info-50: #EFF8FF;
+  --info-100: #D1E9FF;
+  --info-200: #B2DDFF;
+  --info-300: #84CAFF;
+  --info-400: #53B1FD;
+  --info-500: #2E90FA;
+  --info-600: #1570EF;
+  --info-700: #175CD3;
+  --info-800: #1849A9;
+  --info-900: #194185;
+  --info-950: #102A56;
+
+  /* ===== Red (hue scale, backs decorative-red-*) ===== */
+  --red-25: #FFE8EB;
+  --red-50: #FED0D6;
+  --red-100: #FEB9C2;
+  --red-200: #FD8A99;
+  --red-300: #FC5B70;
+  --red-400: #FB2C47;
+  --red-500: #FA1432;
+  --red-600: #E1122D;
+  --red-700: #C81028;
+  --red-800: #AF0E23;
+  --red-900: #7F2224;
+  --red-950: #32040A;
+
+  /* ===== Navy Blue (hue scale, backs decorative-navy-blue-*) ===== */
+  --navy-blue-25: #E9EDF2;
+  --navy-blue-50: #D2DAE4;
+  --navy-blue-100: #BCC8D7;
+  --navy-blue-200: #8FA3BC;
+  --navy-blue-300: #627EA1;
+  --navy-blue-400: #355986;
+  --navy-blue-500: #1E4679;
+  --navy-blue-600: #1B3F6D;
+  --navy-blue-700: #183861;
+  --navy-blue-800: #122A49;
+  --navy-blue-900: #0C1C30;
+  --navy-blue-950: #03070C;
+
+  /* ===== Blue (hue scale, backs decorative-blue-*) ===== */
+  --blue-25: #F5FAFF;
+  --blue-50: #EFF8FF;
+  --blue-100: #D1E9FF;
+  --blue-200: #B2DDFF;
+  --blue-300: #84CAFF;
+  --blue-400: #53B1FD;
+  --blue-500: #2E90FA;
+  --blue-600: #1570EF;
+  --blue-700: #175CD3;
+  --blue-800: #1849A9;
+  --blue-900: #194185;
+  --blue-950: #102A56;
+
+  /* ===== Indigo ===== */
+  --indigo-25: #F5F8FF;
+  --indigo-50: #EEF4FF;
+  --indigo-100: #E0EAFF;
+  --indigo-200: #C7D7FE;
+  --indigo-300: #A4BCFD;
+  --indigo-400: #8098F9;
+  --indigo-500: #6172F3;
+  --indigo-600: #444CE7;
+  --indigo-700: #3538CD;
+  --indigo-800: #2D31A6;
+  --indigo-900: #2D3282;
+  --indigo-950: #1F235B;
+
+  /* ===== Cyan ===== */
+  --cyan-25: #F5FEFF;
+  --cyan-50: #ECFDFF;
+  --cyan-100: #CFF9FE;
+  --cyan-200: #A5F0FC;
+  --cyan-300: #67E3F9;
+  --cyan-400: #2CE;
+  --cyan-500: #06AED4;
+  --cyan-600: #088AB2;
+  --cyan-700: #0E7090;
+  --cyan-800: #155B75;
+  --cyan-900: #074164;
+  --cyan-950: #0D2D3A;
+
+  /* ===== Violet ===== */
+  --violet-25: #FBFAFF;
+  --violet-50: #F5F3FF;
+  --violet-100: #ECE9FE;
+  --violet-200: #DDD6FE;
+  --violet-300: #C3B5FD;
+  --violet-400: #A48AFB;
+  --violet-500: #875BF7;
+  --violet-600: #7839EE;
+  --violet-700: #6927DA;
+  --violet-800: #5720B7;
+  --violet-900: #491C96;
+  --violet-950: #2E125E;
+
+  /* ===== Pink ===== */
+  --pink-25: #FEFAFF;
+  --pink-50: #FDF4FF;
+  --pink-100: #FBE8FF;
+  --pink-200: #F6D0FE;
+  --pink-300: #EEAAFD;
+  --pink-400: #E478FA;
+  --pink-500: #D444F1;
+  --pink-600: #BA24D5;
+  --pink-700: #9F1AB1;
+  --pink-800: #821890;
+  --pink-900: #6F1877;
+  --pink-950: #47104C;
+
+  /* ===== Yellow ===== */
+  --yellow-25: #FEFDF0;
+  --yellow-50: #FEFBE8;
+  --yellow-100: #FEF7C3;
+  --yellow-200: #FEEE95;
+  --yellow-300: #FDE272;
+  --yellow-400: #FAC515;
+  --yellow-500: #EAAA08;
+  --yellow-600: #CA8504;
+  --yellow-700: #A15C07;
+  --yellow-800: #854A0E;
+  --yellow-900: #713B12;
+  --yellow-950: #542C0D;
+
+  /* ===== Orange ===== */
+  --orange-25: #FFFCF5;
+  --orange-50: #FFFAEB;
+  --orange-100: #FEF0C7;
+  --orange-200: #FEDF89;
+  --orange-300: #FEC84B;
+  --orange-400: #FDB022;
+  --orange-500: #F79009;
+  --orange-600: #DC6803;
+  --orange-700: #B54708;
+  --orange-800: #93370D;
+  --orange-900: #7A2E0E;
+  --orange-950: #4E1D09;
+
+  /* ===== Gradients ===== */
+  --gradient-red-card: linear-gradient(-36deg, rgb(251 44 71 / 100%) 0%, rgb(250 20 50 / 100%) 0%, rgb(127 34 36 / 100%) 100%);
+  --gradient-red-button: linear-gradient(180deg, rgb(175 14 35 / 100%) 0%, rgb(251 44 71 / 100%) 100%);
+  --gradient-red-bg: linear-gradient(180deg, rgb(253 138 153 / 100%) 0%, rgb(255 232 235 / 100%) 100%);
+  --gradient-blue-card: linear-gradient(-36deg, rgb(30 70 121 / 100%) 0%, rgb(30 70 121 / 100%) 0%, rgb(12 28 48 / 100%) 100%);
+  --gradient-blue-button: linear-gradient(180deg, rgb(18 42 73 / 100%) 0%, rgb(53 89 134 / 100%) 100%);
+  --gradient-blue-bg: linear-gradient(180deg, rgb(143 163 188 / 100%) 0%, rgb(233 237 242 / 100%) 100%);
+
+  /* ===== Text color (semantic) ===== */
+  --text-primary: var(--gray-900);
+  --text-primary-hover: var(--gray-950);
+  --text-secondary: var(--gray-700);
+  --text-secondary-hover: var(--gray-800);
+  --text-tertiary: var(--gray-600);
+  --text-tertiary-hover: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --text-quaternary-hover: var(--gray-600);
+  --text-white: var(--base-white);
+  --text-disabled: var(--gray-500);
+  --text-placeholder: var(--gray-500);
+  --text-placeholder-hover: var(--gray-300);
+  --text-brand-red: var(--brand-red-500);
+  --text-brand-blue: var(--brand-blue-500);
+  --text-error: var(--error-600);
+  --text-warning: var(--warning-600);
+  --text-success: var(--success-600);
+  --text-info: var(--info-600);
+
+  /* ===== Border color (semantic) ===== */
+  --border-primary: var(--gray-300);
+  --border-secondary: var(--gray-200);
+  --border-tertiary: var(--gray-100);
+  --border-disabled: var(--gray-300);
+  --border-brand-red: var(--brand-red-500);
+  --border-brand-red-subtle: var(--brand-red-50);
+  --border-brand-blue: var(--brand-blue-500);
+  --border-brand-blue-subtle: var(--brand-blue-50);
+  --border-error: var(--error-500);
+  --border-error-subtle: var(--error-300);
+
+  /* ===== Foreground color (semantic) ===== */
+  --fg-primary: var(--gray-800);
+  --fg-primary-hover: var(--gray-800);
+  --fg-secondary: var(--gray-700);
+  --fg-secondary-hover: var(--gray-800);
+  --fg-tertiary: var(--gray-600);
+  --fg-tertiary-hover: var(--gray-700);
+  --fg-quaternary: var(--gray-400);
+  --fg-quaternary-hover: var(--gray-500);
+  --fg-white: var(--base-white);
+  --fg-disabled: var(--gray-400);
+  --fg-disabled-subtle: var(--gray-300);
+  --fg-brand-red: var(--brand-red-500);
+  --fg-brand-red-hover: var(--brand-red-600);
+  --fg-brand-blue: var(--brand-blue-500);
+  --fg-brand-blue-hover: var(--brand-blue-600);
+
+  /* ===== Background color (semantic) ===== */
+  --bg-primary: var(--base-white);
+  --bg-primary-hover: var(--gray-50);
+  --bg-secondary: var(--gray-50);
+  --bg-secondary-hover: var(--gray-100);
+  --bg-tertiary: var(--gray-100);
+  --bg-tertiary-hover: var(--gray-200);
+  --bg-quaternary: var(--gray-200);
+  --bg-active: var(--gray-50);
+  --bg-solid: var(--base-black);
+  --bg-disabled: var(--gray-100);
+  --bg-brand-red-primary: var(--brand-red-50);
+  --bg-brand-red-primary-hover: var(--brand-red-100);
+  --bg-brand-red-secondary: var(--brand-red-100);
+  --bg-brand-red-solid: var(--brand-red-500);
+  --bg-brand-red-solid-hover: var(--brand-red-600);
+  --bg-brand-blue-primary: var(--brand-blue-50);
+  --bg-brand-blue-primary-hover: var(--brand-blue-100);
+  --bg-brand-blue-secondary: var(--brand-blue-100);
+  --bg-brand-blue-solid: var(--brand-blue-500);
+  --bg-brand-blue-solid-hover: var(--brand-blue-600);
+
+  /* ===== Decorative color (semantic aliases over hue scales) ===== */
+
+  /* Decorative - Red */
+  --decorative-red-25: var(--red-25);
+  --decorative-red-50: var(--red-50);
+  --decorative-red-100: var(--red-100);
+  --decorative-red-200: var(--red-200);
+  --decorative-red-300: var(--red-300);
+  --decorative-red-400: var(--red-400);
+  --decorative-red-500: var(--red-500);
+  --decorative-red-600: var(--red-600);
+  --decorative-red-700: var(--red-700);
+  --decorative-red-800: var(--red-800);
+  --decorative-red-900: var(--red-900);
+  --decorative-red-950: var(--red-950);
+
+  /* Decorative - Navy Blue */
+  --decorative-navy-blue-25: var(--navy-blue-25);
+  --decorative-navy-blue-50: var(--navy-blue-50);
+  --decorative-navy-blue-100: var(--navy-blue-100);
+  --decorative-navy-blue-200: var(--navy-blue-200);
+  --decorative-navy-blue-300: var(--navy-blue-300);
+  --decorative-navy-blue-400: var(--navy-blue-400);
+  --decorative-navy-blue-500: var(--navy-blue-500);
+  --decorative-navy-blue-600: var(--navy-blue-600);
+  --decorative-navy-blue-700: var(--navy-blue-700);
+  --decorative-navy-blue-800: var(--navy-blue-800);
+  --decorative-navy-blue-900: var(--navy-blue-900);
+  --decorative-navy-blue-950: var(--navy-blue-950);
+
+  /* Decorative - Blue */
+  --decorative-blue-25: var(--blue-25);
+  --decorative-blue-50: var(--blue-50);
+  --decorative-blue-100: var(--blue-100);
+  --decorative-blue-200: var(--blue-200);
+  --decorative-blue-300: var(--blue-300);
+  --decorative-blue-400: var(--blue-400);
+  --decorative-blue-500: var(--blue-500);
+  --decorative-blue-600: var(--blue-600);
+  --decorative-blue-700: var(--blue-700);
+  --decorative-blue-800: var(--blue-800);
+  --decorative-blue-900: var(--blue-900);
+  --decorative-blue-950: var(--blue-950);
+
+  /* Decorative - Indigo */
+  --decorative-indigo-25: var(--indigo-25);
+  --decorative-indigo-50: var(--indigo-50);
+  --decorative-indigo-100: var(--indigo-100);
+  --decorative-indigo-200: var(--indigo-200);
+  --decorative-indigo-300: var(--indigo-300);
+  --decorative-indigo-400: var(--indigo-400);
+  --decorative-indigo-500: var(--indigo-500);
+  --decorative-indigo-600: var(--indigo-600);
+  --decorative-indigo-700: var(--indigo-700);
+  --decorative-indigo-800: var(--indigo-800);
+  --decorative-indigo-900: var(--indigo-900);
+  --decorative-indigo-950: var(--indigo-950);
+
+  /* Decorative - Cyan */
+  --decorative-cyan-25: var(--cyan-25);
+  --decorative-cyan-50: var(--cyan-50);
+  --decorative-cyan-100: var(--cyan-100);
+  --decorative-cyan-200: var(--cyan-200);
+  --decorative-cyan-300: var(--cyan-300);
+  --decorative-cyan-400: var(--cyan-400);
+  --decorative-cyan-500: var(--cyan-500);
+  --decorative-cyan-600: var(--cyan-600);
+  --decorative-cyan-700: var(--cyan-700);
+  --decorative-cyan-800: var(--cyan-800);
+  --decorative-cyan-900: var(--cyan-900);
+  --decorative-cyan-950: var(--cyan-950);
+
+  /* Decorative - Violet */
+  --decorative-violet-25: var(--violet-25);
+  --decorative-violet-50: var(--violet-50);
+  --decorative-violet-100: var(--violet-100);
+  --decorative-violet-200: var(--violet-200);
+  --decorative-violet-300: var(--violet-300);
+  --decorative-violet-400: var(--violet-400);
+  --decorative-violet-500: var(--violet-500);
+  --decorative-violet-600: var(--violet-600);
+  --decorative-violet-700: var(--violet-700);
+  --decorative-violet-800: var(--violet-800);
+  --decorative-violet-900: var(--violet-900);
+  --decorative-violet-950: var(--violet-950);
+
+  /* Decorative - Pink */
+  --decorative-pink-25: var(--pink-25);
+  --decorative-pink-50: var(--pink-50);
+  --decorative-pink-100: var(--pink-100);
+  --decorative-pink-200: var(--pink-200);
+  --decorative-pink-300: var(--pink-300);
+  --decorative-pink-400: var(--pink-400);
+  --decorative-pink-500: var(--pink-500);
+  --decorative-pink-600: var(--pink-600);
+  --decorative-pink-700: var(--pink-700);
+  --decorative-pink-800: var(--pink-800);
+  --decorative-pink-900: var(--pink-900);
+  --decorative-pink-950: var(--pink-950);
+
+  /* Decorative - Yellow */
+  --decorative-yellow-25: var(--yellow-25);
+  --decorative-yellow-50: var(--yellow-50);
+  --decorative-yellow-100: var(--yellow-100);
+  --decorative-yellow-200: var(--yellow-200);
+  --decorative-yellow-300: var(--yellow-300);
+  --decorative-yellow-400: var(--yellow-400);
+  --decorative-yellow-500: var(--yellow-500);
+  --decorative-yellow-600: var(--yellow-600);
+  --decorative-yellow-700: var(--yellow-700);
+  --decorative-yellow-800: var(--yellow-800);
+  --decorative-yellow-900: var(--yellow-900);
+  --decorative-yellow-950: var(--yellow-950);
+}

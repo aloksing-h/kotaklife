@@ -13,15 +13,18 @@
       "button",
       "title",
       "accordion",
-      "advisor-cta",
       "banner",
       "cards",
       "carousel",
       "columns",
+      "custom-cards",
+      "custom-rte",
       "embed",
       "form",
       "fragment",
       "hero",
+      "popular-search",
+      "profile-cta",
       "quote",
       "search",
       "rte",
@@ -35,12 +38,6 @@
     "id": "accordion",
     "components": [
       "accordion-item"
-    ]
-  },
-  {
-    "id": "advisor-cta",
-    "components": [
-      "advisor-cta"
     ]
   },
   {
@@ -74,6 +71,32 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "custom-cards",
+    "components": [
+      "custom-cards-item"
+    ]
+  },
+  {
+    "id": "custom-rte",
+    "components": [
+      "custom-rte-item",
+      "custom-image-item",
+      "rte-image-item"
+    ]
+  },
+  {
+    "id": "popular-search",
+    "components": [
+      "popular-search"
+    ]
+  },
+  {
+    "id": "profile-cta",
+    "components": [
+      "profile-cta"
     ]
   },
   {

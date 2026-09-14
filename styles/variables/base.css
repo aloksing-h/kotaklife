@@ -1,0 +1,63 @@
+/*
+ * Base design tokens: spacing, radius, shadows
+ * Source: Figma "Kotak Website - Design System V1"
+ *   - Spacing & radius page (node 47:3869)
+ *   - Effect styles / Shadows page (node 47:3868)
+ */
+
+@import url('./colors.css');
+@import url('./fonts.css');
+
+:root {
+  /* ===== Spacing primitives (rem scale) ===== */
+  --spacing-0: 0rem;
+  --spacing-0-125: 0.125rem;
+  --spacing-0-25: 0.25rem;
+  --spacing-0-375: 0.375rem;
+  --spacing-0-5: 0.5rem;
+  --spacing-0-75: 0.75rem;
+  --spacing-1: 1rem;
+  --spacing-1-25: 1.25rem;
+  --spacing-1-5: 1.5rem;
+  --spacing-2: 2rem;
+  --spacing-2-5: 2.5rem;
+  --spacing-3: 3rem;
+  --spacing-4: 4rem;
+  --spacing-5: 5rem;
+
+  /* ===== Spacing scale (semantic) ===== */
+  --spacing-none: 0px;
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  --spacing-7xl: 64px;
+  --spacing-8xl: 80px;
+
+  /* ===== Radius scale ===== */
+  --radius-none: 0px;
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
+  --radius-full: 9999px;
+
+  /* ===== Shadows ===== */
+  --shadow-xs: 0px 1px 2px 0px rgb(10 13 18 / 5%);
+  --shadow-sm: 0px 1px 2px 0px rgb(10 13 18 / 6%), 0px 1px 3px 0px rgb(10 13 18 / 10%);
+  --shadow-md: 0px 2px 4px -2px rgb(10 13 18 / 6%), 0px 4px 6px -1px rgb(10 13 18 / 10%);
+  --shadow-lg: 0px 2px 2px -1px rgb(10 13 18 / 4%), 0px 4px 6px -2px rgb(10 13 18 / 3%), 0px 12px 16px -4px rgb(10 13 18 / 8%);
+  --shadow-xl: 0px 3px 3px -1.5px rgb(10 13 18 / 4%), 0px 8px 8px -4px rgb(16 24 40 / 3%), 0px 20px 24px -4px rgb(16 24 40 / 8%);
+}

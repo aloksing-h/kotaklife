@@ -9,7 +9,6 @@ certs/*
 *.bak
 .idea
 token.txt
-
 # Contains API keys/tokens, never commit
 .vscode/mcp.json
 
