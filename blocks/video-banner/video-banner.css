@@ -1,30 +1,41 @@
-.video {
+.video-banner {
     text-align: center;
     max-width: 900px;
     margin: 24px auto;
 }
 
-.video[data-embed-loaded='false']:not(.placeholder) {
+.video-banner[data-embed-loaded='false']:not(.placeholder) {
     /* reserve an approximate space to avoid extensive layout shifts */
     aspect-ratio: 16 / 9;
 }
 
-.video>div {
+.video-banner>div {
     display: flex;
     justify-content: center;
 }
 
-.video video {
+.video-banner video {
     max-width: 100%;
+    width: 100%;
+    display: block;
 }
 
-.video .video-placeholder {
+.video-banner .video-banner-wrapper {
+    display: grid;
+    gap: 16px;
+}
+
+.video-banner .video-banner-title p {
+    margin: 0;
+}
+
+.video-banner .video-banner-placeholder {
     width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
 }
 
-.video .video-placeholder>* {
+.video-banner .video-banner-placeholder>* {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,20 +43,20 @@
     inset: 0;
 }
 
-.video[data-embed-loaded='true'] .video-placeholder,
-.video[data-embed-loaded='false'] .video-placeholder+* {
+.video-banner[data-embed-loaded='true'] .video-banner-placeholder,
+.video-banner[data-embed-loaded='false'] .video-banner-placeholder+* {
     visibility: hidden;
     height: 0;
     width: 0;
 }
 
-.video .video-placeholder picture img {
+.video-banner .video-banner-placeholder picture img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.video .video-placeholder-play button {
+.video-banner .video-banner-placeholder-play button {
     position: relative;
     display: block;
     width: 44px;
@@ -55,7 +66,7 @@
     padding: 0;
 }
 
-.video .video-placeholder-play button::before {
+.video-banner .video-banner-placeholder-play button::before {
     content: '';
     display: block;
     box-sizing: border-box;
@@ -70,8 +81,8 @@
     transform: translate(-50%, -50%);
 }
 
-.video .video-placeholder-play button:focus,
-.video .video-placeholder-play button:focus-visible {
+.video-banner .video-banner-placeholder-play button:focus,
+.video-banner .video-banner-placeholder-play button:focus-visible {
     outline: 2px solid black;
     outline-offset: 2px;
     background-color: black;
