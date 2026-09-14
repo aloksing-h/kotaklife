@@ -90,9 +90,11 @@
 }
 
 .section.invest-form-container>div:first-child>p:nth-child(4)>span {
-    width: 186.828px;
-    height: 96.066px;
     margin-top: 43px;
+    display: flex;
+    width: 304.623px;
+    height: 136px;
+    align-items: center;
 }
 
 .invest-form-wrapper a.button,
@@ -211,7 +213,7 @@
     }
     .section.invest-form-container>div:first-child>p:nth-child(4)>span {
         margin: 0;
-        width: 276.609px;
+        width: 306px;
         display: inline-flex;
         height: 171px;
         padding: 5.738px 104.745px 5.813px 40.274px;
