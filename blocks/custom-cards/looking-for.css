@@ -361,10 +361,6 @@
     flex-shrink: 0;
     aspect-ratio: 1/1;
     border-radius: var(--radius-full, 999px);
-
-    /* background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%)); */
-
-    /* background: linear-gradient(180deg, #AF0E23 0%, #FB2C47 100%); */
     background-color: var(--brand-red-500);
     margin-left: var(--spacing-md);
     background-image: url('/icons/write-arrow-right.svg');
@@ -385,8 +381,6 @@
     display: flex;
     width: 32px;
     height: 32px;
-
-    /* padding: var(--spacing-xs, 4px); */
     justify-content: center;
     align-items: center;
     gap: var(--spacing-md, 8px);
@@ -518,10 +512,6 @@
 .looking-banner .custom-cards ul li .custom-cards-card-body .banner-cta-group>p {
     margin: 0;
 }
-
-/* .looking-banner .custom-cards ul li .custom-cards-card-body .banner-cta-group p:last-of-type {
-    margin: 0;
-} */
 
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards-card-image .secondary-image img {
     position: absolute;
