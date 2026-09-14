@@ -15,6 +15,10 @@ token.txt
 # Temporary Figma preview exports, not source content
 tmp-figma-preview/
 
+# # Third-party vendored Swiper bundle
+blocks/swiper/swiper-bundle.min.js
+blocks/swiper/swiper-bundle.min.css
+
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
