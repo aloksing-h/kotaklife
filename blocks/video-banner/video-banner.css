@@ -27,6 +27,7 @@
 .autoplay .video-banner-media video,
 .autoplay .video-banner-media picture,
 .autoplay .video-banner-media img {
+    min-height: 670px;
     width: 100%;
     height: 100%;
     object-fit: cover;
