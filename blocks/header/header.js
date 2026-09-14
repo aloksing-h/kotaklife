@@ -126,15 +126,26 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-/**
- * Checks if a path is a fragment path that should be loaded dynamically
- * @param {string} path The URL path to check
- * @returns {boolean} True if the path is a fragment path
- */
 function isFragmentPath(path) {
   if (!path) return false;
   // Check for fragment paths in any structure (e.g., /in/en/fragment/nav/*, /fragment/*, etc.)
   return path.includes('/fragment/');
+}
+
+/**
+ * Adds layer classes recursively to elements
+ * @param {Element} element The element to add classes to
+ * @param {Object} classNameMap Class name mapping for each depth level
+ * @param {Number} depth The current depth level (internal use)
+ */
+function addLayerClasses(element, classNameMap, depth = 1) {
+  if (!element || !element.children) return;
+  const className = classNameMap[depth] || `level-${depth}`;
+  Array.from(element.children).forEach((child, index) => {
+    child.classList.add(className);
+    child.classList.add(`${className}-${index + 1}`);
+    addLayerClasses(child, classNameMap, depth + 1);
+  });
 }
 
 /**
@@ -173,26 +184,30 @@ export default async function decorate(block) {
     }
   }
 
-  function addLayerClasses(element, depth = 1) {
-    if (!element || !element.children) return;
-    const classNameMap = {
+  // Apply layer classes to topHeader
+  const topHeader = nav.querySelector('.nav-header-top .default-content-wrapper');
+  if (topHeader) {
+    addLayerClasses(topHeader, {
       1: 'list-item',
       2: 'list-inner',
       3: 'inner-child',
       4: 'inner-item',
       5: 'item',
       6: 'item-child',
-    };
-    const className = classNameMap[depth] || `level-${depth}`;
-    Array.from(element.children).forEach((child, index) => {
-      child.classList.add(className);
-      child.classList.add(`${className}-${index + 1}`);
-      addLayerClasses(child, depth + 1);
     });
   }
-  const topHeader = nav.querySelector('.nav-header-top .default-content-wrapper');
-  if (topHeader) {
-    addLayerClasses(topHeader);
+
+  // Apply layer classes to topHeader
+  const navSection = nav.querySelector('.nav-sections .default-content-wrapper');
+  if (navSection) {
+    addLayerClasses(navSection, {
+      1: 'list-item',
+      2: 'list-inner',
+      3: 'inner-child',
+      4: 'inner-item',
+      5: 'item',
+      6: 'item-child',
+    });
   }
 
   const navBrand = nav.querySelector('.nav-brand');
@@ -229,6 +244,18 @@ export default async function decorate(block) {
   if (navSections) {
     // Add proper ARIA attributes to nav-sections (WCAG 2.2 - 4.1.2 Name, Role, Value)
     navSections.setAttribute('role', 'menubar');
+
+    // Get the last li from nav-sections once and extract its text
+    const navSectionsUl = navSections.querySelector('.default-content-wrapper > ul');
+    let categoryText = '';
+    if (navSectionsUl) {
+      const allLis = Array.from(navSectionsUl.children);
+      const lastLi = allLis[allLis.length - 1];
+      if (lastLi) {
+        categoryText = lastLi.textContent.trim();
+        lastLi.remove();
+      }
+    }
 
     // Add data indexing for nav-sections
     // if (typeof dataMapKotakObj !== 'undefined' && dataMapKotakObj.addIndexed) {
@@ -284,6 +311,30 @@ export default async function decorate(block) {
 
             // Append fragment container to li
             linkLi.appendChild(fragmentContainer);
+
+            // Handle tab list wrapper creation
+            const tabListWrapper = fragmentContainer.querySelector('.tablist-wrapper');
+            if (tabListWrapper) {
+              const ulElement = tabListWrapper.querySelector('ul');
+              if (ulElement) {
+                // Create wrapper div
+                const tabWrapper = document.createElement('div');
+                tabWrapper.className = 'tab-wrapper';
+
+                // Create h4 with the category text (from the last li of nav-sections)
+                const heading = document.createElement('h4');
+                heading.textContent = categoryText;
+
+                // Append h4 to wrapper
+                tabWrapper.appendChild(heading);
+
+                // Move ul into wrapper
+                tabWrapper.appendChild(ulElement);
+
+                // Prepend wrapper into tablist-wrapper
+                tabListWrapper.prepend(tabWrapper);
+              }
+            }
 
             // Prevent clicks inside fragment from bubbling up
             fragmentContainer.addEventListener('click', (e) => {
