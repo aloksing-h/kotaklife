@@ -82,13 +82,13 @@
     height: 142px;
     border-radius: 4px;
     border: none;
-    box-shadow: 0 12px 20px 10px rgba(37, 37, 143, 0.10), 0 0.506px 2.025px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 12px 20px 10px rgb(37 37 143 / 10%), 0 0.506px 2.025px 0 rgb(0 0 0 / 10%);
     cursor: pointer;
     overflow: hidden;
-    
+
     /* transition: height 0.35s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.35s ease, border-color 0.35s ease; */
     will-change: height, box-shadow;
-    background: rgba(255, 255, 255, 0.90);
+    background: rgb(255 255 255 / 90%);
     align-items: flex-start;
     justify-content: flex-end;
     position: relative;
