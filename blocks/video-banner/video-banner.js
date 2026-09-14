@@ -21,99 +21,98 @@ async function resolveMediaUrl(href) {
 }
 
 export default async function decorate(block) {
-  if(block.classList.contains('autoplay')){
+  if (block.classList.contains('autoplay')) {
     const rows = [...block.children];
-  if (!rows.length) return;
+    if (!rows.length) return;
 
-  const desktopRow = rows[0];
-  const mobileRow = rows[1];
-  const contentRow = rows[2];
+    const desktopRow = rows[0];
+    const mobileRow = rows[1];
+    const contentRow = rows[2];
 
-  const mediaWrapper = document.createElement('div');
-  mediaWrapper.classList.add('video-banner-media');
+    const mediaWrapper = document.createElement('div');
+    mediaWrapper.classList.add('video-banner-media');
 
-  // Helper function to extract the URL or image from a row
-  const getMediaData = async (row) => {
-    const cell = row?.firstElementChild;
-    if (!cell) return null;
-    
-    if (isVideoEl(cell)) {
-      return { type: 'video', src: await resolveMediaUrl(cell.querySelector('a').href) };
-    } else if (isPictureEl(cell)) {
-      return { type: 'image', el: cell.querySelector('picture') };
-    }
-    return null;
-  };
+    // Helper function to extract the URL or image from a row
+    const getMediaData = async (row) => {
+      const cell = row?.firstElementChild;
+      if (!cell) return null;
 
-  // Get data for both views (fallback to desktop if mobile row is empty)
-  const desktopData = await getMediaData(desktopRow);
-  const mobileData = (await getMediaData(mobileRow)) || desktopData;
+      if (isVideoEl(cell)) {
+        return { type: 'video', src: await resolveMediaUrl(cell.querySelector('a').href) };
+      } if (isPictureEl(cell)) {
+        return { type: 'image', el: cell.querySelector('picture') };
+      }
+      return null;
+    };
 
-  // Remove the authored rows from the DOM
-  if (desktopRow) desktopRow.remove();
-  if (mobileRow) mobileRow.remove();
+    // Get data for both views (fallback to desktop if mobile row is empty)
+    const desktopData = await getMediaData(desktopRow);
+    const mobileData = (await getMediaData(mobileRow)) || desktopData;
 
-  // Keep track of the currently rendered single tag
-  let activeMediaEl = null;
+    // Remove the authored rows from the DOM
+    if (desktopRow) desktopRow.remove();
+    if (mobileRow) mobileRow.remove();
 
-  // Function to render or update the single media tag based on screen width
-  const renderResponsiveMedia = () => {
+    // Keep track of the currently rendered single tag
+    let activeMediaEl = null;
+
+    // Function to render or update the single media tag based on screen width
+    const renderResponsiveMedia = () => {
     // Check if screen is mobile (less than or equal to 900px)
-    const isMobile = window.matchMedia('(max-width: 900px)').matches;
-    const currentData = isMobile ? mobileData : desktopData;
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      const currentData = isMobile ? mobileData : desktopData;
 
-    if (!currentData) return;
+      if (!currentData) return;
 
-    // Handle Image Fallback
-    if (currentData.type === 'image') {
-      if (activeMediaEl !== currentData.el) {
-        mediaWrapper.innerHTML = ''; // clear wrapper
-        mediaWrapper.appendChild(currentData.el);
-        activeMediaEl = currentData.el;
-      }
-      return;
-    }
-
-    // Handle Video (The core requirement)
-    if (currentData.type === 'video') {
-      if (activeMediaEl && activeMediaEl.tagName === 'VIDEO') {
-        // If the single video tag already exists, just update its source and reload
-        if (activeMediaEl.getAttribute('src') !== currentData.src) {
-          activeMediaEl.setAttribute('src', currentData.src);
-          activeMediaEl.load(); // Forces the browser to load the new video src
-          activeMediaEl.play().catch(() => {}); // Ensure it autoplay continues
+      // Handle Image Fallback
+      if (currentData.type === 'image') {
+        if (activeMediaEl !== currentData.el) {
+          mediaWrapper.innerHTML = ''; // clear wrapper
+          mediaWrapper.appendChild(currentData.el);
+          activeMediaEl = currentData.el;
         }
-      } else {
-        // Create the single video tag for the first time
-        mediaWrapper.innerHTML = ''; // clear wrapper
-        const video = document.createElement('video');
-        video.setAttribute('autoplay', '');
-        video.setAttribute('loop', '');
-        video.setAttribute('muted', '');
-        video.muted = true;
-        video.setAttribute('playsinline', '');
-        video.setAttribute('webkit-playsinline', '');
-        video.setAttribute('src', currentData.src);
-        
-        mediaWrapper.appendChild(video);
-        activeMediaEl = video;
+        return;
       }
+
+      // Handle Video (The core requirement)
+      if (currentData.type === 'video') {
+        if (activeMediaEl && activeMediaEl.tagName === 'VIDEO') {
+        // If the single video tag already exists, just update its source and reload
+          if (activeMediaEl.getAttribute('src') !== currentData.src) {
+            activeMediaEl.setAttribute('src', currentData.src);
+            activeMediaEl.load(); // Forces the browser to load the new video src
+            activeMediaEl.play().catch(() => {}); // Ensure it autoplay continues
+          }
+        } else {
+        // Create the single video tag for the first time
+          mediaWrapper.innerHTML = ''; // clear wrapper
+          const video = document.createElement('video');
+          video.setAttribute('autoplay', '');
+          video.setAttribute('loop', '');
+          video.setAttribute('muted', '');
+          video.muted = true;
+          video.setAttribute('playsinline', '');
+          video.setAttribute('webkit-playsinline', '');
+          video.setAttribute('src', currentData.src);
+
+          mediaWrapper.appendChild(video);
+          activeMediaEl = video;
+        }
+      }
+    };
+
+    // 1. Initial load
+    renderResponsiveMedia();
+
+    // 2. Listen for window resize to swap the video source if crossing 900px
+    window.matchMedia('(max-width: 900px)').addEventListener('change', renderResponsiveMedia);
+
+    // 3. Process Overlay Text
+    if (contentRow) {
+      contentRow.classList.add('video-banner-content');
     }
-  };
 
-  // 1. Initial load
-  renderResponsiveMedia();
-
-  // 2. Listen for window resize to swap the video source if crossing 900px
-  window.matchMedia('(max-width: 900px)').addEventListener('change', renderResponsiveMedia);
-
-  // 3. Process Overlay Text
-  if (contentRow) {
-    contentRow.classList.add('video-banner-content');
+    // Insert media wrapper into the block
+    block.prepend(mediaWrapper);
   }
-
-  // Insert media wrapper into the block
-  block.prepend(mediaWrapper);
-  }  
-  
 }
