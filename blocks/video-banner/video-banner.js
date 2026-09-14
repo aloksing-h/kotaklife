@@ -134,7 +134,7 @@ export default async function decorate(block) {
     block.prepend(mediaWrapper);
   }
 
-  const revealDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 3000;
+  const revealDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0;
   block.classList.add('video-banner-animate');
   window.setTimeout(() => {
     block.classList.add('video-banner-revealed');
