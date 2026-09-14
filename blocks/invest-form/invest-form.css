@@ -213,6 +213,16 @@
         width: 276.609px;
         height: 142.237px;
     }
+    .invest-form-wrapper button span:first-of-type {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .invest-form-wrapper button {
+        height: 40px !important;
+    }
+    .form input {
+        padding: 11px 16px !important;
+    }
 }
 
 @media (width >=900px) and (width < 1100px) {
