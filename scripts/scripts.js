@@ -176,9 +176,36 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+async function loadAutoForm(doc) {
+  const anchors = [...doc.querySelectorAll('a')];
+  anchors.forEach(async anchor => {
+    if (anchor?.href?.includes('/forms/')) {
+      loadCSS(
+        `${window.hlx.codeBasePath}/blocks/form/form.css`,
+      );
+      const form = await import(
+        `${window.hlx.codeBasePath}/blocks/form/form.js`
+      );
+
+      const wrapper = document.createElement('div');
+      const anchorParent = anchor.parentElement;
+      wrapper.classList.add('form', 'block');
+      const submit = document.createElement('a');
+      // EDS-019: derive submit URL from page metadata instead of hard-coding Singapore path
+      const formSubmitUrl = `${window.template}/in/en/api.json`;
+      submit.href = formSubmitUrl;
+      wrapper.append(anchor);
+      wrapper.append(submit);
+      anchorParent.replaceWith(wrapper);
+      await form.default(wrapper);
+    }
+  });
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
+  await loadAutoForm(document);
   loadDelayed();
 }
 
