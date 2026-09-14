@@ -174,6 +174,7 @@
         align-items: start;
         padding: 88px 128px 0 0;
         margin: 0 50px;
+        border-radius: 150px;
     }
     .section.invest-form-container>div:first-child>h3 {
         grid-column: 1;
@@ -211,7 +212,10 @@
     .section.invest-form-container>div:first-child>p:nth-child(4)>span {
         margin: 0;
         width: 276.609px;
-        height: 142.237px;
+        display: inline-flex;
+        height: 171px;
+        padding: 5.738px 104.745px 5.813px 40.274px;
+        align-items: center;
     }
     .invest-form-wrapper button span:first-of-type {
         font-size: 16px;
