@@ -23,14 +23,14 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "imageAlt",
-          "label": "Alt",
+          "name": "text",
+          "label": "text-invest",
           "value": ""
         },
         {
           "component": "aem-content",
           "name": "link",
-          "label": "Embed URL"
+          "label": "form URL"
         }
       ]
     }
