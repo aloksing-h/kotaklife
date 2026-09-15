@@ -9,8 +9,10 @@ certs/*
 *.bak
 .idea
 token.txt
-# Contains API keys/tokens, never commit
-.vscode/mcp.json
+
+# Editor and agent tooling folders
+.vscode/
+.agents/
 
 # Temporary Figma preview exports, not source content
 tmp-figma-preview/
