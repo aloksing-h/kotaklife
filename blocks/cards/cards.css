@@ -684,11 +684,12 @@
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #475467;
   margin: 0;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-1, 16px);
+  font-weight: 600;
+  line-height: var(--line-height-sub-heading-2, 20px);
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(1) {
@@ -696,6 +697,7 @@
   color: #181d27;
   font-size: 13px;
   margin-top: 12px;
+  margin-top: auto;
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
