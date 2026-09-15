@@ -1124,6 +1124,10 @@ nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-lis
   padding: 6px 16px 16px;
 }
 
+nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper h4 {
+  display: none;
+}
+
 /***********  ***********/
 
 /* check whiite / Grey */
@@ -1449,6 +1453,7 @@ nav.grey-nav .nav-header-top .default-content-wrapper>ul.list-item-1 li.list-ine
   }
 
   nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper h4 {
+    display: block;
     color: var(--text-text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-caption, 12px);

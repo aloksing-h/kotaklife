@@ -133,12 +133,14 @@ export default async function decorate(block) {
     tabPanel.tabIndex = -1; // Allow programmatic focus on tab panels (WCAG 2.2 - 2.4.3 Focus Order)
 
     // Desktop behavior: first panel shown, others hidden
-    if (i === 0) {
+    if (i === 0 && !isMobile) {
+      // Desktop: show first panel
       tabItem.setAttribute('aria-current', 'true');
       tabPanel.removeAttribute('hidden');
       tabPanel.classList.remove('hidden');
       tabPanel.setAttribute('aria-hidden', 'false');
     } else {
+      // Mobile and non-first panels: all hidden initially
       tabPanel.setAttribute('hidden', '');
       tabPanel.classList.add('hidden');
       tabPanel.setAttribute('aria-hidden', 'true');
@@ -147,6 +149,9 @@ export default async function decorate(block) {
     if (isMobile) {
       // Mobile: append panel inside li for accordion
       li.appendChild(tabPanel);
+      // On mobile, deselect first tab and keep panel hidden
+      tabItem.setAttribute('aria-selected', 'false');
+      tabItem.setAttribute('aria-expanded', 'false');
     }
 
     // Append list item to tab list
