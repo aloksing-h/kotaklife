@@ -284,6 +284,12 @@
     ]
   },
   {
+    "id": "testimonials",
+    "components": [
+      "testimonials-item"
+    ]
+  },
+  {
     "id": "rte",
     "rte": {
       "toolbar": {

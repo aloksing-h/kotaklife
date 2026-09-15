@@ -805,6 +805,89 @@
     ]
   },
   {
+    "id": "testimonials",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Customer Say",
+            "value": "customer-say"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "testimonials-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortmob",
+        "label": "Short Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortmobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortdesk",
+        "label": "Short Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortdeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargemob",
+        "label": "Large Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargemobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargedesk",
+        "label": "Large Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargedeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_text",
+        "value": "",
+        "label": "Button Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "col2_videoLink",
+        "valueType": "string",
+        "label": "Video Link",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "video-banner",
     "fields": [
       {
