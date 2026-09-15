@@ -353,6 +353,75 @@
 }
 
 /* ==========================================================================
+   Bottom "Know More" CTA Button
+   ========================================================================== */
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 54px;
+  margin-bottom: 0;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 4px 4px 4px 20px;
+  border: 1px solid var(--button-btn-brand-red, #E1122D);
+  border-radius: 30px;
+  color: var(--button-btn-brand-red, #E1122D);
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  position: relative;
+  line-height: 18px;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+  content:'';
+  background-image: url("/icons/write-arrow-right.svg");
+  position: absolute;
+  right: 9px;
+  width: 20px;
+  height: 20px;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
+  content:'';
+  display: flex;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 11.429px;
+  border-radius: 50%;
+  background: var(--button-btn-brand-red, #E1122D);
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
+  background-color: #e31837;
+  color: #fff;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
+  background-color: #fff;
+  color: #e31837;
+}
+
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
+  background-image: url("/icons/red-arrow-right.svg");
+  width: 27px;
+  height: 28px;
+  right: 10px;
+}
+
+/* ==========================================================================
    Mobile Swiper Styling (< 900px)
    ========================================================================== */
 
@@ -433,6 +502,11 @@
     line-height: 20px;
   }
 
+  .insights-impact-plans .custom-cards-card-body p:last-child {
+    width: 32px;
+    height: 32px;
+  }
+
   .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4 +p,
   .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
@@ -446,11 +520,6 @@
     object-fit: unset;
   }
 
-  .insights-impact-plans .custom-cards-card-body p:last-child {
-    width: 32px;
-    height: 32px;
-  }
-
   .insights-impact-plans .custom-cards-card-body .icon {
     width: 32px;
     height: 32px;
@@ -459,73 +528,8 @@
   .insights-impact-plans.section.custom-cards-container .custom-cards-card-image picture {
     aspect-ratio: unset;
   }
-}
 
-/* ==========================================================================
-   Bottom "Know More" CTA Button
-   ========================================================================== */
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 54px;
-  margin-bottom: 0;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 4px 4px 4px 20px;
-  border: 1px solid var(--button-btn-brand-red, #E1122D);
-  border-radius: 30px;
-  color: var(--button-btn-brand-red, #E1122D);
-  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
-  font-size: 16px;
-  font-weight: 800;
-  text-decoration: none;
-  background-color: #fff;
-  transition: all 0.3s ease;
-  position: relative;
-  line-height: 18px;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
-  content:'';
-  background-image: url("/icons/write-arrow-right.svg");
-  position: absolute;
-  right: 9px;
-  width: 20px;
-  height: 20px;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
-  content:'';
-  display: flex;
-  width: 32px;
-  height: 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 11.429px;
-  border-radius: 50%;
-  background: var(--button-btn-brand-red, #E1122D);
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
-  background-color: #e31837;
-  color: #fff;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
-  background-color: #fff;
-  color: #e31837;
-}
-
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
-  background-image: url("/icons/red-arrow-right.svg");
-  width: 27px;
-  height: 28px;
-  right: 10px;
-}
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
+    font-size: 14px;
+  }
+} 
