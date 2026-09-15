@@ -496,14 +496,14 @@ export default async function decorate(block) {
     });
 
     // Close all menus when mouse leaves the entire nav sections area
-    navSections.addEventListener('mouseleave', () => {
-      if (isDesktop.matches) {
-        leaveTimer = setTimeout(() => {
-          toggleAllNavSections(navSections, false);
-          document.body.classList.remove('no-scroll');
-        }, 300);
-      }
-    });
+    // navSections.addEventListener('mouseleave', () => {
+    //   if (isDesktop.matches) {
+    //     leaveTimer = setTimeout(() => {
+    //       toggleAllNavSections(navSections, false);
+    //       document.body.classList.remove('no-scroll');
+    //     }, 300);
+    //   }
+    // });
 
     // Cancel timer when mouse re-enters nav sections
     navSections.addEventListener('mouseenter', () => {
