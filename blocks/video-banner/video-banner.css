@@ -184,7 +184,7 @@
 
         /* max-height: 670px; */
         height: 100%;
-        height: 100vh;
+        height: 100dvh;
     }
 
     /* 2. Create an invisible hit-zone covering ONLY the left 50% of the video */
