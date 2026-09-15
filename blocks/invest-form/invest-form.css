@@ -7,10 +7,10 @@
     padding: 41px 24px 0;
 }
 
-.section>div {
-    padding: unset !important;
-    margin: unset !important;
-}
+/* .section>div {
+    padding: unset;
+    margin: unset;
+} */
 
 .default-content-wrapper {
     display: contents;
@@ -98,14 +98,14 @@
 }
 
 .invest-form-wrapper a.button,
-.invest-form-wrapper button {
-    display: flex !important;
+.invest-form-wrapper form .button {
+    display: flex;
     padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-2xl, 20px);
     align-items: center;
     border-radius: var(--radius-full, 999px);
     background: #E1122D;
-    height: 38px !important;
-    width: 100% !important;
+    height: 38px;
+    width: 100%;
 }
 
 .invest-form-wrapper button svg,
@@ -116,54 +116,54 @@
     padding: 4px;
 }
 
-.form input {
-    display: flex !important;
+.invest-form .form input {
+    display: flex;
     height: 40px;
-    padding: 8px 16px !important;
+    padding: 8px 16px;
     align-items: center;
     gap: var(--spacing-md, 8px);
     align-self: stretch;
-    border: 1px solid #D5D7DA !important;
+    border: 1px solid #D5D7DA;
     background: #FFF;
     flex: 1 0 0;
-    overflow: hidden !important;
-    color: #717680 !important;
+    overflow: hidden;
+    color: #717680;
     text-overflow: ellipsis;
-    font-family: var(--body-font-family) !important;
-    font-size: 14px !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    line-height: 18px !important;
+    font-family: var(--body-font-family);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
     outline: none;
 }
 
-.form form {
-    display: flex !important;
+.invest-form .form form {
+    display: flex;
     flex-direction: column;
 }
 
-.form .button-wrapper {
+.invest-form .form .button-wrapper {
     order: 1;
 }
 
-.form .form-field.checkbox-field {
+.invest-form .form .form-field.checkbox-field {
     order: 2;
     margin-top: 8px;
 }
 
-.form .form-field.checkbox-field label {
+.invest-form .form .form-field.checkbox-field label {
     color: #717680;
     font-family: var(--body-font-family);
-    font-size: 10px !important;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 12px !important;
-    padding-left: 23px !important;
+    line-height: 12px;
+    padding-left: 23px;
 }
 
-.form .form-field.checkbox-field label input {
-    width: 16px !important;
-    height: 16px !important;
+.invest-form .form .form-field.checkbox-field label input {
+    width: 16px;
+    height: 16px;
     display: inline-flex;
     align-items: center
 }
@@ -184,6 +184,7 @@
         margin: 0 50px;
         border-radius: 150px;
     }
+
     .section.invest-form-container>div:first-child>h3 {
         grid-column: 1;
         grid-row: 2;
@@ -191,6 +192,7 @@
         font-size: 48px;
         line-height: 48px;
     }
+
     .section.invest-form-container>div:first-child>p:nth-child(2) {
         grid-column: 1;
         grid-row: 2;
@@ -199,24 +201,34 @@
         line-height: 20px;
         margin-top: 107px;
     }
+
     .section.invest-form-container>div:first-child>p:nth-child(3) {
         grid-column: 2;
         grid-row: 1;
         font-size: 16px;
         line-height: 20px;
     }
+
     .invest-form-wrapper {
         grid-column: 2;
         grid-row: 2;
     }
+
     .invest-form-wrapper>div {
         padding-bottom: 88px;
     }
+
     .section.invest-form-container>div:first-child>p:nth-child(4) {
         grid-column: 1;
         grid-row: 2;
         align-self: end;
     }
+
+    .invest-form-wrapper button span:first-of-type {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
     .section.invest-form-container>div:first-child>p:nth-child(4)>span {
         margin: 0;
         width: 306px;
@@ -225,15 +237,13 @@
         padding: 5.738px 104.745px 5.813px 40.274px;
         align-items: center;
     }
-    .invest-form-wrapper button span:first-of-type {
-        font-size: 16px;
-        line-height: 18px;
-    }
+
     .invest-form-wrapper button {
-        height: 40px !important;
+        height: 40px;
     }
-    .form input {
-        padding: 11px 16px !important;
+
+    .invest-form .form input {
+        padding: 11px 16px;
     }
 }
 
@@ -244,11 +254,13 @@
         margin: 0 16px;
         padding: 60px 40px 0 0;
     }
+
     .section.invest-form-container>div:first-child>h3 {
         padding-left: 60px;
         font-size: 40px;
         line-height: 42px;
     }
+
     .section.invest-form-container>div:first-child>p:nth-child(2) {
         padding-left: 60px;
         margin-top: 94px;
