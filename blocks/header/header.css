@@ -1485,8 +1485,7 @@ nav.grey-nav .nav-header-top .default-content-wrapper>ul.list-item-1 li.list-ine
     transform: translateY(-50%) rotate(270deg);
   }
 
-  nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .custom-rte-container:not([hidden]),
-  nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .custom-rte-container[aria-hidden='false'] {
+  nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .custom-rte-container[role="tabpanel"]:not([hidden]) {
     display: flex;
     gap: 26px;
     width: 100%;
