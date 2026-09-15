@@ -239,6 +239,46 @@ export default async function decorate(block) {
     listInner.setAttribute('aria-expanded', 'false');
   });
 
+  // Handle header-top list-inner click functionality (both mobile and desktop)
+  // Only target specific list-inner items: list-inner-1, list-inner-2, and list-inner-4
+  const headerTopListInners = nav.querySelectorAll(
+    '.nav-header-top .list-item-1 > .list-inner-1, '
+    + '.nav-header-top .list-item-2 > .list-inner-2, '
+    + '.nav-header-top .list-item-2 > .list-inner-4',
+  );
+  if (headerTopListInners.length > 0) {
+    // Add click listeners to these specific list-inner items
+    headerTopListInners.forEach((listInner) => {
+      listInner.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Check if the clicked item already has the active class
+        const isAlreadyActive = listInner.classList.contains('active');
+        // Remove active class from all these specific list-inner items
+        headerTopListInners.forEach((item) => {
+          item.classList.remove('active');
+        });
+        // If it wasn't active, add active class to clicked item (toggle behavior)
+        if (!isAlreadyActive) {
+          listInner.classList.add('active');
+        }
+      });
+    });
+
+    // Add click listener on document to remove active class when clicking outside
+    document.addEventListener('click', (e) => {
+      // Check if click is outside all these specific header-top list-inner items
+      const isClickInsideListInner = Array.from(headerTopListInners).some(
+        (item) => item.contains(e.target),
+      );
+      if (!isClickInsideListInner) {
+        // Remove active class from all these items
+        headerTopListInners.forEach((item) => {
+          item.classList.remove('active');
+        });
+      }
+    });
+  }
+
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
