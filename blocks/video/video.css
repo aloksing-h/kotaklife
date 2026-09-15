@@ -1,3 +1,6 @@
+@import url('../../styles/variables/base.css');
+@import url('./video-bannerv1.css');
+
 .video {
     text-align: center;
     max-width: 900px;
