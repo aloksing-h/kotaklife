@@ -25,7 +25,6 @@
 
 /* Image Column & Dual Image Support */
 .custom-cards .custom-cards-card-image {
-  position: relative;
   line-height: 0;
 }
 
@@ -114,7 +113,8 @@
 }
 
 /* Top Header Layout (Title + Subtitle) */
-.insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+.insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+.insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -125,7 +125,9 @@
 }
 
 @media (width >=900px) {
-  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -266,7 +268,7 @@
 }
 
 /* Card Description */
-.insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4 + p,
+.insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
 .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: 16px;
@@ -419,13 +421,17 @@
     border-radius: 4px;
   }
 
-  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])), .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+  .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
     padding-inline: 16px;
     gap: 8px;
     margin-bottom: 25px;
   }
 
-  .insights-impact-plans.custom-cards-container .default-content-wrapper h1, .insights-impact-plans.custom-cards-container .default-content-wrapper h2, .insights-impact-plans.custom-cards-container .default-content-wrapper h3, .insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
+  .insights-impact-plans.custom-cards-container .default-content-wrapper h1,
+  .insights-impact-plans.custom-cards-container .default-content-wrapper h2,
+  .insights-impact-plans.custom-cards-container .default-content-wrapper h3,
+  .insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
     font-size: 32px;
     letter-spacing: -0.64px;
     line-height: 36px;
@@ -447,7 +453,7 @@
     line-height: 20px;
   }
 
-  .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4 +p,
+  .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
   .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
     line-height: 18px;
@@ -497,7 +503,7 @@
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
-  content:'';
+  content: '';
   background-image: url("/icons/write-arrow-right.svg");
   position: absolute;
   right: 9px;
@@ -506,7 +512,7 @@
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
-  content:'';
+  content: '';
   display: flex;
   width: 32px;
   height: 32px;

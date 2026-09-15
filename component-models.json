@@ -394,6 +394,10 @@
           {
             "name": "Image Overlay",
             "value": "image-overlay"
+          },
+          {
+            "name": "Zero GST 100% Protection",
+            "value": "zero-gst"
           }
         ]
       },
