@@ -30,7 +30,9 @@
       "rte",
       "rteV2",
       "tabs",
+      "subnav",
       "video",
+      "timeline",
       "video-banner"
     ]
   },
@@ -281,6 +283,13 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "timeline",
+    "components": [
+      "timeline-item",
+      "timeline-card"
     ]
   },
   {
