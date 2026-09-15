@@ -85,6 +85,46 @@
             {
               "name": "Loans",
               "value": "loans"
+            },
+            {
+              "name": "Tab One",
+              "value": "tab-one"
+            },
+            {
+              "name": "Tab Two",
+              "value": "tab-two"
+            },
+            {
+              "name": "Tab Three",
+              "value": "tab-three"
+            },
+            {
+              "name": "Tab Four",
+              "value": "tab-four"
+            },
+            {
+              "name": "Tab Five",
+              "value": "tab-five"
+            },
+            {
+              "name": "Tab Six",
+              "value": "tab-six"
+            },
+            {
+              "name": "CSR Layout",
+              "value": "csr-layout"
+            },
+            {
+              "name": "Our Vision",
+              "value": "vision"
+            },
+            {
+              "name": "Why Trust",
+              "value": "trust"
+            },
+            {
+              "name": "Slider Title",
+              "value": "slider-title"
             }
           ]
         }
@@ -117,7 +157,9 @@
         "rte",
         "rteV2",
         "tabs",
+        "subnav",
         "video",
+        "timeline",
         "video-banner"
       ]
     }
