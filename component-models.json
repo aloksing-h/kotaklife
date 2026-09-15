@@ -553,6 +553,10 @@
           {
             "name": "Youtube Video",
             "value": "yt-video"
+          },
+          {
+            "name": "Customer Say Video",
+            "value": "customer-say-video"
           }
         ]
       }
@@ -877,13 +881,6 @@
         "value": "",
         "label": "Button Text",
         "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "name": "col2_videoLink",
-        "valueType": "string",
-        "label": "Video Link",
-        "multi": false
       }
     ]
   },

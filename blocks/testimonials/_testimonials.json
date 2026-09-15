@@ -106,13 +106,6 @@
                     "value": "",
                     "label": "Button Text",
                     "valueType": "string"
-                },
-                {
-                    "component":"reference",
-                    "name":"col2_videoLink",
-                    "valueType":"string",
-                    "label":"Video Link",
-                    "multi":false
                 }
             ]
         }
