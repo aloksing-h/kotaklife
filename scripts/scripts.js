@@ -290,7 +290,7 @@ function loadDelayed() {
 
 async function loadAutoForm(doc) {
   const anchors = [...doc.querySelectorAll('a')];
-  anchors.forEach(async anchor => {
+  anchors.forEach(async (anchor) => {
     if (anchor?.href?.includes('/forms/')) {
       loadCSS(
         `${window.hlx.codeBasePath}/blocks/form/form.css`,

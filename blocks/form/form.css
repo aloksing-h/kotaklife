@@ -231,6 +231,7 @@
         flex-wrap: wrap;
         gap: 1ch;
     }
+
     .form .button-wrapper button {
         width: max-content;
     }
