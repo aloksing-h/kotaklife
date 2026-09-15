@@ -37,6 +37,18 @@
       "fields": [
         {
           "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "valueType": "array",
+          "options": [
+            {
+              "name": "Zero GST 100% Protection",
+              "value": "zero-gst"
+            }
+          ]
+        },
+        {
+          "component": "multiselect",
           "name": "col1_classes",
           "label": "Card Variation",
           "valueType": "array",
@@ -52,17 +64,6 @@
             {
               "name": "Image Overlay",
               "value": "image-overlay"
-            }
-          ]
-        },
-        {
-          "component": "multiselect",
-          "name": "classes",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Zero GST 100% Protection",
-              "value": "zero-gst"
             }
           ]
         },
