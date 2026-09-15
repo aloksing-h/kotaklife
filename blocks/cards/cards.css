@@ -177,7 +177,6 @@
 .growing-insurance-company .cards>ul>li {
   border-radius: var(--gic-card-radius);
   border: none;
-  overflow: hidden;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -249,7 +248,7 @@
   align-self: flex-end;
   margin: 0;
   line-height: 0;
-  height: 100%;
+  bottom: 0;
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
@@ -257,6 +256,7 @@
   height: 100%;
   object-fit: contain;
   object-position: bottom right;
+  min-height: 300px;
 }
 
 /* Card 2: 38 Million Red Card */
@@ -438,7 +438,7 @@
 
   .growing-insurance-company .default-content-wrapper h3 {
     /* grid-area: title; */
-    font-size: clamp(40px, 3.2vw, 44px);
+    font-size: 32px;
     grid-area: 1 / 1 / span 2 / 2;
     order: 1;
   }
@@ -525,7 +525,9 @@
   justify-content: space-between;
   gap: 1.5px;
   align-items: flex-start;
-  padding: 0 16px;
+  padding-inline: 50px;
+      max-width: 1200px;
+    margin: 0 auto;
 }
 
 .growing-insurance-company .default-content-wrapper h3 {
@@ -538,7 +540,7 @@
   grid-column: 1;
   color: #181d27;
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
-  font-size: clamp(28px, 6vw, 36px);
+  font-size: 32px;
   font-weight: 300;
   line-height: 1.25;
   margin: 0;
@@ -591,7 +593,7 @@
   display: grid;
   gap: 12px;
   grid-template-columns: 1.5fr 0.94fr 1.11fr;
-  grid-template-rows: 170px 170px;
+  grid-template-rows: auto;
 }
 
 .growing-insurance-company .cards-wrapper ul li {
@@ -606,7 +608,7 @@
 /* Base Image Handling */
 .growing-insurance-company .cards-card-image {
   position: absolute;
-  top: 0;
+  /* top: 0; */
   width: 100%;
   z-index: 1;
 }
@@ -743,6 +745,7 @@
 @media (width <=767px) {
   .growing-insurance-company .default-content-wrapper {
     grid-template-columns: 100%;
+    padding-inline: 16px;
   }
 
   .growing-insurance-company .default-content-wrapper p {
@@ -776,6 +779,10 @@
 
   .growing-insurance-company .cards-wrapper {
     padding-inline: 16px;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
+    height: 239px;
   }
 }
 
