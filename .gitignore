@@ -10,6 +10,11 @@ helix-importer-ui
 
 # Contains API keys/tokens, never commit
 .vscode/mcp.json
+.agents/**/mcp_config.json
+.agents/mcp_config.json
+.env
+.env.*
+!.env.example
 
 # Temporary Figma preview exports, not source content
 tmp-figma-preview/
