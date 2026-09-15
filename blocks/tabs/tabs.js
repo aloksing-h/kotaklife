@@ -150,7 +150,7 @@ async function decorateTimeline(block) {
   showYear(block, 0);
 }
 
-function decorateDefaultTabs(block) {
+async function decorateDefaultTabs(block) {
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
