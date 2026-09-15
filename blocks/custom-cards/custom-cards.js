@@ -86,7 +86,7 @@ export default async function decorate(block) {
 
         // Extract variations authored via col1_classes and apply to li
         [...div.classList].forEach((cls) => {
-          if (['featured', 'horizontal', 'image-overlay'].includes(cls)) {
+          if (['featured', 'horizontal', 'image-overlay', 'zero-gst'].includes(cls)) {
             li.classList.add(cls);
           }
         });
