@@ -251,8 +251,8 @@
     }
 
     .video-banner.is-editor .video-banner-media {
-        height: 500px;
-        min-height: 500px;
+        height: 800px;
+        min-height: 800px;
     }
 }
 
