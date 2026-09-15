@@ -271,6 +271,7 @@
 .life-advisor.profile-cta-container .profile-cta {
   padding: 0;
   width: 100%;
+  min-height: auto;
 }
 
 .life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
