@@ -1,3 +1,5 @@
+import { openModal } from '../modal/modal.js';
+
 export default function decorate(block) {
   const items = [...block.children];
 
@@ -8,6 +10,8 @@ export default function decorate(block) {
     row.setAttribute('tabindex', '0');
     row.setAttribute('role', 'button');
     row.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+
+    let modalUrl = null;
 
     const columns = [...row.children];
     if (columns.length >= 2) {
@@ -27,13 +31,19 @@ export default function decorate(block) {
       if (col2Elements.length >= 1) col2Elements[0].classList.add('large-img-mob');
       if (col2Elements.length >= 2) col2Elements[1].classList.add('large-img-desk');
       
-      // Play Button Decoration
+      // Play Button & Link Extraction
       if (col2Elements.length >= 3) {
         const videoBtnWrapper = col2Elements[2];
         videoBtnWrapper.classList.add('video-btn-wrapper');
         videoBtnWrapper.setAttribute('aria-label', 'Play video testimonial');
-        videoBtnWrapper.setAttribute('role', 'button');
-        videoBtnWrapper.setAttribute('tabindex', '0');
+
+        // Look for the authored link
+        const link = videoBtnWrapper.querySelector('a');
+        
+        if (link) {
+          modalUrl = link.href;
+          link.removeAttribute('href'); // Remove default anchor behavior
+        }
       }
     }
 
@@ -45,8 +55,34 @@ export default function decorate(block) {
       row.setAttribute('aria-expanded', 'true');
     };
 
-    // Trigger on hover and keyboard focus
+    // Hover & Focus switch active states
     row.addEventListener('mouseenter', activateItem);
     row.addEventListener('focus', activateItem);
+
+    // Click handler for opening the modal on the entire item
+    row.addEventListener('click', () => {
+      const isExpanded = row.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded && modalUrl) {
+        openModal(modalUrl);
+      } else {
+        // If clicked while collapsed (e.g., on touch/mobile devices), expand it first
+        activateItem();
+      }
+    });
+
+    // Keyboard support: Pressing Enter or Space opens modal when expanded
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const isExpanded = row.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded && modalUrl) {
+          openModal(modalUrl);
+        } else {
+          activateItem();
+        }
+      }
+    });
   });
 }
