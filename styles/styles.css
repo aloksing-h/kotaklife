@@ -444,6 +444,7 @@ main>.section.trust>div {
 
 /* Tablet (>=600px) */
 @media (width >=600px) {
+
   main>.section>div,
   main>.section.vision>div,
   main>.section.trust>div {
@@ -521,7 +522,6 @@ main>.section.trust>div {
   }
 
   .vision .default-content-wrapper h1 {
-    flex: 1;
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
     margin-bottom: 0;
@@ -532,7 +532,7 @@ main>.section.trust>div {
   }
 
   .vision .default-content-wrapper p {
-    flex: 0 1 450px;
+    flex: 0 1 416px;
     margin-left: auto;
     font-size: var(--body-1-font-size);
     line-height: var(--sub-heading-2-line-height);
@@ -543,12 +543,11 @@ main>.section.trust>div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-5xl);
+    gap: 149px;
     margin-bottom: 50px;
   }
 
   .trust .default-content-wrapper h1 {
-    flex: 1;
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
     margin-bottom: 0;
@@ -559,8 +558,8 @@ main>.section.trust>div {
   }
 
   .trust .default-content-wrapper p {
-    flex: 0 1 450px;
-    margin-left: auto;
+    text-align: right;
+    flex: 0 1 420px;
     font-size: var(--body-1-font-size);
     line-height: var(--sub-heading-2-line-height);
   }
