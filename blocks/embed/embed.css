@@ -60,3 +60,8 @@
   top: 4px;
   left: 7px;
 }
+
+.embed.yt-video {
+  margin: 0;
+  width: 50%;
+}

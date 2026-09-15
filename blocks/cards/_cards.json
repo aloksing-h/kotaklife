@@ -9,7 +9,8 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Cards",
-              "filter": "cards"
+              "filter": "cards",
+              "model":"cards"
             }
           }
         }
@@ -32,6 +33,25 @@
     }
   ],
   "models": [
+    {
+      "id": "cards",
+      "fields":[
+         {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Profile Cards",
+              "value": "profile-cards"
+            },
+            {
+              "name":"Financial Cards",
+              "value":"financial-cards"
+            }
+          ]
+      }]
+    },
     {
       "id": "card",
       "fields": [

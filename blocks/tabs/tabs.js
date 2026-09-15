@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+// import decorateFindAPlan from './find-a-plan.js';
 
 function isFragmentPath(path) {
   return !!path && path.startsWith('/') && !path.startsWith('//');
@@ -86,4 +87,8 @@ export default async function decorate(block) {
   }));
 
   block.prepend(tablist);
+
+  // if (block.closest('.find-a-plan')) {
+  //   decorateFindAPlan(block);
+  // }
 }

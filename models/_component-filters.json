@@ -10,5 +10,68 @@
   },
   {
     "...": "../blocks/*/_*.json#/filters"
-  }
+  },
+  {
+      "id": "rte",
+      "rte": {
+        "toolbar": {
+          "list": ["bullet_list", "ordered_list"],
+          "blocks": ["paragraph", "h1", "h2", "h3", "h4", "h5", "h6"],
+          "format": ["bold", "italic"],
+          "insert": ["link", "unlink", "table", "image", "special_characters"],
+          "sections": ["format", "blocks", "list", "insert"]
+        },
+        "actions": {
+          "table": {
+            "wrapInParagraphs": false,
+            "label": "Insert Table",
+            "shortcut": "Mod-Alt-T"
+          },
+          "link": {
+            "hideTarget": false,
+            "label": "Insert Link",
+            "shortcut": "Mod-K"
+          },
+          "unlink": {
+            "label": "Remove Link",
+            "shortcut": "Mod-Shift-K"
+          },
+          "bold": {
+            "tag": "strong",
+            "shortcut": "Mod-B",
+            "label": "Bold"
+          },
+          "italic": {
+            "tag": "em",
+            "shortcut": "Mod-I"
+          },
+          "bullet_list": {
+            "wrapInParagraphs": true,
+            "label": "Bullet List"
+          },
+          "ordered_list": {
+            "wrapInParagraphs": false
+          },
+          "image": {
+            "wrapInPicture": false,
+            "shortcut": "Mod-Shift-I",
+            "label": "Insert Image"
+          },
+          "special_characters": {
+            "label": "Special Characters",
+            "appendCharacters": [
+              {
+                "character": "\u2605",
+                "title": "Black star"
+              }
+            ]
+          },
+          "h1": {
+            "shortcut": "Mod-Alt-1",
+            "label": "Main Heading"
+          }
+        }
+      },
+      "components": ["richtext"]
+    }
 ]
