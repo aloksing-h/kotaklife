@@ -369,6 +369,21 @@ export default async function decorate(block) {
             fragmentContainer.addEventListener('click', (e) => {
               e.stopPropagation();
             });
+
+            // DESKTOP: Attach hover listeners directly to this fragment container
+            // This ensures menu stays open when user moves to fragment content
+            if (isDesktop.matches) {
+              fragmentContainer.addEventListener('mouseenter', () => {
+                clearTimeout(leaveTimer);
+              });
+
+              fragmentContainer.addEventListener('mouseleave', () => {
+                leaveTimer = setTimeout(() => {
+                  toggleAllNavSections(navSections, false);
+                  document.body.classList.remove('no-scroll');
+                }, 300);
+              });
+            }
           }
         }
       }
