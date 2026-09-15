@@ -387,13 +387,13 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-nav {
-    padding: 24px 0 64px;
+    padding: 0;
   }
 
   /* margin-left leaves room for the absolutely positioned slider-title heading */
   .timeline.awards.block .timeline-track {
     gap: 112px;
-    margin-left: 419px;
+    margin: 29px 0 37px 419px
   }
 
   .timeline.awards.block .timeline-markers {
@@ -410,11 +410,12 @@ width: 12px;
   }
 
   .timeline.awards.block .timeline-arrows {
-    top: 110px;
+    top: 104px;
+    right: 0;
   }
 
   .timeline.awards.block .timeline-cards {
-    padding: 34px 0;
+    padding: 34px 0 0;
   }
 
   .timeline.awards.block .timeline-cards-list {
@@ -422,6 +423,7 @@ width: 12px;
     gap: 0;
     padding: 0;
     max-width: 1100px;
+    align-items: flex-start;
     width: 100% ;
   }
 
@@ -500,7 +502,6 @@ width: 12px;
   /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
   .slider-title.section > .default-content-wrapper {
     position: absolute;
-    top: 24px;
     max-width: 342px;
     margin: 0;
     padding: 0 0 0 50px;
@@ -510,6 +511,13 @@ width: 12px;
 }
 
 @media (width >= 1200px) {
+  .timeline.awards.block .timeline-nav{
+    max-height: 120px;
+  }
+  .timeline.awards.block .timeline-cards-list{
+    max-height: 355px;
+  }
+
   /* everything else here is unchanged from the 900px breakpoint */
   .timeline.awards.block .timeline-card-item .card-body {
     inset: auto auto 4% 22%;
@@ -522,12 +530,12 @@ width: 12px;
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+3) {
     /* 340px is ~30.9%. Dropped to 28% so it shrinks fast enough to prevent wrapping */
-    margin: 0 0 0 340px;
+    margin: -11px 0 0 340px;
   }
 
   .timeline.awards.block .timeline-card-item:nth-child(4n+4) {
     /* 122px is ~11.1%. Dropped to 9% */
     /* margin: 0 0 0 clamp(20px, 9%, 122px); */
-    margin: 0 0 0 122px;
+    margin: -11px 0 0 122px;
   }
 }
