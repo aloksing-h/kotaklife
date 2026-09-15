@@ -2,7 +2,7 @@
    Standard Cards Base CSS
    ========================================================================== */
 
-.cards > ul {
+.cards>ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -11,7 +11,7 @@
   gap: 16px;
 }
 
-.cards > ul > li {
+.cards>ul>li {
   border: 1px solid var(--light-color);
   background-color: var(--background-color);
 }
@@ -26,7 +26,7 @@
 
 .cards .cards-card-image img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  display: block;
   object-fit: cover;
 }
 
@@ -37,6 +37,7 @@
 .growing-insurance-company.section {
   padding: 32px 0 40px;
   background-color: #fff;
+  position: relative;
 }
 
 .growing-insurance-company {
@@ -76,7 +77,10 @@
   font-weight: 500;
   line-height: 1.5;
   margin: 0;
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: 3;
+  grid-column: 1;
+
+  /* grid-area: 1 / 2 / 2 / 3; */
 }
 
 .growing-insurance-company .cards-wrapper {
@@ -92,8 +96,12 @@
   order: 4;
   display: flex;
   justify-content: center;
-  grid-area: 2 / 2 / 3 / 3;
   padding: 0;
+  position: absolute;
+  left: 32%;
+  bottom: -22px;
+
+  /* grid-area: 2 / 2 / 3 / 3; */
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn,
@@ -118,13 +126,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #e1122d;
+  background: url('../../icons/write-arrow-right.svg');
   color: #fff;
   border-radius: 50%;
   width: 24px;
   height: 24px;
   font-size: 12px;
-} 
+}
 
 .growing-insurance-company .default-content-wrapper .btn-arrow {
   display: inline-flex;
@@ -157,7 +165,7 @@
 }
 
 /* Mobile Cards Grid (2 Columns Base) */
-.growing-insurance-company .cards > ul {
+.growing-insurance-company .cards>ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gic-gap);
@@ -166,7 +174,7 @@
   margin: 0;
 }
 
-.growing-insurance-company .cards > ul > li {
+.growing-insurance-company .cards>ul>li {
   border-radius: var(--gic-card-radius);
   border: none;
   overflow: hidden;
@@ -176,7 +184,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.growing-insurance-company .cards > ul > li:hover {
+.growing-insurance-company .cards>ul>li:hover {
   transform: translateY(-4px);
 
   /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
@@ -189,20 +197,20 @@
 }
 
 /* Mobile Grid Positioning */
-.growing-insurance-company .cards > ul > li:nth-child(1) {
-  grid-column: 1 / -1; /* Full width top Executive card */
+.growing-insurance-company .cards>ul>li:nth-child(1) {
+  grid-column: 1 / -1;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-body {
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-body {
   margin: 0;
   flex: 1;
   z-index: 2;
   padding-right: 12px;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) .quote-mark {
+.growing-insurance-company .cards>ul>li:nth-child(1) .quote-mark {
   font-family: Georgia, serif;
   font-size: 48px;
   line-height: 0.8;
@@ -212,7 +220,7 @@
   display: block;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) h4 {
+.growing-insurance-company .cards>ul>li:nth-child(1) h4 {
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: 16px;
   font-weight: 600;
@@ -221,21 +229,21 @@
   margin: 0 0 12px;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) p:nth-of-type(1) {
+.growing-insurance-company .cards>ul>li:nth-child(1) p:nth-of-type(1) {
   font-size: 13px;
   font-weight: 700;
   color: #181d27;
   margin: 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) p:nth-of-type(2) {
+.growing-insurance-company .cards>ul>li:nth-child(1) p:nth-of-type(2) {
   font-size: 12px;
   font-weight: 500;
   color: #535862;
-  margin: 2px 0 0 ;
+  margin: 2px 0 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image {
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image {
   width: clamp(120px, 35vw, 150px);
   flex-shrink: 0;
   align-self: flex-end;
@@ -244,7 +252,7 @@
   height: 100%;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image img {
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -252,28 +260,28 @@
 }
 
 /* Card 2: 38 Million Red Card */
-.growing-insurance-company .cards > ul > li:nth-child(2) {
+.growing-insurance-company .cards>ul>li:nth-child(2) {
   background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
   flex-direction: column;
   padding: 20px;
   color: #fff;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-body {
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-body {
   margin: 0;
   z-index: 2;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(2) h4 {
+.growing-insurance-company .cards>ul>li:nth-child(2) h4 {
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: 32px;
   font-weight: 400;
   color: #fff;
-  margin: 0 0 4px ;
+  margin: 0 0 4px;
   line-height: 36px;
 }
 
-.growing-insurance-company.section .cards > ul > li:nth-child(2) p {
+.growing-insurance-company.section .cards>ul>li:nth-child(2) p {
   font-size: 16px;
   color: #FFF;
   font-weight: 500;
@@ -281,16 +289,16 @@
   margin: 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-image {
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-image {
   /* margin-top: auto; */
   align-self: flex-end;
   width: 100%;
   line-height: 0;
   bottom: 0;
-    right: 0;
+  right: 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(2) .cards-card-image img {
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-image img {
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -298,7 +306,7 @@
 }
 
 /* Card 3: 99.50% Light Card */
-.growing-insurance-company .cards > ul > li:nth-child(3) {
+.growing-insurance-company .cards>ul>li:nth-child(3) {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   background-color: var(--gic-card-bg);
@@ -307,19 +315,19 @@
   padding: 18px;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-body {
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-body {
   margin: 0;
   z-index: 2;
   padding: 0;
   margin-bottom: 24px;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(3) h4 {
+.growing-insurance-company .cards>ul>li:nth-child(3) h4 {
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: 32px;
   font-weight: 400;
   color: #181d27;
-  margin: 0 0 4px ;
+  margin: 0 0 4px;
   line-height: 36px;
 }
 
@@ -333,16 +341,16 @@
   line-height: var(--line-height-sub-heading-2, 20px);
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-image {
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-image {
   margin-top: auto;
   align-self: flex-end;
   width: 76%;
   line-height: 0;
-      bottom: 0;
-    right: 0;
+  bottom: 0;
+  right: 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(3) .cards-card-image img {
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-image img {
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -351,7 +359,7 @@
 }
 
 /* Card 4: 1 Lakh + Red Card */
-.growing-insurance-company .cards > ul > li:nth-child(4) {
+.growing-insurance-company .cards>ul>li:nth-child(4) {
   grid-column: 2 / 3;
   grid-row: 3 / 4;
   background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
@@ -361,13 +369,13 @@
   color: #fff;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-body {
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-body {
   margin: 0;
   z-index: 2;
   margin-bottom: 38px;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(4) h4 {
+.growing-insurance-company .cards>ul>li:nth-child(4) h4 {
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: 32px;
   font-weight: 400;
@@ -376,7 +384,7 @@
   line-height: 36px;
 }
 
-.growing-insurance-company.section .cards > ul > li:nth-child(4) p {
+.growing-insurance-company.section .cards>ul>li:nth-child(4) p {
   margin: 0;
   color: var(--text-text-white, #FFF);
   font-family: var(--font-family-font-family-body, Manrope);
@@ -386,7 +394,7 @@
   line-height: var(--line-height-sub-heading-2, 20px);
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-image {
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-image {
   margin-top: auto;
   align-self: flex-end;
   width: 100%;
@@ -395,7 +403,7 @@
   right: 0;
 }
 
-.growing-insurance-company .cards > ul > li:nth-child(4) .cards-card-image img {
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-image img {
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -407,7 +415,7 @@
    Desktop Layer Extensions (@media (min-width: 900px))
    ========================================================================== */
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .growing-insurance-company.section {
     padding: 56px 0;
   }
@@ -429,68 +437,75 @@
   }
 
   .growing-insurance-company .default-content-wrapper h3 {
-    grid-area: title;
+    /* grid-area: title; */
     font-size: clamp(40px, 3.2vw, 44px);
+    grid-area: 1 / 1 / span 2 / 2;
+    order: 1;
   }
 
   .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
     font-size: 16px;
+    grid-column: 1;
+    grid-area: 1 / 2 / 2 / 3;
   }
 
   .growing-insurance-company .default-content-wrapper .button-wrapper,
   .growing-insurance-company.section .default-content-wrapper p:has(a) {
     justify-self: end;
+    grid-area: 2 / 2 / 3 / 3;
+    margin-top: -32px;
+    position: unset;
   }
 
   /* Desktop 3-Column Asymmetric Grid */
-  .growing-insurance-company .cards > ul {
+  .growing-insurance-company .cards>ul {
     grid-template-columns: 1.35fr 1fr 1fr;
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(1) {
+  .growing-insurance-company .cards>ul>li:nth-child(1) {
     grid-column: 1 / 2;
     grid-row: 1 / span 2;
     display: flex;
     flex-direction: row-reverse;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(1) h4 {
+  .growing-insurance-company .cards>ul>li:nth-child(1) h4 {
     font-size: 16px;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(1) .cards-card-image {
+  .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image {
     width: clamp(160px, 12vw, 180px);
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(2) {
+  .growing-insurance-company .cards>ul>li:nth-child(2) {
     grid-column: 2 / 3;
     grid-row: 1 / span 2;
     padding: 28px;
-            display: flex;
-        flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(3) {
+  .growing-insurance-company .cards>ul>li:nth-child(3) {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
     padding: 24px;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(3) h4 {
+  .growing-insurance-company .cards>ul>li:nth-child(3) h4 {
     font-size: 32px;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(4) {
+  .growing-insurance-company .cards>ul>li:nth-child(4) {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
     padding: 24px;
-            display: flex;
-        flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
-  .growing-insurance-company .cards > ul > li:nth-child(4) h4 {
+  .growing-insurance-company .cards>ul>li:nth-child(4) h4 {
     font-size: 32px;
   }
 }
@@ -499,7 +514,7 @@
    Growing Insurance Company Section
    ========================================================================== */
 
-   
+
 
 /* stylelint-disable no-descending-specificity */
 
@@ -508,18 +523,19 @@
   display: grid;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1.5px;
   align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto 32px;
-  padding: 0 50px;
+  padding: 0 16px;
 }
 
 .growing-insurance-company .default-content-wrapper h3 {
   max-width: 520px;
   letter-spacing: -0.5px;
-  grid-area: 1 / 1 / span 2 / 2;
-    order: 1;
+
+  /* grid-area: 1 / 1 / span 2 / 2;
+    order: 1; */
+  grid-area: 1;
+  grid-column: 1;
   color: #181d27;
   font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
   font-size: clamp(28px, 6vw, 36px);
@@ -530,7 +546,7 @@
 }
 
 .growing-insurance-company .default-content-wrapper h3 strong {
-   color: #181d27;
+  color: #181d27;
   font-weight: 700;
 }
 
@@ -547,6 +563,19 @@
   font-size: 14px;
   margin-top: 12px;
   transition: all 0.3s ease;
+}
+
+.growing-insurance-company .default-content-wrapper a::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  border-radius: 856.286px;
+  background: var(--background-bg-brand-red-solid, #FA1432);
+  background-image: url('/icons/write-arrow-right.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover {
@@ -711,10 +740,9 @@
 }
 
 /* Mobile Responsive Adjustments (< 768px) */
-@media (width <= 767px) {
+@media (width <=767px) {
   .growing-insurance-company .default-content-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 100%;
   }
 
   .growing-insurance-company .default-content-wrapper p {

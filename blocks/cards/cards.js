@@ -81,10 +81,10 @@ export default function decorate(block) {
     const ctaLink = section.querySelector('.default-content-wrapper a');
     if (ctaLink && !ctaLink.querySelector('.btn-arrow')) {
       ctaLink.classList.add('know-more-btn');
-      const arrow = document.createElement('span');
-      arrow.className = 'btn-arrow';
-      arrow.innerHTML = '→';
-      ctaLink.append(arrow);
+      // const arrow = document.createElement('span');
+      // arrow.className = 'btn-arrow';
+      // // arrow.innerHTML = '→';
+      // ctaLink.append(arrow);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import bannerDecorate from './banner.js';
+import bannerDecorate from './looking-for.js';
 import decorateInfiniteProtection from './infinite-protection.js';
 
 /**

@@ -75,6 +75,10 @@
               "value": "find-a-plan"
             },
             {
+              "name": "Video Banner",
+              "value": "video-banner"
+            },
+            {
               "name": "Protection Plans",
               "value": "protection-plans"
             },
@@ -110,11 +114,12 @@
         "profile-cta",
         "quote",
         "search",
-        "table",
+        "rte",
+        "rteV2",
         "tabs",
         "video",
-        "invest-form"
-        
+        "invest-form",
+        "video-banner"
       ]
     }
   ]
