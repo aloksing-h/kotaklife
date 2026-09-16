@@ -43,8 +43,10 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
+    justify-content: flex-end;
+    gap: 4px;
+    left: unset;
+    right: 20px;
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
@@ -208,6 +210,11 @@
 .insights-impact-plans .custom-cards>ul>li:hover {
     background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
     transform: scaleY(1.144);
+}
+
+.insights-impact-plans .custom-cards>ul>li:hover p:last-child{
+    transform: scaleY(0.8742);
+    transform-origin: center;
 }
 
 /* Category Badge Hover */
