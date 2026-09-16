@@ -308,4 +308,14 @@
   margin-left: auto;
   padding-inline: 16px;
 }
+
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+  width: 50%;
+}
+}
+
+@media (width <= 767px) {
+  .life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+    width: 100%;
+  }
 }
