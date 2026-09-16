@@ -1,0 +1,389 @@
+/* Container & Layered Outer Concentric Borders */
+.invest-form.section.invest-form-container {
+    max-width: 1045px;
+    width: calc(100% - 60px);
+    margin: 40px auto;
+    background: #FFF;
+    border: 1.5px solid #6C9EE4;
+    border-radius: 130px;
+    padding: 86px 64px 48px;
+    box-sizing: border-box;
+    position: relative;
+
+    /* Concentric outer border rings */
+    box-shadow:
+        0 0 0 10px #FFF,
+        0 0 0 11px rgb(108 158 228 / 40%),
+        0 0 0 22px #FFF,
+        0 0 0 23px rgb(220 228 240 / 50%);
+
+    /* Desktop Two-Column Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/* CMS Outer Wrappers */
+.invest-form.section.invest-form-container .custom-rte-wrapper {
+    width: 50%;
+    max-width: 460px;
+    padding: 0;
+}
+
+.invest-form.section.invest-form-container .invest-form-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+    margin-top: 42px;
+    padding: 0;
+}
+
+/* Left Column Flexbox Container */
+.invest-form.section.invest-form-container .custom-rte>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 380px;
+}
+
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 42px;
+}
+
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
+    order: 2;
+    margin-top: auto;
+    margin-left: -84px;
+    margin-bottom: -48px;
+}
+
+/* Heading Styling */
+.invest-form.section.invest-form-container h3#start-investing-with-life-protection {
+    color: var(--text-primary, #181D27);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-1, 48px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: var(--line-height-heading-1, 60px);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.invest-form.section.invest-form-container h3#start-investing-with-life-protection strong {
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-1, 48px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-heading-1, 60px);
+    letter-spacing: -0.64px;
+}
+
+/* Subtitle */
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
+    color: var(--text-text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-body-1, 18px);
+    margin: 0;
+    padding: 4px 0 35px;
+}
+
+/* Form Intro Text (Positioned top-right above the form on desktop) */
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
+    position: absolute;
+    top: 93px;
+    right: -6px;
+    width: calc(44% - 20px);
+    max-width: 380px;
+    margin: 0;
+    color: var(--text-text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-body-1, 18px);
+}
+
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background-color: #E1122D;
+    border-radius: 2px;
+}
+
+/* Left Column: Illustration Image */
+.invest-form.section.invest-form-container picture {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+.invest-form.section.invest-form-container picture img {
+    max-width: 451px;
+    width: 100%;
+    height: 171px;
+    object-fit: contain;
+}
+
+/* Form Styling */
+.invest-form.section.invest-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.invest-form.section.invest-form-container .form-field input[type="text"],
+.invest-form.section.invest-form-container .form-field input[type="email"],
+.invest-form.section.invest-form-container .form-field input[type="tel"] {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+    display: flex;
+    height: 40px;
+    padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
+    align-items: center;
+    gap: var(--spacing-md, 8px);
+    align-self: stretch;
+    border-radius: var(--radius-none, 0);
+    border: 1px solid var(--border-primary, #D5D7DA);
+    background: var(--bg-primary, #FFF);
+    overflow: hidden;
+    color: var(--text-placeholder, #717680);
+    text-overflow: ellipsis;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-body-1, 18px);
+}
+
+
+.invest-form.section.invest-form-container .form .form-field+.form-field {
+    margin: 0;
+}
+
+.invest-form.section.invest-form-container .form-field input::placeholder {
+    color: #717680;
+}
+
+.invest-form.section.invest-form-container .form-field input:focus {
+    border-color: #E1122D;
+}
+
+/* Date Field Calendar Icon */
+.invest-form.section.invest-form-container .form-field.date-field input {
+    background-image: url('../../icons/calendar-fm.svg');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+/* Button & Checkbox Order */
+.invest-form.section.invest-form-container .button-wrapper {
+    order: 5;
+    margin-top: 12px;
+}
+
+.invest-form.section.invest-form-container fieldset.checkbox-field {
+    order: 6;
+    border: none;
+    padding: 0;
+    margin: 4px 0 0;
+}
+
+/* Submit Button Styling */
+.invest-form.section.invest-form-container .button-wrapper button.button {
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    width: 100%;
+    height: 38px;
+    padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-2xl, 20px);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius-full, 999px);
+    background: #E1122D;
+}
+
+.invest-form.section.invest-form-container .button-wrapper button.button:hover {
+    background-color: #c90e26;
+}
+
+.invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
+    flex-grow: 1;
+    color: var(--text-white, #FFF);
+    text-align: center;
+    font-family: var(--font-family-body, Manrope);
+    font-size: var(--font-size-button-2, 14px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: var(--line-height-body-2, 16px);
+}
+
+.invest-form.section.invest-form-container .button-wrapper .button-icon {
+    position: relative;
+    display: flex;
+    width: 29px;
+    height: 29px;
+    justify-content: center;
+    align-items: center;
+    gap: 10.357px;
+    flex-shrink: 0;
+    border-radius: 1034.679px;
+    background: var(--bg-primary, #FFF);
+}
+
+.invest-form.section.invest-form-container .button-wrapper .button-icon::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background-image: url('../../icons/black-arrow-right-02.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Checkbox Styling */
+.invest-form.section.invest-form-container fieldset.checkbox-field label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    padding-left: 15px;
+    color: var(--text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-disclaimer, 10px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-disclaimer, 12px);
+    padding-top: 6px;
+}
+
+.invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
+    margin: 1px 0 0;
+    cursor: pointer;
+    display: flex;
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: 1px solid var(--border-brand-red, #FA1432);
+    color: #FA1432;
+    top: 66%;
+}
+
+/* Mobile Layout Adaptation (< 900px) */
+@media (width <=899px) {
+    .invest-form.section.invest-form-container {
+        width: calc(100% - 32px);
+        margin: 20px auto;
+        padding: 41px 24px 180px;
+        flex-direction: column;
+        box-shadow:
+            0 0 0 6px #FFF,
+            0 0 0 7px rgb(108 158 228 / 40%),
+            0 0 0 14px #FFF,
+            0 0 0 15px rgb(220 228 240 / 50%);
+        border-radius: 65px;
+        border: 0.652px solid #E6E6E6;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte-wrapper,
+    .invest-form.section.invest-form-container .invest-form-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div {
+        min-height: auto;
+    }
+
+    .invest-form.section.invest-form-container h3#start-investing-with-life-protection {
+        color: var(--text-text-primary, #181D27);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: var(--font-size-heading-3, 32px);
+        font-style: normal;
+        font-weight: 300;
+        line-height: var(--line-height-heading-3, 36px);
+    }
+
+    .invest-form.section.invest-form-container h3#start-investing-with-life-protection strong {
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: var(--font-size-heading-3, 32px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--line-height-heading-3, 36px);
+        letter-spacing: -0.64px;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
+        width: 100%;
+        margin: 0 0 17px;
+        padding-left: 14px;
+        position: relative;
+        top: unset;
+        bottom: unset;
+        right: unset;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
+        position: absolute;
+        bottom: -10px;
+        left: -23px;
+        margin: 0;
+    }
+
+    .invest-form.section.invest-form-container picture img {
+        max-width: 304px;
+        height: 136px;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
+        margin-top: 0;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
+        color: var(--text-text-quaternary, #717680);
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-body-2, 14px);
+        font-style: normal;
+        font-weight: 500;
+        line-height: var(--line-height-body-1, 18px);
+        margin: 0;
+        padding: 8px 0 35px;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 2px;
+        width: 3px;
+        background-color: #E1122D;
+        border-radius: 2px;
+    }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field label {
+        padding-top: 2px;
+    }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
+        top: 40%;
+    }
+}
