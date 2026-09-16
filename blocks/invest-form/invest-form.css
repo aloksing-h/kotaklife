@@ -6,7 +6,7 @@
     background: #FFF;
     border: 1.5px solid #6C9EE4;
     border-radius: 130px;
-    padding: 86px 64px 48px;
+    padding: 86px 128px 48px 44px;
     box-sizing: border-box;
     position: relative;
 
@@ -58,7 +58,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
     order: 2;
     margin-top: auto;
-    margin-left: -84px;
+    margin-left: -115px;
     margin-bottom: -48px;
 }
 
@@ -99,7 +99,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
     position: absolute;
     top: 93px;
-    right: -6px;
+    right: 56px;
     width: calc(44% - 20px);
     max-width: 380px;
     margin: 0;
@@ -168,7 +168,6 @@
     font-weight: 500;
     line-height: var(--line-height-body-1, 18px);
 }
-
 
 .invest-form.section.invest-form-container .form .form-field+.form-field {
     margin: 0;
