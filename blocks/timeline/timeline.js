@@ -2,7 +2,6 @@
 import { toClassName } from '../../scripts/aem.js';
 // eslint-disable-next-line import/no-unresolved
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import Swiper from './swiper.js';
 
 function showYear(block, index) {
   const markers = block.querySelectorAll('.timeline-marker-btn');
@@ -21,24 +20,64 @@ function showYear(block, index) {
   markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
 }
 
-function initSwiper(block) {
-  const swiperEl = block.querySelector('.timeline-nav');
-  if (!swiperEl) return;
+function initDragScroll(block) {
+  const slider = block.querySelector('.timeline-nav');
+  if (!slider) return;
 
-  Swiper(swiperEl, {
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    navigation: {
-      nextEl: '.timeline-arrow-next',
-      prevEl: '.timeline-arrow-prev',
-    },
-    breakpoints: {
-      900: {
-        slidesPerView: 'auto',
-        spaceBetween: 32,
-      },
-    },
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.style.cursor = 'grab';
+
+  // --- DESKTOP MOUSE EVENTS ---
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
+  // --- MOBILE TOUCH EVENTS ---
+  slider.addEventListener('touchstart', (e) => {
+    isDown = true;
+    // e.touches[0] gets the first finger touching the screen
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', () => {
+    isDown = false;
+  });
+
+  slider.addEventListener('touchcancel', () => {
+    isDown = false;
+  });
+
+  slider.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed
+    slider.scrollLeft = scrollLeft - walk;
+  }, { passive: true });
 }
 
 export default function decorate(block) {
@@ -187,8 +226,8 @@ export default function decorate(block) {
     nextIcon.className = 'icon icon-arrow-right';
 
     const nextButton = document.createElement('button');
-    nextButton.className = 'timeline-arrow timeline-arrow-next';
     nextButton.type = 'button';
+    nextButton.className = 'timeline-arrow timeline-arrow-next';
     nextButton.setAttribute('aria-label', 'Next year');
     nextButton.appendChild(nextIcon);
     nextButton.addEventListener('click', () => {
@@ -205,7 +244,8 @@ export default function decorate(block) {
     block.append(arrows);
     block.append(fragment);
 
-    initSwiper(block);
+    // initSwiper(block);
+    initDragScroll(block);
     showYear(block, 0);
   }
 }
