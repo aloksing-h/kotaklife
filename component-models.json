@@ -190,6 +190,10 @@
             "value": "loans"
           },
           {
+            "name": "Invest Form",
+            "value": "invest-form"
+          },
+          {
             "name": "Tab One",
             "value": "tab-one"
           },
@@ -662,6 +666,23 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "invest-form",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "text-invest",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "form URL"
       }
     ]
   },
