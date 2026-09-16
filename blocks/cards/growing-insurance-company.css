@@ -120,7 +120,6 @@
     color: var(--brand-red-600, #e1122d);
 }
 
-.growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
 .growing-insurance-company .default-content-wrapper a.button:hover {
     background-color: var(--gic-accent);
     color: #fff;
