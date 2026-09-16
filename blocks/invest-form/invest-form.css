@@ -1,498 +1,389 @@
-/* .section.invest-form-container {
-    border-radius: 50px;
-    border: 0.652px solid #E6E6E6;
+/* Container & Layered Outer Concentric Borders */
+.invest-form.section.invest-form-container {
+    max-width: 1045px;
+    width: calc(100% - 60px);
+    margin: 40px auto;
+    background: #FFF;
+    border: 1.5px solid #6C9EE4;
+    border-radius: 130px;
+    padding: 86px 64px 48px;
+    box-sizing: border-box;
+    position: relative;
+
+    /* Concentric outer border rings */
+    box-shadow:
+        0 0 0 10px #FFF,
+        0 0 0 11px rgb(108 158 228 / 40%),
+        0 0 0 22px #FFF,
+        0 0 0 23px rgb(220 228 240 / 50%);
+
+    /* Desktop Two-Column Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/* CMS Outer Wrappers */
+.invest-form.section.invest-form-container .custom-rte-wrapper {
+    width: 50%;
+    max-width: 460px;
+    padding: 0;
+}
+
+.invest-form.section.invest-form-container .invest-form-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+    margin-top: 42px;
+    padding: 0;
+}
+
+/* Left Column Flexbox Container */
+.invest-form.section.invest-form-container .custom-rte>div {
     display: flex;
     flex-direction: column;
-    padding: 41px 24px 0;
-    max-width: 1065px;
-    width: 100%;
-    margin: 0 auto;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 380px;
 }
 
-.section.invest-form-container .custom-rte-wrapper {
-    max-width: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.section.invest-form-container .invest-form-wrapper {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.section.invest-form-container>div:first-child>h3 {
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
     order: 1;
-    color: var(--gray-900);
-    font-family: var(--body-font-family);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 36px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 42px;
+}
+
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
+    order: 2;
+    margin-top: auto;
+    margin-left: -84px;
+    margin-bottom: -48px;
+}
+
+/* Heading Styling */
+.invest-form.section.invest-form-container h3#start-investing-with-life-protection {
+    color: var(--text-primary, #181D27);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-1, 48px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: var(--line-height-heading-1, 60px);
     margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.invest-form.section.invest-form-container h3#start-investing-with-life-protection strong {
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-1, 48px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-heading-1, 60px);
     letter-spacing: -0.64px;
 }
 
-.section.invest-form-container>div:first-child>h3>strong {
-    color: var(--gray-900);
-    font-family: var(--body-font-family);
-    font-weight: 300;
-}
-
-.section.invest-form-container>div:first-child>p:nth-child(2) {
-    order: 2;
-    color: #717680;
-    font-family: var(--body-font-family);
-    font-size: 14px;
+/* Subtitle */
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
+    color: var(--text-text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
     font-style: normal;
     font-weight: 500;
-    line-height: 18px;
+    line-height: var(--line-height-body-1, 18px);
     margin: 0;
-    margin-top: 8px;
+    padding: 4px 0 35px;
 }
 
-.section.invest-form-container>div:first-child>p:nth-child(3) {
-    order: 3;
-    position: relative;
-    font-size: 14px;
-    padding-left: 10px;
-    margin: 35px 0 17px;
-    color: #717680;
-    text-align: center;
+/* Form Intro Text (Positioned top-right above the form on desktop) */
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
+    position: absolute;
+    top: 93px;
+    right: -6px;
+    width: calc(44% - 20px);
+    max-width: 380px;
+    margin: 0;
+    color: var(--text-text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
     font-style: normal;
     font-weight: 500;
-    line-height: 18px;
-    display: inline-flex;
+    line-height: var(--line-height-body-1, 18px);
 }
 
-.section.invest-form-container>div:first-child>p:nth-child(3)::before {
+.invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3)::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: -9px;
     top: 2px;
     bottom: 2px;
-    width: 2px;
-    background: #E4002B;
+    width: 3px;
+    background-color: #E1122D;
+    border-radius: 2px;
 }
 
-.invest-form-wrapper {
-    order: 4;
-}
-
-.section.invest-form-container>div:first-child>p:nth-child(4) {
-    order: 5;
+/* Left Column: Illustration Image */
+.invest-form.section.invest-form-container picture {
+    display: flex;
+    justify-content: flex-start;
     margin: 0;
 }
 
-.invest-form-wrapper button span:first-of-type {
-    color: #fff;
-    text-align: center;
-    font-family: var(--body-font-family);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 16px;
-    flex: 1 0 0;
-}
-
-.section.invest-form-container>div:first-child>p:nth-child(4)>span {
-    margin-top: 43px;
-    display: flex;
-    width: 304.623px;
-    height: 136px;
-    align-items: center;
-}
-
-.invest-form-wrapper a.button,
-.invest-form-wrapper form .button {
-    display: flex;
-    padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-2xl, 20px);
-    align-items: center;
-    border-radius: var(--radius-full, 999px);
-    background: #E1122D;
-    height: 38px;
+.invest-form.section.invest-form-container picture img {
+    max-width: 451px;
     width: 100%;
-}
-
-.invest-form-wrapper button svg,
-.invest-form-wrapper a.button svg {
-    background: #fff;
-    color: #E4002B;
-    border-radius: 50%;
-    padding: 4px;
-}
-
-.invest-form .form input {
-    display: flex;
-    height: 40px;
-    padding: 8px 16px;
-    align-items: center;
-    gap: var(--spacing-md, 8px);
-    align-self: stretch;
-    border: 1px solid #D5D7DA;
-    background: #FFF;
-    flex: 1 0 0;
-    overflow: hidden;
-    color: #717680;
-    text-overflow: ellipsis;
-    font-family: var(--body-font-family);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 18px;
-    outline: none;
-}
-
-.invest-form .form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.invest-form .form .button-wrapper {
-    order: 1;
-}
-
-.invest-form .form .form-field.checkbox-field {
-    order: 2;
-    margin-top: 8px;
-}
-
-.invest-form .form .form-field.checkbox-field label {
-    color: #717680;
-    font-family: var(--body-font-family);
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 12px;
-    padding-left: 23px;
-}
-
-.invest-form .form .form-field.checkbox-field label input {
-    width: 16px;
-    height: 16px;
-    display: inline-flex;
-    align-items: center
-}
-
-.section.invest-form-container>div:first-child>p:nth-child(4)>span>img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-@media (width>=900px) {
-    .section.invest-form-container {
-        display: flex;
-        flex-direction: row;
-        gap: 53px;
-        align-items: start;
-        border-radius: 150px;
-    }
-
-    .section.invest-form-container>div:first-child>h3 {
-        grid-column: 1;
-        grid-row: 2;
-        padding-left: 104px;
-        font-size: 48px;
-        line-height: 48px;
-    }
-
-    .section.invest-form-container>div:first-child>p:nth-child(2) {
-        grid-column: 1;
-        grid-row: 2;
-        padding-left: 104px;
-        font-size: 16px;
-        line-height: 20px;
-        margin-top: 107px;
-    }
-
-    .section.invest-form-container>div:first-child>p:nth-child(3) {
-        grid-column: 2;
-        grid-row: 1;
-        font-size: 16px;
-        line-height: 20px;
-    }
-
-    .invest-form-wrapper {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    .invest-form-wrapper>div {
-        padding-bottom: 88px;
-    }
-
-    .section.invest-form-container>div:first-child>p:nth-child(4) {
-        grid-column: 1;
-        grid-row: 2;
-        align-self: end;
-    }
-
-    .invest-form-wrapper button span:first-of-type {
-        font-size: 16px;
-        line-height: 18px;
-    }
-
-    .section.invest-form-container>div:first-child>p:nth-child(4)>span {
-        margin: 0;
-        width: 306px;
-        display: inline-flex;
-        height: 171px;
-        padding: 5.738px 104.745px 5.813px 40.274px;
-        align-items: center;
-    }
-
-    .invest-form-wrapper button {
-        height: 40px;
-    }
-
-    .invest-form .form input {
-        padding: 11px 16px;
-    }
-}
-
-@media (width >=900px) and (width < 1100px) {
-    .section.invest-form-container {
-        grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
-        column-gap: 30px;
-        margin: 0 16px;
-        padding: 60px 40px 0 0;
-    }
-
-    .section.invest-form-container>div:first-child>h3 {
-        padding-left: 60px;
-        font-size: 40px;
-        line-height: 42px;
-    }
-
-    .section.invest-form-container>div:first-child>p:nth-child(2) {
-        padding-left: 60px;
-        margin-top: 94px;
-    }
-} */
-
-/* Card Container */
-.invest-card-container {
-  max-width: 1040px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 36px 24px;
-  background: #ffffff;
-  border: 1px solid #E6E6E6;
-  border-radius: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-/* Left Content Area */
-.invest-left-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.invest-title {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 32px;
-  line-height: 1.15;
-  font-weight: 700;
-  color: #1D2939;
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-.invest-title .light-text {
-  font-weight: 300;
-  display: block;
-}
-
-.invest-subtitle {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 14px;
-  color: #717680;
-  font-weight: 500;
-  margin: 10px 0 0 0;
-}
-
-.invest-illustration {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.invest-illustration img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Form Intro Text */
-.form-intro {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.red-accent-bar {
-  width: 3px;
-  height: 16px;
-  background-color: #E1122D;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-.form-intro p {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #717680;
-  margin: 0;
+    height: 171px;
+    object-fit: contain;
 }
 
 /* Form Styling */
-.invest-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.invest-form.section.invest-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.form-field {
-  position: relative;
-  width: 100%;
+.invest-form.section.invest-form-container .form-field input[type="text"],
+.invest-form.section.invest-form-container .form-field input[type="email"],
+.invest-form.section.invest-form-container .form-field input[type="tel"] {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+    display: flex;
+    height: 40px;
+    padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
+    align-items: center;
+    gap: var(--spacing-md, 8px);
+    align-self: stretch;
+    border-radius: var(--radius-none, 0);
+    border: 1px solid var(--border-primary, #D5D7DA);
+    background: var(--bg-primary, #FFF);
+    overflow: hidden;
+    color: var(--text-placeholder, #717680);
+    text-overflow: ellipsis;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-body-1, 18px);
 }
 
-.form-field input[type="text"],
-.form-field input[type="email"],
-.form-field input[type="tel"],
-.form-field input[type="date"] {
-  width: 100%;
-  height: 44px;
-  padding: 10px 16px;
-  border: 1px solid #D5D7DA;
-  border-radius: 8px;
-  background-color: #ffffff;
-  font-size: 14px;
-  color: #1D2939;
-  box-sizing: border-box;
-  outline: none;
-  transition: border-color 0.2s ease;
+
+.invest-form.section.invest-form-container .form .form-field+.form-field {
+    margin: 0;
 }
 
-.form-field input::placeholder {
-  color: #717680;
+.invest-form.section.invest-form-container .form-field input::placeholder {
+    color: #717680;
 }
 
-.form-field input:focus {
-  border-color: #E1122D;
+.invest-form.section.invest-form-container .form-field input:focus {
+    border-color: #E1122D;
 }
 
 /* Date Field Calendar Icon */
-.form-field.icon-field .calendar-icon {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+.invest-form.section.invest-form-container .form-field.date-field input {
+    background-image: url('../../icons/calendar-fm.svg');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+/* Button & Checkbox Order */
+.invest-form.section.invest-form-container .button-wrapper {
+    order: 5;
+    margin-top: 12px;
+}
+
+.invest-form.section.invest-form-container fieldset.checkbox-field {
+    order: 6;
+    border: none;
+    padding: 0;
+    margin: 4px 0 0;
 }
 
 /* Submit Button Styling */
-.submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-  height: 44px;
-  background-color: #E1122D;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  padding: 0 6px 0 20px;
-  margin-top: 4px;
-  transition: background-color 0.2s ease;
+.invest-form.section.invest-form-container .button-wrapper button.button {
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    width: 100%;
+    height: 38px;
+    padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-2xl, 20px);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius-full, 999px);
+    background: #E1122D;
 }
 
-.submit-btn:hover {
-  background-color: #c90e26;
+.invest-form.section.invest-form-container .button-wrapper button.button:hover {
+    background-color: #c90e26;
 }
 
-.btn-text {
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 15px;
-  flex-grow: 1;
-  text-align: center;
+.invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
+    flex-grow: 1;
+    color: var(--text-white, #FFF);
+    text-align: center;
+    font-family: var(--font-family-body, Manrope);
+    font-size: var(--font-size-button-2, 14px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: var(--line-height-body-2, 16px);
 }
 
-.btn-icon {
-  width: 32px;
-  height: 32px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.invest-form.section.invest-form-container .button-wrapper .button-icon {
+    position: relative;
+    display: flex;
+    width: 29px;
+    height: 29px;
+    justify-content: center;
+    align-items: center;
+    gap: 10.357px;
+    flex-shrink: 0;
+    border-radius: 1034.679px;
+    background: var(--bg-primary, #FFF);
+}
+
+.invest-form.section.invest-form-container .button-wrapper .button-icon::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background-image: url('../../icons/black-arrow-right-02.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Checkbox Styling */
-.checkbox-field {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 4px;
+.invest-form.section.invest-form-container fieldset.checkbox-field label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    padding-left: 15px;
+    color: var(--text-quaternary, #717680);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-disclaimer, 10px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-disclaimer, 12px);
+    padding-top: 6px;
 }
 
-.checkbox-field input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin-top: 2px;
-  border: 1px solid #D5D7DA;
-  border-radius: 4px;
-  accent-color: #E1122D;
-  cursor: pointer;
+.invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
+    margin: 1px 0 0;
+    cursor: pointer;
+    display: flex;
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: 1px solid var(--border-brand-red, #FA1432);
+    color: #FA1432;
+    top: 66%;
 }
 
-.checkbox-field label {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 11px;
-  line-height: 1.4;
-  color: #717680;
-  cursor: pointer;
-}
+/* Mobile Layout Adaptation (< 900px) */
+@media (width <=899px) {
+    .invest-form.section.invest-form-container {
+        width: calc(100% - 32px);
+        margin: 20px auto;
+        padding: 41px 24px 180px;
+        flex-direction: column;
+        box-shadow:
+            0 0 0 6px #FFF,
+            0 0 0 7px rgb(108 158 228 / 40%),
+            0 0 0 14px #FFF,
+            0 0 0 15px rgb(220 228 240 / 50%);
+        border-radius: 65px;
+        border: 0.652px solid #E6E6E6;
+    }
 
-/* Desktop Styles (width >= 900px) */
-@media (min-width: 900px) {
-  .invest-card-container {
-    flex-direction: row;
-    padding: 64px 80px;
-    border-radius: 80px;
-    gap: 60px;
-  }
+    .invest-form.section.invest-form-container .custom-rte-wrapper,
+    .invest-form.section.invest-form-container .invest-form-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
 
-  .invest-left-content {
-    flex: 1.1;
-  }
+    .invest-form.section.invest-form-container .custom-rte>div {
+        min-height: auto;
+    }
 
-  .invest-right-content {
-    flex: 1;
-  }
+    .invest-form.section.invest-form-container h3#start-investing-with-life-protection {
+        color: var(--text-text-primary, #181D27);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: var(--font-size-heading-3, 32px);
+        font-style: normal;
+        font-weight: 300;
+        line-height: var(--line-height-heading-3, 36px);
+    }
 
-  .invest-title {
-    font-size: 44px;
-    line-height: 1.1;
-  }
+    .invest-form.section.invest-form-container h3#start-investing-with-life-protection strong {
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: var(--font-size-heading-3, 32px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--line-height-heading-3, 36px);
+        letter-spacing: -0.64px;
+    }
 
-  .invest-subtitle {
-    font-size: 16px;
-    margin-top: 12px;
-  }
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
+        width: 100%;
+        margin: 0 0 17px;
+        padding-left: 14px;
+        position: relative;
+        top: unset;
+        bottom: unset;
+        right: unset;
+    }
 
-  .invest-illustration {
-    margin-top: 40px;
-    justify-content: flex-start;
-  }
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
+        position: absolute;
+        bottom: -10px;
+        left: -23px;
+        margin: 0;
+    }
+
+    .invest-form.section.invest-form-container picture img {
+        max-width: 304px;
+        height: 136px;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
+        margin-top: 0;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
+        color: var(--text-text-quaternary, #717680);
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-body-2, 14px);
+        font-style: normal;
+        font-weight: 500;
+        line-height: var(--line-height-body-1, 18px);
+        margin: 0;
+        padding: 8px 0 35px;
+    }
+
+    .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 2px;
+        width: 3px;
+        background-color: #E1122D;
+        border-radius: 2px;
+    }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field label {
+        padding-top: 2px;
+    }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
+        top: 40%;
+    }
 }
