@@ -333,6 +333,7 @@
     }
 
     .infinite-protection.custom-cards-container .custom-cards>ul>li {
+        justify-content: flex-end;
         flex-direction: row-reverse;
         align-items: center;
         min-height: clamp(420px, 44vw, 550px);
@@ -354,7 +355,7 @@
     .infinite-protection.custom-cards-container .custom-cards-wrapper .custom-cards>ul li .custom-cards-card-body {
         flex: 1 1 50%;
         width: auto;
-        max-width: 580px;
+        max-width: 480px;
         padding: clamp(36px, 5.5vw, 96px) 0 clamp(36px, 5.5vw, 114px) clamp(24px, 4vw, 50px);
         gap: clamp(10px, 1.4vw, 16px);
         box-sizing: border-box;
@@ -455,14 +456,14 @@
 
     .infinite-protection.custom-cards-container .custom-cards-card-image {
         flex: 1 1 50%;
-        max-width: 50%;
+        max-width: 52%;
         padding: 0;
         height: 100%;
         align-self: stretch;
         position: relative;
         display: flex;
         align-items: flex-end;
-        justify-content: flex-end;
+        justify-content: start;
     }
 
     .infinite-protection.custom-cards-container .custom-cards-card-image picture.primary-image {
@@ -487,7 +488,7 @@
     .infinite-protection.custom-cards-container .custom-cards-card-image picture.secondary-image {
         position: absolute;
         top: clamp(16px, 4vw, 60px);
-        right: clamp(16px, 4vw, 76px);
+        right: 16px;
         width: clamp(64px, 8.5vw, 120px);
         height: auto;
         max-height: clamp(36px, 4.5vw, 57px);
