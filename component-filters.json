@@ -101,6 +101,12 @@
     ]
   },
   {
+    "id": "promo",
+    "components": [
+      "promo-item"
+    ]
+  },
+  {
     "id": "rteV2",
     "rteV2": {
       "toolbar": {
