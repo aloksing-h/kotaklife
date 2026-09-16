@@ -1107,6 +1107,7 @@
 
 .csr-layout .default-content-wrapper{
   padding: 0;
+  margin: 0;
 }
 
 .csr-layout .default-content-wrapper h1 {
@@ -1179,7 +1180,40 @@
 
 .csr-layout.section .cards-wrapper {
   padding: 0;
+  margin: 0;
 
+}
+
+@media (width >=500px) {
+  .cards.image-card.block > ul {
+    flex-wrap: nowrap;
+  }
+  .cards.image-card.block > ul > li {
+    max-width: 190px;
+    height: 348px;
+  }
+
+  .cards.image-card.block .cards-card-body p {
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+  }
+
+  .csr-layout.section > .default-content-wrapper h1{
+      font-size: var(--heading-2-font-size);
+      line-height: var(--heading-2-line-height);
+  }
+
+  .csr-layout.section > .default-content-wrapper p{
+    
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+
+  .csr-layout.section > .default-content-wrapper a{
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--button-1-font-size);
+    line-height: var(--button-1-line-height);
+  }
 }
 
 /* Desktop Overrides */
