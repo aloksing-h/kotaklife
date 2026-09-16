@@ -486,14 +486,18 @@
 
 /* Header & CTA Layout */
 .growing-insurance-company .default-content-wrapper {
-    display: grid;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1.5px;
-    align-items: flex-start;
     padding-inline: 50px;
     max-width: unset;
     margin: unset;
+    display: grid;
+    grid-template-columns: 0.8fr max-content;
+    grid-template-areas:
+        "title description"
+        "title button";
+    gap: 8px 32px;
+    align-items: start;
 }
 
 .growing-insurance-company .default-content-wrapper h3 {
@@ -677,6 +681,7 @@
     width: 32px;
     height: 32px;
 }
+
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
     color: #121212;
     font-family: var(--font-family-font-family-display, Manrope);
@@ -884,7 +889,7 @@ line-height: 14px;
     }
 }
 
-.growing-insurance-company .default-content-wrapper {
+/* .growing-insurance-company .default-content-wrapper {
   display: grid;
   grid-template-columns: 0.8fr max-content; 
   grid-template-areas:
@@ -892,7 +897,7 @@ line-height: 14px;
     "title button";
   gap: 8px 32px; 
   align-items: start;
-}
+} */
 
 /* Assign siblings to grid areas */
 .growing-insurance-company .default-content-wrapper > h3 {
