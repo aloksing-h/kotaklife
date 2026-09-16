@@ -85,6 +85,17 @@ export default async function decorate(block) {
         div.className = 'custom-cards-card-image';
 
         // Extract variations authored via col1_classes and apply to li
+        const variationList = div.querySelector('ul');
+        if (variationList) {
+          [...variationList.children].forEach((item) => {
+            const cls = item.textContent.trim().toLowerCase();
+            if (['featured', 'horizontal', 'image-overlay', 'zero-gst'].includes(cls)) {
+              li.classList.add(cls);
+            }
+          });
+          variationList.remove();
+        }
+
         [...div.classList].forEach((cls) => {
           if (['featured', 'horizontal', 'image-overlay', 'zero-gst'].includes(cls)) {
             li.classList.add(cls);
