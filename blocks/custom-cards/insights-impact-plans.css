@@ -112,7 +112,7 @@
 .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
     font-size: 18px;
     line-height: 20px;
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-weight: 600;
     color: #181d27;
     margin: 0;
@@ -124,7 +124,7 @@
 .insights-impact-plans .custom-cards-card-body>p:first-child {
     display: inline-flex;
     align-items: center;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     padding: 4px 8px;
     font-size: 12px;
     font-weight: 500;
@@ -144,7 +144,7 @@
 .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
     line-height: 18px;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     color: #535862;
     font-weight: 400;
     margin: 0;
@@ -251,7 +251,7 @@
     border: 1px solid var(--button-btn-brand-red, #E1122D);
     border-radius: 30px;
     color: var(--button-btn-brand-red, #E1122D);
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 14px;
     font-weight: 800;
     text-decoration: none;
@@ -341,7 +341,7 @@
     .insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
         width: auto;
         color: var(--text-text-primary, #181d27);
-        font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 48px;
         font-weight: 300;
         line-height: 60px;
@@ -362,7 +362,7 @@
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper p {
         color: var(--text-text-tertiary, #535862);
-        font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 16px;
         font-weight: 500;
         line-height: 20px;

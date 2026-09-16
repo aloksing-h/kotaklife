@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
 }
 
 /* Header Typography (Mobile Baseline) */
@@ -32,7 +32,7 @@
 
 .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
     order: 2;
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-weight: 500;
     margin: 0;
     grid-area: 3;
@@ -76,7 +76,7 @@
     border-radius: 30px;
     background-color: #fff;
     color: var(--gic-accent);
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
@@ -111,7 +111,7 @@
 
 .growing-insurance-company .know-more-btn:hover .btn-arrow {
     background-color: #fff;
-    color: #e1122d;
+    color: var(--brand-red-600, #e1122d);
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
@@ -181,7 +181,7 @@
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(1) h4 {
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 16px;
     font-weight: 600;
     color: #181d27;
@@ -199,7 +199,7 @@
 .growing-insurance-company .cards>ul>li:nth-child(1) p:nth-of-type(2) {
     font-size: 12px;
     font-weight: 500;
-    color: #535862;
+    color: var(--gray-600, #535862);
     margin: 2px 0 0;
 }
 
@@ -234,7 +234,7 @@
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(2) h4 {
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 32px;
     font-weight: 400;
     color: #fff;
@@ -283,7 +283,7 @@
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(3) h4 {
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 32px;
     font-weight: 400;
     color: #181d27;
@@ -294,7 +294,7 @@
 .growing-insurance-company.section .cards>ul>li:nth-child(3) p {
     margin: 0;
     color: #181D27;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 16px;
     font-weight: 500;
     line-height: 20px;
@@ -336,7 +336,7 @@
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(4) h4 {
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 32px;
     font-weight: 400;
     color: #fff;
@@ -347,7 +347,7 @@
 .growing-insurance-company.section .cards>ul>li:nth-child(4) p {
     margin: 0;
     color: var(--text-text-white, #FFF);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: var(--font-size-body-1, 16px);
     font-style: normal;
     font-weight: 500;
@@ -403,6 +403,7 @@
         order: 1;
         font-size: 48px !important;
         width: 75%;
+        line-height: 60px !important;
     }
 
     .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
@@ -455,7 +456,7 @@
     .growing-insurance-company .cards>ul>li:nth-child(3) {
         grid-column: 3 / 4;
         grid-row: 1 / 2;
-        padding: 24px 0px 5px 24px;
+        padding: 24px 0 5px 24px;
     }
 
     .growing-insurance-company .cards>ul>li:nth-child(3) h4 {
@@ -501,42 +502,43 @@
     grid-area: 1;
     grid-column: 1;
     color: #181d27;
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 32px;
     font-weight: 300;
-    line-height: 1.25;
     margin: 0;
     padding: 0;
     width: 100%;
+    line-height: 36px;
 }
 
 .growing-insurance-company .default-content-wrapper h3 strong {
     color: #181d27;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 6px 6px 18px;
+    gap: 12px;
+    padding: 4px 4px 4px 20px;
     border: 1px solid #e1122d;
     border-radius: 999px;
     color: #e1122d;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 800;
+    font-size: 16px;
     margin-top: 12px;
+    line-height: 18px;
     transition: all 0.3s ease;
 }
 
 .growing-insurance-company .default-content-wrapper a::after {
     content: '';
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: flex;
     border-radius: 856.286px;
-    background: var(--background-bg-brand-red-solid, #FA1432);
+    background: var(--background-bg-brand-red-solid, #E1122D);
     background-image: url('/icons/write-arrow-right.svg');
     background-position: center;
     background-repeat: no-repeat;
@@ -546,6 +548,12 @@
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover {
     background-color: #e1122d;
     color: #fff;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover::after {
+        background-color: #fff;
+    color: #e31837;
+    background-image: url("/icons/red-arrow-right.svg");
 }
 
 /* Card Deck Grid Construction */
@@ -648,7 +656,7 @@
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
     margin: 0;
     color: var(--text-text-primary, #181D27);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: var(--font-size-body-1, 16px);
     font-weight: 600;
     line-height: var(--line-height-sub-heading-2, 20px);
@@ -661,11 +669,17 @@
     margin-top: unset;
     margin-bottom: 20px;
     color: #121212;
+    width: 32px;
+    height: 32px;
 }
 
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(1) span {
+    width: 32px;
+    height: 32px;
+}
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
     color: #121212;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
@@ -675,7 +689,7 @@
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(3) {
     color: #121212;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--font-family-font-family-display, Manrope);
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
@@ -772,7 +786,7 @@
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
-        font-family: var(--font-family-font-family-body, Manrope);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 14px;
         line-height: 18px;
     }
@@ -787,7 +801,7 @@
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(1) {
-        font-family: var(--font-family-font-family-body, Manrope);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 12px;
         line-height: 14px;
         margin-bottom: 16px;
@@ -815,14 +829,14 @@
 
     .growing-insurance-company.section .cards>ul>li:nth-child(2) p {
         color: #F5F5F5;
-        font-family: var(--font-family-font-family-body, Manrope);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 12px;
         font-weight: 600;
         line-height: 14px;
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(3) h4 {
-        font-family: var(--font-family-font-family-body, Manrope);
+        font-family: var(--font-family-font-family-display, Manrope);
         font-size: 14px;
         font-weight: 600;
         line-height: 18px;
@@ -858,11 +872,21 @@ font-size: 10px;
 font-weight: 500;
 line-height: 14px;
     }
+
+    .growing-insurance-company .default-content-wrapper a.know-more-btn {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .growing-insurance-company .default-content-wrapper a::after {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .growing-insurance-company .default-content-wrapper {
   display: grid;
-  grid-template-columns: 1fr max-content; 
+  grid-template-columns: 0.8fr max-content; 
   grid-template-areas:
     "title description"
     "title button";
@@ -880,6 +904,9 @@ line-height: 14px;
   text-align: right;
   max-width: 280px;
   margin: 0;
+  color: var(--gray-600, #535862);
+  font-weight: 500;
+  line-height: 20px;
 }
 
 .growing-insurance-company .default-content-wrapper > p:nth-of-type(2) {
