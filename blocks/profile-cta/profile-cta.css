@@ -266,6 +266,7 @@
 @media (width  <= 1023px) {
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding: 0;
+    padding-inline: 50px;
   }
   
 .life-advisor.profile-cta-container .profile-cta {
@@ -317,5 +318,9 @@
 @media (width <= 767px) {
   .life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
     width: 100%;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta-wrapper {
+     padding-inline: 16px;
   }
 }

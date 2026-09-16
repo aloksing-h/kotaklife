@@ -721,6 +721,7 @@
     grid-row: 1 / 2;
     background-color: #f2f7fb;
     color: #181d27;
+    padding-right: 0;
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(3) h4 {
