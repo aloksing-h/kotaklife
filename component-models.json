@@ -610,6 +610,23 @@
     ]
   },
   {
+    "id": "invest-form",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "text-invest",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "form URL"
+      }
+    ]
+  },
+  {
     "id": "popular-search",
     "fields": [
       {
