@@ -4,7 +4,7 @@
 
 /* if we have to keep this in center then give max-width:1200px and mx-auto */
 .fragment-wrapper:has(.subnav) {
-  padding: 0;
+  padding: 0 !important;
   max-width: unset;
   margin: 0;
 }
