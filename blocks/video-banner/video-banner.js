@@ -39,6 +39,9 @@ function buildScrollIndicator(block) {
 }
 
 export default async function decorate(block) {
+  if (window.self !== window.top) {
+    block.classList.add('is-editor');
+  }
   if (block.classList.contains('autoplay')) {
     const rows = [...block.children];
     if (!rows.length) return;
