@@ -11,7 +11,7 @@ import initInsightsSwiper from './insights-impact-plans.js';
 
 export default async function decorate(block) {
   const section = block.closest('.insights-impact-plans');
-  const codeBase = window.hlx?.codeBasePath || '';
+  // const codeBase = window.hlx?.codeBasePath || '';
 
   /* Transform row structure to ul, li */
   const ul = document.createElement('ul');
