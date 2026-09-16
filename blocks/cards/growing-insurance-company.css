@@ -30,6 +30,12 @@
     max-width: 320px;
 }
 
+.growing-insurance-company .cards-card-body p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
 .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
     order: 2;
     font-family: var(--font-family-font-family-display, Manrope);
@@ -144,10 +150,23 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.growing-insurance-company .cards-wrapper ul li {
+    position: relative;
+    border-radius: 16px;
+
+    /* overflow: hidden; */
+    display: flex;
+    box-sizing: border-box;
+}
+
 .growing-insurance-company .cards>ul>li:hover {
     transform: translateY(-4px);
 
     /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(3) p {
+    color: #475467;
 }
 
 .growing-insurance-company.section .cards .cards-card-image p {
@@ -163,11 +182,30 @@
     justify-content: space-between;
 }
 
+.growing-insurance-company .cards-card-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0;
+}
+
 .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-body {
     margin: 0;
     flex: 1;
     z-index: 2;
     padding-right: 12px;
+}
+
+.growing-insurance-company .quote-mark {
+    font-size: 40px;
+    line-height: 1;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    color: #181d27;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(1) .quote-mark {
@@ -178,6 +216,14 @@
     font-weight: 700;
     margin-bottom: 8px;
     display: block;
+}
+
+/* Card Typography */
+.growing-insurance-company .cards-card-body h4 {
+    margin: 0 0 6px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(1) h4 {
@@ -203,6 +249,13 @@
     margin: 2px 0 0;
 }
 
+/* Base Image Handling */
+.growing-insurance-company .cards-card-image {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
 .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image {
     width: clamp(120px, 35vw, 150px);
     flex-shrink: 0;
@@ -210,6 +263,13 @@
     margin: 0;
     line-height: 0;
     bottom: 0;
+}
+
+.growing-insurance-company .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
@@ -482,7 +542,6 @@
 
 
 
-/* stylelint-disable no-descending-specificity */
 
 /* Header & CTA Layout */
 .growing-insurance-company .default-content-wrapper {
@@ -520,6 +579,19 @@
     font-weight: 600;
 }
 
+.growing-insurance-company .default-content-wrapper a::after {
+    content: '';
+    width: 32px;
+    height: 32px;
+    display: flex;
+    border-radius: 856.286px;
+    background: var(--background-bg-brand-red-solid, #E1122D);
+    background-image: url('/icons/write-arrow-right.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
 .growing-insurance-company .default-content-wrapper a.know-more-btn {
     display: inline-flex;
     align-items: center;
@@ -534,19 +606,6 @@
     margin-top: 12px;
     line-height: 18px;
     transition: all 0.3s ease;
-}
-
-.growing-insurance-company .default-content-wrapper a::after {
-    content: '';
-    width: 32px;
-    height: 32px;
-    display: flex;
-    border-radius: 856.286px;
-    background: var(--background-bg-brand-red-solid, #E1122D);
-    background-image: url('/icons/write-arrow-right.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 18px;
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover {
@@ -572,51 +631,11 @@
     column-gap: 12px;
 }
 
-.growing-insurance-company .cards-wrapper ul li {
-    position: relative;
-    border-radius: 16px;
-
-    /* overflow: hidden; */
-    display: flex;
-    box-sizing: border-box;
-}
-
-/* Base Image Handling */
-.growing-insurance-company .cards-card-image {
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-}
-
-.growing-insurance-company .cards-card-image picture,
-.growing-insurance-company .cards-card-image img {
+.growing-insurance-company .cards-card-image picture {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-}
-
-.growing-insurance-company .cards-card-body {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 0;
-}
-
-/* Card Typography */
-.growing-insurance-company .cards-card-body h4 {
-    margin: 0 0 6px;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.1;
-}
-
-.growing-insurance-company .cards-card-body p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
 }
 
 /* Grid Cells Custom Styling */
@@ -646,16 +665,6 @@
     width: 46%;
     z-index: 1;
     padding: 20px 0 20px 20px;
-}
-
-.growing-insurance-company .quote-mark {
-    font-size: 40px;
-    line-height: 1;
-    font-family: Georgia, serif;
-    font-weight: bold;
-    color: #181d27;
-    display: block;
-    margin-bottom: 8px;
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
@@ -726,10 +735,6 @@
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(3) h4 {
     color: #181d27;
-}
-
-.growing-insurance-company .cards-wrapper ul li:nth-child(3) p {
-    color: #475467;
 }
 
 /* 4. Bottom Right Card (1 Lakh +) */
@@ -921,4 +926,3 @@ line-height: 14px;
   justify-self: end;
   margin: 0;
 }
-/* stylelint-enable no-descending-specificity */
