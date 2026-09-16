@@ -28,14 +28,13 @@
   line-height: 0;
 }
 
-.custom-cards .custom-cards-card-image picture.primary-image img{
-  
-}
-
-.custom-cards .zero-gst .custom-cards-card-image picture.primary-image img,
 .custom-cards .custom-cards-card-image picture.primary-image img {
   width: 100%;
-  /* aspect-ratio: 4 / 3; */
+  object-fit: contain;
+}
+
+.custom-cards .zero-gst .custom-cards-card-image picture.primary-image img {
+  width: 100%;
   object-fit: contain;
 }
 
