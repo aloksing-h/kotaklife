@@ -192,6 +192,46 @@
           {
             "name": "Invest Form",
             "value": "invest-form"
+          },
+          {
+            "name": "Tab One",
+            "value": "tab-one"
+          },
+          {
+            "name": "Tab Two",
+            "value": "tab-two"
+          },
+          {
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
+          },
+          {
+            "name": "CSR Layout",
+            "value": "csr-layout"
+          },
+          {
+            "name": "Our Vision",
+            "value": "vision"
+          },
+          {
+            "name": "Why Trust",
+            "value": "trust"
+          },
+          {
+            "name": "Slider Title",
+            "value": "slider-title"
           }
         ]
       }
@@ -277,6 +317,22 @@
           {
             "name": "Financial Cards",
             "value": "financial-cards"
+          },
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Trust Style",
+            "value": "trust-style"
+          },
+          {
+            "name": "Vision Style",
+            "value": "vision-style"
+          },
+          {
+            "name": "Image Card",
+            "value": "image-card"
           }
         ]
       }
@@ -792,6 +848,18 @@
           {
             "name": "Form Step",
             "value": "form-step"
+          },
+          {
+            "name": "Explore CTA",
+            "value": "explore-cta"
+          },
+          {
+            "name": "Default Title",
+            "value": "default-title"
+          },
+          {
+            "name": "Sub Navigation",
+            "value": "subnav"
           }
         ]
       }
@@ -809,7 +877,19 @@
   },
   {
     "id": "tabs",
-    "fields": []
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Timeline",
+            "value": "timeline"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tabs-item",
@@ -901,6 +981,58 @@
         "name": "col2_text",
         "value": "",
         "label": "Button Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "timeline",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Awards",
+            "value": "awards"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "timeline-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "timeline-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
         "valueType": "string"
       }
     ]
