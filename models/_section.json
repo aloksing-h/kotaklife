@@ -85,6 +85,10 @@
             {
               "name": "Loans",
               "value": "loans"
+            },
+            {
+              "name": "Invest Form",
+              "value": "invest-form"
             }
           ]
         }
@@ -118,6 +122,7 @@
         "rteV2",
         "tabs",
         "video",
+        "invest-form",
         "video-banner"
       ]
     }

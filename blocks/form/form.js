@@ -63,15 +63,41 @@ function buildInput(field) {
   } = field;
 
   const input = createElement('input');
-  input.type = type || 'text';
   input.id = generateId(fieldName);
   input.name = input.id;
   input.required = required === 'true';
   if (defaultValue) input.value = defaultValue;
-  if (placeholder) input.placeholder = placeholder;
+
+  if (type === 'date') {
+    // start as text so the custom placeholder is visible (native date inputs ignore placeholder)
+    input.type = 'text';
+    if (placeholder) input.placeholder = placeholder;
+
+    const openPicker = () => {
+      input.type = 'date';
+      if (typeof input.showPicker === 'function') {
+        try {
+          input.showPicker();
+        } catch (e) {
+          // some browsers may throw if not user-triggered; ignore
+        }
+      }
+    };
+
+    input.addEventListener('focus', openPicker);
+    input.addEventListener('click', openPicker);
+
+    // revert to text (placeholder visible) if user leaves without picking a date
+    input.addEventListener('blur', () => {
+      if (!input.value) input.type = 'text';
+    });
+  } else {
+    input.type = type || 'text';
+    if (placeholder) input.placeholder = placeholder;
+  }
+
   return input;
 }
-
 /**
  * Creates a textarea element
  * @param {Object} field - Field configuration object
@@ -266,11 +292,20 @@ function buildToggle(field, controlled) {
  * @returns {HTMLButtonElement} Button element
  */
 function buildButton(field) {
-  const { type, label } = field;
+  const { type, label, icon } = field;
   const button = createElement('button');
   button.className = 'button';
   button.type = type;
-  button.textContent = label;
+  const textSpan = createElement('span');
+  textSpan.textContent = label;
+  button.append(textSpan);
+
+  if (icon) {
+    const iconWrapper = createElement('span', 'button-icon');
+    iconWrapper.dataset.icon = icon;
+    button.append(iconWrapper);
+  }
+
   if (type === 'reset') button.classList.add('secondary');
   return button;
 }
