@@ -569,6 +569,7 @@
     gap: 6px;
     grid-template-columns: 1.5fr 0.94fr 1.11fr;
     grid-template-rows: auto;
+    column-gap: 12px;
 }
 
 .growing-insurance-company .cards-wrapper ul li {
