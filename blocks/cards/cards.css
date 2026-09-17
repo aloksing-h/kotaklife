@@ -450,7 +450,7 @@
 
   .cards.vision-style>ul>li:first-child::before {
     inset: -1px 0 0;
-    padding: 0;
+    padding: 1px;
     padding-top: 1px;
     background: radial-gradient(100px 70px at 100% 0, var(--brand-red-500) 0%, transparent 100%);
     border-top-right-radius: 40px;
@@ -467,7 +467,7 @@
   }
 
   .cards.vision-style>ul>li:last-child::before {
-    padding: 0;
+    padding: 1px;
     padding-bottom: 1px;
     background:
       radial-gradient(120px 90px at 0 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),

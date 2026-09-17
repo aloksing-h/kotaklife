@@ -413,7 +413,7 @@ main>.section.trust>div {
 
 .trust .default-content-wrapper p {
   color: var(--text-tertiary);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
   font-size: var(--body-2-font-size);
   line-height: 18px;
   max-width: 100%;

@@ -39,6 +39,7 @@
   height: 55px;
   font-family: var(--font-family-manrope);
   font-size: var(--body-2-font-size);
+  line-height: var(--body-1-line-height);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
   text-decoration: none;
