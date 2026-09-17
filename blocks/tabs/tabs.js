@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-// import decorateFindAPlan from './find-a-plan.js';
+import decorateFindAPlan from './find-a-plan.js';
 
 function isFragmentPath(path) {
   return !!path && path.startsWith('/') && !path.startsWith('//');
@@ -17,6 +17,15 @@ function hasOnlyFragmentLinkContent(element, link) {
   const elementText = element.textContent.trim();
 
   return elementText === linkText && onlyLink.getAttribute('href') === link.getAttribute('href');
+}
+
+function scrollTabIntoView(tab) {
+  if (!tab) return;
+  tab.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center',
+  });
 }
 
 async function decorateFragmentLinks(panel) {
@@ -80,6 +89,7 @@ export default async function decorate(block) {
       });
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
+      scrollTabIntoView(button);
     });
     tablist.append(button);
     tab.remove();
@@ -88,7 +98,7 @@ export default async function decorate(block) {
 
   block.prepend(tablist);
 
-  // if (block.closest('.find-a-plan')) {
-  //   decorateFindAPlan(block);
-  // }
+  if (block.closest('.find-a-plan')) {
+    decorateFindAPlan(block);
+  }
 }
