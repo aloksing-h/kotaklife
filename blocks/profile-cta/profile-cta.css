@@ -1,3 +1,7 @@
+.life-advisor.section.profile-cta-container {
+  margin: 0;
+}
+
 .profile-cta {
   display: grid;
   grid-template-columns: 1fr;
@@ -114,6 +118,7 @@
   margin: 0 auto;
   box-sizing: border-box;
   padding-inline: 50px;
+  padding-block: 0;
 }
 
 .life-advisor.profile-cta-container .profile-cta {
@@ -224,6 +229,7 @@
     max-width: 520px;
     margin-bottom: 2px;
     margin-top: 78px;
+    width: 100%;
   }
 
   .life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
@@ -259,12 +265,18 @@
 
 @media (width  <= 1023px) {
   .life-advisor.profile-cta-container .profile-cta-wrapper {
-    padding: 16px;
+    padding: 0;
+    padding-inline: 50px;
   }
   
 .life-advisor.profile-cta-container .profile-cta {
   padding: 0;
   width: 100%;
+  min-height: auto;
+}
+
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
+  padding-inline: 16px;
 }
 
 .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h1,
@@ -292,7 +304,23 @@
 }
 
 .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) {
-  width: 100%;
   max-width: 100%;
+  width: 70%;
+  margin-left: auto;
+  padding-inline: 16px;
 }
+
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+  width: 50%;
+}
+}
+
+@media (width <= 767px) {
+  .life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+    width: 100%;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta-wrapper {
+     padding-inline: 16px;
+  }
 }

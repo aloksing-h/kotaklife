@@ -1,3 +1,5 @@
+@import url('../modal/desk-hamburger.css');
+
 body.modal-open {
   overflow: hidden;
 }

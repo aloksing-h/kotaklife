@@ -68,14 +68,14 @@ export default function decorate(block) {
   // Section specific enhancements for .growing-insurance-company
   const section = block.closest('.growing-insurance-company');
   if (section) {
-    // 1. Inject quote symbol into MD card
-    const firstCardBody = block.querySelector('li:first-child .cards-card-body');
-    if (firstCardBody && !firstCardBody.querySelector('.quote-mark')) {
-      const quoteSpan = document.createElement('span');
-      quoteSpan.className = 'quote-mark';
-      quoteSpan.innerHTML = '“';
-      firstCardBody.prepend(quoteSpan);
-    }
+    // // 1. Inject quote symbol into MD card
+    // const firstCardBody = block.querySelector('li:first-child .cards-card-body');
+    // if (firstCardBody && !firstCardBody.querySelector('.quote-mark')) {
+    //   const quoteSpan = document.createElement('span');
+    //   quoteSpan.className = 'quote-mark';
+    //   quoteSpan.innerHTML = '“';
+    //   firstCardBody.prepend(quoteSpan);
+    // }
 
     // 2. Format CTA link with arrow button
     const ctaLink = section.querySelector('.default-content-wrapper a');
