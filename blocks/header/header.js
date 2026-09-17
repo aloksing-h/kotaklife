@@ -100,6 +100,52 @@ function resetTabsInNavDrop(navDrop) {
 }
 
 /**
+ * Shows the first tab inside a nav-drop (for desktop)
+ * @param {Element} navDrop The nav-drop element
+ */
+function showFirstTabInNavDrop(navDrop) {
+  if (!navDrop) return;
+  
+  // Find all tabs inside this nav-drop
+  const tabs = navDrop.querySelectorAll('[role="tab"]');
+  if (tabs.length === 0) return;
+  
+  // Reset all tabs first
+  tabs.forEach((tab) => {
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('aria-expanded', 'false');
+    
+    // Hide all associated panels
+    const panelIds = (tab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
+    panelIds.forEach((panelId) => {
+      const panel = document.querySelector(`#${CSS.escape(panelId)}`);
+      if (panel) {
+        panel.setAttribute('hidden', '');
+        panel.classList.add('hidden');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+  
+  // Now show the first tab
+  const firstTab = tabs[0];
+  firstTab.setAttribute('aria-selected', 'true');
+  firstTab.setAttribute('aria-expanded', 'true');
+  firstTab.setAttribute('aria-current', 'true');
+  
+  // Show the first tab's associated panels
+  const panelIds = (firstTab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
+  panelIds.forEach((panelId) => {
+    const panel = document.querySelector(`#${CSS.escape(panelId)}`);
+    if (panel) {
+      panel.removeAttribute('hidden');
+      panel.classList.remove('hidden');
+      panel.setAttribute('aria-hidden', 'false');
+    }
+  });
+}
+
+/**
  * Toggles all nav sections
  * @param {Element} sections The container element
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
@@ -509,8 +555,8 @@ export default async function decorate(block) {
 
           // Open current menu
           if (navDrop.querySelector('ul')) {
-            // Reset any open tabs in tab-list to initial closed state
-            resetTabsInNavDrop(navDrop);
+            // Show first tab in tab-list on desktop
+            showFirstTabInNavDrop(navDrop);
             navDrop.setAttribute('aria-expanded', 'true');
             navDrop.setAttribute('data-aria-expanded', 'true');
             // Update aria-haspopup button
