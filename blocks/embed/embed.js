@@ -110,11 +110,11 @@ export default function decorate(block) {
   //   observer.observe(block);
   // }
 
-  // Directly observe the block and load the native embed (Image 2 style)
+  const isCustomerSay = block.classList.contains('customer-say-video') || block.classList.contains('customer-say');
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      loadEmbed(block, link);
+      loadEmbed(block, link , isCustomerSay);
     }
   });
 

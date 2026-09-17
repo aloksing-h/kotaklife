@@ -104,12 +104,6 @@
     ]
   },
   {
-    "id": "promo",
-    "components": [
-      "promo-item"
-    ]
-  },
-  {
     "id": "rteV2",
     "rteV2": {
       "toolbar": {
@@ -291,6 +285,12 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "testimonials",
+    "components": [
+      "testimonials-item"
     ]
   },
   {
