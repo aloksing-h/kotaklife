@@ -89,7 +89,7 @@
         gap: 64px;
     }
 
-    .modal.desk-hamburger dialog .nav-content >.list-inner:first-of-type {
+    .modal.desk-hamburger dialog .nav-content>.list-inner:first-of-type {
         /* max-width: 438px; */
         max-width: 43.583%;
         width: 100%;
@@ -176,7 +176,38 @@
         padding: 27px 58px;
         border-radius: 8px;
         background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
-        ;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper::after {
+        content: '';
+        background-image: url('../../icons/modal-banner-line-1.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 482px;
+        height: 55px;
+        display: block;
+        position: absolute;
+        left: 34px;
+        right: 0;
+        margin: 0 auto;
+        top: -31px;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper::before {
+        content: '';
+        background-image: url('../../icons/modal-banner-line-2.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 183px;
+        height: 158px;
+        display: block;
+        position: absolute;
+        left: 14px;
+        top: -40px;
     }
 
     .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) * {
@@ -188,6 +219,7 @@
     .modal.desk-hamburger dialog .default-content-wrapper>ul:first-of-type {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 30px;
         padding: 0;
         margin: 0;
@@ -229,8 +261,8 @@
 
 }
 
-@media screen and (900px <= width <= 1000px) {
-    .modal.desk-hamburger dialog .nav-wrapper .nav-content{
+@media screen and (900px <=width <=1000px) {
+    .modal.desk-hamburger dialog .nav-wrapper .nav-content {
         padding: 0 0 70px;
     }
 }
