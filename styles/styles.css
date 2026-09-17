@@ -336,10 +336,12 @@ main>.section {
 .popular-search.section {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 32px; /* Adds space below each section on mobile */
+  margin-bottom: 32px;
+
+  /* Adds space below each section on mobile */
 }
 
-.column-left-section.section a{
+.column-left-section.section a {
   color: #c8151b;
 }
 
@@ -354,18 +356,17 @@ main>.section {
    Shifts the middle sections into columns.
 ========================================= */
 
-@media (width >= 900px) {
-  /* Hero stays full width */
+@media (width >=900px) {
   .hero-banner.section {
-    margin-bottom: 40px; /* Slightly larger space below hero on desktop */
+    margin-bottom: 40px;
   }
 
   /* Left column takes up 65% and floats left */
   .column-left-section.section {
     width: 65%;
     float: left;
-    padding-right: 40px; /* Creates the gap between the two columns */
-    margin-bottom: 0; /* Let the bottom section handle the vertical spacing */
+    padding-right: 40px;
+    margin-bottom: 0;
   }
 
   /* Right column (bookmarks) takes up 35% and floats right */
@@ -377,8 +378,8 @@ main>.section {
 
   /* Popular searches clears the floats to drop down below the columns */
   .popular-search.section {
-    clear: both; 
-    padding-top: 40px; /* Adds space above the bottom section */
+    clear: both;
+    padding-top: 40px;
   }
 }
 
@@ -387,7 +388,7 @@ main {
   margin: 0 auto;
 }
 
-main > .section > div {
+main>.section>div {
   box-sizing: border-box;
   max-width: 1100px;
   margin: auto;
@@ -395,12 +396,18 @@ main > .section > div {
 }
 
 main>.section:first-of-type {
-  margin-top: 35px;
+  /* margin-top: 35px; */
+  margin-top: 0;
 }
 
 @media (width >=900px) {
   main>.section>div {
     padding: 10px 32px;
+  }
+
+  main>.section:first-of-type {
+    /* margin-top: 35px; */
+    margin-top: 16px;
   }
 }
 
@@ -519,7 +526,7 @@ main .section.hero-banner .button-wrapper .button:focus-visible {
 }
 
 /* auto-style plain CTA link when no dropdown is authored (last <p> child) */
-main .section.hero-banner .default-content-wrapper > p:last-child > a:not(.button) {
+main .section.hero-banner .default-content-wrapper>p:last-child>a:not(.button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
