@@ -138,6 +138,19 @@
             "value": "highlight"
           },
           {
+            "name": "Header Varient",
+            "children": [
+              {
+                "name": "Grey Header",
+                "value": "grey-nav"
+              },
+              {
+                "name": "White Header",
+                "value": "white-nav"
+              }
+            ]
+          },
+          {
             "name": "Insights & Impact Plans",
             "value": "insights-impact-plans"
           },
@@ -800,6 +813,38 @@
         "component": "aem-content",
         "name": "source",
         "label": "Search Index"
+      }
+    ]
+  },
+  {
+    "id": "tab-panel",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "tab-label",
+        "label": "Label"
+      }
+    ]
+  },
+  {
+    "id": "tab-list",
+    "fields": [
+      {
+        "component": "boolean",
+        "name": "classes_showAll",
+        "label": "Show All?",
+        "description": "When enabled, the tab list will prepend a show all button."
       }
     ]
   },

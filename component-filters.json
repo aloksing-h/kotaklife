@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tab-panel"
     ]
   },
   {
@@ -31,6 +32,7 @@
       "rteV2",
       "tabs",
       "video",
+      "tab-list",
       "invest-form",
       "video-banner"
     ]
