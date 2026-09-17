@@ -87,6 +87,10 @@
               "value": "loans"
             },
             {
+              "name": "Invest Form",
+              "value": "invest-form"
+            },
+            {
               "name": "Tab One",
               "value": "tab-one"
             },
@@ -159,6 +163,7 @@
         "tabs",
         "subnav",
         "video",
+        "invest-form",
         "timeline",
         "video-banner"
       ]
