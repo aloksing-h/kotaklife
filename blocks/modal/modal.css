@@ -96,7 +96,7 @@ body.modal-open {
 
 /* 2. Create the dark, transparent black background overlay */
 .modal.block:has(.embed.customer-say-video) dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgb(0 0 0 / 85%);
   backdrop-filter: blur(4px);
 }
 
@@ -139,18 +139,17 @@ body.modal-open {
 }
 
 @media (width >=900px) {
-
   .modal.block:has(.embed.customer-say-video) dialog{
     max-width: 960px;
     max-height: 446px;
     height: 100%;
   }
+
   .modal.block:has(.embed.customer-say-video) .modal-content, .modal.block:has(.embed.customer-say-video) .section, .modal.block:has(.embed.customer-say-video) .embed-wrapper{
      max-height: 446px;
   }
 
   .modal.block:has(.embed.customer-say-video) .close-button {
-  
   top: 50px;
   right: 50px;
   

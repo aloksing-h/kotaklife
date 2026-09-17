@@ -5,7 +5,7 @@ export default function decorate(block) {
 
   items.forEach((row, index) => {
     row.classList.add('testimonial-item');
-    
+
     // Accessibility & State Management
     row.setAttribute('tabindex', '0');
     row.setAttribute('role', 'button');
@@ -17,9 +17,9 @@ export default function decorate(block) {
     if (columns.length >= 2) {
       const col1 = columns[0];
       const col2 = columns[1];
-      
-      col1.classList.add('testimonial-col-1'); 
-      col2.classList.add('testimonial-col-2'); 
+
+      col1.classList.add('testimonial-col-1');
+      col2.classList.add('testimonial-col-2');
 
       // Decorate Column 1: Short Images
       const col1Elements = [...col1.children];
@@ -30,7 +30,7 @@ export default function decorate(block) {
       const col2Elements = [...col2.children];
       if (col2Elements.length >= 1) col2Elements[0].classList.add('large-img-mob');
       if (col2Elements.length >= 2) col2Elements[1].classList.add('large-img-desk');
-      
+
       // Play Button & Link Extraction
       if (col2Elements.length >= 3) {
         const videoBtnWrapper = col2Elements[2];
@@ -39,7 +39,7 @@ export default function decorate(block) {
 
         // Look for the authored link
         const link = videoBtnWrapper.querySelector('a');
-        
+
         if (link) {
           modalUrl = link.href;
           link.removeAttribute('href'); // Remove default anchor behavior
