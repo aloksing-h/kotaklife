@@ -11,7 +11,7 @@ export default async function initInsightsSwiper(block) {
     block.append(pagination);
   }
 
-  const mobileQuery = window.matchMedia('(max-width: 767px)');
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
 
   const enableSwiper = () => {
     if (!block.swiperInstance) {
@@ -20,12 +20,17 @@ export default async function initInsightsSwiper(block) {
       [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
 
       block.swiperInstance = createSwiper(block, {
-        slidesPerView: 1.22,
+        slidesPerView: 'auto',
         spaceBetween: 8,
         grabCursor: true,
         pagination: {
           el: pagination,
           clickable: true,
+        },
+        breakpoints: {
+          768: {
+            spaceBetween: 16, // Spacing for screens 768px and above
+          }
         },
       });
     }
