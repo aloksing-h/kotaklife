@@ -73,6 +73,33 @@ function closeAllListInnerItems(navSections) {
 }
 
 /**
+ * Resets all tabs inside a nav-drop to their initial closed state
+ * @param {Element} navDrop The nav-drop element
+ */
+function resetTabsInNavDrop(navDrop) {
+  if (!navDrop) return;
+  
+  // Find all tabs inside this nav-drop
+  const tabs = navDrop.querySelectorAll('[role="tab"]');
+  tabs.forEach((tab) => {
+    // Reset tab state
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('aria-expanded', 'false');
+    
+    // Hide all associated panels
+    const panelIds = (tab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
+    panelIds.forEach((panelId) => {
+      const panel = document.querySelector(`#${CSS.escape(panelId)}`);
+      if (panel) {
+        panel.setAttribute('hidden', '');
+        panel.classList.add('hidden');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+}
+
+/**
  * Toggles all nav sections
  * @param {Element} sections The container element
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
@@ -482,6 +509,8 @@ export default async function decorate(block) {
 
           // Open current menu
           if (navDrop.querySelector('ul')) {
+            // Reset any open tabs in tab-list to initial closed state
+            resetTabsInNavDrop(navDrop);
             navDrop.setAttribute('aria-expanded', 'true');
             navDrop.setAttribute('data-aria-expanded', 'true');
             // Update aria-haspopup button
@@ -512,20 +541,25 @@ export default async function decorate(block) {
 
       // --- Mobile Click Logic ---
       navDrop.addEventListener('click', (e) => {
-        // Don't close if clicking inside the fragment container
-        const clickedInsideFragment = e.target.closest('.nav-fragment-container');
-        if (clickedInsideFragment) {
-          e.stopPropagation();
-          return; // Allow interaction with fragment content
-        }
-
         if (!isDesktop.matches) {
-          // IMPORTANT: Stop propagation to prevent hamburger from closing
+          // Allow tab-list interactions without toggling nav-drop
+          const clickedInsideTabList = e.target.closest('[role="tab"], [role="tablist"], .tablist-wrapper');
+          if (clickedInsideTabList) {
+            e.stopPropagation(); // Prevent hamburger from closing
+            return; // Let tab handle the interaction
+          }
+
+          // Stop propagation to prevent hamburger from closing
           e.stopPropagation();
 
+          // Toggle nav-drop for any other click inside it
           const expanded = navDrop.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navDrop.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          // Reset tabs when opening nav-drop
+          if (!expanded) {
+            resetTabsInNavDrop(navDrop);
+          }
           // Update aria-haspopup button
           const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
           if (dropButton) {

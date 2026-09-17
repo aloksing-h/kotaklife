@@ -115,8 +115,10 @@ export default async function decorate(block) {
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
-    // Add hover functionality (on desktop, trigger tab change on hover)
-    tabItem.addEventListener('mouseenter', changeTabs);
+    // Add hover functionality (on desktop only, trigger tab change on hover)
+    if (window.matchMedia('(min-width: 900px)').matches) {
+      tabItem.addEventListener('mouseenter', changeTabs);
+    }
     // Add keyboard support for Enter/Space (WCAG 2.2 - 2.1.1 Keyboard)
     tabItem.addEventListener('keydown', (e) => {
       if (e.code === 'Enter' || e.code === 'Space') {
