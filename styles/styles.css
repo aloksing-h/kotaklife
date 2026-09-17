@@ -397,12 +397,17 @@ main>.section>div {
 
 main>.section:first-of-type {
   /* margin-top: 35px; */
-  margin-top: 16px;
+  margin-top: 0;
 }
 
 @media (width >=900px) {
   main>.section>div {
     padding: 10px 32px;
+  }
+
+  main>.section:first-of-type {
+    /* margin-top: 35px; */
+    margin-top: 16px;
   }
 }
 
