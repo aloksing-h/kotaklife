@@ -104,8 +104,8 @@
 /* Scroll button */
 
 .autoplay .video-banner-content p:last-child {
-    /* display: none; */
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-items: center;
     position: absolute;
     right: -93px;
@@ -253,6 +253,7 @@
     .autoplay .video-banner-content p:last-child span {
         width: 48px;
         height: 48px;
+        cursor: pointer;
     }
 
     .video-banner.is-editor .video-banner-media {

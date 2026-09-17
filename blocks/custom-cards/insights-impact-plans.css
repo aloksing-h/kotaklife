@@ -5,6 +5,7 @@
 .insights-impact-plans .custom-cards-wrapper {
     padding-right: 0;
     padding-inline-start: 16px;
+    position: relative;
 }
 
 .insights-impact-plans .custom-cards-card-body p:last-child {
@@ -40,13 +41,13 @@
 
 /* Swiper Pagination Dots */
 .insights-impact-plans .custom-cards .swiper-pagination {
-    bottom: 0;
+    bottom: -22px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
     left: unset;
-    right: 20px;
+    right: 52px;
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
@@ -329,11 +330,11 @@
         align-items: center;
         justify-content: space-between;
     } */
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
-    margin-top: 54px;
-    margin-bottom: 0;
-    justify-content: center;
-}
+    .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
+        margin-top: 54px;
+        margin-bottom: 0;
+        justify-content: center;
+    }
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper h1,
     .insights-impact-plans.custom-cards-container .default-content-wrapper h2,
@@ -477,9 +478,9 @@
     }
 }
 
-@media (width >= 768px) and (width <= 1023px) {
-   .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
-    font-size: 18px;
-    line-height: 24px;
-   }
+@media (width >=768px) and (width <=1023px) {
+    .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+        font-size: 18px;
+        line-height: 24px;
+    }
 }
