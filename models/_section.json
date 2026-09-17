@@ -89,6 +89,10 @@
             {
               "name": "Invest Form",
               "value": "invest-form"
+            },
+            {
+              "name": "Difference cards",
+              "value": "difference-cards"
             }
           ]
         }
