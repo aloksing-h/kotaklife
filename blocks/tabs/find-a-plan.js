@@ -1,4 +1,6 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import {
+	createOptimizedPicture
+} from '../../scripts/aem.js';
 
 function decorateCustomCardsTags(panel) {
 	const customCards = panel.querySelector('.custom-cards');
@@ -18,7 +20,9 @@ function decorateCardImages(panel) {
 			const img = picture.querySelector('img');
 			if (!img) return;
 
-			const optimizedPicture = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
+			const optimizedPicture = createOptimizedPicture(img.src, img.alt || '', false, [{
+				width: '750'
+			}]);
 			optimizedPicture.classList.add(index === 0 ? 'primary-image' : 'secondary-image');
 			picture.replaceWith(optimizedPicture);
 		});
