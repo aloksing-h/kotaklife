@@ -1,77 +1,17 @@
-import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import bannerDecorate from './looking-for.js';
 import decorateInfiniteProtection from './infinite-protection.js';
+import initInsightsSwiper from './insights-impact-plans.js';
 
 /**
  * Initializes Swiper instance for mobile viewports (< 900px)
  * @param {Element} block The custom-cards block element
  */
-function initInsightsSwiper(block) {
-  const ul = block.querySelector('ul');
-  if (!ul) return;
-
-  // Create pagination container if it doesn't exist
-  let pagination = block.querySelector('.swiper-pagination');
-  if (!pagination) {
-    pagination = document.createElement('div');
-    pagination.className = 'swiper-pagination';
-    block.append(pagination);
-  }
-
-  const mobileQuery = window.matchMedia('(max-width: 899px)');
-
-  const enableSwiper = () => {
-    if (!block.swiperInstance && window.Swiper) {
-      block.classList.add('swiper');
-      ul.classList.add('swiper-wrapper');
-      [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
-
-      block.swiperInstance = new window.Swiper(block, {
-        slidesPerView: 1.18,
-        spaceBetween: 16,
-        grabCursor: true,
-        pagination: {
-          el: pagination,
-          clickable: true,
-        },
-      });
-    }
-  };
-
-  const disableSwiper = () => {
-    if (block.swiperInstance) {
-      block.swiperInstance.destroy(true, true);
-      block.swiperInstance = null;
-      block.classList.remove('swiper');
-      ul.classList.remove('swiper-wrapper');
-      [...ul.children].forEach((li) => li.classList.remove('swiper-slide'));
-    }
-  };
-
-  const handleMediaChange = () => {
-    if (mobileQuery.matches) {
-      enableSwiper();
-    } else {
-      disableSwiper();
-    }
-  };
-
-  handleMediaChange();
-  mobileQuery.addEventListener('change', handleMediaChange);
-}
 
 export default async function decorate(block) {
   const section = block.closest('.insights-impact-plans');
-  const codeBase = window.hlx?.codeBasePath || '';
-
-  // Load Swiper CSS and JS at top level if block is inside .insights-impact-plans
-  if (section) {
-    await Promise.all([
-      loadCSS(`${codeBase}/blocks/swiper/swiper-bundle.min.css`),
-      loadScript(`${codeBase}/blocks/swiper/swiper-bundle.min.js`),
-    ]);
-  }
+  // const codeBase = window.hlx?.codeBasePath || '';
 
   /* Transform row structure to ul, li */
   const ul = document.createElement('ul');
