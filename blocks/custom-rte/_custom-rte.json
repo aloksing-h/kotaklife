@@ -75,6 +75,10 @@
             {
               "name": "Blog Detail Group Image",
               "value": "detail-grp-img"
+            },
+            {
+              "name": "Promotion",
+              "value":"promotion"
             }
           ]
         }
