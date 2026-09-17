@@ -78,14 +78,14 @@ function closeAllListInnerItems(navSections) {
  */
 function resetTabsInNavDrop(navDrop) {
   if (!navDrop) return;
-  
+
   // Find all tabs inside this nav-drop
   const tabs = navDrop.querySelectorAll('[role="tab"]');
   tabs.forEach((tab) => {
     // Reset tab state
     tab.setAttribute('aria-selected', 'false');
     tab.setAttribute('aria-expanded', 'false');
-    
+
     // Hide all associated panels
     const panelIds = (tab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
     panelIds.forEach((panelId) => {
@@ -105,16 +105,16 @@ function resetTabsInNavDrop(navDrop) {
  */
 function showFirstTabInNavDrop(navDrop) {
   if (!navDrop) return;
-  
+
   // Find all tabs inside this nav-drop
   const tabs = navDrop.querySelectorAll('[role="tab"]');
   if (tabs.length === 0) return;
-  
+
   // Reset all tabs first
   tabs.forEach((tab) => {
     tab.setAttribute('aria-selected', 'false');
     tab.setAttribute('aria-expanded', 'false');
-    
+
     // Hide all associated panels
     const panelIds = (tab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
     panelIds.forEach((panelId) => {
@@ -126,13 +126,13 @@ function showFirstTabInNavDrop(navDrop) {
       }
     });
   });
-  
+
   // Now show the first tab
   const firstTab = tabs[0];
   firstTab.setAttribute('aria-selected', 'true');
   firstTab.setAttribute('aria-expanded', 'true');
   firstTab.setAttribute('aria-current', 'true');
-  
+
   // Show the first tab's associated panels
   const panelIds = (firstTab.getAttribute('aria-controls') || '').split(' ').filter(Boolean);
   panelIds.forEach((panelId) => {
@@ -259,8 +259,12 @@ function addLayerClasses(element, classNameMap, depth = 1) {
 //   const tabPanels = Array.from(tabsBlock.querySelectorAll('.tabs-panel'));
 //   if (tabPanels.length === 0) return;
 
-//   // Define mapping patterns: tab-one -> first panel, tab-two -> second panel, etc.
-//   const tabClassPatterns = ['tab-one', 'tab-two', 'tab-three', 'tab-four', 'tab-five', 'tab-six', 'tab-seven', 'tab-eight', 'tab-nine', 'tab-ten'];
+//   // Define mapping patterns:
+//   // tab-one -> first panel, tab-two -> second panel, etc.
+//   const tabClassPatterns = [
+//     'tab-one', 'tab-two', 'tab-three', 'tab-four', 'tab-five',
+//     'tab-six', 'tab-seven', 'tab-eight', 'tab-nine', 'tab-ten'
+//   ];
 
 //   tabClassPatterns.forEach((tabClass, index) => {
 //     // Find sections with this tab class
@@ -392,7 +396,7 @@ export default async function decorate(block) {
 
   // Handle WhatsApp click for list-inner-2 WhatsApp item
   const whatsappItem = nav.querySelector(
-    '.nav-header-top .list-item-2 > .list-inner-2 .inner-child-2 > .inner-item-1'
+    '.nav-header-top .list-item-2 > .list-inner-2 .inner-child-2 > .inner-item-1',
   );
   if (whatsappItem) {
     whatsappItem.addEventListener('click', (e) => {
@@ -683,7 +687,7 @@ export default async function decorate(block) {
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
-      hamburgLink.addEventListener('click', (e) => {
+      hamburgLink.addEventListener('click', () => {
         // Use setTimeout to ensure modal is fully loaded before applying class
         setTimeout(() => {
           const modal = document.querySelector('.modal.block');
@@ -709,7 +713,7 @@ export default async function decorate(block) {
 
               // Get all nav-drop items from nav-sections
               const allNavDrops = Array.from(navSections.querySelectorAll('.nav-drop'));
-              
+
               // Skip first 4 and get last 4
               const last4NavDrops = allNavDrops.slice(-4);
 

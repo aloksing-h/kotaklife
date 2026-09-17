@@ -313,6 +313,7 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
+  // eslint-disable-next-line import/no-cycle
   const { initializeModalHandlers } = await import('../blocks/modal/modal.js');
   initializeModalHandlers();
 }

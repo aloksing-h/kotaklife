@@ -20,7 +20,6 @@
     .modal.desk-hamburger dialog::backdrop {
         /* background-color: red; */
         background: rgb(0 0 0 / 80%);
-        -webkit-backdrop-filter: blur(7px);
         backdrop-filter: blur(7px);
     }
 
@@ -103,7 +102,7 @@
 
     .modal.desk-hamburger dialog .nav-content .list-inner .inner-child-1 {
         color: var(--text-text-primary, #181D27);
-        font-family: Manrope;
+        font-family: Manrope, sans-serif;
         font-size: 12px;
         font-style: normal;
         font-weight: 600;

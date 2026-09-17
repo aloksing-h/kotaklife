@@ -827,7 +827,7 @@ header {
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
-  z-index: 2;
+  z-index: 100;
   position: fixed;
 }
 
@@ -1346,7 +1346,6 @@ nav[aria-expanded='true'] .nav-sections {
   padding: 0 16px;
   overflow: auto;
   max-height: calc(100dvh - 96px);
-  overflow-y: auto;
 }
 
 nav[aria-expanded='true'] .nav-sections ul {
