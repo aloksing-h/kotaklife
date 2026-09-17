@@ -390,6 +390,29 @@ export default async function decorate(block) {
     });
   }
 
+  // Handle WhatsApp click for list-inner-2 WhatsApp item
+  const whatsappItem = nav.querySelector(
+    '.nav-header-top .list-item-2 > .list-inner-2 .inner-child-2 > .inner-item-1'
+  );
+  if (whatsappItem) {
+    whatsappItem.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const whatsappNumber = '919321003007'; // +91 country code + 9321003007
+      const message = 'Hi';
+
+      if (isDesktop.matches) {
+        // Desktop: Open web.whatsapp.com
+        window.open('https://web.whatsapp.com', '_blank');
+      } else {
+        // Mobile: Open WhatsApp with pre-filled message
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      }
+    });
+  }
+
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
@@ -555,8 +578,12 @@ export default async function decorate(block) {
 
           // Open current menu
           if (navDrop.querySelector('ul')) {
-            // Show first tab in tab-list on desktop
-            showFirstTabInNavDrop(navDrop);
+            // Check if tabs exist (fragment must be loaded)
+            const tabs = navDrop.querySelectorAll('[role="tab"]');
+            if (tabs.length > 0) {
+              // Show first tab in tab-list on desktop only if tabs exist
+              showFirstTabInNavDrop(navDrop);
+            }
             navDrop.setAttribute('aria-expanded', 'true');
             navDrop.setAttribute('data-aria-expanded', 'true');
             // Update aria-haspopup button
@@ -657,7 +684,7 @@ export default async function decorate(block) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
       hamburgLink.addEventListener('click', (e) => {
-        // Use setTimeout to ensure modal is loaded before applying class
+        // Use setTimeout to ensure modal is fully loaded before applying class
         setTimeout(() => {
           const modal = document.querySelector('.modal.block');
           if (modal) {
@@ -666,6 +693,12 @@ export default async function decorate(block) {
             // Get the section inside modal
             const modalSection = modal.querySelector('.section');
             if (modalSection) {
+              // Remove any existing nav-wrapper to avoid duplicate/stale data
+              const existingNavWrapper = modalSection.querySelector('.nav-wrapper');
+              if (existingNavWrapper) {
+                existingNavWrapper.remove();
+              }
+
               // Create nav-wrapper div
               const newNavWrapper = document.createElement('div');
               newNavWrapper.className = 'nav-wrapper';
@@ -711,7 +744,7 @@ export default async function decorate(block) {
               modalSection.prepend(newNavWrapper);
             }
           }
-        }, 100);
+        }, 200);
       });
     }
   }

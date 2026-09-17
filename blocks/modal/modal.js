@@ -3,11 +3,30 @@ import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
 
+// Store initial modal content globally so it can be reset
+let initialModalContent = null;
+
 /*
   This is not a traditional block, so there is no decorate function.
   Instead, links to a /modals/ path are automatically transformed into a modal.
   Other blocks can also use the createModal() and openModal() functions.
 */
+
+export default async function decorate(block) {
+  // Store a copy of the initial modal content (default-content-wrapper)
+  const defaultContentWrapper = block.querySelector('.default-content-wrapper');
+  if (defaultContentWrapper) {
+    initialModalContent = defaultContentWrapper.cloneNode(true);
+  }
+
+  // Clear the modal block initially
+  block.innerHTML = '';
+
+  // Re-append the copied initial content back to modal
+  if (initialModalContent) {
+    block.appendChild(initialModalContent.cloneNode(true));
+  }
+}
 
 export async function createModal(contentNodes) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
