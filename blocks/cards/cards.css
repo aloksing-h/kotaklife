@@ -1089,7 +1089,7 @@
 .cards.image-card.block .cards-card-image img {
   scale: 1.071;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   overflow: hidden;
 }
 
