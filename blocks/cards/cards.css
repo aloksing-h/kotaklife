@@ -1188,6 +1188,7 @@
   .cards.image-card.block > ul {
     flex-wrap: nowrap;
   }
+
   .cards.image-card.block > ul > li {
     max-width: 190px;
     height: 348px;
@@ -1204,7 +1205,6 @@
   }
 
   .csr-layout.section > .default-content-wrapper p{
-    
     font-size: var(--body-1-font-size);
     line-height: var(--body-1-line-height);
   }
