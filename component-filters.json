@@ -34,7 +34,8 @@
       "video",
       "tab-list",
       "invest-form",
-      "video-banner"
+      "video-banner",
+      "promo"
     ]
   },
   {
@@ -100,6 +101,12 @@
     "id": "profile-cta",
     "components": [
       "profile-cta"
+    ]
+  },
+  {
+    "id": "promo",
+    "components": [
+      "promo-item"
     ]
   },
   {

@@ -482,6 +482,10 @@
           {
             "name": "Blog Detail Group Image",
             "value": "detail-grp-img"
+          },
+          {
+            "name": "Promotion",
+            "value": "promotion"
           }
         ]
       }
@@ -706,6 +710,35 @@
         "label": "Button",
         "valueType": "string",
         "description": "Author a link, e.g. Join Now"
+      }
+    ]
+  },
+  {
+    "id": "promo",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "Promotion",
+            "value": "promotion"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "promo-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": " Promo Text",
+        "valueType": "string"
       }
     ]
   },

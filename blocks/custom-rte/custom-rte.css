@@ -93,20 +93,20 @@
    3D Card Deck Stack Styling & Color Transitions
    ========================================================================== */
 
-.get-cover-plans .custom-rte-wrapper {
+.get-cover-plans .custom-rte-wrapper:has( .custom-rte.promotion) {
     width: 100%;
     padding: 0;
     margin: 0;
 }
 
-.get-cover-plans .custom-rte {
+.get-cover-plans .custom-rte.promotion {
     position: relative;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
 }
 
-.get-cover-plans .custom-rte-cards {
+.get-cover-plans .promotion .custom-rte-cards {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -115,7 +115,7 @@
 }
 
 /* Base Card Attributes */
-.get-cover-plans .custom-rte-card {
+.get-cover-plans .promotion .custom-rte-card {
     position: absolute;
     top: 0;
     left: 0;
@@ -137,7 +137,7 @@
 }
 
 /* Layer 1: Active / Front Card (Gradient Red) */
-.get-cover-plans .custom-rte-card.is-active {
+.get-cover-plans .promotion .custom-rte-card.is-active {
     z-index: 3;
     transform: translate(0, 0) scale(1);
     background: linear-gradient(180deg, #a71930 0%, #e31837 100%) !important;
@@ -148,7 +148,7 @@
 }
 
 /* Layer 2: Middle Stack Card (Dark Navy Blue) */
-.get-cover-plans .custom-rte-card.stack-layer-1 {
+.get-cover-plans .promotion .custom-rte-card.stack-layer-1 {
     z-index: 2;
     transform: translate(14px, 6px) scale(0.98);
     background: #102a45 !important;
@@ -158,7 +158,7 @@
 }
 
 /* Layer 3: Back Stack Card (Dark Burgundy) */
-.get-cover-plans .custom-rte-card.stack-layer-2 {
+.get-cover-plans .promotion .custom-rte-card.stack-layer-2 {
     z-index: 1;
     transform: translate(26px, 12px) scale(0.96);
     background: #6b1220 !important;
@@ -167,7 +167,7 @@
     box-shadow: none;
 }
 
-.get-cover-plans .custom-rte-card.stack-hidden {
+.get-cover-plans .promotion .custom-rte-card.stack-hidden {
     z-index: 0;
     transform: translate(32px, 16px) scale(0.94);
     opacity: 0;
@@ -175,7 +175,7 @@
 }
 
 /* Top-Right Plan Badge */
-.get-cover-plans .plan-badge {
+.get-cover-plans .promotion .plan-badge {
     align-self: flex-end;
     border-radius: var(--radius-xs, 4px);
     border: 1px solid var(--border-border-white, #FFF);
@@ -189,18 +189,18 @@
 }
 
 /* Card Content Typography */
-.get-cover-plans .plan-card-body {
+.get-cover-plans .promotion .plan-card-body {
     margin-top: auto;
     z-index: 2;
 }
 
-.get-cover-plans .plan-card-body ul {
+.get-cover-plans .promotion .plan-card-body ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.get-cover-plans .plan-card-body li {
+.get-cover-plans .promotion .plan-card-body li {
     font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
     font-size: clamp(24px, 5vw, 40px);
     font-weight: 300;
@@ -209,12 +209,12 @@
     margin-bottom: 6px;
 }
 
-.get-cover-plans .plan-card-body li strong {
+.get-cover-plans .promotion .plan-card-body li strong {
     font-weight: 700;
     color: #fff;
 }
 
-.get-cover-plans .plan-card-body li:last-child {
+.get-cover-plans .promotion .plan-card-body li:last-child {
     font-size: clamp(20px, 4vw, 26px);
     font-weight: 500;
     margin-bottom: 0;
@@ -224,7 +224,7 @@
    Step Pagination & Animated Duration Line (01 ━━━━ 02 03)
    ========================================================================== */
 
-.get-cover-plans .plan-pagination {
+.get-cover-plans .promotion .plan-pagination {
     display: flex;
     justify-content: flex-start;
     padding-left: 4px;
@@ -232,14 +232,14 @@
     margin-left: 40px;
 }
 
-.get-cover-plans .steps-container {
+.get-cover-plans .promotion .steps-container {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 /* Step Numbers (01, 02, 03) */
-.get-cover-plans .step-indicator {
+.get-cover-plans .promotion .step-indicator {
     background: none;
     border: none;
     padding: 0;
@@ -251,14 +251,14 @@
     transition: color 0.3s ease, font-size 0.3s ease;
 }
 
-.get-cover-plans .step-indicator.is-active {
+.get-cover-plans .promotion .step-indicator.is-active {
     color: #e31837;
     font-size: 16px;
     font-weight: 700;
 }
 
 /* Progress Track Line Container */
-.get-cover-plans .progress-track-wrapper {
+.get-cover-plans .promotion .progress-track-wrapper {
     width: 70px;
     height: 2px;
     background-color: #eaecf0;
@@ -267,7 +267,7 @@
     position: relative;
 }
 
-.get-cover-plans .progress-bar-fill {
+.get-cover-plans .promotion .progress-bar-fill {
     display: block;
     height: 100%;
     width: 0%;
@@ -276,7 +276,7 @@
 }
 
 /* Active 5-second progress animation fill */
-.get-cover-plans .progress-track-wrapper.animating .progress-bar-fill {
+.get-cover-plans .promotion .progress-track-wrapper.animating .progress-bar-fill {
     animation: progress-fill 5s linear forwards;
 }
 
@@ -309,21 +309,21 @@
         line-height: var(--line-height-heading-1, 60px);
     }
 
-    .get-cover-plans .custom-rte-wrapper {
+    .get-cover-plans .custom-rte-wrapper:has( .custom-rte.promotion) {
         width: 35.6%;
         padding: 0;
         margin: 0;
     }
 
-    .get-cover-plans .custom-rte {
+    .get-cover-plans .custom-rte.promotion {
         margin-left: 0;
     }
 
-    .get-cover-plans .custom-rte-cards {
+    .get-cover-plans .promotion .custom-rte-cards {
         height: 350px;
     }
 
-    .get-cover-plans .custom-rte-card {
+    .get-cover-plans .promotion .custom-rte-card {
         width: 360px;
         height: 332px;
     }
