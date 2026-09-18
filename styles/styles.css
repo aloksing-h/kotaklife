@@ -478,7 +478,7 @@ main>.section.trust>div {
 
 .trust .default-content-wrapper p {
   color: var(--text-tertiary);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
   font-size: var(--body-2-font-size);
   line-height: 18px;
   max-width: 100%;
@@ -488,9 +488,9 @@ main>.section.trust>div {
 
 /* Tablet (>=600px) */
 @media (width >=600px) {
-  main>.section>div,
-  main>.section.vision>div,
-  main>.section.trust>div {
+  main>.section>div:not(.cards-wrapper),
+  main>.section.vision>div:not(.cards-wrapper),
+  main>.section.trust>div:not(.cards-wrapper) {
     padding: 0 32px;
   }
 
