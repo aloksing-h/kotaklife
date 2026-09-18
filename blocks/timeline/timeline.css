@@ -202,6 +202,11 @@
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
+
+  -webkit-mask-image: url('../../icons/arrow-left-2.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
 .timeline.awards.block .timeline-arrow:not(:disabled) .icon.icon-arrow-right {
