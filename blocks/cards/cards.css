@@ -1118,7 +1118,6 @@
 .csr-layout.section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 16px;

@@ -110,8 +110,8 @@
   border: 1px solid var(--brand-blue-500);
   border-radius: 50%;
   z-index: 2;
-  transition: all 0.2s;
   transform-style: preserve-3d;
+  transition: all 0.2s;
 }
 
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
@@ -202,6 +202,11 @@
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
+
+  -webkit-mask-image: url('../../icons/arrow-left-2.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
 .timeline.awards.block .timeline-arrow:not(:disabled) .icon.icon-arrow-right {
@@ -237,7 +242,6 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
   padding: 0 24px;
   list-style: none;
@@ -288,11 +292,11 @@
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(odd) {
-  margin: 0 0 0 auto;
+  margin: 0 0 0 30%;
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(even) {
-  margin: 0 auto 0 0;
+  margin: 0 30% 0 0;
 }
 
 .timeline.awards.block .timeline-card-item::before {
@@ -368,7 +372,7 @@
   font-weight: var(--font-weight-semibold);
 }
 
-@media (width >=500px) {
+@media (min-width: 768px) {
   .timeline.awards.block .timeline-cards-list {
     align-items: normal;
   }
@@ -415,7 +419,7 @@
   }
 }
 
-@media (width >=900px) {
+@media (min-width: 900px) {
   .timeline.awards.block {
     padding: 0;
   }
@@ -545,7 +549,7 @@
   }
 }
 
-@media (width >=1200px) {
+@media (min-width: 1200px) {
   .timeline.awards.block .timeline-nav {
     max-height: 120px;
   }
