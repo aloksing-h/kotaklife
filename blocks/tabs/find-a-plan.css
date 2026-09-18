@@ -328,7 +328,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 2px 4px 2px 12px;
+    padding: 2px 4px 2px 16px;
     border-radius: 999px;
     background: #fff;
     color: #181d27;
@@ -434,6 +434,7 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type .find-a-plan-tag-li:last-child {
         margin-top: 20px;
+        text-align: center;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
