@@ -21,21 +21,6 @@
       "id": "banner-v2",
       "fields": [
         {
-          "component": "select",
-          "name": "classes",
-          "label": "Background Style",
-          "options": [
-            {
-              "name": "Default Theme Gradient",
-              "value": ""
-            },
-            {
-              "name": "Custom Background Images",
-              "value": "custom-bg"
-            }
-          ]
-        },
-        {
           "component": "reference",
           "valueType": "string",
           "name": "desktopBg",
