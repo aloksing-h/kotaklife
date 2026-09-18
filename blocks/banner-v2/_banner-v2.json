@@ -52,18 +52,32 @@
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "label": "Person / Foreground Image",
+          "label": "Person / Foreground Image Desktop",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "imageAlt",
-          "label": "Person Image Alt Text",
+          "label": "Person Image Alt Text Desktop",
           "value": ""
         },
         {
-          "component": "richtext",
+          "component": "reference",
+          "valueType": "string",
+          "name": "imageMobile",
+          "label": "Person / Foreground Image Mobile",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAltMobile",
+          "label": "Person Image Alt Text Mobile",
+          "value": ""
+        },
+        {
+          "component": "text",
           "name": "text",
           "label": "Content Text",
           "value": "",

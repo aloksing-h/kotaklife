@@ -1,47 +1,70 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /**
- * Extracts and formats stats list items
- * @param {HTMLUListElement|HTMLOListElement} list
+ * Formats a stat item into value and label spans
+ * @param {HTMLElement} element
+ * @returns {HTMLLIElement}
  */
-function decorateStats(list) {
-  list.classList.add('banner-v2-stats');
-  [...list.children].forEach((li) => {
-    li.classList.add('banner-v2-stat');
-    const strong = li.querySelector('strong, b');
-    if (strong) {
+function createStatItem(element) {
+  const li = document.createElement('li');
+  li.className = 'banner-v2-stat';
+  moveInstrumentation(element, li);
+
+  const strong = element.querySelector('strong, b');
+  const innerHTML = element.innerHTML.trim();
+
+  if (innerHTML.includes('<br') || innerHTML.includes('<BR')) {
+    const parts = innerHTML.split(/<br\s*\/?>/i);
+    const valueSpan = document.createElement('span');
+    valueSpan.className = 'stat-value';
+    valueSpan.innerHTML = parts[0].trim();
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'stat-label';
+    labelSpan.innerHTML = parts.slice(1).join(' ').trim();
+
+    li.appendChild(valueSpan);
+    li.appendChild(labelSpan);
+  } else if (strong) {
+    const valueSpan = document.createElement('span');
+    valueSpan.className = 'stat-value';
+    valueSpan.innerHTML = strong.innerHTML;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'stat-label';
+
+    const childNodes = [...element.childNodes];
+    childNodes.forEach((node) => {
+      if (node !== strong) {
+        labelSpan.appendChild(node.cloneNode(true));
+      }
+    });
+
+    li.appendChild(valueSpan);
+    li.appendChild(labelSpan);
+  } else {
+    const text = element.textContent.trim();
+    const parts = text.split(/\s+-\s+|\n/);
+    if (parts.length > 1) {
       const valueSpan = document.createElement('span');
       valueSpan.className = 'stat-value';
-      valueSpan.innerHTML = strong.innerHTML;
+      valueSpan.textContent = parts[0].trim();
 
       const labelSpan = document.createElement('span');
       labelSpan.className = 'stat-label';
+      labelSpan.textContent = parts.slice(1).join(' ').trim();
 
-      // Clone child nodes except the strong element to build label
-      const childNodes = [...li.childNodes];
-      childNodes.forEach((node) => {
-        if (node !== strong) {
-          labelSpan.appendChild(node.cloneNode(true));
-        }
-      });
-
-      li.replaceChildren(valueSpan, labelSpan);
+      li.appendChild(valueSpan);
+      li.appendChild(labelSpan);
     } else {
-      const text = li.textContent.trim();
-      const parts = text.split(/\s+-\s+|\n/);
-      if (parts.length > 1) {
-        const valueSpan = document.createElement('span');
-        valueSpan.className = 'stat-value';
-        valueSpan.textContent = parts[0].trim();
-
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'stat-label';
-        labelSpan.textContent = parts.slice(1).join(' ').trim();
-
-        li.replaceChildren(valueSpan, labelSpan);
-      }
+      const valueSpan = document.createElement('span');
+      valueSpan.className = 'stat-value';
+      valueSpan.textContent = text;
+      li.appendChild(valueSpan);
     }
-  });
+  }
+
+  return li;
 }
 
 /**
@@ -101,35 +124,65 @@ export default async function decorate(block) {
 
   // Process text elements and rows
   const rows = [...block.children];
+  const headings = [];
+  const descriptions = [];
+  const statItems = [];
+
   rows.forEach((row) => {
     // Check if row has instrumentation attributes
     moveInstrumentation(row, contentWrapper);
 
-    // Extract headings, paragraphs, lists
-    const headings = row.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    headings.forEach((h) => {
-      h.classList.add('banner-v2-title');
-      contentWrapper.appendChild(h);
+    // Extract headings
+    row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+      headings.push(h);
     });
 
-    const paragraphs = row.querySelectorAll('p');
-    paragraphs.forEach((p) => {
-      // Avoid paragraphs that only contain picture elements
+    // Extract lists (if authored as ul/ol)
+    row.querySelectorAll('ul > li, ol > li').forEach((li) => {
+      statItems.push(li);
+    });
+
+    // Extract paragraphs (if not part of picture-only containers)
+    row.querySelectorAll('p').forEach((p) => {
       if (p.querySelector('picture') && p.textContent.trim() === '') {
         return;
       }
-      if (p.textContent.trim()) {
-        p.classList.add('banner-v2-description');
-        contentWrapper.appendChild(p);
+      if (!p.textContent.trim()) {
+        return;
+      }
+
+      // If paragraph contains <br> or comes after the main description, treat as stat item
+      const isBrStat = p.innerHTML.includes('<br') || p.innerHTML.includes('<BR');
+      if (isBrStat || descriptions.length >= 1) {
+        statItems.push(p);
+      } else {
+        descriptions.push(p);
       }
     });
-
-    const lists = row.querySelectorAll('ul, ol');
-    lists.forEach((list) => {
-      decorateStats(list);
-      contentWrapper.appendChild(list);
-    });
   });
+
+  // Append headings
+  headings.forEach((h) => {
+    h.classList.add('banner-v2-title');
+    contentWrapper.appendChild(h);
+  });
+
+  // Append description
+  descriptions.forEach((p) => {
+    p.classList.add('banner-v2-description');
+    contentWrapper.appendChild(p);
+  });
+
+  // Append stats as an unordered list
+  if (statItems.length > 0) {
+    const statsList = document.createElement('ul');
+    statsList.className = 'banner-v2-stats';
+    statItems.forEach((item) => {
+      const statLi = createStatItem(item);
+      statsList.appendChild(statLi);
+    });
+    contentWrapper.appendChild(statsList);
+  }
 
   // Prepare person visual wrapper
   let visualWrapper = null;

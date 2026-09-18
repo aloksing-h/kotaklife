@@ -1,14 +1,22 @@
+main > .section > div.banner-v2-wrapper {
+  padding: 0;
+  max-width: 100%;
+}
+
 .banner-v2-wrapper {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
   box-sizing: border-box;
 }
 
 .banner-v2.block {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 0;
   background-color: var(--brand-red-500, #fa1432);
   background-image: var(
     --banner-v2-bg-desktop,
@@ -21,8 +29,8 @@
   color: var(--base-white, #fff);
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  min-height: 480px;
+  align-items: center;
+  min-height: 520px;
   padding: 56px 48px 0;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
@@ -149,20 +157,25 @@
    Responsive Breakpoints
    ========================================================================== */
 
-/* Medium Desktop & Tablet Landscape (900px - 1199px) */
-@media (width >= 900px) and (width < 1200px) {
+/* Medium Desktop & Tablet Landscape (769px - 1199px) */
+@media (width > 768px) and (width < 1200px) {
   .banner-v2.block {
     min-height: 420px;
-    padding: 44px 36px 0;
+    padding: 40px 32px 0;
   }
 
   .banner-v2.block .banner-v2-content {
-    max-width: 480px;
-    padding-bottom: 44px;
+    max-width: 460px;
+    padding-bottom: 40px;
   }
 
   .banner-v2.block .banner-v2-title {
-    font-size: 40px;
+    font-size: 38px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 15px;
+    margin-bottom: 28px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
@@ -184,57 +197,10 @@
   }
 }
 
-/* Tablet Portrait (600px - 899px) */
-@media (width >= 600px) and (width < 900px) {
-  .banner-v2.block {
-    min-height: 380px;
-    padding: 36px 28px 0;
-    border-radius: 16px;
-  }
-
-  .banner-v2.block .banner-v2-content {
-    max-width: 380px;
-    padding-bottom: 36px;
-  }
-
-  .banner-v2.block .banner-v2-title {
-    font-size: 32px;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .banner-v2.block .banner-v2-description {
-    font-size: 14px;
-    margin-bottom: 24px;
-  }
-
-  .banner-v2.block ul.banner-v2-stats,
-  .banner-v2.block ol.banner-v2-stats {
-    gap: 12px;
-  }
-
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 12px;
-  }
-
-  .banner-v2.block .stat-value {
-    font-size: 18px;
-  }
-
-  .banner-v2.block .stat-label {
-    font-size: 11px;
-  }
-
-  .banner-v2.block .banner-v2-visual img {
-    max-height: 320px;
-  }
-}
-
-/* Mobile Screen (< 600px) */
-@media (width < 600px) {
+/* Mobile & Tablet Portrait (<= 768px) - Background switches to mobile BG */
+@media (width <= 768px) {
   .banner-v2-wrapper {
-    padding: 0 12px;
+    padding: 0;
   }
 
   .banner-v2.block {
@@ -242,8 +208,7 @@
     align-items: stretch;
     justify-content: flex-start;
     min-height: auto;
-    padding: 32px 18px 0;
-    border-radius: 16px;
+    padding: 36px 20px 0;
     background-image: var(
       --banner-v2-bg-mobile,
       var(
@@ -256,7 +221,7 @@
 
   .banner-v2.block .banner-v2-content {
     max-width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -274,13 +239,13 @@
 
   .banner-v2.block ul.banner-v2-stats,
   .banner-v2.block ol.banner-v2-stats {
-    gap: 10px;
-    justify-content: space-between;
+    gap: 12px;
+    justify-content: flex-start;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
   .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 10px;
+    padding-left: 12px;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat:first-child,
