@@ -111,7 +111,6 @@
   border-radius: 50%;
   z-index: 2;
   transition: all 0.2s;
-  transform-style: preserve-3d;
 }
 
 .timeline.awards.block .timeline-marker-btn[aria-selected='true'] .timeline-marker-dot {
@@ -373,7 +372,7 @@
   font-weight: var(--font-weight-semibold);
 }
 
-@media (width >=500px) {
+@media (min-width: 500px) {
   .timeline.awards.block .timeline-cards-list {
     align-items: normal;
   }
@@ -420,7 +419,7 @@
   }
 }
 
-@media (width >=900px) {
+@media (min-width: 900px) {
   .timeline.awards.block {
     padding: 0;
   }
@@ -550,7 +549,7 @@
   }
 }
 
-@media (width >=1200px) {
+@media (min-width: 1200px) {
   .timeline.awards.block .timeline-nav {
     max-height: 120px;
   }
