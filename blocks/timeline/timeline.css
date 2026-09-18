@@ -202,11 +202,6 @@
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
-
-  -webkit-mask-image: url('../../icons/arrow-left-2.svg');
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
 }
 
 .timeline.awards.block .timeline-arrow:not(:disabled) .icon.icon-arrow-right {
@@ -372,7 +367,7 @@
   font-weight: var(--font-weight-semibold);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .timeline.awards.block .timeline-cards-list {
     align-items: normal;
   }
@@ -419,7 +414,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .timeline.awards.block {
     padding: 0;
   }
@@ -549,7 +544,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .timeline.awards.block .timeline-nav {
     max-height: 120px;
   }
