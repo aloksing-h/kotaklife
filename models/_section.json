@@ -52,6 +52,10 @@
               "value": "highlight"
             },
             {
+              "name": "Display None",
+              "value": "dsp-none"
+            },
+            {
               "name": "Header Varient",
               "children": [
                 {
