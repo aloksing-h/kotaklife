@@ -65,6 +65,10 @@
               ]
             },
             {
+              "name": "Footer Mobile Accordion Only",
+              "value": "mob-accordion"
+            },
+            {
               "name": "Insights & Impact Plans",
               "value": "insights-impact-plans"
             },
