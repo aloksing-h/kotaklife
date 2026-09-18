@@ -120,11 +120,17 @@
     margin: 0;
     width: 32px;
     height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .difference-cards .custom-cards-card-body .icon {
-    width: 32px;
-    height: 32px;
+    width: 22.4px;
+    height: 22.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .difference-cards .custom-cards.swiper {
@@ -181,7 +187,7 @@
     flex-direction: column;
     padding-inline: 16px;
     gap: 8px;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper h1,
@@ -235,7 +241,7 @@
     color: #181d27;
     margin: 0;
     transition: color 0.3s ease;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 /* Category Pill Tag (First Paragraph in Body) */
@@ -263,8 +269,8 @@
     font-size: 14px;
     line-height: 18px;
     font-family: var(--font-family-font-family-display, Manrope);
-    color: #535862;
-    font-weight: 400;
+    color: #414651;
+    font-weight: 600;
     margin: 0;
     transition: color 0.3s ease;
 }
@@ -432,12 +438,12 @@
     .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
         width: 100%;
         display: flex;
-        gap: 16px;
+        gap: 12px;
         padding-inline: 50px;
         max-width: 1200px;
         margin: 0 auto 72px;
         box-sizing: border-box;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
     }
@@ -486,10 +492,10 @@
         font-weight: 500;
         line-height: 20px;
         margin: 0;
-        max-width: 42%;
-        text-align: right;
+        max-width: 534px;
+        text-align: center;
     }
-
+    
     /* ==========================================================================
    Block & Cards Layout
    ========================================================================== */
@@ -501,6 +507,9 @@
         box-sizing: border-box;
         padding-inline: 50px;
         padding-block: 0;
+    }
+    .difference-cards .custom-cards .swiper-pagination{
+        display: none;
     }
 
     .difference-cards .custom-cards>ul {
@@ -514,15 +523,16 @@
 
     /* Card Container Base */
     .difference-cards .custom-cards>ul>li {
-        padding: 26px;
-        min-height: 334px;
+        padding: 20px;
+        max-width: 353px;
+        min-height: 240px;
         border-radius: 20px;
     }
 
     /* Card Title */
     .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-        font-size: 24px;
-        line-height: 28px;
+        font-size: 18px;
+        line-height: 24px;
     }
 
     /* Play / Action Icon Wrapper (Last Child in Body) */
@@ -542,11 +552,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
+        width: 30px;
+        height: 30px;
         transition: transform 0.3s ease;
     }
-
+    .difference-cards.section.custom-cards-container .custom-cards-card-image{
+        bottom: 30px;
+    }
     .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
         display: block;
         width: 100%;
@@ -591,14 +603,20 @@
     }
 
     .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body h4,
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body p,
     .difference-cards.section .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
         color: #fff;
     }
 }
 
-@media (width >= 768px) and (width <= 1023px) {
+@media (width >= 1024px) {
    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 28px;
+   }
+
+   .difference-cards.custom-cards-container .custom-cards-card-body p{
+    font-size: 14px;
+    line-height: 18px;
    }
 }
