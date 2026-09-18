@@ -40,10 +40,27 @@ function decorateCardParagraphs(panel) {
   });
 }
 
+function decorateCardHoverStates(panel) {
+  panel.querySelectorAll('.custom-cards > ul > li').forEach((card) => {
+    let leaveTimer;
+
+    card.addEventListener('mouseenter', () => {
+      clearTimeout(leaveTimer);
+      card.classList.remove('is-leaving');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.add('is-leaving');
+      leaveTimer = setTimeout(() => card.classList.remove('is-leaving'), 700);
+    });
+  });
+}
+
 export default function decorateFindAPlan(block) {
   block.querySelectorAll('.tabs-panel').forEach((panel) => {
     decorateCustomCardsTags(panel);
     decorateCardImages(panel);
     decorateCardParagraphs(panel);
+    decorateCardHoverStates(panel);
   });
 }
