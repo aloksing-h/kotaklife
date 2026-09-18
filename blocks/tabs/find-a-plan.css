@@ -201,7 +201,9 @@
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
     height: 96px;
-    object-fit: contain;
+
+    /* object-fit: contain; */
+    object-fit: cover;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image picture.secondary-image {
