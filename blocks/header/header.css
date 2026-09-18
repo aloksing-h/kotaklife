@@ -860,7 +860,7 @@ nav a:any-link{
   text-decoration: none;
   cursor: pointer;
   text-decoration-line: unset !important;
-  color: currentColor;
+  color: currentcolor;
 }
 
 .nav-hamburger {
@@ -1054,7 +1054,7 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   padding-right: 2px;
 }
 
-.nav-header-top ul.list-item-2 li.list-inner .inner-child-1{
+.nav-header-top ul.list-item-2 li.list-inner .inner-child-1:nth-child(n){
   cursor: pointer;
 }
 
