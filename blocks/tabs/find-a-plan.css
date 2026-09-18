@@ -173,7 +173,8 @@
     
     /* box-shadow: 0 10px 30px rgb(16 24 40 / 8%); */
     overflow: hidden;
-    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transform-origin: center;
+    transition: background 700ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -369,7 +370,7 @@
         background: linear-gradient(160deg, #fb2c47 0%, #7f2224 100%);
         flex-direction: column;
         gap: 0;
-        transform: scaleY(1.1) scaleX(1.08);
+        transform: scale(1.08);
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
@@ -432,7 +433,7 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type {
         display: flex;
-        animation: find-a-plan-content-reveal 220ms ease-out 350ms both;
+        animation: find-a-plan-content-reveal 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type .find-a-plan-tag-li:last-child {
@@ -445,7 +446,11 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
         display: block;
-        animation: find-a-plan-image-rise 950ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: find-a-plan-image-rise 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li.is-leaving .custom-cards-card-image picture.primary-image {
+        animation: find-a-plan-image-return 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
     .find-a-plan.tabs-container .default-content-wrapper {
@@ -513,6 +518,7 @@
     .find-a-plan.tabs-container .tabs-wrapper {
         padding-inline: 30px;
         padding-block: 0;
+        min-height: 400px;
     }
 
     .find-a-plan.tabs-container .default-content-wrapper h2 strong,
@@ -552,13 +558,26 @@
     }
 }
 
+@keyframes find-a-plan-image-return {
+    from {
+        opacity: 0;
+        transform: translateY(-136px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
         transition: none;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type,
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image,
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li.is-leaving .primary-image {
         animation: none;
     }
 }
