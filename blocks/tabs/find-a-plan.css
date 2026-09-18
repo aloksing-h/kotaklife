@@ -378,9 +378,9 @@
         object-fit: contain;
     }
 
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image img {
+    /* .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image img {
         height: 96px;
-    }
+    } */
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body {
         padding: 16px;
