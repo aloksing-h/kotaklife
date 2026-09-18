@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tab-panel"
     ]
   },
   {
@@ -32,9 +33,11 @@
       "tabs",
       "subnav",
       "video",
+      "tab-list",
       "invest-form",
       "timeline",
-      "video-banner"
+      "video-banner",
+      "promo"
     ]
   },
   {
@@ -284,6 +287,12 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "testimonials",
+    "components": [
+      "testimonials-item"
     ]
   },
   {

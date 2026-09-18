@@ -138,6 +138,19 @@
             "value": "highlight"
           },
           {
+            "name": "Header Varient",
+            "children": [
+              {
+                "name": "Grey Header",
+                "value": "grey-nav"
+              },
+              {
+                "name": "White Header",
+                "value": "white-nav"
+              }
+            ]
+          },
+          {
             "name": "Insights & Impact Plans",
             "value": "insights-impact-plans"
           },
@@ -525,6 +538,10 @@
           {
             "name": "Blog Detail Group Image",
             "value": "detail-grp-img"
+          },
+          {
+            "name": "Promotion",
+            "value": "promotion"
           }
         ]
       }
@@ -613,6 +630,10 @@
           {
             "name": "Youtube Video",
             "value": "yt-video"
+          },
+          {
+            "name": "Customer Say Video",
+            "value": "customer-say-video"
           }
         ]
       }
@@ -872,6 +893,38 @@
     ]
   },
   {
+    "id": "tab-panel",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "tab-label",
+        "label": "Label"
+      }
+    ]
+  },
+  {
+    "id": "tab-list",
+    "fields": [
+      {
+        "component": "boolean",
+        "name": "classes_showAll",
+        "label": "Show All?",
+        "description": "When enabled, the tab list will prepend a show all button."
+      }
+    ]
+  },
+  {
     "id": "tabs",
     "fields": [
       {
@@ -901,6 +954,82 @@
         "name": "description",
         "value": "",
         "label": "Tab Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "testimonials",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Customer Say",
+            "value": "customer-say"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "testimonials-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortmob",
+        "label": "Short Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortmobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortdesk",
+        "label": "Short Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortdeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargemob",
+        "label": "Large Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargemobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargedesk",
+        "label": "Large Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargedeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_text",
+        "value": "",
+        "label": "Button Text",
         "valueType": "string"
       }
     ]
