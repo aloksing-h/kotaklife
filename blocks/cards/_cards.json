@@ -10,7 +10,7 @@
             "template": {
               "name": "Cards",
               "filter": "cards",
-              "model":"cards"
+              "model": "cards"
             }
           }
         }
@@ -35,8 +35,8 @@
   "models": [
     {
       "id": "cards",
-      "fields":[
-         {
+      "fields": [
+        {
           "component": "multiselect",
           "name": "classes",
           "label": "Style",
@@ -46,11 +46,28 @@
               "value": "profile-cards"
             },
             {
-              "name":"Financial Cards",
-              "value":"financial-cards"
+              "name": "Financial Cards",
+              "value": "financial-cards"
+            },
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Trust Style",
+              "value": "trust-style"
+            },
+            {
+              "name": "Vision Style",
+              "value": "vision-style"
+            },
+            {
+              "name": "Image Card",
+              "value": "image-card"
             }
           ]
-      }]
+        }
+      ]
     },
     {
       "id": "card",
