@@ -12,7 +12,6 @@
 
 @import url('variables/base.css');
 
-
 :root {
   /* colors */
   --background-color: white;
@@ -320,7 +319,10 @@ main img {
 
 /* sections */
 main>.section {
-  margin: 40px 0;
+  margin: 40px auto;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* =========================================
@@ -336,10 +338,12 @@ main>.section {
 .popular-search.section {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 32px; /* Adds space below each section on mobile */
+  margin-bottom: 32px;
+
+  /* Adds space below each section on mobile */
 }
 
-.column-left-section.section a{
+.column-left-section.section a {
   color: #c8151b;
 }
 
@@ -354,18 +358,17 @@ main>.section {
    Shifts the middle sections into columns.
 ========================================= */
 
-@media (width >= 900px) {
-  /* Hero stays full width */
+@media (width >=900px) {
   .hero-banner.section {
-    margin-bottom: 40px; /* Slightly larger space below hero on desktop */
+    margin-bottom: 40px;
   }
 
   /* Left column takes up 65% and floats left */
   .column-left-section.section {
     width: 65%;
     float: left;
-    padding-right: 40px; /* Creates the gap between the two columns */
-    margin-bottom: 0; /* Let the bottom section handle the vertical spacing */
+    padding-right: 40px;
+    margin-bottom: 0;
   }
 
   /* Right column (bookmarks) takes up 35% and floats right */
@@ -377,8 +380,8 @@ main>.section {
 
   /* Popular searches clears the floats to drop down below the columns */
   .popular-search.section {
-    clear: both; 
-    padding-top: 40px; /* Adds space above the bottom section */
+    clear: both;
+    padding-top: 40px;
   }
 }
 
@@ -387,20 +390,234 @@ main {
   margin: 0 auto;
 }
 
-main > .section > div {
+main>.section:first-of-type {
+  /* margin-top: 35px; */
+  margin-top: 0;
+}
+
+main>.section>div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   box-sizing: border-box;
-  max-width: 1100px;
-  margin: auto;
+}
+
+/* Vision section container:
+   Mobile (360px): 16px padding on left & right -> 328px content width */
+main>.section.vision>div {
+  padding: 0 16px;
+}
+
+/* Trust section container:
+   Mobile (360px): 20px padding on left & right -> 320px content width */
+main>.section.trust>div {
   padding: 0 20px;
 }
 
-main>.section:first-of-type {
-  margin-top: 35px;
+/* ============================================
+   Vision section - Text component styles
+   ============================================ */
+
+.vision .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding: 0;
 }
 
+.vision .default-content-wrapper h1 {
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  overflow-wrap: break-word;
+}
+
+.vision .default-content-wrapper h1 strong {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-1-letter-spacing);
+}
+
+.vision .default-content-wrapper p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   Why Trust section - Text component styles
+   ============================================ */
+
+.trust .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.trust .default-content-wrapper h1 {
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  overflow-wrap: break-word;
+}
+
+.trust .default-content-wrapper h1 strong {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-1-letter-spacing);
+}
+
+.trust .default-content-wrapper p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: 18px;
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* Tablet (>=600px) */
+@media (width >=600px) {
+  main>.section>div:not(.cards-wrapper),
+  main>.section.vision>div:not(.cards-wrapper),
+  main>.section.trust>div:not(.cards-wrapper) {
+    padding: 0 32px;
+  }
+
+  .vision .default-content-wrapper,
+  .trust .default-content-wrapper {
+    margin-bottom: var(--spacing-5xl);
+  }
+
+  .vision .default-content-wrapper h1,
+  .trust .default-content-wrapper h1 {
+    font-size: var(--heading-2-font-size);
+    line-height: var(--heading-2-line-height);
+  }
+
+  .vision .default-content-wrapper p,
+  .trust .default-content-wrapper p {
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+}
+
+@media (width >=768px) {
+  .vision .default-content-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-5xl);
+    margin-bottom: 50px;
+  }
+
+  .vision .default-content-wrapper h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: 0;
+  }
+
+  .vision .default-content-wrapper h1 strong {
+    letter-spacing: normal;
+  }
+
+  .vision .default-content-wrapper p {
+    flex: 0 1 416px;
+    margin-left: auto;
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+  }
+}
+
+/* Desktop (>=900px) - Screen width 1200px basis, 50px left & right padding -> 1100px content width */
 @media (width >=900px) {
-  main>.section>div {
-    padding: 10px 32px;
+  main>.section {
+    margin: 64px auto;
+  }
+
+  main>.section>div,
+  main>.section.trust>div,
+  main>.section.vision>div {
+    padding: 0 50px;
+  }
+
+  /* Vision: fully stretched cards wrapper across 1200px */
+  main>.section.vision .cards-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0;
+  }
+
+  main>.section.trust .cards-wrapper {
+    padding: 0;
+  }
+
+  /* Trust: 1100px wide box, heading left, description right */
+  .trust .default-content-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 149px;
+    margin-bottom: 50px;
+  }
+
+  .trust .default-content-wrapper h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: 0;
+  }
+
+  .trust .default-content-wrapper h1 strong {
+    letter-spacing: normal;
+  }
+
+  .trust .default-content-wrapper p {
+    text-align: right;
+    flex: 0 1 420px;
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+  }
+}
+
+/* Beyond 1200px: strictly confined to 1200px max-width, mx-auto centered */
+@media (width >=1200px) {
+  main>.section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main>.section>div,
+  main>.section.trust>div {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Vision: fully stretched cards wrapper across 1200px */
+  .vision .cards-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+
+  main>.section:first-of-type {
+    /* margin-top: 35px; */
+    margin-top: 16px;
   }
 }
 
@@ -519,7 +736,7 @@ main .section.hero-banner .button-wrapper .button:focus-visible {
 }
 
 /* auto-style plain CTA link when no dropdown is authored (last <p> child) */
-main .section.hero-banner .default-content-wrapper > p:last-child > a:not(.button) {
+main .section.hero-banner .default-content-wrapper>p:last-child>a:not(.button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
