@@ -1,4 +1,7 @@
 export default function decorate(block) {
+  // Detect if viewport is desktop (900px and above)
+  const isDesktop = window.matchMedia('(min-width: 900px)').matches;
+
   let index = 1;
   [...block.children].forEach((row) => {
     const label = row.children[0];
@@ -34,22 +37,119 @@ export default function decorate(block) {
       details.append(summary);
     }
 
-    // Custom click listener for smooth closing
+    // Check if accordion body is empty and add 'hide' class if needed
+    if (body) {
+      const bodyContent = body.querySelector('.accordion-item-body-content');
+
+      // Hide if: body has no children
+      if (body.children.length === 0) {
+        details.classList.add('hide');
+      }
+      // Hide if: body has accordion-item-body-content but it's empty
+      else if (bodyContent && bodyContent.children.length === 0) {
+        details.classList.add('hide');
+      }
+    }
+
+    // Check if first ul has nested ul and add 'nested' class if needed
+    if (body) {
+      const bodyContent = body.querySelector('.accordion-item-body-content');
+      if (bodyContent) {
+        const firstUl = bodyContent.querySelector(':scope > ul');
+        if (firstUl) {
+          // Check if first ul has any nested ul inside it
+          const hasNestedUl = firstUl.querySelector('ul');
+          if (hasNestedUl) {
+            firstUl.classList.add('nested');
+          }
+        }
+      }
+    }
+
+    // Mobile: add click handler for nested list items to manage active state (one at a time)
+    if (!isDesktop && body) {
+      const bodyContent = body.querySelector('.accordion-item-body-content');
+      if (bodyContent) {
+        const nestedUls = bodyContent.querySelectorAll('ul.nested');
+        nestedUls.forEach((nestedUl) => {
+          const listItems = nestedUl.querySelectorAll(':scope > li');
+          listItems.forEach((li) => {
+            li.addEventListener('click', (e) => {
+              e.stopPropagation(); // Prevent event bubbling
+              
+              // If already active, remove active class (close it)
+              if (li.classList.contains('active')) {
+                li.classList.remove('active');
+              } else {
+                // If not active, remove active from all siblings and add to clicked one
+                listItems.forEach((item) => {
+                  item.classList.remove('active');
+                });
+                // Add active class to clicked li
+                li.classList.add('active');
+              }
+            });
+          });
+        });
+      }
+    }
+
+    // Custom click listener for smooth closing and exclusive opening
     summary.addEventListener('click', (e) => {
       e.preventDefault();
 
+      // Desktop behavior: prevent closing, all accordions stay open
+      if (isDesktop && details.hasAttribute('open')) {
+        return; // Prevent closing on desktop
+      }
+
+      // Mobile behavior: allow closing and one-at-a-time opening
       if (details.hasAttribute('open')) {
+        // If already open, close it
         details.classList.add('closing');
-        setTimeout(() => {
-          details.removeAttribute('open');
-          details.classList.remove('closing');
-        }, 300);
+        // setTimeout(() => {
+        details.removeAttribute('open');
+        details.classList.remove('closing');
+        // }, 300);
       } else {
+        // If closed, close all OTHER accordion items first, then open this one
+        const allDetails = block.querySelectorAll('.accordion-item[open]');
+        allDetails.forEach((openItem) => {
+          if (openItem !== details) {
+            openItem.classList.add('closing');
+            // setTimeout(() => {
+            openItem.removeAttribute('open');
+            openItem.classList.remove('closing');
+            // }, 300);
+          }
+        });
+
+        // Open the current item
         details.setAttribute('open', '');
+
+        // Reset active class from nested list items when accordion opens
+        const bodyContent = details.querySelector('.accordion-item-body-content');
+        if (bodyContent) {
+          const nestedUls = bodyContent.querySelectorAll('ul.nested');
+          nestedUls.forEach((nestedUl) => {
+            const listItems = nestedUl.querySelectorAll(':scope > li');
+            listItems.forEach((li) => {
+              li.classList.remove('active');
+            });
+          });
+        }
       }
     });
 
     row.append(details);
     index += 1;
   });
+
+  // Desktop: open all accordions by default
+  if (isDesktop) {
+    const allDetails = block.querySelectorAll('.accordion-item');
+    allDetails.forEach((details) => {
+      details.setAttribute('open', '');
+    });
+  }
 }
