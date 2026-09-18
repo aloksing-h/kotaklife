@@ -1,0 +1,149 @@
+/* =========================================
+   1. LAYOUT: Mobile Swiper & Desktop Flex
+   ========================================= */
+.values-cards-hover .custom-cards > ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Base Card Styles (Applies everywhere) */
+.values-cards-hover .custom-cards > ul > li {
+  height: 380px; 
+  position: relative; 
+  border-radius: 12px;
+  border: 1px solid var(--gray-200, #eaeaea);
+  background: var(--base-white, #ffffff);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, rgba(250, 20, 50, 0.05) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* --- MOBILE ONLY (Swiper Active) --- */
+@media (max-width: 767px) {
+  .values-cards-hover .custom-cards > ul > li {
+    /* Set a specific width for mobile slides so 'slidesPerView: auto' works */
+    width: 80%; 
+    max-width: 300px;
+    flex-shrink: 0;
+  }
+  
+  /* Space out the pagination dots */
+  .values-cards-hover .swiper-pagination {
+    position: relative;
+    margin-top: 24px;
+    bottom: 0;
+  }
+}
+
+/* --- DESKTOP ONLY (5 in a row, No Grid, Swiper Disabled) --- */
+@media (min-width: 768px) {
+  .values-cards-hover .custom-cards > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Forces all cards into exactly one row */
+    align-items: center; 
+    gap: 16px;
+  }
+
+  .values-cards-hover .custom-cards > ul > li {
+    flex: 1 1 0; /* Distributes width equally among all 5 cards */
+    width: auto;
+  }
+}
+
+/* =========================================
+   2. IMAGE: Left-aligned, dynamic width
+   ========================================= */
+.values-cards-hover .custom-cards-card-image {
+  position: absolute;
+  top: 40px; /* Pushes it down slightly from the top */
+  left: 0;   /* Sticks the container to the left side */
+  right: 0;
+  max-width: 192px;
+  max-height: 109px;
+  display: flex;
+  justify-content: flex-start; /* Aligns flex items to the left */
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.values-cards-hover .custom-cards-card-image picture.primary-image img {
+  width: 100%; /* Allows width to be different in each card */
+  height: 100%; /* Max height as requested */
+  
+  object-fit: cover;
+   /* Ensures the graphic itself stays anchored to the left */
+}
+
+/* =========================================
+   3. TEXT CONTENT: Absolute Positioning
+   ========================================= */
+.values-cards-hover .custom-cards-card-body {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  display: block; 
+}
+
+/* TITLE (h4): Default State (Anchored to Bottom) */
+.values-cards-hover .custom-cards-card-body h4 {
+  position: absolute;
+  bottom: 32px; 
+  left: 24px;
+  right: 24px;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--gray-900, #111);
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+}
+
+/* DESCRIPTION (p): Default State (Hidden & Pushed down) */
+.values-cards-hover .custom-cards-card-body p {
+  position: absolute;
+  bottom: 32px;
+  left: 24px;
+  right: 24px;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--base-white, #ffffff);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   4. HOVER STATES
+   ========================================= */
+.values-cards-hover .custom-cards > ul > li:hover {
+  background: linear-gradient(180deg, #7f2224 0%, #fa1432 100%);
+  transform: scale(1.08); /* Card pops out */
+  box-shadow: 0 20px 40px rgba(250, 20, 50, 0.25);
+  border-color: transparent;
+  z-index: 10;
+}
+
+/* Hide Icon */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-image {
+  opacity: 0; 
+}
+
+/* Move Title (h4) to Top */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+  bottom: calc(100% - 72px); /* Moves title dynamically near the top border */
+  color: var(--base-white, #ffffff);
+}
+
+/* Show Description (p) */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

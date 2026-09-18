@@ -1,1 +1,37 @@
 /* add global styles that can be loaded post LCP here */
+.visual-pulse.section {
+    margin: 0;
+}
+
+.visual-pulse.section .default-content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.visual-pulse.section .default-content-wrapper p:first-of-type {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.visual-pulse.section .default-content-wrapper p:last-child {
+    display: none;
+}
+
+@media (width <= 900px) {
+    .visual-pulse.section .default-content-wrapper {
+        justify-content: center;
+    }
+
+    .visual-pulse.section .default-content-wrapper p:first-of-type {
+        justify-content: center;
+        display: none;
+    }
+
+    .visual-pulse.section .default-content-wrapper p:last-child {
+        display: block;
+    }
+}
+

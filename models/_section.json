@@ -167,6 +167,10 @@
             {
               "name": "Values Cards (Hover Text)",
               "value": "values-cards-hover"
+            },
+            {
+              "name": "Visual Pulse",
+              "value": "visual-pulse"
             }
           ]
         }
