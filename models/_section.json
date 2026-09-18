@@ -13,6 +13,23 @@
           }
         }
       }
+    },
+    {
+      "title": "Tab Panel",
+      "id": "tab-panel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "name": "Tab Panel",
+              "model": "tab-panel",
+              "filter": "section",
+              "tab-label": "Tab"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
@@ -33,6 +50,19 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Header Varient",
+              "children": [
+                {
+                  "name": "Grey Header",
+                  "value": "grey-nav"
+                },
+                {
+                  "name": "White Header",
+                  "value": "white-nav"
+                }
+              ]
             },
             {
               "name": "Insights & Impact Plans",
@@ -163,6 +193,7 @@
         "tabs",
         "subnav",
         "video",
+        "tab-list",
         "invest-form",
         "timeline",
         "video-banner"

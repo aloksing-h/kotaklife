@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tab-panel"
     ]
   },
   {
@@ -32,6 +33,7 @@
       "tabs",
       "subnav",
       "video",
+      "tab-list",
       "invest-form",
       "timeline",
       "video-banner"
