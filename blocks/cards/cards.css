@@ -810,6 +810,7 @@
   border: none;
   overflow: hidden;
   isolation: isolate;
+  gap: 0;
 }
 
 .cards.trust-style>ul>li:last-child {
@@ -1037,7 +1038,7 @@
   font-size: var(--body-1-font-size);
   line-height: var(--sub-heading-2-line-height);
   color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
 }
 
 .cards.vision-style .cards-card-body p br {

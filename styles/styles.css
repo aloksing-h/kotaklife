@@ -545,9 +545,9 @@ main>.section.trust>div {
     margin: 64px auto;
   }
 
-  main>.section>div,
-  main>.section.trust>div,
-  main>.section.vision>div {
+  main>.section>div:not(.cards-wrapper),
+  main>.section.vision>div:not(.cards-wrapper),
+  main>.section.trust>div:not(.cards-wrapper) {
     padding: 0 50px;
   }
 

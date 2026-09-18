@@ -3,9 +3,9 @@
 
 /* if we have to keep this in center then give max-width:1200px and mx-auto */
 .fragment-wrapper:has(.subnav) {
-  padding: 0 !important;
-  max-width: unset;
-  margin: 0;
+    padding: 0 !important;
+    max-width: unset;
+    margin: 0;
 }
 
 .subnav.rte ul {
@@ -33,17 +33,17 @@
 }
 
 .subnav.rte a {
-  display: flex;
-  align-items: center;
-  height: 55px;
-  font-family: var(--font-family-manrope);
-  font-size: var(--body-2-font-size);
-  line-height: var(--body-1-line-height);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  text-decoration: none;
-  position: relative;
-  white-space: nowrap;
+    display: flex;
+    align-items: center;
+    height: 55px;
+    font-family: var(--font-family-manrope);
+    font-size: var(--body-2-font-size);
+    line-height: 18px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
 }
 
 .subnav.rte a:hover {
@@ -412,7 +412,7 @@
     .rte.explore-cta.block p {
         margin: 0 0 16px;
         font-size: var(--body-1-font-size);
-        line-height: var(--body-1-line-height);
+        line-height: 18px;
     }
 
     .rte.explore-cta.block .cta-container a {
