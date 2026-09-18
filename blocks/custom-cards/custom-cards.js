@@ -11,6 +11,7 @@ import initInsightsSwiper from './insights-impact-plans.js';
 
 export default async function decorate(block) {
   const differenceCardsSection = block.closest('.difference-cards');
+  const valuesCardsSection = block.closest('values-cards-hover');
   const section = block.closest('.insights-impact-plans');
   // const codeBase = window.hlx?.codeBasePath || '';
 
@@ -59,7 +60,7 @@ export default async function decorate(block) {
   }
 
   // Initialize Swiper after DOM setup
-  if (section || differenceCardsSection) {
+  if (section || differenceCardsSection || valuesCardsSection) {
     initInsightsSwiper(block);
   }
 }
