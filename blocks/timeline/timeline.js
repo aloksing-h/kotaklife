@@ -8,7 +8,11 @@ function showYear(block, index) {
   const panels = block.querySelectorAll('.timeline-panel');
   const total = markers.length;
   if (total === 0) return;
-  const activeIndex = ((index % total) + total) % total;
+  
+  // Prevent index from looping past the first or last slide
+  let activeIndex = index;
+  if (activeIndex <= 0) activeIndex = 0;
+  if (activeIndex >= total - 1) activeIndex = total - 1;
 
   markers.forEach((marker, i) => {
     marker.setAttribute('aria-selected', i === activeIndex);
@@ -17,6 +21,13 @@ function showYear(block, index) {
     panel.setAttribute('aria-hidden', i !== activeIndex);
   });
   block.dataset.activeYear = activeIndex;
+
+  // Disable arrows if at the start or end
+  const prevBtn = block.querySelector('.timeline-arrow-prev');
+  const nextBtn = block.querySelector('.timeline-arrow-next');
+  if (prevBtn) prevBtn.disabled = activeIndex === 0;
+  if (nextBtn) nextBtn.disabled = activeIndex === total - 1;
+
   markers[activeIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
 }
 
