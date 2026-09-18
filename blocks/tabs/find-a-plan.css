@@ -369,7 +369,7 @@
         background: linear-gradient(160deg, #fb2c47 0%, #7f2224 100%);
         flex-direction: column;
         gap: 0;
-        transform: scaleY(1.1);
+        transform: scaleY(1.1) scaleX(1.08);
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
@@ -432,8 +432,7 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type {
         display: flex;
-
-        /* gap: 2px; */
+        animation: find-a-plan-content-reveal 220ms ease-out 350ms both;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type .find-a-plan-tag-li:last-child {
@@ -446,6 +445,7 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
         display: block;
+        animation: find-a-plan-image-rise 950ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     .find-a-plan.tabs-container .default-content-wrapper {
@@ -525,6 +525,41 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image {
         margin-top: unset;
+    }
+}
+
+@keyframes find-a-plan-content-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes find-a-plan-image-rise {
+    from {
+        opacity: 0;
+        transform: translateY(136px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
+        transition: none;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type,
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image {
+        animation: none;
     }
 }
 
