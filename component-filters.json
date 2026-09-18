@@ -34,7 +34,8 @@
       "video",
       "tab-list",
       "invest-form",
-      "video-banner"
+      "video-banner",
+      "promo"
     ]
   },
   {
@@ -284,6 +285,12 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "testimonials",
+    "components": [
+      "testimonials-item"
     ]
   },
   {

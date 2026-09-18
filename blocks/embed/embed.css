@@ -65,3 +65,41 @@
   margin: 0;
   width: 50%;
 }
+
+
+/* Round the corners of the video to match your design */
+.embed.customer-say-video {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgb(0 0 0 / 60%);
+  margin: 0 auto;
+  padding: 0 16px;
+  
+}
+
+ .embed.customer-say-video > div{
+  min-height: 200px;
+  box-sizing: border-box;
+  background-color: transparent;
+} 
+
+.embed.customer-say-video  iframe{
+  border-radius: 8px;
+}
+
+@media (width >=900px) {
+  .embed.customer-say-video{
+    margin: 0;
+    max-width: 100%;
+    max-height: inherit;
+  }
+
+  .embed.customer-say-video > div{
+    max-height: inherit;
+  }
+
+  .embed.customer-say-video  iframe{
+    max-height: inherit;
+  }
+  
+}

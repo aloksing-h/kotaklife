@@ -47,6 +47,10 @@
             {
               "name": "Youtube Video",
               "value": "yt-video"
+            },
+            {
+              "name":"Customer Say Video",
+              "value":"customer-say-video"
             }
           ]
         }

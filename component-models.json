@@ -482,6 +482,10 @@
           {
             "name": "Blog Detail Group Image",
             "value": "detail-grp-img"
+          },
+          {
+            "name": "Promotion",
+            "value": "promotion"
           }
         ]
       }
@@ -570,6 +574,10 @@
           {
             "name": "Youtube Video",
             "value": "yt-video"
+          },
+          {
+            "name": "Customer Say Video",
+            "value": "customer-say-video"
           }
         ]
       }
@@ -866,6 +874,82 @@
         "name": "description",
         "value": "",
         "label": "Tab Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "testimonials",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Customer Say",
+            "value": "customer-say"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "testimonials-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortmob",
+        "label": "Short Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortmobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortdesk",
+        "label": "Short Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortdeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargemob",
+        "label": "Large Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargemobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargedesk",
+        "label": "Large Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargedeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_text",
+        "value": "",
+        "label": "Button Text",
         "valueType": "string"
       }
     ]

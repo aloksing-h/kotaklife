@@ -84,3 +84,75 @@ body.modal-open {
 .modal dialog .section {
   padding: 0;
 }
+
+.modal.block:has(.embed.customer-say-video) dialog {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  max-width: 960px;
+  overflow: visible;
+}
+
+/* 2. Create the dark, transparent black background overlay */
+.modal.block:has(.embed.customer-say-video) dialog::backdrop {
+  background-color: rgb(0 0 0 / 85%);
+  backdrop-filter: blur(4px);
+}
+
+/* 3. Remove default padding from the wrappers */
+.modal.block:has(.embed.customer-say-video) .modal-content,
+.modal.block:has(.embed.customer-say-video) .section,
+.modal.block:has(.embed.customer-say-video) .embed-wrapper {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* 4. Position the Close Button in the top right & make it white */
+.modal.block:has(.embed.customer-say-video) .close-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  color: white;
+  max-width: 28px;
+  max-height: 28px;
+}
+
+.modal.block:has(.embed.customer-say-video) .close-button:hover {
+  transform: scale(1.1);
+}
+
+/* Force the close icon to be white */
+.modal.block:has(.embed.customer-say-video) .close-button .icon.icon-close,
+.modal.block:has(.embed.customer-say-video) .close-button .icon.icon-close img,
+.modal.block:has(.embed.customer-say-video) .close-button .icon.icon-close svg {
+  max-width: 28px;
+  max-height: 28px;
+  height: 100%;
+  width: 100%;
+}
+
+@media (width >=900px) {
+  .modal.block:has(.embed.customer-say-video) dialog{
+    max-width: 960px;
+    max-height: 446px;
+    height: 100%;
+  }
+
+  .modal.block:has(.embed.customer-say-video) .modal-content, .modal.block:has(.embed.customer-say-video) .section, .modal.block:has(.embed.customer-say-video) .embed-wrapper{
+     max-height: 446px;
+  }
+
+  .modal.block:has(.embed.customer-say-video) .close-button {
+  top: 50px;
+  right: 50px;
+  
+}
+
+}

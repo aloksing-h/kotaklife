@@ -50,16 +50,13 @@
     list-style: none;
 }
 
-/* Tablet & Desktop override */
-@media (width >=900px) {
-    .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards ul {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+/* Tablet & Desktop override handled in the flex-nowrap rule below (width >=900px) */
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li {
     display: flex;
-    flex: 0 0 37.5%;
+    flex: 0 0 156px;
+    width: 156px;
+    height: 120px;
     padding: var(--spacing-xl, 16px);
     flex-direction: column;
     align-items: flex-start;
@@ -71,6 +68,7 @@
     border: none;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 
     /* transition: all 0.3s ease; */
 }
@@ -78,8 +76,8 @@
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover {
     transform: translateY(-4px);
     flex-direction: column-reverse;
-    width: 174px;
-    height: 142px;
+    width: 156px;
+    height: 120px;
     border-radius: 4px;
     border: none;
     box-shadow: 0 12px 20px 10px rgb(37 37 143 / 10%), 0 0.506px 2.025px 0 rgb(0 0 0 / 10%);
@@ -221,9 +219,18 @@
 }
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) {
-    display: block;
+    /* display: block;
     width: 131px;
     height: 137px;
+    margin: 0; */
+
+    /* display: block;
+    width: 139px;
+    height: 101px;
+    margin: 0; */
+    display: block;
+    width: 140px;
+    height: 66px;
     margin: 0;
 }
 
@@ -233,6 +240,7 @@
     display: block;
     padding: 0;
     margin-left: 0;
+    object-fit: cover;
 }
 
 @media (width >=900px) {
@@ -250,7 +258,9 @@
 
     .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards ul li {
         display: flex;
-        flex: 0 0 25.4%;
+        flex: 0 0 174px;
+        width: 174px;
+        height: 122px;
         padding: var(--spacing-xl, 16px);
         flex-direction: column;
         align-items: flex-start;
@@ -259,11 +269,19 @@
         background: var(--base-white, #FFF);
         box-shadow: 0 10px 10px 0 rgb(36 108 216 / 10%);
         backdrop-filter: blur(10px);
+        box-sizing: border-box;
+    }
+
+    .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover {
+        width: 174px;
+        height: 122px;
     }
 
     .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards li:hover .custom-cards-card-image>p:nth-child(2) {
-        width: 175px;
-        height: 114px;
+        /* width: 175px;
+        height: 114px; */
+        width: 158px;
+        height: 69px;
     }
 }
 
