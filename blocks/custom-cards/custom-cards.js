@@ -12,7 +12,7 @@ import initValuesSwiper from './values-cards.js';
 
 export default async function decorate(block) {
   const differenceCardsSection = block.closest('.difference-cards');
-  const valuesCardsSection = block.closest('values-cards-hover');
+  const valuesCardsSection = block.closest('.values-cards-hover');
   const section = block.closest('.insights-impact-plans');
   // const codeBase = window.hlx?.codeBasePath || '';
 

@@ -2,7 +2,6 @@ export default async function initValuesSwiper(block) {
   const ul = block.querySelector('ul');
   if (!ul) return;
 
-  const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
   // Create pagination container if it doesn't exist
   let pagination = block.querySelector('.swiper-pagination');
   if (!pagination) {
@@ -11,28 +10,31 @@ export default async function initValuesSwiper(block) {
     block.append(pagination);
   }
 
-  const mobileQuery = window.matchMedia('(max-width: 768px)');
+  const mobileQuery = window.matchMedia('(max-width: 1024px)');
 
-  const enableSwiper = () => {
+  const enableSwiper = async () => {
     if (!block.swiperInstance) {
+      // 1. Add classes BEFORE initializing so Swiper finds them
       block.classList.add('swiper');
       ul.classList.add('swiper-wrapper');
       [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
 
-      block.swiperInstance = createSwiper(block, {
-        slidesPerView: 'auto',
-        spaceBetween: 8,
-        grabCursor: true,
-        pagination: {
-          el: pagination,
-          clickable: true,
-        },
-        breakpoints: {
-          768: {
-            spaceBetween: 16, // Spacing for screens 768px and above
-          }
-        },
-      });
+      try {
+        // 2. Dynamically import Swiper ONLY when on mobile
+        const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
+        
+        block.swiperInstance = createSwiper(block, {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          grabCursor: true,
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+        });
+      } catch (error) {
+        console.error('Failed to load Swiper:', error);
+      }
     }
   };
 
@@ -40,20 +42,24 @@ export default async function initValuesSwiper(block) {
     if (block.swiperInstance) {
       block.swiperInstance.destroy(true, true);
       block.swiperInstance = null;
-      block.classList.remove('swiper');
-      ul.classList.remove('swiper-wrapper');
-      [...ul.children].forEach((li) => li.classList.remove('swiper-slide'));
     }
+    // 3. Always ensure classes are stripped on desktop
+    block.classList.remove('swiper');
+    ul.classList.remove('swiper-wrapper');
+    [...ul.children].forEach((li) => li.classList.remove('swiper-slide'));
   };
 
-  const handleMediaChange = () => {
-    if (mobileQuery.matches) {
+  const handleMediaChange = (e) => {
+    if (e.matches) {
       enableSwiper();
     } else {
       disableSwiper();
     }
   };
 
-  handleMediaChange();
+  // Initial check on page load
+  handleMediaChange(mobileQuery);
+  
+  // Listen for window resize
   mobileQuery.addEventListener('change', handleMediaChange);
 }
