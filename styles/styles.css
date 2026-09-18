@@ -488,7 +488,6 @@ main>.section.trust>div {
 
 /* Tablet (>=600px) */
 @media (width >=600px) {
-  main>.section>div:not(.cards-wrapper),
   main>.section.vision>div:not(.cards-wrapper),
   main>.section.trust>div:not(.cards-wrapper) {
     padding: 0 32px;
