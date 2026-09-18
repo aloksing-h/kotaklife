@@ -31,9 +31,11 @@
       "rte",
       "rteV2",
       "tabs",
+      "subnav",
       "video",
       "tab-list",
       "invest-form",
+      "timeline",
       "video-banner",
       "promo"
     ]
@@ -291,6 +293,13 @@
     "id": "testimonials",
     "components": [
       "testimonials-item"
+    ]
+  },
+  {
+    "id": "timeline",
+    "components": [
+      "timeline-item",
+      "timeline-card"
     ]
   },
   {
