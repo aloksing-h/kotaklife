@@ -51,7 +51,7 @@
 /* Bottom "Browse All Plans" button (last default-content-wrapper, link-only) */
 .find-a-plan.tabs-container .default-content-wrapper:last-child {
     display: flex;
-    margin-top: 20px;
+    margin-top: 36.5px;
     margin-bottom: 0;
     justify-content: center;
 }
@@ -349,7 +349,7 @@
     flex-shrink: 0;
     border-radius: 50%;
     background: #e1122d url('/icons/write-arrow-right.svg') center / 20px no-repeat;
-    transform: scaleY(0.909);
+    transform: scale(0.926);
     transform-origin: center;
 }
 
@@ -394,10 +394,6 @@
         margin-top: 20px;
     }
 
-    
-    .find-a-plan.tabs-container .default-content-wrapper:last-child p {
-        margin-top: 20px;
-    }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p:first-child {
         padding: 0;
