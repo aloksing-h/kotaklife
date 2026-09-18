@@ -8,7 +8,6 @@ function showYear(block, index) {
   const panels = block.querySelectorAll('.timeline-panel');
   const total = markers.length;
   if (total === 0) return;
-  
   // Prevent index from looping past the first or last slide
   let activeIndex = index;
   if (activeIndex <= 0) activeIndex = 0;

@@ -205,16 +205,16 @@
 }
 
 .timeline.awards.block .timeline-arrow:not(:disabled) .icon.icon-arrow-right {
-  background-color: var(--brand-red-500); 
+  background-color: var(--brand-red-500);
+}
+
+.timeline.awards.block .timeline-arrow:disabled .icon.icon-arrow-right {
+  background-color: var(--gray-400);
 }
 
 /* Hover state for Active Arrows */
 .timeline.awards.block .timeline-arrow:not(:disabled):hover .icon.icon-arrow-right {
   background-color: var(--brand-red-600);
-}
-
-.timeline.awards.block .timeline-arrow:disabled .icon.icon-arrow-right {
-  background-color: var(--gray-400); 
 }
 
 .timeline.awards.block .timeline-arrow-next .icon {
@@ -421,7 +421,7 @@
   }
 
   .timeline.awards.block .timeline-nav {
-    padding: 29px 0 37px 0;
+    padding: 29px 0 37px;
   }
 
   /* margin-left leaves room for the absolutely positioned slider-title heading */
