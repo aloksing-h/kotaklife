@@ -15,11 +15,9 @@
   overflow-x: auto;
   padding: 27px 0 40px;
 
-  /* Hide scrollbar for clean look */
+  /* Hide scrollbar for clean look (IE, Edge, Firefox) */
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .timeline.awards.block .timeline-nav::-webkit-scrollbar {
@@ -42,6 +40,7 @@
   align-items: center;
   gap: 67px;
   width: max-content;
+
   /* Forces parent to be exactly as wide as the items + gaps */
   min-width: 100%;
 }
@@ -61,10 +60,12 @@
 .timeline.awards.block .timeline-marker-btn {
   display: flex;
   flex-direction: column;
+
   /* Stacks year on top of dot */
   align-items: center;
-  gap: 11px;
+
   /* Distance between year and dot */
+  gap: 11px;
   flex: 0 0 auto;
   border: none;
   background: transparent;
@@ -151,6 +152,7 @@
       transparent 5px,
       transparent 8px);
   background-size: 100% 10px;
+
   /* Red ticks are 10px tall */
   background-position: center;
   background-repeat: no-repeat;
@@ -334,9 +336,8 @@
 }
 
 .timeline.awards.block .timeline-cards-list:has(> .timeline-card-item:only-child) {
-  /* Add your single-card layout styles here */
+  /* Add your single-card layout styles here (e.g. justify-content: center) */
   justify-content: center;
-  /* example */
 }
 
 /* Or target the single item itself */
