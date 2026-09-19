@@ -3,18 +3,23 @@
    ========================================= */
 
 /* Clip the hover scale/reveal below the grid breakpoint, whether or not swiper is active */
+.values-cards-hover.custom-cards-wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+}
 
 .values-cards-hover .custom-cards {
   overflow: hidden;
-  margin-right: -16px;
-  margin-left: -12px;
+  padding-bottom: 20px;
 }
 
 
 .values-cards-hover .custom-cards>ul {
   display: flex;
   flex-flow: row nowrap;
-  padding: 40px 0;
+
+  /* padding: 40px 0; */
   margin: 0;
 
   /* justify-content: space-between; */
@@ -251,6 +256,10 @@
     font-size: 12px;
     line-height: 16px;
   }
+
+  .values-cards-hover .custom-cards>ul {
+    gap: 20px;
+  }
 }
 
 /* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
@@ -290,7 +299,7 @@
 
   .values-cards-hover .custom-cards>ul>li:hover {
     transform: scale(1.26);
-    
+
     /* Slightly reduced scale avoids clipping on smaller screens */
   }
 
