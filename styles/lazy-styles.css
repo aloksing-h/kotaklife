@@ -616,6 +616,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 .visual-pulse.section {
     margin: 0;
+    background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
 }
 
 .visual-pulse.section .default-content-wrapper {
@@ -638,6 +639,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 @media (width <=900px) {
     .visual-pulse.section .default-content-wrapper {
         justify-content: center;
+        padding: 0 6px 0 16px;
     }
 
     .visual-pulse.section .default-content-wrapper p:first-of-type {
@@ -649,3 +651,18 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
         display: block;
     }
 }
+
+@media (width >= 900px) {
+    .visual-pulse.section {
+        padding-top: 60px;
+    }
+    
+ .visual-pulse.section .default-content-wrapper {
+    padding: 0;
+ }
+
+ .visual-pulse.section .default-content-wrapper p:first-of-type {
+    margin: 0;
+ }
+}
+
