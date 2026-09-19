@@ -7,7 +7,39 @@
   .values-cards-hover .custom-cards {
     overflow: hidden;
   }
+.values-cards-hover.custom-cards-container .default-content-wrapper h1,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    line-height: 36px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
 
+.values-cards-hover.custom-cards-container .default-content-wrapper h1 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 strong{
+  font-weight: 600;
+}
+
+.values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding-bottom: 30px;
+  }
+
+.values-cards-hover.custom-cards-container .default-content-wrapper p {
+    color:#717680;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+    padding: 0;
+}
 
 .values-cards-hover .custom-cards > ul {
   display: flex;
@@ -204,6 +236,34 @@
 }
 
 @media (width >= 800px) {
+  .values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding-bottom: 40px;
+  }
+  .values-cards-hover.custom-cards-container .default-content-wrapper h1,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h2,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h3,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+        width: auto;
+        color: var(--text-text-primary, #181d27);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: 48px;
+        font-weight: 300;
+        line-height: 60px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .values-cards-hover.custom-cards-container .default-content-wrapper p {
+        color: var(--text-text-tertiary, #535862);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        margin: 0;
+      
+        text-align: center;
+    }
+
   .values-cards-hover .custom-cards > ul > li {
     flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
     width: auto;

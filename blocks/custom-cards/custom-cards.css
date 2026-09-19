@@ -212,11 +212,12 @@
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper p {
-    color: var(--text-text-primary, #181D27);
+    color:#717680;
     font-size: 14px;
     line-height: 18px;
     text-align: center;
     margin: 0;
+    font-weight: 500;
     padding: 0;
 }
 
@@ -480,13 +481,6 @@
 
     .difference-cards.custom-cards-container .default-content-wrapper:last-child a {
         font-size: 16px;
-    }
-
-    .difference-cards.custom-cards-container .default-content-wrapper h1 strong,
-    .difference-cards.custom-cards-container .default-content-wrapper h2 strong,
-    .difference-cards.custom-cards-container .default-content-wrapper h3 strong,
-    .difference-cards.custom-cards-container .default-content-wrapper h4 strong {
-        font-weight: 600;
     }
 
     .difference-cards.custom-cards-container .default-content-wrapper p {
