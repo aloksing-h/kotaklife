@@ -3,6 +3,11 @@
    ========================================= */
 
 /* Clip the hover scale/reveal below the grid breakpoint, whether or not swiper is active */
+.values-cards-hover.custom-cards-wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+}
 
   .values-cards-hover .custom-cards {
     overflow: hidden;
@@ -51,10 +56,14 @@
 }
 
 /* Base Card Styles (Mobile sizes applied by default) */
-.values-cards-hover .custom-cards > ul > li {
+.values-cards-hover .custom-cards>ul>li {
   position: relative;
-  width: 152px; /* Mobile width as requested */
-  min-height: 250px; /* Mobile height as requested */
+  width: 152px;
+
+  /* Mobile width as requested */
+  min-height: 250px;
+
+  /* Mobile height as requested */
   height: 100%;
   flex-shrink: 0; /* Ensures Swiper slides don't squash */
   border-radius: var(--radius-lg, 12px);
@@ -66,35 +75,37 @@
   padding: 0;
 }
 
- .values-cards-hover .custom-cards > ul > li::before {
-    content: '';
-    position: absolute;
-    inset: 52% 0 0;
-    background-image: url("../../icons/pink-bg-mobile.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    pointer-events: none;
-  }
+.values-cards-hover .custom-cards>ul>li::before {
+  content: '';
+  position: absolute;
+  inset: 52% 0 0;
+  background-image: url("../../icons/pink-bg-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
 
-  .values-cards-hover .custom-cards > ul > li:nth-child(even)::before{
-    background-image: url("../../icons/blue-bg-mobile.svg");
-  }
+.values-cards-hover .custom-cards>ul>li:nth-child(even)::before {
+  background-image: url("../../icons/blue-bg-mobile.svg");
+}
 
-  .values-cards-hover .custom-cards > ul > li::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("../../icons/glass-effect-mobile.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    mix-blend-mode: screen;
-    pointer-events: none;
-  }
+.values-cards-hover .custom-cards>ul>li::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("../../icons/glass-effect-mobile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
 
-  .values-cards-hover .custom-cards > ul > li:hover::before,
-.values-cards-hover .custom-cards > ul > li:hover::after {
+.values-cards-hover .custom-cards>ul>li:hover::before,
+.values-cards-hover .custom-cards>ul>li:hover::after {
   opacity: 0;
-  transition: opacity 0.3s ease; /* Optional: adds a smooth fade out */
+  transition: opacity 0.3s ease;
+
+  /* Optional: adds a smooth fade out */
 }
 
 /* Swiper Pagination (Visible on Mobile by default) */
@@ -139,17 +150,19 @@
   height: 100%;
   max-height: 109px;
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   transition: opacity 0.3s ease;
   z-index: 1;
   aspect-ratio: 16/9;
 }
 
 .values-cards-hover .custom-cards .custom-cards-card-image picture.primary-image img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; /* Prevents stretching when width/height flexes */
-  object-position: left center; 
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  /* Prevents stretching when width/height flexes */
+  object-position: left center;
 }
 
 /* =========================================
@@ -190,7 +203,7 @@
   color: var(--base-white, #fff);
   opacity: 0;
   visibility: hidden;
-  overflow: hidden; 
+  overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -205,8 +218,8 @@
 }
 
 /* Hide Icon */
-.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-image {
-  opacity: 0; 
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-image {
+  opacity: 0;
 }
 
 /* Move Title (h4) to Top */
@@ -225,7 +238,7 @@
 }
 
 /* Swiper only runs at 768px and below; hide its pagination as soon as it's disabled */
-@media (width >= 769px) {
+@media (width >=769px) {
   .values-cards-hover .custom-cards .swiper-pagination {
     display: none;
   }
@@ -265,12 +278,18 @@
     width: auto;
     height: auto;
     max-width: 170px;
-    aspect-ratio: 170 / 275; /* calculated height that scales with the fluid width */
+    aspect-ratio: 170 / 275;
+
+    /* calculated height that scales with the fluid width */
   }
 
-  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
     font-size: 12px;
     line-height: 16px;
+  }
+
+  .values-cards-hover .custom-cards>ul {
+    gap: 20px;
   }
 }
 
@@ -280,45 +299,47 @@
     gap: var(--spacing-2xl, 20px);
   }
 
-  .values-cards-hover .custom-cards > ul > li {
+  .values-cards-hover .custom-cards>ul>li {
     max-width: 192px;
     aspect-ratio: 192 / 314;
   }
 
 
-   .values-cards-hover .custom-cards > ul > li::before {
+  .values-cards-hover .custom-cards>ul>li::before {
     top: 160px;
     background-image: url("../../icons/pink-bg.svg");
   }
 
-  .values-cards-hover .custom-cards > ul > li:nth-child(even)::before{
+  .values-cards-hover .custom-cards>ul>li:nth-child(even)::before {
     background-image: url("../../icons/blue-bg.svg");
   }
 
-  .values-cards-hover .custom-cards > ul > li::after {
+  .values-cards-hover .custom-cards>ul>li::after {
     background-image: url("../../icons/glass-effect.svg");
   }
 
   /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
-.values-cards-hover .custom-cards > ul > li:first-child {
-  transform-origin: left;
-}
+  .values-cards-hover .custom-cards>ul>li:first-child {
+    transform-origin: left;
+  }
 
-/* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
-.values-cards-hover .custom-cards > ul > li:last-child {
-  transform-origin: right;
-}
+  /* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
+  .values-cards-hover .custom-cards>ul>li:last-child {
+    transform-origin: right;
+  }
 
-.values-cards-hover .custom-cards > ul > li:hover {
-  transform: scale(1.26); /* Slightly reduced scale avoids clipping on smaller screens */
-}
+  .values-cards-hover .custom-cards>ul>li:hover {
+    transform: scale(1.26);
 
-/* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
-.values-cards-hover .custom-cards > ul > li:not(:first-child, :last-child) {
-  transform-origin: center;
-}
+    /* Slightly reduced scale avoids clipping on smaller screens */
+  }
 
-  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+  /* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
+  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+    transform-origin: center;
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
     top: 40px;
 
   }

@@ -9,102 +9,102 @@
 
 /* eslint-disable */
 .custom-cards>ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
 }
 
 .custom-cards>ul>li {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--light-color);
-  background-color: var(--background-color);
-  position: relative;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--light-color);
+    background-color: var(--background-color);
+    position: relative;
+    overflow: hidden;
 }
 
 /* Image Column & Dual Image Support */
 .custom-cards .custom-cards-card-image {
-  position: relative;
-  line-height: 0;
+    position: relative;
+    line-height: 0;
 }
 
 .custom-cards .custom-cards-card-image picture.primary-image img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 .custom-cards .custom-cards-card-image picture.secondary-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 .custom-cards .custom-cards-card-image picture.secondary-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* Content Body Column */
 .custom-cards .custom-cards-card-body {
-  margin: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Card Variations */
 
 /* 1. Horizontal Layout */
 @media (width >=900px) {
-  .custom-cards>ul>li.horizontal {
-    flex-direction: row;
-  }
+    .custom-cards>ul>li.horizontal {
+        flex-direction: row;
+    }
 
-  .custom-cards>ul>li.horizontal .custom-cards-card-image {
-    width: 40%;
-    flex-shrink: 0;
-  }
+    .custom-cards>ul>li.horizontal .custom-cards-card-image {
+        width: 40%;
+        flex-shrink: 0;
+    }
 
-  .custom-cards>ul>li.horizontal .custom-cards-card-body {
-    width: 60%;
-  }
+    .custom-cards>ul>li.horizontal .custom-cards-card-body {
+        width: 60%;
+    }
 }
 
 /* 2. Featured Full-Width Card */
 .custom-cards>ul>li.featured {
-  grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 /* 3. Image Overlay Card */
 .custom-cards>ul>li.image-overlay {
-  display: grid;
-  grid-template-areas: "card-content";
+    display: grid;
+    grid-template-areas: "card-content";
 }
 
 .custom-cards>ul>li.image-overlay .custom-cards-card-image,
 .custom-cards>ul>li.image-overlay .custom-cards-card-body {
-  grid-area: card-content;
+    grid-area: card-content;
 }
 
 .custom-cards>ul>li.image-overlay .custom-cards-card-body {
-  z-index: 1;
-  margin: 0;
-  padding: 24px;
-  background: linear-gradient(180deg,
-      rgb(0 0 0 / 0%) 0%,
-      rgb(0 0 0 / 80%) 100%);
-  color: #fff;
-  justify-content: flex-end;
+    z-index: 1;
+    margin: 0;
+    padding: 24px;
+    background: linear-gradient(180deg,
+            rgb(0 0 0 / 0%) 0%,
+            rgb(0 0 0 / 80%) 100%);
+    color: #fff;
+    justify-content: flex-end;
 }
 
 .custom-cards>ul>li.image-overlay .custom-cards-card-body a {
-  color: #fff;
+    color: #fff;
 }
 
 
