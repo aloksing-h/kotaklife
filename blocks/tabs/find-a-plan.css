@@ -379,6 +379,7 @@
     }
     
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image img {
+        height: 126px;
         object-fit: cover;
     }
 
