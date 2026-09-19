@@ -138,6 +138,10 @@
             "value": "highlight"
           },
           {
+            "name": "Display None",
+            "value": "dsp-none"
+          },
+          {
             "name": "Header Varient",
             "children": [
               {
@@ -149,6 +153,18 @@
                 "value": "white-nav"
               }
             ]
+          },
+          {
+            "name": "Footer Mobile Accordion Only",
+            "value": "mob-accordion"
+          },
+          {
+            "name": "Footer Social Icon",
+            "value": "footer-social"
+          },
+          {
+            "name": "Footer Imp Links",
+            "value": "footer-imp-links"
           },
           {
             "name": "Insights & Impact Plans",

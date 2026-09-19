@@ -192,16 +192,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     const navDrops = navSections.querySelectorAll('.nav-drop');
     if (isDesktop.matches) {
       navDrops.forEach((drop) => {
-        if (!drop.hasAttribute('tabindex')) {
-          drop.setAttribute('tabindex', 0);
-          drop.setAttribute('role', 'button');
-          drop.addEventListener('focus', focusNavSection);
-        }
-      });
-    } else {
-      navDrops.forEach((drop) => {
-        drop.removeAttribute('tabindex');
-        drop.removeEventListener('focus', focusNavSection);
+        drop.addEventListener('focus', focusNavSection);
       });
     }
   }
@@ -287,10 +278,58 @@ function addLayerClasses(element, classNameMap, depth = 1) {
 // }
 
 /**
+ * Inject focus styling for nav-drop and list-inner elements via JavaScript
+ * Uses :focus-visible to show outline ONLY on keyboard Tab, NOT on mouse clicks
+ * This ensures Figma design is preserved while maintaining WCAG 2.2 accessibility
+ */
+function injectNavDropFocusStyles() {
+  // Check if style already injected to avoid duplicates
+  if (document.getElementById('nav-drop-focus-styles')) {
+    return;
+  }
+
+  const style = document.createElement('style');
+  style.id = 'nav-drop-focus-styles';
+  style.textContent = `
+    /* WCAG 2.2: Keyboard focus outline - ONLY shows on Tab, NOT on mouse click */
+    
+    /* Nav-drop elements (navigation items with submenus) */
+    header nav .nav-sections .nav-drop:focus-visible {
+      outline: 2px solid;
+      outline-offset: 2px;
+    }
+
+    /* All list-inner elements (header-top dropdowns and other interactive items) */
+    header nav .list-inner:focus-visible {
+      outline: 2px solid;
+      outline-offset: 2px;
+    }
+
+    /* Header-top elements: Language, Call, Login dropdowns */
+    .nav-header-top li.list-inner-1:focus-visible,
+    .nav-header-top li.list-inner-2:focus-visible,
+    .nav-header-top li.list-inner-4:focus-visible {
+      outline: 2px solid;
+      outline-offset: 2px;
+    }
+
+    /* WhatsApp button focus styling - keyboard only */
+    .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-1:focus-visible {
+      outline: 2px solid;
+      outline-offset: 2px;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  // Inject focus styles for all keyboard-accessible elements
+  injectNavDropFocusStyles();
+
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -348,10 +387,18 @@ export default async function decorate(block) {
     });
   }
 
-  // Initialize all .list-inner elements with aria-expanded="false"
+  // WCAG 2.2: Initialize all .list-inner elements with aria-expanded and role
   const allListInner = nav.querySelectorAll('.list-inner');
   allListInner.forEach((listInner) => {
     listInner.setAttribute('aria-expanded', 'false');
+    // Make all list-inner elements keyboard accessible
+    if (!listInner.hasAttribute('tabindex')) {
+      listInner.setAttribute('tabindex', '0');
+    }
+    // Only add role if not already present
+    if (!listInner.hasAttribute('role')) {
+      listInner.setAttribute('role', 'button');
+    }
   });
 
   // Handle header-top list-inner click functionality (both mobile and desktop)
@@ -364,17 +411,37 @@ export default async function decorate(block) {
   if (headerTopListInners.length > 0) {
     // Add click listeners to these specific list-inner items
     headerTopListInners.forEach((listInner) => {
-      listInner.addEventListener('click', (e) => {
+      const handleListInnerToggle = (e) => {
         e.stopPropagation();
         // Check if the clicked item already has the active class
         const isAlreadyActive = listInner.classList.contains('active');
         // Remove active class from all these specific list-inner items
         headerTopListInners.forEach((item) => {
           item.classList.remove('active');
+          // WCAG 2.2: Update aria-expanded for accessibility
+          item.setAttribute('aria-expanded', 'false');
         });
         // If it wasn't active, add active class to clicked item (toggle behavior)
         if (!isAlreadyActive) {
           listInner.classList.add('active');
+          // WCAG 2.2: Update aria-expanded state
+          listInner.setAttribute('aria-expanded', 'true');
+        }
+      };
+
+      // WCAG 2.2: Set proper ARIA attributes and keyboard accessibility
+      listInner.setAttribute('aria-expanded', 'false');
+      listInner.setAttribute('role', 'button');
+      listInner.setAttribute('tabindex', '0');
+
+      // Mouse click
+      listInner.addEventListener('click', handleListInnerToggle);
+
+      // WCAG 2.2: Keyboard accessibility (Enter and Space)
+      listInner.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter' || e.code === 'Space') {
+          e.preventDefault();
+          handleListInnerToggle(e);
         }
       });
     });
@@ -389,6 +456,18 @@ export default async function decorate(block) {
         // Remove active class from all these items
         headerTopListInners.forEach((item) => {
           item.classList.remove('active');
+          // WCAG 2.2: Update aria-expanded state
+          item.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    // WCAG 2.2: Close menu when Escape key is pressed
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Escape') {
+        headerTopListInners.forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-expanded', 'false');
         });
       }
     });
@@ -399,7 +478,13 @@ export default async function decorate(block) {
     '.nav-header-top .list-item-2 > .list-inner-2 .inner-child-2 > .inner-item-1',
   );
   if (whatsappItem) {
-    whatsappItem.addEventListener('click', (e) => {
+    // WCAG 2.2 Accessibility: Add proper semantic role and labels
+    whatsappItem.setAttribute('role', 'button');
+    whatsappItem.setAttribute('tabindex', '0');
+    whatsappItem.setAttribute('aria-label', 'Send WhatsApp message to 93210 03007');
+    whatsappItem.setAttribute('aria-pressed', 'false');
+
+    const handleWhatsappClick = (e) => {
       e.preventDefault();
       e.stopPropagation();
 
@@ -413,6 +498,17 @@ export default async function decorate(block) {
         // Mobile: Open WhatsApp with pre-filled message
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
+      }
+    };
+
+    // Mouse and touch events
+    whatsappItem.addEventListener('click', handleWhatsappClick);
+
+    // WCAG 2.2: Keyboard accessibility (Enter and Space)
+    whatsappItem.addEventListener('keydown', (e) => {
+      if (e.code === 'Enter' || e.code === 'Space') {
+        e.preventDefault();
+        handleWhatsappClick(e);
       }
     });
   }
@@ -449,8 +545,9 @@ export default async function decorate(block) {
   let leaveTimer = null; // Timer for delayed menu closing
 
   if (navSections) {
-    // Add proper ARIA attributes to nav-sections (WCAG 2.2 - 4.1.2 Name, Role, Value)
+    // WCAG 2.2: Add proper ARIA attributes to nav-sections (4.1.2 Name, Role, Value)
     navSections.setAttribute('role', 'menubar');
+    navSections.setAttribute('aria-label', 'Main navigation menu');
 
     // Get the last li from nav-sections once and extract its text
     const navSectionsUl = navSections.querySelector('.default-content-wrapper > ul');
@@ -479,15 +576,18 @@ export default async function decorate(block) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach(async (navDrop) => {
       if (navDrop.querySelector('ul')) {
         navDrop.classList.add('nav-drop');
-        navDrop.removeAttribute('aria-expanded');
-        navDrop.removeAttribute('tabindex');
 
-        // Set proper ARIA attributes for dropdown (WCAG 2.2 - 4.1.2 Name, Role, Value)
-        navDrop.setAttribute('role', 'listitem');
+        // WCAG 2.2: Make nav-drop focusable with default browser focus outline
+        // Set tabindex="0" and role="button" so it's keyboard accessible like header-top elements
+        navDrop.setAttribute('tabindex', '0');
+        navDrop.setAttribute('role', 'button');
+        navDrop.setAttribute('aria-expanded', 'false');
+
         const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
         if (dropButton) {
           dropButton.setAttribute('aria-haspopup', 'true');
           dropButton.setAttribute('aria-expanded', 'false');
+          dropButton.setAttribute('aria-controls', `navdrop-${Math.random().toString(36).substr(2, 9)}`);
         }
 
         // Check if this nav-drop has a fragment link
@@ -590,10 +690,12 @@ export default async function decorate(block) {
             }
             navDrop.setAttribute('aria-expanded', 'true');
             navDrop.setAttribute('data-aria-expanded', 'true');
-            // Update aria-haspopup button
+            // WCAG 2.2: Update aria-haspopup button
             const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
             if (dropButton) {
               dropButton.setAttribute('aria-expanded', 'true');
+              // Add aria-busy to indicate content is loading
+              dropButton.setAttribute('aria-busy', 'false');
             }
           }
         }
@@ -606,13 +708,36 @@ export default async function decorate(block) {
           leaveTimer = setTimeout(() => {
             navDrop.setAttribute('aria-expanded', 'false');
             navDrop.setAttribute('data-aria-expanded', 'false');
-            // Update aria-haspopup button
+            // WCAG 2.2: Update aria-haspopup button
             const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
             if (dropButton) {
               dropButton.setAttribute('aria-expanded', 'false');
+              dropButton.setAttribute('aria-busy', 'false');
             }
             document.body.classList.remove('no-scroll');
           }, 300); // 300ms delay before closing
+        }
+      });
+
+      // WCAG 2.2: Desktop keyboard support (Arrow keys for navigation + Enter to open)
+      navDrop.addEventListener('keydown', (e) => {
+        if (isDesktop.matches) {
+          const allDrops = Array.from(navSections.querySelectorAll('.nav-drop'));
+          const currentIndex = allDrops.indexOf(navDrop);
+
+          if (e.code === 'ArrowRight' && currentIndex < allDrops.length - 1) {
+            e.preventDefault();
+            allDrops[currentIndex + 1].focus();
+            allDrops[currentIndex + 1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+          } else if (e.code === 'ArrowLeft' && currentIndex > 0) {
+            e.preventDefault();
+            allDrops[currentIndex - 1].focus();
+            allDrops[currentIndex - 1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+          } else if (e.code === 'Enter') {
+            // WCAG 2.2: Enter key opens nav-drop on desktop
+            e.preventDefault();
+            navDrop.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+          }
         }
       });
 
@@ -642,6 +767,21 @@ export default async function decorate(block) {
           if (dropButton) {
             dropButton.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
+          // WCAG 2.2: Announce state change to screen readers
+          dropButton?.setAttribute('aria-busy', 'false');
+        }
+      });
+
+      // WCAG 2.2: Mobile keyboard support (Enter key on nav-drop)
+      navDrop.addEventListener('keydown', (e) => {
+        if (!isDesktop.matches && e.code === 'Enter') {
+          e.preventDefault();
+          const clickEvent = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+          });
+          navDrop.dispatchEvent(clickEvent);
         }
       });
     });
@@ -687,9 +827,9 @@ export default async function decorate(block) {
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
-      hamburgLink.addEventListener('click', () => {
+      hamburgLink.addEventListener('click', async () => {
         // Use setTimeout to ensure modal is fully loaded before applying class
-        setTimeout(() => {
+        setTimeout(async () => {
           const modal = document.querySelector('.modal.block');
           if (modal) {
             modal.classList.add('desk-hamburger');
@@ -697,6 +837,13 @@ export default async function decorate(block) {
             // Get the section inside modal
             const modalSection = modal.querySelector('.section');
             if (modalSection) {
+              // IMPORTANT: Store and clear initial content to prevent visual jerk
+              const initialContent = modalSection.querySelector('.default-content-wrapper');
+              const storedInitialContent = initialContent ? initialContent.cloneNode(true) : null;
+
+              // Clear the section to remove initial authored content (prevents flashing)
+              modalSection.innerHTML = '';
+
               // Remove any existing nav-wrapper to avoid duplicate/stale data
               const existingNavWrapper = modalSection.querySelector('.nav-wrapper');
               if (existingNavWrapper) {
@@ -746,6 +893,20 @@ export default async function decorate(block) {
 
               // Prepend nav-wrapper to section
               modalSection.prepend(newNavWrapper);
+
+              // Append the stored initial content back after the nav-wrapper
+              // (for "Talk To An Expert" section)
+              if (storedInitialContent) {
+                modalSection.appendChild(storedInitialContent);
+              }
+
+              // Now show the modal with all content in place
+              // Import the helper function to show modal with proper timing
+              const { setupDeskhHamburgerModal } = await import('../modal/modal.js');
+              const modalHelper = setupDeskhHamburgerModal(modal);
+              if (modalHelper && modalHelper.clearAndShow) {
+                modalHelper.clearAndShow();
+              }
             }
           }
         }, 200);
