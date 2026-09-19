@@ -1,0 +1,576 @@
+/* ==========================================================================
+   Leadership Section & Profile-CTA Block Variant
+   Figma Desktop: 1011:35029 (573px height)
+   Figma Mobile: 544:1038 (623px height)
+   ========================================================================== */
+
+/* 1. Section Container & Full-Bleed Background */
+.leadership {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, #fa1432 0%, #181d27 100%);
+  padding: 40px 0 50px;
+  margin: 50px 0;
+  min-height: 573px;
+  box-sizing: border-box;
+}
+
+/* Background Artwork Layer (When moved by JS into .leadership-bg) */
+.leadership .leadership-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.leadership .leadership-bg-desktop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.leadership .leadership-bg-desktop img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  opacity: 0.5;
+  display: block;
+}
+
+.leadership .leadership-bg-mobile {
+  display: none;
+}
+
+/* Background Artwork Fallback (When pictures remain in .default-content-wrapper) */
+.leadership>.default-content-wrapper>p:nth-child(1) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.leadership>.default-content-wrapper>p:nth-child(1) img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  opacity: 0.5;
+  display: block;
+}
+
+.leadership>.default-content-wrapper>p:nth-child(2) {
+  display: none;
+}
+
+/* 2. Section Header (Title & Subtitle) - Static so absolute background covers full section */
+.leadership>.default-content-wrapper {
+  position: static;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto 52px;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.leadership>.default-content-wrapper h1 {
+  position: relative;
+  z-index: 1;
+  font-family: Manrope, sans-serif;
+  font-size: 48px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.leadership>.default-content-wrapper h1 strong {
+  font-weight: 600;
+}
+
+.leadership>.default-content-wrapper p:not(:nth-child(1), :nth-child(2)) {
+  position: relative;
+  z-index: 1;
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #fff;
+  max-width: 586px;
+  margin: 0 auto;
+}
+
+/* 3. Leadership Card (Profile-CTA) */
+.leadership .profile-cta-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.leadership .profile-cta {
+  position: relative;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  grid-template-rows: auto auto;
+  align-items: flex-start;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 1101px;
+  min-height: 280px;
+  margin: 90px auto 0;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 6%);
+  box-sizing: border-box;
+  overflow: visible;
+  gap: 0;
+}
+
+/* Col 1: Visual / Image */
+.leadership .profile-cta>div:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 310px;
+  margin-top: -45px;
+  margin-bottom: 0;
+  margin-left: 30px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+  align-self: end;
+}
+
+.leadership .profile-cta>div:nth-child(1) picture,
+.leadership .profile-cta>div:nth-child(1) img {
+  display: block;
+  width: 267px;
+  height: 310px;
+  max-height: 310px;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* Col 2, Row 1: Details (Name, Role, Bio) */
+.leadership .profile-cta>div:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 27px 20px 0 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.leadership .profile-cta>div:nth-child(2) p:first-of-type {
+  font-family: Manrope, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--text-text-primary, #181d27);
+  margin: 0 0 10px;
+}
+
+.leadership .profile-cta>div:nth-child(2) p:nth-of-type(2) {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--text-text-tertiary, #535862);
+  margin: 0 0 16px;
+}
+
+.leadership .profile-cta>div:nth-child(2) p:nth-of-type(3) {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text-text-primary, #181d27);
+  max-width: 740px;
+  margin: 0;
+}
+
+.leadership .profile-cta>div:nth-child(2) p:nth-of-type(3) strong {
+  color: var(--brand-red-600, #e1122d);
+  font-weight: 800;
+}
+
+/* Col 2, Row 2: Action / Button (Left-aligned under bio) */
+.leadership .profile-cta>div:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 20px 40px 32px 24px;
+  box-sizing: border-box;
+  text-align: left;
+  justify-self: start;
+}
+
+/* 4. "Read more.." Button (Desktop: Hidden) */
+.leadership .profile-cta .bio-read-more {
+  display: none;
+}
+
+.leadership .profile-cta .bio-more {
+  display: inline;
+}
+
+/* 5. Button & Arrow Icon Styling */
+.leadership .profile-cta>div:nth-child(3) p:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 277px;
+  height: 40px;
+  background-color: var(--brand-red-600);
+  border-radius: var(--radius-full);
+  padding: 4px 4px 4px 20px;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.leadership .profile-cta>div:nth-child(3) a {
+  color: var(--base-white);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0;
+  gap: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--font-family-manrope, 'Manrope', sans-serif);
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-1-font-size);
+  line-height: var(--button-1-line-height);
+  background: transparent;
+  margin: 0;
+}
+
+.leadership .profile-cta>div:nth-child(3) a:has(span) {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.leadership .profile-cta>div:nth-child(3) a::before {
+  content: none;
+  display: none;
+}
+
+.leadership .profile-cta>div:nth-child(3) a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  display: block;
+  width: auto;
+  height: auto;
+  background: transparent;
+}
+
+.leadership .profile-cta>div:nth-child(3) a:hover,
+.leadership .profile-cta>div:nth-child(3) a:focus-visible {
+  background-color: transparent;
+}
+
+.leadership .profile-cta>div:nth-child(3) span,
+.leadership .profile-cta>div:nth-child(3) a span,
+.leadership .profile-cta>div:nth-child(3) p>span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  background-color: var(--base-white);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease-in-out;
+  pointer-events: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leadership .profile-cta>div:nth-child(3) img,
+.leadership .profile-cta>div:nth-child(3) a img,
+.leadership .profile-cta>div:nth-child(3) p>span img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+  transition: filter 0.2s ease-in-out;
+  display: block;
+  margin: 0;
+}
+
+/* Hover: White circle turns black, black arrow inverts to white */
+.leadership .profile-cta>div:nth-child(3) p:hover span,
+.leadership .profile-cta>div:nth-child(3) a:hover span {
+  background-color: var(--base-black);
+}
+
+.leadership .profile-cta>div:nth-child(3) p:hover img,
+.leadership .profile-cta>div:nth-child(3) a:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.leadership .profile-cta>div:nth-child(3) p:focus-within,
+.leadership .profile-cta>div:nth-child(3) a:focus-visible {
+  outline: 2px solid var(--base-white);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   6. Mobile & Responsive Overrides (width <= 767px)
+   Figma Mobile: 544:1038
+   ========================================================================== */
+
+@media (width <=767px) {
+  .leadership {
+    background: linear-gradient(147deg, #fa1432 10%, #181d27 100%);
+    padding: 40px 0 48px;
+    min-height: 623px;
+  }
+
+  /* Swap background images to mobile version */
+  .leadership .leadership-bg-desktop,
+  .leadership>.default-content-wrapper>p:nth-child(1) {
+    display: none;
+  }
+
+  .leadership .leadership-bg-mobile,
+  .leadership>.default-content-wrapper>p:nth-child(2) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .leadership .leadership-bg-mobile img,
+  .leadership>.default-content-wrapper>p:nth-child(2) img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0.5;
+    display: block;
+  }
+
+  /* Mobile Section Header */
+  .leadership>.default-content-wrapper {
+    margin: 0 auto 36px;
+    padding: 0 16px;
+  }
+
+  .leadership>.default-content-wrapper h1 {
+    font-size: 28px;
+    line-height: 36px;
+    margin: 0 0 12px;
+  }
+
+  .leadership>.default-content-wrapper p:not(:nth-child(1), :nth-child(2)) {
+    font-size: 14px;
+    line-height: 18px;
+    max-width: 316px;
+  }
+
+  /* Mobile Card: Stacked column */
+  .leadership .profile-cta-wrapper {
+    padding: 0 16px;
+  }
+
+  .leadership .profile-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 328px;
+    max-width: 100%;
+    height: 407px;
+    margin: 64px auto 0;
+    padding: 0 16px 20px;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  /* Visual on top, protruding -44px, bottom cropped via fixed height + overflow: hidden */
+  .leadership .profile-cta>div:nth-child(1) {
+    width: 263px;
+    height: 247px;
+    max-width: 100%;
+    margin: -44px auto 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .leadership .profile-cta>div:nth-child(1) picture,
+  .leadership .profile-cta>div:nth-child(1) img {
+    width: 263px;
+    height: 247px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Details in center */
+  .leadership .profile-cta>div:nth-child(2) {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .leadership .profile-cta>div:nth-child(2) p:first-of-type {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .leadership .profile-cta>div:nth-child(2) p:nth-of-type(2) {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #717680;
+    margin: 6px 0 16px;
+    text-align: center;
+  }
+
+  .leadership .profile-cta>div:nth-child(2) p:nth-of-type(3) {
+    font-size: 14px;
+    line-height: 18px;
+    color: #181d27;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  /* "Read more.." button on mobile */
+  .leadership .profile-cta .bio-more.is-hidden {
+    display: none;
+  }
+
+  .leadership .profile-cta .bio-read-more {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 4px;
+    color: var(--brand-red-600, #e1122d);
+    font-family: var(--font-family-manrope, 'Manrope', sans-serif);
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: baseline;
+  }
+
+  .leadership .profile-cta .bio-read-more:hover,
+  .leadership .profile-cta .bio-read-more:focus-visible {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .leadership .profile-cta.is-expanded {
+    height: auto;
+    min-height: 407px;
+    gap: 16px;
+  }
+
+  /* Action / Button centered at bottom */
+  .leadership .profile-cta>div:nth-child(3) {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    justify-self: center;
+  }
+
+  .leadership .profile-cta>div:nth-child(3) p:first-of-type {
+    width: 248px;
+    height: 38px;
+    padding: 4px 4px 4px 20px;
+    margin: 0 auto;
+  }
+
+  .leadership .profile-cta>div:nth-child(3) a {
+    font-size: var(--button-2-font-size);
+    line-height: var(--button-2-line-height);
+  }
+
+  .leadership .profile-cta>div:nth-child(3) span,
+  .leadership .profile-cta>div:nth-child(3) a span,
+  .leadership .profile-cta>div:nth-child(3) p>span {
+    height: 29px;
+    width: 29px;
+  }
+
+  .leadership .profile-cta>div:nth-child(3) img,
+  .leadership .profile-cta>div:nth-child(3) a img,
+  .leadership .profile-cta>div:nth-child(3) p>span img {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+/* ==========================================================================
+   7. Fold / Ultra-Small Screen Support (width <= 336px)
+   ========================================================================== */
+
+@media (width <=336px) {
+  .leadership .profile-cta-wrapper {
+    padding: 0 8px;
+  }
+
+  .leadership .profile-cta {
+    padding: 0 10px 20px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .leadership .profile-cta>div:nth-child(1) {
+    max-width: 220px;
+  }
+
+  .leadership .profile-cta>div:nth-child(3) p:first-of-type {
+    max-width: 100%;
+    width: 248px;
+    padding: 4px 4px 4px 14px;
+  }
+
+  .leadership .profile-cta>div:nth-child(3) a {
+    padding: 0;
+    gap: 8px;
+    font-size: 13px;
+  }
+}
