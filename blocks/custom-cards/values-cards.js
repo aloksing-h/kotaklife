@@ -11,7 +11,7 @@ export default async function initValuesSwiper(block) {
   }
 
   // Swiper is only active at 800px and below; the CSS grid layout takes over above that
-  const mobileQuery = window.matchMedia('(max-width: 800px)');
+  const mobileQuery = window.matchMedia('(max-width: 900px)');
 
   const enableSwiper = async () => {
     if (!block.swiperInstance) {
