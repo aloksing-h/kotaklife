@@ -9,24 +9,50 @@
 
 }
 
-.values-cards-hover .custom-cards {
-  overflow: hidden;
-  padding-bottom: 20px;
+  .values-cards-hover .custom-cards {
+    overflow: hidden;
+  }
+
+.values-cards-hover.custom-cards-container .default-content-wrapper h1,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+    font-size: var(--heading-3-font-size, 32px);
+    letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+    line-height: var(--heading-3-line-height, 36px);
+    text-align: center;
+    margin: 0 0 6px;
+    padding: 0;
+    font-weight: var(--font-weight-light, 300);
 }
 
+.values-cards-hover.custom-cards-container .default-content-wrapper h1 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 strong{
+  font-weight: var(--font-weight-semibold, 600);
+}
 
-.values-cards-hover .custom-cards>ul {
+.values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding-bottom: 30px;
+  }
+
+.values-cards-hover.custom-cards-container .default-content-wrapper p {
+    color: var(--gray-500, #717680);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+    text-align: center;
+    margin: 0;
+    font-weight: var(--font-weight-medium, 500);
+    padding: 0;
+}
+
+.values-cards-hover .custom-cards > ul {
   display: flex;
   flex-flow: row nowrap;
-
-  /* padding: 40px 0; */
-  margin: 0;
-
-  /* justify-content: space-between; */
-  list-style: none;
-  gap: 0;
-
-  /* Let Swiper handle spacing on mobile */
+  padding: var(--spacing-5xl, 40px) 0;
+  justify-content: space-between;
+  gap: 0; /* Let Swiper handle spacing on mobile */
 }
 
 /* Base Card Styles (Mobile sizes applied by default) */
@@ -39,17 +65,14 @@
 
   /* Mobile height as requested */
   height: 100%;
-  flex-shrink: 0;
-
-  /* Ensures Swiper slides don't squash */
-  border-radius: 12px;
+  flex-shrink: 0; /* Ensures Swiper slides don't squash */
+  border-radius: var(--radius-lg, 12px);
   border: 1px solid var(--gray-200, #eaeaea);
   background: var(--base-white, #fff);
   background-image: linear-gradient(180deg, rgb(255 255 255 / 0%) 60%, rgb(250 20 50 / 5%) 100%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   padding: 0;
-  overflow: hidden;
 }
 
 .values-cards-hover .custom-cards>ul>li::before {
@@ -88,17 +111,17 @@
 /* Swiper Pagination (Visible on Mobile by default) */
 .values-cards-hover .custom-cards .swiper-pagination {
   bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  left: unset;
-  right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--spacing-xs, 4px);
+    left: unset;
+    right: var(--spacing-2xl, 20px);
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
+  width: var(--spacing-md, 8px);
+  height: var(--spacing-md, 8px);
   background-color: #d1d5db;
   opacity: 1;
   border-radius: 50%;
@@ -108,8 +131,8 @@
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet-active {
   width: 28px;
-  background-color: #e31837;
-  border-radius: 4px;
+  background-color: #e31837; 
+  border-radius: var(--radius-xs, 4px);
 }
 
 
@@ -119,8 +142,8 @@
    ========================================= */
 .values-cards-hover .custom-cards .custom-cards-card-image {
   position: absolute;
-  top: 20px;
-  left: 0;
+  top: var(--spacing-2xl, 20px); 
+  left: 0;   
   right: 0;
   max-width: 176px;
   width: 100%;
@@ -151,24 +174,18 @@
   margin: 0;
   padding: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
 }
 
 /* TITLE (h4): Default State */
 .values-cards-hover .custom-cards .custom-cards-card-body h4 {
   position: absolute;
-  bottom: 24px;
-
-  /* Anchoring bottom prevents breaking on fluid height changes */
-  left: 16px;
-  right: 16px;
+  bottom: var(--spacing-3xl, 24px); /* Anchoring bottom prevents breaking on fluid height changes */
+  left: var(--spacing-xl, 16px); 
+  right: var(--spacing-xl, 16px);
   margin: 0;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-
-  /* Responsive font scaling */
-  font-weight: 500;
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font scaling */
+  font-weight: var(--font-weight-medium, 500);
   color: var(--gray-900, #111);
   transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
 }
@@ -176,15 +193,13 @@
 /* DESCRIPTION (p): Default State */
 .values-cards-hover .custom-cards .custom-cards-card-body p {
   position: absolute;
-  top: 100%;
-
-  /* Hides seamlessly below the card bounds */
-  left: 16px;
-  right: 16px;
+  top: 100%; /* Hides seamlessly below the card bounds */
+  left: var(--spacing-xl, 16px); 
+  right: var(--spacing-xl, 16px);
   margin: 0;
-  font-size: 0.625rem;
-  line-height: 0.75rem;
-  font-weight: 600;
+  font-size: var(--disclaimer-font-size, 0.625rem);
+  line-height: var(--disclaimer-line-height, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
   color: var(--base-white, #fff);
   opacity: 0;
   visibility: hidden;
@@ -195,11 +210,9 @@
 /* =========================================
    4. HOVER STATES
    ========================================= */
-.values-cards-hover .custom-cards>ul>li:hover {
-  background: linear-gradient(180deg, #7f2224 0%, #fa1432 100%);
-  transform: scale(1.06);
-
-  /* Slightly reduced scale avoids clipping on smaller screens */
+.values-cards-hover .custom-cards > ul > li:hover {
+  background: linear-gradient(180deg, var(--decorative-red-900, #7f2224) 0%, var(--decorative-red-500, #fa1432) 100%);
+  transform: scale(1.06); /* Slightly reduced scale avoids clipping on smaller screens */
   border-color: transparent;
   z-index: 10;
 }
@@ -210,24 +223,16 @@
 }
 
 /* Move Title (h4) to Top */
-.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
-  bottom: auto;
-
-  /* Release bottom anchor */
-  top: 24px;
-
-  /* Pin to top */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+  bottom: auto; /* Release bottom anchor */
+  top: var(--spacing-3xl, 24px); /* Pin to top */
   color: var(--base-white, #fff);
 }
 
 /* Show Description (p) */
-.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-  top: auto;
-
-  /* Starts dynamically below the pinned title */
-  bottom: 24px;
-
-  /* Ensures text doesn't overflow card at any height */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  top: auto; /* Starts dynamically below the pinned title */
+  bottom: var(--spacing-3xl, 24px); /* Ensures text doesn't overflow card at any height */
   opacity: 1;
   visibility: visible;
 }
@@ -239,11 +244,37 @@
   }
 }
 
-@media (width >=800px) {
-  .values-cards-hover .custom-cards>ul>li {
-    flex: 1 1 0;
+@media (width >= 800px) {
+  .values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding-bottom: var(--spacing-5xl, 40px);
+  }
 
-    /* fluid width that shrinks to fit instead of overflowing */
+  .values-cards-hover.custom-cards-container .default-content-wrapper h1,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h2,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h3,
+    .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+        width: auto;
+        color: var(--text-primary, #181d27);
+        font-family: var(--font-family-manrope, Manrope);
+        font-size: var(--heading-1-font-size, 48px);
+        font-weight: var(--font-weight-light, 300);
+        line-height: var(--heading-1-line-height, 60px);
+        margin: 0 0 12px;
+        padding: 0;
+    }
+
+    .values-cards-hover.custom-cards-container .default-content-wrapper p {
+        color: var(--text-tertiary, #535862);
+        font-family: var(--font-family-manrope, Manrope);
+        font-size: var(--body-1-font-size, 16px);
+        font-weight: var(--font-weight-medium, 500);
+        line-height: var(--body-1-line-height, 20px);
+        margin: 0;
+        text-align: center;
+    }
+
+  .values-cards-hover .custom-cards > ul > li {
+    flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
     width: auto;
     height: auto;
     max-width: 170px;
@@ -263,9 +294,9 @@
 }
 
 /* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
-@media (width >=1200px) {
-  .values-cards-hover .custom-cards>ul {
-    gap: 20px;
+@media (width >= 1200px) {
+  .values-cards-hover .custom-cards > ul {
+    gap: var(--spacing-2xl, 20px);
   }
 
   .values-cards-hover .custom-cards>ul>li {
@@ -313,9 +344,9 @@
 
   }
 
-  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-    bottom: 40px;
-    font-size: 14px;
-    line-height: 18px;
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+    bottom: var(--spacing-5xl, 40px);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
   }
 }
