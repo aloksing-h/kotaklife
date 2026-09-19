@@ -470,7 +470,7 @@
         align-items: center;
         gap: 8px 24px;
         max-width: 1200px !important;
-        margin: 0 auto 32px !important;
+        margin: 0 auto 50px !important;
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -788,18 +788,21 @@
     .growing-insurance-company .cards-wrapper ul li:nth-child(2) {
         grid-column: 1 / 2;
         grid-row: 2 / 4;
+        border-radius: 8px;
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(3) {
         grid-column: 2 / 3;
         grid-row: 2 / 3;
         padding: 8px 0 8px 8px;
+        border-radius: 6px;
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(4) {
         grid-column: 2 / 3;
         grid-row: 3 / 4;
         padding: 8px;
+        border-radius: 6px;
     }
 
     .growing-insurance-company .cards-wrapper {
@@ -910,6 +913,14 @@ line-height: 14px;
         width: 24px;
         height: 24px;
     }
+
+     /* .growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-body {
+        margin-bottom: 11px;
+    } */
+
+    .growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-body {
+        margin-bottom: 19px;
+    } 
 }
 
 /* .growing-insurance-company .default-content-wrapper {
