@@ -278,18 +278,18 @@
   },
   {
     "component": "text",
-    "name": "background-imageAlt",
+    "name": "background-image",
     "label": "Background Image Alt Text /desktop"
   },
   {
     "component": "reference",
-    "name": "backgroundimage-mobil",
-    "label": "Background Image for /mobil",
+    "name": "bg-mobile",
+    "label": "Background Image for /mobile",
     "multi": false
   },
   {
     "component": "text",
-    "name": "backgroundimage-mobilAlt",
+    "name": "bg-mobileAlt",
     "label": "Background Image Alt Text /mobile"
   },
   {
