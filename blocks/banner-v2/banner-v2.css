@@ -493,3 +493,36 @@ main>.section:has(.banner-v2) {
     max-width: 100%;
   }
 }
+
+/* ==========================================================================
+   6. Universal Editor / Authoring Mode (window.self !== window.top)
+   - Replaces 100vh / 100dvh with fixed minimum heights so the hero block
+     does not collapse or break inside authoring iframes
+   ========================================================================== */
+.banner-v2.block.is-editor {
+  min-height: 800px;
+  height: auto;
+}
+
+.banner-v2.block.is-editor .banner-v2-inner {
+  min-height: 800px;
+  height: auto;
+}
+
+.banner-v2.block.is-editor .banner-v2-visual img {
+  max-height: 700px;
+}
+
+@media (max-width: 768px) {
+  .banner-v2.block.is-editor {
+    min-height: 700px;
+  }
+
+  .banner-v2.block.is-editor .banner-v2-inner {
+    min-height: 700px;
+  }
+
+  .banner-v2.block.is-editor .banner-v2-visual img {
+    max-height: 400px;
+  }
+}

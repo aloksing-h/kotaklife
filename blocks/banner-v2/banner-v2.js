@@ -72,6 +72,10 @@ function createStatItem(element) {
  * @param {Element} block The banner-v2 block element
  */
 export default async function decorate(block) {
+  if (window.self !== window.top) {
+    block.classList.add('is-editor');
+  }
+
   // Collect all picture elements in the block
   const pictures = [...block.querySelectorAll('picture')];
 
