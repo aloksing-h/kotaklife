@@ -131,6 +131,14 @@ export default async function decorate(block) {
     // 3. Process Overlay Text
     if (contentRow) {
       contentRow.classList.add('video-banner-content');
+
+      let lastParagraph = contentRow.querySelector('p:last-child');
+      if (lastParagraph) {
+        lastParagraph.addEventListener('click', () => {
+          let target = document.querySelector('.infinite-protection.custom-cards-container');
+          target?.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
     }
 
     // Insert media wrapper into the block
