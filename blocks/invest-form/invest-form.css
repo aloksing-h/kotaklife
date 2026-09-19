@@ -193,6 +193,28 @@
     border-color: #E1122D;
 }
 
+/* .invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
+    border-color: #E1122D;
+}
+
+.invest-form.section.invest-form-container .field-error {
+    margin: 4px 0 0;
+    color: #E1122D;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.invest-form.section.invest-form-container .form-success-message {
+    color: var(--text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-weight: 600;
+    line-height: var(--line-height-body-1, 18px);
+    margin: 0;
+} */
+
 /* Date Field Calendar Icon */
 .invest-form.section.invest-form-container .form-field.date-field input {
     background-image: url('../../icons/calendar-fm.svg');
@@ -231,6 +253,11 @@
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
     background-color: #c90e26;
 }
+
+/* .invest-form.section.invest-form-container .button-wrapper button.button:disabled {
+    background: #D5D7DA;
+    cursor: not-allowed;
+} */
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
     flex-grow: 1;
