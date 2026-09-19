@@ -365,6 +365,12 @@
         width: 23.84%;
     }
 
+    .find-a-plan.tabs-container .default-content-wrapper:last-child a {
+        padding: 11px 24px;
+        font-size: var(--font-size-button-1, 16px);
+        line-height: var(--line-height-body-1, 18px);
+    }
+
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
         white-space: initial;
         letter-spacing: -0.64px;
@@ -515,12 +521,6 @@
         font-weight: 600;
         font-family: var(--font-family-font-family-body, Manrope);
         margin-bottom: 4px;
-    }
-
-    .find-a-plan.tabs-container .default-content-wrapper:last-child a {
-        padding: 11px 24px;
-        font-size: var(--font-size-button-1, 16px);
-        line-height: var(--line-height-body-1, 18px);
     }
 
     .find-a-plan.tabs-container .tabs-wrapper {
