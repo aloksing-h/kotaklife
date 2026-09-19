@@ -194,17 +194,6 @@
       "component": "text",
       "name": "background-image",
       "label": "Background Image Alt Text /desktop"
-    },
-    {
-      "component": "reference",
-      "name": "bg-mobile",
-      "label": "Background Image for /mobile",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "name": "bg-mobileAlt",
-      "label": "Background Image Alt Text /mobile"
     }
   ],
   "filters": [
