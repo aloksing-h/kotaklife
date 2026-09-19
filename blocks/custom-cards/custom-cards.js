@@ -66,6 +66,6 @@ export default async function decorate(block) {
   }
 
   if (valuesCardsSection || differenceCardsSection) {
-    initValuesSwiper(block , differenceCardsSection , valuesCardsSection);
+    initValuesSwiper(block, differenceCardsSection, valuesCardsSection);
   }
 }

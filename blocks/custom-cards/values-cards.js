@@ -1,4 +1,4 @@
-export default async function initValuesSwiper(block , differenceCardsSection , valuesCardsSection) {
+export default async function initValuesSwiper(block, differenceCardsSection, valuesCardsSection) {
   const ul = block.querySelector('ul');
   if (!ul) return;
 
@@ -10,13 +10,14 @@ export default async function initValuesSwiper(block , differenceCardsSection , 
     block.append(pagination);
   }
   let mobileQuery;
-  if(differenceCardsSection){
-      mobileQuery = window.matchMedia('(max-width: 768px)');
+  if (differenceCardsSection) {
+    mobileQuery = window.matchMedia('(max-width: 768px)');
   }
-  
-  if(valuesCardsSection){// Swiper is only active at 800px and below; the CSS grid layout takes over above that
+
+  if (valuesCardsSection) {
     mobileQuery = window.matchMedia('(max-width: 800px)');
   }
+
   const enableSwiper = async () => {
     if (!block.swiperInstance) {
       // 1. Add classes BEFORE initializing so Swiper finds them
