@@ -131,6 +131,17 @@ export default async function decorate(block) {
     // 3. Process Overlay Text
     if (contentRow) {
       contentRow.classList.add('video-banner-content');
+
+      const lastParagraph = contentRow.querySelector('p:last-child');
+      if (lastParagraph) {
+        lastParagraph.addEventListener('click', () => {
+          const target = document.querySelector('.infinite-protection.custom-cards-container');
+          if (!target) return;
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        });
+      }
     }
 
     // Insert media wrapper into the block
