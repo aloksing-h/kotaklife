@@ -245,6 +245,10 @@
           {
             "name": "Slider Title",
             "value": "slider-title"
+          },
+          {
+            "name": "Visual Pulse",
+            "value": "visual-pulse"
           }
         ]
       }
