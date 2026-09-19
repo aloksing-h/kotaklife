@@ -1,7 +1,7 @@
 @import url('../swiper/swiper-bundle.min.css');
 
 .looking-for.section.custom-cards-container {
-    margin-top: 0;
+   margin-top: 47px;
 }
 
 .looking-for.custom-cards-container .default-content-wrapper {
@@ -12,7 +12,7 @@
 .looking-for.custom-cards-container .default-content-wrapper>p {
     color: var(--text-text-primary, #181D27);
     text-align: center;
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-4, 24px);
     font-style: normal;
     font-weight: 300;
@@ -28,6 +28,7 @@
 @media (width >=899px) {
     .looking-for.custom-cards-container .default-content-wrapper>p {
         font-weight: 400;
+        margin: 0;
     }
 }
 
@@ -151,7 +152,7 @@
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards-card-body h4 {
     color: var(--text-text-primary, #181D27);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-body-1, 16px);
     font-style: normal;
     font-weight: 600;
@@ -162,7 +163,7 @@
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards ul li .custom-cards-card-body p:last-of-type {
     color: var(--text-text-tertiary, #535862);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-caption, 12px);
     font-style: normal;
     font-weight: 500;
@@ -181,7 +182,7 @@
     border: 1px solid var(--border-border-white, #FFF);
     margin: 0;
     color: var(--text-text-white, #FFF);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-caption, 12px);
     font-style: normal;
     font-weight: 500;
@@ -191,7 +192,7 @@
 /* Disclaimer text */
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -207,7 +208,7 @@
     width: 88%;
     margin: 0;
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -323,7 +324,7 @@
     border: none;
     background: transparent;
     color: var(--text-text-primary, #181D27);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-body-2, 14px);
     font-style: normal;
     font-weight: 400;
@@ -569,7 +570,7 @@
     flex-direction: column;
     width: max-content;
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-body-1, 16px);
     font-style: normal;
     font-weight: 600;
@@ -586,7 +587,7 @@
     display: flex;
     flex-direction: column;
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-body-1, 16px);
     font-style: normal;
     font-weight: 600;
@@ -598,7 +599,7 @@
     padding: 0;
     list-style: none;
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
@@ -619,7 +620,7 @@
     border: 1px solid var(--border-border-white, #FFF);
     margin: 0;
     color: var(--text-text-white, #FFF);
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-caption, 12px);
     font-style: normal;
     font-weight: 500;
@@ -629,7 +630,7 @@
 /* Heading */
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body h3 {
     color: var(--text-primary-inverse-base, #F5F5F5);
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-4, 24px);
     font-style: normal;
     font-weight: 600;
@@ -641,7 +642,7 @@
 
 /* .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body>p:nth-child(3) {
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -658,7 +659,7 @@
     width: 88%;
     margin: 0;
     color: #FFF;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -678,7 +679,7 @@
     background: var(--background-bg-primary, #FFF);
     color: var(--text-text-primary, #181D27);
     text-align: center;
-    font-family: var(--font-family-font-family-body, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-button-2, 14px);
     font-style: normal;
     font-weight: 800;
@@ -742,7 +743,7 @@
         padding: var(--spacing-xxs) var(--spacing-md);
         border-radius: var(--radius-sm);
         color: var(--text-text-white, #FFF);
-        font-family: var(--font-family-font-family-body, Manrope);
+        font-family: var(--heading-font-family);
         font-size: var(--font-size-caption, 12px);
         font-style: normal;
         font-weight: 500;

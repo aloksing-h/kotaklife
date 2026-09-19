@@ -15,7 +15,7 @@
     margin: 0 auto;
     padding: 0;
     color: var(--text-text-primary, #181D27);
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-3, 32px);
     font-style: normal;
     font-weight: 300;
