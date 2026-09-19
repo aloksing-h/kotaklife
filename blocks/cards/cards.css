@@ -15,11 +15,13 @@
 
 .cards>ul>li {
   border: 1px solid var(--light-color);
+  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  gap: var(--spacing-3xl);
   background-color: var(--background-color);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: var(--spacing-xl);
 }
 
 .cards .cards-card-image {
@@ -30,4 +32,1591 @@
   width: 100%;
   display: block;
   object-fit: cover;
+}
+
+/* ==========================================================================
+   Growing Insurance Company - Mobile First Base (Default < 900px)
+   ========================================================================== */
+
+.growing-insurance-company.section {
+  padding: 32px 0 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.growing-insurance-company {
+  --gic-accent: #e31837;
+  --gic-card-bg: #f4f8fa;
+  --gic-card-radius: 20px;
+  --gic-gap: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+}
+
+/* .growing-insurance-company .default-content-wrapper {
+  display: contents;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+} */
+
+/* Header Typography (Mobile Baseline) */
+
+.growing-insurance-company .default-content-wrapper p {
+  color: #717680;
+  font-size: 14px;
+  margin: 0;
+  text-align: right;
+  max-width: 320px;
+}
+
+.growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
+  order: 2;
+  color: #535862;
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  grid-area: 3;
+  grid-column: 1;
+
+  /* grid-area: 1 / 2 / 2 / 3; */
+}
+
+.growing-insurance-company .cards-wrapper {
+  order: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 50px;
+}
+
+/* CTA "Know More" Button (Mobile Bottom Centered) */
+.growing-insurance-company .default-content-wrapper .button-wrapper,
+.growing-insurance-company.section .default-content-wrapper p:has(a) {
+  order: 4;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  left: 32%;
+  bottom: -22px;
+
+  /* grid-area: 2 / 2 / 3 / 3; */
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn,
+.growing-insurance-company .default-content-wrapper a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: 1.5px solid var(--gic-accent);
+  border-radius: 30px;
+  background-color: #fff;
+  color: var(--gic-accent);
+  font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.growing-insurance-company .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../../icons/write-arrow-right.svg');
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.growing-insurance-company .default-content-wrapper .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--gic-accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.growing-insurance-company .know-more-btn:hover .btn-arrow {
+  background-color: #fff;
+  color: #e1122d;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
+.growing-insurance-company .default-content-wrapper a.button:hover {
+  background-color: var(--gic-accent);
+  color: #fff;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover .btn-arrow {
+  background-color: #fff;
+  color: var(--gic-accent);
+}
+
+/* Mobile Cards Grid (2 Columns Base) */
+.growing-insurance-company .cards>ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gic-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.growing-insurance-company .cards>ul>li {
+  border-radius: var(--gic-card-radius);
+  border: none;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.growing-insurance-company .cards>ul>li:hover {
+  transform: translateY(-4px);
+
+  /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
+}
+
+.growing-insurance-company.section .cards .cards-card-image p {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Mobile Grid Positioning */
+.growing-insurance-company .cards>ul>li:nth-child(1) {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-body {
+  margin: 0;
+  flex: 1;
+  z-index: 2;
+  padding-right: 12px;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) .quote-mark {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  line-height: 0.8;
+  color: #181d27;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: #181d27;
+  line-height: 20px;
+  margin: 0 0 12px;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) p:nth-of-type(1) {
+  font-size: 13px;
+  font-weight: 700;
+  color: #181d27;
+  margin: 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) p:nth-of-type(2) {
+  font-size: 12px;
+  font-weight: 500;
+  color: #535862;
+  margin: 2px 0 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image {
+  width: clamp(120px, 35vw, 150px);
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin: 0;
+  line-height: 0;
+  height: 100%;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Card 2: 38 Million Red Card */
+.growing-insurance-company .cards>ul>li:nth-child(2) {
+  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+  flex-direction: column;
+  padding: 20px;
+  color: #fff;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(2) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 36px;
+}
+
+.growing-insurance-company.section .cards>ul>li:nth-child(2) p {
+  font-size: 16px;
+  color: #FFF;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-image {
+  /* margin-top: auto; */
+  align-self: flex-end;
+  width: 100%;
+  line-height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(2) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Card 3: 99.50% Light Card */
+.growing-insurance-company .cards>ul>li:nth-child(3) {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background-color: var(--gic-card-bg);
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(3) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: #181d27;
+  margin: 0 0 4px;
+  line-height: 36px;
+}
+
+.growing-insurance-company.section .cards>ul>li:nth-child(3) p {
+  margin: 0;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-1, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-sub-heading-2, 20px);
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-image {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 76%;
+  line-height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(3) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  aspect-ratio: unset;
+}
+
+/* Card 4: 1 Lakh + Red Card */
+.growing-insurance-company .cards>ul>li:nth-child(4) {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  color: #fff;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-body {
+  margin: 0;
+  z-index: 2;
+  margin-bottom: 38px;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(4) h4 {
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 36px;
+}
+
+.growing-insurance-company.section .cards>ul>li:nth-child(4) p {
+  margin: 0;
+  color: var(--text-text-white, #FFF);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-1, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-sub-heading-2, 20px);
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-image {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 100%;
+  line-height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  aspect-ratio: unset;
+}
+
+/* ==========================================================================
+   Desktop Layer Extensions (@media (min-width: 900px))
+   ========================================================================== */
+
+@media (width >=900px) {
+  .growing-insurance-company.section {
+    padding: 56px 0;
+  }
+
+  .growing-insurance-company {
+    display: block;
+  }
+
+  /* Desktop Header Grid */
+  .growing-insurance-company .default-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title button"
+      "subtitle button";
+    align-items: center;
+    gap: 8px 24px;
+    margin-bottom: 32px;
+  }
+
+  .growing-insurance-company .default-content-wrapper h3 {
+    /* grid-area: title; */
+    font-size: clamp(40px, 3.2vw, 44px);
+    grid-area: 1 / 1 / span 2 / 2;
+    order: 1;
+  }
+
+  .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
+    font-size: 16px;
+    grid-column: 1;
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .growing-insurance-company .default-content-wrapper .button-wrapper,
+  .growing-insurance-company.section .default-content-wrapper p:has(a) {
+    justify-self: end;
+    grid-area: 2 / 2 / 3 / 3;
+    margin-top: -32px;
+    position: unset;
+  }
+
+  /* Desktop 3-Column Asymmetric Grid */
+  .growing-insurance-company .cards>ul {
+    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(1) {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(1) h4 {
+    font-size: 16px;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image {
+    width: clamp(160px, 12vw, 180px);
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+    padding: 28px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(3) {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    padding: 24px;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(3) h4 {
+    font-size: 32px;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(4) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    padding: 24px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .growing-insurance-company .cards>ul>li:nth-child(4) h4 {
+    font-size: 32px;
+  }
+}
+
+/* ==========================================================================
+   Growing Insurance Company Section
+   ========================================================================== */
+
+
+
+/* stylelint-disable no-descending-specificity */
+
+/* Header & CTA Layout */
+.growing-insurance-company .default-content-wrapper {
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5px;
+  align-items: flex-start;
+  padding: 0 16px;
+}
+
+.growing-insurance-company .default-content-wrapper h3 {
+  max-width: 520px;
+  letter-spacing: -0.5px;
+
+  /* grid-area: 1 / 1 / span 2 / 2;
+    order: 1; */
+  grid-area: 1;
+  grid-column: 1;
+  color: #181d27;
+  font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
+  font-size: clamp(28px, 6vw, 36px);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+}
+
+.growing-insurance-company .default-content-wrapper h3 strong {
+  color: #181d27;
+  font-weight: 700;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 18px;
+  border: 1px solid #e1122d;
+  border-radius: 999px;
+  color: #e1122d;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+
+.growing-insurance-company .default-content-wrapper a::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  border-radius: 856.286px;
+  background: var(--background-bg-brand-red-solid, #FA1432);
+  background-image: url('/icons/write-arrow-right.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover {
+  background-color: #e1122d;
+  color: #fff;
+}
+
+/* Card Deck Grid Construction */
+.growing-insurance-company .cards-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1.5fr 0.94fr 1.11fr;
+  grid-template-rows: 170px 170px;
+}
+
+.growing-insurance-company .cards-wrapper ul li {
+  position: relative;
+  border-radius: 16px;
+
+  /* overflow: hidden; */
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* Base Image Handling */
+.growing-insurance-company .cards-card-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.growing-insurance-company .cards-card-image picture,
+.growing-insurance-company .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.growing-insurance-company .cards-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Card Typography */
+.growing-insurance-company .cards-card-body h4 {
+  margin: 0 0 6px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.growing-insurance-company .cards-card-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Grid Cells Custom Styling */
+
+/* 1. Large Quote Card (Left) */
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  color: #181d27;
+  flex-direction: column;
+  background-color: #f2f7fb;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) .cards-card-image {
+  left: auto;
+  right: 0;
+  width: 48.5%;
+  z-index: 2;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) .cards-card-image img {
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) .cards-card-body {
+  width: 45%;
+  z-index: 1;
+  padding: 20px 0 20px 20px;
+}
+
+.growing-insurance-company .quote-mark {
+  font-size: 40px;
+  line-height: 1;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  color: #181d27;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #475467;
+  margin: 0;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(1) {
+  font-weight: 700;
+  color: #181d27;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
+  color: #717680;
+  font-size: 12px;
+}
+
+/* 2. Middle Red Card (38 Million) */
+.growing-insurance-company .cards-wrapper ul li:nth-child(2) {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  background-color: #be122c;
+  color: #fff;
+  flex-direction: row;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(2) .cards-card-body {
+  justify-content: flex-start;
+}
+
+/* 3. Top Right Card (99.50%) */
+.growing-insurance-company .cards-wrapper ul li:nth-child(3) {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  background-color: #f2f7fb;
+  color: #181d27;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(3) h4 {
+  color: #181d27;
+}
+
+.growing-insurance-company .cards-wrapper ul li:nth-child(3) p {
+  color: #475467;
+}
+
+/* 4. Bottom Right Card (1 Lakh +) */
+.growing-insurance-company .cards-wrapper ul li:nth-child(4) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  background-color: #be122c;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Mobile Responsive Adjustments (< 768px) */
+@media (width <=767px) {
+  .growing-insurance-company .default-content-wrapper {
+    grid-template-columns: 100%;
+  }
+
+  .growing-insurance-company .default-content-wrapper p {
+    text-align: left;
+  }
+
+  .growing-insurance-company .cards-wrapper ul {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .growing-insurance-company .cards-wrapper ul li:nth-child(1) {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+
+  .growing-insurance-company .cards-wrapper ul li:nth-child(2) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
+  }
+
+  .growing-insurance-company .cards-wrapper ul li:nth-child(3) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .growing-insurance-company .cards-wrapper ul li:nth-child(4) {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
+
+  .growing-insurance-company .cards-wrapper {
+    padding-inline: 16px;
+  }
+}
+
+/* stylelint-enable no-descending-specificity */
+/* stylelint-disable no-descending-specificity */
+
+/* ============================================
+   Why Trust section - Layout & Cards block styles
+   Default (Mobile first, < 600px)
+   ============================================ */
+
+.cards.trust-style>ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 12px 0;
+  border-left: 1px solid var(--border-secondary);
+  border-right: 1px solid var(--border-secondary);
+
+}
+
+.cards.trust-style>ul>li {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 156px;
+  padding: 16px 20px;
+  background-color: var(--bg-primary);
+  border: none;
+  overflow: hidden;
+  isolation: isolate;
+  gap: 0;
+}
+
+.cards.trust-style>ul>li:last-child {
+  border-bottom: none;
+}
+
+/* Blurred gradient blob behind the content: blue for odd cards, pink for even */
+.cards.trust-style>ul>li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../icons/blue-bg-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.cards.trust-style>ul>li:nth-child(even)::before {
+  background-image: url('../../icons/pink-bg-mobile.svg');
+}
+
+/* Glass ribbing */
+.cards.trust-style>ul>li::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../icons/glass-effect-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Icon */
+.cards.trust-style .cards-card-image {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+}
+
+.cards.trust-style .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: auto;
+}
+
+/* Body */
+.cards.trust-style .cards-card-body {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.cards.trust-style .cards-card-body p {
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color: var(--text-tertiary);
+  overflow-wrap: break-word;
+}
+
+.cards.trust-style .cards-card-body p strong {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--sub-heading-2-font-size);
+  line-height: var(--sub-heading-2-line-height);
+  color: var(--text-primary);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cards.trust-style .cards-card-body p br {
+  display: none;
+}
+
+/* ============================================
+   Vision section - Layout & Cards block styles
+   Default (Mobile first, < 600px)
+   ============================================ */
+
+.vision {
+  position: relative;
+}
+
+.cards.vision-style {
+  position: relative;
+}
+
+/* Background blurred blue ellipse from icons/blue-ellipse.svg */
+.cards.vision-style::before {
+  content: '';
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 280px;
+  max-width: 835px;
+  height: 150px;
+  background-image: url('../../icons/blue-ellipse.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cards.vision-style>ul {
+  background: var(--fg-white);
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid var(--border-primary);
+  border-right: 1px solid var(--border-primary);
+}
+
+.cards.vision-style>ul>li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: var(--spacing-xl);
+  padding-right: 24px;
+  position: relative;
+}
+
+/* Left-side glow ring */
+.cards.vision-style>ul>li::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0;
+  box-sizing: border-box;
+  padding: 1px;
+  background: var(--border-primary);
+  /* stylelint-disable property-no-vendor-prefix */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  /* stylelint-enable property-no-vendor-prefix */
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  z-index: 0;
+}
+
+.cards.vision-style>ul>li:first-child::before {
+  inset: 0 0 1px;
+  padding: 0 1px 1px;
+  background:
+    radial-gradient(130px 180px at 0 100%, var(--brand-red-500), rgb(250 20 50 / 0%) 70%);
+  border-bottom-left-radius: 40px;
+}
+
+.cards.vision-style>ul>li:nth-child(2)::before {
+  background:
+    radial-gradient(90px 60px at 0 50%, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+    radial-gradient(90px 60px at 100% 50%, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+    var(--border-primary);
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+.cards.vision-style>ul>li:last-child::before {
+  background: radial-gradient(60px 120px at 0 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%);
+  border-top-left-radius: 40px;
+}
+
+/* Icon */
+.cards.vision-style .cards-card-image {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+}
+
+.cards.vision-style .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: auto;
+}
+
+/* Body */
+.cards.vision-style .cards-card-body {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.cards.vision-style .cards-card-body p {
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: 18px;
+  color: var(--text-tertiary);
+  overflow-wrap: break-word;
+}
+
+.cards.vision-style .cards-card-body p strong {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--body-1-font-size);
+  line-height: var(--sub-heading-2-line-height);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cards.vision-style .cards-card-body p br {
+  display: none;
+}
+
+.cards.image-card.block>ul {
+  padding-top: 42px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px 32px;
+}
+
+.cards.image-card.block>ul>li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-width: 142px;
+  min-height: 182px;
+  background-color: #EFF8FF;
+  border-radius: var(--radius-md);
+  border: none;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.cards.image-card.block>ul>li:nth-child(2) {
+  background: linear-gradient(360deg, #FB2C47 0%, #FA1432 36%, #7F2224 100%);
+  border-radius: var(--radius-md);
+  margin-bottom: 0;
+}
+
+.cards.image-card.block .cards-card-image {
+  padding-bottom: 16px;
+}
+
+.cards.image-card.block>ul>li:nth-child(3) .cards-card-image {
+  padding-bottom: 18px;
+}
+
+.cards.image-card.block .cards-card-image img {
+  scale: 1.071;
+  width: 100%;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+
+.cards.image-card.block .cards-card-body {
+  order: -1;
+  margin: 0;
+  padding: 20px 14px 0;
+}
+
+.cards.image-card.block .cards-card-body p {
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color: var(--gray-900);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.cards.image-card.block>ul>li:nth-child(2) .cards-card-body p {
+  color: var(--base-white);
+}
+
+.csr-layout.section {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 16px;
+}
+
+.csr-layout .default-content-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.csr-layout .default-content-wrapper h1 {
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  font-weight: var(--font-weight-light);
+  margin: 0 0 6px;
+}
+
+.csr-layout .default-content-wrapper h1 strong {
+  margin: 0;
+  font-weight: 600;
+}
+
+.csr-layout .default-content-wrapper p {
+  margin: 0 0 20px;
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  color: var(--gray-600);
+  font-weight: var(--font-weight-medium);
+}
+
+.csr-layout .default-content-wrapper p:has(a) {
+  width: fit-content;
+  background-color: var(--brand-red-600);
+  border-radius: var(--radius-full);
+  margin: 0;
+}
+
+.csr-layout .default-content-wrapper a {
+  color: var(--base-white);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 38px;
+  padding: 4px 4px 4px 20px;
+  gap: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--button-2-font-size);
+  line-height: var(--button-2-line-height);
+}
+
+.csr-layout .default-content-wrapper a span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 29px;
+  width: 29px;
+  background-color: var(--base-white);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.csr-layout .default-content-wrapper a img {
+  height: 18px;
+  width: 18px;
+  object-fit: contain;
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Change the white circle to black on hover */
+.csr-layout .default-content-wrapper a:hover span {
+  background-color: var(--base-black);
+}
+
+/* Invert the black arrow SVG to white on hover */
+.csr-layout .default-content-wrapper a:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.csr-layout.section .cards-wrapper {
+  padding: 0;
+  margin: 0;
+
+}
+
+@media (width >=500px) {
+  .cards.image-card.block>ul {
+    flex-wrap: nowrap;
+  }
+
+  .cards.image-card.block>ul>li {
+    max-width: 190px;
+    height: 348px;
+  }
+
+  .cards.image-card.block .cards-card-body p {
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+  }
+
+  .csr-layout.section>.default-content-wrapper h1 {
+    font-size: var(--heading-2-font-size);
+    line-height: var(--heading-2-line-height);
+  }
+
+  .csr-layout.section>.default-content-wrapper p {
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+}
+
+/* Desktop Overrides */
+@media (width >=960px) {
+  .cards.image-card.block>ul {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 40px;
+    padding-top: 0;
+  }
+
+  .cards.image-card.block>ul>li {
+    max-width: 190px;
+    height: 348px;
+  }
+
+  .cards.image-card.block>ul>li:nth-child(2) {
+    margin-bottom: 70px;
+    justify-content: space-between;
+  }
+
+  .cards.image-card.block>ul>li:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .cards.image-card.block>ul>li:nth-child(3) .cards-card-image {
+    padding-bottom: 47px;
+  }
+
+  .cards.image-card.block .cards-card-image {
+    padding-bottom: 43px;
+  }
+
+  .cards.image-card.block .cards-card-body {
+    padding: 30px 20px 0;
+  }
+
+  .cards.image-card.block .cards-card-body p {
+    font-size: var(--sub-heading-1-font-size);
+    line-height: var(--sub-heading-1-line-height);
+  }
+
+  .cards.image-card.block .cards-card-image img {
+    scale: 1.111;
+    height: 100%;
+  }
+
+  .csr-layout.section {
+    position: relative;
+    flex-direction: row;
+    padding: 0 50px;
+    max-height: 536px;
+  }
+
+  .csr-layout.section>.default-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    max-width: 435px;
+    margin: 0;
+    padding: 0;
+    min-height: 224px;
+  }
+
+  .csr-layout.section>.default-content-wrapper h1 {
+    margin: 0 0 8px;
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    font-weight: var(--font-weight-light);
+  }
+
+  .csr-layout.section>.default-content-wrapper p {
+    margin: 0 0 16px;
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+
+  .csr-layout.section>.default-content-wrapper a {
+    height: 40px;
+    padding: 4px 5px 4px 20px;
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--button-1-font-size);
+    line-height: var(--button-1-line-height);
+  }
+
+  .csr-layout.section>.default-content-wrapper a span {
+    height: 32px;
+    width: 32px;
+  }
+
+  .csr-layout.section>.default-content-wrapper a img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .csr-layout.section .cards-wrapper {
+    align-self: flex-end;
+    max-width: 684px;
+    width: 100%;
+    margin: 120px 0 auto auto;
+  }
+}
+
+
+/* ============================================
+   Tablet Overrides (>= 600px)
+   ============================================ */
+
+/* Vision: centered vertical stack on small tablet (500px - 767px) */
+@media (width >=500px) {
+  .cards.vision-style>ul {
+    margin: 0 auto;
+  }
+
+  .cards.vision-style>ul>li {
+    padding: 25px 30px;
+  }
+}
+
+/* Trust: 2x2 grid on tablet */
+@media (width >=600px) {
+  .cards.trust-style>ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards.trust-style>ul>li {
+    min-height: 220px;
+    justify-content: space-between;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    border-bottom: 1px solid var(--border-secondary);
+  }
+
+  /* .cards.trust-style>ul>li:nth-child(odd) {
+    border-right: 1px solid var(--border-secondary);
+  }
+
+  .cards.trust-style>ul>li:nth-last-child(-n+2) {
+    border-bottom: none;
+  } */
+
+  .cards.trust-style .cards-card-body p strong {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* Vision: Tablet 3-column horizontal grid (768px - 1024px) */
+@media (width >=768px) {
+  .cards.vision-style::before {
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 835px;
+    height: 150px;
+  }
+
+  .cards.vision-style>ul {
+    max-width: none;
+    margin: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+    border-left: none;
+    border-right: none;
+  }
+
+  .cards.vision-style>ul>li {
+    min-height: 140px;
+    box-sizing: border-box;
+    gap: 12px;
+    padding: 24px 0;
+  }
+
+  .cards.vision-style>ul>li:first-child {
+    padding-left: 20px;
+    padding-right: 12px;
+  }
+
+  .cards.vision-style>ul>li:nth-child(2) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .cards.vision-style>ul>li:last-child {
+    padding-left: 12px;
+    padding-right: 20px;
+  }
+
+  .cards.vision-style>ul>li::before {
+    inset: -1px 0;
+    box-sizing: border-box;
+    padding: 1px;
+    background: var(--border-primary);
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    /* stylelint-enable property-no-vendor-prefix */
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    z-index: 0;
+  }
+
+  .cards.vision-style>ul>li:first-child::before {
+    inset: -1px 0 0;
+    padding: 1px;
+    background: radial-gradient(100px 70px at 100% 0, var(--brand-red-500) 0%, transparent 100%);
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 0;
+  }
+
+  .cards.vision-style>ul>li:nth-child(2)::before {
+    background:
+      radial-gradient(200px 70px at 50% 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+      var(--border-primary);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 0;
+  }
+
+  .cards.vision-style>ul>li:last-child::before {
+    padding: 1px;
+    background:
+      radial-gradient(120px 90px at 0 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+      transparent;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 0;
+  }
+
+  .cards.vision-style .cards-card-image {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .cards.vision-style .cards-card-body p strong {
+    font-size: var(--body-2-font-size);
+    line-height: var(--sub-heading-2-line-height);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .cards.vision-style .cards-card-body p {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+
+/* ============================================
+   Desktop Overrides (>= 900px)
+   ============================================ */
+
+/* Trust: 4-column grid */
+@media (width >=900px) {
+  .cards.trust-style>ul {
+    padding: 0 50px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: none;
+    border-top: 1px solid var(--border-secondary);
+    border-bottom: 1px solid var(--border-secondary);
+  }
+
+  .cards.trust-style>ul>li {
+    justify-content: space-between;
+    min-height: 250px;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    border-bottom: none;
+    border-right: 1px solid var(--border-secondary);
+  }
+
+  /* .cards.trust-style>ul>li:nth-child(odd) {
+    border-right: 1px solid var(--border-secondary);
+  }
+
+  .cards.trust-style>ul>li:last-child {
+    border-right: none;
+  } */
+
+  .cards.trust-style>ul>li::before {
+    background-image: url('../../icons/blue-bg.svg');
+  }
+
+  .cards.trust-style>ul>li:nth-child(even)::before {
+    background-image: url('../../icons/pink-bg.svg');
+  }
+
+  .cards.trust-style>ul>li::after {
+    background-image: url('../../icons/glass-effect.svg');
+  }
+
+  .cards.trust-style .cards-card-image {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .cards.trust-style .cards-card-body p strong {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xl);
+  }
+
+}
+
+/* ============================================
+   Vision: Desktop Overrides (> 1024px)
+   ============================================ */
+@media (width > 1024px) {
+  .cards.vision-style>ul>li {
+    min-height: 180px;
+    gap: 18px;
+    padding: 42px 0;
+  }
+
+  .cards.vision-style>ul>li:first-child {
+    padding-left: 50px;
+    padding-right: 20px;
+  }
+
+  .cards.vision-style>ul>li:nth-child(2) {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .cards.vision-style>ul>li:last-child {
+    padding-left: 20px;
+    padding-right: 50px;
+  }
+
+  .cards.vision-style>ul>li:first-child::before {
+    background: radial-gradient(140px 95px at 100% 0, var(--brand-red-500) 0%, transparent 100%);
+  }
+
+  .cards.vision-style>ul>li:nth-child(2)::before {
+    background:
+      radial-gradient(310px 90px at 50% 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+      var(--border-primary);
+  }
+
+  .cards.vision-style>ul>li:last-child::before {
+    background:
+      radial-gradient(180px 130px at 0 0, var(--brand-red-500), rgb(250 20 50 / 0%) 70%),
+      transparent;
+  }
+
+  .cards.vision-style .cards-card-image {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .cards.vision-style .cards-card-body p strong {
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .cards.vision-style .cards-card-body p {
+    font-size: var(--body-2-font-size);
+    line-height: 18px;
+  }
+}
+
+/* ============================================
+   Large Desktop Overrides (>= 1200px)
+   ============================================ */
+
+/* Trust */
+@media (width >=1200px) {
+  .cards.trust-style>ul>li {
+    min-height: 276px;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+  }
+
+  .cards.trust-style .cards-card-image {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .cards.trust-style .cards-card-body p strong {
+    margin-top: 0;
+    margin-bottom: var(--spacing-2xl);
+  }
 }

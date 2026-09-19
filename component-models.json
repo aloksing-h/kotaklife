@@ -138,6 +138,35 @@
             "value": "highlight"
           },
           {
+            "name": "Display None",
+            "value": "dsp-none"
+          },
+          {
+            "name": "Header Varient",
+            "children": [
+              {
+                "name": "Grey Header",
+                "value": "grey-nav"
+              },
+              {
+                "name": "White Header",
+                "value": "white-nav"
+              }
+            ]
+          },
+          {
+            "name": "Footer Mobile Accordion Only",
+            "value": "mob-accordion"
+          },
+          {
+            "name": "Footer Social Icon",
+            "value": "footer-social"
+          },
+          {
+            "name": "Footer Imp Links",
+            "value": "footer-imp-links"
+          },
+          {
             "name": "Insights & Impact Plans",
             "value": "insights-impact-plans"
           },
@@ -192,6 +221,50 @@
           {
             "name": "Invest Form",
             "value": "invest-form"
+          },
+          {
+            "name": "Tab One",
+            "value": "tab-one"
+          },
+          {
+            "name": "Tab Two",
+            "value": "tab-two"
+          },
+          {
+            "name": "Tab Three",
+            "value": "tab-three"
+          },
+          {
+            "name": "Tab Four",
+            "value": "tab-four"
+          },
+          {
+            "name": "Tab Five",
+            "value": "tab-five"
+          },
+          {
+            "name": "Tab Six",
+            "value": "tab-six"
+          },
+          {
+            "name": "CSR Layout",
+            "value": "csr-layout"
+          },
+          {
+            "name": "Our Vision",
+            "value": "vision"
+          },
+          {
+            "name": "Why Trust",
+            "value": "trust"
+          },
+          {
+            "name": "Slider Title",
+            "value": "slider-title"
+          },
+          {
+            "name": "Visual Pulse",
+            "value": "visual-pulse"
           }
         ]
       }
@@ -237,6 +310,60 @@
     ]
   },
   {
+    "id": "banner-v2",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktopBg",
+        "label": "Desktop Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "desktopBgAlt",
+        "label": "Desktop Background Alt Text",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileBg",
+        "label": "Mobile Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "mobileBgAlt",
+        "label": "Mobile Background Alt Text",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Person / Foreground Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Person Image Alt Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Content Text",
+        "value": "",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "banner",
     "fields": [
       {
@@ -277,6 +404,22 @@
           {
             "name": "Financial Cards",
             "value": "financial-cards"
+          },
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Trust Style",
+            "value": "trust-style"
+          },
+          {
+            "name": "Vision Style",
+            "value": "vision-style"
+          },
+          {
+            "name": "Image Card",
+            "value": "image-card"
           }
         ]
       }
@@ -469,6 +612,10 @@
           {
             "name": "Blog Detail Group Image",
             "value": "detail-grp-img"
+          },
+          {
+            "name": "Promotion",
+            "value": "promotion"
           }
         ]
       }
@@ -557,6 +704,10 @@
           {
             "name": "Youtube Video",
             "value": "yt-video"
+          },
+          {
+            "name": "Customer Say Video",
+            "value": "customer-say-video"
           }
         ]
       }
@@ -788,6 +939,18 @@
           {
             "name": "Form Step",
             "value": "form-step"
+          },
+          {
+            "name": "Explore CTA",
+            "value": "explore-cta"
+          },
+          {
+            "name": "Default Title",
+            "value": "default-title"
+          },
+          {
+            "name": "Sub Navigation",
+            "value": "subnav"
           }
         ]
       }
@@ -804,8 +967,52 @@
     ]
   },
   {
+    "id": "tab-panel",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "tab-label",
+        "label": "Label"
+      }
+    ]
+  },
+  {
+    "id": "tab-list",
+    "fields": [
+      {
+        "component": "boolean",
+        "name": "classes_showAll",
+        "label": "Show All?",
+        "description": "When enabled, the tab list will prepend a show all button."
+      }
+    ]
+  },
+  {
     "id": "tabs",
-    "fields": []
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Timeline",
+            "value": "timeline"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tabs-item",
@@ -821,6 +1028,134 @@
         "name": "description",
         "value": "",
         "label": "Tab Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "testimonials",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Customer Say",
+            "value": "customer-say"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "testimonials-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortmob",
+        "label": "Short Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortmobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col1_imageshortdesk",
+        "label": "Short Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col1_imageshortdeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargemob",
+        "label": "Large Image Mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargemobAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "col2_imagelargedesk",
+        "label": "Large Image Desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "col2_imagelargedeskAlt",
+        "label": "Image Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_text",
+        "value": "",
+        "label": "Button Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "timeline",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Awards",
+            "value": "awards"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "timeline-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "timeline-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
         "valueType": "string"
       }
     ]

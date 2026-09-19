@@ -1,0 +1,275 @@
+.modal.desk-hamburger {
+    display: none;
+}
+
+@media screen and (width >=900px) {
+    * a:any-link {
+        text-decoration: none;
+        cursor: pointer;
+        text-decoration-line: unset !important;
+        color: currentcolor;
+    }
+
+    .modal.desk-hamburger {
+        display: block;
+    }
+
+    .modal.desk-hamburger dialog {
+        max-width: calc(100vw - 75px);
+        width: 100%;
+        max-height: calc(100vh - 82px);
+        height: 100%;
+        margin: 47px auto 37px;
+        background: unset;
+        border: none;
+    }
+
+    .modal.desk-hamburger dialog::backdrop {
+        /* background-color: red; */
+        background: rgb(0 0 0 / 80%);
+        backdrop-filter: blur(7px);
+    }
+
+    .modal.desk-hamburger dialog .modal-content {
+        background-color: var(--foreground-fg-white, #FFF);
+        padding: 60px 35px 30px;
+        margin: 0 auto;
+        max-height: 100%;
+        border-radius: 8px;
+    }
+
+    .modal.desk-hamburger dialog .close-button {
+        top: 14px;
+        right: 14px;
+        cursor: pointer;
+    }
+
+    .modal.desk-hamburger dialog .close-button,
+    .modal.desk-hamburger dialog .close-button span.icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .modal.desk-hamburger dialog .close-button span.icon::before,
+    .modal.desk-hamburger dialog .close-button span.icon::after {
+        content: unset;
+    }
+
+    .modal.desk-hamburger dialog .close-button span.icon::before {
+        content: '';
+        background-image: url('../../icons/modal-close.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: unset;
+        width: 28px;
+        height: 28px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal.desk-hamburger dialog .nav-wrapper .nav-content {
+        display: flex;
+        gap: 36px;
+        margin: 0;
+        padding: 0 25px 100px;
+    }
+
+    .modal.desk-hamburger dialog .nav-wrapper .nav-content * {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .modal.desk-hamburger dialog .nav-content>.list-inner:not(:first-of-type),
+    .modal.desk-hamburger dialog .nav-content .nav-drop-wrapper {
+        border-left: 1px solid var(--border-border-primary, #D5D7DA);
+        padding-left: 36px;
+    }
+
+    .modal.desk-hamburger dialog .nav-content>.nav-drop-wrapper ul {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+
+    .modal.desk-hamburger dialog .nav-content>.list-inner:first-of-type {
+        /* max-width: 438px; */
+        max-width: 43.583%;
+        width: 100%;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner:not(:first-of-type),
+    .modal.desk-hamburger dialog .nav-content .nav-drop-wrapper {
+        max-width: 248px;
+        width: 100%;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .inner-child-1 {
+        color: var(--text-text-primary, #181D27);
+        font-family: Manrope, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 14px;
+        letter-spacing: 1.92px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 14px;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div picture img {
+        width: 30px;
+        height: 30px;
+        display: block;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div h3 {
+        color: var(--text-text-primary, #181D27);
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-body-2, 14px);
+        font-weight: 600;
+        line-height: var(--line-height-body-1, 18px);
+        margin: 0 0 1px;
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div p {
+        color: var(--text-text-tertiary, #535862);
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-caption, 12px);
+        font-weight: 500;
+        line-height: var(--line-height-caption, 14px);
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:has(a) a {
+        padding: 0 6px 7px 0;
+        position: relative;
+        color: var(--text-text-primary, #181D27);
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-button-3, 12px);
+        font-weight: 800;
+        line-height: var(--line-height-caption, 14px);
+    }
+
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:has(a) a::after {
+        content: '';
+        width: 32px;
+        height: 5px;
+        border: solid var(--border-border-brand-red, #FA1432);
+        border-width: 0 1.5px 1.5px 0;
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        border-bottom-right-radius: var(--radius-full, 999px);
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper {
+        padding: 27px 58px;
+        border-radius: 8px;
+        background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper::after {
+        content: '';
+        background-image: url('../../icons/modal-banner-line-1.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 482px;
+        height: 55px;
+        display: block;
+        position: absolute;
+        left: 34px;
+        right: 0;
+        margin: 0 auto;
+        top: -31px;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper::before {
+        content: '';
+        background-image: url('../../icons/modal-banner-line-2.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 183px;
+        height: 158px;
+        display: block;
+        position: absolute;
+        left: 14px;
+        top: -40px;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) * {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:first-of-type {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:first-of-type>ul>li>h3 {
+        color: #FFF;
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-body-1, 16px);
+        font-weight: 600;
+        line-height: var(--line-height-sub-heading-2, 20px);
+        margin: 0 0 4px;
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:first-of-type>ul>li {
+        color: #FFF;
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-caption, 12px);
+        font-weight: 600;
+        line-height: var(--line-height-caption, 14px);
+    }
+
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:last-of-type a {
+        border-radius: var(--radius-full, 999px);
+        background: var(--background-bg-primary, #FFF);
+        padding: 4px 4px 4px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-text-primary, #181D27);
+        text-align: center;
+        font-family: var(--font-family-font-family-body, Manrope);
+        font-size: var(--font-size-button-2, 14px);
+        font-style: normal;
+        font-weight: 800;
+        line-height: var(--line-height-body-2, 16px);
+        min-width: max-content;
+    }
+
+}
+
+@media screen and (900px <=width <=1000px) {
+    .modal.desk-hamburger dialog .nav-wrapper .nav-content {
+        padding: 0 0 70px;
+    }
+}

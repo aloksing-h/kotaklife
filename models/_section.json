@@ -13,6 +13,23 @@
           }
         }
       }
+    },
+    {
+      "title": "Tab Panel",
+      "id": "tab-panel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "name": "Tab Panel",
+              "model": "tab-panel",
+              "filter": "section",
+              "tab-label": "Tab"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
@@ -33,6 +50,35 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Display None",
+              "value": "dsp-none"
+            },
+            {
+              "name": "Header Varient",
+              "children": [
+                {
+                  "name": "Grey Header",
+                  "value": "grey-nav"
+                },
+                {
+                  "name": "White Header",
+                  "value": "white-nav"
+                }
+              ]
+            },
+            {
+              "name": "Footer Mobile Accordion Only",
+              "value": "mob-accordion"
+            },
+            {
+              "name": "Footer Social Icon",
+              "value": "footer-social"
+            },
+            {
+              "name": "Footer Imp Links",
+              "value": "footer-imp-links"
             },
             {
               "name": "Insights & Impact Plans",
@@ -89,6 +135,50 @@
             {
               "name": "Invest Form",
               "value": "invest-form"
+            },
+            {
+              "name": "Tab One",
+              "value": "tab-one"
+            },
+            {
+              "name": "Tab Two",
+              "value": "tab-two"
+            },
+            {
+              "name": "Tab Three",
+              "value": "tab-three"
+            },
+            {
+              "name": "Tab Four",
+              "value": "tab-four"
+            },
+            {
+              "name": "Tab Five",
+              "value": "tab-five"
+            },
+            {
+              "name": "Tab Six",
+              "value": "tab-six"
+            },
+            {
+              "name": "CSR Layout",
+              "value": "csr-layout"
+            },
+            {
+              "name": "Our Vision",
+              "value": "vision"
+            },
+            {
+              "name": "Why Trust",
+              "value": "trust"
+            },
+            {
+              "name": "Slider Title",
+              "value": "slider-title"
+            },
+            {
+              "name": "Visual Pulse",
+              "value": "visual-pulse"
             }
           ]
         }
@@ -121,9 +211,13 @@
         "rte",
         "rteV2",
         "tabs",
+        "subnav",
         "video",
+        "tab-list",
         "invest-form",
-        "video-banner"
+        "timeline",
+        "video-banner",
+        "promo"
       ]
     }
   ]
