@@ -132,10 +132,10 @@ export default async function decorate(block) {
     if (contentRow) {
       contentRow.classList.add('video-banner-content');
 
-      let lastParagraph = contentRow.querySelector('p:last-child');
+      const lastParagraph = contentRow.querySelector('p:last-child');
       if (lastParagraph) {
         lastParagraph.addEventListener('click', () => {
-          let target = document.querySelector('.infinite-protection.custom-cards-container');
+          const target = document.querySelector('.infinite-protection.custom-cards-container');
           target?.scrollIntoView({ behavior: 'smooth' });
         });
       }
