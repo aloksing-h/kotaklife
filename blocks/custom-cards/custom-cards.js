@@ -61,11 +61,11 @@ export default async function decorate(block) {
   }
 
   // Initialize Swiper after DOM setup
-  if (section || differenceCardsSection) {
+  if (section) {
     initInsightsSwiper(block);
   }
 
-  if (valuesCardsSection) {
-    initValuesSwiper(block);
+  if (valuesCardsSection || differenceCardsSection) {
+    initValuesSwiper(block , differenceCardsSection , valuesCardsSection);
   }
 }
