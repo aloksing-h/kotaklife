@@ -15,24 +15,21 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-
     z-index: 1;
 }
 
 /* Concentric outer border rings: desktop shows them on the left side only */
 .invest-form.section.invest-form-container::before {
-   content: "";
+    content: "";
     position: absolute;
-    top: 0px;
-    bottom: 0%;
-    left: -25px;
-    right: -11px;
+    inset: 0 -11px 0 -25px;
     border-radius: 141px;
     border: none !important;
     padding: 0.5px;
-    background: linear-gradient(to right, rgba(108, 158, 228, 0.6) 0%, rgba(108, 158, 228, 0.6) 35%, transparent 70%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
+    background: linear-gradient(to right, rgb(108 158 228 / 60%) 0%, rgb(108 158 228 / 60%) 35%, transparent 70%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+    /* mask-composite: xor; */
     mask-composite: exclude;
     pointer-events: none;
     z-index: -1;
@@ -41,16 +38,14 @@
 .invest-form.section.invest-form-container::after {
     content: "";
     position: absolute;
-    top: -1px;
-    bottom: -1px;
-    left: -50px;
-    right: -23px;
+    inset: -1px -23px -1px -50px;
     border-radius: 153px;
     border: none !important;
     padding: 0.5px;
-    background: linear-gradient(to right, rgba(108, 158, 228, 0.3) 0%, rgba(108, 158, 228, 0.3) 35%, transparent 70%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
+    background: linear-gradient(to right, rgb(108 158 228 / 30%) 0%, rgb(108 158 228 / 30%) 35%, transparent 70%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+    /* mask-composite: xor; */
     mask-composite: exclude;
     pointer-events: none;
     z-index: -1;
@@ -166,7 +161,7 @@
     width: 100%;
     height: 171px;
     object-fit: contain;
-    position:absolute;
+    position: absolute;
     bottom: 0;
     left: -1%;
 }
@@ -370,21 +365,20 @@
     .invest-form.section.invest-form-container::before {
         content: "";
         position: absolute;
-        top: -11px;
-        bottom: -11px; /* Extended to match top offset */
-        left: 0px;
-        right: 0px;
-        border-radius: 68px; /* Applies to all 4 corners */
+        inset: -11px 0;
+        border-radius: 68px;
+
+        /* Applies to all 4 corners */
         border: none !important;
         padding: 1.5px;
-        
+
         /* Multiple Backgrounds: one fades down from top, one fades up from bottom */
-        background: 
-            linear-gradient(to bottom, rgba(108, 158, 228, 0.6) 0%, transparent 85px),
-            linear-gradient(to top, rgba(108, 158, 228, 0.6) 0%, transparent 85px);
-        
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
+        background:
+            linear-gradient(to bottom, rgb(108 158 228 / 60%) 0%, transparent 85px),
+            linear-gradient(to top, rgb(108 158 228 / 60%) 0%, transparent 85px);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+        /* mask-composite: xor; */
         mask-composite: exclude;
         pointer-events: none;
         z-index: -1;
@@ -393,21 +387,18 @@
     .invest-form.section.invest-form-container::after {
         content: "";
         position: absolute;
-        top: -22px;
-        bottom: -22px; /* Extended to match top offset */
-        left: 0px;
-        right: 0px;
+        inset: -22px 0; /* top/bottom -22px, left/right 0 */
         border-radius: 72px;
         border: none !important;
         padding: 1.5px;
-        
+
         /* Multiple Backgrounds: one fades down from top, one fades up from bottom */
-        background: 
-            linear-gradient(to bottom, rgba(108, 158, 228, 0.3) 0%, transparent 95px),
-            linear-gradient(to top, rgba(108, 158, 228, 0.3) 0%, transparent 95px);
+        background:
+            linear-gradient(to bottom, rgb(108 158 228 / 30%) 0%, transparent 95px),
+            linear-gradient(to top, rgb(108 158 228 / 30%) 0%, transparent 95px);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
+        /* mask-composite: xor; */
         mask-composite: exclude;
         pointer-events: none;
         z-index: -1;
@@ -462,7 +453,7 @@
     .invest-form.section.invest-form-container picture img {
         max-width: 304px;
         height: 136px;
-        position:unset;
+        position: unset;
     }
 
     .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
@@ -502,11 +493,12 @@
 
 }
 
-@media (899px <= width <= 1160px) {
-    .invest-form.section.invest-form-container::before{
+@media (899px <=width <=1160px) {
+    .invest-form.section.invest-form-container::before {
         left: -14px;
     }
-    .invest-form.section.invest-form-container::after{
+
+    .invest-form.section.invest-form-container::after {
         left: -27px;
     }
 }
