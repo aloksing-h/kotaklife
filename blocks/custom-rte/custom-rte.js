@@ -68,106 +68,108 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
  * @param {Element} block The custom-rte block element
  */
 export default function decorate(block) {
-  const section = block.closest('.get-cover-plans');
+  if (block.classList.contains('promotion')) {
+    const section = block.closest('.get-cover-plans');
 
-  // Decorate CTA Button in default-content-wrapper
-  if (section) {
-    const ctaLink = section.querySelector('.default-content-wrapper a');
-    if (ctaLink && !ctaLink.querySelector('.btn-arrow')) {
-      ctaLink.classList.add('get-cover-cta');
-      const arrowSpan = document.createElement('span');
-      arrowSpan.className = 'btn-arrow';
-      ctaLink.append(arrowSpan);
+    // Decorate CTA Button in default-content-wrapper
+    if (section) {
+      const ctaLink = section.querySelector('.default-content-wrapper a');
+      if (ctaLink && !ctaLink.querySelector('.btn-arrow')) {
+        ctaLink.classList.add('get-cover-cta');
+        const arrowSpan = document.createElement('span');
+        arrowSpan.className = 'btn-arrow';
+        ctaLink.append(arrowSpan);
+      }
     }
+
+    // Build 3D Card Deck Container
+    const cardsContainer = document.createElement('ul');
+    cardsContainer.className = 'custom-rte-cards';
+
+    const rows = [...block.children];
+    const cards = [];
+    const steps = [];
+
+    rows.forEach((row) => {
+      const li = document.createElement('li');
+      li.className = 'custom-rte-card';
+      moveInstrumentation(row, li);
+
+      const cell = row.children[0] || row;
+
+      // Extract Plan Badge (e.g. "TERM PLAN")
+      const badgeP = cell.querySelector('p');
+      if (badgeP && badgeP.textContent.trim()) {
+        const badgeSpan = document.createElement('span');
+        badgeSpan.className = 'plan-badge';
+        badgeSpan.textContent = badgeP.textContent.trim();
+        li.append(badgeSpan);
+      }
+
+      // Extract List Content
+      const list = cell.querySelector('ul');
+      if (list) {
+        const cardBody = document.createElement('div');
+        cardBody.className = 'plan-card-body';
+        cardBody.append(list.cloneNode(true));
+        li.append(cardBody);
+      }
+
+      cards.push(li);
+      cardsContainer.append(li);
+    });
+
+    // Build Step Pagination Bar with animated track (01 ━━━━ 02 03)
+    const paginationWrapper = document.createElement('div');
+    paginationWrapper.className = 'plan-pagination';
+
+    const stepsContainer = document.createElement('div');
+    stepsContainer.className = 'steps-container';
+
+    const trackWrapper = document.createElement('div');
+    trackWrapper.className = 'progress-track-wrapper';
+    const trackFill = document.createElement('span');
+    trackFill.className = 'progress-bar-fill';
+    trackWrapper.append(trackFill);
+
+    let currentIndex = 0;
+
+    const handleNextSlide = () => {
+      currentIndex = (currentIndex + 1) % cards.length;
+      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+    };
+
+    cards.forEach((_, i) => {
+      const stepBtn = document.createElement('button');
+      stepBtn.type = 'button';
+      stepBtn.className = `step-indicator ${i === 0 ? 'is-active' : ''}`;
+      stepBtn.textContent = String(i + 1).padStart(2, '0');
+      stepBtn.setAttribute('aria-label', `View plan ${i + 1}`);
+
+      stepBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = i;
+        updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+      });
+
+      steps.push(stepBtn);
+      stepsContainer.append(stepBtn);
+
+      // Add click listener on cards to advance stack
+      cards[i].addEventListener('click', () => {
+        currentIndex = i;
+        updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+      });
+    });
+
+    stepsContainer.append(trackWrapper);
+    paginationWrapper.append(stepsContainer);
+
+    // Update Block DOM
+    block.textContent = '';
+    block.append(cardsContainer, paginationWrapper);
+
+    // Initialize stack & start progress track timer
+    updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
   }
-
-  // Build 3D Card Deck Container
-  const cardsContainer = document.createElement('ul');
-  cardsContainer.className = 'custom-rte-cards';
-
-  const rows = [...block.children];
-  const cards = [];
-  const steps = [];
-
-  rows.forEach((row) => {
-    const li = document.createElement('li');
-    li.className = 'custom-rte-card';
-    moveInstrumentation(row, li);
-
-    const cell = row.children[0] || row;
-
-    // Extract Plan Badge (e.g. "TERM PLAN")
-    const badgeP = cell.querySelector('p');
-    if (badgeP && badgeP.textContent.trim()) {
-      const badgeSpan = document.createElement('span');
-      badgeSpan.className = 'plan-badge';
-      badgeSpan.textContent = badgeP.textContent.trim();
-      li.append(badgeSpan);
-    }
-
-    // Extract List Content
-    const list = cell.querySelector('ul');
-    if (list) {
-      const cardBody = document.createElement('div');
-      cardBody.className = 'plan-card-body';
-      cardBody.append(list.cloneNode(true));
-      li.append(cardBody);
-    }
-
-    cards.push(li);
-    cardsContainer.append(li);
-  });
-
-  // Build Step Pagination Bar with animated track (01 ━━━━ 02 03)
-  const paginationWrapper = document.createElement('div');
-  paginationWrapper.className = 'plan-pagination';
-
-  const stepsContainer = document.createElement('div');
-  stepsContainer.className = 'steps-container';
-
-  const trackWrapper = document.createElement('div');
-  trackWrapper.className = 'progress-track-wrapper';
-  const trackFill = document.createElement('span');
-  trackFill.className = 'progress-bar-fill';
-  trackWrapper.append(trackFill);
-
-  let currentIndex = 0;
-
-  const handleNextSlide = () => {
-    currentIndex = (currentIndex + 1) % cards.length;
-    updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
-  };
-
-  cards.forEach((_, i) => {
-    const stepBtn = document.createElement('button');
-    stepBtn.type = 'button';
-    stepBtn.className = `step-indicator ${i === 0 ? 'is-active' : ''}`;
-    stepBtn.textContent = String(i + 1).padStart(2, '0');
-    stepBtn.setAttribute('aria-label', `View plan ${i + 1}`);
-
-    stepBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = i;
-      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
-    });
-
-    steps.push(stepBtn);
-    stepsContainer.append(stepBtn);
-
-    // Add click listener on cards to advance stack
-    cards[i].addEventListener('click', () => {
-      currentIndex = i;
-      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
-    });
-  });
-
-  stepsContainer.append(trackWrapper);
-  paginationWrapper.append(stepsContainer);
-
-  // Update Block DOM
-  block.textContent = '';
-  block.append(cardsContainer, paginationWrapper);
-
-  // Initialize stack & start progress track timer
-  updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
 }

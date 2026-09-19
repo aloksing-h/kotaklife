@@ -75,6 +75,23 @@
               }
             }
           }
+        },
+        {
+          "title": "Tab Panel",
+          "id": "tab-panel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Tab Panel",
+                  "model": "tab-panel",
+                  "filter": "section",
+                  "tab-label": "Tab"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -108,6 +125,21 @@
                 "template": {
                   "name": "Accordion Item",
                   "model": "accordion-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Banner V2",
+          "id": "banner-v2",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Banner V2",
+                  "model": "banner-v2"
                 }
               }
             }
@@ -465,6 +497,38 @@
           }
         },
         {
+          "title": "Tab Panel",
+          "id": "tab-panel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Tab Panel",
+                  "model": "tab-panel",
+                  "filter": "section",
+                  "tab-label": "Tab"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tab List",
+          "id": "tab-list",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tab List",
+                  "model": "tab-list"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Tabs",
           "id": "tabs",
           "plugins": {
@@ -490,6 +554,83 @@
                 "template": {
                   "name": "Tabs Item",
                   "model": "tabs-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Testimonials",
+          "id": "testimonials",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Testimonials",
+                  "model": "testimonials",
+                  "filter": "testimonials"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Testimonials Item",
+          "id": "testimonials-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Testimonials Item",
+                  "model": "testimonials-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Timeline",
+          "id": "timeline",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Timeline",
+                  "model": "timeline",
+                  "filter": "timeline"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Timeline Item",
+          "id": "timeline-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Timeline Item",
+                  "model": "timeline-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Timeline Card",
+          "id": "timeline-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Timeline Card",
+                  "model": "timeline-card"
                 }
               }
             }
