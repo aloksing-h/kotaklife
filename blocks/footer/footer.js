@@ -44,7 +44,7 @@ export default async function decorate(block) {
 
   // Apply layer classes to social section
   const footerSocialMain = block.querySelector('.section:nth-child(2)');
-  footerSocialMain.classList.add('footer-social')
+  footerSocialMain.classList.add('footer-social');
   const footerSocial = block.querySelector('.section:nth-child(2) .default-content-wrapper');
   if (footerSocial) {
     addLayerClasses(footerSocial, {
@@ -71,6 +71,6 @@ export default async function decorate(block) {
     });
   }
 
-   const footerLogo = block.querySelector('.section:nth-child(5)');
+  const footerLogo = block.querySelector('.section:nth-child(5)');
   footerLogo.classList.add('footer-logo');
 }

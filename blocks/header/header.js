@@ -840,7 +840,7 @@ export default async function decorate(block) {
               // IMPORTANT: Store and clear initial content to prevent visual jerk
               const initialContent = modalSection.querySelector('.default-content-wrapper');
               const storedInitialContent = initialContent ? initialContent.cloneNode(true) : null;
-              
+
               // Clear the section to remove initial authored content (prevents flashing)
               modalSection.innerHTML = '';
 
@@ -894,7 +894,8 @@ export default async function decorate(block) {
               // Prepend nav-wrapper to section
               modalSection.prepend(newNavWrapper);
 
-              // Append the stored initial content back after the nav-wrapper (for "Talk To An Expert" section)
+              // Append the stored initial content back after the nav-wrapper
+              // (for "Talk To An Expert" section)
               if (storedInitialContent) {
                 modalSection.appendChild(storedInitialContent);
               }

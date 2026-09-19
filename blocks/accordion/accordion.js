@@ -44,9 +44,7 @@ export default function decorate(block) {
       // Hide if: body has no children
       if (body.children.length === 0) {
         details.classList.add('hide');
-      }
-      // Hide if: body has accordion-item-body-content but it's empty
-      else if (bodyContent && bodyContent.children.length === 0) {
+      } else if (bodyContent && bodyContent.children.length === 0) {
         details.classList.add('hide');
       }
     }
@@ -76,7 +74,7 @@ export default function decorate(block) {
           listItems.forEach((li) => {
             li.addEventListener('click', (e) => {
               e.stopPropagation(); // Prevent event bubbling
-              
+
               // If already active, remove active class (close it)
               if (li.classList.contains('active')) {
                 li.classList.remove('active');
@@ -102,7 +100,7 @@ export default function decorate(block) {
       // BUT allow closing if section has mob-accordion class (mobile behavior on desktop)
       const section = block.closest('.section');
       const hasMobAccordionClass = section && section.classList.contains('mob-accordion');
-      
+
       if (isDesktop && hasMobAccordionClass && details.hasAttribute('open')) {
         return; // Prevent closing on desktop (unless section has mob-accordion class)
       }

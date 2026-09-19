@@ -127,7 +127,7 @@ export function setupDeskhHamburgerModal(modalBlock) {
 
         // Get or create the dialog element
         let dialog = modalBlock.querySelector('dialog');
-        
+
         if (!dialog) {
           // Create dialog structure if it doesn't exist
           dialog = document.createElement('dialog');
@@ -150,7 +150,9 @@ export function setupDeskhHamburgerModal(modalBlock) {
 
           // Close on click outside dialog
           dialog.addEventListener('click', (e) => {
-            const { left, right, top, bottom } = dialog.getBoundingClientRect();
+            const {
+              left, right, top, bottom,
+            } = dialog.getBoundingClientRect();
             const { clientX, clientY } = e;
             if (clientX < left || clientX > right || clientY < top || clientY > bottom) {
               dialog.close();
