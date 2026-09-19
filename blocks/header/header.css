@@ -822,7 +822,6 @@ header nav .nav-sections .nav-fragment-container .tabs-panel .columns-wrapper>di
 
 header {
   height: 96px;
-  display: none; /* for temprary purpose to develope banner-v2*/
 }
 
 header .nav-wrapper {

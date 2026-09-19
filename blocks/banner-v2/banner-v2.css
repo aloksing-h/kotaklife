@@ -1,9 +1,8 @@
 /* ==========================================================================
    Banner V2 Block Styles
-   Desktop-First Architecture using max-width media queries
-   - Background stretches 100% full-viewport edge-to-edge
-   - Content & Visual confined to centered 1200px container
-   - Zero inline styles or paths on block markup
+   Desktop & Mobile Layout (Fixed Proportion Hero, NO 100vh)
+   - Desktop: ~520px height, centered 1200px inner container, bottom-grounded illustration
+   - Mobile: Natural auto-height (~520px), title & stats on top, bottom-grounded illustration
    ========================================================================== */
 
 main>.section>div.banner-v2-wrapper {
@@ -26,34 +25,34 @@ main>.section:has(.banner-v2) {
 }
 
 /* ==========================================================================
-   1. Desktop Canonical Styles (1200px Inner Frame, Full-Width Edge-to-Edge BG)
-   - Background: 100% full width & 100vh / 100dvh full height
-   - Inner Frame: centered max-width 1200px
-   - Left Content: exactly 438px x 240px
-   - Right Visual: exactly 613px width grounded to bottom right
+   1. Desktop Canonical Styles (max-width: 1200px centered frame)
+   - Height: 520px fixed hero height (NOT 100vh)
+   - Left Content: centered vertically
+   - Right Visual: illustration firmly grounded to the bottom edge
    ========================================================================== */
 
 .banner-v2.block {
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: 565px;
+  min-height: 565px;
   border-radius: 0;
   background-color: var(--brand-red-500, #fa1432);
   background-image:
     radial-gradient(circle at 85% 20%, rgb(255 255 255 / 15%) 0%, transparent 50%),
-    linear-gradient(135deg, #fa1432 0%, #d80c26 55%, #af0e23 100%);
+    linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
   color: var(--base-white, #fff);
-  min-height: 100vh;
-  min-height: 100dvh;
   padding: 0;
+  margin: 0 auto;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
 }
 
-/* Background image layer - Stretches 100% edge-to-edge to fill gaps */
+/* Background image layer - Stretches edge-to-edge behind the block */
 .banner-v2.block .banner-v2-bg {
   position: absolute;
   inset: 0;
@@ -69,8 +68,8 @@ main>.section:has(.banner-v2) {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fill;
-  object-position: center center;
+  object-fit: cover;
+  object-position: right center;
 }
 
 .banner-v2.block .banner-v2-bg-desktop {
@@ -95,43 +94,42 @@ main>.section:has(.banner-v2) {
   z-index: 2;
 }
 
-/* 2. Centered Inner Container (Strictly confined to max-width: 1200px) */
+/* 2. Centered Inner Container (Confined to max-width: 1200px) */
 .banner-v2.block .banner-v2-inner {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   width: 100%;
   max-width: 1200px;
+  height: 100%;
+  min-height: 565px;
   margin: 0 auto;
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 0 0 50px;
+  align-items: flex-end;
+  padding: 0 50px;
   box-sizing: border-box;
 }
 
-/* Content Left Column (Desktop 438x240) */
+/* Content Left Column (Vertically Centered) */
 .banner-v2.block .banner-v2-content {
   position: relative;
   z-index: 2;
-  flex: 0 0 438px;
-  width: 438px;
-  max-width: 438px;
-  height: 240px;
-  min-height: 240px;
+  flex: 0 0 480px;
+  max-width: 480px;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 40px 0;
   box-sizing: border-box;
 }
 
 /* Typography - Title */
 .banner-v2.block .banner-v2-title {
   font-family: var(--heading-font-family, 'Manrope', sans-serif);
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 300;
-  line-height: 1.15;
+  line-height: 60px;
   color: var(--base-white, #fff);
   margin: 0 0 16px;
   letter-spacing: -0.01em;
@@ -147,10 +145,10 @@ main>.section:has(.banner-v2) {
 .banner-v2.block .banner-v2-description {
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 20px;
   color: var(--gray-100, rgb(255 255 255 / 90%));
   margin: 0 0 40px;
-  max-width: 438px;
+  max-width: 440px;
 }
 
 /* Statistics / Metrics */
@@ -160,7 +158,7 @@ main>.section:has(.banner-v2) {
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
 }
 
@@ -170,8 +168,8 @@ main>.section:has(.banner-v2) {
   flex-direction: column;
   justify-content: center;
   gap: 2px;
-  padding-left: 12px;
-  border-left: 1.3px solid var(--base-white);
+  padding-left: 14px;
+  border-left: 1.3px solid var(--base-white, #fff);
   box-sizing: border-box;
 }
 
@@ -186,19 +184,17 @@ main>.section:has(.banner-v2) {
 
 .banner-v2.block .stat-label {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 14px;
   color: var(--gray-100, rgb(255 255 255 / 85%));
   white-space: nowrap;
 }
 
-/* Visual Right Column - Person Image (Desktop 613px width grounded to bottom) */
+/* Visual Right Column - Person Image Grounded to Bottom Edge */
 .banner-v2.block .banner-v2-visual {
   position: relative;
   z-index: 2;
-  flex: 0 0 613px;
-  width: 613px;
-  max-width: 613px;
+  flex: 0 0 auto;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -216,92 +212,86 @@ main>.section:has(.banner-v2) {
 
 .banner-v2.block .banner-v2-visual img {
   display: block;
-  width: 613px;
-  max-width: 613px;
-  height: auto;
-  max-height: calc(100vh - 40px);
-  max-height: calc(100dvh - 40px);
+  width: auto;
+  max-width: 580px;
+  height: 520px;
+  max-height: 540px;
   object-fit: contain;
   object-position: bottom right;
 }
 
 /* ==========================================================================
    2. Laptop Breakpoint (max-width: 1199px)
-   - Covering 13-14" laptop viewports (1024px frame)
    ========================================================================== */
-@media (max-width: 1199px) {
+@media (width <=1199px) {
+  .banner-v2.block {
+    height: 480px;
+    min-height: 480px;
+  }
+
   .banner-v2.block .banner-v2-inner {
-    padding: 0 0 0 40px;
+    padding: 0 32px;
+    min-height: 480px;
   }
 
   .banner-v2.block .banner-v2-content {
-    flex: 0 0 420px;
-    width: 420px;
-    max-width: 420px;
-    height: 220px;
-    min-height: 220px;
+    flex: 0 0 440px;
+    max-width: 440px;
   }
 
   .banner-v2.block .banner-v2-title {
-    font-size: 42px;
+    font-size: 38px;
     line-height: 1.15;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .banner-v2.block .banner-v2-description {
     font-size: 15px;
-    margin-bottom: 32px;
-    max-width: 420px;
+    margin-bottom: 28px;
   }
 
   .banner-v2.block .stat-value {
     font-size: 22px;
-  }
-
-  .banner-v2.block .banner-v2-visual {
-    flex: 0 0 520px;
-    width: 520px;
-    max-width: 520px;
-    align-self: flex-end;
+    line-height: 26px;
   }
 
   .banner-v2.block .banner-v2-visual img {
-    width: 520px;
-    max-width: 100%;
-    max-height: calc(100vh - 40px);
-    max-height: calc(100dvh - 40px);
+    height: 440px;
+    max-height: 460px;
+    max-width: 500px;
   }
 }
 
 /* ==========================================================================
    3. Tablet Breakpoint (max-width: 1023px)
-   - Dedicated portrait tablet frame (768px frame)
    ========================================================================== */
-@media (max-width: 1023px) {
+@media (width <=1023px) {
+  .banner-v2.block {
+    height: auto;
+    min-height: 440px;
+  }
+
   .banner-v2.block .banner-v2-inner {
-    padding: 0 0 0 32px;
+    padding: 24px 24px 0;
+    min-height: 440px;
   }
 
   .banner-v2.block .banner-v2-content {
-    flex: 0 1 380px;
-    width: 100%;
+    flex: 1 1 360px;
     max-width: 380px;
-    height: auto;
-    min-height: auto;
-    display: block;
+    padding: 20px 0;
   }
 
   .banner-v2.block .banner-v2-title {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1.18;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .banner-v2.block .banner-v2-description {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.4;
-    margin-bottom: 28px;
-    max-width: 360px;
+    margin-bottom: 24px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
@@ -317,30 +307,24 @@ main>.section:has(.banner-v2) {
     font-size: 12px;
   }
 
-  .banner-v2.block .banner-v2-visual {
-    flex: 0 0 auto;
-    width: auto;
-    max-width: 50%;
-    align-self: flex-end;
-  }
-
   .banner-v2.block .banner-v2-visual img {
-    width: auto;
-    max-width: 100%;
-    max-height: calc(100vh - 40px);
-    max-height: calc(100dvh - 40px);
+    height: 380px;
+    max-height: 400px;
+    max-width: 420px;
   }
 }
 
 /* ==========================================================================
    4. Mobile Breakpoint (max-width: 768px)
-   - True full-height hero (100vh / 100dvh)
-   - Background spans 100% full screen
-   - Content at top, illustration grounded firmly to bottom edge
+   - Auto-height (NOT 100vh) allowing subnavigation tabs to be visible
+   - Top text content with horizontal stats
+   - Person illustration grounded flush at the bottom edge
    ========================================================================== */
-@media (max-width: 768px) {
+@media (width <=768px) {
   .banner-v2.block {
-    background-image: linear-gradient(180deg, #fa1432 0%, #d80c26 50%, #980a1c 100%);
+    height: auto;
+    min-height: auto;
+    background-image: linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%);
     background-position: center top;
   }
 
@@ -361,24 +345,21 @@ main>.section:has(.banner-v2) {
   .banner-v2.block .banner-v2-inner {
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(28px, 5vh, 44px) 16px 0;
+    justify-content: flex-start;
+    height: auto;
+    min-height: auto;
+    padding: 28px 16px 0;
     max-width: 100%;
   }
 
-  /* Left Content: exactly 328px x 178px at 360px */
+  /* Content area: Title, Description, Stats */
   .banner-v2.block .banner-v2-content {
     flex: 0 0 auto;
     width: 100%;
-    max-width: 328px;
-    min-height: 178px;
+    max-width: 360px;
     margin: 0 auto;
-    padding-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 0 0 16px;
+    text-align: left;
     box-sizing: border-box;
   }
 
@@ -386,33 +367,39 @@ main>.section:has(.banner-v2) {
     font-size: 30px;
     line-height: 36px;
     margin: 0 0 8px;
+    text-align: left;
+    font-weight: 300;
   }
 
   .banner-v2.block .banner-v2-description {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 20px;
     margin: 0 0 16px;
+    color: var(--gray-100, rgb(255 255 255 / 90%));
+    text-align: left;
     max-width: 100%;
   }
 
+  /* Stats: 3 columns with white top accent line */
   .banner-v2.block ul.banner-v2-stats,
   .banner-v2.block ol.banner-v2-stats {
     display: flex;
+    flex-flow: row nowrap;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    flex-wrap: nowrap;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
   .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
     position: relative;
-    padding-top: 8px;
+    padding-top: 10px;
     padding-left: 0;
-    border-top: none;
     border-left: none;
-    flex: 1 1 auto;
+    border-top: none;
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat::before,
@@ -422,31 +409,36 @@ main>.section:has(.banner-v2) {
     top: 0;
     left: 0;
     width: 40px;
-    height: 1.3px;
+    height: 1px;
     background-color: var(--base-white, #fff);
   }
 
   .banner-v2.block .stat-value {
     font-size: 16px;
+    font-weight: 600;
     line-height: 20px;
+    margin-bottom: 2px;
   }
 
   .banner-v2.block .stat-label {
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 14px;
-    white-space: normal;
+    color: var(--gray-100, rgb(255 255 255 / 85%));
+    white-space: nowrap;
   }
 
-  /* Right Visual: anchored firmly to the bottom edge with no gap below */
+  /* Illustration: Grounded firmly to bottom edge above subnav */
   .banner-v2.block .banner-v2-visual {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     width: 100%;
-    max-width: 360px;
-    margin: auto auto 0 auto;
+    max-width: 340px;
+    margin: 0 auto;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     align-self: center;
+    line-height: 0;
   }
 
   .banner-v2.block .banner-v2-visual picture {
@@ -454,34 +446,37 @@ main>.section:has(.banner-v2) {
     align-items: flex-end;
     justify-content: center;
     width: 100%;
-    height: 100%;
   }
 
   .banner-v2.block .banner-v2-visual img {
     display: block;
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    max-width: 320px;
     height: auto;
-    max-height: clamp(280px, 48vh, 460px);
-    margin: 0 auto;
+    max-height: 290px;
     object-fit: contain;
     object-position: bottom center;
+    margin: 0 auto;
   }
 }
 
 /* ==========================================================================
-   5. Flip/Fold Small Device Breakpoint (max-width: 359px)
-   - Accessibility requirement covering 280px flip/small phone devices
-   - Same-to-same dimensions as 360px (no shrinking)
+   5. Flip/Fold Small Device Breakpoint (max-width: 359px down to 280px)
    ========================================================================== */
-@media (max-width: 359px) {
+@media (width <=359px) {
   .banner-v2.block .banner-v2-inner {
-    padding: clamp(20px, 4vh, 32px) 10px 0;
+    padding: 20px 10px 0;
   }
 
-  .banner-v2.block .banner-v2-content {
-    width: 100%;
-    max-width: 100%;
+  .banner-v2.block .banner-v2-title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 13px;
+    line-height: 17px;
+    margin-bottom: 16px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
@@ -489,40 +484,47 @@ main>.section:has(.banner-v2) {
     gap: 6px;
   }
 
-  .banner-v2.block .banner-v2-visual {
-    max-width: 100%;
+  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat::before,
+  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat::before {
+    width: 32px;
+  }
+
+  .banner-v2.block .stat-value {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .banner-v2.block .stat-label {
+    font-size: 10px;
+    line-height: 13px;
+    white-space: normal;
+  }
+
+  .banner-v2.block .banner-v2-visual img {
+    max-height: 250px;
+    max-width: 260px;
   }
 }
 
 /* ==========================================================================
-   6. Universal Editor / Authoring Mode (window.self !== window.top)
-   - Replaces 100vh / 100dvh with fixed minimum heights so the hero block
-     does not collapse or break inside authoring iframes
+   6. Universal Editor / Authoring Mode
    ========================================================================== */
 .banner-v2.block.is-editor {
-  min-height: 800px;
+  min-height: 520px;
   height: auto;
 }
 
 .banner-v2.block.is-editor .banner-v2-inner {
-  min-height: 800px;
+  min-height: 520px;
   height: auto;
 }
 
-.banner-v2.block.is-editor .banner-v2-visual img {
-  max-height: 700px;
-}
-
-@media (max-width: 768px) {
+@media (width <=768px) {
   .banner-v2.block.is-editor {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   .banner-v2.block.is-editor .banner-v2-inner {
-    min-height: 700px;
-  }
-
-  .banner-v2.block.is-editor .banner-v2-visual img {
-    max-height: 400px;
+    min-height: 500px;
   }
 }

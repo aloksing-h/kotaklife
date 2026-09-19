@@ -1,5 +1,4 @@
 footer {
-  display: none; /*temporary development purpose*/
   background-color: var(--light-color);
   font-size: var(--body-font-size-xs);
 }

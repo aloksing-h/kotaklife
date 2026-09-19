@@ -18,12 +18,7 @@
 .cards>ul>li {
   border: 1px solid var(--light-color);
   grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: var(--spacing-3xl);
   background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: var(--spacing-xl);
 }
 
 .cards .cards-card-image {
