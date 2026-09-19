@@ -16,7 +16,7 @@
     letter-spacing: var(--heading-3-letter-spacing, -0.64px);
     line-height: var(--heading-3-line-height, 36px);
     text-align: center;
-    margin: 0 0 6px 0;
+    margin: 0 0 6px;
     padding: 0;
     font-weight: var(--font-weight-light, 300);
 }
@@ -46,9 +46,7 @@
   display: flex;
   flex-flow: row nowrap;
   padding: var(--spacing-5xl, 40px) 0;
-  margin: 0;
   justify-content: space-between;
-  list-style: none;
   gap: 0; /* Let Swiper handle spacing on mobile */
 }
 
@@ -66,7 +64,6 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   padding: 0;
-  overflow: hidden;
 }
 
  .values-cards-hover .custom-cards > ul > li::before {
@@ -164,8 +161,6 @@
   margin: 0;
   padding: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between; 
 }
 
@@ -251,7 +246,7 @@
         font-size: var(--heading-1-font-size, 48px);
         font-weight: var(--font-weight-light, 300);
         line-height: var(--heading-1-line-height, 60px);
-        margin: 0 0 12px 0;
+        margin: 0 0 12px;
         padding: 0;
     }
 
