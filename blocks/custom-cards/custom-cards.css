@@ -342,6 +342,12 @@
     transform-origin: center;
 }
 
+/* Title and Text Active State */
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body h4,
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p {
+    color: #fff;
+}
+
 /* Category Badge Active State */
 .difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body>p:first-child {
     border-radius: var(--radius-full, 999px);
@@ -349,9 +355,6 @@
     background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
 }
 
-/* Title and Text Active State */
-.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body h4,
-.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p,
 .difference-cards.section .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p:nth-child(3) {
     color: #fff;
 }
@@ -509,6 +512,7 @@
         padding-inline: 50px;
         padding-block: 0;
     }
+
     .difference-cards .custom-cards .swiper-pagination{
         display: none;
     }
@@ -557,9 +561,11 @@
         height: 30px;
         transition: transform 0.3s ease;
     }
+
     .difference-cards.section.custom-cards-container .custom-cards-card-image{
         bottom: 30px;
     }
+
     .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
         display: block;
         width: 100%;
@@ -597,14 +603,17 @@
         transform-origin: center;
     }
 
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body h4,
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body p {
+        color: #fff;
+    }
+
     .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child {
         border-radius: var(--radius-full, 999px);
         border: 1px solid var(--border-border-brand-blue, #1E4679);
         background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
     }
 
-    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body h4,
-    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body p,
     .difference-cards.section .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
         color: #fff;
     }

@@ -10,7 +10,7 @@ export default async function initValuesSwiper(block) {
     block.append(pagination);
   }
 
-  // Swiper is only active at 768px and below; the grid layout in values-cards.css takes over above that
+  // Swiper is only active at 800px and below; the CSS grid layout takes over above that
   const mobileQuery = window.matchMedia('(max-width: 800px)');
 
   const enableSwiper = async () => {
@@ -23,7 +23,7 @@ export default async function initValuesSwiper(block) {
       try {
         // 2. Dynamically import Swiper ONLY when on mobile
         const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
-        
+
         block.swiperInstance = createSwiper(block, {
           slidesPerView: 'auto',
           spaceBetween: 8,
@@ -34,7 +34,7 @@ export default async function initValuesSwiper(block) {
           },
         });
       } catch (error) {
-        console.error('Failed to load Swiper:', error);
+        throw new Error('Failed to load Swiper', { cause: error });
       }
     }
   };
@@ -60,7 +60,7 @@ export default async function initValuesSwiper(block) {
 
   // Initial check on page load
   handleMediaChange(mobileQuery);
-  
+
   // Listen for window resize
   mobileQuery.addEventListener('change', handleMediaChange);
 }

@@ -65,7 +65,7 @@ export default async function decorate(block) {
     initInsightsSwiper(block);
   }
 
-  if(valuesCardsSection){
+  if (valuesCardsSection) {
     initValuesSwiper(block);
   }
 }

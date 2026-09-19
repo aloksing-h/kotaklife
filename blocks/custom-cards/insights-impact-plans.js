@@ -30,7 +30,7 @@ export default async function initInsightsSwiper(block) {
         breakpoints: {
           768: {
             spaceBetween: 16, // Spacing for screens 768px and above
-          }
+          },
         },
       });
     }
