@@ -179,6 +179,10 @@
             {
               "name": "Visual Pulse",
               "value": "visual-pulse"
+            },
+            {
+              "name": "Our Leadership",
+              "value": "leadership"
             }
           ]
         }
@@ -217,7 +221,8 @@
         "invest-form",
         "timeline",
         "video-banner",
-        "promo"
+        "promo",
+        "banner-v2"
       ]
     }
   ]
