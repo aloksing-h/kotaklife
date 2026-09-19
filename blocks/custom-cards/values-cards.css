@@ -1,9 +1,13 @@
 /* =========================================
    1. LAYOUT: Mobile First (Swiper Default)
    ========================================= */
-.values-cards-hover .custom-cards.swiper {
-  overflow: hidden; 
-}
+
+/* Clip the hover scale/reveal below the grid breakpoint, whether or not swiper is active */
+
+  .values-cards-hover .custom-cards {
+    overflow: hidden;
+  }
+
 
 .values-cards-hover .custom-cards > ul {
   display: flex;
@@ -152,8 +156,8 @@
   left: 16px; 
   right: 16px;
   margin: 0;
-  font-size: clamp(0.625rem , 2vw , 0.875rem);
-  line-height: clamp(0.75rem , 2vw , 1.125rem);
+  font-size: 0.625rem;
+  line-height: 0.75rem;
   font-weight: 600;
   color: var(--base-white, #fff);
   opacity: 0;
@@ -192,17 +196,39 @@
   visibility: visible;
 }
 
+/* Swiper only runs at 768px and below; hide its pagination as soon as it's disabled */
+@media (width >= 769px) {
+  .values-cards-hover .custom-cards .swiper-pagination {
+    display: none;
+  }
+}
+
+@media (width >= 800px) {
+  .values-cards-hover .custom-cards > ul > li {
+    flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
+    width: auto;
+    height: auto;
+    max-width: 170px;
+    aspect-ratio: 170 / 275; /* calculated height that scales with the fluid width */
+  }
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
 /* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
-@media (width >= 1025px) {
+@media (width >= 1200px) {
   .values-cards-hover .custom-cards > ul {
     gap: 20px;
   }
 
   .values-cards-hover .custom-cards > ul > li {
     max-width: 192px;
-    width: 100%;
-    min-height: 314px;
+    aspect-ratio: 192 / 314;
   }
+
 
    .values-cards-hover .custom-cards > ul > li::before {
     top: 160px;
@@ -215,10 +241,6 @@
 
   .values-cards-hover .custom-cards > ul > li::after {
     background-image: url("../../icons/glass-effect.svg");
-  }
-
-  .values-cards-hover .custom-cards .swiper-pagination {
-    display: none; /* Hide pagination on desktop */
   }
 
   /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
@@ -242,9 +264,12 @@
 
   .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
     top: 40px;
+
   }
 
   .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
     bottom: 40px;
+    font-size: 14px;
+    line-height: 18px;
   }
 }

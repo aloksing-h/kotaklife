@@ -10,7 +10,8 @@ export default async function initValuesSwiper(block) {
     block.append(pagination);
   }
 
-  const mobileQuery = window.matchMedia('(max-width: 1024px)');
+  // Swiper is only active at 768px and below; the grid layout in values-cards.css takes over above that
+  const mobileQuery = window.matchMedia('(max-width: 800px)');
 
   const enableSwiper = async () => {
     if (!block.swiperInstance) {

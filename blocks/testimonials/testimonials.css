@@ -10,20 +10,18 @@
   display: flex;
   flex-direction: row; /* Stacks vertically on mobile */
   gap: 12px;
-  max-height: 152px;
-  height: 100%;
 }
 
 /* Individual Testimonial Items */
 .testimonials.customer-say .testimonial-item {
   flex: 1;
   position: relative;
+  height: 152px;
   border-radius: 12px;
   overflow: hidden;
-  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: flex 0.4s ease-in-out;
   cursor: pointer;
-  height: 100%;
-  max-height: 320px;
+  
 }
 
 .testimonials.customer-say .video-btn-wrapper img {
@@ -45,13 +43,16 @@
 
 .testimonials.customer-say .testimonial-item picture img {
   object-fit: cover;
+  object-position: left center;
   border-radius: 8px;
 }
+
 
 /* --- State Management via ARIA attributes --- */
 .testimonials.customer-say  .testimonial-col-1 p,
 .testimonials.customer-say  .testimonial-col-2 p {
     margin: 0;
+    
 }
 
 /* Expanded State */
@@ -123,16 +124,16 @@
 }
 
 /* --- Desktop View (Side-by-Side Grid) --- */
-@media (width >= 900px) {
+@media (width >= 768px) {
   .testimonials.customer-say {
     flex-direction: row; /* Switch to horizontal accordion */
-
      /* Desktop height constraint */
-     max-height: 320px;
-     height: 100%;
      gap: 16px;
   }
 
+  .testimonials.customer-say .testimonial-item{
+    height: 320px;
+  }
   .section:has(.testimonials.customer-say){
     max-width: 1100px;
     margin: 0 auto;
@@ -152,7 +153,7 @@
   .testimonials.customer-say .large-img-mob {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
     display: none 
   }
   
@@ -160,10 +161,10 @@
   .testimonials.customer-say .large-img-desk {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
     display: block 
   }
-
+  
   .testimonials.customer-say .video-btn-wrapper{
     top: 24px;
     right: 24px;
