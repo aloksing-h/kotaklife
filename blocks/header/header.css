@@ -1427,7 +1427,7 @@ nav[aria-expanded='true'] .nav-sections .nav-drop>ul {
   display: none;
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child,
+nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
   padding: 16px 32px 16px 0;
   color: var(--text-text-primary, #181D27);
@@ -1958,7 +1958,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     margin-top: -15px;
   }
 
-  nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1,
+  nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
   nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
     border: none;
     padding: 0 20px 0 0;
