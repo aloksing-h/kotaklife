@@ -9,8 +9,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 0;
+  padding: 40px 0;
   margin: 0;
+  justify-content: space-between;
   list-style: none;
   gap: 0; /* Let Swiper handle spacing on mobile */
 }
@@ -32,15 +33,43 @@
   overflow: hidden;
 }
 
+ .values-cards-hover .custom-cards > ul > li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(../../icons/pink-bg-mobile.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+  }
+  .values-cards-hover .custom-cards > ul > li:nth-child(even)::before{
+    background-image: url(../../icons/blue-bg-mobile.svg);
+  }
+  .values-cards-hover .custom-cards > ul > li::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(../../icons/glass-effect-mobile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  .values-cards-hover .custom-cards > ul > li:hover::before,
+.values-cards-hover .custom-cards > ul > li:hover::after {
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Optional: adds a smooth fade out */
+}
+
 /* Swiper Pagination (Visible on Mobile by default) */
 .values-cards-hover .custom-cards .swiper-pagination {
-  position: relative;
-  margin-top: 24px;
   bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-  gap: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    left: unset;
+    right: 20px;
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet {
@@ -96,7 +125,9 @@
   margin: 0;
   padding: 0;
   z-index: 2;
-  display: block; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
 }
 
 /* TITLE (h4): Default State */
@@ -119,8 +150,9 @@
   left: 16px; 
   right: 16px;
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: clamp(0.625rem , 2vw , 0.875rem);
+  line-height: clamp(0.75rem , 2vw , 1.125rem);
+  font-weight: 600;
   color: var(--base-white, #ffffff);
   opacity: 0;
   visibility: hidden;
@@ -133,8 +165,7 @@
    ========================================= */
 .values-cards-hover .custom-cards > ul > li:hover {
   background: linear-gradient(180deg, #7f2224 0%, #fa1432 100%);
-  transform: scale(1.06); /* Slightly reduced scale avoids clipping on smaller screens */
-  box-shadow: 0 20px 40px rgba(250, 20, 50, 0.25);
+  transform: scale(1.26); /* Slightly reduced scale avoids clipping on smaller screens */
   border-color: transparent;
   z-index: 10;
 }
@@ -153,20 +184,19 @@
 
 /* Show Description (p) */
 .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
-  top: 72px; /* Starts dynamically below the pinned title */
+  top: auto; /* Starts dynamically below the pinned title */
   bottom: 24px; /* Ensures text doesn't overflow card at any height */
   opacity: 1;
   visibility: visible;
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 600;
+  
+  
 }
 
 /* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
 @media (min-width: 1025px) {
   .values-cards-hover .custom-cards > ul {
-    align-items: stretch; /* Cards inherently match the tallest card's height */
-    gap: 16px;
+    
+    gap: 20px;
   }
 
   .values-cards-hover .custom-cards > ul > li {
@@ -178,5 +208,29 @@
 
   .values-cards-hover .custom-cards .swiper-pagination {
     display: none; /* Hide pagination on desktop */
+  }
+  /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
+.values-cards-hover .custom-cards > ul > li:first-child {
+  transform-origin: left;
+}
+
+/* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
+.values-cards-hover .custom-cards > ul > li:last-child {
+  transform-origin: right;
+}
+
+/* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
+.values-cards-hover .custom-cards > ul > li:not(:first-child):not(:last-child) {
+  transform-origin: center;
+}
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+    top: 40px;
+  }
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+    
+
+    bottom: 40px;
   }
 }
