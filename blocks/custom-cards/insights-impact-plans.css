@@ -36,6 +36,7 @@
 }
 
 .insights-impact-plans .custom-cards>ul>li.swiper-slide {
+    max-width: 280px;
     flex-shrink: 0;
     height: auto;
 }

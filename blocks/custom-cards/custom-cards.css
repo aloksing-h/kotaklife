@@ -2,6 +2,7 @@
 @import url('./looking-for.css');
 @import url('./infinite-protection.css');
 @import url('./insights-impact-plans.css');
+@import url('./values-cards.css');
 
 /* Base Grid Container (Matches standard EDS cards) */
 
@@ -103,4 +104,529 @@
 
 .custom-cards>ul>li.image-overlay .custom-cards-card-body a {
   color: #fff;
+}
+
+
+.difference-cards .custom-cards-wrapper {
+    padding-right: 0;
+    padding-inline-start: 16px;
+}
+
+.difference-cards .custom-cards-card-body p:last-child {
+    background-color: var(--base-white);
+    border-radius: var(--radius-full);
+    position: absolute;
+    bottom: 16px;
+    padding: 0;
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.difference-cards .custom-cards-card-body .icon {
+    width: 22.4px;
+    height: 22.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.difference-cards .custom-cards.swiper {
+    overflow: hidden;
+    padding-top: 18px;
+    padding-bottom: 32px;
+}
+
+.difference-cards .custom-cards>ul.swiper-wrapper {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+}
+
+.difference-cards .custom-cards>ul>li.swiper-slide {
+    max-width: 275px;
+    min-height: 186px;
+    flex-shrink: 0;
+    height: auto;
+}
+
+/* Swiper Pagination Dots */
+.difference-cards .custom-cards .swiper-pagination {
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    left: unset;
+    right: 20px;
+}
+
+.difference-cards .custom-cards .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #d1d5db;
+    opacity: 1;
+    border-radius: 50%;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.difference-cards .custom-cards .swiper-pagination-bullet-active {
+    width: 28px;
+    height: 8px;
+    background-color: #e31837;
+    border-radius: 4px;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+.difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+     padding: 0 24px 0 16px;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 16px;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper h1,
+.difference-cards.custom-cards-container .default-content-wrapper h2,
+.difference-cards.custom-cards-container .default-content-wrapper h3,
+.difference-cards.custom-cards-container .default-content-wrapper h4 {
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    line-height: 36px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper h1 strong,
+.difference-cards.custom-cards-container .default-content-wrapper h2 strong,
+.difference-cards.custom-cards-container .default-content-wrapper h3 strong,
+.difference-cards.custom-cards-container .default-content-wrapper h4 strong{
+  font-weight: 600;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper p {
+    color: var(--text-text-primary, #181D27);
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.difference-cards .custom-cards>ul>li {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f4f8fa;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: background 0.35s ease, transform 0.3s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+
+.difference-cards.custom-cards-container .custom-cards-card-body h4 {
+    font-size: 18px;
+    line-height: 20px;
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-weight: 600;
+    color: #181d27;
+    margin: 0;
+    transition: color 0.3s ease;
+    margin-bottom: 4px;
+}
+
+/* Category Pill Tag (First Paragraph in Body) */
+.difference-cards .custom-cards-card-body>p:first-child {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-family-font-family-display, Manrope);
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: var(--text-text-tertiary, #535862);
+    margin: 0 0 4px;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--border-border-brand-blue, #1E4679);
+    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+    margin-bottom: 15px;
+}
+
+.difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
+.difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
+    font-size: 14px;
+    line-height: 18px;
+    font-family: var(--font-family-font-family-display, Manrope);
+    color: #414651;
+    font-weight: 600;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.difference-cards.section.custom-cards-container .custom-cards-card-image img {
+    width: 160px;
+    height: 61px;
+    aspect-ratio: unset;
+    object-fit: unset;
+}
+
+.difference-cards.section.custom-cards-container .custom-cards-card-image picture {
+    aspect-ratio: unset;
+}
+
+/* Card Artwork / Media Area */
+.difference-cards.section.custom-cards-container .custom-cards-card-image {
+    position: absolute;
+    right: -5px;
+    bottom: 18px;
+    z-index: 1;
+    pointer-events: none;
+    padding-left: 40px;
+}
+
+/* Card Content Body */
+.difference-cards.section.custom-cards-container .custom-cards-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+}
+
+.difference-cards.section.custom-cards-container .custom-cards-card-image p {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Image Swap on Hover */
+
+.difference-cards.section.custom-cards-container .custom-cards-card-image picture.secondary-image {
+    display: none;
+}
+
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-image picture.primary-image {
+    display: none;
+}
+
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-image picture.secondary-image {
+    display: block;
+}
+
+/* ========================================================================== 
+   Active State (Vibrant Red Gradient & Image Toggle)
+   ========================================================================== */
+
+.difference-cards .custom-cards>ul>li.swiper-slide-active {
+    background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+    transform: scaleY(1.144);
+}
+
+.difference-cards .custom-cards>ul>li.swiper-slide-active p:last-child {
+    transform: scaleY(0.8742);
+    transform-origin: center;
+}
+
+/* Title and Text Active State */
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body h4,
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p {
+    color: #fff;
+}
+
+/* Category Badge Active State */
+.difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body>p:first-child {
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--border-border-brand-blue, #1E4679);
+    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+}
+
+.difference-cards.section .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p:nth-child(3) {
+    color: #fff;
+}
+
+/* ==========================================================================
+   Bottom "Know More" CTA Button
+   ========================================================================== */
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 4px 4px 4px 20px;
+    border: 1px solid var(--button-btn-brand-red, #E1122D);
+    border-radius: 30px;
+    color: var(--button-btn-brand-red, #E1122D);
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    line-height: 18px;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a::before {
+    content: '';
+    background-image: url("/icons/write-arrow-right.svg");
+    position: absolute;
+    right: 9px;
+    width: 20px;
+    height: 20px;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a::after {
+    content: '';
+    display: flex;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 11.429px;
+    border-radius: 50%;
+    background: var(--button-btn-brand-red, #E1122D);
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a:hover {
+    background-color: #e31837;
+    color: #fff;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a:hover::after {
+    background-color: #fff;
+    color: #e31837;
+}
+
+.difference-cards.custom-cards-container .default-content-wrapper:last-child a:hover::before {
+    background-image: url("/icons/red-arrow-right.svg");
+    width: 27px;
+    height: 28px;
+    right: 10px;
+}
+
+/* ==========================================================================
+   Section Level Scoped Styles (.difference-cards)
+   ========================================================================== */
+@media (width >=768px) {
+    .difference-cards.custom-cards-container {
+        padding: 48px 0;
+        background-color: #fff;
+    }
+
+    /* Top Header Layout (Title + Subtitle) */
+    .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+    .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+        width: 100%;
+        display: flex;
+        gap: 12px;
+        padding-inline: 50px;
+        max-width: 1200px;
+        margin: 0 auto 72px;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
+    .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    } */
+.difference-cards.custom-cards-container .default-content-wrapper:last-child {
+    margin-top: 54px;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+    .difference-cards.custom-cards-container .default-content-wrapper h1,
+    .difference-cards.custom-cards-container .default-content-wrapper h2,
+    .difference-cards.custom-cards-container .default-content-wrapper h3,
+    .difference-cards.custom-cards-container .default-content-wrapper h4 {
+        width: auto;
+        color: var(--text-text-primary, #181d27);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: 48px;
+        font-weight: 300;
+        line-height: 60px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .difference-cards.custom-cards-container .default-content-wrapper:last-child a {
+        font-size: 16px;
+    }
+
+    .difference-cards.custom-cards-container .default-content-wrapper h1 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h2 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h3 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h4 strong {
+        font-weight: 600;
+    }
+
+    .difference-cards.custom-cards-container .default-content-wrapper p {
+        color: var(--text-text-tertiary, #535862);
+        font-family: var(--font-family-font-family-display, Manrope);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        margin: 0;
+        max-width: 534px;
+        text-align: center;
+    }
+    
+    /* ==========================================================================
+   Block & Cards Layout
+   ========================================================================== */
+
+    .difference-cards .custom-cards-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding-inline: 50px;
+        padding-block: 0;
+    }
+
+    .difference-cards .custom-cards .swiper-pagination{
+        display: none;
+    }
+
+    .difference-cards .custom-cards>ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    /* Card Container Base */
+    .difference-cards .custom-cards>ul>li {
+        padding: 20px;
+        max-width: 353px;
+        min-height: 240px;
+        border-radius: 20px;
+    }
+
+    /* Card Title */
+    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    /* Play / Action Icon Wrapper (Last Child in Body) */
+    .difference-cards .custom-cards-card-body p:last-child {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Card Description */
+    .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
+    .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .difference-cards .custom-cards-card-body .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        transition: transform 0.3s ease;
+    }
+
+    .difference-cards.section.custom-cards-container .custom-cards-card-image{
+        bottom: 30px;
+    }
+
+    .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .difference-cards.section.custom-cards-container .custom-cards-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom right;
+        aspect-ratio: 4 /3;
+    }
+
+    /* Primary vs Secondary Image Visibility */
+    .difference-cards.section.custom-cards-container .custom-cards-card-image picture.primary-image {
+        display: block;
+    }
+
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
+        display: none;
+    }
+
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
+        display: block;
+    }
+
+    .difference-cards .custom-cards>ul>li:hover {
+        background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+        transform: scaleY(1.144);
+    }
+
+    .difference-cards .custom-cards>ul>li:hover p:last-child {
+        transform: scaleY(0.8742);
+        transform-origin: center;
+    }
+
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body h4,
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body p {
+        color: #fff;
+    }
+
+    .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child {
+        border-radius: var(--radius-full, 999px);
+        border: 1px solid var(--border-border-brand-blue, #1E4679);
+        background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+    }
+
+    .difference-cards.section .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
+        color: #fff;
+    }
+}
+
+@media (width >= 1024px) {
+   .difference-cards.custom-cards-container .custom-cards-card-body h4 {
+    font-size: 24px;
+    line-height: 28px;
+   }
+
+   .difference-cards.custom-cards-container .custom-cards-card-body p{
+    font-size: 14px;
+    line-height: 18px;
+   }
 }

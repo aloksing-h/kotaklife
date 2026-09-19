@@ -1,0 +1,275 @@
+/* =========================================
+   1. LAYOUT: Mobile First (Swiper Default)
+   ========================================= */
+
+/* Clip the hover scale/reveal below the grid breakpoint, whether or not swiper is active */
+
+  .values-cards-hover .custom-cards {
+    overflow: hidden;
+  }
+
+
+.values-cards-hover .custom-cards > ul {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 40px 0;
+  margin: 0;
+  justify-content: space-between;
+  list-style: none;
+  gap: 0; /* Let Swiper handle spacing on mobile */
+}
+
+/* Base Card Styles (Mobile sizes applied by default) */
+.values-cards-hover .custom-cards > ul > li {
+  position: relative;
+  width: 152px; /* Mobile width as requested */
+  min-height: 250px; /* Mobile height as requested */
+  height: 100%;
+  flex-shrink: 0; /* Ensures Swiper slides don't squash */
+  border-radius: 12px;
+  border: 1px solid var(--gray-200, #eaeaea);
+  background: var(--base-white, #fff);
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0%) 60%, rgb(250 20 50 / 5%) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+}
+
+ .values-cards-hover .custom-cards > ul > li::before {
+    content: '';
+    position: absolute;
+    inset: 52% 0 0;
+    background-image: url("../../icons/pink-bg-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+  }
+
+  .values-cards-hover .custom-cards > ul > li:nth-child(even)::before{
+    background-image: url("../../icons/blue-bg-mobile.svg");
+  }
+
+  .values-cards-hover .custom-cards > ul > li::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("../../icons/glass-effect-mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .values-cards-hover .custom-cards > ul > li:hover::before,
+.values-cards-hover .custom-cards > ul > li:hover::after {
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Optional: adds a smooth fade out */
+}
+
+/* Swiper Pagination (Visible on Mobile by default) */
+.values-cards-hover .custom-cards .swiper-pagination {
+  bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    left: unset;
+    right: 20px;
+}
+
+.values-cards-hover .custom-cards .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #d1d5db;
+  opacity: 1;
+  border-radius: 50%;
+  margin: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.values-cards-hover .custom-cards .swiper-pagination-bullet-active {
+  width: 28px;
+  background-color: #e31837; 
+  border-radius: 4px;
+}
+
+
+
+/* =========================================
+   2. IMAGE: Responsive constraints
+   ========================================= */
+.values-cards-hover .custom-cards .custom-cards-card-image {
+  position: absolute;
+  top: 20px; 
+  left: 0;   
+  right: 0;
+  max-width: 176px;
+  width: 100%;
+  height: 100%;
+  max-height: 109px;
+  display: flex;
+  justify-content: flex-start; 
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  aspect-ratio: 16/9;
+}
+
+.values-cards-hover .custom-cards .custom-cards-card-image picture.primary-image img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; /* Prevents stretching when width/height flexes */
+  object-position: left center; 
+}
+
+/* =========================================
+   3. TEXT CONTENT: Fluid Positioning
+   ========================================= */
+.values-cards-hover .custom-cards .custom-cards-card-body {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+/* TITLE (h4): Default State */
+.values-cards-hover .custom-cards .custom-cards-card-body h4 {
+  position: absolute;
+  bottom: 24px; /* Anchoring bottom prevents breaking on fluid height changes */
+  left: 16px; 
+  right: 16px;
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font scaling */
+  font-weight: 500;
+  color: var(--gray-900, #111);
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
+}
+
+/* DESCRIPTION (p): Default State */
+.values-cards-hover .custom-cards .custom-cards-card-body p {
+  position: absolute;
+  top: 100%; /* Hides seamlessly below the card bounds */
+  left: 16px; 
+  right: 16px;
+  margin: 0;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  font-weight: 600;
+  color: var(--base-white, #fff);
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden; 
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   4. HOVER STATES
+   ========================================= */
+.values-cards-hover .custom-cards > ul > li:hover {
+  background: linear-gradient(180deg, #7f2224 0%, #fa1432 100%);
+  transform: scale(1.06); /* Slightly reduced scale avoids clipping on smaller screens */
+  border-color: transparent;
+  z-index: 10;
+}
+
+/* Hide Icon */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-image {
+  opacity: 0; 
+}
+
+/* Move Title (h4) to Top */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+  bottom: auto; /* Release bottom anchor */
+  top: 24px; /* Pin to top */
+  color: var(--base-white, #fff);
+}
+
+/* Show Description (p) */
+.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  top: auto; /* Starts dynamically below the pinned title */
+  bottom: 24px; /* Ensures text doesn't overflow card at any height */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Swiper only runs at 768px and below; hide its pagination as soon as it's disabled */
+@media (width >= 769px) {
+  .values-cards-hover .custom-cards .swiper-pagination {
+    display: none;
+  }
+}
+
+@media (width >= 800px) {
+  .values-cards-hover .custom-cards > ul > li {
+    flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
+    width: auto;
+    height: auto;
+    max-width: 170px;
+    aspect-ratio: 170 / 275; /* calculated height that scales with the fluid width */
+  }
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+/* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
+@media (width >= 1200px) {
+  .values-cards-hover .custom-cards > ul {
+    gap: 20px;
+  }
+
+  .values-cards-hover .custom-cards > ul > li {
+    max-width: 192px;
+    aspect-ratio: 192 / 314;
+  }
+
+
+   .values-cards-hover .custom-cards > ul > li::before {
+    top: 160px;
+    background-image: url("../../icons/pink-bg.svg");
+  }
+
+  .values-cards-hover .custom-cards > ul > li:nth-child(even)::before{
+    background-image: url("../../icons/blue-bg.svg");
+  }
+
+  .values-cards-hover .custom-cards > ul > li::after {
+    background-image: url("../../icons/glass-effect.svg");
+  }
+
+  /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
+.values-cards-hover .custom-cards > ul > li:first-child {
+  transform-origin: left;
+}
+
+/* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
+.values-cards-hover .custom-cards > ul > li:last-child {
+  transform-origin: right;
+}
+
+.values-cards-hover .custom-cards > ul > li:hover {
+  transform: scale(1.26); /* Slightly reduced scale avoids clipping on smaller screens */
+}
+
+/* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
+.values-cards-hover .custom-cards > ul > li:not(:first-child, :last-child) {
+  transform-origin: center;
+}
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
+    top: 40px;
+
+  }
+
+  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+    bottom: 40px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
