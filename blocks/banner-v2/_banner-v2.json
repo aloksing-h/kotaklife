@@ -1,0 +1,83 @@
+{
+  "definitions": [
+    {
+      "title": "Banner V2",
+      "id": "banner-v2",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Banner V2",
+              "model": "banner-v2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "banner-v2",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "desktopBg",
+          "label": "Desktop Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "desktopBgAlt",
+          "label": "Desktop Background Alt Text",
+          "value": ""
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "mobileBg",
+          "label": "Mobile Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "mobileBgAlt",
+          "label": "Mobile Background Alt Text",
+          "value": ""
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Person / Foreground Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Person Image Alt Text",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Content Text",
+          "value": "",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "banner-v2",
+      "components": [
+        "banner-v2"
+      ]
+    }
+  ]
+}

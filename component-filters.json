@@ -31,16 +31,25 @@
       "rte",
       "rteV2",
       "tabs",
+      "subnav",
       "video",
       "tab-list",
       "invest-form",
-      "video-banner"
+      "timeline",
+      "video-banner",
+      "promo"
     ]
   },
   {
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "banner-v2",
+    "components": [
+      "banner-v2"
     ]
   },
   {
@@ -284,6 +293,19 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "testimonials",
+    "components": [
+      "testimonials-item"
+    ]
+  },
+  {
+    "id": "timeline",
+    "components": [
+      "timeline-item",
+      "timeline-card"
     ]
   },
   {

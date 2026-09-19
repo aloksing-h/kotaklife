@@ -6,22 +6,34 @@
     background: #FFF;
     border: 1.5px solid #6C9EE4;
     border-radius: 130px;
-    padding: 86px 64px 48px;
+    padding: 86px 128px 48px 44px;
     box-sizing: border-box;
     position: relative;
-
-    /* Concentric outer border rings */
-    box-shadow:
-        0 0 0 10px #FFF,
-        0 0 0 11px rgb(108 158 228 / 40%),
-        0 0 0 22px #FFF,
-        0 0 0 23px rgb(220 228 240 / 50%);
 
     /* Desktop Two-Column Layout */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
+}
+
+/* Concentric outer border rings: desktop shows them on the left side only */
+.invest-form.section.invest-form-container::before {
+    content: "";
+    position: absolute;
+    inset: -11px;
+    border-radius: 141px;
+    border-left: 1px solid rgb(108 158 228 / 40%);
+    pointer-events: none;
+}
+
+.invest-form.section.invest-form-container::after {
+    content: "";
+    position: absolute;
+    inset: -23px;
+    border-radius: 153px;
+    border-left: 1px solid rgb(220 228 240 / 50%);
+    pointer-events: none;
 }
 
 /* CMS Outer Wrappers */
@@ -58,7 +70,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
     order: 2;
     margin-top: auto;
-    margin-left: -84px;
+    margin-left: -115px;
     margin-bottom: -48px;
 }
 
@@ -99,7 +111,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
     position: absolute;
     top: 93px;
-    right: -6px;
+    right: 56px;
     width: calc(44% - 20px);
     max-width: 380px;
     margin: 0;
@@ -145,12 +157,14 @@
 
 .invest-form.section.invest-form-container .form-field input[type="text"],
 .invest-form.section.invest-form-container .form-field input[type="email"],
-.invest-form.section.invest-form-container .form-field input[type="tel"] {
+.invest-form.section.invest-form-container .form-field input[type="tel"],
+.invest-form.section.invest-form-container .form-field input[type="date"] {
     width: 100%;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s ease;
-    display: flex;
+
+    /* display: flex; */
     height: 40px;
     padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
     align-items: center;
@@ -169,7 +183,6 @@
     line-height: var(--line-height-body-1, 18px);
 }
 
-
 .invest-form.section.invest-form-container .form .form-field+.form-field {
     margin: 0;
 }
@@ -182,12 +195,40 @@
     border-color: #E1122D;
 }
 
+/* .invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
+    border-color: #E1122D;
+}
+
+.invest-form.section.invest-form-container .field-error {
+    margin: 4px 0 0;
+    color: #E1122D;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.invest-form.section.invest-form-container .form-success-message {
+    color: var(--text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-weight: 600;
+    line-height: var(--line-height-body-1, 18px);
+    margin: 0;
+} */
+
 /* Date Field Calendar Icon */
 .invest-form.section.invest-form-container .form-field.date-field input {
     background-image: url('../../icons/calendar-fm.svg');
     background-repeat: no-repeat;
     background-position: right 14px center;
 }
+
+/* 
+.invest-form.section.invest-form-container .form-field.date-field input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
 
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
@@ -220,6 +261,11 @@
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
     background-color: #c90e26;
 }
+
+/* .invest-form.section.invest-form-container .button-wrapper button.button:disabled {
+    background: #D5D7DA;
+    cursor: not-allowed;
+} */
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
     flex-grow: 1;
@@ -293,13 +339,25 @@
         margin: 20px auto;
         padding: 41px 24px 180px;
         flex-direction: column;
-        box-shadow:
-            0 0 0 6px #FFF,
-            0 0 0 7px rgb(108 158 228 / 40%),
-            0 0 0 14px #FFF,
-            0 0 0 15px rgb(220 228 240 / 50%);
         border-radius: 65px;
         border: 0.652px solid #E6E6E6;
+    }
+
+    /* Concentric outer border rings: mobile shows them on top and bottom only */
+    .invest-form.section.invest-form-container::before {
+        inset: -7px;
+        border-radius: 72px;
+        border-left: none;
+        border-top: 1px solid rgb(108 158 228 / 40%);
+        border-bottom: 1px solid rgb(108 158 228 / 40%);
+    }
+
+    .invest-form.section.invest-form-container::after {
+        inset: -15px;
+        border-radius: 80px;
+        border-left: none;
+        border-top: 1px solid rgb(220 228 240 / 50%);
+        border-bottom: 1px solid rgb(220 228 240 / 50%);
     }
 
     .invest-form.section.invest-form-container .custom-rte-wrapper,

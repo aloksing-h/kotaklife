@@ -11,6 +11,11 @@ certs/*
 token.txt
 # Contains API keys/tokens, never commit
 .vscode/mcp.json
+.agents/**/mcp_config.json
+.agents/mcp_config.json
+.env
+.env.*
+!.env.example
 
 # Temporary Figma preview exports, not source content
 tmp-figma-preview/
@@ -19,6 +24,10 @@ tmp-figma-preview/
 blocks/swiper/swiper-bundle.min.js
 blocks/swiper/swiper-bundle.min.css
 
+token.txt
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# Visual test artifacts
+tests/*
