@@ -1,19 +1,27 @@
 /* =========================================
-   1. LAYOUT: Mobile Swiper & Desktop Flex
+   1. LAYOUT: Mobile First (Swiper Default)
    ========================================= */
+.values-cards-hover .custom-cards.swiper {
+  overflow: hidden; 
+}
+
 .values-cards-hover .custom-cards > ul {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; /* Forces a single horizontal line for both Swiper and Desktop */
+  flex-wrap: nowrap;
   padding: 0;
   margin: 0;
   list-style: none;
+  gap: 0; /* Let Swiper handle spacing on mobile */
 }
 
-/* Base Card Styles (Applies everywhere) */
+/* Base Card Styles (Mobile sizes applied by default) */
 .values-cards-hover .custom-cards > ul > li {
-  height: 380px; 
-  position: relative; 
+  position: relative;
+  width: 152px; /* Mobile width as requested */
+  min-height: 250px; /* Mobile height as requested */
+  height: 100%;
+  flex-shrink: 0; /* Ensures Swiper slides don't squash */
   border-radius: 12px;
   border: 1px solid var(--gray-200, #eaeaea);
   background: var(--base-white, #ffffff);
@@ -24,96 +32,65 @@
   overflow: hidden;
 }
 
-/* --- MOBILE ONLY (Swiper Active) --- */
-@media (max-width: 767px) {
-  .values-cards-hover .custom-cards.swiper {
-    overflow: hidden; 
-  }
-  
-  .values-cards-hover .custom-cards > ul.swiper-wrapper {
-    gap: 0; /* Let Swiper's 'spaceBetween' JS config handle the gaps */
-  }
-
-  .values-cards-hover .custom-cards > ul > li.swiper-slide {
-    width: 280px; 
-    flex-shrink: 0;
-    height: 380px; /* Maintains strict height for slides */
-  }
-  
-  /* Swiper Pagination Dots (Imported from difference-cards) */
-  .values-cards-hover .custom-cards .swiper-pagination {
-    position: relative;
-    margin-top: 24px;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centered for this block */
-    gap: 4px;
-  }
-
-  .values-cards-hover .custom-cards .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    background-color: #d1d5db;
-    opacity: 1;
-    border-radius: 50%;
-    margin: 0 !important;
-    transition: all 0.3s ease;
-  }
-
-  .values-cards-hover .custom-cards .swiper-pagination-bullet-active {
-    width: 28px;
-    height: 8px;
-    background-color: #e31837; /* Brand Red */
-    border-radius: 4px;
-  }
+/* Swiper Pagination (Visible on Mobile by default) */
+.values-cards-hover .custom-cards .swiper-pagination {
+  position: relative;
+  margin-top: 24px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 4px;
 }
 
-/* --- DESKTOP ONLY (5 in a row, No Grid, Swiper Disabled) --- */
-@media (min-width: 768px) {
-  .values-cards-hover .custom-cards > ul {
-    align-items: center; 
-    gap: 16px;
-  }
-
-  .values-cards-hover .custom-cards > ul > li {
-    flex: 1 1 0; /* Distributes width equally among all 5 cards */
-    width: auto;
-  }
-
-  /* Hide Swiper Pagination on Desktop */
-  .values-cards-hover .custom-cards .swiper-pagination {
-    display: none;
-  }
+.values-cards-hover .custom-cards .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #d1d5db;
+  opacity: 1;
+  border-radius: 50%;
+  margin: 0 !important;
+  transition: all 0.3s ease;
 }
+
+.values-cards-hover .custom-cards .swiper-pagination-bullet-active {
+  width: 28px;
+  background-color: #e31837; 
+  border-radius: 4px;
+}
+
+
 
 /* =========================================
-   2. IMAGE: Left-aligned, dynamic width
+   2. IMAGE: Responsive constraints
    ========================================= */
-.values-cards-hover .custom-cards-card-image {
+.values-cards-hover .custom-cards .custom-cards-card-image {
   position: absolute;
-  top: 40px; 
+  top: 20px; 
   left: 0;   
   right: 0;
-  max-width: 192px;
+  max-width: 176px;
+  width: 100%;
+  height: 100%;
   max-height: 109px;
   display: flex;
   justify-content: flex-start; 
   transition: opacity 0.3s ease;
   z-index: 1;
+  aspect-ratio: 16/9;
 }
 
-.values-cards-hover .custom-cards-card-image picture.primary-image img {
+.values-cards-hover .custom-cards .custom-cards-card-image picture.primary-image img {
   width: 100%; 
   height: 100%; 
-  object-fit: cover;
+  object-fit: contain; /* Prevents stretching when width/height flexes */
   object-position: left center; 
 }
 
 /* =========================================
-   3. TEXT CONTENT: Absolute Positioning (Top-Anchored)
+   3. TEXT CONTENT: Fluid Positioning
    ========================================= */
-.values-cards-hover .custom-cards-card-body {
+.values-cards-hover .custom-cards .custom-cards-card-body {
   position: absolute;
   inset: 0;
   margin: 0;
@@ -123,32 +100,31 @@
 }
 
 /* TITLE (h4): Default State */
-.values-cards-hover .custom-cards-card-body h4 {
+.values-cards-hover .custom-cards .custom-cards-card-body h4 {
   position: absolute;
-  top: calc(100% - 76px); /* Anchors from the top so lines wrap downwards */
+  bottom: 24px; /* Anchoring bottom prevents breaking on fluid height changes */
   left: 16px; 
   right: 16px;
   margin: 0;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font scaling */
   font-weight: 500;
   color: var(--gray-900, #111);
-  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
 }
 
 /* DESCRIPTION (p): Default State */
-.values-cards-hover .custom-cards-card-body p {
+.values-cards-hover .custom-cards .custom-cards-card-body p {
   position: absolute;
-  top: calc(100% - 32px);
+  top: 100%; /* Hides seamlessly below the card bounds */
   left: 16px; 
   right: 16px;
-  bottom: 24px;
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--base-white, #ffffff);
   opacity: 0;
   visibility: hidden;
-  overflow: hidden; /* Hides text that overflows on extremely narrow screens */
+  overflow: hidden; 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -157,7 +133,7 @@
    ========================================= */
 .values-cards-hover .custom-cards > ul > li:hover {
   background: linear-gradient(180deg, #7f2224 0%, #fa1432 100%);
-  transform: scale(1.08); /* Card pops out */
+  transform: scale(1.06); /* Slightly reduced scale avoids clipping on smaller screens */
   box-shadow: 0 20px 40px rgba(250, 20, 50, 0.25);
   border-color: transparent;
   z-index: 10;
@@ -170,73 +146,37 @@
 
 /* Move Title (h4) to Top */
 .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
-  top: 32px; /* Title locks to the top */
+  bottom: auto; /* Release bottom anchor */
+  top: 24px; /* Pin to top */
   color: var(--base-white, #ffffff);
 }
 
 /* Show Description (p) */
 .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
-  top: 96px; /* Creates a strict bounding box starting below the title */
+  top: 72px; /* Starts dynamically below the pinned title */
+  bottom: 24px; /* Ensures text doesn't overflow card at any height */
   opacity: 1;
   visibility: visible;
-}
-/* --- MOBILE & TABLET (Swiper Active up to 1024px) --- */
-@media (max-width: 1024px) {
-  .values-cards-hover .custom-cards.swiper {
-    overflow: hidden; 
-  }
-  
-  .values-cards-hover .custom-cards > ul.swiper-wrapper {
-    gap: 0; 
-  }
-
-  .values-cards-hover .custom-cards > ul > li.swiper-slide {
-    width: 280px; 
-    flex-shrink: 0;
-    height: 380px; 
-  }
-  
-  .values-cards-hover .custom-cards .swiper-pagination {
-    position: relative;
-    margin-top: 24px;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    gap: 4px;
-  }
-
-  .values-cards-hover .custom-cards .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    background-color: #d1d5db;
-    opacity: 1;
-    border-radius: 50%;
-    margin: 0 !important;
-    transition: all 0.3s ease;
-  }
-
-  .values-cards-hover .custom-cards .swiper-pagination-bullet-active {
-    width: 28px;
-    height: 8px;
-    background-color: #e31837; 
-    border-radius: 4px;
-  }
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
 }
 
-/* --- DESKTOP ONLY (5 in a row, Swiper Disabled at 1025px+) --- */
+/* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
 @media (min-width: 1025px) {
   .values-cards-hover .custom-cards > ul {
-    align-items: center; 
+    align-items: stretch; /* Cards inherently match the tallest card's height */
     gap: 16px;
   }
 
   .values-cards-hover .custom-cards > ul > li {
-    flex: 1 1 0; 
-    width: auto;
+    max-width: 192px;
+    width: 100%;
+    
+    min-height: 314px;
   }
 
   .values-cards-hover .custom-cards .swiper-pagination {
-    display: none;
+    display: none; /* Hide pagination on desktop */
   }
 }
