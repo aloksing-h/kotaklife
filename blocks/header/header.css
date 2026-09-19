@@ -1427,7 +1427,7 @@ nav[aria-expanded='true'] .nav-sections .nav-drop>ul {
   display: none;
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1,
+nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
   padding: 16px 32px 16px 0;
   color: var(--text-text-primary, #181D27);
@@ -1463,7 +1463,7 @@ nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop)[aria-expand
   background-image: url('../../icons/large-downarrow-red.svg');
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1 {
+nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1:nth-child(n) {
   border: none;
   position: relative;
 }
