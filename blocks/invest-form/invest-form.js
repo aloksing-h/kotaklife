@@ -180,6 +180,43 @@
 // }
 
 // /**
+//  * Builds the invest-form markup (name, mobile, email, dob, consent, submit)
+//  * so the elements are guaranteed to exist before validation is wired up.
+//  * @returns {HTMLFormElement}
+//  */
+// function buildForm() {
+//   const form = createElement('form', 'form');
+//   form.setAttribute('novalidate', '');
+
+//   const nameWrapper = createElement('div', 'form-field');
+//   nameWrapper.innerHTML = '<label for="fullname">Full Name</label>'
+//     + `<input type="text" id="fullname" name="fullname" required placeholder="Enter your full name" maxlength="${NAME_MAX_LENGTH}">`;
+
+//   const mobileWrapper = createElement('div', 'form-field');
+//   mobileWrapper.innerHTML = '<label for="mobile">Mobile Number</label>'
+//     + `<input type="tel" id="mobile" name="mobile" required placeholder="Enter mobile number" maxlength="${MOBILE_LENGTH}">`;
+
+//   const emailWrapper = createElement('div', 'form-field');
+//   emailWrapper.innerHTML = '<label for="email">Email Address</label>'
+//     + `<input type="email" id="email" name="email" required placeholder="Enter email address" maxlength="${EMAIL_MAX_LENGTH}">`;
+
+//   const dobWrapper = createElement('div', 'form-field date-field');
+//   dobWrapper.innerHTML = '<label for="dob">Date of Birth</label>'
+//     + '<input type="date" id="dob" name="dob" required>';
+
+//   const submitWrapper = createElement('div', 'button-wrapper');
+//   submitWrapper.innerHTML = '<button class="button" type="submit" disabled>'
+//     + '<span>Talk to an Expert</span><span class="button-icon"></span></button>';
+
+//   const consentWrapper = createElement('fieldset', 'checkbox-field');
+//   consentWrapper.innerHTML = '<label for="consent"><input type="checkbox" id="consent" name="consent" required>'
+//     + '<span></span>I agree to be contacted by Kotak Life regarding this enquiry.</label>';
+
+//   form.append(nameWrapper, mobileWrapper, emailWrapper, dobWrapper, submitWrapper, consentWrapper);
+//   return form;
+// }
+
+// /**
 //  * Simulates a lead submission call. Posts to the authored form URL if present,
 //  * otherwise falls back to a dummy resolved response for FE-only testing.
 //  * @param {string} submitUrl
@@ -209,19 +246,19 @@
 // }
 
 // /**
-//  * Attaches validation and submission behavior to an already-authored form
+//  * Builds the form, appends it to the block, then wires up validation and submission
 //  * @param {Element} block The invest-form block element
 //  */
 // export default function decorate(block) {
-//   const form = block.querySelector('.form');
-//   if (!form) return;
-
 //   const submitUrl = block.querySelector('a[href]')?.href || '';
 
-//   const nameInput = form.querySelector('.text-field input');
-//   const mobileInput = form.querySelector('.tel-field input');
-//   const emailInput = form.querySelector('.email-field input');
-//   const dobInput = form.querySelector('.date-field input');
+//   const form = buildForm();
+//   block.replaceChildren(form);
+
+//   const nameInput = form.querySelector('[name="fullname"]');
+//   const mobileInput = form.querySelector('[name="mobile"]');
+//   const emailInput = form.querySelector('[name="email"]');
+//   const dobInput = form.querySelector('[name="dob"]');
 //   const consentInput = form.querySelector('[name="consent"]');
 //   const submitButton = form.querySelector('button[type="submit"]');
 
@@ -229,13 +266,14 @@
 //     return;
 //   }
 
+//   applyDobRange(dobInput);
+
 //   const nameWrapper = nameInput.closest('.form-field');
 //   const mobileWrapper = mobileInput.closest('.form-field');
 //   const emailWrapper = emailInput.closest('.form-field');
 //   const dobWrapper = dobInput.closest('.form-field');
 //   const consentWrapper = consentInput.closest('.checkbox-field');
 
-//   applyDobRange(dobInput);
 //   submitButton.disabled = true;
 
 //   nameInput.addEventListener('input', () => {
@@ -266,6 +304,12 @@
 //   dobInput.addEventListener('input', () => {
 //     setFieldError(dobWrapper, dobInput, validateDob(dobInput.value));
 //   });
+
+//   dobInput.addEventListener('click', () => {
+//   if (typeof dobInput.showPicker === 'function') {
+//     dobInput.showPicker();
+//   }
+// });
 
 //   consentInput.addEventListener('change', () => {
 //     const { checked } = consentInput;

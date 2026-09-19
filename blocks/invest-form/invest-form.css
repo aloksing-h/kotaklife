@@ -157,12 +157,14 @@
 
 .invest-form.section.invest-form-container .form-field input[type="text"],
 .invest-form.section.invest-form-container .form-field input[type="email"],
-.invest-form.section.invest-form-container .form-field input[type="tel"] {
+.invest-form.section.invest-form-container .form-field input[type="tel"],
+.invest-form.section.invest-form-container .form-field input[type="date"] {
     width: 100%;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s ease;
-    display: flex;
+
+    /* display: flex; */
     height: 40px;
     padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
     align-items: center;
@@ -221,6 +223,12 @@
     background-repeat: no-repeat;
     background-position: right 14px center;
 }
+
+/* 
+.invest-form.section.invest-form-container .form-field.date-field input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
 
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
