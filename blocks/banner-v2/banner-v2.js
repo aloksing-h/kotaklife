@@ -75,47 +75,56 @@ export default async function decorate(block) {
   // Collect all picture elements in the block
   const pictures = [...block.querySelectorAll('picture')];
 
-  // Helper to extract clean image URL from picture
-  const getImageUrl = (pic) => {
-    const img = pic.querySelector('img');
-    return img ? (img.currentSrc || img.src) : '';
-  };
-
+  let desktopBgPicture = null;
+  let mobileBgPicture = null;
   let personPicture = null;
 
   if (pictures.length >= 3) {
     // 3 images: [Desktop BG, Mobile BG, Person Image]
-    const desktopBgUrl = getImageUrl(pictures[0]);
-    const mobileBgUrl = getImageUrl(pictures[1]);
-    [, , personPicture] = pictures;
-
-    if (desktopBgUrl) {
-      block.style.setProperty('--banner-v2-bg-desktop', `url("${desktopBgUrl}")`);
-      block.classList.add('has-custom-bg');
-    }
-    if (mobileBgUrl) {
-      block.style.setProperty('--banner-v2-bg-mobile', `url("${mobileBgUrl}")`);
-      block.classList.add('has-custom-bg');
-    }
-
-    // Remove background picture elements from DOM to avoid extra blocks
-    pictures[0].remove();
-    pictures[1].remove();
+    [desktopBgPicture, mobileBgPicture, personPicture] = pictures;
   } else if (pictures.length === 2) {
     // 2 images: [Desktop BG, Person Image]
-    const desktopBgUrl = getImageUrl(pictures[0]);
-    [, personPicture] = pictures;
-
-    if (desktopBgUrl) {
-      block.style.setProperty('--banner-v2-bg-desktop', `url("${desktopBgUrl}")`);
-      block.classList.add('has-custom-bg');
-    }
-
-    // Remove desktop background picture element
-    pictures[0].remove();
+    [desktopBgPicture, personPicture] = pictures;
   } else if (pictures.length === 1) {
     // 1 image: Only Person Image (default theme gradient is used)
     [personPicture] = pictures;
+  }
+
+  // 1. Prepare background layer using clean DOM picture elements (zero inline styles on div!)
+  let bgWrapper = null;
+  if (desktopBgPicture || mobileBgPicture) {
+    block.classList.add('has-custom-bg');
+    bgWrapper = document.createElement('div');
+    bgWrapper.className = 'banner-v2-bg';
+
+    if (desktopBgPicture && mobileBgPicture) {
+      const desktopBg = document.createElement('div');
+      desktopBg.className = 'banner-v2-bg-desktop';
+      const p1 = desktopBgPicture.parentElement;
+      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
+        moveInstrumentation(p1, desktopBg);
+      }
+      desktopBg.appendChild(desktopBgPicture);
+
+      const mobileBg = document.createElement('div');
+      mobileBg.className = 'banner-v2-bg-mobile';
+      const p2 = mobileBgPicture.parentElement;
+      if (p2 && (p2.tagName === 'P' || p2.tagName === 'DIV')) {
+        moveInstrumentation(p2, mobileBg);
+      }
+      mobileBg.appendChild(mobileBgPicture);
+
+      bgWrapper.append(desktopBg, mobileBg);
+    } else if (desktopBgPicture) {
+      const desktopBg = document.createElement('div');
+      desktopBg.className = 'banner-v2-bg-desktop banner-v2-bg-single';
+      const p1 = desktopBgPicture.parentElement;
+      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
+        moveInstrumentation(p1, desktopBg);
+      }
+      desktopBg.appendChild(desktopBgPicture);
+      bgWrapper.appendChild(desktopBg);
+    }
   }
 
   // Create content wrapper
@@ -129,8 +138,10 @@ export default async function decorate(block) {
   const statItems = [];
 
   rows.forEach((row) => {
-    // Check if row has instrumentation attributes
-    moveInstrumentation(row, contentWrapper);
+    // Only transfer row-level instrumentation for text content rows
+    if (!row.querySelector('picture')) {
+      moveInstrumentation(row, contentWrapper);
+    }
 
     // Extract headings
     row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
@@ -196,12 +207,20 @@ export default async function decorate(block) {
     visualWrapper.appendChild(personPicture);
   }
 
-  // Re-assemble block cleanly with zero empty blocks or DOM conflicts
-  block.replaceChildren();
+  // Prepare centered 1200px inner container (confines content + visual to 1200px)
+  const innerWrapper = document.createElement('div');
+  innerWrapper.className = 'banner-v2-inner';
   if (contentWrapper.children.length > 0) {
-    block.appendChild(contentWrapper);
+    innerWrapper.appendChild(contentWrapper);
   }
   if (visualWrapper) {
-    block.appendChild(visualWrapper);
+    innerWrapper.appendChild(visualWrapper);
   }
+
+  // Re-assemble block cleanly with zero empty blocks or DOM conflicts
+  block.replaceChildren();
+  if (bgWrapper) {
+    block.appendChild(bgWrapper);
+  }
+  block.appendChild(innerWrapper);
 }

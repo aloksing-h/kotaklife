@@ -1,58 +1,128 @@
-main > .section > div.banner-v2-wrapper {
+/* ==========================================================================
+   Banner V2 Block Styles
+   Desktop-First Architecture using max-width media queries
+   - Background stretches 100% full-viewport edge-to-edge
+   - Content & Visual confined to centered 1200px container
+   - Zero inline styles or paths on block markup
+   ========================================================================== */
+
+main>.section>div.banner-v2-wrapper {
+  padding: 0;
+  max-width: 100%;
+}
+
+main>.section.banner-v2-container,
+main>.section:has(.banner-v2) {
+  margin: 0;
   padding: 0;
   max-width: 100%;
 }
 
 .banner-v2-wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
+
+/* ==========================================================================
+   1. Desktop Canonical Styles (1200px Inner Frame, Full-Width Edge-to-Edge BG)
+   - Background: 100% full width & 100vh / 100dvh full height
+   - Inner Frame: centered max-width 1200px
+   - Left Content: exactly 438px x 240px
+   - Right Visual: exactly 613px width grounded to bottom right
+   ========================================================================== */
 
 .banner-v2.block {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   border-radius: 0;
   background-color: var(--brand-red-500, #fa1432);
-  background-image: var(
-    --banner-v2-bg-desktop,
+  background-image:
     radial-gradient(circle at 85% 20%, rgb(255 255 255 / 15%) 0%, transparent 50%),
-    linear-gradient(135deg, #fa1432 0%, #d80c26 55%, #af0e23 100%)
-  );
+    linear-gradient(135deg, #fa1432 0%, #d80c26 55%, #af0e23 100%);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
   color: var(--base-white, #fff);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 520px;
-  padding: 56px 48px 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
 }
 
-/* Background gradient / decorative overlay */
-.banner-v2.block::before {
+/* Background image layer - Stretches 100% edge-to-edge to fill gaps */
+.banner-v2.block .banner-v2-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.banner-v2.block .banner-v2-bg picture,
+.banner-v2.block .banner-v2-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center center;
+}
+
+.banner-v2.block .banner-v2-bg-desktop {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-v2.block .banner-v2-bg-mobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Decorative radial overlay - only shown when there is no custom background image */
+.banner-v2.block:not(.has-custom-bg)::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 75% 40%, rgb(255 255 255 / 10%) 0%, transparent 60%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Content Left Column */
+/* 2. Centered Inner Container (Strictly confined to max-width: 1200px) */
+.banner-v2.block .banner-v2-inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 50px;
+  box-sizing: border-box;
+}
+
+/* Content Left Column (Desktop 438x240) */
 .banner-v2.block .banner-v2-content {
   position: relative;
   z-index: 2;
-  flex: 1 1 540px;
-  max-width: 580px;
-  padding-bottom: 56px;
+  flex: 0 0 438px;
+  width: 438px;
+  max-width: 438px;
+  height: 240px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   box-sizing: border-box;
 }
 
@@ -79,8 +149,8 @@ main > .section > div.banner-v2-wrapper {
   font-weight: 500;
   line-height: 1.4;
   color: var(--gray-100, rgb(255 255 255 / 90%));
-  margin: 0 0 36px;
-  max-width: 440px;
+  margin: 0 0 40px;
+  max-width: 438px;
 }
 
 /* Statistics / Metrics */
@@ -100,21 +170,15 @@ main > .section > div.banner-v2-wrapper {
   flex-direction: column;
   justify-content: center;
   gap: 2px;
-  padding-left: 20px;
-  border-left: 1px solid rgb(255 255 255 / 35%);
+  padding-left: 12px;
+  border-left: 1.3px solid var(--base-white);
   box-sizing: border-box;
-}
-
-.banner-v2.block ul.banner-v2-stats li.banner-v2-stat:first-child,
-.banner-v2.block ol.banner-v2-stats li.banner-v2-stat:first-child {
-  padding-left: 0;
-  border-left: none;
 }
 
 .banner-v2.block .stat-value {
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 28px;
   color: var(--base-white, #fff);
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -123,59 +187,121 @@ main > .section > div.banner-v2-wrapper {
 .banner-v2.block .stat-label {
   font-size: 12px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 14px;
   color: var(--gray-100, rgb(255 255 255 / 85%));
   white-space: nowrap;
 }
 
-/* Visual Right Column - Person Image */
+/* Visual Right Column - Person Image (Desktop 613px width grounded to bottom) */
 .banner-v2.block .banner-v2-visual {
   position: relative;
   z-index: 2;
-  flex: 0 0 auto;
+  flex: 0 0 613px;
+  width: 613px;
+  max-width: 613px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   margin-left: auto;
+  align-self: flex-end;
+  height: 100%;
 }
 
 .banner-v2.block .banner-v2-visual picture {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
 }
 
 .banner-v2.block .banner-v2-visual img {
   display: block;
-  max-height: 480px;
-  width: auto;
-  max-width: 100%;
+  width: 613px;
+  max-width: 613px;
+  height: auto;
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
   object-fit: contain;
   object-position: bottom right;
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   2. Laptop Breakpoint (max-width: 1199px)
+   - Covering 13-14" laptop viewports (1024px frame)
    ========================================================================== */
-
-/* Medium Desktop & Tablet Landscape (769px - 1199px) */
-@media (width > 768px) and (width < 1200px) {
-  .banner-v2.block {
-    min-height: 420px;
-    padding: 40px 32px 0;
+@media (max-width: 1199px) {
+  .banner-v2.block .banner-v2-inner {
+    padding: 0 0 0 40px;
   }
 
   .banner-v2.block .banner-v2-content {
-    max-width: 460px;
-    padding-bottom: 40px;
+    flex: 0 0 420px;
+    width: 420px;
+    max-width: 420px;
+    height: 220px;
+    min-height: 220px;
   }
 
   .banner-v2.block .banner-v2-title {
-    font-size: 38px;
+    font-size: 42px;
+    line-height: 1.15;
+    margin-bottom: 14px;
   }
 
   .banner-v2.block .banner-v2-description {
     font-size: 15px;
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+
+  .banner-v2.block .stat-value {
+    font-size: 22px;
+  }
+
+  .banner-v2.block .banner-v2-visual {
+    flex: 0 0 520px;
+    width: 520px;
+    max-width: 520px;
+    align-self: flex-end;
+  }
+
+  .banner-v2.block .banner-v2-visual img {
+    width: 520px;
+    max-width: 100%;
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
+  }
+}
+
+/* ==========================================================================
+   3. Tablet Breakpoint (max-width: 1023px)
+   - Dedicated portrait tablet frame (768px frame)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .banner-v2.block .banner-v2-inner {
+    padding: 0 0 0 32px;
+  }
+
+  .banner-v2.block .banner-v2-content {
+    flex: 0 1 380px;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    min-height: auto;
+    display: block;
+  }
+
+  .banner-v2.block .banner-v2-title {
+    font-size: 36px;
+    line-height: 1.18;
+    margin-bottom: 14px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 15px;
+    line-height: 1.4;
     margin-bottom: 28px;
+    max-width: 360px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
@@ -183,99 +309,187 @@ main > .section > div.banner-v2-wrapper {
     gap: 16px;
   }
 
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 16px;
-  }
-
   .banner-v2.block .stat-value {
     font-size: 20px;
   }
 
+  .banner-v2.block .stat-label {
+    font-size: 12px;
+  }
+
+  .banner-v2.block .banner-v2-visual {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 50%;
+    align-self: flex-end;
+  }
+
   .banner-v2.block .banner-v2-visual img {
-    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
   }
 }
 
-/* Mobile & Tablet Portrait (<= 768px) - Background switches to mobile BG */
-@media (width <= 768px) {
-  .banner-v2-wrapper {
-    padding: 0;
-  }
-
+/* ==========================================================================
+   4. Mobile Breakpoint (max-width: 768px)
+   - True full-height hero (100vh / 100dvh)
+   - Background spans 100% full screen
+   - Content at top, illustration grounded firmly to bottom edge
+   ========================================================================== */
+@media (max-width: 768px) {
   .banner-v2.block {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    min-height: auto;
-    padding: 36px 20px 0;
-    background-image: var(
-      --banner-v2-bg-mobile,
-      var(
-        --banner-v2-bg-desktop,
-        linear-gradient(180deg, #fa1432 0%, #d80c26 50%, #980a1c 100%)
-      )
-    );
+    background-image: linear-gradient(180deg, #fa1432 0%, #d80c26 50%, #980a1c 100%);
     background-position: center top;
   }
 
-  .banner-v2.block .banner-v2-content {
+  .banner-v2.block .banner-v2-bg-desktop:not(.banner-v2-bg-single) {
+    display: none;
+  }
+
+  .banner-v2.block .banner-v2-bg-mobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner-v2.block .banner-v2-bg img {
+    object-position: center top;
+  }
+
+  .banner-v2.block .banner-v2-inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(28px, 5vh, 44px) 16px 0;
     max-width: 100%;
-    padding-bottom: 24px;
+  }
+
+  /* Left Content: exactly 328px x 178px at 360px */
+  .banner-v2.block .banner-v2-content {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 328px;
+    min-height: 178px;
+    margin: 0 auto;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
   }
 
   .banner-v2.block .banner-v2-title {
     font-size: 30px;
     line-height: 36px;
-    margin-bottom: 12px;
+    margin: 0 0 8px;
   }
 
   .banner-v2.block .banner-v2-description {
     font-size: 15px;
     line-height: 20px;
-    margin-bottom: 24px;
+    margin: 0 0 16px;
     max-width: 100%;
   }
 
   .banner-v2.block ul.banner-v2-stats,
   .banner-v2.block ol.banner-v2-stats {
-    gap: 12px;
-    justify-content: flex-start;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: nowrap;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
   .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 12px;
+    position: relative;
+    padding-top: 8px;
+    padding-left: 0;
+    border-top: none;
+    border-left: none;
+    flex: 1 1 auto;
   }
 
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat:first-child,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat:first-child {
-    padding-left: 0;
+  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat::before,
+  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1.3px;
+    background-color: var(--base-white, #fff);
   }
 
   .banner-v2.block .stat-value {
     font-size: 16px;
+    line-height: 20px;
   }
 
   .banner-v2.block .stat-label {
     font-size: 11px;
+    line-height: 14px;
     white-space: normal;
   }
 
+  /* Right Visual: anchored firmly to the bottom edge with no gap below */
   .banner-v2.block .banner-v2-visual {
-    margin-left: 0;
+    flex: 1 1 auto;
     width: 100%;
+    max-width: 360px;
+    margin: auto auto 0 auto;
+    display: flex;
+    align-items: flex-end;
     justify-content: center;
+    align-self: center;
   }
 
   .banner-v2.block .banner-v2-visual picture {
-    width: 100%;
+    display: flex;
+    align-items: flex-end;
     justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .banner-v2.block .banner-v2-visual img {
-    max-height: 340px;
+    display: block;
     width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: clamp(280px, 48vh, 460px);
     margin: 0 auto;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+}
+
+/* ==========================================================================
+   5. Flip/Fold Small Device Breakpoint (max-width: 359px)
+   - Accessibility requirement covering 280px flip/small phone devices
+   - Same-to-same dimensions as 360px (no shrinking)
+   ========================================================================== */
+@media (max-width: 359px) {
+  .banner-v2.block .banner-v2-inner {
+    padding: clamp(20px, 4vh, 32px) 10px 0;
+  }
+
+  .banner-v2.block .banner-v2-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .banner-v2.block ul.banner-v2-stats,
+  .banner-v2.block ol.banner-v2-stats {
+    gap: 6px;
+  }
+
+  .banner-v2.block .banner-v2-visual {
+    max-width: 100%;
   }
 }
