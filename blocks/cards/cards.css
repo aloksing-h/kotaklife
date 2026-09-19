@@ -1,4 +1,6 @@
 @import url('./growing-insurance-company.css');
+@import url('./trust.css');
+@import url('./vision.css');
 
 /* ==========================================================================
    Standard Cards Base CSS
@@ -902,10 +904,6 @@
    Default (Mobile first, < 600px)
    ============================================ */
 
-.vision {
-  position: relative;
-}
-
 .cards.vision-style {
   position: relative;
 }
@@ -939,10 +937,9 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
   width: 100%;
-  border-top: none;
-  border-bottom: none;
-  border-left: 1px solid var(--border-primary);
+  border: none;
   border-right: 1px solid var(--border-primary);
+  border-left: 1px solid var(--border-primary);
 }
 
 .cards.vision-style>ul>li {
@@ -1387,14 +1384,11 @@
   }
 
   .cards.vision-style>ul {
-    max-width: none;
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
-    border-top: 1px solid var(--border-primary);
-    border-bottom: 1px solid var(--border-primary);
-    border-left: none;
-    border-right: none;
+    border: none;
   }
 
   .cards.vision-style>ul>li {
@@ -1491,11 +1485,11 @@
 /* Trust: 4-column grid */
 @media (width >=900px) {
   .cards.trust-style>ul {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 50px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     border: none;
-    border-top: 1px solid var(--border-secondary);
-    border-bottom: 1px solid var(--border-secondary);
   }
 
   .cards.trust-style>ul>li {
