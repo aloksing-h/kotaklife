@@ -26,6 +26,7 @@
     overflow: hidden;
     padding-top: 18px;
     padding-bottom: 32px;
+    padding-inline-end: 16px;
 }
 
 .insights-impact-plans .custom-cards>ul.swiper-wrapper {
@@ -42,13 +43,14 @@
 
 /* Swiper Pagination Dots */
 .insights-impact-plans .custom-cards .swiper-pagination {
-    bottom: -22px;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
     left: unset;
     right: 52px;
+    z-index: 2;
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {

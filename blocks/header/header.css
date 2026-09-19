@@ -85,9 +85,9 @@ header nav p {
   line-height: 1;
 }
 
-header nav a:any-link {
+/* header nav a:any-link {
   color: currentcolor;
-}
+} */
 
 /* hamburger */
 
@@ -856,6 +856,13 @@ header nav {
   min-height: 100dvh;
 } */
 
+nav a:any-link{
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration-line: unset !important;
+  color: currentcolor;
+}
+
 .nav-hamburger {
   grid-area: hamburger;
   width: 40px;
@@ -967,6 +974,7 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
 
 .nav-header-top ul.list-item-1 li.list-inner-1 {
   position: relative;
+  cursor: pointer;
 }
 
 .nav-header-top ul.list-item-1 li.list-inner-1::before {
@@ -1046,9 +1054,31 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   padding-right: 2px;
 }
 
+.nav-header-top ul.list-item-2 li.list-inner .inner-child-1:nth-child(n){
+  cursor: pointer;
+}
+
 .nav-header-top ul.list-item-2 li.list-inner-2 {
   position: relative;
 }
+
+/* WCAG 2.4.7 Focus Visible - Header list-inner keyboard navigation */
+
+/* .nav-header-top li.list-inner-1:focus-visible,
+.nav-header-top li.list-inner-2:focus-visible,
+.nav-header-top li.list-inner-4:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+} */
+
+/* Focus via keyboard only - use default outline, not on hover */
+
+/* .nav-header-top li.list-inner-1:focus-visible,
+.nav-header-top li.list-inner-2:focus-visible,
+.nav-header-top li.list-inner-4:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+} */
 
 .nav-header-top ul.list-item-2 li.list-inner-2::before {
   left: -2px;
@@ -1075,7 +1105,15 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   padding: 5px 21px 9px 22px;
   border-radius: 4px;
   background: var(--foreground-fg-brand-blue-hover, #1B3F6D);
+  cursor: pointer;
 }
+
+/* WCAG 2.4.7 Focus Visible - WhatsApp button keyboard navigation */
+
+/* .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-1:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+} */
 
 .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-1 .item-1 {
   color: var(--text-text-white, #FFF);
@@ -1086,6 +1124,13 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   position: relative;
   padding-left: 24px;
 }
+
+/* WCAG 2.4.7 Focus Visible - Nav-drop keyboard navigation (default browser outline) */
+
+/* header nav .nav-sections .nav-drop:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+} */
 
 .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-1 .item-1 strong {
   font-weight: 600;
@@ -1343,7 +1388,7 @@ nav[aria-expanded='true'] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
-  padding: 0 16px;
+  padding: 0 16px 20px;
   overflow: auto;
   max-height: calc(100dvh - 96px);
 }
@@ -1364,11 +1409,25 @@ nav[aria-expanded='true'] .nav-sections .nav-drop.list-inner {
   cursor: pointer;
 }
 
+/* WCAG 2.4.7 Focus Visible - Keyboard navigation highlight */
+
+/* nav[aria-expanded='true'] .nav-sections .nav-drop:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+nav[aria-expanded='true'] .nav-sections .nav-drop:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+} */
+
 nav[aria-expanded='true'] .nav-sections .nav-drop>ul {
   display: none;
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1,
+nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
   padding: 16px 32px 16px 0;
   color: var(--text-text-primary, #181D27);
@@ -1400,11 +1459,11 @@ nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-chil
 
 nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1::after,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop)[aria-expanded='true'] .inner-child::after {
-  /* transform: translateY(-50%) rotate(180deg); */
+  transform: translateY(-50%) rotate(180deg);
   background-image: url('../../icons/large-downarrow-red.svg');
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1 {
+nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1:nth-child(n) {
   border: none;
   position: relative;
 }
@@ -1539,9 +1598,10 @@ nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .
   gap: 16px;
 }
 
-nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:first-of-type {
+nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:nth-child(n) {
   display: flex;
-  flex-direction: column;
+
+  /* flex-direction: column; */
   gap: 8px;
 }
 
@@ -1898,7 +1958,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     margin-top: -15px;
   }
 
-  nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1,
+  nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
   nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
     border: none;
     padding: 0 20px 0 0;
@@ -2305,7 +2365,6 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
   }
 
   nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .tab-list .custom-rte-wrapper:first-of-type div>div>ul>li {
-    background-color: red;
     max-width: 45%;
   }
 

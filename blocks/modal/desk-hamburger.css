@@ -3,6 +3,13 @@
 }
 
 @media screen and (width >=900px) {
+    * a:any-link {
+        text-decoration: none;
+        cursor: pointer;
+        text-decoration-line: unset !important;
+        color: currentcolor;
+    }
+
     .modal.desk-hamburger {
         display: block;
     }
@@ -34,6 +41,7 @@
     .modal.desk-hamburger dialog .close-button {
         top: 14px;
         right: 14px;
+        cursor: pointer;
     }
 
     .modal.desk-hamburger dialog .close-button,
