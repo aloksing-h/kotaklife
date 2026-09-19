@@ -109,18 +109,18 @@
 
 .difference-cards .custom-cards-wrapper {
     padding-right: 0;
-    padding-inline-start: 16px;
+    padding-inline-start: var(--spacing-xl, 16px);
 }
 
 .difference-cards .custom-cards-card-body p:last-child {
     background-color: var(--base-white);
     border-radius: var(--radius-full);
     position: absolute;
-    bottom: 16px;
+    bottom: var(--spacing-xl, 16px);
     padding: 0;
     margin: 0;
-    width: 32px;
-    height: 32px;
+    width: var(--spacing-4xl, 32px);
+    height: var(--spacing-4xl, 32px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,7 +137,7 @@
 .difference-cards .custom-cards.swiper {
     overflow: hidden;
     padding-top: 18px;
-    padding-bottom: 32px;
+    padding-bottom: var(--spacing-4xl, 32px);
 }
 
 .difference-cards .custom-cards>ul.swiper-wrapper {
@@ -159,14 +159,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 4px;
+    gap: var(--spacing-xs, 4px);
     left: unset;
-    right: 20px;
+    right: var(--spacing-2xl, 20px);
 }
 
 .difference-cards .custom-cards .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+    width: var(--spacing-md, 8px);
+    height: var(--spacing-md, 8px);
     background-color: #d1d5db;
     opacity: 1;
     border-radius: 50%;
@@ -176,58 +176,58 @@
 
 .difference-cards .custom-cards .swiper-pagination-bullet-active {
     width: 28px;
-    height: 8px;
+    height: var(--spacing-md, 8px);
     background-color: #e31837;
-    border-radius: 4px;
+    border-radius: var(--radius-xs, 4px);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
 .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
-     padding: 0 24px 0 16px;
+     padding: 0 var(--spacing-3xl, 24px) 0 var(--spacing-xl, 16px);
     display: flex;
     flex-direction: column;
-    padding-inline: 16px;
-    gap: 8px;
-    margin-bottom: 24px;
+    padding-inline: var(--spacing-xl, 16px);
+    gap: var(--spacing-md, 8px);
+    margin-bottom: var(--spacing-3xl, 24px);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper h1,
 .difference-cards.custom-cards-container .default-content-wrapper h2,
 .difference-cards.custom-cards-container .default-content-wrapper h3,
 .difference-cards.custom-cards-container .default-content-wrapper h4 {
-    font-size: 32px;
-    letter-spacing: -0.64px;
-    line-height: 36px;
+    font-size: var(--heading-3-font-size, 32px);
+    letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+    line-height: var(--heading-3-line-height, 36px);
     text-align: center;
     margin: 0;
     padding: 0;
-    font-weight: 300;
+    font-weight: var(--font-weight-light, 300);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper h1 strong,
 .difference-cards.custom-cards-container .default-content-wrapper h2 strong,
 .difference-cards.custom-cards-container .default-content-wrapper h3 strong,
 .difference-cards.custom-cards-container .default-content-wrapper h4 strong{
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold, 600);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper p {
-    color:#717680;
-    font-size: 14px;
-    line-height: 18px;
+    color: var(--gray-500, #717680);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
     text-align: center;
     margin: 0;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium, 500);
     padding: 0;
 }
 
 .difference-cards .custom-cards>ul>li {
-    padding: 16px;
+    padding: var(--spacing-xl, 16px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #f4f8fa;
-    border-radius: 8px;
+    border-radius: var(--radius-md, 8px);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -236,43 +236,43 @@
 }
 
 .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: 18px;
-    line-height: 20px;
-    font-family: var(--font-family-font-family-display, Manrope);
-    font-weight: 600;
-    color: #181d27;
+    font-size: var(--sub-heading-2-font-size, 18px);
+    line-height: var(--sub-heading-2-line-height, 20px);
+    font-family: var(--font-family-manrope, Manrope);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--gray-900, #181d27);
     margin: 0;
     transition: color 0.3s ease;
-    margin-bottom: 4px;
+    margin-bottom: var(--spacing-xs, 4px);
 }
 
 /* Category Pill Tag (First Paragraph in Body) */
 .difference-cards .custom-cards-card-body>p:first-child {
     display: inline-flex;
     align-items: center;
-    font-family: var(--font-family-font-family-display, Manrope);
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: 500;
+    font-family: var(--font-family-manrope, Manrope);
+    padding: var(--spacing-xs, 4px) var(--spacing-md, 8px);
+    font-size: var(--caption-font-size, 12px);
+    font-weight: var(--font-weight-medium, 500);
     letter-spacing: 0.5px;
-    line-height: 14px;
+    line-height: var(--caption-line-height, 14px);
     text-transform: uppercase;
-    color: var(--text-text-tertiary, #535862);
-    margin: 0 0 4px;
+    color: var(--text-tertiary, #535862);
+    margin: 0 0 var(--spacing-xs, 4px);
     transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
     border-radius: var(--radius-full, 999px);
-    border: 1px solid var(--border-border-brand-blue, #1E4679);
-    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+    border: 1px solid var(--border-brand-blue, #1E4679);
+    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--fg-white, #FFF) 40.44%, var(--fg-white, #FFF) 135.74%);
     margin-bottom: 15px;
 }
 
 .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
 .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
-    font-size: 14px;
-    line-height: 18px;
-    font-family: var(--font-family-font-family-display, Manrope);
-    color: #414651;
-    font-weight: 600;
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+    font-family: var(--font-family-manrope, Manrope);
+    color: var(--gray-700, #414651);
+    font-weight: var(--font-weight-semibold, 600);
     margin: 0;
     transition: color 0.3s ease;
 }
@@ -334,7 +334,7 @@
    ========================================================================== */
 
 .difference-cards .custom-cards>ul>li.swiper-slide-active {
-    background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+    background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
     transform: scaleY(1.144);
 }
 
@@ -346,18 +346,18 @@
 /* Title and Text Active State */
 .difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body h4,
 .difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p {
-    color: #fff;
+    color: var(--base-white, #fff);
 }
 
 /* Category Badge Active State */
 .difference-cards .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body>p:first-child {
     border-radius: var(--radius-full, 999px);
-    border: 1px solid var(--border-border-brand-blue, #1E4679);
-    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+    border: 1px solid var(--border-brand-blue, #1E4679);
+    background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--fg-white, #FFF) 40.44%, var(--fg-white, #FFF) 135.74%);
 }
 
 .difference-cards.section .custom-cards>ul>li.swiper-slide-active .custom-cards-card-body p:nth-child(3) {
-    color: #fff;
+    color: var(--base-white, #fff);
 }
 
 /* ==========================================================================
@@ -368,7 +368,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: var(--spacing-2xl, 20px);
     margin-bottom: 0;
 }
 
@@ -377,18 +377,18 @@
     align-items: center;
     justify-content: center;
     gap: 18px;
-    padding: 4px 4px 4px 20px;
-    border: 1px solid var(--button-btn-brand-red, #E1122D);
+    padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px) var(--spacing-xs, 4px) var(--spacing-2xl, 20px);
+    border: 1px solid var(--brand-red-600, #E1122D);
     border-radius: 30px;
-    color: var(--button-btn-brand-red, #E1122D);
-    font-family: var(--font-family-font-family-display, Manrope);
-    font-size: 14px;
-    font-weight: 800;
+    color: var(--brand-red-600, #E1122D);
+    font-family: var(--font-family-manrope, Manrope);
+    font-size: var(--body-2-font-size, 14px);
+    font-weight: var(--font-weight-extrabold, 800);
     text-decoration: none;
-    background-color: #fff;
+    background-color: var(--base-white, #fff);
     transition: all 0.3s ease;
     position: relative;
-    line-height: 18px;
+    line-height: var(--body-2-line-height, 18px);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:last-child a::before {
@@ -396,29 +396,29 @@
     background-image: url("/icons/write-arrow-right.svg");
     position: absolute;
     right: 9px;
-    width: 20px;
-    height: 20px;
+    width: var(--spacing-2xl, 20px);
+    height: var(--spacing-2xl, 20px);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:last-child a::after {
     content: '';
     display: flex;
-    width: 32px;
-    height: 32px;
+    width: var(--spacing-4xl, 32px);
+    height: var(--spacing-4xl, 32px);
     justify-content: center;
     align-items: center;
     gap: 11.429px;
     border-radius: 50%;
-    background: var(--button-btn-brand-red, #E1122D);
+    background: var(--brand-red-600, #E1122D);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:last-child a:hover {
     background-color: #e31837;
-    color: #fff;
+    color: var(--base-white, #fff);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:last-child a:hover::after {
-    background-color: #fff;
+    background-color: var(--base-white, #fff);
     color: #e31837;
 }
 
@@ -434,8 +434,8 @@
    ========================================================================== */
 @media (width >=768px) {
     .difference-cards.custom-cards-container {
-        padding: 48px 0;
-        background-color: #fff;
+        padding: var(--spacing-6xl, 48px) 0;
+        background-color: var(--base-white, #fff);
     }
 
     /* Top Header Layout (Title + Subtitle) */
@@ -443,7 +443,7 @@
     .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
         width: 100%;
         display: flex;
-        gap: 12px;
+        gap: var(--spacing-lg, 12px);
         padding-inline: 50px;
         max-width: 1200px;
         margin: 0 auto 72px;
@@ -470,25 +470,25 @@
     .difference-cards.custom-cards-container .default-content-wrapper h3,
     .difference-cards.custom-cards-container .default-content-wrapper h4 {
         width: auto;
-        color: var(--text-text-primary, #181d27);
-        font-family: var(--font-family-font-family-display, Manrope);
-        font-size: 48px;
-        font-weight: 300;
-        line-height: 60px;
+        color: var(--text-primary, #181d27);
+        font-family: var(--font-family-manrope, Manrope);
+        font-size: var(--heading-1-font-size, 48px);
+        font-weight: var(--font-weight-light, 300);
+        line-height: var(--heading-1-line-height, 60px);
         margin: 0;
         padding: 0;
     }
 
     .difference-cards.custom-cards-container .default-content-wrapper:last-child a {
-        font-size: 16px;
+        font-size: var(--body-1-font-size, 16px);
     }
 
     .difference-cards.custom-cards-container .default-content-wrapper p {
-        color: var(--text-text-tertiary, #535862);
-        font-family: var(--font-family-font-family-display, Manrope);
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 20px;
+        color: var(--text-tertiary, #535862);
+        font-family: var(--font-family-manrope, Manrope);
+        font-size: var(--body-1-font-size, 16px);
+        font-weight: var(--font-weight-medium, 500);
+        line-height: var(--body-1-line-height, 20px);
         margin: 0;
         max-width: 534px;
         text-align: center;
@@ -517,15 +517,15 @@
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: var(--spacing-xl, 16px);
     }
 
     /* Card Container Base */
     .difference-cards .custom-cards>ul>li {
-        padding: 20px;
+        padding: var(--spacing-2xl, 20px);
         max-width: 353px;
         min-height: 240px;
-        border-radius: 20px;
+        border-radius: var(--radius-2xl, 20px);
     }
 
     /* Card Title */
@@ -543,8 +543,8 @@
     /* Card Description */
     .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
     .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
-        font-size: 16px;
-        line-height: 20px;
+        font-size: var(--body-1-font-size, 16px);
+        line-height: var(--body-1-line-height, 20px);
     }
 
     .difference-cards .custom-cards-card-body .icon {
@@ -588,7 +588,7 @@
     }
 
     .difference-cards .custom-cards>ul>li:hover {
-        background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+        background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
         transform: scaleY(1.144);
     }
 
@@ -599,28 +599,28 @@
 
     .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body h4,
     .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body p {
-        color: #fff;
+        color: var(--base-white, #fff);
     }
 
     .difference-cards .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child {
         border-radius: var(--radius-full, 999px);
-        border: 1px solid var(--border-border-brand-blue, #1E4679);
-        background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
+        border: 1px solid var(--border-brand-blue, #1E4679);
+        background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--fg-white, #FFF) 40.44%, var(--fg-white, #FFF) 135.74%);
     }
 
     .difference-cards.section .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
-        color: #fff;
+        color: var(--base-white, #fff);
     }
 }
 
 @media (width >= 1024px) {
    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: var(--heading-4-font-size, 24px);
+    line-height: var(--heading-4-line-height, 28px);
    }
 
    .difference-cards.custom-cards-container .custom-cards-card-body p{
-    font-size: 14px;
-    line-height: 18px;
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
    }
 }
