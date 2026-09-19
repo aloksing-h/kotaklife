@@ -2365,7 +2365,6 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
   }
 
   nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .tab-list .custom-rte-wrapper:first-of-type div>div>ul>li {
-    background-color: red;
     max-width: 45%;
   }
 

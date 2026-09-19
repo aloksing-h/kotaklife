@@ -827,9 +827,9 @@ export default async function decorate(block) {
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
-      hamburgLink.addEventListener('click', () => {
+      hamburgLink.addEventListener('click', async () => {
         // Use setTimeout to ensure modal is fully loaded before applying class
-        setTimeout(() => {
+        setTimeout(async () => {
           const modal = document.querySelector('.modal.block');
           if (modal) {
             modal.classList.add('desk-hamburger');
@@ -837,6 +837,13 @@ export default async function decorate(block) {
             // Get the section inside modal
             const modalSection = modal.querySelector('.section');
             if (modalSection) {
+              // IMPORTANT: Store and clear initial content to prevent visual jerk
+              const initialContent = modalSection.querySelector('.default-content-wrapper');
+              const storedInitialContent = initialContent ? initialContent.cloneNode(true) : null;
+              
+              // Clear the section to remove initial authored content (prevents flashing)
+              modalSection.innerHTML = '';
+
               // Remove any existing nav-wrapper to avoid duplicate/stale data
               const existingNavWrapper = modalSection.querySelector('.nav-wrapper');
               if (existingNavWrapper) {
@@ -886,6 +893,19 @@ export default async function decorate(block) {
 
               // Prepend nav-wrapper to section
               modalSection.prepend(newNavWrapper);
+
+              // Append the stored initial content back after the nav-wrapper (for "Talk To An Expert" section)
+              if (storedInitialContent) {
+                modalSection.appendChild(storedInitialContent);
+              }
+
+              // Now show the modal with all content in place
+              // Import the helper function to show modal with proper timing
+              const { setupDeskhHamburgerModal } = await import('../modal/modal.js');
+              const modalHelper = setupDeskhHamburgerModal(modal);
+              if (modalHelper && modalHelper.clearAndShow) {
+                modalHelper.clearAndShow();
+              }
             }
           }
         }, 200);

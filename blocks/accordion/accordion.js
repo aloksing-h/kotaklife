@@ -99,11 +99,15 @@ export default function decorate(block) {
       e.preventDefault();
 
       // Desktop behavior: prevent closing, all accordions stay open
-      if (isDesktop && details.hasAttribute('open')) {
-        return; // Prevent closing on desktop
+      // BUT allow closing if section has mob-accordion class (mobile behavior on desktop)
+      const section = block.closest('.section');
+      const hasMobAccordionClass = section && section.classList.contains('mob-accordion');
+      
+      if (isDesktop && hasMobAccordionClass && details.hasAttribute('open')) {
+        return; // Prevent closing on desktop (unless section has mob-accordion class)
       }
 
-      // Mobile behavior: allow closing and one-at-a-time opening
+      // Allow closing and one-at-a-time opening
       if (details.hasAttribute('open')) {
         // If already open, close it
         details.classList.add('closing');
@@ -145,11 +149,17 @@ export default function decorate(block) {
     index += 1;
   });
 
-  // Desktop: open all accordions by default
+  // Desktop: open all accordions by default (unless section has mob-accordion class)
   if (isDesktop) {
-    const allDetails = block.querySelectorAll('.accordion-item');
-    allDetails.forEach((details) => {
-      details.setAttribute('open', '');
-    });
+    const section = block.closest('.section');
+    const hasMobAccordionClass = section && section.classList.contains('mob-accordion');
+
+    // Only open all accordions if section does have mob-accordion class
+    if (hasMobAccordionClass) {
+      const allDetails = block.querySelectorAll('.accordion-item');
+      allDetails.forEach((details) => {
+        details.setAttribute('open', '');
+      });
+    }
   }
 }

@@ -23,8 +23,12 @@ export default async function decorate(block) {
   // Clear the modal block initially
   block.innerHTML = '';
 
-  // Re-append the copied initial content back to modal
-  if (initialModalContent) {
+  // Check if desk-hamburger class is present (for desktop hamburger modal)
+  const hasDeskhHamburgerClass = block.classList.contains('desk-hamburger');
+
+  // Only re-append initial content if NOT opening from desk-hamburger
+  // For desk-hamburger, content will be prepended later, so keep block empty until then
+  if (!hasDeskhHamburgerClass && initialModalContent) {
     block.appendChild(initialModalContent.cloneNode(true));
   }
 }
@@ -103,4 +107,85 @@ export function initializeModalHandlers() {
       await openModal(link.href);
     }
   });
+}
+
+/**
+ * Prepare and show desk-hamburger modal with proper timing to avoid visual jerk
+ * This should be called after all content (nav-wrapper + initial content) is added to the section
+ * @param {Element} modalBlock The modal block element
+ */
+export function setupDeskhHamburgerModal(modalBlock) {
+  if (!modalBlock) return { clearAndShow: () => {} };
+
+  return {
+    clearAndShow: () => {
+      // Use setTimeout to ensure all DOM updates in the section are complete before showing modal
+      setTimeout(() => {
+        // Get the section element with all the content
+        const modalSection = modalBlock.querySelector('.section');
+        if (!modalSection) return;
+
+        // Get or create the dialog element
+        let dialog = modalBlock.querySelector('dialog');
+        
+        if (!dialog) {
+          // Create dialog structure if it doesn't exist
+          dialog = document.createElement('dialog');
+          const dialogContent = document.createElement('div');
+          dialogContent.classList.add('modal-content');
+
+          // Create close button
+          const closeButton = document.createElement('button');
+          closeButton.classList.add('close-button');
+          closeButton.setAttribute('aria-label', 'Close');
+          closeButton.type = 'button';
+          closeButton.innerHTML = '<span class="icon icon-close"></span>';
+
+          // Add close event listeners
+          closeButton.addEventListener('click', () => dialog.close());
+          dialog.addEventListener('close', () => {
+            document.body.classList.remove('modal-open');
+            modalBlock.remove();
+          });
+
+          // Close on click outside dialog
+          dialog.addEventListener('click', (e) => {
+            const { left, right, top, bottom } = dialog.getBoundingClientRect();
+            const { clientX, clientY } = e;
+            if (clientX < left || clientX > right || clientY < top || clientY > bottom) {
+              dialog.close();
+            }
+          });
+
+          // Add close button to dialog content
+          dialogContent.appendChild(closeButton);
+          dialog.appendChild(dialogContent);
+
+          // Clear modal block and add dialog
+          modalBlock.innerHTML = '';
+          modalBlock.appendChild(dialog);
+        }
+
+        // Move section content into dialog-content
+        const dialogContent = dialog.querySelector('.modal-content');
+        if (dialogContent && modalSection) {
+          // Keep close button at the top
+          const closeButton = dialogContent.querySelector('.close-button');
+          dialogContent.innerHTML = '';
+          if (closeButton) {
+            dialogContent.appendChild(closeButton);
+          }
+          // Append the section to modal-content
+          dialogContent.appendChild(modalSection);
+        }
+
+        // Show modal
+        dialog.showModal();
+        if (dialogContent) {
+          dialogContent.scrollTop = 0;
+        }
+        document.body.classList.add('modal-open');
+      }, 0);
+    },
+  };
 }
