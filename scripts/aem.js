@@ -543,6 +543,25 @@ function buildBlock(blockName, content) {
   return blockEl;
 }
 
+function applyDataAttributeStyles(section) {
+  if (!section || !section?.classList?.contains('section')) return;
+
+  const styles = {};
+
+  Object.entries(section.dataset).forEach(([dataAttr, rawValue]) => {
+    if (!rawValue) return;
+
+    const value = rawValue;
+
+    if (dataAttr === 'backgroundImage') {
+      styles.backgroundImage = `url("${value}")`;
+    }
+  });
+
+  // Apply all collected styles to the section element
+  Object.assign(section.style, styles);
+}
+
 /**
  * Loads JS and CSS for a block.
  * @param {Element} block The block element
@@ -577,6 +596,8 @@ async function loadBlock(block) {
     }
     block.dataset.blockStatus = 'loaded';
   }
+
+  applyDataAttributeStyles(section);
   return block;
 }
 

@@ -83,6 +83,17 @@
               "value": "loans"
             }
           ]
+        },
+        {
+          "component": "reference",
+          "name": "background-image",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "background-imageAlt",
+          "label": "Background Image Alt Text"
         }
       ]
     }

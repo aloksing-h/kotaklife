@@ -45,6 +45,25 @@ export function moveInstrumentation(from, to) {
   );
 }
 
+function applyDataAttributeStyles(section) {
+  if (!section || !section?.classList?.contains('section')) return;
+
+  const styles = {};
+
+  Object.entries(section.dataset).forEach(([dataAttr, rawValue]) => {
+    if (!rawValue) return;
+
+    const value = rawValue;
+
+    if (dataAttr === 'backgroundImage') {
+      styles.backgroundImage = `url("${value}")`;
+    }
+  });
+
+  // Apply all collected styles to the section element
+  Object.assign(section.style, styles);
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
