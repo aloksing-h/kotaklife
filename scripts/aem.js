@@ -470,6 +470,25 @@ function decorateIcons(element, prefix = '') {
   });
 }
 
+function applyDataAttributeStyles(section) {
+  if (!section || !section?.classList?.contains('section')) return;
+
+  const styles = {};
+
+  Object.entries(section.dataset).forEach(([dataAttr, rawValue]) => {
+    if (!rawValue) return;
+
+    const value = rawValue;
+
+    if (dataAttr === 'backgroundImage') {
+      styles.backgroundImage = `url("${value}")`;
+    }
+  });
+
+  // Apply all collected styles to the section element
+  Object.assign(section.style, styles);
+}
+
 /**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
@@ -509,6 +528,7 @@ function decorateSections(main) {
       });
       sectionMeta.parentNode.remove();
     }
+    applyDataAttributeStyles(section);
   });
 }
 

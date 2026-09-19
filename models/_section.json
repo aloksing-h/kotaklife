@@ -183,6 +183,28 @@
           ]
         }
       ]
+    },
+    {
+      "component": "reference",
+      "name": "background-image",
+      "label": "Background Image for /desktop",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "name": "background-imageAlt",
+      "label": "Background Image Alt Text /desktop"
+    },
+    {
+      "component": "reference",
+      "name": "backgroundimage-mobil",
+      "label": "Background Image for /mobil",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "name": "backgroundimage-mobilAlt",
+      "label": "Background Image Alt Text /mobile"
     }
   ],
   "filters": [
