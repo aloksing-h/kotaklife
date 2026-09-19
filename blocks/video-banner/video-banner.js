@@ -136,7 +136,10 @@ export default async function decorate(block) {
       if (lastParagraph) {
         lastParagraph.addEventListener('click', () => {
           const target = document.querySelector('.infinite-protection.custom-cards-container');
-          target?.scrollIntoView({ behavior: 'smooth' });
+          if (!target) return;
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
         });
       }
     }
