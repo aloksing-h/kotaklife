@@ -209,6 +209,7 @@
     max-width: 1100px;
     margin: 0 auto;
     margin-bottom: 90px;
+    padding: 0 20px;
   }
 
   .section:has(.testimonials.customer-say)>div {
@@ -249,5 +250,11 @@
   .testimonials.customer-say .video-btn-wrapper span.icon {
     max-width: 28px;
     max-height: 28px;
+  }
+}
+
+@media (width >=900px) {
+  .section:has(.testimonials.customer-say) {
+    padding: 0 50px;
   }
 }

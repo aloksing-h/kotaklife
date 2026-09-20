@@ -2,6 +2,7 @@
 
 .life-advisor.section.profile-cta-container {
   margin: 0;
+  margin: 90px 0;
 }
 
 .profile-cta {
@@ -193,6 +194,12 @@
   height: 20px;
 }
 
+@media (width >=900px) {
+  .life-advisor.section.profile-cta-container {
+    margin: 0;
+  }
+}
+
 @media (width >=1024px) {
   .profile-cta {
     grid-template-columns: 1fr 1fr;
@@ -217,8 +224,10 @@
     gap: 24px 38px;
     align-content: center;
     justify-items: start;
-    padding: 30px 0;
+
+    /* padding: 30px 0; */
     text-align: left;
+    padding: 0;
   }
 
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
