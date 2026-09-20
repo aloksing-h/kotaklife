@@ -181,19 +181,30 @@
               "value": "visual-pulse"
             }
           ]
+        },
+        {
+          "component": "reference",
+          "name": "background-image",
+          "label": "Background Image for /desktop",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "background-imageAlt",
+          "label": "Background Image Alt Text /desktop"
+        },
+        {
+          "component": "reference",
+          "name": "backgroundimage-mobile",
+          "label": "Background Image for /mobile",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "backgroundimage-mobileAlt",
+          "label": "Background Image Alt Text /mobile"
         }
       ]
-    },
-    {
-      "component": "reference",
-      "name": "background-image",
-      "label": "Background Image for /desktop",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "name": "background-image",
-      "label": "Background Image Alt Text /desktop"
     }
   ],
   "filters": [
