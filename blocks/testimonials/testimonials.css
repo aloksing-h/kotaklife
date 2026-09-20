@@ -66,6 +66,7 @@
   width: 100%;
   object-fit: contain;
 }
+
 /* Base Image Formatting - Bulletproof Absolute Positioning */
 .testimonials.customer-say .testimonial-col-1,
 .testimonials.customer-say .testimonial-col-2,
@@ -195,6 +196,7 @@
 
   .testimonials.customer-say {
     flex-direction: row; /* Switch to horizontal accordion */
+
     /* Desktop height constraint */
     gap: 16px;
   }
