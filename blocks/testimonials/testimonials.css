@@ -1,8 +1,39 @@
 
-.section:has(.testimonials.customer-say) > div{
+.section:has(.testimonials.customer-say){
     padding: 0 16px;
 }
+.section:has(.testimonials.customer-say) .default-content-wrapper{
+    padding-bottom: 20px;
+  } 
+.section:has(.testimonials.customer-say) .default-content-wrapper h1,
+.section:has(.testimonials.customer-say) .default-content-wrapper h2,
+.section:has(.testimonials.customer-say) .default-content-wrapper h3,
+.section:has(.testimonials.customer-say) .default-content-wrapper h4{
+    font-size: var(--heading-3-font-size, 32px);
+    letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+    line-height: var(--heading-3-line-height, 36px);
+    text-align: center;
+    margin: 0 0 6px;
+    padding: 0;
+    font-weight: var(--font-weight-light, 300);
+}
 
+.section:has(.testimonials.customer-say) .default-content-wrapper h1 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h2 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h3 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h4 strong{
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.section:has(.testimonials.customer-say) .default-content-wrapper p{
+    color: var(--gray-500, #717680);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+    text-align: center;
+    margin: 0;
+    font-weight: var(--font-weight-medium, 500);
+    padding: 0;
+}
 /* Block acts as the main container */
 
 .testimonials.customer-say {
@@ -125,6 +156,28 @@
 
 /* --- Desktop View (Side-by-Side Grid) --- */
 @media (width >= 600px) {
+  .section:has(.testimonials.customer-say) .default-content-wrapper{
+    padding-bottom: 48px;
+  }  
+.section:has(.testimonials.customer-say) .default-content-wrapper h1,
+.section:has(.testimonials.customer-say) .default-content-wrapper h2,
+.section:has(.testimonials.customer-say) .default-content-wrapper h3,
+.section:has(.testimonials.customer-say) .default-content-wrapper h4{
+        font-size: var(--heading-1-font-size, 48px);
+        font-weight: var(--font-weight-light, 300);
+        line-height: var(--heading-1-line-height, 60px);
+        margin: 0 0 12px;
+        padding: 0;
+}
+
+.section:has(.testimonials.customer-say) .default-content-wrapper p{
+        font-size: var(--body-1-font-size, 16px);
+        font-weight: var(--font-weight-medium, 500);
+        line-height: var(--body-1-line-height, 20px);
+        margin: 0;
+        text-align: center;
+}
+
   .testimonials.customer-say {
     flex-direction: row; /* Switch to horizontal accordion */
 
@@ -137,7 +190,7 @@
   }
 
   .section:has(.testimonials.customer-say){
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 50px;
   }
