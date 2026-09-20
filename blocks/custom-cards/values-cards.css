@@ -1,6 +1,7 @@
 .values-cards-hover.section{
   padding: 0 16px;
 }
+
 .values-cards-hover.custom-cards-wrapper {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -279,25 +280,22 @@
    transform: scale(1.15, 1.2);
   }
 
-  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .values-cards-hover .custom-cards .swiper-pagination {
-    display: none;
-  }
   .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
-    top: 16px; 
+    top: 16px;
   }
 
-  /* Anchor the paragraph below the title instead of the bottom */
-  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
     top: auto; /* Starts below the 2-line title */
     bottom: 16px; /* Prevents it from spilling out of the card */
     font-size: 11px; /* Slightly reduced to fit the tight 275px height */
     line-height: 14px;
     overflow:hidden; /* Enables scrolling inside the card if text is extremely long */
   }
+
+  .values-cards-hover .custom-cards .swiper-pagination {
+    display: none;
+  }
+
   .values-cards-hover .custom-cards>ul {
     gap: 20px;
   }

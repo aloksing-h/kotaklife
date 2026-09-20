@@ -366,6 +366,7 @@
 .slider-title.section h1>strong {
   font-weight: var(--font-weight-semibold);
 }
+
 @media (width >= 361px) {
   .timeline.awards.block .timeline-card-item:nth-child(odd) {
     margin: 0 0 0 30%;
@@ -375,6 +376,7 @@
     margin: 0 30% 0 0;
   }
 }
+
 @media (width >= 768px) {
   .timeline.awards.block .timeline-cards-list {
     align-items: normal;

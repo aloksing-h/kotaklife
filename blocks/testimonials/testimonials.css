@@ -2,9 +2,11 @@
 .section:has(.testimonials.customer-say){
     padding: 0 16px;
 }
+
 .section:has(.testimonials.customer-say) .default-content-wrapper{
     padding-bottom: 20px;
   } 
+
 .section:has(.testimonials.customer-say) .default-content-wrapper h1,
 .section:has(.testimonials.customer-say) .default-content-wrapper h2,
 .section:has(.testimonials.customer-say) .default-content-wrapper h3,
@@ -25,6 +27,13 @@
   font-weight: var(--font-weight-semibold, 600);
 }
 
+/* --- State Management via ARIA attributes --- */
+.testimonials.customer-say  .testimonial-col-1 p,
+.testimonials.customer-say  .testimonial-col-2 p {
+    margin: 0;
+    
+}
+
 .section:has(.testimonials.customer-say) .default-content-wrapper p{
     color: var(--gray-500, #717680);
     font-size: var(--body-2-font-size, 14px);
@@ -34,6 +43,7 @@
     font-weight: var(--font-weight-medium, 500);
     padding: 0;
 }
+
 /* Block acts as the main container */
 
 .testimonials.customer-say {
@@ -78,13 +88,6 @@
   border-radius: 8px;
 }
 
-
-/* --- State Management via ARIA attributes --- */
-.testimonials.customer-say  .testimonial-col-1 p,
-.testimonials.customer-say  .testimonial-col-2 p {
-    margin: 0;
-    
-}
 
 /* Expanded State */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
@@ -159,6 +162,7 @@
   .section:has(.testimonials.customer-say) .default-content-wrapper{
     padding-bottom: 48px;
   }  
+
 .section:has(.testimonials.customer-say) .default-content-wrapper h1,
 .section:has(.testimonials.customer-say) .default-content-wrapper h2,
 .section:has(.testimonials.customer-say) .default-content-wrapper h3,
