@@ -11,7 +11,7 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
   }
 
   let mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
-  
+
   if (differenceCardsSection) {
     mobileQuery = window.matchMedia('(max-width: 768px)');
   } else if (valuesCardsSection) {
@@ -43,9 +43,9 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
         // 4. Override configuration if valuesCardsSection is true
         if (valuesCardsSection) {
           swiperConfig = {
-            ...swiperConfig,       // Inherit the base settings (like pagination)
-            slidesPerView: 'auto',    // YOUR NEW CONFIG HERE (Example: 1.2 slides)
-            spaceBetween: 12,      // YOUR NEW CONFIG HERE (Example: 16px space)
+            ...swiperConfig, // Inherit the base settings (like pagination)
+            slidesPerView: 'auto', // YOUR NEW CONFIG HERE (Example: 1.2 slides)
+            spaceBetween: 12, // YOUR NEW CONFIG HERE (Example: 16px space)
           };
         }
 

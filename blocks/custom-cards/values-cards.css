@@ -6,6 +6,7 @@
   .values-cards-hover .custom-cards {
     overflow: hidden;
   }
+
 .values-cards-hover.custom-cards-container .default-content-wrapper h1,
 .values-cards-hover.custom-cards-container .default-content-wrapper h2,
 .values-cards-hover.custom-cards-container .default-content-wrapper h3,
@@ -43,7 +44,7 @@
 .values-cards-hover .custom-cards > ul {
   display: flex;
   flex-flow: row nowrap;
-  padding: 30px 0 28px 0;
+  padding: 30px 0 28px;
   justify-content: space-between;
   gap: 0; /* Let Swiper handle spacing on mobile */
 }
@@ -273,10 +274,11 @@
         margin: 0;
         text-align: center;
     }
+
     .values-cards-hover .custom-cards > ul{
         padding: var(--spacing-5xl, 40px) 0;
+        gap: 20px;
     }
-    
 
   .values-cards-hover .custom-cards > ul > li {
     flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
@@ -306,10 +308,6 @@
 
   .values-cards-hover .custom-cards .swiper-pagination {
     display: none;
-  }
-
-  .values-cards-hover .custom-cards>ul {
-    gap: 20px;
   }
 
   /* Pin the first card to the left so it scales right */
