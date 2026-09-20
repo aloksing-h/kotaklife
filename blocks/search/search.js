@@ -241,7 +241,7 @@ function searchInput(block, config) {
   input.setAttribute('type', 'search');
   input.className = 'search-input';
 
-  const searchPlaceholder = (config.placeholders && config.placeholders.searchPlaceholder) || "Tell us what you're looking for...";
+  const searchPlaceholder = (config.placeholders && config.placeholders.searchPlaceholder) || 'I want to make a claim...';
   input.placeholder = searchPlaceholder;
   input.setAttribute('aria-label', searchPlaceholder);
 
@@ -258,18 +258,49 @@ function searchInput(block, config) {
   return input;
 }
 
-function searchIcon() {
-  const icon = document.createElement('span');
-  icon.classList.add('icon', 'icon-search');
-  return icon;
+function geminiIcon() {
+  const wrapper = document.createElement('span');
+  wrapper.classList.add('gemini-sparkle-icon');
+  const img = document.createElement('img');
+  img.src = `${window.hlx?.codeBasePath || ''}/icons/google-gemini.svg`;
+  img.alt = 'Gemini AI';
+  img.width = 20;
+  img.height = 20;
+  wrapper.append(img);
+  return wrapper;
+}
+
+function actionButton(iconSrc, label, className) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = `search-action-btn ${className}`;
+  btn.setAttribute('aria-label', label);
+  const img = document.createElement('img');
+  img.src = `${window.hlx?.codeBasePath || ''}${iconSrc}`;
+  img.alt = '';
+  img.width = 20;
+  img.height = 20;
+  btn.append(img);
+  return btn;
+}
+
+function searchActions() {
+  const actions = document.createElement('div');
+  actions.classList.add('search-actions');
+  actions.append(
+    actionButton('/icons/microphone.svg', 'Voice search', 'mic-btn'),
+    actionButton('/icons/right-arrow-white.svg', 'Submit search', 'submit-btn'),
+  );
+  return actions;
 }
 
 function searchBox(block, config) {
   const box = document.createElement('div');
   box.classList.add('search-box');
   box.append(
-    searchIcon(),
+    geminiIcon(),
     searchInput(block, config),
+    searchActions(),
   );
 
   return box;
