@@ -49,7 +49,7 @@
 }
 
 .section:has(.testimonials.customer-say) {
-  padding: 0 16px;
+  padding: 0 ;
 }
 
 .section:has(.testimonials.customer-say)>div {
