@@ -27,7 +27,7 @@
 }
 
 .values-cards-hover.custom-cards-container .default-content-wrapper{
-    padding-bottom: 30px;
+    padding-bottom: 0;
   }
 
 .values-cards-hover.custom-cards-container .default-content-wrapper p {
@@ -43,7 +43,7 @@
 .values-cards-hover .custom-cards > ul {
   display: flex;
   flex-flow: row nowrap;
-  padding: 0 0 28px 0;
+  padding: 30px 0 28px 0;
   justify-content: space-between;
   gap: 0; /* Let Swiper handle spacing on mobile */
 }
