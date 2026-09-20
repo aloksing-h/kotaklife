@@ -470,24 +470,61 @@ function decorateIcons(element, prefix = '') {
   });
 }
 
+// function applyDataAttributeStyles(section) {
+//   if (!section || !section?.classList?.contains('section')) return;
+
+//   const styles = {};
+
+//   Object.entries(section.dataset).forEach(([dataAttr, rawValue]) => {
+//     if (!rawValue) return;
+
+//     const value = rawValue;
+
+//     if (dataAttr === 'backgroundImage') {
+//       styles.backgroundImage = `url("${value}")`;
+//     }
+//   });
+
+//   // Apply all collected styles to the section element
+//   Object.assign(section.style, styles);
+// }
+
+
+
+// for desktop and mobile section image logic start
+
+
 function applyDataAttributeStyles(section) {
-  if (!section || !section?.classList?.contains('section')) return;
+  if (!section?.classList?.contains('section')) return;
 
-  const styles = {};
+  const desktopImage = section.dataset.backgroundImage;
+  const mobileImage = section.dataset.backgroundimageMobile;
 
-  Object.entries(section.dataset).forEach(([dataAttr, rawValue]) => {
-    if (!rawValue) return;
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
 
-    const value = rawValue;
+  function updateBackgroundImage() {
+    const isMobile = mobileQuery.matches;
 
-    if (dataAttr === 'backgroundImage') {
-      styles.backgroundImage = `url("${value}")`;
+    const image = isMobile
+      ? mobileImage || desktopImage
+      : desktopImage || mobileImage;
+
+    if (image) {
+      section.style.backgroundImage = `url("${image}")`;
+    } else {
+      section.style.removeProperty('background-image');
     }
-  });
+  }
 
-  // Apply all collected styles to the section element
-  Object.assign(section.style, styles);
+  // Apply the correct image initially
+  updateBackgroundImage();
+
+  // Update when screen size changes
+  mobileQuery.addEventListener('change', updateBackgroundImage);
 }
+
+// for desktop and mobile section image logic end
+
 
 /**
  * Decorates all sections in a container element.
