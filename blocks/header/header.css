@@ -1869,15 +1869,28 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     height: 100%;
   }
 
+  .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-2 .item-child-1{
+    padding-bottom: 2px;
+  }
+
+  .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-3 .item-child-1{
+    padding-bottom: 1px;
+  }
+
   .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item:not(:first-child) .item-child-1 {
     font-size: var(--font-size-caption, 12px);
     line-height: var(--line-height-caption, 14px);
   }
+  
 
   .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item:not(:first-child) .item-child-2 a.level-7 {
     padding: 5px;
     font-size: var(--font-size-caption, 12px);
     line-height: var(--line-height-caption, 14px);
+  }
+
+  .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item-3 .item-child-3 {
+    padding-top: 5px;
   }
 
   .nav-header-top ul.list-item-2 li.list-inner-2 .inner-child-2 .inner-item:not(:first-child) .item-child-3 {
