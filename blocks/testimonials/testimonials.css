@@ -80,18 +80,6 @@
   font-weight: var(--font-weight-semibold, 600);
 }
 
-
-
-.section:has(.testimonials.customer-say) .default-content-wrapper p {
-  color: var(--gray-500, #717680);
-  font-size: var(--body-2-font-size, 14px);
-  line-height: var(--body-2-line-height, 18px);
-  text-align: center;
-  margin: 0;
-  font-weight: var(--font-weight-medium, 500);
-  padding: 0;
-}
-
 /* Block acts as the main container */
 .testimonials.customer-say {
   width: 100%;
