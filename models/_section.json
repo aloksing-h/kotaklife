@@ -52,6 +52,10 @@
               "value": "highlight"
             },
             {
+              "name": "Display None",
+              "value": "dsp-none"
+            },
+            {
               "name": "Header Varient",
               "children": [
                 {
@@ -63,6 +67,18 @@
                   "value": "white-nav"
                 }
               ]
+            },
+            {
+              "name": "Footer Mobile Accordion Only",
+              "value": "mob-accordion"
+            },
+            {
+              "name": "Footer Social Icon",
+              "value": "footer-social"
+            },
+            {
+              "name": "Footer Imp Links",
+              "value": "footer-imp-links"
             },
             {
               "name": "Insights & Impact Plans",
@@ -119,6 +135,62 @@
             {
               "name": "Invest Form",
               "value": "invest-form"
+            },
+            {
+              "name": "Tab One",
+              "value": "tab-one"
+            },
+            {
+              "name": "Tab Two",
+              "value": "tab-two"
+            },
+            {
+              "name": "Tab Three",
+              "value": "tab-three"
+            },
+            {
+              "name": "Tab Four",
+              "value": "tab-four"
+            },
+            {
+              "name": "Tab Five",
+              "value": "tab-five"
+            },
+            {
+              "name": "Tab Six",
+              "value": "tab-six"
+            },
+            {
+              "name": "CSR Layout",
+              "value": "csr-layout"
+            },
+            {
+              "name": "Our Vision",
+              "value": "vision"
+            },
+            {
+              "name": "Why Trust",
+              "value": "trust"
+            },
+            {
+              "name": "Slider Title",
+              "value": "slider-title"
+            },
+            {
+              "name": "Difference cards",
+              "value": "difference-cards"
+            },
+            {
+              "name": "Values Cards (Hover Text)",
+              "value": "values-cards-hover"
+            },
+            {
+              "name": "Visual Pulse",
+              "value": "visual-pulse"
+            },
+            {
+              "name": "Our Leadership",
+              "value": "leadership"
             }
           ]
         }
@@ -151,10 +223,14 @@
         "rte",
         "rteV2",
         "tabs",
+        "subnav",
         "video",
         "tab-list",
         "invest-form",
-        "video-banner"
+        "timeline",
+        "video-banner",
+        "promo",
+        "banner-v2"
       ]
     }
   ]

@@ -1,19 +1,20 @@
 /* ==========================================================================
-   Get Cover Plans Section Baseline (Mobile First < 900px)
+   Get Cover Plans / Promotion Block (Mobile First Baseline < 900px)
    ========================================================================== */
 
 .get-cover-plans.section {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+
+    /* justify-content: space-between; */
     flex-direction: column;
     gap: 32px;
-    background-color: #fff;
+    background-color: var(--bg-primary, #fff);
     overflow: hidden;
-    max-width: 1200px;
+    max-width: 1100px;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 48px 16px;
 }
 
 .get-cover-plans .default-content-wrapper {
@@ -24,12 +25,12 @@
 
 /* Headings & Subtitles */
 .get-cover-plans .default-content-wrapper h3 {
-    color: var(--text-text-primary, #181d27);
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
-    font-size: var(--font-size-heading-3, 32px);
+    color: var(--text-primary, #181d27);
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-3-font-size, 32px);
     font-style: normal;
     font-weight: 300;
-    line-height: var(--line-height-heading-3, 36px);
+    line-height: var(--heading-3-line-height, 36px);
     margin: 0;
 }
 
@@ -39,12 +40,12 @@
 }
 
 .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-    color: var(--text-text-quaternary, #717680);
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
-    font-size: var(--font-size-body-2, 14px);
+    color: var(--text-quaternary, #717680);
+    font-family: var(--heading-font-family);
+    font-size: var(--body-2-font-size, 14px);
     font-style: normal;
     font-weight: 500;
-    line-height: var(--line-height-body-1, 18px);
+    line-height: var(--body-1-line-height, 18px);
     margin: 8px 0 20px;
     width: 100%;
 }
@@ -59,215 +60,293 @@
     justify-content: center;
     align-items: center;
     gap: var(--spacing-lg, 12px);
-    border-radius: var(--radius-full, 999px);
-    background: var(--button-btn-brand-red, #e1122d);
-    color: var(--text-text-white, #fff);
+    color: var(--text-white, #fff);
     text-align: center;
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
-    font-size: var(--font-size-button-2, 14px);
+    font-family: var(--heading-font-family);
+    font-size: var(--button-2-font-size, 14px);
     font-style: normal;
     font-weight: 800;
-    line-height: var(--line-height-body-2, 16px);
+    line-height: var(--button-2-line-height, 16px);
+    border-radius: var(--radius-full, 9999px);
+    background: var(--brand-red-600, #E1122D);
 }
 
 .get-cover-plans .default-content-wrapper a.get-cover-cta:hover {
-    background-color: #a71930;
+    background-color: var(--brand-red-700, #a71930);
 }
 
 .get-cover-plans .default-content-wrapper .btn-arrow {
+    width: 29px;
+    height: 29px;
     display: flex;
-    width: 22px;
-    height: 22px;
     padding: 3.5px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: var(--background-bg-primary, #fff);
+    background-color: var(--bg-primary, #fff);
     background-image: url('/icons/black-right-arrow.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 14px 14px;
+    background-size: 22px 22px;
 }
 
 /* ==========================================================================
-   3D Card Deck Stack Styling & Color Transitions
+   3D Card Deck Container & Base Card Styling
    ========================================================================== */
 
-.get-cover-plans .custom-rte-wrapper {
+.get-cover-plans .custom-rte-wrapper:has(.custom-rte.promotion) {
     width: 100%;
     padding: 0;
     margin: 0;
+    height: 270px;
 }
 
-.get-cover-plans .custom-rte {
+.get-cover-plans .custom-rte.promotion {
     position: relative;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+    height: 100%;
 }
 
-.get-cover-plans .custom-rte-cards {
+.get-cover-plans .promotion .custom-rte-cards {
     list-style: none;
     padding: 0;
     margin: 0;
     position: relative;
-    height: 340px;
+    height: 100%;
+
+    /* height: 340px; */
 }
 
 /* Base Card Attributes */
-.get-cover-plans .custom-rte-card {
+.get-cover-plans .promotion .custom-rte-card {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(100% - 32px);
-    height: 290px;
-    border-radius: 8px;
-    padding: 24px 24px 48px;
+    border-radius: var(--radius-md, 8px);
     box-sizing: border-box;
     cursor: pointer;
     display: flex;
+    padding: 0 var(--spacing-3xl, 24px) var(--spacing-6xl, 48px) var(--spacing-3xl, 24px);
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: var(--spacing-md, 8px);
+    color: var(--text-white, #fff);
 
-    /* Smooth transform and background color transitions */
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-        background 0.5s ease,
+    /* Smooth multi-property transition timing */
+    transition:
+        transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
         opacity 0.5s ease,
         box-shadow 0.5s ease;
 }
 
-/* Layer 1: Active / Front Card (Gradient Red) */
-.get-cover-plans .custom-rte-card.is-active {
-    z-index: 3;
-    transform: translate(0, 0) scale(1);
-    background: linear-gradient(180deg, #a71930 0%, #e31837 100%) !important;
-    color: #fff;
+/* ==========================================================================
+   Inherent Card Theme Colors (Tied to Card Identity, NOT Stack Position)
+   ========================================================================== */
 
-    /* box-shadow: 0 16px 32px rgb(167, 25, 48, 25%); */
-    opacity: 1;
+/* Card 1 Identity (or .theme-red-gradient) */
+.get-cover-plans .promotion .custom-rte-cards>li:nth-child(3n + 1).custom-rte-card,
+.get-cover-plans .promotion .custom-rte-card.theme-red-gradient {
+    /* background: linear-gradient(180deg, #a71930 0%, #e31837 100%); */
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--decorative-red-decorative-red-100, #FEB9C2);
+    background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
 }
 
-/* Layer 2: Middle Stack Card (Dark Navy Blue) */
-.get-cover-plans .custom-rte-card.stack-layer-1 {
+/* Card 2 Identity (or .theme-navy-blue) */
+.get-cover-plans .promotion .custom-rte-cards>li:nth-child(3n + 2).custom-rte-card,
+.get-cover-plans .promotion .custom-rte-card.theme-navy-blue {
+    border-radius: var(--radius-md, 7.111px);
+    border: 0.889px solid var(--decorative-navy-blue-decorative-navy-blue-100, #BCC8D7);
+    background: var(--gradient-blue-card, linear-gradient(7deg, var(--decorative-navy-blue-decorative-navy-blue-500, #1E4679) -43.93%, var(--decorative-navy-blue-decorative-navy-blue-500, #1E4679) 3.36%, var(--decorative-navy-blue-decorative-navy-blue-900, #0C1C30) 88.98%));
+}
+
+/* Card 3 Identity (or .theme-burgundy) */
+.get-cover-plans .promotion .custom-rte-cards>li:nth-child(3n + 3).custom-rte-card,
+.get-cover-plans .promotion .custom-rte-card.theme-burgundy {
+    border-radius: var(--radius-md, 6.711px);
+    border: 0.839px solid var(--decorative-red-decorative-red-100, #FEB9C2);
+    background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-decorative-red-500, #FA1432) 3.36%, var(--decorative-red-decorative-red-900, #7F2224) 88.98%));
+}
+
+/* ==========================================================================
+   Positional Stack Mechanics (Pure Spatial & Layer Controls)
+   ========================================================================== */
+
+/* Layer 0: Front / Active Card */
+.get-cover-plans .promotion .custom-rte-card.is-active {
+    z-index: 3;
+    transform: translate(0, 0) scale(1);
+    width: calc(100% - 48px);
+    height: 260px;
+    opacity: 1;
+    box-shadow: 0 16px 32px rgb(167 25 48 / 25%);
+}
+
+/* Layer 1: Middle Stack Card */
+.get-cover-plans .promotion .custom-rte-card.stack-layer-1 {
     z-index: 2;
-    transform: translate(14px, 6px) scale(0.98);
-    background: #102a45 !important;
-    color: #fff;
+    transform: translate(46px, 18px) scale(0.98);
+    width: calc(100% - 79px);
+    height: 226px;
     opacity: 0.95;
     box-shadow: none;
 }
 
-/* Layer 3: Back Stack Card (Dark Burgundy) */
-.get-cover-plans .custom-rte-card.stack-layer-2 {
+/* Layer 2: Back Stack Card */
+.get-cover-plans .promotion .custom-rte-card.stack-layer-2 {
     z-index: 1;
-    transform: translate(26px, 12px) scale(0.96);
-    background: #6b1220 !important;
-    color: #fff;
+    transform: translate(64px, 31px) scale(0.96);
+    width: calc(100% - 84px);
+    height: 201px;
     opacity: 0.9;
     box-shadow: none;
 }
 
-.get-cover-plans .custom-rte-card.stack-hidden {
+/* Layer 3+: Hidden Off-Screen Stack Cards */
+.get-cover-plans .promotion .custom-rte-card.stack-hidden {
     z-index: 0;
-    transform: translate(32px, 16px) scale(0.94);
+    transform: translate(80px, 40px) scale(0.94);
+    width: calc(100% - 88px);
+    height: 180px;
     opacity: 0;
     pointer-events: none;
 }
 
-/* Top-Right Plan Badge */
-.get-cover-plans .plan-badge {
+/* ==========================================================================
+   Card Content Typography & Badges
+   ========================================================================== */
+
+.get-cover-plans .promotion .plan-badge {
     align-self: flex-end;
+    text-transform: uppercase;
+    margin-top: 24px;
+    display: flex;
+    padding: var(--spacing-xs, 4px) 10px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-sm, 6px);
     border-radius: var(--radius-xs, 4px);
     border: 1px solid var(--border-border-white, #FFF);
-    padding: 4px 12px;
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
-    font-size: 11px;
+    color: var(--text-text-white, #FFF);
+    font-family: var(--heading-font-family);
+    font-size: var(--font-size-caption, 12px);
+    font-style: normal;
     font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #fff;
+    line-height: var(--line-height-caption, 14px);
+    letter-spacing: 1.92px;
 }
 
-/* Card Content Typography */
-.get-cover-plans .plan-card-body {
+.get-cover-plans .promotion .plan-card-body {
     margin-top: auto;
     z-index: 2;
 }
 
-.get-cover-plans .plan-card-body ul {
+.get-cover-plans .promotion .plan-card-body ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.get-cover-plans .plan-card-body li {
-    font-family: var(--font-family-font-family-display, 'Manrope', sans-serif);
-    font-size: clamp(24px, 5vw, 40px);
+.get-cover-plans .promotion .plan-card-body li {
+    color: var(--text-white, #FFF);
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-3-font-size, 32px);
+    font-style: normal;
     font-weight: 300;
-    color: #fff;
-    line-height: 48px;
+    line-height: var(--heading-3-line-height, 36px);
     margin-bottom: 6px;
 }
 
-.get-cover-plans .plan-card-body li strong {
-    font-weight: 700;
-    color: #fff;
+.get-cover-plans .promotion .plan-card-body li strong {
+    font-weight: 600;
+    color: var(--text-white, #fff);
 }
 
-.get-cover-plans .plan-card-body li:last-child {
-    font-size: clamp(20px, 4vw, 26px);
-    font-weight: 500;
-    margin-bottom: 0;
+.get-cover-plans .promotion .plan-card-body li:last-child {
+    color: var(--text-white, #FFF);
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-4-font-size, 24px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--heading-4-line-height, 28px);
 }
 
 /* ==========================================================================
    Step Pagination & Animated Duration Line (01 ━━━━ 02 03)
    ========================================================================== */
 
-.get-cover-plans .plan-pagination {
+.get-cover-plans .promotion .plan-pagination {
     display: flex;
     justify-content: flex-start;
     padding-left: 4px;
-    margin-top: 16px;
-    margin-left: 40px;
+
+    /* margin-top: 16px; */
+    margin-left: 34px;
 }
 
-.get-cover-plans .steps-container {
+.get-cover-plans .promotion .steps-container {
+    width: 212px;
+    min-height: 20px;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 /* Step Numbers (01, 02, 03) */
-.get-cover-plans .step-indicator {
+.get-cover-plans .promotion .step-indicator {
     background: none;
     border: none;
     padding: 0;
-    font-family: var(--font-family-font-family-body, 'Manrope', sans-serif);
-    font-size: 14px;
+    color: var(--text-text-quaternary, #717680);
+    text-align: center;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
     font-weight: 600;
-    color: #98a2b3;
+    line-height: var(--line-height-body-1, 18px);
     cursor: pointer;
     transition: color 0.3s ease, font-size 0.3s ease;
+    opacity: 0.5;
 }
 
-.get-cover-plans .step-indicator.is-active {
-    color: #e31837;
-    font-size: 16px;
-    font-weight: 700;
+.get-cover-plans .promotion .step-indicator.is-active {
+    color: var(--text-text-quaternary, #717680);
+    text-align: center;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-body-1, 18px);
+    background: var(--gradient-red-card,
+            linear-gradient(7deg,
+                #FB2C47 -43.93%,
+                #FA1432 3.36%,
+                #7F2224 88.98%));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 1;
 }
 
 /* Progress Track Line Container */
-.get-cover-plans .progress-track-wrapper {
-    width: 70px;
-    height: 2px;
-    background-color: #eaecf0;
+.get-cover-plans .promotion .progress-track-wrapper {
+    width: 131px;
+    height: 1.5px;
+
+    /* background-color: #eaecf0; */
     border-radius: 2px;
     overflow: hidden;
     position: relative;
+    stroke-width: 1px;
+    stroke: var(--border-border-primary, #D5D7DA);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='131' height='1' viewBox='0 0 131 1' fill='none'%3E%3Cpath d='M0 0.5L131 0.500011' stroke='%23D5D7DA'/%3E%3C/svg%3E");
 }
 
-.get-cover-plans .progress-bar-fill {
+.get-cover-plans .promotion .progress-bar-fill {
     display: block;
     height: 100%;
     width: 0%;
@@ -275,8 +354,8 @@
     border-radius: 2px;
 }
 
-/* Active 5-second progress animation fill */
-.get-cover-plans .progress-track-wrapper.animating .progress-bar-fill {
+/* Active progress animation fill */
+.get-cover-plans .promotion .progress-track-wrapper.animating .progress-bar-fill {
     animation: progress-fill 5s linear forwards;
 }
 
@@ -291,8 +370,14 @@
 }
 
 /* ==========================================================================
-   Desktop Layer Extensions (@media (min-width: 900px))
+   Desktop Responsive Breakpoints (@media (min-width: 900px))
    ========================================================================== */
+
+@media (width >=769px) {
+    .get-cover-plans.section {
+        padding: 50px;
+    }
+}
 
 @media (width >=900px) {
     .get-cover-plans.section {
@@ -301,30 +386,81 @@
     }
 
     .get-cover-plans .default-content-wrapper {
-        width: 40.7%;
+        width: 43.7%;
     }
 
     .get-cover-plans .default-content-wrapper h3 {
-        font-size: var(--font-size-heading-1, 48px);
-        line-height: var(--line-height-heading-1, 60px);
+        font-size: var(--heading-1-font-size, 48px);
+        line-height: var(--heading-1-line-height, 60px);
     }
 
-    .get-cover-plans .custom-rte-wrapper {
-        width: 35.6%;
+    .get-cover-plans .custom-rte-wrapper:has(.custom-rte.promotion) {
+        /* width: 42.6%; */
+        width: 433px;
         padding: 0;
         margin: 0;
+        height: 100%;
+        margin-left: auto;
     }
 
-    .get-cover-plans .custom-rte {
+    .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
+        margin: 4px 0 25px;
+    }
+
+    .get-cover-plans .default-content-wrapper a.get-cover-cta {
+        display: inline-flex;
+        height: 40px;
+        padding: var(--spacing-xl, 16px) var(--spacing-xs, 4px) var(--spacing-xl, 16px) var(--spacing-2xl, 20px);
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-lg, 12px);
+        font-size: var(--font-size-button-1, 16px);
+        font-style: normal;
+        font-weight: 800;
+        line-height: var(--line-height-body-1, 18px);
+    }
+
+    .get-cover-plans .custom-rte.promotion {
         margin-left: 0;
     }
 
-    .get-cover-plans .custom-rte-cards {
+    .get-cover-plans .promotion .custom-rte-cards {
         height: 350px;
     }
 
-    .get-cover-plans .custom-rte-card {
+    /* Desktop Positional Card Dimensions */
+    .get-cover-plans .promotion .custom-rte-card.is-active {
         width: 360px;
         height: 332px;
     }
+
+    .get-cover-plans .promotion .custom-rte-card.stack-layer-1 {
+        transform: translate(44px, 16px) scale(0.98);
+        width: calc(100% - 91px);
+        height: 301.111px;
+    }
+
+    .get-cover-plans .promotion .custom-rte-card.stack-layer-2 {
+        transform: translate(65px, 30px) scale(0.98);
+        width: calc(100% - 96px);
+        height: 272px;
+    }
+
+    .get-cover-plans .promotion .plan-card-body li {
+        font-size: var(--font-size-heading-2, 40px);
+        line-height: var(--line-height-heading-2, 48px);
+    }
+
+    .get-cover-plans .promotion .plan-card-body li strong {
+        font-size: var(--font-size-heading-2, 40px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--line-height-heading-2, 48px);
+    }
+
+    .get-cover-plans .promotion .plan-pagination {
+        margin-top: 16px;
+        margin-left: 40px;
+    }
+
 }

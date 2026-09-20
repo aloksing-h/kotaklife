@@ -1,3 +1,5 @@
+@import url('../ourleadership/ourleadership.css');
+
 .life-advisor.section.profile-cta-container {
   margin: 0;
 }
@@ -15,15 +17,15 @@
   /* padding: 24px 16px; */
 }
 
-.profile-cta > div:nth-child(1) {
+.profile-cta>div:nth-child(1) {
   grid-area: image;
 }
 
-.profile-cta > div:nth-child(2) {
+.profile-cta>div:nth-child(2) {
   grid-area: text;
 }
 
-.profile-cta > div:nth-child(3) {
+.profile-cta>div:nth-child(3) {
   grid-area: cta;
 }
 
@@ -34,10 +36,10 @@
   border-radius: 8px;
 }
 
-.profile-cta > div:nth-child(2) h1,
-.profile-cta > div:nth-child(2) h2,
-.profile-cta > div:nth-child(2) h3,
-.profile-cta > div:nth-child(2) h4 {
+.profile-cta>div:nth-child(2) h1,
+.profile-cta>div:nth-child(2) h2,
+.profile-cta>div:nth-child(2) h3,
+.profile-cta>div:nth-child(2) h4 {
   font-family: Manrope, sans-serif;
   font-size: 32px;
   font-weight: 600;
@@ -46,16 +48,16 @@
   margin: 0 0 8px;
 }
 
-.profile-cta > div:nth-child(2) p {
+.profile-cta>div:nth-child(2) p {
   margin: 0 0 12px;
 }
 
-.profile-cta > div:nth-child(3) p {
+.profile-cta>div:nth-child(3) p {
   margin: 0;
 }
 
 /* first paragraph after the heading acts as the subheading / role line */
-.profile-cta > div:nth-child(2) p:first-of-type {
+.profile-cta>div:nth-child(2) p:first-of-type {
   font-family: Manrope, sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -64,7 +66,7 @@
 }
 
 /* any further paragraphs are treated as body / description copy */
-.profile-cta > div:nth-child(2) p:not(:first-of-type) {
+.profile-cta>div:nth-child(2) p:not(:first-of-type) {
   font-family: Manrope, sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -72,11 +74,11 @@
   color: #414651;
 }
 
-.profile-cta > div:nth-child(2) p:last-child {
+.profile-cta>div:nth-child(2) p:last-child {
   margin-bottom: 0;
 }
 
-.profile-cta > div:nth-child(3) a {
+.profile-cta>div:nth-child(3) a {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -90,7 +92,7 @@
   border-radius: 999px;
 }
 
-.profile-cta > div:nth-child(3) a::after {
+.profile-cta>div:nth-child(3) a::after {
   content: "";
   display: inline-flex;
   align-items: center;
@@ -103,12 +105,12 @@
   font-size: 16px;
 }
 
-.profile-cta > div:nth-child(3) a:hover,
-.profile-cta > div:nth-child(3) a:focus-visible {
+.profile-cta>div:nth-child(3) a:hover,
+.profile-cta>div:nth-child(3) a:focus-visible {
   background-color: #b70e24;
 }
 
-.profile-cta > div:nth-child(3) a:focus-visible {
+.profile-cta>div:nth-child(3) a:focus-visible {
   outline: 2px solid #181d27;
   outline-offset: 2px;
 }
@@ -138,16 +140,16 @@
   text-align: center;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
   width: 100%;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) {
   width: 100%;
   max-width: 304px;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(3) {
   justify-self: center;
 }
 
@@ -155,10 +157,10 @@
   border-radius: 0;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h1,
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h2,
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h3,
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h4 {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h1,
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h2,
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h3,
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h4 {
   font-size: 23px;
   font-weight: 800;
   line-height: 1.12;
@@ -166,14 +168,14 @@
   text-align: center;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) p:first-of-type {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) p:first-of-type {
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(3) a {
   gap: 8px;
   padding: 4px 3px 4px 20px;
   font-size: 16px;
@@ -181,22 +183,22 @@
   position: relative;
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a::before {
+.life-advisor.profile-cta-container .profile-cta>div:nth-child(3) a::before {
   content: '';
   background-image: url("/icons/black-right-arrow.svg");
   background-repeat: no-repeat;
-      position: absolute;
-    right: 9px;
-    width: 20px;
-    height: 20px;
+  position: absolute;
+  right: 9px;
+  width: 20px;
+  height: 20px;
 }
 
-@media (width >= 1024px) {
+@media (width >=1024px) {
   .profile-cta {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "image text" "image cta";
     gap: 24px;
-    
+
     /* padding: 40px 32px; */
   }
 
@@ -210,37 +212,37 @@
     min-height: 400px;
     grid-template:
       "image text"
-      "image cta"       
+      "image cta"
       /1fr;
-    gap: 14px 38px;
+    gap: 24px 38px;
     align-content: center;
     justify-items: start;
     padding: 30px 0;
     text-align: left;
   }
 
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
     width: 92%;
     justify-self: center;
   }
 
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) {
     align-self: end;
     max-width: 520px;
     margin-bottom: 2px;
-    margin-top: 78px;
+    margin-top: 96px;
     width: 100%;
   }
 
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(3) {
     place-self: normal;
     text-align: right;
   }
 
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h1,
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h2,
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h3,
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) h4 {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h1,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h2,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h3,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h4 {
     width: fit-content;
     margin-left: -115px;
     color: var(--text-text-primary, #181D27);
@@ -253,7 +255,7 @@
     letter-spacing: -0.64px;
   }
 
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(2) p:first-of-type {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) p:first-of-type {
     text-align: right;
     color: var(--text-text-primary, #181D27);
     font-family: var(--font-family-font-family-display, Manrope);
@@ -263,64 +265,63 @@
   }
 }
 
-@media (width  <= 1023px) {
+@media (width <=1023px) {
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding: 0;
     padding-inline: 50px;
   }
-  
-.life-advisor.profile-cta-container .profile-cta {
-  padding: 0;
-  width: 100%;
-  min-height: auto;
+
+  .life-advisor.profile-cta-container .profile-cta {
+    padding: 0;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(3) {
+    padding-inline: 16px;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h1,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h2,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h3,
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h4 {
+    color: var(--text-text-primary, #181D27);
+    text-align: right;
+    font-family: var(--font-family-font-family-display, Manrope);
+    font-size: var(--font-size-heading-3, 32px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--line-height-heading-3, 36px);
+    letter-spacing: -0.64px;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) p:first-of-type {
+    color: var(--text-text-primary, #181D27);
+    text-align: right;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-sub-heading-2, 18px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-sub-heading-2, 20px);
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) {
+    max-width: 100%;
+    width: 70%;
+    margin-left: auto;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
+    width: 50%;
+  }
 }
 
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) {
-  padding-inline: 16px;
-}
-
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h1,
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h2,
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h3,
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) h4 {
-  color: var(--text-text-primary, #181D27);
-  text-align: right;
-  font-family: var(--font-family-font-family-display, Manrope);
-  font-size: var(--font-size-heading-3, 32px);
-  font-style: normal;
-  font-weight: 600; 
-  line-height: var(--line-height-heading-3, 36px);
-  letter-spacing: -0.64px;
-}
-
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(2) p:first-of-type {
-  color: var(--text-text-primary, #181D27);
-  text-align: right;
-  font-family: var(--font-family-font-family-body, Manrope);
-  font-size: var(--font-size-sub-heading-2, 18px);
-  font-style: normal;
-  font-weight: 400;
-  line-height: var(--line-height-sub-heading-2, 20px);
-}
-
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(2) {
-  max-width: 100%;
-  width: 70%;
-  margin-left: auto;
-  padding-inline: 16px;
-}
-
-.life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
-  width: 50%;
-}
-}
-
-@media (width <= 767px) {
-  .life-advisor.profile-cta-container .profile-cta > div:nth-child(1) {
+@media (width <=767px) {
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
     width: 100%;
   }
 
   .life-advisor.profile-cta-container .profile-cta-wrapper {
-     padding-inline: 16px;
+    padding-inline: 16px;
   }
 }

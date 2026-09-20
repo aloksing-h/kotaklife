@@ -6,22 +6,49 @@
     background: #FFF;
     border: 1.5px solid #6C9EE4;
     border-radius: 130px;
-    padding: 86px 64px 48px;
+    padding: 86px 128px 48px 44px;
     box-sizing: border-box;
     position: relative;
-
-    /* Concentric outer border rings */
-    box-shadow:
-        0 0 0 10px #FFF,
-        0 0 0 11px rgb(108 158 228 / 40%),
-        0 0 0 22px #FFF,
-        0 0 0 23px rgb(220 228 240 / 50%);
 
     /* Desktop Two-Column Layout */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
+    z-index: 1;
+}
+
+/* Concentric outer border rings: desktop shows them on the left side only */
+.invest-form.section.invest-form-container::before {
+    content: "";
+    position: absolute;
+    inset: 0 -11px 0 -25px;
+    border-radius: 141px;
+    border: none !important;
+    padding: 0.5px;
+    background: linear-gradient(to right, rgb(108 158 228 / 60%) 0%, rgb(108 158 228 / 60%) 35%, transparent 70%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+    /* mask-composite: xor; */
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.invest-form.section.invest-form-container::after {
+    content: "";
+    position: absolute;
+    inset: -1px -23px -1px -50px;
+    border-radius: 153px;
+    border: none !important;
+    padding: 0.5px;
+    background: linear-gradient(to right, rgb(108 158 228 / 30%) 0%, rgb(108 158 228 / 30%) 35%, transparent 70%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+    /* mask-composite: xor; */
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* CMS Outer Wrappers */
@@ -58,7 +85,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(1) {
     order: 2;
     margin-top: auto;
-    margin-left: -84px;
+    margin-left: -115px;
     margin-bottom: -48px;
 }
 
@@ -99,7 +126,7 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3) {
     position: absolute;
     top: 93px;
-    right: -6px;
+    right: 56px;
     width: calc(44% - 20px);
     max-width: 380px;
     margin: 0;
@@ -134,6 +161,9 @@
     width: 100%;
     height: 171px;
     object-fit: contain;
+    position: absolute;
+    bottom: 0;
+    left: -1%;
 }
 
 /* Form Styling */
@@ -145,12 +175,14 @@
 
 .invest-form.section.invest-form-container .form-field input[type="text"],
 .invest-form.section.invest-form-container .form-field input[type="email"],
-.invest-form.section.invest-form-container .form-field input[type="tel"] {
+.invest-form.section.invest-form-container .form-field input[type="tel"],
+.invest-form.section.invest-form-container .form-field input[type="date"] {
     width: 100%;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s ease;
-    display: flex;
+
+    /* display: flex; */
     height: 40px;
     padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
     align-items: center;
@@ -169,7 +201,6 @@
     line-height: var(--line-height-body-1, 18px);
 }
 
-
 .invest-form.section.invest-form-container .form .form-field+.form-field {
     margin: 0;
 }
@@ -182,12 +213,40 @@
     border-color: #E1122D;
 }
 
+/* .invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
+    border-color: #E1122D;
+}
+
+.invest-form.section.invest-form-container .field-error {
+    margin: 4px 0 0;
+    color: #E1122D;
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.invest-form.section.invest-form-container .form-success-message {
+    color: var(--text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    font-weight: 600;
+    line-height: var(--line-height-body-1, 18px);
+    margin: 0;
+} */
+
 /* Date Field Calendar Icon */
 .invest-form.section.invest-form-container .form-field.date-field input {
     background-image: url('../../icons/calendar-fm.svg');
     background-repeat: no-repeat;
     background-position: right 14px center;
 }
+
+/* 
+.invest-form.section.invest-form-container .form-field.date-field input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
 
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
@@ -220,6 +279,11 @@
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
     background-color: #c90e26;
 }
+
+/* .invest-form.section.invest-form-container .button-wrapper button.button:disabled {
+    background: #D5D7DA;
+    cursor: not-allowed;
+} */
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
     flex-grow: 1;
@@ -293,13 +357,51 @@
         margin: 20px auto;
         padding: 41px 24px 180px;
         flex-direction: column;
-        box-shadow:
-            0 0 0 6px #FFF,
-            0 0 0 7px rgb(108 158 228 / 40%),
-            0 0 0 14px #FFF,
-            0 0 0 15px rgb(220 228 240 / 50%);
         border-radius: 65px;
         border: 0.652px solid #E6E6E6;
+    }
+
+    /* Concentric outer border rings: mobile shows them on top and bottom only */
+    .invest-form.section.invest-form-container::before {
+        content: "";
+        position: absolute;
+        inset: -11px 0;
+        border-radius: 68px;
+
+        /* Applies to all 4 corners */
+        border: none !important;
+        padding: 1.5px;
+
+        /* Multiple Backgrounds: one fades down from top, one fades up from bottom */
+        background:
+            linear-gradient(to bottom, rgb(108 158 228 / 60%) 0%, transparent 85px),
+            linear-gradient(to top, rgb(108 158 228 / 60%) 0%, transparent 85px);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+        /* mask-composite: xor; */
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .invest-form.section.invest-form-container::after {
+        content: "";
+        position: absolute;
+        inset: -22px 0; /* top/bottom -22px, left/right 0 */
+        border-radius: 72px;
+        border: none !important;
+        padding: 1.5px;
+
+        /* Multiple Backgrounds: one fades down from top, one fades up from bottom */
+        background:
+            linear-gradient(to bottom, rgb(108 158 228 / 30%) 0%, transparent 95px),
+            linear-gradient(to top, rgb(108 158 228 / 30%) 0%, transparent 95px);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        
+        /* mask-composite: xor; */
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: -1;
     }
 
     .invest-form.section.invest-form-container .custom-rte-wrapper,
@@ -351,6 +453,7 @@
     .invest-form.section.invest-form-container picture img {
         max-width: 304px;
         height: 136px;
+        position: unset;
     }
 
     .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2) {
@@ -385,5 +488,17 @@
 
     .invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
         top: 40%;
+    }
+
+
+}
+
+@media (899px <=width <=1160px) {
+    .invest-form.section.invest-form-container::before {
+        left: -14px;
+    }
+
+    .invest-form.section.invest-form-container::after {
+        left: -27px;
     }
 }

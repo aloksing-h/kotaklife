@@ -15,7 +15,7 @@
     margin: 0 auto;
     padding: 0;
     color: var(--text-text-primary, #181D27);
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-3, 32px);
     font-style: normal;
     font-weight: 300;
@@ -51,7 +51,7 @@
 /* Bottom "Browse All Plans" button (last default-content-wrapper, link-only) */
 .find-a-plan.tabs-container .default-content-wrapper:last-child {
     display: flex;
-    margin-top: 24px;
+    margin-top: 20px;
     margin-bottom: 0;
     justify-content: center;
 }
@@ -66,7 +66,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 7px 10px;
+    padding: 8.2px 12px;
     gap: var(--spacing-md, 8px);
     border-radius: var(--radius-full, 999px);
     border: 1px solid var(--button-btn-brand-red, #E1122D);
@@ -120,12 +120,6 @@
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab[aria-selected='true'] {
-    padding: var(--spacing-lg, 12px);
-    border-radius: var(--radius-full, 999px);
-    border-bottom: 1px solid #1E4679;
-    background: linear-gradient(90deg,
-            var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%,
-            var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
     color: var(--text-text-brand-blue, #1E4679);
     text-align: center;
     font-family: var(--font-family-font-family-body, Manrope);
@@ -133,12 +127,19 @@
     font-style: normal;
     font-weight: 600;
     line-height: var(--line-height-body-1, 18px);
+    padding: var(--spacing-lg, 12px);
+    border-radius: var(--radius-full, 999px);
+    border-bottom: 1px solid #1E4679;
+    background: linear-gradient(90deg,
+            rgb(46 144 250 / 30%) 0%,
+            rgb(255 255 255 / 30%) 100%);
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel {
     padding: 0;
     margin: 0;
     border: unset;
+    overflow: visible;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul {
@@ -148,42 +149,64 @@
     padding: 0;
     margin: 25px auto 0;
     list-style: none;
+    
+    /* justify-content: space-between; */
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
     /* padding-top: 16px; */
     display: flex;
-    max-width: 47.4%;
-    flex: 0 0 47.4%;
+
+    /* max-width: 47.4%;
+    flex: 0 0 47.4%; */
+    width: 47.4%;
     min-height: 203px;
     flex-direction: column-reverse;
-    align-items: center;
+    justify-content: space-between;
+
+    /* justify-content: flex-end; */
+
+    /* align-items: center; */
     gap: var(--spacing-sm, 6px);
     border-radius: var(--radius-md, 8px);
     border: 1px solid #D2DAE4;
     background: var(--background-bg-primary, #FFF);
-    box-shadow: 0 10px 30px rgb(16 24 40 / 8%);
+
+    /* box-shadow: 0 10px 30px rgb(16 24 40 / 8%); */
     overflow: hidden;
-    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transform-origin: center;
+    transition: background 700ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
 /* Illustration area (bottom of card by default, DOM-first + column-reverse) */
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image {
     width: 100%;
+    margin-top: auto;
+
+    /* background: url('../../icons/glass-effect-mobile.png') lightgray -73.065px 0px / 152.68% 190.507% no-repeat;
+    mix-blend-mode: color-dodge; */
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p {
     margin: 0;
     padding: 0;
+
+}
+
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p:first-child {
+    padding: 16px 0;
+    padding-bottom: 0;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image picture,
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
     width: 100%;
+    aspect-ratio: unset;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
-    height: 96px;
+    min-height: 96px;
     object-fit: contain;
 }
 
@@ -197,15 +220,16 @@
     gap: 8px;
     margin: 0;
     z-index: 2;
+    padding: 48px 16px 0;
 }
 
 /* Badge: ".custom-cards-card-body > p:first-child" (icon + "BEST SELLING") */
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>p:first-child {
-    width: fit-content;
-    margin: 0 auto;
+    /* width: fit-content; */
+    margin: 0;
     display: flex;
     padding: 4px 8px;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: var(--spacing-xs, 4px);
     border-radius: var(--radius-full, 999px);
@@ -216,6 +240,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: var(--line-height-caption, 14px);
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: pre;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>p:first-child .icon {
@@ -229,7 +258,7 @@
     flex-direction: column;
     gap: 4px;
     margin: 0;
-    padding: 0 16px;
+    padding: 0;
     list-style: none;
 }
 
@@ -243,7 +272,7 @@
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:first-of-type>li:first-child strong {
-    color: #ff1f3d;
+    color: #FA1432;
     font-weight: 700;
 }
 
@@ -261,7 +290,8 @@
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type {
     display: none;
     flex-direction: column;
-    gap: 6px;
+
+    /* gap: 6px; */
     margin: 0;
     padding: 0;
     list-style: none;
@@ -283,9 +313,10 @@
     position: relative;
     padding-left: 9px;
     font-family: var(--font-family-font-family-body, Manrope);
-    font-size: 9px;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 12px;
+    line-height: 18px;
+    margin-top: 8px;
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:not(:first-child, :last-child)::before {
@@ -302,15 +333,15 @@
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
-    padding: 2px 3px 2px 6px;
+    gap: 12px;
+    padding: 2px 4px 2px 16px;
     border-radius: 999px;
     background: #fff;
     color: #181d27;
     font-family: var(--font-family-font-family-body, Manrope);
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 800;
-    line-height: 1;
+    line-height: 18px;
     text-decoration: none;
     margin: 0;
     white-space: nowrap;
@@ -319,48 +350,144 @@
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a::after {
     content: '';
     display: flex;
-    width: 22px;
-    height: 22px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
     border-radius: 50%;
-    background: #e1122d url('/icons/write-arrow-right.svg') center / 12px no-repeat;
+    background: #e1122d url('/icons/write-arrow-right.svg') center / 20px no-repeat;
+    transform: scale(0.926);
+    transform-origin: center;
 }
 
-/* stylelint-disable no-descending-specificity */
-
-/* Hover state: swap default content for the highlight content and swap image */
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover {
-    background: linear-gradient(160deg, #fb2c47 0%, #7f2224 100%);
-    box-shadow: 0 16px 40px rgb(251 20 50 / 24%);
-    flex-direction: column;
-    gap: 0;
+@media (width >=580px) {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
+        flex: 0 0 31.4%;
+    }
 }
 
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child,
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:first-of-type {
-    display: none;
-}
-
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type {
-    display: flex;
-    gap: 2px;
-    padding: 0 12px 20px;
-}
-
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
-    display: none;
-}
-
-.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
-    display: block;
-}
-
-/* stylelint-enable no-descending-specificity */
 
 @media (width >=900px) {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
+        min-height: 311px;
+        height: 100%;
+        max-width: 23.68%;
+        flex: 0 0 23.68%;
+        gap: 9px;
+
+        /* width: 23.84%; */
+    }
+
+    .find-a-plan.tabs-container .default-content-wrapper:last-child a {
+        padding: 11px 24px;
+        font-size: var(--font-size-button-1, 16px);
+        line-height: var(--line-height-body-1, 18px);
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
+        white-space: initial;
+        letter-spacing: -0.64px;
+        margin-top: 8px;
+    }
+
+    /* Hover state: swap default content for the highlight content and swap image */
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover {
+        background: linear-gradient(160deg, #fb2c47 0%, #7f2224 100%);
+        flex-direction: column;
+        gap: 0;
+        transform: scale(1.08);
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
+        min-height: 136px;
+        object-fit: contain;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image img {
+        height: 126px;
+        object-fit: cover;
+    }
+
+    /* .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image img {
+        height: 96px;
+    } */
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body {
+        padding: 16px;
+    }
+
+    .find-a-plan.tabs-container .default-content-wrapper p {
+        max-width: 620px;
+        margin-inline: auto;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 20px;
+    }
+
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p:first-child {
+        padding: 0;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>p:first-child {
+        font-size: 12px;
+        right: 12px;
+        left: auto;
+        transform: unset;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image p:first-child {
+        display: none;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        padding: 0;
+        margin-top: 39.5px;
+        justify-content: start;
+        flex-wrap: nowrap;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:first-of-type {
+        gap: 8px;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>p:first-child,
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:first-of-type {
+        display: none;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type {
+        display: flex;
+        animation: find-a-plan-content-reveal 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type .find-a-plan-tag-li:last-child {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.primary-image {
+        display: none;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image picture.secondary-image {
+        display: block;
+        animation: find-a-plan-image-rise 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li.is-leaving .custom-cards-card-image picture.primary-image {
+        animation: find-a-plan-image-return 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
     .find-a-plan.tabs-container .default-content-wrapper {
-        margin-bottom: 32px;
+        margin-bottom: 39px;
         padding-inline: 24px;
+        padding-block: 0;
+    }
+
+    .find-a-plan.tabs-container .default-content-wrapper:last-child {
+        margin-top: 36.5px;
     }
 
     .find-a-plan.tabs-container .default-content-wrapper h1,
@@ -371,11 +498,6 @@
     .find-a-plan.tabs-container .default-content-wrapper h6 {
         font-size: 48px;
         line-height: 60px;
-    }
-
-    .find-a-plan.tabs-container .default-content-wrapper p {
-        max-width: 620px;
-        margin-inline: auto;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list {
@@ -389,35 +511,15 @@
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab[aria-selected='true'] {
-        padding: var(--spacing-lg, 12px) var(--spacing-2xl, 20px);
+        padding: var(--spacing-lg, 12px);
+        border-radius: var(--radius-full, 999px);
+        border-bottom: 1px solid #1E4679;
+        background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
+        color: var(--text-text-brand-blue, #1E4679);
     }
 
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-        padding: 0;
-        margin-top: 28px;
-    }
-
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
-        min-height: 311px;
-        height: 100%;
-        max-width: 23.68%;
-        flex: 0 0 23.68%;
-        gap: 9px;
-    }
-
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:first-of-type {
-        gap: 9px;
-    }
-
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
-        height: 137px;
-        object-fit: cover;
-    }
-
-    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>p:first-child {
-        font-size: 12px;
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image picture {
+        display: block;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:first-of-type>li:first-child {
@@ -431,12 +533,83 @@
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type h4 {
-        font-size: 17px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        font-family: var(--font-family-font-family-body, Manrope);
+        margin-bottom: 4px;
     }
 
-    .find-a-plan.tabs-container .default-content-wrapper:last-child a {
-        padding: 11px 24px;
-        font-size: var(--font-size-button-1, 16px);
-        line-height: var(--line-height-body-1, 18px);
+    .find-a-plan.tabs-container .tabs-wrapper {
+        padding-inline: 80px;
+        padding-block: 0;
+        min-height: 456px;
+    }
+
+    .find-a-plan.tabs-container .default-content-wrapper h2 strong,
+    .find-a-plan.tabs-container .default-content-wrapper h3 strong,
+    .find-a-plan.tabs-container .default-content-wrapper h4 strong,
+    .find-a-plan.tabs-container .default-content-wrapper h5 strong,
+    .find-a-plan.tabs-container .default-content-wrapper h6 strong {
+        font-size: 48px;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image {
+        margin-top: unset;
+    }
+}
+
+@keyframes find-a-plan-content-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes find-a-plan-image-rise {
+    from {
+        opacity: 0;
+        transform: translateY(136px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes find-a-plan-image-return {
+    from {
+        opacity: 0;
+        transform: translateY(-136px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
+        transition: none;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-body>ul:last-of-type,
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .secondary-image,
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li.is-leaving .primary-image {
+        animation: none;
+    }
+}
+
+
+@media (width >=768px) and (width <=1023px) {
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
+        font-size: 12px;
     }
 }
