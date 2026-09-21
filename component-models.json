@@ -142,23 +142,6 @@
             "value": "dsp-none"
           },
           {
-            "name": "ABCD",
-            "value": "abcd"
-          },
-          {
-            "name": "Header Varient",
-            "children": [
-              {
-                "name": "Grey Header",
-                "value": "grey-nav"
-              },
-              {
-                "name": "White Header",
-                "value": "white-nav"
-              }
-            ]
-          },
-          {
             "name": "Footer Mobile Accordion Only",
             "value": "mob-accordion"
           },
@@ -269,6 +252,27 @@
           {
             "name": "Visual Pulse",
             "value": "visual-pulse"
+          },
+          {
+            "name": "test cls",
+            "value": "test-cls"
+          },
+          {
+            "name": "ABCD",
+            "value": "abcd"
+          },
+          {
+            "name": "Header Varient",
+            "children": [
+              {
+                "name": "Grey Header",
+                "value": "grey-nav"
+              },
+              {
+                "name": "White Header",
+                "value": "white-nav"
+              }
+            ]
           }
         ]
       }
