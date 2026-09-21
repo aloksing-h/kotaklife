@@ -410,6 +410,12 @@
   font-weight: var(--font-weight-extrabold);
   font-size: var(--button-2-font-size);
   line-height: var(--button-2-line-height);
+  transition: gap 0.25s ease, transform 0.25s ease;
+}
+
+.csr-layout .default-content-wrapper a:hover{
+  gap: 13px;
+  transform: translateX(2px);
 }
 
 .csr-layout .default-content-wrapper a span {
