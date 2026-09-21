@@ -3,6 +3,10 @@
     padding-inline-start: var(--spacing-xl, 16px);
 }
 
+.difference-cards.section{
+    margin: 82px auto 77px;
+}
+
 .difference-cards .custom-cards-card-body p:last-child {
     background-color: var(--base-white);
     border-radius: var(--radius-full);
@@ -326,6 +330,7 @@
 @media (width >=768px) {
     .difference-cards.custom-cards-container {
         padding: var(--spacing-6xl, 48px) 0;
+        margin: 130px auto 125px;
         background-color: var(--base-white, #fff);
     }
 

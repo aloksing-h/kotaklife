@@ -287,11 +287,11 @@
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(odd) {
-  margin: 0 0 0 30%;
+  margin: 0 0 0 auto;
 }
 
 .timeline.awards.block .timeline-card-item:nth-child(even) {
-  margin: 0 30% 0 0;
+  margin: 0 auto 0 0;
 }
 
 .timeline.awards.block .timeline-card-item::before {
@@ -367,6 +367,16 @@
   font-weight: var(--font-weight-semibold);
 }
 
+@media (width >= 361px) {
+  .timeline.awards.block .timeline-card-item:nth-child(odd) {
+    margin: 0 0 0 30%;
+  }
+
+  .timeline.awards.block .timeline-card-item:nth-child(even) {
+    margin: 0 30% 0 0;
+  }
+}
+
 @media (width >= 768px) {
   .timeline.awards.block .timeline-cards-list {
     align-items: normal;
@@ -399,13 +409,13 @@
     line-height: var(--sub-heading-2-line-height);
   }
 
-  .timeline.awards.block .timeline-card-item:nth-child(odd) {
-    margin: 0 0 0 30%;
-  }
+    .timeline.awards.block .timeline-card-item:nth-child(odd) {
+      margin: 0 0 0 30%;
+    }
 
-  .timeline.awards.block .timeline-card-item:nth-child(even) {
-    margin: 0 30% 0 0;
-  }
+    .timeline.awards.block .timeline-card-item:nth-child(even) {
+      margin: 0 30% 0 0;
+    }
 
   .slider-title.section h1 {
     padding: 0;
