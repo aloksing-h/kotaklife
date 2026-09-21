@@ -1,4 +1,4 @@
-export default async function initValuesSwiper(block) {
+export default async function initdifferenceSwiper(block) {
   const ul = block.querySelector('ul');
   if (!ul) return;
 
@@ -10,7 +10,7 @@ export default async function initValuesSwiper(block) {
     block.append(pagination);
   }
 
-  const mobileQuery = window.matchMedia('(max-width: 800px)'); // Default fallback
+  const mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
 
   const enableSwiper = async () => {
     if (!block.swiperInstance) {
@@ -26,7 +26,7 @@ export default async function initValuesSwiper(block) {
         // 3. Define the base/default Swiper configuration
         const swiperConfig = {
           slidesPerView: 'auto',
-          spaceBetween: 12,
+          spaceBetween: 8,
           grabCursor: true,
           slideToClickedSlide: true,
           pagination: {

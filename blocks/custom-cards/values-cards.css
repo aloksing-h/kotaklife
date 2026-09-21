@@ -27,17 +27,21 @@
   font-weight: var(--font-weight-semibold, 600);
 }
 
-.values-cards-hover.custom-cards-container .default-content-wrapper {
-  padding-bottom: 0;
-}
+.values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding: 0;
+  }
 
 .values-cards-hover.custom-cards-container .default-content-wrapper p {
-  color: var(--gray-500, #717680);
-  font-size: var(--body-2-font-size, 14px);
-  line-height: var(--body-2-line-height, 18px);
-  text-align: center;
-  margin: 0;
-  font-weight: var(--font-weight-medium, 500);
+    color: var(--gray-500, #717680);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+    text-align: center;
+    margin: 0;
+    font-weight: var(--font-weight-medium, 500);
+    padding: 0;
+}
+
+.values-cards-hover.custom-cards-container .custom-cards-wrapper{
   padding: 0;
 }
 
@@ -266,8 +270,12 @@
   transform-origin: center;
 }
 
-@media (width >=800px) {
-  .values-cards-hover.custom-cards-container .default-content-wrapper {
+@media (width >= 800px) {
+  .values-cards-hover.section{
+    padding: 0;
+  }
+
+  .values-cards-hover.custom-cards-container .default-content-wrapper{
     padding-bottom: var(--spacing-5xl, 40px);
   }
 
@@ -412,6 +420,7 @@
     bottom: 40px;
     left: 20px;
     right: 36px;
+    line-height: var(--sub-heading-1-line-height);
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {

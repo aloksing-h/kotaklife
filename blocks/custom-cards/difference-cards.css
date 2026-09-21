@@ -35,17 +35,10 @@
     padding-bottom: var(--spacing-4xl, 32px);
 }
 
-.difference-cards .custom-cards>ul.swiper-wrapper {
+.difference-cards .custom-cards>ul {
     display: flex;
     grid-template-columns: none;
     gap: 0;
-}
-
-.difference-cards .custom-cards>ul>li.swiper-slide {
-    max-width: 275px;
-    min-height: 186px;
-    flex-shrink: 0;
-    height: auto;
 }
 
 /* Swiper Pagination Dots */
@@ -60,8 +53,8 @@
 }
 
 .difference-cards .custom-cards .swiper-pagination-bullet {
-    width: var(--spacing-md, 8px);
-    height: var(--spacing-md, 8px);
+    width: 6px;
+    height: 6px;
     background-color: #d1d5db;
     opacity: 1;
     border-radius: 50%;
@@ -70,10 +63,10 @@
 }
 
 .difference-cards .custom-cards .swiper-pagination-bullet-active {
-    width: 28px;
-    height: var(--spacing-md, 8px);
-    background-color: #e31837;
-    border-radius: var(--radius-xs, 4px);
+    width: 32px;
+    height: 6px;
+    background: linear-gradient(180deg,#AF0E23 0%,  #FB2C47 100%);
+    border-radius: var(--radius-full);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
@@ -128,11 +121,15 @@
     box-sizing: border-box;
     transition: background 0.35s ease, transform 0.3s ease, box-shadow 0.35s ease;
     cursor: pointer;
+    max-width: 275px;
+    min-height: 186px;
+    flex-shrink: 0;
+    height: auto;
 }
 
 .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: var(--sub-heading-2-font-size, 18px);
-    line-height: var(--sub-heading-2-line-height, 20px);
+    font-size: var(--sub-heading-1-font-size, 20px);
+    line-height: var(--sub-heading-1-line-height, 24px);
     font-family: var(--font-family-manrope, Manrope);
     font-weight: var(--font-weight-semibold, 600);
     color: var(--gray-900, #181d27);
@@ -163,8 +160,8 @@
 
 .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
 .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
+    font-size: var(--caption-font-size, 12px);
+    line-height: var(--caption-line-height, 14px);
     font-family: var(--font-family-manrope, Manrope);
     color: var(--gray-700, #414651);
     font-weight: var(--font-weight-semibold, 600);
@@ -327,7 +324,8 @@
 /* ==========================================================================
    Section Level Scoped Styles (.difference-cards)
    ========================================================================== */
-@media (width >=768px) {
+/* stylelint-disable-next-line media-feature-range-notation */
+@media ( min-width :768px) {
     .difference-cards.custom-cards-container {
         padding: var(--spacing-6xl, 48px) 0;
         margin: 130px auto 125px;
@@ -342,7 +340,7 @@
         gap: var(--spacing-lg, 12px);
         padding-inline: 50px;
         max-width: 1200px;
-        margin: 0 auto 72px;
+        margin: 0 auto 60px;
         box-sizing: border-box;
         flex-direction: column;
         align-items: center;
@@ -389,6 +387,10 @@
         max-width: 534px;
         text-align: center;
     }
+
+    .difference-cards .custom-cards>ul>li.swiper-slide-active{
+        transform: scale(1.1161, 1.1166);
+    }
     
     /* ==========================================================================
    Block & Cards Layout
@@ -407,20 +409,21 @@
         display: none;
     }
 
-    .difference-cards .custom-cards>ul {
+    .difference-cards .custom-cards> ul {
         list-style: none;
-        padding: 0;
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-xl, 16px);
+        min-height: 268px;
+        padding: 14px;
     }
 
     /* Card Container Base */
     .difference-cards .custom-cards>ul>li {
         padding: var(--spacing-2xl, 20px);
         max-width: 353px;
-        min-height: 240px;
+        max-height: 240px;
         border-radius: var(--radius-2xl, 20px);
     }
 
@@ -454,6 +457,10 @@
 
     .difference-cards.section.custom-cards-container .custom-cards-card-image{
         bottom: 30px;
+        max-width: 203px;
+        max-height: 116px;
+        width: 100%;
+        height: 100%;
     }
 
     .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
@@ -485,7 +492,8 @@
 
     .difference-cards .custom-cards>ul>li:hover {
         background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
-        transform: scaleY(1.144);
+         transform: scale(1.1371, 1.1166);
+         z-index: 1;
     }
 
     .difference-cards .custom-cards>ul>li:hover p:last-child {
@@ -508,8 +516,8 @@
         color: var(--base-white, #fff);
     }
 }
-
-@media (width >= 1024px) {
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (min-width : 1024px) {
    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
     font-size: var(--heading-4-font-size, 24px);
     line-height: var(--heading-4-line-height, 28px);
