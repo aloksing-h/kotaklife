@@ -226,6 +226,10 @@
   opacity: 1;
 }
 
+.looking-for .search-wrapper .search .search-box input.search-input:focus::placeholder {
+  opacity: 0;
+}
+
 /* Action buttons (mic + submit) */
 .looking-for .search-wrapper .search .search-box .search-actions {
   display: flex;
