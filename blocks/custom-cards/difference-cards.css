@@ -35,7 +35,7 @@
     padding-bottom: var(--spacing-4xl, 32px);
 }
 
-.difference-cards .custom-cards>ul.swiper-wrapper {
+.difference-cards .custom-cards>ul {
     display: flex;
     grid-template-columns: none;
     gap: 0;
@@ -327,7 +327,7 @@
 /* ==========================================================================
    Section Level Scoped Styles (.difference-cards)
    ========================================================================== */
-@media (width >=768px) {
+@media ( width>=768px) {
     .difference-cards.custom-cards-container {
         padding: var(--spacing-6xl, 48px) 0;
         margin: 130px auto 125px;

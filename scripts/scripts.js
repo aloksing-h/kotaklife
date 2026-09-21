@@ -91,6 +91,18 @@ async function loadFonts() {
     // do nothing
   }
 }
+function buildBreadcrumbBlock(main) {
+  if (
+    (window.location.pathname !== '/' &&
+      window.isErrorPage !== true &&
+      getMetadata('breadcrumbs_show').includes('true')) ||
+    getMetadata('breadcrumb').includes('true')
+  ) {
+    const section = document.createElement('div');
+    section.append(buildBlock('breadcrumb', { elems: [] }));
+    main.prepend(section);
+  }
+}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -99,6 +111,9 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
+    if (!document.querySelector('.breadcrumb')) {
+      buildBreadcrumbBlock(main);
+    }
     buildTabs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
