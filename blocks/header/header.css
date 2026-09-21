@@ -1975,6 +1975,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     padding: 0;
     align-self: center;
     position: static;
+    background-color: unset;
   }
 
   .nav-sections ul.list-item li.list-inner:nth-child(n+5) {
