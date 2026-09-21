@@ -456,6 +456,10 @@
 
     .difference-cards.section.custom-cards-container .custom-cards-card-image{
         bottom: 30px;
+        max-width: 203px;
+        max-height: 116px;
+        width: 100%;
+        height: 100%;
     }
 
     .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
