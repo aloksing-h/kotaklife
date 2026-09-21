@@ -319,6 +319,7 @@ main img {
 
 /* sections */
 main>.section {
+  margin: 40px auto;
   box-sizing: border-box;
 }
 
@@ -327,6 +328,14 @@ main>.section:first-of-type {
   margin-top: 0;
 }
 
+main>.section>div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* section metadata */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
@@ -334,8 +343,20 @@ main .section.highlight {
   padding: 40px 0;
 }
 
+@media (width >=769px) {
+  main>.section>div {
+    padding: 0 20px;
+  }
+}
+
+@media (width >=1024px) {
+  main>.section>div {
+    padding: 0 50px;
+  }
+}
+
 @media (width >=1200px) {
-  main>.section:first-of-type {
+main>.section:first-of-type {
     /* margin-top: 35px; */
     margin-top: 16px;
   }
