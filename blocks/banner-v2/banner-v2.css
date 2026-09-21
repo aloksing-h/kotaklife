@@ -411,7 +411,7 @@ main>.section:has(.banner-v2) {
 
   .banner-v2.block .banner-v2-content {
     max-width: 290px;
-    padding: 160px 0 96px;
+    padding: 160px 0 50px;
   }
 
   .banner-v2.block .banner-v2-title {
