@@ -53,8 +53,8 @@
 }
 
 .difference-cards .custom-cards .swiper-pagination-bullet {
-    width: var(--spacing-md, 8px);
-    height: var(--spacing-md, 8px);
+    width: 6px;
+    height: 6px;
     background-color: #d1d5db;
     opacity: 1;
     border-radius: 50%;
@@ -63,10 +63,10 @@
 }
 
 .difference-cards .custom-cards .swiper-pagination-bullet-active {
-    width: 28px;
-    height: var(--spacing-md, 8px);
-    background-color: #e31837;
-    border-radius: var(--radius-xs, 4px);
+    width: 32px;
+    height: 6px;
+    background: linear-gradient(180deg,#AF0E23 0%,  #FB2C47 100%);
+    border-radius: var(--radius-full);
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
@@ -339,7 +339,7 @@
         gap: var(--spacing-lg, 12px);
         padding-inline: 50px;
         max-width: 1200px;
-        margin: 0 auto 72px;
+        margin: 0 auto 60px;
         box-sizing: border-box;
         flex-direction: column;
         align-items: center;
@@ -386,6 +386,9 @@
         max-width: 534px;
         text-align: center;
     }
+    .difference-cards .custom-cards>ul>li.swiper-slide-active{
+        transform: scale(1.1161, 1.1166);
+    }
     
     /* ==========================================================================
    Block & Cards Layout
@@ -411,13 +414,15 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-xl, 16px);
+        min-height: 268px;
+        padding: 14px;
     }
 
     /* Card Container Base */
     .difference-cards .custom-cards>ul>li {
         padding: var(--spacing-2xl, 20px);
         max-width: 353px;
-        min-height: 240px;
+        max-height: 240px;
         border-radius: var(--radius-2xl, 20px);
     }
 
@@ -482,7 +487,8 @@
 
     .difference-cards .custom-cards>ul>li:hover {
         background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
-        transform: scaleY(1.144);
+         transform: scale(1.1371, 1.1166);
+         z-index: 1;
     }
 
     .difference-cards .custom-cards>ul>li:hover p:last-child {
