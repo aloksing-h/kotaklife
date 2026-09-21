@@ -459,8 +459,6 @@
         bottom: 30px;
         max-width: 203px;
         max-height: 116px;
-        width: 100%;
-        height: 100%;
     }
 
     .difference-cards.section.custom-cards-container .custom-cards-card-image picture {
@@ -493,7 +491,6 @@
     .difference-cards .custom-cards>ul>li:hover {
         background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
          transform: scale(1.1371, 1.1166);
-         z-index: 1;
     }
 
     .difference-cards .custom-cards>ul>li:hover p:last-child {
