@@ -18,6 +18,14 @@ function showSlide(block, index) {
   block.dataset.activeSlide = activeIndex;
 }
 
+function getRowValue(row) {
+  return row?.textContent.trim() || '';
+}
+
+function getRowContent(row) {
+  return row?.firstElementChild || row;
+}
+
 function createSlide(row, index, id) {
   const slide = document.createElement('li');
   slide.className = 'banner-carousel-slide';
@@ -25,21 +33,70 @@ function createSlide(row, index, id) {
   slide.setAttribute('role', 'group');
   moveInstrumentation(row, slide);
 
-  const columns = [...row.children];
-  const imageColumn = columns.shift();
-  const altColumn = columns.shift();
+  const fields = [...row.children];
+  const desktopImage = getRowContent(fields[0]);
+  const desktopAlt = getRowValue(fields[1]);
+  const mobileImage = getRowContent(fields[2]);
+  const mobileAlt = getRowValue(fields[3]);
+  const tag = getRowValue(fields[4]);
+  const title = getRowContent(fields[5]);
+  const description = getRowContent(fields[6]);
+  const cta = getRowContent(fields[7]);
+  const ctaIcon = getRowContent(fields[8]);
+  const rateOne = getRowContent(fields[9]);
+  const rateTwo = getRowContent(fields[10]);
   const content = document.createElement('div');
   content.className = 'banner-carousel-content';
 
-  if (imageColumn) {
-    imageColumn.className = 'banner-carousel-image';
-    const image = imageColumn.querySelector('img');
-    const alt = altColumn?.textContent.trim();
-    if (image && alt) image.alt = alt;
-    slide.append(imageColumn);
+  if (desktopImage) {
+    desktopImage.className = 'banner-carousel-image banner-carousel-image-desktop';
+    const image = desktopImage.querySelector('img');
+    if (image && desktopAlt) image.alt = desktopAlt;
+    slide.append(desktopImage);
+  }
+  if (mobileImage) {
+    mobileImage.className = 'banner-carousel-image banner-carousel-image-mobile';
+    const image = mobileImage.querySelector('img');
+    if (image && mobileAlt) image.alt = mobileAlt;
+    slide.append(mobileImage);
   }
 
-  columns.forEach((column) => content.append(...column.childNodes));
+  if (tag) {
+    const tagElement = document.createElement('span');
+    tagElement.className = 'banner-carousel-tag';
+    tagElement.textContent = tag;
+    content.append(tagElement);
+  }
+  if (title) {
+    title.className = 'banner-carousel-title';
+    content.append(title);
+  }
+  if (description) {
+    description.className = 'banner-carousel-description';
+    content.append(description);
+  }
+  if (cta?.textContent.trim()) {
+    cta.className = 'banner-carousel-cta';
+    if (ctaIcon?.querySelector('img')) {
+      ctaIcon.className = 'banner-carousel-cta-icon';
+      ctaIcon.querySelector('img').alt = '';
+      cta.append(ctaIcon);
+    }
+    content.append(cta);
+  }
+
+  const rates = [rateOne, rateTwo].filter((rate) => rate?.textContent.trim());
+  if (rates.length) {
+    const ratesList = document.createElement('ul');
+    ratesList.className = 'banner-carousel-rates';
+    rates.forEach((rateContent) => {
+      const rate = document.createElement('li');
+      rate.append(...rateContent.childNodes);
+      ratesList.append(rate);
+    });
+    content.append(ratesList);
+  }
+
   if (content.childNodes.length) slide.append(content);
   return slide;
 }
