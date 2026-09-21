@@ -4,6 +4,7 @@ import bannerDecorate from './looking-for.js';
 import decorateInfiniteProtection from './infinite-protection.js';
 import initInsightsSwiper from './insights-impact-plans.js';
 import initValuesSwiper from './values-cards.js';
+import initdifferenceSwiper from './difference-cards.js';
 
 /**
  * Initializes Swiper instance for mobile viewports (< 900px)
@@ -64,8 +65,10 @@ export default async function decorate(block) {
   if (section) {
     initInsightsSwiper(block);
   }
-
-  if (valuesCardsSection || differenceCardsSection) {
-    initValuesSwiper(block, differenceCardsSection, valuesCardsSection);
+  if (differenceCardsSection) {
+    initdifferenceSwiper(block);
+  }
+  if (valuesCardsSection) {
+    initValuesSwiper(block);
   }
 }

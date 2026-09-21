@@ -183,6 +183,8 @@
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image {
     width: 100%;
     margin-top: auto;
+    position: relative;
+    z-index: 1;
 
     /* background: url('../../icons/glass-effect-mobile.png') lightgray -73.065px 0px / 152.68% 190.507% no-repeat;
     mix-blend-mode: color-dodge; */
@@ -319,6 +321,26 @@
     margin-top: 8px;
 }
 
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:nth-child(odd)::before {
+    background-image: url('/icons/red-shape.svg');
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:nth-child(even)::before {
+    background-image: url('/icons/shape-blue.svg');
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+}
+
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:not(:first-child, :last-child)::before {
     content: '';
     position: absolute;
@@ -396,6 +418,16 @@
         flex-direction: column;
         gap: 0;
         transform: scale(1.08);
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover::before {
+       opacity: 0;
+       transition: opacity 10ms ease 0s;
+    }
+
+    .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover::after {
+       opacity: 0;
+       transition: opacity 10ms ease 0s;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
@@ -614,4 +646,19 @@
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
         font-size: 12px;
     }
+}
+
+
+.find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li::after {
+    background-image: url('/icons/glass-effect.svg');
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;    
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0ms ease 700ms;
 }
