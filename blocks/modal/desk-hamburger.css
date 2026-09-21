@@ -3,11 +3,12 @@
 }
 
 @media screen and (width >=900px) {
-    * a:any-link {
+    a:any-link {
         text-decoration: none;
         cursor: pointer;
         text-decoration-line: unset !important;
-        color: currentcolor;
+
+        /* color: currentcolor; */
     }
 
     .modal.desk-hamburger {
