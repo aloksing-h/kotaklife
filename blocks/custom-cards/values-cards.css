@@ -274,6 +274,7 @@
   .values-cards-hover.section{
     padding: 0;
   }
+
   .values-cards-hover.custom-cards-container .default-content-wrapper{
     padding-bottom: var(--spacing-5xl, 40px);
   }

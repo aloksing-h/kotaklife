@@ -65,10 +65,10 @@ export default async function decorate(block) {
   if (section) {
     initInsightsSwiper(block);
   }
-  if(differenceCardsSection){
+  if (differenceCardsSection) {
     initdifferenceSwiper(block);
   }
-  if (valuesCardsSection ) {
+  if (valuesCardsSection) {
     initValuesSwiper(block);
   }
 }

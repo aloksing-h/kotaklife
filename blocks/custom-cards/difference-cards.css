@@ -324,7 +324,7 @@
 /* ==========================================================================
    Section Level Scoped Styles (.difference-cards)
    ========================================================================== */
-@media ( min-width :768px) {
+@media ( width >=768px) {
     .difference-cards.custom-cards-container {
         padding: var(--spacing-6xl, 48px) 0;
         margin: 130px auto 125px;
@@ -386,6 +386,7 @@
         max-width: 534px;
         text-align: center;
     }
+
     .difference-cards .custom-cards>ul>li.swiper-slide-active{
         transform: scale(1.1161, 1.1166);
     }
@@ -409,7 +410,6 @@
 
     .difference-cards .custom-cards> ul {
         list-style: none;
-        padding: 0;
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -512,7 +512,7 @@
     }
 }
 
-@media (min-width : 1024px) {
+@media (width >= 1024px) {
    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
     font-size: var(--heading-4-font-size, 24px);
     line-height: var(--heading-4-line-height, 28px);

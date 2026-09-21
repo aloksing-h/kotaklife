@@ -1,4 +1,4 @@
-export default async function initValuesSwiper(block, differenceCardsSection, valuesCardsSection) {
+export default async function initValuesSwiper(block) {
   const ul = block.querySelector('ul');
   if (!ul) return;
 
