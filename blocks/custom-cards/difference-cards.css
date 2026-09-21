@@ -55,7 +55,8 @@
 .difference-cards .custom-cards .swiper-pagination-bullet {
     width: 6px;
     height: 6px;
-    background-color: #d1d5db;
+    border: 1px solid #A4A7AE;
+    background-color: white;
     opacity: 1;
     border-radius: 50%;
     margin: 0 !important;
@@ -67,6 +68,7 @@
     height: 6px;
     background: linear-gradient(180deg,#AF0E23 0%,  #FB2C47 100%);
     border-radius: var(--radius-full);
+    border: none;
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
@@ -231,7 +233,7 @@
 }
 
 .difference-cards .custom-cards>ul>li.swiper-slide-active p:last-child {
-    transform: scaleY(0.8742);
+    transform: scale(0.896, 0.895);
     transform-origin: center;
 }
 
@@ -442,8 +444,8 @@
     /* Card Description */
     .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
     .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
-        font-size: var(--body-1-font-size, 16px);
-        line-height: var(--body-1-line-height, 20px);
+        font-size: 14px;
+        line-height: 18px;
     }
 
     .difference-cards .custom-cards-card-body .icon {
@@ -494,7 +496,7 @@
     }
 
     .difference-cards .custom-cards>ul>li:hover p:last-child {
-        transform: scaleY(0.8742);
+        transform: scale(0.896, 0.895);
         transform-origin: center;
     }
 
