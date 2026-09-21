@@ -2118,6 +2118,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 
   nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list button[aria-selected='true']::before {
     background-image: url('../../icons/large-downarrow-black.svg');
+    transform: translateY(-50%) rotate(270deg);
   }
 
   nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .tab-list .custom-rte-container[role="tabpanel"]:not([hidden]) {
