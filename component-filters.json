@@ -48,6 +48,12 @@
     ]
   },
   {
+    "id": "bannerCarousel",
+    "components": [
+      "banner-carousel-slide"
+    ]
+  },
+  {
     "id": "banner-v2",
     "components": [
       "banner-v2"
