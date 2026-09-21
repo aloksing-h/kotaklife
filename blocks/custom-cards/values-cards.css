@@ -122,9 +122,10 @@
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet {
-  width: var(--spacing-md, 8px);
-  height: var(--spacing-md, 8px);
-  background-color: #d1d5db;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #A4A7AE;
+  background-color: white;
   opacity: 1;
   border-radius: 50%;
   margin: 0;
@@ -132,7 +133,8 @@
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet-active {
-  width: 28px;
+  width: 32px;
+  border: none;
   background-color: #e31837;
   border-radius: var(--radius-xs, 4px);
 }
