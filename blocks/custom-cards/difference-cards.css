@@ -128,8 +128,8 @@
 }
 
 .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: var(--sub-heading-2-font-size, 18px);
-    line-height: var(--sub-heading-2-line-height, 20px);
+    font-size: var(--sub-heading-1-font-size, 20px);
+    line-height: var(--sub-heading-1-line-height, 24px);
     font-family: var(--font-family-manrope, Manrope);
     font-weight: var(--font-weight-semibold, 600);
     color: var(--gray-900, #181d27);
@@ -160,8 +160,8 @@
 
 .difference-cards .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
 .difference-cards .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
+    font-size: var(--caption-font-size, 12px);
+    line-height: var(--caption-line-height, 14px);
     font-family: var(--font-family-manrope, Manrope);
     color: var(--gray-700, #414651);
     font-weight: var(--font-weight-semibold, 600);
