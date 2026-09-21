@@ -269,6 +269,10 @@
           {
             "name": "Visual Pulse",
             "value": "visual-pulse"
+          },
+          {
+            "name": "test cls",
+            "value": "test-cls"
           }
         ]
       }
