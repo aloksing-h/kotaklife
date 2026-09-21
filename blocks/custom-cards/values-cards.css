@@ -419,6 +419,7 @@
     bottom: 40px;
     left: 20px;
     right: 36px;
+    line-height: var(--sub-heading-1-line-height);
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
