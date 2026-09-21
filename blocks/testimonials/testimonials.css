@@ -15,10 +15,10 @@
   text-align: center;
 }
 
-.testimonials.customer-say .testimonial-col-1 p,
-.testimonials.customer-say .testimonial-col-2 p {
+/* --- State Management via ARIA attributes --- */
+.testimonials.customer-say  .testimonial-col-1 p,
+.testimonials.customer-say  .testimonial-col-2 p {
   margin: 0;
-
 }
 
 .section.testimonials-container .default-content-wrapper p:first-of-type {
@@ -56,8 +56,31 @@
   padding: 0 16px;
 }
 
-/* Block acts as the main container */
+.section:has(.testimonials.customer-say) .default-content-wrapper {
+  padding-bottom: 20px;
+} 
 
+.section:has(.testimonials.customer-say) .default-content-wrapper h1,
+.section:has(.testimonials.customer-say) .default-content-wrapper h2,
+.section:has(.testimonials.customer-say) .default-content-wrapper h3,
+.section:has(.testimonials.customer-say) .default-content-wrapper h4 {
+  font-size: var(--heading-3-font-size, 32px);
+  letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+  line-height: var(--heading-3-line-height, 36px);
+  text-align: center;
+  margin: 0 0 6px;
+  padding: 0;
+  font-weight: var(--font-weight-light, 300);
+}
+
+.section:has(.testimonials.customer-say) .default-content-wrapper h1 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h2 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h3 strong,
+.section:has(.testimonials.customer-say) .default-content-wrapper h4 strong {
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/* Block acts as the main container */
 .testimonials.customer-say {
   width: 100%;
   display: flex;
@@ -83,25 +106,39 @@
   object-fit: contain;
 }
 
-/* Base Image Formatting */
-.testimonials.customer-say .testimonial-item picture,
-.testimonials.customer-say .testimonial-item picture img,
+/* Base Image Formatting - Bulletproof Absolute Positioning */
 .testimonials.customer-say .testimonial-col-1,
-.testimonials.customer-say .testimonial-col-2 {
+.testimonials.customer-say .testimonial-col-2,
+.testimonials.customer-say .short-img-mob,
+.testimonials.customer-say .large-img-mob,
+.testimonials.customer-say .short-img-desk,
+.testimonials.customer-say .large-img-desk {
   width: 100%;
   height: 100%;
+  margin: 0;
   display: block;
-
-}
-
-.testimonials.customer-say .testimonial-item picture img {
-  object-fit: cover;
-  object-position: left center;
+  position: relative; /* Anchor for absolute picture */
   border-radius: 8px;
 }
 
+.testimonials.customer-say .testimonial-item picture {
+  position: absolute; /* Detaches image from flex layout distortion */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
 
-/* --- State Management via ARIA attributes --- */
+.testimonials.customer-say .testimonial-item picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important; /* Forces crop over stretch */
+  object-position: center !important; 
+  display: block;
+}
 
 /* Expanded State */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
@@ -163,6 +200,7 @@
   outline-offset: 2px;
 }
 
+
 .testimonials.customer-say .video-btn-wrapper span.icon {
   display: flex;
   max-width: 20px;
@@ -206,18 +244,20 @@
   }
 
   .section:has(.testimonials.customer-say) {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     margin-bottom: 90px;
     padding: 0 20px;
   }
 
-  .section:has(.testimonials.customer-say)>div {
+  .section:has(.testimonials.customer-say) > div {
     padding: 0;
   }
 
   .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
+  .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
     flex: 0 0 10.91%;
+  }
   }
 
   /* Swap Mobile and Desktop Image Visibility */
@@ -225,26 +265,21 @@
   .testimonials.customer-say .large-img-mob {
     height: 100%;
     width: 100%;
-
-    /* object-fit: cover; */
-    display: none
+    display: none;
   }
 
   .testimonials.customer-say .short-img-desk,
   .testimonials.customer-say .large-img-desk {
     height: 100%;
     width: 100%;
-
-    /* object-fit: cover; */
-    display: block
+    display: block;
   }
-
+  
   .testimonials.customer-say .video-btn-wrapper {
     top: 24px;
     right: 24px;
     max-width: 40px;
     max-height: 40px;
-
   }
 
   .testimonials.customer-say .video-btn-wrapper span.icon {
