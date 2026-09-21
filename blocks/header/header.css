@@ -1709,6 +1709,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner-2 {
 }
 
 @media screen and (width >=900px) {
+
   nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
   nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
     color: var(--text-text-white, #FFF);
@@ -2453,5 +2454,18 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 
   .nav-tools {
     margin: 8px 0;
+  }
+}
+
+@media screen and (1100px <=width <=1200px) {
+  header nav[aria-expanded='true'] {
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    max-width: unset;
+    padding: 0 48px;
   }
 }
