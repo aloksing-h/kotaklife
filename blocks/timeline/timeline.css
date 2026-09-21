@@ -537,7 +537,7 @@
   .slider-title.section {
     position: relative;
     max-width: 1200px;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 
   .slider-title.section h1 {

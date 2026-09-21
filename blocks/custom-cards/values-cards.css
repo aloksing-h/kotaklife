@@ -47,6 +47,7 @@
   padding: 30px 0 28px;
   justify-content: space-between;
   gap: 0;
+
   /* Let Swiper handle spacing on mobile */
 }
 
@@ -61,6 +62,7 @@
   /* Mobile height as requested */
   height: 100%;
   flex-shrink: 0;
+
   /* Ensures Swiper slides don't squash */
   border-radius: var(--radius-lg, 12px);
   border: 1px solid var(--gray-200, #eaeaea);
@@ -177,11 +179,13 @@
 .values-cards-hover .custom-cards .custom-cards-card-body h4 {
   position: absolute;
   bottom: 36px;
+
   /* Anchoring bottom prevents breaking on fluid height changes */
   left: var(--spacing-xl, 16px);
   right: var(--spacing-xl, 16px);
   margin: 0;
   font-size: clamp(1rem, 2vw, 1.25rem);
+
   /* Responsive font scaling */
   font-weight: var(--font-weight-medium, 500);
   color: var(--gray-900, #111);
@@ -192,6 +196,7 @@
 .values-cards-hover .custom-cards .custom-cards-card-body p {
   position: absolute;
   top: 100%;
+
   /* Hides seamlessly below the card bounds */
   left: var(--spacing-xl, 16px);
   right: var(--spacing-xl, 16px);
@@ -212,6 +217,7 @@
 .values-cards-hover .custom-cards>ul>li:hover {
   background: linear-gradient(180deg, var(--decorative-red-900, #7f2224) 0%, var(--decorative-red-500, #fa1432) 100%);
   transform: scale(1.06);
+
   /* Slightly reduced scale avoids clipping on smaller screens */
   border-color: transparent;
   z-index: 10;
@@ -225,8 +231,10 @@
 /* Move Title (h4) to Top */
 .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
   bottom: auto;
+
   /* Release bottom anchor */
   top: var(--spacing-3xl, 24px);
+
   /* Pin to top */
   color: var(--base-white, #fff);
 }
@@ -234,8 +242,10 @@
 /* Show Description (p) */
 .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
   top: auto;
+
   /* Starts dynamically below the pinned title */
   bottom: var(--spacing-3xl, 24px);
+
   /* Ensures text doesn't overflow card at any height */
   opacity: 1;
   letter-spacing: 0;
@@ -292,6 +302,7 @@
 
   .values-cards-hover .custom-cards>ul>li {
     flex: 1 1 0;
+
     /* fluid width that shrinks to fit instead of overflowing */
     width: auto;
     height: auto;
@@ -311,13 +322,17 @@
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
     top: auto;
+
     /* Starts below the 2-line title */
     bottom: 16px;
+
     /* Prevents it from spilling out of the card */
     font-size: 11px;
+
     /* Slightly reduced to fit the tight 275px height */
     line-height: 14px;
     overflow: hidden;
+
     /* Enables scrolling inside the card if text is extremely long */
   }
 
@@ -406,6 +421,7 @@
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
     top: auto;
+
     /* Starts safely below the 2-line title */
     bottom: var(--spacing-5xl, 40px);
     font-size: var(--body-2-font-size, 14px);
