@@ -3,6 +3,19 @@ import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
 const isVideoEl = (el) => /\.(mp4|webm|ogg)(\?|$)/i.test(el?.querySelector('a')?.getAttribute('href') || '');
 const isPictureEl = (el) => !!el?.querySelector('picture');
 
+function scrollToLookingFor() {
+  const target = document.querySelector('.looking-for');
+  if (!target) return;
+
+  const headerHeight = document.querySelector('header .nav-wrapper')?.offsetHeight || 0;
+  const targetMarginTop = parseFloat(window.getComputedStyle(target).marginTop) || 0;
+  const targetTop = target.getBoundingClientRect().top
+    + window.scrollY
+    - headerHeight
+    - targetMarginTop;
+  window.scrollTo({ top: targetTop, behavior: 'smooth' });
+}
+
 async function resolveMediaUrl(href) {
   try {
     const url = new URL(href, window.location.href);
@@ -20,8 +33,7 @@ async function resolveMediaUrl(href) {
   }
 }
 
-// Mobile-only "scroll to top" indicator: vertical line with a circle that
-// travels up the line on click, then scrolls the page to top.
+// Mobile-only scroll indicator: vertical line with a circle that travels up the line on click.
 function buildScrollIndicator(block) {
   if (block.querySelector('.scroll-indicator')) return;
 
@@ -33,9 +45,25 @@ function buildScrollIndicator(block) {
   button.addEventListener('click', () => {
     button.classList.add('is-active');
     block.classList.add('video-banner-content-up');
+    scrollToLookingFor();
   });
 
   block.append(indicator);
+}
+
+function resetScrollIndicatorOnReturn(block) {
+  const button = block.querySelector('.scroll-indicator button');
+  if (!button || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      button.classList.remove('is-active');
+      block.classList.remove('video-banner-content-up');
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(block);
 }
 
 export default async function decorate(block) {
@@ -135,11 +163,7 @@ export default async function decorate(block) {
       const lastParagraph = contentRow.querySelector('p:last-child');
       if (lastParagraph) {
         lastParagraph.addEventListener('click', () => {
-          const target = document.querySelector('.looking-for');
-          if (!target) return;
-          const headerHeight = document.querySelector('header .nav-wrapper')?.offsetHeight || 0;
-          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          scrollToLookingFor();
         });
       }
     }
@@ -155,4 +179,5 @@ export default async function decorate(block) {
   }, revealDelay);
 
   buildScrollIndicator(block);
+  resetScrollIndicatorOnReturn(block);
 }
