@@ -28,6 +28,8 @@ export default async function initValuesSwiper(block) {
           slidesPerView: 'auto',
           spaceBetween: 12,
           grabCursor: true,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
           slideToClickedSlide: true,
           pagination: {
             el: pagination,

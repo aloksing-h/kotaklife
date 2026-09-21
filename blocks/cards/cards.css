@@ -414,8 +414,8 @@
 }
 
 .csr-layout .default-content-wrapper a:hover{
-  gap: 14px;
-  transform: translateX(5px);
+  gap: 13px;
+  transform: translateX(2px);
 }
 
 .csr-layout .default-content-wrapper a span {
