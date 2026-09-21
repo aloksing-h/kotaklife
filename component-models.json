@@ -335,7 +335,7 @@
         "component": "text",
         "valueType": "string",
         "name": "desktopImageAlt",
-        "label": " Desktop Banner Image Alt",
+        "label": "Desktop Banner Image Alt",
         "value": ""
       },
       {
@@ -360,14 +360,14 @@
         "value": ""
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "title",
         "label": "Banner Title",
         "value": "",
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "label": "Banner Description",
         "value": "",
@@ -376,7 +376,12 @@
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "Button"
+        "label": "Button Link"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "Button Text"
       },
       {
         "component": "reference",

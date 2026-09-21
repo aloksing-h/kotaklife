@@ -26,6 +26,13 @@ function getRowContent(row) {
   return row?.firstElementChild || row;
 }
 
+function createTextElement(row, className) {
+  const element = document.createElement('p');
+  element.className = className;
+  element.textContent = getRowValue(row);
+  return element;
+}
+
 function createSlide(row, index, id) {
   const slide = document.createElement('li');
   slide.className = 'banner-carousel-slide';
@@ -39,8 +46,8 @@ function createSlide(row, index, id) {
   const mobileImage = getRowContent(fields[2]);
   const mobileAlt = getRowValue(fields[3]);
   const tag = getRowValue(fields[4]);
-  const title = getRowContent(fields[5]);
-  const description = getRowContent(fields[6]);
+  const title = createTextElement(fields[5], 'banner-carousel-title');
+  const description = createTextElement(fields[6], 'banner-carousel-description');
   const cta = getRowContent(fields[7]);
   const ctaIcon = getRowContent(fields[8]);
   const rateOne = getRowContent(fields[9]);
@@ -67,12 +74,10 @@ function createSlide(row, index, id) {
     tagElement.textContent = tag;
     content.append(tagElement);
   }
-  if (title) {
-    title.className = 'banner-carousel-title';
+  if (title.textContent) {
     content.append(title);
   }
-  if (description) {
-    description.className = 'banner-carousel-description';
+  if (description.textContent) {
     content.append(description);
   }
   if (cta?.textContent.trim()) {
