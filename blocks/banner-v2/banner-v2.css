@@ -1,59 +1,135 @@
+/* ==========================================================================
+   Banner V2 Block Styles
+   Desktop & Mobile Layout (Fixed Proportion Hero, NO 100vh)
+   - Desktop: ~520px height, centered 1200px inner container, bottom-grounded illustration
+   - Mobile: Natural auto-height (~520px), title & stats on top, bottom-grounded illustration
+   ========================================================================== */
+
+main>.section>div.banner-v2-wrapper {
+  padding: 0;
+  max-width: 100%;
+}
+
+main>.section.banner-v2-container,
+main>.section:has(.banner-v2) {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
 .banner-v2-wrapper {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
   box-sizing: border-box;
 }
+
+/* ==========================================================================
+   1. Desktop Canonical Styles (max-width: 1200px centered frame)
+   - Height: 520px fixed hero height (NOT 100vh)
+   - Left Content: centered vertically
+   - Right Visual: illustration firmly grounded to the bottom edge
+   ========================================================================== */
 
 .banner-v2.block {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
+  width: 100%;
+  height: 565px;
+  min-height: 565px;
+  border-radius: 0;
   background-color: var(--brand-red-500, #fa1432);
-  background-image: var(
-    --banner-v2-bg-desktop,
+  background-image:
     radial-gradient(circle at 85% 20%, rgb(255 255 255 / 15%) 0%, transparent 50%),
-    linear-gradient(135deg, #fa1432 0%, #d80c26 55%, #af0e23 100%)
-  );
+    linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
   color: var(--base-white, #fff);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  min-height: 480px;
-  padding: 56px 48px 0;
+  padding: 0;
+  margin: 0 auto;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
 }
 
-/* Background gradient / decorative overlay */
-.banner-v2.block::before {
+/* Background image layer - Stretches edge-to-edge behind the block */
+.banner-v2.block .banner-v2-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.banner-v2.block .banner-v2-bg picture,
+.banner-v2.block .banner-v2-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.banner-v2.block .banner-v2-bg-desktop {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-v2.block .banner-v2-bg-mobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Decorative radial overlay - only shown when there is no custom background image */
+.banner-v2.block:not(.has-custom-bg)::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 75% 40%, rgb(255 255 255 / 10%) 0%, transparent 60%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Content Left Column */
+/* 2. Centered Inner Container (Confined to max-width: 1200px) */
+.banner-v2.block .banner-v2-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  min-height: 565px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+/* Content Left Column (Vertically Centered) */
 .banner-v2.block .banner-v2-content {
   position: relative;
   z-index: 2;
-  flex: 1 1 540px;
-  max-width: 580px;
-  padding-bottom: 56px;
+  flex: 0 0 480px;
+  max-width: 480px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0;
   box-sizing: border-box;
 }
 
 /* Typography - Title */
 .banner-v2.block .banner-v2-title {
   font-family: var(--heading-font-family, 'Manrope', sans-serif);
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 300;
-  line-height: 1.15;
+  line-height: 60px;
   color: var(--base-white, #fff);
   margin: 0 0 16px;
   letter-spacing: -0.01em;
@@ -69,9 +145,9 @@
 .banner-v2.block .banner-v2-description {
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 20px;
   color: var(--gray-100, rgb(255 255 255 / 90%));
-  margin: 0 0 36px;
+  margin: 0 0 40px;
   max-width: 440px;
 }
 
@@ -82,7 +158,7 @@
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
 }
 
@@ -92,21 +168,15 @@
   flex-direction: column;
   justify-content: center;
   gap: 2px;
-  padding-left: 20px;
-  border-left: 1px solid rgb(255 255 255 / 35%);
+  padding-left: 14px;
+  border-left: 1.3px solid var(--base-white, #fff);
   box-sizing: border-box;
-}
-
-.banner-v2.block ul.banner-v2-stats li.banner-v2-stat:first-child,
-.banner-v2.block ol.banner-v2-stats li.banner-v2-stat:first-child {
-  padding-left: 0;
-  border-left: none;
 }
 
 .banner-v2.block .stat-value {
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 28px;
   color: var(--base-white, #fff);
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -114,13 +184,13 @@
 
 .banner-v2.block .stat-label {
   font-size: 12px;
-  font-weight: 500;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 14px;
   color: var(--gray-100, rgb(255 255 255 / 85%));
   white-space: nowrap;
 }
 
-/* Visual Right Column - Person Image */
+/* Visual Right Column - Person Image Grounded to Bottom Edge */
 .banner-v2.block .banner-v2-visual {
   position: relative;
   z-index: 2;
@@ -129,40 +199,99 @@
   align-items: flex-end;
   justify-content: flex-end;
   margin-left: auto;
+  align-self: flex-end;
+  height: 100%;
 }
 
 .banner-v2.block .banner-v2-visual picture {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
 }
 
 .banner-v2.block .banner-v2-visual img {
   display: block;
-  max-height: 480px;
   width: auto;
-  max-width: 100%;
+  max-width: 580px;
+  height: 520px;
+  max-height: 540px;
   object-fit: contain;
   object-position: bottom right;
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   2. Laptop Breakpoint (max-width: 1199px)
    ========================================================================== */
-
-/* Medium Desktop & Tablet Landscape (900px - 1199px) */
-@media (width >= 900px) and (width < 1200px) {
+@media (width <=1199px) {
   .banner-v2.block {
-    min-height: 420px;
-    padding: 44px 36px 0;
+    height: 480px;
+    min-height: 480px;
+  }
+
+  .banner-v2.block .banner-v2-inner {
+    padding: 0 32px;
+    min-height: 480px;
   }
 
   .banner-v2.block .banner-v2-content {
-    max-width: 480px;
-    padding-bottom: 44px;
+    flex: 0 0 440px;
+    max-width: 440px;
   }
 
   .banner-v2.block .banner-v2-title {
-    font-size: 40px;
+    font-size: 38px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .banner-v2.block .stat-value {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .banner-v2.block .banner-v2-visual img {
+    height: 440px;
+    max-height: 460px;
+    max-width: 500px;
+  }
+}
+
+/* ==========================================================================
+   3. Tablet Breakpoint (max-width: 1023px)
+   ========================================================================== */
+@media (width <=1023px) {
+  .banner-v2.block {
+    height: auto;
+    min-height: 440px;
+  }
+
+  .banner-v2.block .banner-v2-inner {
+    padding: 24px 24px 0;
+    min-height: 440px;
+  }
+
+  .banner-v2.block .banner-v2-content {
+    flex: 1 1 360px;
+    max-width: 380px;
+    padding: 20px 0;
+  }
+
+  .banner-v2.block .banner-v2-title {
+    font-size: 32px;
+    line-height: 1.18;
+    margin-bottom: 12px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 24px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
@@ -170,147 +299,233 @@
     gap: 16px;
   }
 
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 16px;
-  }
-
   .banner-v2.block .stat-value {
     font-size: 20px;
   }
 
-  .banner-v2.block .banner-v2-visual img {
-    max-height: 400px;
-  }
-}
-
-/* Tablet Portrait (600px - 899px) */
-@media (width >= 600px) and (width < 900px) {
-  .banner-v2.block {
-    min-height: 380px;
-    padding: 36px 28px 0;
-    border-radius: 16px;
-  }
-
-  .banner-v2.block .banner-v2-content {
-    max-width: 380px;
-    padding-bottom: 36px;
-  }
-
-  .banner-v2.block .banner-v2-title {
-    font-size: 32px;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .banner-v2.block .banner-v2-description {
-    font-size: 14px;
-    margin-bottom: 24px;
-  }
-
-  .banner-v2.block ul.banner-v2-stats,
-  .banner-v2.block ol.banner-v2-stats {
-    gap: 12px;
-  }
-
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 12px;
-  }
-
-  .banner-v2.block .stat-value {
-    font-size: 18px;
-  }
-
   .banner-v2.block .stat-label {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .banner-v2.block .banner-v2-visual img {
-    max-height: 320px;
+    height: 380px;
+    max-height: 400px;
+    max-width: 420px;
   }
 }
 
-/* Mobile Screen (< 600px) */
-@media (width < 600px) {
-  .banner-v2-wrapper {
-    padding: 0 12px;
-  }
-
+/* ==========================================================================
+   4. Mobile Breakpoint (max-width: 768px)
+   - Auto-height (NOT 100vh) allowing subnavigation tabs to be visible
+   - Top text content with horizontal stats
+   - Person illustration grounded flush at the bottom edge
+   ========================================================================== */
+@media (width <=768px) {
   .banner-v2.block {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
+    height: auto;
     min-height: auto;
-    padding: 32px 18px 0;
-    border-radius: 16px;
-    background-image: var(
-      --banner-v2-bg-mobile,
-      var(
-        --banner-v2-bg-desktop,
-        linear-gradient(180deg, #fa1432 0%, #d80c26 50%, #980a1c 100%)
-      )
-    );
+    background-image: linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%);
     background-position: center top;
   }
 
-  .banner-v2.block .banner-v2-content {
+  .banner-v2.block .banner-v2-bg-desktop:not(.banner-v2-bg-single) {
+    display: none;
+  }
+
+  .banner-v2.block .banner-v2-bg-mobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner-v2.block .banner-v2-bg img {
+    object-position: center top;
+  }
+
+  .banner-v2.block .banner-v2-inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+    min-height: auto;
+    padding: 28px 16px 0;
     max-width: 100%;
-    padding-bottom: 20px;
+  }
+
+  /* Content area: Title, Description, Stats */
+  .banner-v2.block .banner-v2-content {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 0 16px;
+    text-align: left;
+    box-sizing: border-box;
   }
 
   .banner-v2.block .banner-v2-title {
     font-size: 30px;
     line-height: 36px;
-    margin-bottom: 12px;
+    margin: 0 0 8px;
+    text-align: left;
+    font-weight: 300;
   }
 
   .banner-v2.block .banner-v2-description {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 20px;
-    margin-bottom: 24px;
+    margin: 0 0 16px;
+    color: var(--gray-100, rgb(255 255 255 / 90%));
+    text-align: left;
     max-width: 100%;
   }
 
+  /* Stats: 3 columns with white top accent line */
   .banner-v2.block ul.banner-v2-stats,
   .banner-v2.block ol.banner-v2-stats {
-    gap: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 8px;
+    width: 100%;
   }
 
   .banner-v2.block ul.banner-v2-stats li.banner-v2-stat,
   .banner-v2.block ol.banner-v2-stats li.banner-v2-stat {
-    padding-left: 10px;
+    position: relative;
+    padding-top: 10px;
+    padding-left: 0;
+    border-left: none;
+    border-top: none;
+    
+    /* flex: 1 1 0; */
+    min-width: 0;
   }
 
-  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat:first-child,
-  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat:first-child {
-    padding-left: 0;
+  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat::before,
+  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background-color: var(--base-white, #fff);
   }
 
   .banner-v2.block .stat-value {
     font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin-bottom: 2px;
   }
 
   .banner-v2.block .stat-label {
-    font-size: 11px;
-    white-space: normal;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: var(--gray-100, rgb(255 255 255 / 85%));
+    white-space: nowrap;
   }
 
+  /* Illustration: Grounded firmly to bottom edge above subnav */
   .banner-v2.block .banner-v2-visual {
-    margin-left: 0;
+    flex: 0 0 auto;
     width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
     justify-content: center;
+    align-self: center;
+    line-height: 0;
   }
 
   .banner-v2.block .banner-v2-visual picture {
-    width: 100%;
+    display: flex;
+    align-items: flex-end;
     justify-content: center;
+    width: 100%;
   }
 
   .banner-v2.block .banner-v2-visual img {
-    max-height: 340px;
-    width: auto;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    max-height: 290px;
+    object-fit: contain;
+    object-position: bottom center;
     margin: 0 auto;
+  }
+}
+
+/* ==========================================================================
+   5. Flip/Fold Small Device Breakpoint (max-width: 359px down to 280px)
+   ========================================================================== */
+@media (width <=359px) {
+  .banner-v2.block .banner-v2-inner {
+    padding: 20px 10px 0;
+  }
+
+  .banner-v2.block .banner-v2-title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .banner-v2.block .banner-v2-description {
+    font-size: 13px;
+    line-height: 17px;
+    margin-bottom: 16px;
+  }
+
+  .banner-v2.block ul.banner-v2-stats,
+  .banner-v2.block ol.banner-v2-stats {
+    gap: 6px;
+  }
+
+  .banner-v2.block ul.banner-v2-stats li.banner-v2-stat::before,
+  .banner-v2.block ol.banner-v2-stats li.banner-v2-stat::before {
+    width: 32px;
+  }
+
+  .banner-v2.block .stat-value {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .banner-v2.block .stat-label {
+    font-size: 10px;
+    line-height: 13px;
+    white-space: normal;
+  }
+
+  .banner-v2.block .banner-v2-visual img {
+    max-height: 250px;
+    max-width: 260px;
+  }
+}
+
+/* ==========================================================================
+   6. Universal Editor / Authoring Mode
+   ========================================================================== */
+.banner-v2.block.is-editor {
+  min-height: 520px;
+  height: auto;
+}
+
+.banner-v2.block.is-editor .banner-v2-inner {
+  min-height: 520px;
+  height: auto;
+}
+
+@media (width <=768px) {
+  .banner-v2.block.is-editor {
+    min-height: 500px;
+  }
+
+  .banner-v2.block.is-editor .banner-v2-inner {
+    min-height: 500px;
   }
 }

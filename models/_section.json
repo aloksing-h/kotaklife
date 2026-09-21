@@ -177,8 +177,20 @@
               "value": "slider-title"
             },
             {
+              "name": "Difference cards",
+              "value": "difference-cards"
+            },
+            {
+              "name": "Values Cards (Hover Text)",
+              "value": "values-cards-hover"
+            },
+            {
               "name": "Visual Pulse",
               "value": "visual-pulse"
+            },
+            {
+              "name": "Our Leadership",
+              "value": "leadership"
             }
           ]
         }
@@ -217,7 +229,8 @@
         "invest-form",
         "timeline",
         "video-banner",
-        "promo"
+        "promo",
+        "banner-v2"
       ]
     }
   ]

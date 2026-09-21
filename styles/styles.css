@@ -331,7 +331,7 @@ main>.section:first-of-type {
 main>.section>div {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
   box-sizing: border-box;
 }
 
@@ -341,6 +341,18 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+@media (width >=769px) {
+  main>.section>div {
+    padding: 0 20px;
+  }
+}
+
+@media (width >=1024px) {
+  main>.section>div {
+    padding: 0 50px;
+  }
 }
 
 @media (width >=1200px) {
