@@ -594,6 +594,7 @@
     font-weight: 800;
     line-height: var(--line-height-body-2, 16px);
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a::after {

@@ -100,10 +100,14 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background-color: #fff;
   color: #e1122d;
   border-radius: 50%;
   font-size: 16px;
+  background: var(--background-bg-brand-red-solid, #fff);
+  background-image: url("/icons/black-right-arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
 }
 
 .profile-cta>div:nth-child(3) a:hover,
@@ -182,17 +186,29 @@
   font-size: 16px;
   line-height: 18px;
   position: relative;
+  transition: gap 0.25s ease, transform 0.25s ease;
 }
 
-.life-advisor.profile-cta-container .profile-cta>div:nth-child(3) a::before {
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a:hover::after {
+  background-image: url("/icons/write-arrow-right.svg");
+  background-color: #000;
+} 
+
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a:hover,
+.life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a:focus-visible {
+  gap: 14px;
+  transform: translateX(6px);
+}
+
+/* .life-advisor.profile-cta-container .profile-cta > div:nth-child(3) a::before {
   content: '';
   background-image: url("/icons/black-right-arrow.svg");
   background-repeat: no-repeat;
-  position: absolute;
-  right: 9px;
-  width: 20px;
-  height: 20px;
-}
+      position: absolute;
+    right: 9px;
+    width: 20px;
+    height: 20px;
+} */
 
 @media (width >=900px) {
   .life-advisor.section.profile-cta-container {
@@ -332,5 +348,17 @@
 
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding-inline: 16px;
+  }
+
+  .profile-cta>div:nth-child(3) a::after {
+    width: 29px;
+    height: 29px;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(3) a {
+    padding: 5px 3px 5px 20px;
+    font-size: 14px;
+    line-height: 16px;
+    gap: 12px;
   }
 }

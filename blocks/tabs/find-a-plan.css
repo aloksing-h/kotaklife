@@ -387,6 +387,7 @@
         white-space: initial;
         letter-spacing: -0.64px;
         margin-top: 8px;
+        text-align: center;
     }
 
     /* Hover state: swap default content for the highlight content and swap image */
@@ -404,6 +405,7 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image img {
         height: 126px;
+        min-height: 126px;
         object-fit: cover;
     }
 
