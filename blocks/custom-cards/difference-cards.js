@@ -9,6 +9,15 @@ export default async function initdifferenceSwiper(block) {
     pagination.className = 'swiper-pagination';
     block.append(pagination);
   }
+  const listItems = ul.querySelectorAll('li');
+  listItems.forEach((li) => {
+    li.addEventListener('click', () => {
+      // Remove 'swiper-active' from all cards
+      listItems.forEach((item) => item.classList.remove('swiper-active'));
+      // Add 'swiper-active' to the clicked card
+      li.classList.add('swiper-active');
+    });
+  });
 
   const mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
 
@@ -24,6 +33,7 @@ export default async function initdifferenceSwiper(block) {
         const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
 
         // 3. Define the base/default Swiper configuration
+        // 3. Define the base/default Swiper configuration
         const swiperConfig = {
           slidesPerView: 'auto',
           spaceBetween: 8,
@@ -32,6 +42,29 @@ export default async function initdifferenceSwiper(block) {
           pagination: {
             el: pagination,
             clickable: true,
+          },
+          on: {
+            // Set the first card as active on initial load
+            init(swiper) {
+              if (swiper.slides[0]) {
+                swiper.slides[0].classList.add('is-active-card');
+              }
+            },
+            // Force the clicked card to become active, even if it can't scroll
+            click(swiper) {
+              if (swiper.clickedSlide) {
+                swiper.slides.forEach((slide) => slide.classList.remove('is-active-card'));
+                swiper.clickedSlide.classList.add('is-active-card');
+                swiper.slideTo(swiper.clickedIndex);
+              }
+            },
+            // Keep the active state in sync if the user swipes with their finger
+            slideChange(swiper) {
+              swiper.slides.forEach((slide) => slide.classList.remove('is-active-card'));
+              if (swiper.slides[swiper.activeIndex]) {
+                swiper.slides[swiper.activeIndex].classList.add('is-active-card');
+              }
+            },
           },
         };
 
