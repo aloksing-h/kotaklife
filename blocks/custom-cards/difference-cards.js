@@ -28,6 +28,7 @@ export default async function initdifferenceSwiper(block) {
           slidesPerView: 'auto',
           spaceBetween: 8,
           grabCursor: true,
+          slideToClickedSlide: true,
           pagination: {
             el: pagination,
             clickable: true,

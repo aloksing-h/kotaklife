@@ -28,6 +28,7 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
           slidesPerView: 'auto',
           spaceBetween: 12,
           grabCursor: true,
+          slideToClickedSlide: true,
           pagination: {
             el: pagination,
             clickable: true,
