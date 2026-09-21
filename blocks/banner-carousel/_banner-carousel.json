@@ -78,13 +78,6 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "name": "description",
-          "label": "Banner Description",
-          "value": "",
-          "valueType": "string"
-        },
-        {
           "component": "aem-content",
           "name": "cta",
           "label": "Button Link"
@@ -100,6 +93,13 @@
           "name": "ctaIcon",
           "label": "Button Arrow Icon",
           "multi": false
+        },
+        {
+          "component": "text",
+          "name": "description",
+          "label": "Banner Description",
+          "value": "",
+          "valueType": "string"
         },
         {
           "component": "richtext",
