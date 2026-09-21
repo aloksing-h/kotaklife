@@ -9,6 +9,15 @@ export default async function initdifferenceSwiper(block) {
     pagination.className = 'swiper-pagination';
     block.append(pagination);
   }
+  const listItems = ul.querySelectorAll('li');
+  listItems.forEach((li) => {
+    li.addEventListener('click', () => {
+      // Remove 'swiper-active' from all cards
+      listItems.forEach((item) => item.classList.remove('swiper-active'));
+      // Add 'swiper-active' to the clicked card
+      li.classList.add('swiper-active');
+    });
+  });
 
   const mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
 
