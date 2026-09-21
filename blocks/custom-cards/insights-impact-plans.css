@@ -250,8 +250,9 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
     text-decoration: none;
     background-color: #fff;
-    transition: all 0.3s ease;
     position: relative;
+    line-height: 18px;
+    transition: gap 0.25s ease, transform 0.25s ease;
     display: inline-flex;
     height: 34px;
     padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-xl, 16px);
@@ -266,17 +267,22 @@
     font-size: var(--font-size-button-2, 14px);
     font-style: normal;
     font-weight: 800;
-    line-height: var(--line-height-body-2, 16px);
 }
 
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover,
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:focus-visible {
+    gap: 24px;
+    transform: translateX(6px);
+}
+
+/* .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
     content: '';
     background-image: url("/icons/write-arrow-right.svg");
     position: absolute;
     right: 6px;
     width: 20px;
     height: 20px;
-}
+} */
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
     content: '';
@@ -288,8 +294,10 @@
     gap: 8.571px;
     border-radius: 856.286px;
     background: var(--button-btn-brand-red, #E1122D);
+    background-image: url("/icons/write-arrow-right.svg");
     background-position: center;
-    background-size: 14px;
+    background-repeat: no-repeat;
+    background-size: 18px;
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
@@ -300,10 +308,10 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
     background-color: #fff;
     color: #e31837;
+    background-image: url("/icons/red-arrow-right.svg");
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
-    background-image: url("/icons/red-arrow-right.svg");
     width: 27px;
     height: 28px;
     right: 10px;

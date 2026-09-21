@@ -9,12 +9,12 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
     pagination.className = 'swiper-pagination';
     block.append(pagination);
   }
-  let mobileQuery;
+
+  let mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
+
   if (differenceCardsSection) {
     mobileQuery = window.matchMedia('(max-width: 768px)');
-  }
-
-  if (valuesCardsSection) {
+  } else if (valuesCardsSection) {
     mobileQuery = window.matchMedia('(max-width: 800px)');
   }
 
@@ -29,7 +29,8 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
         // 2. Dynamically import Swiper ONLY when on mobile
         const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
 
-        block.swiperInstance = createSwiper(block, {
+        // 3. Define the base/default Swiper configuration
+        let swiperConfig = {
           slidesPerView: 'auto',
           spaceBetween: 8,
           grabCursor: true,
@@ -37,7 +38,18 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
             el: pagination,
             clickable: true,
           },
-        });
+        };
+
+        // 4. Override configuration if valuesCardsSection is true
+        if (valuesCardsSection) {
+          swiperConfig = {
+            ...swiperConfig, // Inherit the base settings (like pagination)
+            slidesPerView: 'auto', // YOUR NEW CONFIG HERE (Example: 1.2 slides)
+            spaceBetween: 12, // YOUR NEW CONFIG HERE (Example: 16px space)
+          };
+        }
+
+        block.swiperInstance = createSwiper(block, swiperConfig);
       } catch (error) {
         throw new Error('Failed to load Swiper', { cause: error });
       }

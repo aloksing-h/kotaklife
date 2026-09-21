@@ -5,12 +5,12 @@
    ========================================================================== */
 
 /* 1. Section Container & Full-Bleed Background */
-.leadership {
+.section.leadership {
   position: relative;
   overflow: hidden;
   background: linear-gradient(155deg, #fa1432 0%, #181d27 100%);
   padding: 40px 0 50px;
-  margin: 50px 0;
+  margin: 128px 0 135px;
   min-height: 573px;
   box-sizing: border-box;
 }
@@ -345,6 +345,7 @@
     background: linear-gradient(147deg, #fa1432 10%, #181d27 100%);
     padding: 40px 0 48px;
     min-height: 623px;
+    margin: 64px 0 80px;
   }
 
   /* Swap background images to mobile version */

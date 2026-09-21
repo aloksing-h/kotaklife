@@ -1,58 +1,54 @@
-/* =========================================
-   1. LAYOUT: Mobile First (Swiper Default)
-   ========================================= */
-
-/* Clip the hover scale/reveal below the grid breakpoint, whether or not swiper is active */
-.values-cards-hover.custom-cards-wrapper {
-  padding-top: 40px;
-  padding-bottom: 40px;
-
+.values-cards-hover.section {
+  padding: 0 16px;
+  margin: 0 auto;
 }
 
-  .values-cards-hover .custom-cards {
-    overflow: hidden;
-  }
+.values-cards-hover .custom-cards {
+  overflow: hidden;
+}
 
 .values-cards-hover.custom-cards-container .default-content-wrapper h1,
 .values-cards-hover.custom-cards-container .default-content-wrapper h2,
 .values-cards-hover.custom-cards-container .default-content-wrapper h3,
 .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
-    font-size: var(--heading-3-font-size, 32px);
-    letter-spacing: var(--heading-3-letter-spacing, -0.64px);
-    line-height: var(--heading-3-line-height, 36px);
-    text-align: center;
-    margin: 0 0 6px;
-    padding: 0;
-    font-weight: var(--font-weight-light, 300);
+  font-size: var(--heading-3-font-size, 32px);
+  letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+  line-height: var(--heading-3-line-height, 36px);
+  text-align: center;
+  margin: 0 0 6px;
+  padding: 0;
+  font-weight: var(--font-weight-light, 300);
 }
 
 .values-cards-hover.custom-cards-container .default-content-wrapper h1 strong,
 .values-cards-hover.custom-cards-container .default-content-wrapper h2 strong,
 .values-cards-hover.custom-cards-container .default-content-wrapper h3 strong,
-.values-cards-hover.custom-cards-container .default-content-wrapper h4 strong{
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 strong {
   font-weight: var(--font-weight-semibold, 600);
 }
 
-.values-cards-hover.custom-cards-container .default-content-wrapper{
-    padding-bottom: 30px;
-  }
-
-.values-cards-hover.custom-cards-container .default-content-wrapper p {
-    color: var(--gray-500, #717680);
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
-    text-align: center;
-    margin: 0;
-    font-weight: var(--font-weight-medium, 500);
-    padding: 0;
+.values-cards-hover.custom-cards-container .default-content-wrapper {
+  padding-bottom: 0;
 }
 
-.values-cards-hover .custom-cards > ul {
+.values-cards-hover.custom-cards-container .default-content-wrapper p {
+  color: var(--gray-500, #717680);
+  font-size: var(--body-2-font-size, 14px);
+  line-height: var(--body-2-line-height, 18px);
+  text-align: center;
+  margin: 0;
+  font-weight: var(--font-weight-medium, 500);
+  padding: 0;
+}
+
+.values-cards-hover .custom-cards>ul {
   display: flex;
   flex-flow: row nowrap;
-  padding: var(--spacing-5xl, 40px) 0;
+  padding: 30px 0 28px;
   justify-content: space-between;
-  gap: 0; /* Let Swiper handle spacing on mobile */
+  gap: 0;
+
+  /* Let Swiper handle spacing on mobile */
 }
 
 /* Base Card Styles (Mobile sizes applied by default) */
@@ -65,7 +61,9 @@
 
   /* Mobile height as requested */
   height: 100%;
-  flex-shrink: 0; /* Ensures Swiper slides don't squash */
+  flex-shrink: 0;
+
+  /* Ensures Swiper slides don't squash */
   border-radius: var(--radius-lg, 12px);
   border: 1px solid var(--gray-200, #eaeaea);
   background: var(--base-white, #fff);
@@ -111,12 +109,12 @@
 /* Swiper Pagination (Visible on Mobile by default) */
 .values-cards-hover .custom-cards .swiper-pagination {
   bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--spacing-xs, 4px);
-    left: unset;
-    right: var(--spacing-2xl, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xs, 4px);
+  left: unset;
+  right: 0;
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet {
@@ -125,13 +123,13 @@
   background-color: #d1d5db;
   opacity: 1;
   border-radius: 50%;
-  margin: 0 !important;
+  margin: 0;
   transition: all 0.3s ease;
 }
 
 .values-cards-hover .custom-cards .swiper-pagination-bullet-active {
   width: 28px;
-  background-color: #e31837; 
+  background-color: #e31837;
   border-radius: var(--radius-xs, 4px);
 }
 
@@ -142,21 +140,21 @@
    ========================================= */
 .values-cards-hover .custom-cards .custom-cards-card-image {
   position: absolute;
-  top: var(--spacing-2xl, 20px); 
-  left: 0;   
+  top: 14px;
+  left: 0;
   right: 0;
-  max-width: 176px;
+  max-width: 152px;
   width: 100%;
   height: 100%;
-  max-height: 109px;
+  max-height: 86px;
   display: flex;
   justify-content: flex-start;
   transition: opacity 0.3s ease;
   z-index: 1;
-  aspect-ratio: 16/9;
+  aspect-ratio: 152/86;
 }
 
-.values-cards-hover .custom-cards .custom-cards-card-image picture.primary-image img {
+.values-cards-hover .custom-cards .custom-cards-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -174,17 +172,21 @@
   margin: 0;
   padding: 0;
   z-index: 2;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 /* TITLE (h4): Default State */
 .values-cards-hover .custom-cards .custom-cards-card-body h4 {
   position: absolute;
-  bottom: var(--spacing-3xl, 24px); /* Anchoring bottom prevents breaking on fluid height changes */
-  left: var(--spacing-xl, 16px); 
+  bottom: 36px;
+
+  /* Anchoring bottom prevents breaking on fluid height changes */
+  left: var(--spacing-xl, 16px);
   right: var(--spacing-xl, 16px);
   margin: 0;
-  font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font scaling */
+  font-size: clamp(1rem, 2vw, 1.25rem);
+
+  /* Responsive font scaling */
   font-weight: var(--font-weight-medium, 500);
   color: var(--gray-900, #111);
   transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
@@ -193,8 +195,10 @@
 /* DESCRIPTION (p): Default State */
 .values-cards-hover .custom-cards .custom-cards-card-body p {
   position: absolute;
-  top: 100%; /* Hides seamlessly below the card bounds */
-  left: var(--spacing-xl, 16px); 
+  top: 100%;
+
+  /* Hides seamlessly below the card bounds */
+  left: var(--spacing-xl, 16px);
   right: var(--spacing-xl, 16px);
   margin: 0;
   font-size: var(--disclaimer-font-size, 0.625rem);
@@ -210,9 +214,11 @@
 /* =========================================
    4. HOVER STATES
    ========================================= */
-.values-cards-hover .custom-cards > ul > li:hover {
+.values-cards-hover .custom-cards>ul>li:hover {
   background: linear-gradient(180deg, var(--decorative-red-900, #7f2224) 0%, var(--decorative-red-500, #fa1432) 100%);
-  transform: scale(1.06); /* Slightly reduced scale avoids clipping on smaller screens */
+  transform: scale(1.06);
+
+  /* Slightly reduced scale avoids clipping on smaller screens */
   border-color: transparent;
   z-index: 10;
 }
@@ -223,58 +229,81 @@
 }
 
 /* Move Title (h4) to Top */
-.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body h4 {
-  bottom: auto; /* Release bottom anchor */
-  top: var(--spacing-3xl, 24px); /* Pin to top */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+  bottom: auto;
+
+  /* Release bottom anchor */
+  top: var(--spacing-3xl, 24px);
+
+  /* Pin to top */
   color: var(--base-white, #fff);
 }
 
 /* Show Description (p) */
-.values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
-  top: auto; /* Starts dynamically below the pinned title */
-  bottom: var(--spacing-3xl, 24px); /* Ensures text doesn't overflow card at any height */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+  top: auto;
+
+  /* Starts dynamically below the pinned title */
+  bottom: var(--spacing-3xl, 24px);
+
+  /* Ensures text doesn't overflow card at any height */
   opacity: 1;
+  letter-spacing: 0;
   visibility: visible;
 }
 
-/* Swiper only runs at 768px and below; hide its pagination as soon as it's disabled */
-@media (width >=769px) {
-  .values-cards-hover .custom-cards .swiper-pagination {
-    display: none;
-  }
+.values-cards-hover .custom-cards>ul>li:first-child {
+  transform-origin: left;
 }
 
-@media (width >= 800px) {
-  .values-cards-hover.custom-cards-container .default-content-wrapper{
+/* Pin the last card to the right so it scales left */
+.values-cards-hover .custom-cards>ul>li:last-child {
+  transform-origin: right;
+}
+
+/* Keep middle cards scaling from the center */
+.values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+  transform-origin: center;
+}
+
+@media (width >=800px) {
+  .values-cards-hover.custom-cards-container .default-content-wrapper {
     padding-bottom: var(--spacing-5xl, 40px);
   }
 
   .values-cards-hover.custom-cards-container .default-content-wrapper h1,
-    .values-cards-hover.custom-cards-container .default-content-wrapper h2,
-    .values-cards-hover.custom-cards-container .default-content-wrapper h3,
-    .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
-        width: auto;
-        color: var(--text-primary, #181d27);
-        font-family: var(--font-family-manrope, Manrope);
-        font-size: var(--heading-1-font-size, 48px);
-        font-weight: var(--font-weight-light, 300);
-        line-height: var(--heading-1-line-height, 60px);
-        margin: 0 0 12px;
-        padding: 0;
-    }
+  .values-cards-hover.custom-cards-container .default-content-wrapper h2,
+  .values-cards-hover.custom-cards-container .default-content-wrapper h3,
+  .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+    width: auto;
+    color: var(--text-primary, #181d27);
+    font-family: var(--font-family-manrope, Manrope);
+    font-size: var(--heading-1-font-size, 48px);
+    font-weight: var(--font-weight-light, 300);
+    line-height: var(--heading-1-line-height, 60px);
+    margin: 0 0 12px;
+    padding: 0;
+  }
 
-    .values-cards-hover.custom-cards-container .default-content-wrapper p {
-        color: var(--text-tertiary, #535862);
-        font-family: var(--font-family-manrope, Manrope);
-        font-size: var(--body-1-font-size, 16px);
-        font-weight: var(--font-weight-medium, 500);
-        line-height: var(--body-1-line-height, 20px);
-        margin: 0;
-        text-align: center;
-    }
+  .values-cards-hover.custom-cards-container .default-content-wrapper p {
+    color: var(--text-tertiary, #535862);
+    font-family: var(--font-family-manrope, Manrope);
+    font-size: var(--body-1-font-size, 16px);
+    font-weight: var(--font-weight-medium, 500);
+    line-height: var(--body-1-line-height, 20px);
+    margin: 0;
+    text-align: center;
+  }
 
-  .values-cards-hover .custom-cards > ul > li {
-    flex: 1 1 0; /* fluid width that shrinks to fit instead of overflowing */
+  .values-cards-hover .custom-cards>ul {
+    padding: var(--spacing-5xl, 40px) 0;
+    gap: 20px;
+  }
+
+  .values-cards-hover .custom-cards>ul>li {
+    flex: 1 1 0;
+
+    /* fluid width that shrinks to fit instead of overflowing */
     width: auto;
     height: auto;
     max-width: 170px;
@@ -283,20 +312,56 @@
     /* calculated height that scales with the fluid width */
   }
 
-  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-    font-size: 12px;
-    line-height: 16px;
+  .values-cards-hover .custom-cards>ul>li:hover {
+    transform: scale(1.15, 1.2);
   }
 
-  .values-cards-hover .custom-cards>ul {
-    gap: 20px;
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+    top: 16px;
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+    top: auto;
+
+    /* Starts below the 2-line title */
+    bottom: 16px;
+
+    /* Prevents it from spilling out of the card */
+    font-size: 11px;
+
+    /* Slightly reduced to fit the tight 275px height */
+    line-height: 14px;
+    overflow: hidden;
+
+    /* Enables scrolling inside the card if text is extremely long */
+  }
+
+  .values-cards-hover .custom-cards .swiper-pagination {
+    display: none;
+  }
+
+  /* Pin the first card to the left so it scales right */
+  .values-cards-hover .custom-cards>ul>li:first-child {
+    transform-origin: left;
+  }
+
+  /* Pin the last card to the right so it scales left */
+  .values-cards-hover .custom-cards>ul>li:last-child {
+    transform-origin: right;
+  }
+
+  /* Keep middle cards scaling from the center */
+  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+    transform-origin: center;
   }
 }
 
 /* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
-@media (width >= 1200px) {
-  .values-cards-hover .custom-cards > ul {
+@media (width >=1200px) {
+  .values-cards-hover .custom-cards>ul {
     gap: var(--spacing-2xl, 20px);
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
   .values-cards-hover .custom-cards>ul>li {
@@ -329,9 +394,7 @@
   }
 
   .values-cards-hover .custom-cards>ul>li:hover {
-    transform: scale(1.26);
-
-    /* Slightly reduced scale avoids clipping on smaller screens */
+    transform: scale(1.3334, 1.2548);
   }
 
   /* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
@@ -339,14 +402,30 @@
     transform-origin: center;
   }
 
+  .values-cards-hover .custom-cards .custom-cards-card-image {
+    max-width: 176px;
+    max-height: 109px;
+    top: 20px;
+  }
+
+  .values-cards-hover .custom-cards .custom-cards-card-body h4 {
+    bottom: 40px;
+    left: 20px;
+    right: 36px;
+  }
+
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
     top: 40px;
 
   }
 
-  .values-cards-hover .custom-cards > ul > li:hover .custom-cards-card-body p {
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+    top: auto;
+
+    /* Starts safely below the 2-line title */
     bottom: var(--spacing-5xl, 40px);
     font-size: var(--body-2-font-size, 14px);
     line-height: var(--body-2-line-height, 18px);
+
   }
 }

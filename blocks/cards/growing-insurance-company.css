@@ -621,7 +621,13 @@
     font-size: 16px;
     margin-top: 12px;
     line-height: 18px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, gap 0.25s ease, transform 0.25s ease;
+}
+
+.growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
+.growing-insurance-company .default-content-wrapper a.know-more-btn:focus-visible {
+    gap: 18px;
+    transform: translateX(6px);
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover {
