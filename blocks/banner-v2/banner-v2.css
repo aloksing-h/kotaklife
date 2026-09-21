@@ -460,7 +460,8 @@ main>.section:has(.banner-v2) {
    - Retains all exact tested & passed phone dimensions
    ========================================================================== */
 @media (width <=600px) {
- main>.section.banner-v2-container,
+
+  main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
     margin-top: -96px;
   }
@@ -542,7 +543,7 @@ main>.section:has(.banner-v2) {
     padding-left: 0;
     border-left: none;
     border-top: none;
-
+    gap: 0;
     /* flex: 1 1 0; */
     min-width: 0;
   }
@@ -605,6 +606,7 @@ main>.section:has(.banner-v2) {
    5. Flip/Fold Small Device Breakpoint (max-width: 359px down to 280px)
    ========================================================================== */
 @media (width <=359px) {
+
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
     margin-top: -96PX;
