@@ -5,7 +5,7 @@
 
 /* Mobile (Base styles: 360px basis) */
 .section.vision {
-  margin: 50px 0;
+  margin: 70px 0 50px;
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -116,7 +116,8 @@
 /* Desktop (>= 900px) */
 @media (width >=900px) {
   .section.vision {
-    margin: 64px auto;
+    margin-top: 172px;
+    margin-bottom: 145px;
   }
 
   .section.vision>div {
