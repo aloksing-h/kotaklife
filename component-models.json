@@ -327,72 +327,72 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "desktopImage",
+        "name": "col1_desktopImage",
         "label": "Desktop Banner Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "desktopImageAlt",
+        "name": "col1_desktopImageAlt",
         "label": "Desktop Banner Image Alt",
         "value": ""
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "mobileImage",
+        "name": "col1_mobileImage",
         "label": "Mobile Banner Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "mobileImageAlt",
+        "name": "col1_mobileImageAlt",
         "label": "Mobile Banner Image Alt",
         "value": ""
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "tag",
+        "name": "col2_tag",
         "label": "Tag / Badge",
         "value": ""
       },
       {
         "component": "text",
-        "name": "title",
+        "name": "col2_title",
         "label": "Banner Title",
         "value": "",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "name": "cta",
+        "name": "col2_cta",
         "label": "Button Link"
       },
       {
         "component": "text",
-        "name": "ctaText",
+        "name": "col2_ctaText",
         "label": "Button Text"
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "ctaIcon",
+        "name": "col2_ctaIcon",
         "label": "Button Arrow Icon",
         "multi": false
       },
       {
         "component": "text",
-        "name": "description",
+        "name": "col2_description",
         "label": "Banner Description",
         "value": "",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "rateOne",
+        "name": "col3_rateOne",
         "label": "Interest Rate 1 (value and label)",
         "description": "Author the value and label together. Use a line break, for example: 27.6% then Growth.",
         "value": "",
@@ -400,7 +400,7 @@
       },
       {
         "component": "richtext",
-        "name": "rateTwo",
+        "name": "col3_rateTwo",
         "label": "Interest Rate 2 (value and label)",
         "description": "Author the value and label together. Use a line break, for example: 99.5% then Claim Settlement Ratio.",
         "value": "",
