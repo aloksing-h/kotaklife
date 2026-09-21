@@ -349,4 +349,16 @@
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding-inline: 16px;
   }
+
+  .profile-cta>div:nth-child(3) a::after {
+    width: 29px;
+    height: 29px;
+  }
+
+  .life-advisor.profile-cta-container .profile-cta>div:nth-child(3) a {
+    padding: 5px 3px 5px 20px;
+    font-size: 14px;
+    line-height: 16px;
+    gap: 12px;
+  }
 }

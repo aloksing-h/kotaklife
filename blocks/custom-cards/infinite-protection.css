@@ -244,6 +244,7 @@
     font-style: normal;
     font-weight: 800;
     line-height: var(--line-height-body-2, 16px);
+    text-decoration: none;
 }
 
 .infinite-protection.custom-cards-container .custom-cards-wrapper .custom-cards>ul li .custom-cards-card-body p:last-child a::after {
