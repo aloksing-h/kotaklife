@@ -543,7 +543,7 @@ main>.section:has(.banner-v2) {
     border-left: none;
     border-top: none;
     gap: 0;
-    
+
     /* flex: 1 1 0; */
     min-width: 0;
   }
