@@ -259,19 +259,25 @@
     font-weight: 800;
     text-decoration: none;
     background-color: #fff;
-    transition: all 0.3s ease;
     position: relative;
     line-height: 18px;
+    transition: gap 0.25s ease, transform 0.25s ease;
 }
 
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover,
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:focus-visible {
+    gap: 24px;
+    transform: translateX(6px);
+}
+
+/* .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
     content: '';
     background-image: url("/icons/write-arrow-right.svg");
     position: absolute;
     right: 9px;
     width: 20px;
     height: 20px;
-}
+} */
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
     content: '';
@@ -283,6 +289,10 @@
     gap: 11.429px;
     border-radius: 50%;
     background: var(--button-btn-brand-red, #E1122D);
+    background-image: url("/icons/write-arrow-right.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
@@ -293,10 +303,10 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
     background-color: #fff;
     color: #e31837;
+    background-image: url("/icons/red-arrow-right.svg");
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
-    background-image: url("/icons/red-arrow-right.svg");
     width: 27px;
     height: 28px;
     right: 10px;

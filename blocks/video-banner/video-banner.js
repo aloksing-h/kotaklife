@@ -135,9 +135,9 @@ export default async function decorate(block) {
       const lastParagraph = contentRow.querySelector('p:last-child');
       if (lastParagraph) {
         lastParagraph.addEventListener('click', () => {
-          const target = document.querySelector('.infinite-protection.custom-cards-container');
+          const target = document.querySelector('.looking-for');
           if (!target) return;
-          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const headerHeight = document.querySelector('header .nav-wrapper')?.offsetHeight || 0;
           const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
           window.scrollTo({ top: targetTop, behavior: 'smooth' });
         });
