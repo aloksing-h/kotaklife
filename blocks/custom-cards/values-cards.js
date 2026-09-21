@@ -10,13 +10,7 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
     block.append(pagination);
   }
 
-  let mobileQuery = window.matchMedia('(max-width: 768px)'); // Default fallback
-
-  if (differenceCardsSection) {
-    mobileQuery = window.matchMedia('(max-width: 768px)');
-  } else if (valuesCardsSection) {
-    mobileQuery = window.matchMedia('(max-width: 800px)');
-  }
+  const mobileQuery = window.matchMedia('(max-width: 800px)'); // Default fallback
 
   const enableSwiper = async () => {
     if (!block.swiperInstance) {
@@ -30,24 +24,15 @@ export default async function initValuesSwiper(block, differenceCardsSection, va
         const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
 
         // 3. Define the base/default Swiper configuration
-        let swiperConfig = {
+        const swiperConfig = {
           slidesPerView: 'auto',
-          spaceBetween: 8,
+          spaceBetween: 12,
           grabCursor: true,
           pagination: {
             el: pagination,
             clickable: true,
           },
         };
-
-        // 4. Override configuration if valuesCardsSection is true
-        if (valuesCardsSection) {
-          swiperConfig = {
-            ...swiperConfig, // Inherit the base settings (like pagination)
-            slidesPerView: 'auto', // YOUR NEW CONFIG HERE (Example: 1.2 slides)
-            spaceBetween: 12, // YOUR NEW CONFIG HERE (Example: 16px space)
-          };
-        }
 
         block.swiperInstance = createSwiper(block, swiperConfig);
       } catch (error) {
