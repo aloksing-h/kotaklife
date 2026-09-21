@@ -38,34 +38,34 @@ export default async function initdifferenceSwiper(block) {
           slidesPerView: 'auto',
           spaceBetween: 8,
           grabCursor: true,
-          slideToClickedSlide: true, 
+          slideToClickedSlide: true,
           pagination: {
             el: pagination,
             clickable: true,
           },
           on: {
             // Set the first card as active on initial load
-            init: function (swiper) {
+            init(swiper) {
               if (swiper.slides[0]) {
                 swiper.slides[0].classList.add('is-active-card');
               }
             },
             // Force the clicked card to become active, even if it can't scroll
-            click: function (swiper) {
+            click(swiper) {
               if (swiper.clickedSlide) {
-                swiper.slides.forEach(slide => slide.classList.remove('is-active-card'));
+                swiper.slides.forEach((slide) => slide.classList.remove('is-active-card'));
                 swiper.clickedSlide.classList.add('is-active-card');
                 swiper.slideTo(swiper.clickedIndex);
               }
             },
             // Keep the active state in sync if the user swipes with their finger
-            slideChange: function (swiper) {
-              swiper.slides.forEach(slide => slide.classList.remove('is-active-card'));
+            slideChange(swiper) {
+              swiper.slides.forEach((slide) => slide.classList.remove('is-active-card'));
               if (swiper.slides[swiper.activeIndex]) {
                 swiper.slides[swiper.activeIndex].classList.add('is-active-card');
               }
-            }
-          }
+            },
+          },
         };
 
         block.swiperInstance = createSwiper(block, swiperConfig);
