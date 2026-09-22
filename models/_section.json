@@ -205,8 +205,8 @@
               ]
             },
             {
-              "name": "breadcrumb",
-              "value": "breadcrumb"
+              "name": "Breadcrumb Move",
+              "value": "breadcrumb-move"
             }
           ]
         }
