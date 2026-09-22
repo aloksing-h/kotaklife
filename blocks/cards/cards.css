@@ -392,8 +392,7 @@
 
 .csr-layout .default-content-wrapper p:has(a) {
   width: fit-content;
-  background-color: var(--brand-red-600);
-  border-radius: var(--radius-full);
+  
   margin: 0;
 }
 
@@ -407,6 +406,8 @@
   gap: 12px;
   text-decoration: none;
   white-space: nowrap;
+  background-color: var(--brand-red-600);
+  border-radius: var(--radius-full);
   font-weight: var(--font-weight-extrabold);
   font-size: var(--button-2-font-size);
   line-height: var(--button-2-line-height);
@@ -414,8 +415,7 @@
 }
 
 .csr-layout .default-content-wrapper a:hover{
-  gap: 13px;
-  transform: translateX(2px);
+  gap: 18px;
 }
 
 .csr-layout .default-content-wrapper a span {
