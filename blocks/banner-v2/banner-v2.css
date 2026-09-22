@@ -139,7 +139,6 @@ main>.section:has(.banner-v2) {
 .banner-v2.block .banner-v2-title strong,
 .banner-v2.block .banner-v2-title b {
   font-weight: 600;
-  color: inherit;
 }
 
 /* Typography - Description */
@@ -522,6 +521,7 @@ main>.section:has(.banner-v2) {
     margin: 0 0 16px;
     text-align: left;
     max-width: 100%;
+    color: var(--base-white, #fff);
   }
 
   /* Stats: 3 columns with white top accent line */
