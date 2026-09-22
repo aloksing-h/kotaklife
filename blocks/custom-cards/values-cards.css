@@ -27,21 +27,21 @@
   font-weight: var(--font-weight-semibold, 600);
 }
 
-.values-cards-hover.custom-cards-container .default-content-wrapper{
-    padding: 0;
-  }
-
-.values-cards-hover.custom-cards-container .default-content-wrapper p {
-    color: var(--gray-500, #717680);
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
-    text-align: center;
-    margin: 0;
-    font-weight: var(--font-weight-medium, 500);
-    padding: 0;
+.values-cards-hover.custom-cards-container .default-content-wrapper {
+  padding: 0;
 }
 
-.values-cards-hover.custom-cards-container .custom-cards-wrapper{
+.values-cards-hover.custom-cards-container .default-content-wrapper p {
+  color: var(--gray-500, #717680);
+  font-size: var(--body-2-font-size, 14px);
+  line-height: var(--body-2-line-height, 18px);
+  text-align: center;
+  margin: 0;
+  font-weight: var(--font-weight-medium, 500);
+  padding: 0;
+}
+
+.values-cards-hover.custom-cards-container .custom-cards-wrapper {
   padding: 0;
 }
 
@@ -51,32 +51,31 @@
   padding: 30px 0 28px;
   justify-content: space-between;
   gap: 0;
-
-  /* Let Swiper handle spacing on mobile */
 }
 
 /* Base Card Styles (Mobile sizes applied by default) */
 .values-cards-hover .custom-cards>ul>li {
-  position: relative;
+  position: relative; /* Kept ONLY for ::before/::after background overlays */
+  
+  /* Flexbox Layout Replaces Absolute Positioning */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 14px 16px 36px 16px; 
+  
   width: 152px;
-
-  /* Mobile width as requested */
   min-height: 250px;
-
-  /* Mobile height as requested */
   height: 100%;
   flex-shrink: 0;
-
-  /* Ensures Swiper slides don't squash */
   border-radius: var(--radius-lg, 12px);
   border: 1px solid var(--gray-200, #eaeaea);
   background: var(--base-white, #fff);
   background-image: linear-gradient(180deg, rgb(255 255 255 / 0%) 60%, rgb(250 20 50 / 5%) 100%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  padding: 0;
 }
 
+/* Background Overlays */
 .values-cards-hover .custom-cards>ul>li::before {
   content: '';
   position: absolute;
@@ -104,13 +103,10 @@
 
 .values-cards-hover .custom-cards>ul>li:hover::before,
 .values-cards-hover .custom-cards>ul>li:hover::after {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  /* Optional: adds a smooth fade out */
+  display: none;
 }
 
-/* Swiper Pagination (Visible on Mobile by default) */
+/* Swiper Pagination */
 .values-cards-hover .custom-cards .swiper-pagination {
   bottom: 0;
   display: flex;
@@ -139,101 +135,88 @@
   border-radius: var(--radius-xs, 4px);
 }
 
-
-
 /* =========================================
-   2. IMAGE: Responsive constraints
+   2. IMAGE & TEXT: Flexbox Setup
    ========================================= */
 .values-cards-hover .custom-cards .custom-cards-card-image {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  right: 0;
-  max-width: 152px;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-height: 86px;
   display: flex;
   justify-content: flex-start;
-  transition: opacity 0.3s ease;
-  z-index: 1;
   aspect-ratio: 152/86;
+  z-index: 1;
 }
 
 .values-cards-hover .custom-cards .custom-cards-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-
-  /* Prevents stretching when width/height flexes */
   object-position: left center;
 }
 
-/* =========================================
-   3. TEXT CONTENT: Fluid Positioning
-   ========================================= */
 .values-cards-hover .custom-cards .custom-cards-card-body {
-  position: absolute;
-  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  flex-grow: 1; 
   margin: 0;
   padding: 0;
   z-index: 2;
-  justify-content: space-between;
 }
 
-/* TITLE (h4): Default State */
+/* TITLE (h4) */
 .values-cards-hover .custom-cards .custom-cards-card-body h4 {
-  position: absolute;
-  bottom: 36px;
-
-  /* Anchoring bottom prevents breaking on fluid height changes */
-  left: var(--spacing-xl, 16px);
-  right: var(--spacing-xl, 16px);
   margin: 0;
   font-size: clamp(1rem, 2vw, 1.25rem);
-
-  /* Responsive font scaling */
   font-weight: var(--font-weight-medium, 500);
   color: var(--gray-900, #111);
-  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
+  transition: color 0.3s, transform 0.4s;
+  width: 100%;
 }
 
-/* DESCRIPTION (p): Default State */
+/* DESCRIPTION (p) */
 .values-cards-hover .custom-cards .custom-cards-card-body p {
-  position: absolute;
-  top: 100%;
-
-  /* Hides seamlessly below the card bounds */
-  left: var(--spacing-xl, 16px);
-  right: var(--spacing-xl, 16px);
+  display: none; 
   margin: 0;
   font-size: var(--disclaimer-font-size, 0.625rem);
   line-height: var(--disclaimer-line-height, 0.75rem);
   font-weight: var(--font-weight-semibold, 600);
   color: var(--base-white, #fff);
-  opacity: 0;
-  visibility: hidden;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
 }
 
 /* =========================================
-   4. HOVER STATES
+   4. HOVER STATES (Mobile First)
    ========================================= */
 .values-cards-hover .custom-cards>ul>li:hover {
   background: linear-gradient(180deg, var(--decorative-red-900, #7f2224) 0%, var(--decorative-red-500, #fa1432) 100%);
   transform: scale(1.06);
-
-  /* Slightly reduced scale avoids clipping on smaller screens */
   border-color: transparent;
   z-index: 10;
+  padding: 24px 16px; 
 }
 
 /* Hide Icon */
 .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-image {
-  opacity: 0;
+  display: none; 
 }
 
+/* Push h4 to top and p to bottom */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body {
+  justify-content: space-between; 
+}
+
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+  color: var(--base-white, #fff);
+}
+
+/* Show Description */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+  display: block; 
+}
+
+/* Swiper Alignment Overrides */
 .values-cards-hover .swiper-wrapper{
   justify-content: flex-start !important;
 }
@@ -242,44 +225,21 @@
   transform-origin: center !important;
 }
 
-/* Move Title (h4) to Top */
-.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
-  bottom: auto;
-
-  /* Release bottom anchor */
-  top: var(--spacing-3xl, 24px);
-
-  /* Pin to top */
-  color: var(--base-white, #fff);
-}
-
-/* Show Description (p) */
-.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-  top: auto;
-
-  /* Starts dynamically below the pinned title */
-  bottom: var(--spacing-3xl, 24px);
-
-  /* Ensures text doesn't overflow card at any height */
-  opacity: 1;
-  letter-spacing: 0;
-  visibility: visible;
-}
-
 .values-cards-hover .custom-cards>ul>li:first-child {
   transform-origin: left;
 }
 
-/* Pin the last card to the right so it scales left */
 .values-cards-hover .custom-cards>ul>li:last-child {
   transform-origin: right;
 }
 
-/* Keep middle cards scaling from the center */
 .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
   transform-origin: center;
 }
 
+/* =========================================
+   MEDIA QUERIES
+   ========================================= */
 @media (width >= 800px) {
   .values-cards-hover.section{
     padding: 0;
@@ -300,7 +260,6 @@
     font-weight: var(--font-weight-light, 300);
     line-height: var(--heading-1-line-height, 60px);
     margin: 0 0 12px;
-    padding: 0;
   }
 
   .values-cards-hover.custom-cards-container .default-content-wrapper p {
@@ -320,68 +279,40 @@
 
   .values-cards-hover .custom-cards>ul>li {
     flex: 1 1 0;
-
-    /* fluid width that shrinks to fit instead of overflowing */
     width: auto;
     height: auto;
     max-width: 170px;
     aspect-ratio: 170 / 275;
-
-    /* calculated height that scales with the fluid width */
   }
 
   .values-cards-hover .custom-cards>ul>li:hover {
     transform: scale(1.15, 1.2);
+    padding: 16px; 
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
-    top: 16px;
+    transform: scale(0.869, 0.833);
+    transform-origin: left top;
+    width: 115%; /* 100% * 1.15 Parent Scale = 115% */
   }
 
-  .values-cards-hover .custom-cards .custom-cards-card-body p{
-    top: auto;
-    bottom: 16px;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+  .values-cards-hover .custom-cards .custom-cards-card-body p {
+    font-size: 11px;
+    line-height: 14px;
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-    top: auto;
-
-    /* Starts below the 2-line title */
-    bottom: 16px;
-
-    /* Prevents it from spilling out of the card */
-    font-size: 11px;
-
-    /* Slightly reduced to fit the tight 275px height */
-    line-height: 14px;
-    overflow: hidden;
-
-    /* Enables scrolling inside the card if text is extremely long */
+    transform: scale(0.869, 0.833);
+    transform-origin: left bottom;
+    width: 115%; /* 100% * 1.15 Parent Scale = 115% */
   }
 
   .values-cards-hover .custom-cards .swiper-pagination {
     display: none;
   }
-
-  /* Pin the first card to the left so it scales right */
-  .values-cards-hover .custom-cards>ul>li:first-child {
-    transform-origin: left;
-  }
-
-  /* Pin the last card to the right so it scales left */
-  .values-cards-hover .custom-cards>ul>li:last-child {
-    transform-origin: right;
-  }
-
-  /* Keep middle cards scaling from the center */
-  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
-    transform-origin: center;
-  }
 }
 
-/* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
-@media (width >=1200px) {
+@media (width >= 1200px) {
   .values-cards-hover .custom-cards>ul {
     gap: var(--spacing-2xl, 20px);
     max-width: 1100px;
@@ -391,8 +322,8 @@
   .values-cards-hover .custom-cards>ul>li {
     max-width: 192px;
     aspect-ratio: 192 / 314;
+    padding: 20px 20px 40px 20px; /* Default desktop state: 20px L/R, 40px bottom for H4 */
   }
-
 
   .values-cards-hover .custom-cards>ul>li::before {
     top: 160px;
@@ -407,55 +338,36 @@
     background-image: url("../../icons/glass-effect.svg");
   }
 
-  /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
-  .values-cards-hover .custom-cards>ul>li:first-child {
-    transform-origin: left;
-  }
-
-  /* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
-  .values-cards-hover .custom-cards>ul>li:last-child {
-    transform-origin: right;
-  }
-
   .values-cards-hover .custom-cards>ul>li:hover {
     transform: scale(1.3334, 1.2548);
-  }
-
-  /* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
-  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
-    transform-origin: center;
+    padding: 40px 20px; /* Applies 40px top/bottom and 20px left/right */
   }
 
   .values-cards-hover .custom-cards .custom-cards-card-image {
     max-width: 176px;
     max-height: 109px;
-    top: 20px;
   }
 
   .values-cards-hover .custom-cards .custom-cards-card-body h4 {
-    bottom: 40px;
-    left: 20px;
-    right: 36px;
     line-height: var(--sub-heading-1-line-height);
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
-    top: 40px;
-
+    font-size: 24px;
+    line-height: 28px;
+    transform: scale(0.75, 0.797);
+    transform-origin: left top;
+    width: 133.34%; /* 100% * 1.3334 Parent Scale = 133.34% */
   }
 
   .values-cards-hover .custom-cards .custom-cards-card-body p {
-    top: auto;
-    bottom: var(--spacing-5xl, 40px);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
-    top: auto;
-
-    /* Starts safely below the 2-line title */
-    bottom: var(--spacing-5xl, 40px);
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
-
+    transform: scale(0.75, 0.797);
+    transform-origin: left bottom;
+    width: 133.34%; /* 100% * 1.3334 Parent Scale = 133.34% */
   }
 }
