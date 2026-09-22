@@ -1708,7 +1708,6 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner-2 {
 }
 
 @media screen and (width >=900px) {
-
   nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
   nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
     color: var(--text-text-white, #FFF);
