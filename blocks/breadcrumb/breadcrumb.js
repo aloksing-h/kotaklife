@@ -12,7 +12,7 @@ const getPageTitle = async (url) => {
 const getAllPathsExceptCurrent = async (paths) => {
   const result = [];
   // remove first and last slash characters
-  const pathsList = paths.replace(/^\/|\/$/g, '').split('/');
+  const pathsList = paths.replace(/^\/|\/$/g, '').split('/').slice(2);
   for (let i = 0; i < pathsList.length - 1; i += 1) {
     const pathPart = pathsList[i];
     const prevPath = result[i - 1] ? result[i - 1].path : '';

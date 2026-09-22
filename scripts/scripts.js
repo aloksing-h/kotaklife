@@ -71,12 +71,12 @@ function buildBreadcrumbBlock(main) {
   if (
     (window.location.pathname !== '/'
       && window.isErrorPage !== true
-      && getMetadata('breadcrumbs_s').includes('true'))
+      && getMetadata('breadcrumbs_show').includes('true'))
     || getMetadata('breadcrumb').includes('true')
   ) {
-    const section = document.createElement('div');
-    section.append(buildBlock('breadcrumb', { elems: [] }));
-    main.prepend(section);
+    const sections = document.createElement('div');
+    sections.append(buildBlock('breadcrumb', { elems: [] }));
+    main.prepend(sections);
   }
 }
 
@@ -114,8 +114,11 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
-    buildBreadcrumbBlock(main);
     buildTabs(main);
+    // document.querySelector('main > .breadcrumb-container');
+    if (!document.querySelector('main > .breadcrumb-container')) {
+      buildBreadcrumbBlock(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
