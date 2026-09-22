@@ -15,7 +15,7 @@
       "title",
       "accordion",
       "banner",
-      "bannerCarousel",
+      "banner-carousel",
       "cards",
       "carousel",
       "columns",
@@ -49,7 +49,7 @@
     ]
   },
   {
-    "id": "bannerCarousel",
+    "id": "banner-carousel",
     "components": [
       "banner-carousel-slide"
     ]

@@ -322,7 +322,7 @@
     ]
   },
   {
-    "id": "bannerCarousel",
+    "id": "banner-carousel",
     "fields": [
       {
         "component": "multiselect",
