@@ -157,7 +157,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:has(a) a {
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:has(a) a {
         padding: 0 6px 7px 0;
         position: relative;
         color: var(--text-text-primary, #181D27);
