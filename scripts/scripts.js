@@ -69,10 +69,10 @@ export function moveAttributes(from, to, attributes) {
 
 function buildBreadcrumbBlock(main) {
   if (
-    (window.location.pathname !== '/' &&
-      window.isErrorPage !== true &&
-      getMetadata('breadcrumbs_show').includes('true')) ||
-    getMetadata('breadcrumb').includes('true')
+    (window.location.pathname !== '/'
+      && window.isErrorPage !== true
+      && getMetadata('breadcrumbs_s').includes('true'))
+    || getMetadata('breadcrumb').includes('true')
   ) {
     const section = document.createElement('div');
     section.append(buildBlock('breadcrumb', { elems: [] }));
