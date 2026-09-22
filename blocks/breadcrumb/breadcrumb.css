@@ -1,0 +1,70 @@
+main > .breadcrumb-container {
+    padding: 15px 20px;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.blog main div.breadcrumb-container {
+    padding: 10px;
+}
+
+main .breadcrumb-container .breadcrumb-wrapper {
+    padding: 0;
+}
+
+@media (width >= 900px) {
+    main .breadcrumb-container {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+        padding: 32px 0;
+    }
+
+    main .breadcrumb-container .breadcrumb-wrapper {
+        padding: 0;
+    }
+}
+
+.breadcrumb > nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: var(--body-font-size-s, 0.875rem);
+
+    /* padding-left: 10px; */
+    min-height: 26px;
+}
+
+.breadcrumb > nav a {
+    text-decoration: none;
+    color: var(--clr-text-secondary, #888);
+}
+
+.breadcrumb > nav a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+/* Replace the "/" character with the breadcrumb arrow icon. */
+.breadcrumb .breadcrumb-separator {
+    display: inline-block;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    font-size: 0;
+    margin-inline: 4px;
+}
+
+.breadcrumb .breadcrumb-separator::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--clr-text-secondary, #606060);
+    mask: url('/icons/red-right-chevron.svg') center / 16px 16px no-repeat;
+}
+
+/* Current page (last span) — bold and dark */
+.breadcrumb > nav > span:last-child {
+    color: var(--clr-text-primary, #1c1c1c);
+    font-family: var(--font-family-medium);
+}
