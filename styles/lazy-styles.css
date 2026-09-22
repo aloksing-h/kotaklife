@@ -401,6 +401,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 .visual-pulse.bg-white.section .default-content-wrapper{
   max-width: 100%;
+  padding: 0;
 }
 
 .visual-pulse.bg-white.section picture{
