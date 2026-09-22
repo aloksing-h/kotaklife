@@ -1404,10 +1404,10 @@ nav[aria-expanded='true'] .nav-sections ul * {
   outline: none;
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop,
+/* nav[aria-expanded='true'] .nav-sections .nav-drop,
 nav[aria-expanded='true'] .nav-sections .nav-drop.list-inner {
   cursor: pointer;
-}
+} */
 
 /* WCAG 2.4.7 Focus Visible - Keyboard navigation highlight */
 
@@ -1430,8 +1430,6 @@ nav[aria-expanded='true'] .nav-sections .nav-drop>ul {
 nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-child {
   padding: 16px 32px 16px 0;
-
-  /* color: var(--text-text-primary, #181D27); */
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: var(--font-size-body-2, 14px);
   font-weight: 600;
@@ -1439,6 +1437,7 @@ nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-chil
   position: relative;
   border-bottom: 1px solid var(--border-border-primary, #D5D7DA);
   display: flex;
+  cursor: pointer;
 }
 
 nav[aria-expanded='true'] .nav-sections .nav-drop .inner-child-1::after,
@@ -2390,7 +2389,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 
 @media screen and (900px <=width <=1024px) {
   .nav-header-top {
-    padding: 8px 30px;
+    padding: 4px 30px;
   }
 
   .nav-brand {
