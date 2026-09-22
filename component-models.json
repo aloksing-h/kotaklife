@@ -297,8 +297,8 @@
             ]
           },
           {
-            "name": "Breadcrumb Move",
-            "value": "breadcrumb-move"
+            "name": "Breadcrumb Pos",
+            "value": "breadcrumb-pos"
           }
         ]
       }
