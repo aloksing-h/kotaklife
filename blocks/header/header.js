@@ -821,96 +821,93 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+}
 
+export async function modalHeaderBreadCrumb() {
   // Handle desktop hamburger icon click to apply desk-hamburger class to modal
-  const desktopHamburger = block.querySelector('.icon-desktop-hamburger');
+  const desktopHamburger = document.querySelector('.icon-desktop-hamburger');
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
-      hamburgLink.addEventListener('click', async () => {
-        // Use setTimeout to ensure modal is fully loaded before applying class
-        setTimeout(async () => {
-          const modal = document.querySelector('.modal.block');
-          if (modal) {
-            modal.classList.add('desk-hamburger');
+      const modal = document.querySelector('.modal.block');
+      if (modal) {
+        modal.classList.add('desk-hamburger');
 
-            // Get the section inside modal
-            const modalSection = modal.querySelector('.section');
-            if (modalSection) {
-              // IMPORTANT: Store and clear initial content to prevent visual jerk
-              const initialContent = modalSection.querySelector('.default-content-wrapper');
-              const storedInitialContent = initialContent ? initialContent.cloneNode(true) : null;
+        // Get the section inside modal
+        const modalSection = modal.querySelector('.section');
+        if (modalSection) {
+          // IMPORTANT: Store and clear initial content to prevent visual jerk
+          const initialContent = modalSection.querySelector('.default-content-wrapper');
+          const storedInitialContent = initialContent ? initialContent.cloneNode(true) : null;
 
-              // Clear the section to remove initial authored content (prevents flashing)
-              modalSection.innerHTML = '';
+          // Clear the section to remove initial authored content (prevents flashing)
+          modalSection.innerHTML = '';
 
-              // Remove any existing nav-wrapper to avoid duplicate/stale data
-              const existingNavWrapper = modalSection.querySelector('.nav-wrapper');
-              if (existingNavWrapper) {
-                existingNavWrapper.remove();
-              }
-
-              // Create nav-wrapper div
-              const newNavWrapper = document.createElement('div');
-              newNavWrapper.className = 'nav-wrapper';
-
-              // Create nav-content div
-              const navContent = document.createElement('ul');
-              navContent.className = 'nav-content';
-
-              // Get all nav-drop items from nav-sections
-              const allNavDrops = Array.from(navSections.querySelectorAll('.nav-drop'));
-
-              // Skip first 4 and get last 4
-              const last4NavDrops = allNavDrops.slice(-4);
-
-              // Clone and add first 2 nav-drops to nav-content
-              last4NavDrops.slice(0, 2).forEach((navDrop) => {
-                const clonedNavDrop = navDrop.cloneNode(true);
-                navContent.appendChild(clonedNavDrop);
-              });
-
-              // Wrap last 2 nav-drops in a single li
-              const last2NavDrops = last4NavDrops.slice(2, 4);
-              if (last2NavDrops.length > 0) {
-                const wrapperLi = document.createElement('li');
-                wrapperLi.className = 'nav-drop-wrapper';
-
-                // Create ul inside wrapper li
-                const wrapperUl = document.createElement('ul');
-
-                last2NavDrops.forEach((navDrop) => {
-                  const clonedNavDrop = navDrop.cloneNode(true);
-                  wrapperUl.appendChild(clonedNavDrop);
-                });
-
-                wrapperLi.appendChild(wrapperUl);
-                navContent.appendChild(wrapperLi);
-              }
-
-              // Append nav-content to nav-wrapper
-              newNavWrapper.appendChild(navContent);
-
-              // Prepend nav-wrapper to section
-              modalSection.prepend(newNavWrapper);
-
-              // Append the stored initial content back after the nav-wrapper
-              // (for "Talk To An Expert" section)
-              if (storedInitialContent) {
-                modalSection.appendChild(storedInitialContent);
-              }
-
-              // Now show the modal with all content in place
-              // Import the helper function to show modal with proper timing
-              const { setupDeskhHamburgerModal } = await import('../modal/modal.js');
-              const modalHelper = setupDeskhHamburgerModal(modal);
-              if (modalHelper && modalHelper.clearAndShow) {
-                modalHelper.clearAndShow();
-              }
-            }
+          // Remove any existing nav-wrapper to avoid duplicate/stale data
+          const existingNavWrapper = modalSection.querySelector('.nav-wrapper');
+          if (existingNavWrapper) {
+            existingNavWrapper.remove();
           }
-        }, 200);
-      });
+
+          // Create nav-wrapper div
+          const newNavWrapper = document.createElement('div');
+          newNavWrapper.className = 'nav-wrapper';
+
+          // Create nav-content div
+          const navContent = document.createElement('ul');
+          navContent.className = 'nav-content';
+
+          // Get all nav-drop items from nav-sections
+          const allNavDrops = Array.from(document.querySelectorAll('.nav-drop'));
+
+          // Skip first 4 and get last 4
+          const last4NavDrops = allNavDrops.slice(-4);
+
+          // Clone and add first 2 nav-drops to nav-content
+          last4NavDrops.slice(0, 2).forEach((navDrop) => {
+            const clonedNavDrop = navDrop.cloneNode(true);
+            navContent.appendChild(clonedNavDrop);
+          });
+
+          // Wrap last 2 nav-drops in a single li
+          const last2NavDrops = last4NavDrops.slice(2, 4);
+          if (last2NavDrops.length > 0) {
+            const wrapperLi = document.createElement('li');
+            wrapperLi.className = 'nav-drop-wrapper';
+
+            // Create ul inside wrapper li
+            const wrapperUl = document.createElement('ul');
+
+            last2NavDrops.forEach((navDrop) => {
+              const clonedNavDrop = navDrop.cloneNode(true);
+              wrapperUl.appendChild(clonedNavDrop);
+            });
+
+            wrapperLi.appendChild(wrapperUl);
+            navContent.appendChild(wrapperLi);
+          }
+
+          // Append nav-content to nav-wrapper
+          newNavWrapper.appendChild(navContent);
+
+          // Prepend nav-wrapper to section
+          modalSection.prepend(newNavWrapper);
+
+          // Append the stored initial content back after the nav-wrapper
+          // (for "Talk To An Expert" section)
+          if (storedInitialContent) {
+            modalSection.appendChild(storedInitialContent);
+          }
+
+          // Now show the modal with all content in place
+          // Import the helper function to show modal with proper timing
+          const { setupDeskhHamburgerModal } = await import('../modal/modal.js');
+          const modalHelper = setupDeskhHamburgerModal(modal);
+          if (modalHelper && modalHelper.clearAndShow) {
+            modalHelper.clearAndShow();
+          }
+        }
+      }
     }
   }
 }

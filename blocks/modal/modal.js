@@ -105,6 +105,8 @@ export function initializeModalHandlers() {
     if (link.href.includes('/modals/') || isThankYouPopupLink) {
       e.preventDefault();
       await openModal(link.href);
+      const { modalHeaderBreadCrumb } = await import('../header/header.js');
+      await modalHeaderBreadCrumb();
     }
   });
 }
