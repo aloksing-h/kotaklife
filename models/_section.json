@@ -180,8 +180,8 @@
               "value": "leadership"
             },
             {
-              "name":"Background White",
-              "value":"bg-white"
+              "name": "Background White",
+              "value": "bg-white"
             },
             {
               "name": "test cls",
@@ -203,6 +203,10 @@
                   "value": "white-nav"
                 }
               ]
+            },
+            {
+              "name": "breadcrumb",
+              "value": "breadcrumb"
             }
           ]
         }

@@ -295,6 +295,10 @@
                 "value": "white-nav"
               }
             ]
+          },
+          {
+            "name": "breadcrumb",
+            "value": "breadcrumb"
           }
         ]
       }
