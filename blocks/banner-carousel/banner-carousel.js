@@ -31,11 +31,12 @@ function createSlide(row, index, id) {
   const mobileAlt = getRowValue(fields[3]);
   const tag = getRowValue(fields[4]);
   const title = createTextElement(fields[5], 'banner-carousel-title');
-  const description = createTextElement(fields[6], 'banner-carousel-description');
-  const cta = getRowContent(fields[7]);
+  const cta = getRowContent(fields[6]);
+  const ctaText = getRowValue(fields[7]);
   const ctaIcon = getRowContent(fields[8]);
-  const rateOne = getRowContent(fields[9]);
-  const rateTwo = getRowContent(fields[10]);
+  const description = createTextElement(fields[9], 'banner-carousel-description');
+  const rateOne = getRowContent(fields[10]);
+  const rateTwo = getRowContent(fields[11]);
   const content = document.createElement('div');
   content.className = 'banner-carousel-content';
 
@@ -64,8 +65,10 @@ function createSlide(row, index, id) {
   if (description.textContent) {
     content.append(description);
   }
-  if (cta?.textContent.trim()) {
+  if (cta && ctaText) {
     cta.className = 'banner-carousel-cta';
+    const link = cta.querySelector('a') || cta;
+    link.textContent = ctaText;
     if (ctaIcon?.querySelector('img')) {
       ctaIcon.className = 'banner-carousel-cta-icon';
       ctaIcon.querySelector('img').alt = '';
