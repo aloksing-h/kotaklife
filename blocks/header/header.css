@@ -883,6 +883,7 @@ nav a:any-link {
   white-space: initial;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .nav-hamburger button .nav-hamburger-icon::before {
@@ -1600,7 +1601,8 @@ nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .
   gap: 16px;
 }
 
-nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:nth-child(n) {
+nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:nth-child(n),
+nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:nth-child(n) .nav-redirection-link {
   display: flex;
 
   /* flex-direction: column; */
@@ -1631,7 +1633,7 @@ nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .
   line-height: var(--line-height-caption, 14px);
 }
 
-nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:nth-child(n):has(a) {
+nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:last-of-type:nth-child(n):has(a) {
   display: none;
 }
 

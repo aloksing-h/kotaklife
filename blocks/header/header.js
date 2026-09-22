@@ -619,6 +619,68 @@ export default async function decorate(block) {
             // Append fragment container to li
             linkLi.appendChild(fragmentContainer);
 
+            // Handle nav-redirection click logic
+            const navRedirectionBlocks = fragmentContainer.querySelectorAll('.nav-redirection');
+            if (navRedirectionBlocks.length > 0) {
+              navRedirectionBlocks.forEach((eachChild) => {
+                // Get all direct child divs (each item)
+                const items = Array.from(eachChild.children);
+
+                items.forEach((item) => {
+                  // Each item has 3 child divs: image, text, link
+                  const childDivs = Array.from(item.children);
+
+                  if (childDivs.length >= 3) {
+                    // Get the divs
+                    const imgDiv = childDivs[0]; // Picture div
+                    const textDiv = childDivs[1]; // h3, p text div
+                    const linkDiv = childDivs[2]; // Link div (contains <a>)
+
+                    // Get the link element from last div
+                    const link = linkDiv.querySelector('a');
+
+                    if (link) {
+                      link.innerHTML = '';
+                      const href = link.getAttribute('href');
+
+                      // Add suitable classes to the link
+                      link.classList.add('nav-redirection-link');
+
+                      // Remove the third div (linkDiv)
+                      linkDiv.remove();
+
+                      // Append first two divs INSIDE the anchor
+                      link.appendChild(imgDiv);
+                      link.appendChild(textDiv);
+
+                      // Now append the anchor to the item
+                      item.appendChild(link);
+
+                      // Make the entire item clickable
+                      item.style.cursor = 'pointer';
+                      item.setAttribute('role', 'button');
+                      item.setAttribute('tabindex', '0');
+                      item.setAttribute('aria-label', `Navigate to ${href}`);
+
+                      // Click handler - redirect on click
+                      item.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent nav-drop toggle
+                        window.location.href = href;
+                      });
+
+                      // WCAG 2.2: Keyboard accessibility (Enter and Space)
+                      item.addEventListener('keydown', (e) => {
+                        if (e.code === 'Enter' || e.code === 'Space') {
+                          e.preventDefault();
+                          window.location.href = href;
+                        }
+                      });
+                    }
+                  }
+                });
+              });
+            }
+
             // Handle tab list wrapper creation
             const tabListWrapper = fragmentContainer.querySelector('.tablist-wrapper');
             if (tabListWrapper) {

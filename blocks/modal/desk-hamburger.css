@@ -167,7 +167,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:has(a) a::after {
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:has(a) a::after {
         content: '';
         width: 32px;
         height: 5px;
