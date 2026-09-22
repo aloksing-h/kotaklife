@@ -254,8 +254,7 @@
     line-height: 18px;
     transition: gap 0.25s ease, transform 0.25s ease;
     display: inline-flex;
-    height: 34px;
-    padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-xl, 16px);
+    padding: 4px 4px 4px 16px;
     justify-content: center;
     align-items: center;
     gap: var(--spacing-md, 8px);
@@ -377,9 +376,8 @@
     }
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
-        gap: 11.429px;
-        height: 40px;
-        padding: var(--spacing-xl, 16px) var(--spacing-xs, 4px) var(--spacing-xl, 16px) var(--spacing-2xl, 20px);
+        gap: 12px;
+        padding: 3.2px 4px 3.2px 20px;
         font-size: var(--font-size-button-1, 16px);
         line-height: var(--line-height-body-1, 18px);
     }
@@ -398,7 +396,7 @@
         font-weight: 500;
         line-height: 20px;
         margin: 0;
-        max-width: 42%;
+        max-width: 40.73%;
         text-align: right;
     }
 
@@ -426,7 +424,7 @@
 
     /* Card Container Base */
     .insights-impact-plans .custom-cards>ul>li {
-        padding: 26px;
+        padding: 24px;
         min-height: 334px;
         border-radius: 20px;
     }
