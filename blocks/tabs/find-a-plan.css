@@ -88,7 +88,7 @@
     width: fit-content;
     margin: 0 auto;
     display: flex;
-    height: 38px;
+    min-height: 38px;
     align-items: center;
     border-radius: var(--radius-full, 999px);
     border: 1px solid #D2DAE4;
@@ -197,7 +197,7 @@
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p:first-child {
-    padding: 16px 0;
+    padding: 12px 0;
     padding-bottom: 0;
 }
 
@@ -405,7 +405,7 @@
     }
 
     .find-a-plan.tabs-container .default-content-wrapper:last-child a {
-        padding: 11px 24px;
+        padding: 10.2px 16.3px;
         font-size: var(--font-size-button-1, 16px);
         line-height: var(--line-height-body-1, 18px);
     }
@@ -413,7 +413,7 @@
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
         white-space: initial;
         letter-spacing: -0.64px;
-        margin-top: 8px;
+        margin-top: 20px;
         text-align: center;
     }
 
@@ -469,7 +469,8 @@
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li .custom-cards-card-body>p:first-child {
         font-size: 12px;
-        right: 12px;
+        top: 16px;
+        right: 16px;
         left: auto;
         transform: unset;
     }
@@ -543,7 +544,8 @@
         border-radius: var(--radius-full, 999px);
         border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
         background: var(--background-bg-tertiary, #F5F5F5);
-        height: 44px;
+        min-height: 46px;
+        width: 69.19%;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab {
@@ -551,7 +553,7 @@
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab[aria-selected='true'] {
-        padding: var(--spacing-lg, 12px);
+        padding: var(--spacing-lg, 12px) 20px;
         border-radius: var(--radius-full, 999px);
         border-bottom: 1px solid #1E4679;
         background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
@@ -592,6 +594,7 @@
     .find-a-plan.tabs-container .default-content-wrapper h5 strong,
     .find-a-plan.tabs-container .default-content-wrapper h6 strong {
         font-size: 48px;
+        line-height: 60px;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image {
