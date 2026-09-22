@@ -68,3 +68,98 @@ main .breadcrumb-container .breadcrumb-wrapper {
     color: var(--clr-text-primary, #1c1c1c);
     font-family: var(--font-family-medium);
 }
+
+.breadcrumb-container:has(.breadcrumb.block.about-us) {
+   position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    padding: 0;
+}
+
+.breadcrumb.block.about-us{
+    max-width: 287px;
+}
+
+.breadcrumb.block.about-us nav  span{
+    color: white;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.breadcrumb.block.about-us nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 50px 12px;
+  color: #fff;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  background: linear-gradient(to right, #181D27 0%, rgb(0 0 0 / 0%) 100%);
+
+  /* background: linear-gradient(to right, rgba(30, 20, 25, 1) 0%, rgba(30, 20, 25, 0) 100%); */
+}
+
+.breadcrumb.block.about-us a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb.block.about-us a:has(img){
+    padding-right: 8px;
+}
+
+.breadcrumb.block.about-us a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.breadcrumb.block.about-us a img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+
+  /* Applies white color to the SVG if the source file is black */
+  filter: brightness(0) invert(1); 
+}
+
+.breadcrumb.block.about-us .breadcrumb-separator {
+  color: #fff;
+  font-weight: 400;
+  margin: 0;
+  font-size: 12px;
+  width: auto;
+    height: auto;
+    flex: none;
+    display: inline;
+}
+
+/* Hides the global chevron background mask */
+.breadcrumb.block.about-us .breadcrumb-separator::after {
+    display: none; 
+}
+
+/* Targets the final active text item ("Why Kotak") */
+.breadcrumb.block.about-us nav > span:last-child {
+  font-weight: 800;
+  padding-left: 8px;
+}
+
+
+
+@media (width >= 900px) {
+    .breadcrumb.block.about-us nav {
+        padding: 10px 50px 12px;
+
+        /* #181D27 converted to rgb(24, 29, 39). 
+           Adjust the 0.5 (50% opacity) up or down to match the exact lightness in Figma */
+        background: linear-gradient(to right, rgb(24 29 39 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
+    }
+}

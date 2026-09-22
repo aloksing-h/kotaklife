@@ -70,4 +70,22 @@ export default async function decorate(block) {
     );
     block.append(breadcrumb);
   }, 1000);
+
+  if (window.location.pathname.includes('about-us/why-kotak')) {
+    block.classList.add('about-us');
+    const breadcrumbContainer = block.closest('.breadcrumb-container');
+    const bannerContainer = document.querySelector('.banner-v2-container');
+
+    if (breadcrumbContainer && bannerContainer) {
+      // 1. Check if the banner already contains THIS exact breadcrumb
+      if (!bannerContainer.contains(breadcrumbContainer)) {
+        // 2. Remove any old leftover breadcrumbs inside the banner (fixes the HMR stacking issue)
+        const existingBreadcrumbs = bannerContainer.querySelectorAll('.breadcrumb-container');
+        existingBreadcrumbs.forEach((existing) => existing.remove());
+
+        // 3. Append the fresh breadcrumb
+        bannerContainer.appendChild(breadcrumbContainer);
+      }
+    }
+  }
 }
