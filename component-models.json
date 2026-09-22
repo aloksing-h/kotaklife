@@ -392,7 +392,7 @@
       },
       {
         "component": "richtext",
-        "name": "col3_rateOne",
+        "name": "col1_rateOne",
         "label": "Interest Rate 1 (value and label)",
         "description": "Author the value and label together. Use a line break, for example: 27.6% then Growth.",
         "value": "",
@@ -400,7 +400,7 @@
       },
       {
         "component": "richtext",
-        "name": "col3_rateTwo",
+        "name": "col1_rateTwo",
         "label": "Interest Rate 2 (value and label)",
         "description": "Author the value and label together. Use a line break, for example: 99.5% then Claim Settlement Ratio.",
         "value": "",
