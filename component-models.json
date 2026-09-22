@@ -3,6 +3,12 @@
     "id": "page-metadata",
     "fields": [
       {
+        "component": "boolean",
+        "name": "breadcrumb",
+        "label": "Show Breadcrumb",
+        "value": ""
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "jcr:title",
@@ -142,19 +148,6 @@
             "value": "dsp-none"
           },
           {
-            "name": "Header Varient",
-            "children": [
-              {
-                "name": "Grey Header",
-                "value": "grey-nav"
-              },
-              {
-                "name": "White Header",
-                "value": "white-nav"
-              }
-            ]
-          },
-          {
             "name": "Footer Mobile Accordion Only",
             "value": "mob-accordion"
           },
@@ -277,6 +270,35 @@
           {
             "name": "Our Leadership",
             "value": "leadership"
+          },
+          {
+            "name": "Background White",
+            "value": "bg-white"
+          },
+          {
+            "name": "test cls",
+            "value": "test-cls"
+          },
+          {
+            "name": "ABCD",
+            "value": "abcd"
+          },
+          {
+            "name": "Header Varient",
+            "children": [
+              {
+                "name": "Grey Header",
+                "value": "grey-nav"
+              },
+              {
+                "name": "White Header",
+                "value": "white-nav"
+              }
+            ]
+          },
+          {
+            "name": "Breadcrumb Pos",
+            "value": "breadcrumb-pos"
           }
         ]
       }
@@ -628,6 +650,10 @@
           {
             "name": "Promotion",
             "value": "promotion"
+          },
+          {
+            "name": "Nav Redirection",
+            "value": "nav-redirection"
           }
         ]
       }
@@ -683,6 +709,11 @@
         "value": "",
         "label": "RTE Text",
         "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Redirection URL"
       }
     ]
   },
