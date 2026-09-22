@@ -12,14 +12,16 @@ const getPageTitle = async (url) => {
 const getAllPathsExceptCurrent = async (paths) => {
   const result = [];
   // remove first and last slash characters
-  const pathsList = paths.replace(/^\/|\/$/g, '').split('/').slice(2);
+  const localePrefix = '/in/en';
+  const pathsList = paths.replace(new RegExp(`^${localePrefix}(?=/|$)`), '').replace(/^\/|\/$/g, '').split('/');
   for (let i = 0; i < pathsList.length - 1; i += 1) {
     const pathPart = pathsList[i];
     const prevPath = result[i - 1] ? result[i - 1].path : '';
     const path = `${prevPath}/${pathPart}`;
     const url = `${window.location.origin}${path}`;
+    const titleUrl = `${window.location.origin}${localePrefix}${path}`;
     /* eslint-disable-next-line no-await-in-loop */
-    const name = await getPageTitle(url);
+    const name = await getPageTitle(titleUrl);
     if (name) {
       result.push({ path, name, url });
     }
@@ -30,7 +32,14 @@ const getAllPathsExceptCurrent = async (paths) => {
 const createLink = (path) => {
   const pathLink = document.createElement('a');
   pathLink.href = path.url;
-  pathLink.innerText = path.name;
+  if (path.icon) {
+    const icon = document.createElement('img');
+    icon.src = path.icon;
+    icon.alt = path.name;
+    pathLink.append(icon);
+  } else {
+    pathLink.innerText = path.name;
+  }
   return pathLink;
 };
 
@@ -42,6 +51,7 @@ export default async function decorate(block) {
   const HomeLink = createLink({
     path: '',
     name: 'Home',
+    icon: '../icons/home-icon.svg',
     url: window.location.origin,
   });
   const breadcrumbLinks = [HomeLink.outerHTML];
