@@ -51,7 +51,7 @@ export default async function decorate(block) {
   const HomeLink = createLink({
     path: '',
     name: 'Home',
-    icon: '../icons/home-icon.svg',
+    icon: '/icons/home-icon.svg',
     url: window.location.origin,
   });
   const breadcrumbLinks = [HomeLink.outerHTML];
