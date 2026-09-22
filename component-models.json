@@ -272,6 +272,10 @@
             "value": "leadership"
           },
           {
+            "name": "Background White",
+            "value": "bg-white"
+          },
+          {
             "name": "test cls",
             "value": "test-cls"
           },
