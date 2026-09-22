@@ -322,6 +322,22 @@
     ]
   },
   {
+    "id": "bannerCarousel",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "BestSeller-Banner",
+            "value": "best-seller-banner"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "banner-carousel-slide",
     "fields": [
       {

@@ -1,3 +1,5 @@
+@import url('../swiper/swiper-bundle.min.css');
+
 .banner-carousel.block {
 	position: relative;
 	overflow: hidden;
@@ -11,10 +13,6 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-}
-
-.banner-carousel .banner-carousel-slide[hidden] {
-	display: none;
 }
 
 .banner-carousel .banner-carousel-slide {
@@ -158,55 +156,33 @@
 	line-height: 1.2;
 }
 
-.banner-carousel .banner-carousel-controls {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	gap: 6px;
-	padding: 8px 4px 0;
-	background: transparent;
+.banner-carousel.block.swiper {
+	--swiper-pagination-color: #df1731;
+	--swiper-pagination-bullet-horizontal-gap: 3px;
+	--swiper-pagination-bullet-inactive-color: #aaa;
+	--swiper-pagination-bullet-inactive-opacity: 1;
+	--swiper-pagination-bullet-size: 6px;
 }
 
-.banner-carousel .banner-carousel-controls button {
+.banner-carousel .swiper-pagination {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	gap: 5px;
+	padding: 8px 4px 0;
+}
+
+.banner-carousel .swiper-pagination-bullet {
 	width: 6px;
 	height: 6px;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 50%;
-	background: #a9a9a9;
+	margin: 0 !important;
+	opacity: 1;
+	transition: width 0.25s ease, background-color 0.25s ease;
 }
 
-.banner-carousel .banner-carousel-previous::before,
-.banner-carousel .banner-carousel-next::before {
-	display: none;
-}
-
-.banner-carousel .banner-carousel-previous::before {
-	transform: rotate(-45deg);
-}
-
-.banner-carousel .banner-carousel-next::before {
-	transform: rotate(135deg);
-}
-
-.banner-carousel .banner-carousel-dots {
-	display: flex;
-	order: 1;
-	gap: 5px;
-}
-
-.banner-carousel .banner-carousel-dot {
-	width: 6px !important;
-	height: 6px !important;
-	border: 0 !important;
-	background: #aaa !important;
-}
-
-.banner-carousel .banner-carousel-dot[aria-current='true'] {
-	width: 32px !important;
-	border-radius: 5px !important;
-	background: #df1731 !important;
+.banner-carousel .swiper-pagination-bullet-active {
+	width: 32px;
+	border-radius: 5px;
 }
 
 @media (width <= 600px) {

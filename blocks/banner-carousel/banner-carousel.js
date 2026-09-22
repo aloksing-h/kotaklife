@@ -2,22 +2,6 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 let carouselId = 0;
 
-function showSlide(block, index) {
-  const slides = [...block.querySelectorAll('.banner-carousel-slide')];
-  const activeIndex = (index + slides.length) % slides.length;
-
-  slides.forEach((slide, slideIndex) => {
-    const isActive = slideIndex === activeIndex;
-    slide.hidden = !isActive;
-    slide.setAttribute('aria-hidden', String(!isActive));
-  });
-
-  block.querySelectorAll('.banner-carousel-dot').forEach((dot, dotIndex) => {
-    dot.setAttribute('aria-current', dotIndex === activeIndex ? 'true' : 'false');
-  });
-  block.dataset.activeSlide = activeIndex;
-}
-
 function getRowValue(row) {
   return row?.textContent.trim() || '';
 }
@@ -106,50 +90,36 @@ function createSlide(row, index, id) {
   return slide;
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   carouselId += 1;
   const rows = [...block.children];
   const slides = rows.map((row, index) => createSlide(row, index, carouselId));
   block.replaceChildren();
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'carousel');
+  block.classList.add('swiper');
 
-  const viewport = document.createElement('div');
-  viewport.className = 'banner-carousel-viewport';
   const slideList = document.createElement('ul');
-  slideList.className = 'banner-carousel-slides';
+  slideList.className = 'banner-carousel-slides swiper-wrapper';
+  slides.forEach((slide) => slide.classList.add('swiper-slide'));
   slideList.append(...slides);
-  viewport.append(slideList);
-  block.append(viewport);
+  block.append(slideList);
 
+  let pagination;
   if (slides.length > 1) {
-    const controls = document.createElement('div');
-    controls.className = 'banner-carousel-controls';
-    controls.innerHTML = `
-      <button type="button" class="banner-carousel-previous" aria-label="Previous slide"></button>
-      <div class="banner-carousel-dots" role="tablist" aria-label="Carousel slides"></div>
-      <button type="button" class="banner-carousel-next" aria-label="Next slide"></button>
-    `;
-    block.append(controls);
-
-    const dots = controls.querySelector('.banner-carousel-dots');
-    slides.forEach((slide, index) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'banner-carousel-dot';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Show slide ${index + 1}`);
-      dot.addEventListener('click', () => showSlide(block, index));
-      dots.append(dot);
-    });
-
-    controls.querySelector('.banner-carousel-previous').addEventListener('click', () => {
-      showSlide(block, Number(block.dataset.activeSlide || 0) - 1);
-    });
-    controls.querySelector('.banner-carousel-next').addEventListener('click', () => {
-      showSlide(block, Number(block.dataset.activeSlide || 0) + 1);
-    });
+    pagination = document.createElement('div');
+    pagination.className = 'swiper-pagination';
+    block.append(pagination);
   }
 
-  showSlide(block, 0);
+  const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
+  block.swiperInstance = createSwiper(block, {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    grabCursor: true,
+    pagination: pagination && {
+      el: pagination,
+      clickable: true,
+    },
+  });
 }
