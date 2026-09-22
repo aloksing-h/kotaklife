@@ -105,6 +105,7 @@ export function initializeModalHandlers() {
     if (link.href.includes('/modals/') || isThankYouPopupLink) {
       e.preventDefault();
       await openModal(link.href);
+      // eslint-disable-next-line import/no-cycle
       const { modalHeaderBreadCrumb } = await import('../header/header.js');
       await modalHeaderBreadCrumb();
     }
