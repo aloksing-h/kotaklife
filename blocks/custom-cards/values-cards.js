@@ -31,6 +31,8 @@ export default async function initValuesSwiper(block) {
           centeredSlides: true,
           centeredSlidesBounds: true,
           slideToClickedSlide: true,
+          slidesOffsetBefore: 16,
+          slidesOffsetAfter: 0,
           pagination: {
             el: pagination,
             clickable: true,
