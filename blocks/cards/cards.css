@@ -392,7 +392,6 @@
 
 .csr-layout .default-content-wrapper p:has(a) {
   width: fit-content;
-  
   margin: 0;
 }
 
