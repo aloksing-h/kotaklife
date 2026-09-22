@@ -89,5 +89,5 @@ export default async function decorate(block) {
 
     // Reposition container if target section exists
     repositionBreadcrumb(block);
-  }, 100);
+  }, 200);
 }
