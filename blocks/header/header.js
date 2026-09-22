@@ -657,6 +657,7 @@ export default async function decorate(block) {
                       item.appendChild(link);
 
                       // Make the entire item clickable
+                      item.classList.add('nav-link-wrap');
                       item.style.cursor = 'pointer';
                       item.setAttribute('role', 'button');
                       item.setAttribute('tabindex', '0');

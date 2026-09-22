@@ -128,7 +128,8 @@
         gap: 40px 14px;
     }
 
-    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div {
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div,
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div .nav-redirection-link{
         display: flex;
         align-items: center;
         gap: 8px;
@@ -157,7 +158,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:has(a) a {
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:not(.nav-link-wrap):has(a) a {
         padding: 0 6px 7px 0;
         position: relative;
         color: var(--text-text-primary, #181D27);
@@ -167,7 +168,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:has(a) a::after {
+    .modal.desk-hamburger dialog .nav-content .list-inner .custom-rte>div:last-of-type:not(.nav-link-wrap):has(a) a::after {
         content: '';
         width: 32px;
         height: 5px;
@@ -250,7 +251,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:last-of-type a:nth-child(n) {
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:last-of-type:not(.nav-link-wrap) a:nth-child(n) {
         border-radius: var(--radius-full, 999px);
         background: var(--background-bg-primary, #FFF);
         padding: 4px 4px 4px 16px;

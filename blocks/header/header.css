@@ -1633,7 +1633,7 @@ nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .
   line-height: var(--line-height-caption, 14px);
 }
 
-nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:last-of-type:nth-child(n):has(a) {
+nav[aria-expanded='true'] .nav-drop[aria-expanded='true']:not(:has(.tab-list)) .custom-rte>div:last-of-type:nth-child(n):not(.nav-link-wrap):has(a) {
   display: none;
 }
 
