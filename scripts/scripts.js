@@ -7,8 +7,10 @@ import {
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
+  getMetadata,
   loadSections,
   loadCSS,
+  buildBlock,
 } from './aem.js';
 
 /**
@@ -65,6 +67,19 @@ export function moveAttributes(from, to, attributes) {
   });
 }
 
+function buildBreadcrumbBlock(main) {
+  if (
+    (window.location.pathname !== '/' &&
+      window.isErrorPage !== true &&
+      getMetadata('breadcrumbs_show').includes('true')) ||
+    getMetadata('breadcrumb').includes('true')
+  ) {
+    const section = document.createElement('div');
+    section.append(buildBlock('breadcrumb', { elems: [] }));
+    main.prepend(section);
+  }
+}
+
 /**
  * Move instrumentation attributes from a given element to another given element.
  * @param {Element} from the element to copy attributes from
@@ -99,6 +114,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
+    buildBreadcrumbBlock(main);
     buildTabs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
