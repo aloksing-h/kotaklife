@@ -43,6 +43,23 @@ const createLink = (path) => {
   return pathLink;
 };
 
+/**
+ * Moves .breadcrumb-container inside the section having .breadcrumb-pos class if present.
+ * Prevents duplicate appending if a breadcrumb container is already moved.
+ */
+const repositionBreadcrumb = (block) => {
+  const targetSection = document.querySelector('.section.breadcrumb-pos');
+  const breadcrumbContainer = block.closest('.breadcrumb-container');
+
+  if (targetSection && breadcrumbContainer) {
+    const alreadyAppended = targetSection.querySelector('.breadcrumb-container');
+    // Only append if target section doesn't already contain a breadcrumb container
+    if (!alreadyAppended && !targetSection.contains(breadcrumbContainer)) {
+      targetSection.appendChild(breadcrumbContainer);
+    }
+  }
+};
+
 export default async function decorate(block) {
   const breadcrumb = document.createElement('nav', '', {
     'aria-label': 'Breadcrumb',
@@ -69,5 +86,8 @@ export default async function decorate(block) {
       '<span class="breadcrumb-separator">/</span>',
     );
     block.append(breadcrumb);
-  }, 1000);
+
+    // Reposition container if target section exists
+    repositionBreadcrumb(block);
+  }, 100);
 }
