@@ -213,7 +213,7 @@
     border-color: #E1122D;
 }
 
-/* .invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
+.invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
     border-color: #E1122D;
 }
 
@@ -233,7 +233,7 @@
     font-weight: 600;
     line-height: var(--line-height-body-1, 18px);
     margin: 0;
-} */
+}
 
 /* Date Field Calendar Icon */
 .invest-form.section.invest-form-container .form-field.date-field input {
@@ -242,11 +242,11 @@
     background-position: right 14px center;
 }
 
-/* 
+
 .invest-form.section.invest-form-container .form-field.date-field input::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
-} */
+}
 
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
@@ -280,10 +280,10 @@
     background-color: #c90e26;
 }
 
-/* .invest-form.section.invest-form-container .button-wrapper button.button:disabled {
+.invest-form.section.invest-form-container .button-wrapper button.button:disabled {
     background: #D5D7DA;
     cursor: not-allowed;
-} */
+}
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
     flex-grow: 1;
