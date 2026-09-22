@@ -396,7 +396,18 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 .visual-pulse.bg-white.section{
   background: var(--base-white);
+  padding: 0;
 }
+
+.visual-pulse.bg-white.section .default-content-wrapper{
+  max-width: 100%;
+}
+
+.visual-pulse.bg-white.section picture{
+  width: 100%;
+  height: auto;
+}
+
 
 .visual-pulse.section .default-content-wrapper {
   width: 100%;
@@ -439,6 +450,10 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
     padding-top: 50px;
   }
 
+  .visual-pulse.bg-white.section{
+    margin-bottom: -86px;
+  }
+
   .visual-pulse.section .default-content-wrapper {
     padding: 0;
   }
@@ -447,4 +462,21 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
     margin: 0;
     margin-bottom: -8px;
   }
+
+  .visual-pulse.bg-white.section .default-content-wrapper{
+    height: 341px;
+  }
+
+  .visual-pulse.bg-white.section .default-content-wrapper p:first-of-type{
+  width: 100%;
+  height: 100%;
+  }
+
+  .visual-pulse.bg-white.section img{
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    object-position: right -30px;
+  }
+
 }
