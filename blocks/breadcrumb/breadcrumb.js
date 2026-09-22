@@ -43,21 +43,27 @@ const createLink = (path) => {
   return pathLink;
 };
 
-/**
- * Moves .breadcrumb-container inside the section having .breadcrumb-pos class if present.
- * Prevents duplicate appending if a breadcrumb container is already moved.
- */
-const repositionBreadcrumb = (block) => {
-  const targetSection = document.querySelector('.section.breadcrumb-pos');
-  const breadcrumbContainer = block.closest('.breadcrumb-container');
+const moveBreadcrumbToBanner = (block) => {
+  const breadcrumbContainer = block.closest('main .breadcrumb-container');
+  if (!breadcrumbContainer) return;
 
-  if (targetSection && breadcrumbContainer) {
-    const alreadyAppended = targetSection.querySelector('.breadcrumb-container');
-    // Only append if target section doesn't already contain a breadcrumb container
-    if (!alreadyAppended && !targetSection.contains(breadcrumbContainer)) {
-      targetSection.appendChild(breadcrumbContainer);
-    }
+  const bannerSection = document.querySelector(
+    'main > .section:has(.banner-v2), main > .section:has(.banner)',
+  );
+  if (!bannerSection) return;
+
+  bannerSection.classList.add('breadcrumb-pos');
+  const breadcrumbContainers = [...bannerSection.querySelectorAll('.breadcrumb-container')];
+  const firstContainer = breadcrumbContainers[0];
+
+  if (firstContainer && firstContainer !== breadcrumbContainer) {
+    firstContainer.replaceChildren(...breadcrumbContainer.childNodes);
+    breadcrumbContainer.remove();
+  } else if (!firstContainer) {
+    bannerSection.append(breadcrumbContainer);
   }
+
+  breadcrumbContainers.slice(1).forEach((container) => container.remove());
 };
 
 export default async function decorate(block) {
@@ -73,21 +79,17 @@ export default async function decorate(block) {
   });
   const breadcrumbLinks = [HomeLink.outerHTML];
 
-  window.setTimeout(async () => {
-    const path = window.location.pathname;
-    const paths = await getAllPathsExceptCurrent(path);
+  const path = window.location.pathname;
+  const paths = await getAllPathsExceptCurrent(path);
 
-    paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
-    const currentPath = document.createElement('span');
-    currentPath.innerText = document.querySelector('title').innerText;
-    breadcrumbLinks.push(currentPath.outerHTML);
+  paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+  const currentPath = document.createElement('span');
+  currentPath.innerText = document.querySelector('title').innerText;
+  breadcrumbLinks.push(currentPath.outerHTML);
 
-    breadcrumb.innerHTML = breadcrumbLinks.join(
-      '<span class="breadcrumb-separator">/</span>',
-    );
-    block.append(breadcrumb);
-
-    // Reposition container if target section exists
-    repositionBreadcrumb(block);
-  }, 200);
+  breadcrumb.innerHTML = breadcrumbLinks.join(
+    '<span class="breadcrumb-separator">/</span>',
+  );
+  block.append(breadcrumb);
+  moveBreadcrumbToBanner(block);
 }
