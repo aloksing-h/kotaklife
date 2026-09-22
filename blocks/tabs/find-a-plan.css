@@ -149,7 +149,7 @@
     padding: 0;
     margin: 25px auto 0;
     list-style: none;
-    
+
     /* justify-content: space-between; */
 }
 
@@ -389,12 +389,16 @@
 
 
 @media (width >=900px) {
+    .find-a-plan.tabs-container {
+        margin-top: 157px;
+        margin-bottom: 50px;
+    }
+
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
         min-height: 311px;
         height: 100%;
-        border-radius: 16px;
-        max-width: 23.9%;
-        flex: 0 0 23.9%;
+        max-width: 23.78%;
+        flex: 0 0 23.78%;
         gap: 9px;
 
         /* width: 23.84%; */
@@ -422,13 +426,13 @@
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover::before {
-       opacity: 0;
-       transition: opacity 10ms ease 0s;
+        opacity: 0;
+        transition: opacity 10ms ease 0s;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover::after {
-       opacity: 0;
-       transition: opacity 10ms ease 0s;
+        opacity: 0;
+        transition: opacity 10ms ease 0s;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image img {
@@ -479,7 +483,7 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         padding: 0;
-        margin-top: 42px;
+        margin-top: 38.5px;
         justify-content: start;
         flex-wrap: nowrap;
     }
@@ -658,7 +662,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 0;    
+    z-index: 0;
     background-repeat: no-repeat;
     background-size: cover;
     mix-blend-mode: screen;

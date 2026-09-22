@@ -16,8 +16,8 @@
 }
 
 /* --- State Management via ARIA attributes --- */
-.testimonials.customer-say  .testimonial-col-1 p,
-.testimonials.customer-say  .testimonial-col-2 p {
+.testimonials.customer-say .testimonial-col-1 p,
+.testimonials.customer-say .testimonial-col-2 p {
   margin: 0;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .section:has(.testimonials.customer-say) {
-  padding: 0 ;
+  padding: 0;
 }
 
 .section:has(.testimonials.customer-say)>div {
@@ -58,7 +58,7 @@
 
 .section:has(.testimonials.customer-say) .default-content-wrapper {
   padding-bottom: 20px;
-} 
+}
 
 .section:has(.testimonials.customer-say) .default-content-wrapper h1,
 .section:has(.testimonials.customer-say) .default-content-wrapper h2,
@@ -117,12 +117,12 @@
   height: 100%;
   margin: 0;
   display: block;
-  position: relative; /* Anchor for absolute picture */
+  position: relative;
   border-radius: 8px;
 }
 
 .testimonials.customer-say .testimonial-item picture {
-  position: absolute; /* Detaches image from flex layout distortion */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -135,8 +135,8 @@
 .testimonials.customer-say .testimonial-item picture img {
   width: 100%;
   height: 100%;
-  object-fit: cover !important; /* Forces crop over stretch */
-  object-position: center !important; 
+  object-fit: initial !important;
+  object-position: center !important;
   display: block;
 }
 
@@ -218,8 +218,10 @@
 /* --- Desktop View (Side-by-Side Grid) --- */
 @media (width >=600px) {
   .section.testimonials-container .default-content-wrapper {
-    margin: 22px 0 48px;
-     gap: 4px;
+    padding-bottom: 0 !important;
+    margin: 62px 0 48px;
+    gap: 4px;
+
   }
 
   .section.testimonials-container .default-content-wrapper p:first-of-type {
@@ -246,18 +248,18 @@
   .section:has(.testimonials.customer-say) {
     max-width: 1200px;
     margin: 0 auto;
-    margin-bottom: 90px;
+    margin-bottom: 119px;
     padding: 0 20px;
   }
 
-  .section:has(.testimonials.customer-say) > div {
+  .section:has(.testimonials.customer-say)>div {
     padding: 0;
   }
 
   .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
-  .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
-    flex: 0 0 10.91%;
-  }
+    .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
+      flex: 0 0 10.91%;
+    }
   }
 
   /* Swap Mobile and Desktop Image Visibility */
@@ -274,7 +276,7 @@
     width: 100%;
     display: block;
   }
-  
+
   .testimonials.customer-say .video-btn-wrapper {
     top: 24px;
     right: 24px;
