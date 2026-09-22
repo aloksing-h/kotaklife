@@ -394,6 +394,10 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
   background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
 }
 
+.visual-pulse.bg-white.section{
+  background: var(--base-white);
+}
+
 .visual-pulse.section .default-content-wrapper {
   width: 100%;
   display: flex;
