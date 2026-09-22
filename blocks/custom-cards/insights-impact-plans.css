@@ -26,6 +26,7 @@
     overflow: hidden;
     padding-top: 18px;
     padding-bottom: 32px;
+    padding-inline-end: 16px;
 }
 
 .insights-impact-plans .custom-cards>ul.swiper-wrapper {
@@ -35,36 +36,39 @@
 }
 
 .insights-impact-plans .custom-cards>ul>li.swiper-slide {
+    max-width: 280px;
     flex-shrink: 0;
     height: auto;
 }
 
 /* Swiper Pagination Dots */
 .insights-impact-plans .custom-cards .swiper-pagination {
-    bottom: -22px;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
     left: unset;
-    right: 52px;
+    right: 20px;
+    z-index: 2;
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background-color: #d1d5db;
     opacity: 1;
-    border-radius: 50%;
     margin: 0 !important;
     transition: all 0.3s ease;
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {
-    width: 28px;
-    height: 8px;
-    background-color: #e31837;
-    border-radius: 4px;
+    width: 32px;
+    height: 6px;
+    border-radius: var(--radius-full, 999px);
+    background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
@@ -113,7 +117,7 @@
 .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
     font-size: 18px;
     line-height: 20px;
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     font-weight: 600;
     color: #181d27;
     margin: 0;
@@ -125,7 +129,7 @@
 .insights-impact-plans .custom-cards-card-body>p:first-child {
     display: inline-flex;
     align-items: center;
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     padding: 4px 8px;
     font-size: 12px;
     font-weight: 500;
@@ -145,7 +149,7 @@
 .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
     line-height: 18px;
-    font-family: var(--font-family-font-family-display, Manrope);
+    font-family: var(--heading-font-family);
     color: #535862;
     font-weight: 400;
     margin: 0;
@@ -244,43 +248,55 @@
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    padding: 4px 4px 4px 20px;
-    border: 1px solid var(--button-btn-brand-red, #E1122D);
-    border-radius: 30px;
-    color: var(--button-btn-brand-red, #E1122D);
-    font-family: var(--font-family-font-family-display, Manrope);
-    font-size: 14px;
-    font-weight: 800;
     text-decoration: none;
     background-color: #fff;
-    transition: all 0.3s ease;
     position: relative;
     line-height: 18px;
+    transition: gap 0.25s ease, transform 0.25s ease;
+    display: inline-flex;
+    padding: 4px 4px 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md, 8px);
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--button-btn-brand-red, #E1122D);
+    color: var(--button-btn-brand-red, #E1122D);
+    text-align: center;
+    font-family: var(--heading-font-family);
+    font-size: var(--font-size-button-2, 14px);
+    font-style: normal;
+    font-weight: 800;
 }
 
-.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover,
+.insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:focus-visible {
+    gap: 24px;
+    transform: translateX(6px);
+}
+
+/* .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
     content: '';
     background-image: url("/icons/write-arrow-right.svg");
     position: absolute;
-    right: 9px;
+    right: 6px;
     width: 20px;
     height: 20px;
-}
+} */
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
     content: '';
     display: flex;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     justify-content: center;
     align-items: center;
-    gap: 11.429px;
-    border-radius: 50%;
+    gap: 8.571px;
+    border-radius: 856.286px;
     background: var(--button-btn-brand-red, #E1122D);
+    background-image: url("/icons/write-arrow-right.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover {
@@ -291,10 +307,10 @@
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::after {
     background-color: #fff;
     color: #e31837;
+    background-image: url("/icons/red-arrow-right.svg");
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a:hover::before {
-    background-image: url("/icons/red-arrow-right.svg");
     width: 27px;
     height: 28px;
     right: 10px;
@@ -336,13 +352,22 @@
         justify-content: center;
     }
 
+    .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::after {
+       width: 32px;
+        height: 32px;
+    }
+
+    .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a::before {
+        right: 10px;
+    }
+
     .insights-impact-plans.custom-cards-container .default-content-wrapper h1,
     .insights-impact-plans.custom-cards-container .default-content-wrapper h2,
     .insights-impact-plans.custom-cards-container .default-content-wrapper h3,
     .insights-impact-plans.custom-cards-container .default-content-wrapper h4 {
         width: auto;
         color: var(--text-text-primary, #181d27);
-        font-family: var(--font-family-font-family-display, Manrope);
+        font-family: var(--heading-font-family);
         font-size: 48px;
         font-weight: 300;
         line-height: 60px;
@@ -351,7 +376,10 @@
     }
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child a {
-        font-size: 16px;
+        gap: 12px;
+        padding: 3.2px 4px 3.2px 20px;
+        font-size: var(--font-size-button-1, 16px);
+        line-height: var(--line-height-body-1, 18px);
     }
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper h1 strong,
@@ -363,12 +391,12 @@
 
     .insights-impact-plans.custom-cards-container .default-content-wrapper p {
         color: var(--text-text-tertiary, #535862);
-        font-family: var(--font-family-font-family-display, Manrope);
+        font-family: var(--heading-font-family);
         font-size: 16px;
         font-weight: 500;
         line-height: 20px;
         margin: 0;
-        max-width: 42%;
+        max-width: 40.73%;
         text-align: right;
     }
 
@@ -396,7 +424,7 @@
 
     /* Card Container Base */
     .insights-impact-plans .custom-cards>ul>li {
-        padding: 26px;
+        padding: 24px;
         min-height: 334px;
         border-radius: 20px;
     }

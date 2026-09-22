@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Vision Section - Scoped Layout & Header Styles
+   Parent section class: .section.vision (or .vision.section)
+   ========================================================================== */
+
+/* Mobile (Base styles: 360px basis) */
+.section.vision {
+  margin: 70px 0 50px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section.vision:first-of-type {
+  margin-top: 0;
+}
+
+/* 16px padding on left & right -> 328px content width */
+.section.vision>div {
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+
+/* Vision section - Text component styles */
+.section.vision .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding: 0 16px;
+}
+
+.section.vision .default-content-wrapper h1 {
+  font-family: var(--font-family-manrope);
+  font-weight: var(--font-weight-light);
+  font-size: var(--heading-3-font-size);
+  line-height: var(--heading-3-line-height);
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  overflow-wrap: break-word;
+}
+
+.section.vision .default-content-wrapper h1 strong {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-1-letter-spacing);
+}
+
+.section.vision .default-content-wrapper p {
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-2-font-size);
+  line-height: var(--body-2-line-height);
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* Tablet (>= 600px) */
+@media (width >=600px) {
+  .section.vision>div {
+    padding: 0 32px;
+  }
+
+  .section.vision .default-content-wrapper {
+    padding: 0 30px;
+    margin-bottom: var(--spacing-5xl);
+  }
+
+  .section.vision .default-content-wrapper h1 {
+    font-size: var(--heading-2-font-size);
+    line-height: var(--heading-2-line-height);
+  }
+
+  .section.vision .default-content-wrapper p {
+    font-size: var(--body-1-font-size);
+    line-height: var(--body-1-line-height);
+  }
+}
+
+/* Tablet Horizontal (>= 768px) */
+@media (width >=768px) {
+  .section.vision>.cards-wrapper {
+    padding: 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .section.vision .default-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    padding: 0 50px;
+  }
+
+  .section.vision .default-content-wrapper h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: 0;
+  }
+
+  .section.vision .default-content-wrapper h1 strong {
+    letter-spacing: normal;
+  }
+
+  .section.vision .default-content-wrapper p {
+    flex: 0 1 416px;
+    margin-left: auto;
+    font-size: var(--body-1-font-size);
+    line-height: var(--sub-heading-2-line-height);
+  }
+}
+
+/* Desktop (>= 900px) */
+@media (width >=900px) {
+  .section.vision {
+    margin-top: 172px;
+    margin-bottom: 145px;
+  }
+
+  .section.vision>div {
+    padding: 0 50px;
+  }
+
+  /* Vision: fully stretched cards wrapper across 1200px */
+  .section.vision .cards-wrapper {
+    max-width: unset;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Beyond 1200px */
+@media (width >=1200px) {
+  .section.vision:first-of-type {
+    margin-top: 16px;
+  }
+}

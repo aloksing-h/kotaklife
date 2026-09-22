@@ -1,0 +1,442 @@
+.values-cards-hover.section {
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.values-cards-hover .custom-cards {
+  overflow: hidden;
+}
+
+.values-cards-hover.custom-cards-container .default-content-wrapper h1,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+  font-size: var(--heading-3-font-size, 32px);
+  letter-spacing: var(--heading-3-letter-spacing, -0.64px);
+  line-height: var(--heading-3-line-height, 36px);
+  text-align: center;
+  margin: 0 0 6px;
+  padding: 0;
+  font-weight: var(--font-weight-light, 300);
+}
+
+.values-cards-hover.custom-cards-container .default-content-wrapper h1 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h2 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h3 strong,
+.values-cards-hover.custom-cards-container .default-content-wrapper h4 strong {
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding: 0;
+  }
+
+.values-cards-hover.custom-cards-container .default-content-wrapper p {
+    color: var(--gray-500, #717680);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+    text-align: center;
+    margin: 0;
+    font-weight: var(--font-weight-medium, 500);
+    padding: 0;
+}
+
+.values-cards-hover.custom-cards-container .custom-cards-wrapper{
+  padding: 0;
+}
+
+.values-cards-hover .custom-cards>ul {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 30px 0 28px;
+  justify-content: space-between;
+  gap: 0;
+
+  /* Let Swiper handle spacing on mobile */
+}
+
+/* Base Card Styles (Mobile sizes applied by default) */
+.values-cards-hover .custom-cards>ul>li {
+  position: relative;
+  width: 152px;
+
+  /* Mobile width as requested */
+  min-height: 250px;
+
+  /* Mobile height as requested */
+  height: 100%;
+  flex-shrink: 0;
+
+  /* Ensures Swiper slides don't squash */
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--gray-200, #eaeaea);
+  background: var(--base-white, #fff);
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0%) 60%, rgb(250 20 50 / 5%) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.values-cards-hover .custom-cards>ul>li::before {
+  content: '';
+  position: absolute;
+  inset: 52% 0 0;
+  background-image: url("../../icons/pink-bg-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.values-cards-hover .custom-cards>ul>li:nth-child(even)::before {
+  background-image: url("../../icons/blue-bg-mobile.svg");
+}
+
+.values-cards-hover .custom-cards>ul>li::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("../../icons/glass-effect-mobile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.values-cards-hover .custom-cards>ul>li:hover::before,
+.values-cards-hover .custom-cards>ul>li:hover::after {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  /* Optional: adds a smooth fade out */
+}
+
+/* Swiper Pagination (Visible on Mobile by default) */
+.values-cards-hover .custom-cards .swiper-pagination {
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xs, 4px);
+  left: unset;
+  right: 0;
+}
+
+.values-cards-hover .custom-cards .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #A4A7AE;
+  background-color: white;
+  opacity: 1;
+  border-radius: 50%;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.values-cards-hover .custom-cards .swiper-pagination-bullet-active {
+  width: 32px;
+  border: none;
+  background-color: #e31837;
+  border-radius: var(--radius-xs, 4px);
+}
+
+
+
+/* =========================================
+   2. IMAGE: Responsive constraints
+   ========================================= */
+.values-cards-hover .custom-cards .custom-cards-card-image {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  max-width: 152px;
+  width: 100%;
+  height: 100%;
+  max-height: 86px;
+  display: flex;
+  justify-content: flex-start;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  aspect-ratio: 152/86;
+}
+
+.values-cards-hover .custom-cards .custom-cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  /* Prevents stretching when width/height flexes */
+  object-position: left center;
+}
+
+/* =========================================
+   3. TEXT CONTENT: Fluid Positioning
+   ========================================= */
+.values-cards-hover .custom-cards .custom-cards-card-body {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  justify-content: space-between;
+}
+
+/* TITLE (h4): Default State */
+.values-cards-hover .custom-cards .custom-cards-card-body h4 {
+  position: absolute;
+  bottom: 36px;
+
+  /* Anchoring bottom prevents breaking on fluid height changes */
+  left: var(--spacing-xl, 16px);
+  right: var(--spacing-xl, 16px);
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+
+  /* Responsive font scaling */
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--gray-900, #111);
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s, color 0.3s;
+}
+
+/* DESCRIPTION (p): Default State */
+.values-cards-hover .custom-cards .custom-cards-card-body p {
+  position: absolute;
+  top: 100%;
+
+  /* Hides seamlessly below the card bounds */
+  left: var(--spacing-xl, 16px);
+  right: var(--spacing-xl, 16px);
+  margin: 0;
+  font-size: var(--disclaimer-font-size, 0.625rem);
+  line-height: var(--disclaimer-line-height, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--base-white, #fff);
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   4. HOVER STATES
+   ========================================= */
+.values-cards-hover .custom-cards>ul>li:hover {
+  background: linear-gradient(180deg, var(--decorative-red-900, #7f2224) 0%, var(--decorative-red-500, #fa1432) 100%);
+  transform: scale(1.06);
+
+  /* Slightly reduced scale avoids clipping on smaller screens */
+  border-color: transparent;
+  z-index: 10;
+}
+
+/* Hide Icon */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-image {
+  opacity: 0;
+}
+
+/* Move Title (h4) to Top */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+  bottom: auto;
+
+  /* Release bottom anchor */
+  top: var(--spacing-3xl, 24px);
+
+  /* Pin to top */
+  color: var(--base-white, #fff);
+}
+
+/* Show Description (p) */
+.values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+  top: auto;
+
+  /* Starts dynamically below the pinned title */
+  bottom: var(--spacing-3xl, 24px);
+
+  /* Ensures text doesn't overflow card at any height */
+  opacity: 1;
+  letter-spacing: 0;
+  visibility: visible;
+}
+
+.values-cards-hover .custom-cards>ul>li:first-child {
+  transform-origin: left;
+}
+
+/* Pin the last card to the right so it scales left */
+.values-cards-hover .custom-cards>ul>li:last-child {
+  transform-origin: right;
+}
+
+/* Keep middle cards scaling from the center */
+.values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+  transform-origin: center;
+}
+
+@media (width >= 800px) {
+  .values-cards-hover.section{
+    padding: 0;
+  }
+
+  .values-cards-hover.custom-cards-container .default-content-wrapper{
+    padding-bottom: var(--spacing-5xl, 40px);
+  }
+
+  .values-cards-hover.custom-cards-container .default-content-wrapper h1,
+  .values-cards-hover.custom-cards-container .default-content-wrapper h2,
+  .values-cards-hover.custom-cards-container .default-content-wrapper h3,
+  .values-cards-hover.custom-cards-container .default-content-wrapper h4 {
+    width: auto;
+    color: var(--text-primary, #181d27);
+    font-family: var(--font-family-manrope, Manrope);
+    font-size: var(--heading-1-font-size, 48px);
+    font-weight: var(--font-weight-light, 300);
+    line-height: var(--heading-1-line-height, 60px);
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  .values-cards-hover.custom-cards-container .default-content-wrapper p {
+    color: var(--text-tertiary, #535862);
+    font-family: var(--font-family-manrope, Manrope);
+    font-size: var(--body-1-font-size, 16px);
+    font-weight: var(--font-weight-medium, 500);
+    line-height: var(--body-1-line-height, 20px);
+    margin: 0;
+    text-align: center;
+  }
+
+  .values-cards-hover .custom-cards>ul {
+    padding: var(--spacing-5xl, 40px) 0;
+    gap: 20px;
+  }
+
+  .values-cards-hover .custom-cards>ul>li {
+    flex: 1 1 0;
+
+    /* fluid width that shrinks to fit instead of overflowing */
+    width: auto;
+    height: auto;
+    max-width: 170px;
+    aspect-ratio: 170 / 275;
+
+    /* calculated height that scales with the fluid width */
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover {
+    transform: scale(1.15, 1.2);
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+    top: 16px;
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+    top: auto;
+
+    /* Starts below the 2-line title */
+    bottom: 16px;
+
+    /* Prevents it from spilling out of the card */
+    font-size: 11px;
+
+    /* Slightly reduced to fit the tight 275px height */
+    line-height: 14px;
+    overflow: hidden;
+
+    /* Enables scrolling inside the card if text is extremely long */
+  }
+
+  .values-cards-hover .custom-cards .swiper-pagination {
+    display: none;
+  }
+
+  /* Pin the first card to the left so it scales right */
+  .values-cards-hover .custom-cards>ul>li:first-child {
+    transform-origin: left;
+  }
+
+  /* Pin the last card to the right so it scales left */
+  .values-cards-hover .custom-cards>ul>li:last-child {
+    transform-origin: right;
+  }
+
+  /* Keep middle cards scaling from the center */
+  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+    transform-origin: center;
+  }
+}
+
+/* --- DESKTOP ONLY (Swiper Disabled, Fluid Grid) --- */
+@media (width >=1200px) {
+  .values-cards-hover .custom-cards>ul {
+    gap: var(--spacing-2xl, 20px);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .values-cards-hover .custom-cards>ul>li {
+    max-width: 192px;
+    aspect-ratio: 192 / 314;
+  }
+
+
+  .values-cards-hover .custom-cards>ul>li::before {
+    top: 160px;
+    background-image: url("../../icons/pink-bg.svg");
+  }
+
+  .values-cards-hover .custom-cards>ul>li:nth-child(even)::before {
+    background-image: url("../../icons/blue-bg.svg");
+  }
+
+  .values-cards-hover .custom-cards>ul>li::after {
+    background-image: url("../../icons/glass-effect.svg");
+  }
+
+  /* Pin the top-left corner: The first card stays flush left and grows towards the RIGHT */
+  .values-cards-hover .custom-cards>ul>li:first-child {
+    transform-origin: left;
+  }
+
+  /* Pin the top-right corner: The last card stays flush right and grows towards the LEFT */
+  .values-cards-hover .custom-cards>ul>li:last-child {
+    transform-origin: right;
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover {
+    transform: scale(1.3334, 1.2548);
+  }
+
+  /* For all the middle cards (2nd, 3rd, 4th), keep them expanding evenly from the center */
+  .values-cards-hover .custom-cards>ul>li:not(:first-child, :last-child) {
+    transform-origin: center;
+  }
+
+  .values-cards-hover .custom-cards .custom-cards-card-image {
+    max-width: 176px;
+    max-height: 109px;
+    top: 20px;
+  }
+
+  .values-cards-hover .custom-cards .custom-cards-card-body h4 {
+    bottom: 40px;
+    left: 20px;
+    right: 36px;
+    line-height: var(--sub-heading-1-line-height);
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
+    top: 40px;
+
+  }
+
+  .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body p {
+    top: auto;
+
+    /* Starts safely below the 2-line title */
+    bottom: var(--spacing-5xl, 40px);
+    font-size: var(--body-2-font-size, 14px);
+    line-height: var(--body-2-line-height, 18px);
+
+  }
+}

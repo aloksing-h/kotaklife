@@ -1,4 +1,5 @@
 /* stylelint-disable  */
+
 @import "../../../styles/fonts.css";
 
 .search .search-box {
@@ -148,3 +149,311 @@
 }
 
 /*# sourceMappingURL=search.css.map */
+
+
+.looking-for .search-wrapper .search .search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 8px 12px 8px 12px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  /* background:
+    linear-gradient(var(--background-color), var(--background-color)) padding-box,
+    linear-gradient(135deg, #fd8a99, #fb2c47) border-box; */
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #ff6b81, #4a90e2, #a855f7, #ff6b81) border-box;
+  box-shadow:
+    0 12px 16px -4px rgb(10 13 18 / 8%),
+    0 4px 6px -2px rgb(10 13 18 / 3%),
+    0 2px 1px rgb(10 13 18 / 4%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.looking-for .search-wrapper .search .search-box:focus-within {
+  /* box-shadow:
+    0 12px 16px -4px rgb(10 13 18 / 12%),
+    0 4px 6px -2px rgb(10 13 18 / 5%),
+    0 0 0 3px rgb(251 44 71 / 12%); */
+  box-shadow: 0 12px 16px 3px rgb(10 13 18 / 12%), 0 4px 6px -2px rgb(10 13 18 / 5%), 0 0 0 3px rgb(150 127 174 / 5%);
+}
+
+/* Gemini sparkle circle */
+.looking-for .search-wrapper .search .search-box .gemini-sparkle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ffe8eb;
+  border-radius: 50%;
+  background-color: var(--background-color);
+}
+
+.looking-for .search-wrapper .search .search-box .gemini-sparkle-icon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+
+.looking-for .search-wrapper .search .search-box input.search-input {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  /* font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px; */
+  font-size: var(--font-size-caption, 12px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--line-height-caption, 14px);
+  scroll-margin-top: calc(var(--header-height, 64px) + 16px);
+}
+
+
+.looking-for .search-wrapper .search .search-box input.search-input::placeholder {
+  color: #181d27;
+  font-weight: 400;
+  opacity: 1;
+  font-size: var(--font-size-caption, 14px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--line-height-caption, 18px);
+}
+
+.looking-for .search-wrapper .search .search-box input.search-input:focus::placeholder {
+  opacity: 0;
+}
+
+/* Action buttons (mic + submit) */
+.looking-for .search-wrapper .search .search-box .search-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.search-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.looking-for .search-wrapper.search .search-box .search-actions button.search-action-btn img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.mic-btn {
+  border: 1px solid #d5d7da;
+  background-color: var(--background-color);
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.submit-btn {
+  border: none;
+  background: linear-gradient(180deg, #af0e23, #fb2c47);
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.search-action-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px rgb(10 13 18 / 15%);
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.mic-btn:hover {
+  background-color: #f5f5f6;
+}
+
+.looking-for .search-wrapper .search .search-box .search-actions button.submit-btn:hover {
+  box-shadow: 0 4px 12px rgb(251 44 71 / 40%);
+}
+
+
+
+
+/*# sourceMappingURL=search.css.map */
+
+
+/* ==========================================================================
+   3. Search Bar Block
+   ========================================================================== */
+.looking-for .search-wrapper {
+  position: relative;
+  display: flex;
+  max-width: 720px;
+  /* padding: var(--spacing-md, 8px) var(--spacing-lg, 12px); */
+  align-items: center;
+  /* gap: var(--spacing-lg, 12px);
+    border-radius: var(--radius-full, 999px);
+    border: 2px solid #FD8A99;
+    background: var(--background-bg-primary, #FFF);
+    box-shadow:
+        0 12px 16px -4px rgb(10 13 18 / 8%),
+        0 4px 6px -2px rgb(10 13 18 / 3%),
+        0 2px 2px -1px rgb(10 13 18 / 4%); */
+}
+
+.looking-for .search-wrapper .search.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.looking-for .search.block .search-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* .looking-for .search.block .search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--heading-font-family);
+  font-size: var(--font-size-body-2, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--line-height-body-1, 18px);
+  padding: 0;
+} */
+
+.looking-for .search.block .search-input::placeholder {
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-2, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--line-height-body-1, 18px);
+}
+
+.looking-for .search.block .search-input:focus {
+  outline: none;
+}
+
+/* Simulating right-side Action Button (Mic + Red Arrow) if not in DOM */
+.looking-for .search.block .search-box .icon-search {
+  display: flex;
+
+  /* padding: var(--spacing-xs, 4px); */
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md, 8px);
+  aspect-ratio: 1 / 1;
+  background-image: url('/icons/google-gemini.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--decorative-red-decorative-red-25, #FFE8EB);
+  box-shadow:
+    0 12px 16px -4px rgb(10 13 18 / 8%),
+    0 4px 6px -2px rgb(10 13 18 / 3%),
+    0 2px 2px -1px rgb(10 13 18 / 4%);
+}
+
+.looking-for .search.block .search-box .icon-search img[data-icon-name="search"] {
+  display: none;
+}
+
+/* .looking-for .search.block .search-box::after {
+    content: '';
+    display: flex;
+    width: 24px;
+    height: 24px;
+    padding: var(--spacing-xs, 4px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md, 8px);
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: var(--radius-full, 999px);
+    background-color: var(--brand-red-500);
+    margin-left: var(--spacing-md);
+    background-image: url('/icons/write-arrow-right.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+} */
+
+/* .looking-for .search.block .search-box::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 55px;
+    transform: translateY(-50%);
+    background: url("/icons/microphone.svg") no-repeat center;
+    background-size: auto;
+    pointer-events: none;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md, 8px);
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid var(--border-border-primary, #D5D7DA);
+} */
+
+.looking-for .search ul.search-results {
+  display: none;
+}
+
+.looking-for .search ul.search-results.no-results {
+  display: block;
+  position: absolute;
+  bottom: -60px;
+  left: 25px;
+  width: 87%;
+  background-color: transparent;
+  z-index: 10;
+  padding: var(--spacing-xl, 16px);
+  margin: 0;
+}
+
+@media (width >=900px) {
+  .looking-for .search-wrapper {
+    width: 100%;
+    padding: 0;
+    /* padding: var(--spacing-md, 8px) var(--spacing-lg, 12px);
+        margin: 0 auto; */
+  }
+
+  .looking-for .search-wrapper .search .search-box .search-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .looking-for .search-wrapper .search .search-box input.search-input {
+    font-size: var(--Font-size-Body-2, 14px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--Line-height-Body-1, 18px);
+  }
+}

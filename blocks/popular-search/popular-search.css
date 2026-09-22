@@ -7,20 +7,21 @@
 
 .section.popular-search-container {
   margin: 0;
+  margin-top: 125px;
 }
 
 .popular-search h4 {
-color: var(--text-primary-default-base, #121212);
-font-family: var(--font-family-font-family-display, Manrope);
-font-size: var(--font-size-heading-3, 32px);
-font-weight: 300;
-line-height: var(--line-height-heading-3, 36px);
-margin: 0 0 7px;
+  color: var(--text-primary-default-base, #121212);
+  font-family: var(--font-family-font-family-display, Manrope);
+  font-size: var(--font-size-heading-3, 32px);
+  font-weight: 300;
+  line-height: var(--line-height-heading-3, 36px);
+  margin: 0 0 7px;
 }
 
-.popular-search h4 strong{
-font-weight: 600;
-letter-spacing: -0.64px;
+.popular-search h4 strong {
+  font-weight: 600;
+  letter-spacing: -0.64px;
 }
 
 .popular-search {
@@ -30,17 +31,18 @@ letter-spacing: -0.64px;
   padding: 30px 16px 0;
 }
 
-.popular-search > div {
+.popular-search>div {
   min-width: 0;
 }
 
-.popular-search > div:first-child p {
-color: #717680;
-font-family: var(--font-family-font-family-body, Manrope);
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 18px;
+.popular-search>div:first-child p {
+  color: #717680;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
 }
 
 .popular-search ul {
@@ -57,7 +59,7 @@ line-height: 18px;
 }
 
 .popular-search a {
-  display: inline-flex;
+  /* display: inline-flex;
   align-items: center;
   background-color: #fafafa;
   color: #1e4679;
@@ -70,7 +72,27 @@ line-height: 18px;
   font-weight: 500;
   line-height: 18px;
   text-decoration: none;
+  white-space: nowrap; */
+
+  text-decoration: none;
   white-space: nowrap;
+  margin: 0;
+  display: inline-flex;
+  height: 32px;
+  padding: var(--spacing-md, 8px) var(--spacing-lg, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm, 6px);
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--border-border-primary, #D5D7DA);
+  background: var(--background-bg-secondary, #FAFAFA);
+  box-shadow: 0 0 7px 0 rgb(0 0 0 / 10%) inset;
+  color: var(--text-text-brand-blue, #1E4679);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-2, 14px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-body-1, 18px);
 }
 
 .popular-search a:hover {
@@ -82,14 +104,14 @@ line-height: 18px;
   outline-offset: 2px;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   .section.popular-search-container {
-     max-width: unset;
-     background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
+    max-width: unset;
+    background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
   }
 
   .popular-search-wrapper {
-        padding: 0 !important;
+    padding: 0 !important;
   }
 
   .popular-search {
@@ -105,7 +127,7 @@ line-height: 18px;
     line-height: 60px;
   }
 
-  .popular-search > div:first-child p {
+  .popular-search>div:first-child p {
     font-size: 16px;
     line-height: 20px;
     margin: 0;

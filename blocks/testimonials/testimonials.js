@@ -36,6 +36,8 @@ export default function decorate(block) {
         const videoBtnWrapper = col2Elements[2];
         videoBtnWrapper.classList.add('video-btn-wrapper');
         videoBtnWrapper.setAttribute('aria-label', 'Play video testimonial');
+        videoBtnWrapper.setAttribute('role', 'button');
+        videoBtnWrapper.setAttribute('tabindex', '0'); // Make button focusable
 
         // Look for the authored link
         const link = videoBtnWrapper.querySelector('a');
@@ -44,6 +46,25 @@ export default function decorate(block) {
           modalUrl = link.href;
           link.removeAttribute('href'); // Remove default anchor behavior
         }
+
+        // --- NEW: Open modal ONLY when clicking the button ---
+        videoBtnWrapper.addEventListener('click', (e) => {
+          e.stopPropagation(); // Stop the row click event from firing
+          if (modalUrl) {
+            openModal(modalUrl);
+          }
+        });
+
+        // --- NEW: Keyboard support for the button ---
+        videoBtnWrapper.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            e.stopPropagation();
+            if (modalUrl) {
+              openModal(modalUrl);
+            }
+          }
+        });
       }
     }
 
@@ -59,29 +80,16 @@ export default function decorate(block) {
     row.addEventListener('mouseenter', activateItem);
     row.addEventListener('focus', activateItem);
 
-    // Click handler for opening the modal on the entire item
+    // Click handler for the row now ONLY activates the item (e.g., on mobile/touch)
     row.addEventListener('click', () => {
-      const isExpanded = row.getAttribute('aria-expanded') === 'true';
-
-      if (isExpanded && modalUrl) {
-        openModal(modalUrl);
-      } else {
-        // If clicked while collapsed (e.g., on touch/mobile devices), expand it first
-        activateItem();
-      }
+      activateItem();
     });
 
-    // Keyboard support: Pressing Enter or Space opens modal when expanded
+    // Keyboard support: Pressing Enter or Space on the row ONLY activates it
     row.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        const isExpanded = row.getAttribute('aria-expanded') === 'true';
-
-        if (isExpanded && modalUrl) {
-          openModal(modalUrl);
-        } else {
-          activateItem();
-        }
+        activateItem();
       }
     });
   });

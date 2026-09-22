@@ -8,6 +8,11 @@
     margin: 0;
 }
 
+main>.section.fragment-container {
+    margin: 0;
+
+}
+
 .subnav.rte ul {
     display: flex;
     gap: 16px;
