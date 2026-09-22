@@ -197,7 +197,7 @@
 }
 
 .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards-card-image p:first-child {
-    padding: 16px 0;
+    padding: 12px 0;
     padding-bottom: 0;
 }
 
@@ -405,7 +405,7 @@
     }
 
     .find-a-plan.tabs-container .default-content-wrapper:last-child a {
-        padding: 11px 24px;
+        padding: 10.2px 16.3px;
         font-size: var(--font-size-button-1, 16px);
         line-height: var(--line-height-body-1, 18px);
     }
@@ -545,6 +545,7 @@
         border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
         background: var(--background-bg-tertiary, #F5F5F5);
         min-height: 46px;
+        width: 69.19%;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-list .tabs-tab {
