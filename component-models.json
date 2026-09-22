@@ -295,6 +295,10 @@
                 "value": "white-nav"
               }
             ]
+          },
+          {
+            "name": "Breadcrumb Pos",
+            "value": "breadcrumb-pos"
           }
         ]
       }
