@@ -46,7 +46,7 @@
   font-weight: 600;
   line-height: 1.15;
   color: #181d27;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .profile-cta>div:nth-child(2) p {
@@ -249,7 +249,7 @@
   }
 
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
-    width: 92%;
+    width: 96%;
     justify-self: center;
   }
 
@@ -280,6 +280,8 @@
     font-weight: 600;
     line-height: var(--line-height-heading-3, 36px);
     letter-spacing: -0.64px;
+    margin-bottom: 4px;
+
   }
 
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(2) p:first-of-type {
