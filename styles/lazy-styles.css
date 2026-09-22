@@ -432,7 +432,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 @media (width >=900px) {
   .visual-pulse.section {
-    padding-top: 48px;
+    padding-top: 23px;
   }
 
   .visual-pulse.section .default-content-wrapper {
