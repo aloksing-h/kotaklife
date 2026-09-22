@@ -56,19 +56,6 @@
               "value": "dsp-none"
             },
             {
-              "name": "Header Varient",
-              "children": [
-                {
-                  "name": "Grey Header",
-                  "value": "grey-nav"
-                },
-                {
-                  "name": "White Header",
-                  "value": "white-nav"
-                }
-              ]
-            },
-            {
               "name": "Footer Mobile Accordion Only",
               "value": "mob-accordion"
             },
@@ -191,6 +178,31 @@
             {
               "name": "Our Leadership",
               "value": "leadership"
+            },
+            {
+              "name":"Background White",
+              "value":"bg-white"
+            },
+            {
+              "name": "test cls",
+              "value": "test-cls"
+            },
+            {
+              "name": "ABCD",
+              "value": "abcd"
+            },
+            {
+              "name": "Header Varient",
+              "children": [
+                {
+                  "name": "Grey Header",
+                  "value": "grey-nav"
+                },
+                {
+                  "name": "White Header",
+                  "value": "white-nav"
+                }
+              ]
             }
           ]
         }

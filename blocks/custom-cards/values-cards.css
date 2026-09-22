@@ -234,6 +234,14 @@
   opacity: 0;
 }
 
+.values-cards-hover .swiper-wrapper{
+  justify-content: flex-start !important;
+}
+
+.values-cards-hover .swiper-slide{
+  transform-origin: center !important;
+}
+
 /* Move Title (h4) to Top */
 .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
   bottom: auto;
