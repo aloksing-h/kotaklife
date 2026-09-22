@@ -250,7 +250,7 @@
         line-height: var(--line-height-caption, 14px);
     }
 
-    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:last-of-type a {
+    .modal.desk-hamburger dialog .default-content-wrapper>ul:nth-child(n) li:last-of-type a:nth-child(n) {
         border-radius: var(--radius-full, 999px);
         background: var(--background-bg-primary, #FFF);
         padding: 4px 4px 4px 16px;
