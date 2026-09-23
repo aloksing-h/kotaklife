@@ -109,7 +109,7 @@ function validateEmail(value) {
  * @returns {string}
  */
 function sanitizeMobile(raw) {
-  return raw.replace(/\D/g, '').slice(0, MOBILE_LENGTH);
+  return raw.replace(/\D/g, '').replace(/^[0-5]+/, '').slice(0, MOBILE_LENGTH);
 }
 
 /**
@@ -233,29 +233,29 @@ function loadFlatpickr() {
 async function initializeDatePicker(input) {
   try {
     const flatpickr = await loadFlatpickr();
-    const dateFieldWrapper = input.closest('.date-field'); // Targets <div class="form-field date-field">
+    const dateFieldWrapper = input.closest('.date-field');
 
-const instance = flatpickr(input, {
-  dateFormat: 'Y-m-d',
-  altInput: true,
-  altFormat: 'm/d/Y',
-  locale: { 
-    firstDayOfWeek: 1, // Week starts on Monday
-    weekdays: {
-      shorthand: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-      longhand: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    }
-  },
-  minDate: input.min,
-  maxDate: input.max,
-  disableMobile: true,
-  allowInput: false,
-  static: true,
-  appendTo: dateFieldWrapper,
-  onChange: () => {
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-  },
-});
+    const instance = flatpickr(input, {
+      dateFormat: 'Y-m-d',
+      altInput: true,
+      altFormat: 'd-m-Y',
+      locale: {
+        firstDayOfWeek: 1,
+        weekdays: {
+          shorthand: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+          longhand: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        },
+      },
+      minDate: input.min,
+      maxDate: input.max,
+      disableMobile: true,
+      allowInput: false,
+      static: true,
+      appendTo: dateFieldWrapper,
+      onChange: () => {
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      },
+    });
 
     const currentMonthElement = instance.calendarContainer.querySelector('.flatpickr-current-month');
     if (!currentMonthElement) return;
@@ -421,6 +421,10 @@ export default async function decorate(block) {
     const sanitized = sanitizeEmail(emailInput.value);
     if (sanitized !== emailInput.value) emailInput.value = sanitized;
     setFieldError(emailWrapper, emailInput, validateEmail(sanitized));
+  });
+
+  emailInput.addEventListener('beforeinput', (event) => {
+    if (event.data && /\s/.test(event.data)) event.preventDefault();
   });
 
   dobInput.addEventListener('input', () => {
