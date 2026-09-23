@@ -709,3 +709,36 @@ export default function decorate(block) {
     block.parentElement.remove();
   }
 }
+
+export async function loadForm(block) {
+  if (block.dataset.formStatus === 'loaded') {
+    return null;
+  }
+
+  const [source, submit] = [...block.querySelectorAll('a[href]')].map(
+    (a) => a.href,
+  );
+
+  if (!source) {
+    // eslint-disable-next-line no-console
+    console.error('Unable to create form without source');
+    block.parentElement.remove();
+    return null;
+  }
+
+  try {
+    const resp = await fetch(new URL(source, window.location.origin));
+    if (!resp.ok) throw new Error(`${resp.status}: ${resp.statusText}`);
+    const { data } = await resp.json();
+    if (!data) throw new Error(`No form fields at ${source}`);
+    const form = buildForm(data, submit);
+    block.replaceChildren(form);
+    block.removeAttribute('style');
+    return form;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Could not build form from', source, error);
+    block.parentElement.remove();
+    return null;
+  }
+}
