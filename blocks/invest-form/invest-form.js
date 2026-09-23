@@ -466,12 +466,12 @@ export default async function decorate(block) {
   ];
 
   const refreshSubmitState = () => {
-    const isComplete = nameInput.value.trim()
-      && mobileInput.value.trim()
-      && emailInput.value.trim()
-      && dobInput.value.trim()
-      && consentInput.checked;
-    submitButton.disabled = !isComplete;
+    const fieldsAreValid = !validateName(nameInput.value)
+      && !validateMobile(mobileInput.value)
+      && !validateEmail(emailInput.value)
+      && !validateDob(dobInput.value)
+      && !validateConsent(consentInput.checked);
+    submitButton.disabled = !fieldsAreValid;
   };
 
   form.addEventListener('input', refreshSubmitState);
