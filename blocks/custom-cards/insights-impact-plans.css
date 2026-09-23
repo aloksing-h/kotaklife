@@ -325,6 +325,10 @@
         background-color: #fff;
     }
 
+    .insights-impact-plans .custom-cards .swiper-pagination {
+        display: none;
+    }
+
     /* Top Header Layout (Title + Subtitle) */
     .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
     .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {

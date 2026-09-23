@@ -375,7 +375,8 @@
 
 @media (width >=769px) {
     .get-cover-plans.section {
-        padding: 50px;
+        padding: 0 50px;
+        margin-block: 50px;
     }
 }
 
@@ -459,7 +460,7 @@
     }
 
     .get-cover-plans .promotion .plan-pagination {
-        margin-top: 16px;
+        margin-top: 13px;
         margin-left: 40px;
     }
 

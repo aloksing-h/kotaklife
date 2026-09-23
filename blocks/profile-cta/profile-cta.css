@@ -110,10 +110,10 @@
   background-size: 18px;
 }
 
-.profile-cta>div:nth-child(3) a:hover,
+/* .profile-cta>div:nth-child(3) a:hover,
 .profile-cta>div:nth-child(3) a:focus-visible {
   background-color: #b70e24;
-}
+} */
 
 .profile-cta>div:nth-child(3) a:focus-visible {
   outline: 2px solid #181d27;
@@ -338,6 +338,7 @@
     max-width: 100%;
     width: 70%;
     margin-left: auto;
+    margin-bottom: 11px;
   }
 
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
@@ -348,6 +349,8 @@
 @media (width <=767px) {
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
     width: 100%;
+    margin-bottom: 15px;
+    min-height: 240px;
   }
 
   .life-advisor.profile-cta-container .profile-cta-wrapper {
