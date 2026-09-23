@@ -99,7 +99,7 @@ function sanitizeEmail(raw) {
 function validateEmail(value) {
   const trimmed = value.trim();
   if (!trimmed) return 'Please enter valid email';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return 'Please enter valid email';
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmed)) return 'Please enter valid email';
   return '';
 }
 
@@ -191,6 +191,142 @@ function ensureAttr(el, attr, value) {
   if (el && !el.hasAttribute(attr)) el.setAttribute(attr, value);
 }
 
+let flatpickrPromise;
+
+/**
+ * Loads the bundled Flatpickr assets once
+ * @returns {Promise<Function>}
+ */
+function loadFlatpickr() {
+  if (typeof window.flatpickr === 'function') return Promise.resolve(window.flatpickr);
+  if (flatpickrPromise) return flatpickrPromise;
+
+  const basePath = window.hlx?.codeBasePath || '';
+  flatpickrPromise = new Promise((resolve, reject) => {
+    const stylesheetId = 'flatpickr-styles';
+    if (!document.getElementById(stylesheetId)) {
+      const stylesheet = document.createElement('link');
+      stylesheet.id = stylesheetId;
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = `${basePath}/styles/flatpickr.min.css`;
+      document.head.append(stylesheet);
+    }
+
+    const script = document.createElement('script');
+    script.src = `${basePath}/scripts/flatpickr.min.js`;
+    script.onload = () => {
+      if (typeof window.flatpickr === 'function') resolve(window.flatpickr);
+      else reject(new Error('Flatpickr did not load'));
+    };
+    script.onerror = () => reject(new Error('Unable to load Flatpickr'));
+    document.head.append(script);
+  });
+
+  return flatpickrPromise;
+}
+
+/**
+ * Initializes Flatpickr on the authored date input
+ * @param {HTMLInputElement} input
+ * @returns {Promise<void>}
+ */
+async function initializeDatePicker(input) {
+  try {
+    const flatpickr = await loadFlatpickr();
+    const dateFieldWrapper = input.closest('.date-field'); // Targets <div class="form-field date-field">
+
+const instance = flatpickr(input, {
+  dateFormat: 'Y-m-d',
+  altInput: true,
+  altFormat: 'm/d/Y',
+  locale: { 
+    firstDayOfWeek: 1, // Week starts on Monday
+    weekdays: {
+      shorthand: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+      longhand: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    }
+  },
+  minDate: input.min,
+  maxDate: input.max,
+  disableMobile: true,
+  allowInput: false,
+  static: true,
+  appendTo: dateFieldWrapper,
+  onChange: () => {
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  },
+});
+
+    const currentMonthElement = instance.calendarContainer.querySelector('.flatpickr-current-month');
+    if (!currentMonthElement) return;
+
+    // Build Custom Month Dropdown Select
+    const monthSelect = document.createElement('select');
+    monthSelect.className = 'custom-header-select custom-month-select';
+    monthSelect.setAttribute('aria-label', 'Month');
+    instance.l10n.months.longhand.forEach((month, monthIndex) => {
+      const option = document.createElement('option');
+      option.value = String(monthIndex);
+      option.textContent = month;
+      monthSelect.append(option);
+    });
+
+    // Build Custom Year Dropdown Select
+    const yearSelect = document.createElement('select');
+    yearSelect.className = 'custom-header-select custom-year-select';
+    yearSelect.setAttribute('aria-label', 'Year');
+    const startYear = instance.config.minDate
+      ? instance.config.minDate.getFullYear() : new Date(input.min).getFullYear();
+    const endYear = instance.config.maxDate
+      ? instance.config.maxDate.getFullYear() : new Date(input.max).getFullYear();
+    for (let year = endYear; year >= startYear; year -= 1) {
+      const option = document.createElement('option');
+      option.value = String(year);
+      option.textContent = String(year);
+      yearSelect.append(option);
+    }
+
+    // Month & Year Change Events
+    monthSelect.addEventListener('change', (event) => {
+      event.stopPropagation();
+      const targetMonth = Number(event.target.value);
+      instance.changeMonth(targetMonth - instance.currentMonth, false);
+    });
+
+    yearSelect.addEventListener('change', (event) => {
+      event.stopPropagation();
+      instance.changeYear(Number(event.target.value));
+    });
+
+    const updateHeaderDropdowns = () => {
+      monthSelect.value = String(instance.currentMonth);
+      yearSelect.value = String(instance.currentYear);
+    };
+
+    instance.config.onMonthChange.push(updateHeaderDropdowns);
+    instance.config.onYearChange.push(updateHeaderDropdowns);
+
+    currentMonthElement.querySelector('.flatpickr-monthDropdown-months')?.remove();
+    currentMonthElement.querySelector('.numInputWrapper')?.remove();
+    currentMonthElement.append(monthSelect, yearSelect);
+    updateHeaderDropdowns();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('[invest-form] date picker failed to load', error);
+  }
+}
+
+/**
+ * Converts a YYYY-MM-DD date string to DD-MM-YYYY format
+ * @param {string} isoDateStr - Date in YYYY-MM-DD format (e.g. "2008-09-04")
+ * @returns {string} Date in DD-MM-YYYY format (e.g. "04-09-2008")
+ */
+function formatDateToDDMMYYYY(isoDateStr) {
+  if (!isoDateStr) return '';
+  const [year, month, day] = isoDateStr.split('-');
+  return `${day}-${month}-${year}`;
+}
+
 /**
  * Simulates a lead submission call. Posts to the authored form URL if present,
  * otherwise falls back to a dummy resolved response for FE-only testing.
@@ -252,6 +388,7 @@ export default async function decorate(block) {
   ensureAttr(consentInput, 'required', '');
 
   applyDobRange(dobInput);
+  initializeDatePicker(dobInput);
 
   const nameWrapper = nameInput.closest('.form-field');
   const mobileWrapper = mobileInput.closest('.form-field');
@@ -288,12 +425,6 @@ export default async function decorate(block) {
 
   dobInput.addEventListener('input', () => {
     setFieldError(dobWrapper, dobInput, validateDob(dobInput.value));
-  });
-
-  dobInput.addEventListener('click', () => {
-    if (typeof dobInput.showPicker === 'function') {
-      dobInput.showPicker();
-    }
   });
 
   consentInput.addEventListener('change', () => {
@@ -358,28 +489,19 @@ export default async function decorate(block) {
       lastName,
       mobile: mobileInput.value,
       email: emailInput.value.trim(),
-      dob: dobInput.value,
+      dob: formatDateToDDMMYYYY(dobInput.value),
       consent: consentInput.checked,
     };
 
-    console.log('payload', payload);
-l    // submitButton.disabled = true;
-    // const success = await submitLead(submitUrl, payload);
-    // if (success) {
-    //   form.replaceChildren();
-    //   const successMessage = createElement('p', 'form-success-message');
-    //   successMessage.textContent = 'Thank you! Our expert will get in touch with you shortly.';
-    //   form.append(successMessage);
-    // } else {
-    //   refreshSubmitState();
-    // }tLead(submitUrl, payload);
-    // if (success) {
-    //   form.replaceChildren();
-    //   const successMessage = createElement('p', 'form-success-message');
-    //   successMessage.textContent = 'Thank you! Our expert will get in touch with you shortly.';
-    //   form.append(successMessage);
-    // } else {
-    //   refreshSubmitState();
-    // }
+    submitButton.disabled = true;
+    const success = await submitLead(form.dataset.action || '', payload);
+    if (success) {
+      form.replaceChildren();
+      const successMessage = createElement('p', 'form-success-message');
+      successMessage.textContent = 'Thank you! Our expert will get in touch with you shortly.';
+      form.append(successMessage);
+    } else {
+      refreshSubmitState();
+    }
   });
 }
