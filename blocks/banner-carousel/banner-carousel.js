@@ -24,19 +24,23 @@ function createSlide(row, index, id) {
   slide.setAttribute('role', 'group');
   moveInstrumentation(row, slide);
 
-  const fields = [...row.children];
-  const desktopImage = getRowContent(fields[0]);
-  const desktopAlt = getRowValue(fields[1]);
-  const mobileImage = getRowContent(fields[2]);
-  const mobileAlt = getRowValue(fields[3]);
-  const tag = getRowValue(fields[4]);
-  const title = createTextElement(fields[5], 'banner-carousel-title');
-  const cta = getRowContent(fields[6]);
-  const ctaText = getRowValue(fields[7]);
-  const ctaIcon = getRowContent(fields[8]);
-  const description = createTextElement(fields[9], 'banner-carousel-description');
-  const rateOne = getRowContent(fields[10]);
-  const rateTwo = getRowContent(fields[11]);
+  const [col1, col2] = [...row.children];
+  const col1Fields = [...(col1?.children || [])];
+  const col2Fields = [...(col2?.children || [])];
+
+  const desktopImage = getRowContent(col1Fields[0]);
+  const desktopAlt = getRowValue(col1Fields[1]);
+  const mobileImage = getRowContent(col1Fields[2]);
+  const mobileAlt = getRowValue(col1Fields[3]);
+  const rateOne = getRowContent(col1Fields[4]);
+  const rateTwo = getRowContent(col1Fields[5]);
+
+  const tag = getRowValue(col2Fields[0]);
+  const title = createTextElement(col2Fields[1], 'banner-carousel-title');
+  const cta = getRowContent(col2Fields[2]);
+  const ctaText = getRowValue(col2Fields[3]);
+  const ctaIcon = getRowContent(col2Fields[4]);
+  const description = createTextElement(col2Fields[5], 'banner-carousel-description');
   const content = document.createElement('div');
   content.className = 'banner-carousel-content';
 
