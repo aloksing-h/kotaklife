@@ -9,6 +9,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  createOptimizedPicture,
 } from './aem.js';
 
 /**
@@ -257,6 +258,43 @@ function decorateHeroBanner(main) {
 }
 
 /**
+ * Renders section-metadata background images (desktopImage/mobileImage) as a
+ * full-bleed background layer behind the section's content, so a section can
+ * act like an EDS hero banner without needing a dedicated block.
+ * @param {Element} main The main element
+ */
+function decorateSectionBackgrounds(main) {
+  main.querySelectorAll(':scope > .section').forEach((section) => {
+    const {
+      desktopImage, desktopImageAlt, mobileImage, mobileImageAlt,
+    } = section.dataset;
+    if (!desktopImage && !mobileImage) return;
+
+    const background = document.createElement('div');
+    background.className = 'section-background';
+
+    if (desktopImage) {
+      const desktopPicture = createOptimizedPicture(desktopImage, desktopImageAlt || '', false, [{ width: '2000' }]);
+      desktopPicture.className = 'section-background-image section-background-image-desktop';
+      background.append(desktopPicture);
+    }
+    if (mobileImage) {
+      const mobilePicture = createOptimizedPicture(mobileImage, mobileImageAlt || desktopImageAlt || '', false, [{ width: '750' }]);
+      mobilePicture.className = 'section-background-image section-background-image-mobile';
+      background.append(mobilePicture);
+    }
+
+    section.prepend(background);
+    section.classList.add('section-has-background');
+
+    delete section.dataset.desktopImage;
+    delete section.dataset.desktopImageAlt;
+    delete section.dataset.mobileImage;
+    delete section.dataset.mobileImageAlt;
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -265,6 +303,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionBackgrounds(main);
   decorateBlocks(main);
   decorateButtons(main);
   decorateHeroBanner(main);

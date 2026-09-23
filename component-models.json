@@ -279,6 +279,56 @@
             "value": "leadership"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "Section ID",
+        "description": "The ID used for this section in the Content Tree"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "description": "The style(s) applied to this section for BG colors",
+        "options": [
+          {
+            "name": "Bg Green",
+            "value": "bg-color-green"
+          },
+          {
+            "name": "Bg Red",
+            "value": "bg-color-red"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktopImage",
+        "label": "Desktop BG Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "desktopImageAlt",
+        "label": "Desktop BG Image Alt",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileImage",
+        "label": "Mobile BG Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "mobileImageAlt",
+        "label": "Mobile BG Image Alt",
+        "value": ""
       }
     ]
   },
