@@ -712,11 +712,11 @@ export default function decorate(block) {
 
 export async function loadForm(block) {
   if (block.dataset.formStatus === 'loaded') {
-    return null;      
+    return null;
   }
 
   const [source, submit] = [...block.querySelectorAll('a[href]')].map(
-    a => a.href,
+    (a) => a.href,
   );
 
   if (!source) {
