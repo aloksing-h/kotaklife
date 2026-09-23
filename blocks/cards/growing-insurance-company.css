@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .growing-insurance-company.section {
-    padding: 32px 0 40px;
+    padding: 11px 0 40px;
     background-color: #fff;
     position: relative;
 }
@@ -400,7 +400,6 @@
     grid-row: 3 / 4;
     background: linear-gradient(180deg, #a71930 0%, #e31837 100%);
     flex-direction: column;
-    justify-content: space-between;
     padding: 18px;
     color: #fff;
 }
@@ -431,7 +430,7 @@
 }
 
 .growing-insurance-company .cards>ul>li:nth-child(4) .cards-card-image {
-    margin-top: auto;
+    /* margin-top: auto; */
     align-self: flex-end;
     width: 100%;
     line-height: 0;
@@ -453,7 +452,7 @@
 
 @media (width >=900px) {
     .growing-insurance-company.section {
-       padding: 24px 0;
+       padding: 0;
     }
 
     .growing-insurance-company {
@@ -470,7 +469,7 @@
         align-items: center;
         gap: 8px 24px;
         max-width: 1200px !important;
-        margin: 0 auto 50px !important;
+        margin: 0 auto 80px !important;
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -612,7 +611,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 4px 4px 4px 20px;
+    padding: 4px 4px 4px 21px;
     border: 1px solid #e1122d;
     border-radius: 999px;
     color: #e1122d;
@@ -648,7 +647,7 @@
     margin: 0;
     display: grid;
     gap: 6px;
-    grid-template-columns: 1.5fr 0.94fr 1.11fr;
+    grid-template-columns: 1.5fr 0.94fr 1.127fr;
     grid-template-rows: auto;
     column-gap: 12px;
 }
@@ -782,8 +781,8 @@
 
     .growing-insurance-company .cards-wrapper ul {
         grid-template-columns: 0.97fr 0.94fr;
-        grid-template-rows: auto;
-        gap: 9px;
+        grid-template-rows: auto 1fr 1fr;
+        gap: 12px;
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(1) {
@@ -942,4 +941,10 @@ line-height: 14px;
 /* Assign siblings to grid areas */
 .growing-insurance-company .default-content-wrapper > h3 {
   grid-area: title;
+}
+
+@media (width >= 700px) and (width <= 767px) {
+    .growing-insurance-company {
+      gap: 80px;
+    }
 }

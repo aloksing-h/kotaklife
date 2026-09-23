@@ -595,6 +595,7 @@
     .find-a-plan.tabs-container .default-content-wrapper h6 strong {
         font-size: 48px;
         line-height: 60px;
+        display: inline-block;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li:hover .custom-cards-card-image {

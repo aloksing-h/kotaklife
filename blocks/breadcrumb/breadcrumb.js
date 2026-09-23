@@ -43,6 +43,29 @@ const createLink = (path) => {
   return pathLink;
 };
 
+const moveBreadcrumbToBanner = (block) => {
+  const breadcrumbContainer = block.closest('main .breadcrumb-container');
+  if (!breadcrumbContainer) return;
+
+  const bannerSection = document.querySelector(
+    'main > .section:has(.banner-v2), main > .section:has(.banner)',
+  );
+  if (!bannerSection) return;
+
+  bannerSection.classList.add('breadcrumb-pos');
+  const breadcrumbContainers = [...bannerSection.querySelectorAll('.breadcrumb-container')];
+  const firstContainer = breadcrumbContainers[0];
+
+  if (firstContainer && firstContainer !== breadcrumbContainer) {
+    firstContainer.replaceChildren(...breadcrumbContainer.childNodes);
+    breadcrumbContainer.remove();
+  } else if (!firstContainer) {
+    bannerSection.append(breadcrumbContainer);
+  }
+
+  breadcrumbContainers.slice(1).forEach((container) => container.remove());
+};
+
 export default async function decorate(block) {
   const breadcrumb = document.createElement('nav', '', {
     'aria-label': 'Breadcrumb',
@@ -56,36 +79,17 @@ export default async function decorate(block) {
   });
   const breadcrumbLinks = [HomeLink.outerHTML];
 
-  window.setTimeout(async () => {
-    const path = window.location.pathname;
-    const paths = await getAllPathsExceptCurrent(path);
+  const path = window.location.pathname;
+  const paths = await getAllPathsExceptCurrent(path);
 
-    paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
-    const currentPath = document.createElement('span');
-    currentPath.innerText = document.querySelector('title').innerText;
-    breadcrumbLinks.push(currentPath.outerHTML);
+  paths.forEach((pathPart) => breadcrumbLinks.push(createLink(pathPart).outerHTML));
+  const currentPath = document.createElement('span');
+  currentPath.innerText = document.querySelector('title').innerText;
+  breadcrumbLinks.push(currentPath.outerHTML);
 
-    breadcrumb.innerHTML = breadcrumbLinks.join(
-      '<span class="breadcrumb-separator">/</span>',
-    );
-    block.append(breadcrumb);
-  }, 1000);
-
-  if (window.location.pathname.includes('about-us/why-kotak')) {
-    block.classList.add('about-us');
-    const breadcrumbContainer = block.closest('.breadcrumb-container');
-    const bannerContainer = document.querySelector('.banner-v2-container');
-
-    if (breadcrumbContainer && bannerContainer) {
-      // 1. Check if the banner already contains THIS exact breadcrumb
-      if (!bannerContainer.contains(breadcrumbContainer)) {
-        // 2. Remove any old leftover breadcrumbs inside the banner (fixes the HMR stacking issue)
-        const existingBreadcrumbs = bannerContainer.querySelectorAll('.breadcrumb-container');
-        existingBreadcrumbs.forEach((existing) => existing.remove());
-
-        // 3. Append the fresh breadcrumb
-        bannerContainer.appendChild(breadcrumbContainer);
-      }
-    }
-  }
+  breadcrumb.innerHTML = breadcrumbLinks.join(
+    '<span class="breadcrumb-separator">/</span>',
+  );
+  block.append(breadcrumb);
+  moveBreadcrumbToBanner(block);
 }
