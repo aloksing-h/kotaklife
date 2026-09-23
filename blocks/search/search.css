@@ -298,10 +298,11 @@
    ========================================================================== */
 .looking-for .search-wrapper {
   position: relative;
-  display: flex;
+  display: flex;  
   max-width: 720px;
   /* padding: var(--spacing-md, 8px) var(--spacing-lg, 12px); */
   align-items: center;
+  padding: 0 20px;
   /* gap: var(--spacing-lg, 12px);
     border-radius: var(--radius-full, 999px);
     border: 2px solid #FD8A99;
