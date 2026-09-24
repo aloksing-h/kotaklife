@@ -85,18 +85,6 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "jcr:title",
-          "label": "Page Title"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "jcr:description",
-          "label": "Page Description"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
           "name": "subtitle",
           "label": "Subtitle"
         },
