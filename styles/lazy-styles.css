@@ -27,7 +27,24 @@
   margin-bottom: 0;
 }
 
+.bookmark-section.section .default-content-wrapper:has(#also-read) ul {
+  list-style: none;
+  padding: 0;
+}
 
+.bookmark-section.section .default-content-wrapper:has(#also-read) ul li{
+  padding: 20px 0;
+  border-bottom: 1px solid black;
+}
+.bookmark-section.section .default-content-wrapper:has(#also-read) ul li a{
+  font-size: 16px;
+    color: #1e4679;
+    text-decoration: underline;
+}
+    
+.bookmark-section.section .default-content-wrapper:has(#also-read) ul li:last-child{
+  border-bottom: 0;
+}
 /* =========================================
    2. DESKTOP LAYOUT (900px and up)
    Shifts the middle sections into columns.
