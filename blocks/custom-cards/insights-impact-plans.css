@@ -430,7 +430,9 @@
     .insights-impact-plans .custom-cards>ul>li {
         padding: 24px;
         min-height: 334px;
-        border-radius: 20px;
+
+        /* border-radius: 20px; */
+        border-radius: var(--radius-md, 8px);
     }
 
     /* Card Title */

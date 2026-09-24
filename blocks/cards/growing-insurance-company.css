@@ -175,11 +175,12 @@
     box-sizing: border-box;
 }
 
-.growing-insurance-company .cards>ul>li:hover {
-    transform: translateY(-4px);
+/* .growing-insurance-company .cards>ul>li:hover {
+    transform: translateY(-4px); */
 
     /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
-}
+    
+/* } */
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(3) p {
     color: #475467;

@@ -447,7 +447,8 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 @media (width >=900px) {
   .visual-pulse.section {
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    padding-top: 22px;
   }
 
   .visual-pulse.bg-white.section{
