@@ -519,3 +519,17 @@
         line-height: 24px;
     }
 }
+
+/* Targets Desktop Safari (Width >= 768px) */
+@supports (hanging-punctuation: first) and (font: -apple-system-body) and (-webkit-appearance: none) {
+  @media (width >= 768px) {
+    .insights-impact-plans .custom-cards > ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+  }
+}
