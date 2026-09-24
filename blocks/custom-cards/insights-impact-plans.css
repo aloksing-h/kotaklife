@@ -61,7 +61,8 @@
     margin: 0 !important;
     transition: all 0.3s ease;
     border-radius: var(--radius-full, 999px);
-    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    
+    /* border: 1px solid var(--foreground-fg-quaternary, #A4A7AE); */
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {

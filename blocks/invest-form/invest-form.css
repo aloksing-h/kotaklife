@@ -135,10 +135,14 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
     color: var(--text-text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
-    font-size: var(--font-size-body-2, 14px);
+
+    /* font-size: var(--font-size-body-2, 14px); */
+    font-size: var(--font-size-body-2, 16px);
     font-style: normal;
     font-weight: 500;
-    line-height: var(--line-height-body-1, 18px);
+
+    /* line-height: var(--line-height-body-1, 18px); */
+    line-height: var(--line-height-body-1, 20px);
     margin: 0;
     padding: 4px 0 35px;
 }
@@ -166,7 +170,9 @@
     content: "";
     width: 3px;
     height: 15px;
-    background-color: #E1122D;
+
+    /* background-color: #E1122D; */
+    background-color: #FA1432;
     border-radius: 0;
     transform: skewY(-20deg);
     transform-origin: center;
@@ -305,6 +311,7 @@
     align-items: center;
     border-radius: var(--radius-full, 999px);
     background: #E1122D;
+    margin-bottom: 6px;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
