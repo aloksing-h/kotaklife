@@ -23,24 +23,59 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "image",
+          "name": "col1_bgimage",
           "label": "Image",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "imageAlt",
+          "name": "col1_bgimageAlt",
+          "label": "Alt",
+          "value": ""
+        },
+         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "col1_bgMbimage",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_bgMbimageAlt",
           "label": "Alt",
           "value": ""
         },
         {
           "component": "richtext",
-          "name": "text",
+          "name": "col1_text",
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "col1_text_others",
+          "value": "",
+          "label": "Text",
+          "valueType": "string",
+          "description": "Additional text for T&C , mins required , name , description, Title"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "col1_ButtonLink",
+          "label": "Button"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_ButtonLinkText",
+          "label": "Button"
         }
+        
       ]
     }
   ],

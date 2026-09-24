@@ -1,0 +1,733 @@
+/**
+ * Typography design tokens
+ * ---------------------------------------------------------------------------
+ * Generated from the Kotak Web Design System 1.0 Figma file (Typography specs).
+ * Mobile-first: base values below are for Mobile (<475px); each breakpoint
+ * below overrides font-size, line-height, and letter-spacing for that range
+ * using min-width range media queries (width >= …), matching this project's
+ * existing media query convention (see styles.css).
+ * font-size and line-height are expressed in rem (1rem = 16px base).
+ * letter-spacing is expressed in em (Figma's percentage value / 100).
+ *
+ * Breakpoints:
+ *   Mobile:  default (< 476px)
+ *   Tablet:  >= 476px  (up to 1023px)
+ *   Laptop:  >= 1366px (up to 1919px)
+ *   Desktop: >= 1920px (up to 2559px)
+ *
+ * Do not hand-edit values here without updating the source of truth in
+ * Figma first — regenerate this file when tokens change upstream.
+ *
+ * Usage: reference tokens with var(--type-{category}-{token}-{property})
+ * in block/component CSS, e.g. font-size: var(--type-headline-h1-font-size);
+ */
+
+:root {
+  /* Display */
+  --type-display-df-1-medium-font-size: 2rem;
+  --type-display-df-1-medium-line-height: 2.5rem;
+  --type-display-df-1-medium-letter-spacing: -0.025em;
+  --type-display-df-1-medium-font-weight: 500;
+  --type-display-df-1-semibold-font-size: 2rem;
+  --type-display-df-1-semibold-line-height: 2.75rem;
+  --type-display-df-1-semibold-letter-spacing: -0.025em;
+  --type-display-df-1-semibold-font-weight: 600;
+  --type-display-df-2-medium-font-size: 1.75rem;
+  --type-display-df-2-medium-line-height: 2.25rem;
+  --type-display-df-2-medium-letter-spacing: 0;
+  --type-display-df-2-medium-font-weight: 500;
+  --type-display-df-2-semibold-font-size: 1.75rem;
+  --type-display-df-2-semibold-line-height: 2.25rem;
+  --type-display-df-2-semibold-letter-spacing: 0;
+  --type-display-df-2-semibold-font-weight: 600;
+
+  /* Headline */
+  --type-headline-h1-font-size: 0.625rem;
+  --type-headline-h1-line-height: 1rem;
+  --type-headline-h1-letter-spacing: 0;
+  --type-headline-h1-font-weight: 600;
+  --type-headline-h2-font-size: 0.75rem;
+  --type-headline-h2-line-height: 1.125rem;
+  --type-headline-h2-letter-spacing: 0;
+  --type-headline-h2-font-weight: 600;
+  --type-headline-h3-font-size: 0.875rem;
+  --type-headline-h3-line-height: 1.25rem;
+  --type-headline-h3-letter-spacing: 0;
+  --type-headline-h3-font-weight: 600;
+  --type-headline-h4-font-size: 1rem;
+  --type-headline-h4-line-height: 1.5rem;
+  --type-headline-h4-letter-spacing: 0;
+  --type-headline-h4-font-weight: 600;
+  --type-headline-h5-font-size: 1.25rem;
+  --type-headline-h5-line-height: 1.75rem;
+  --type-headline-h5-letter-spacing: 0;
+  --type-headline-h5-font-weight: 600;
+  --type-headline-h6-font-size: 1.5rem;
+  --type-headline-h6-line-height: 2rem;
+  --type-headline-h6-letter-spacing: 0;
+  --type-headline-h6-font-weight: 600;
+  --type-headline-h7-font-size: 1.75rem;
+  --type-headline-h7-line-height: 2.25rem;
+  --type-headline-h7-letter-spacing: -0.02em;
+  --type-headline-h7-font-weight: 600;
+
+  /* Body */
+  --type-body-b1-font-size: 0.75rem;
+  --type-body-b1-line-height: 1rem;
+  --type-body-b1-letter-spacing: 0.02em;
+  --type-body-b1-font-weight: 500;
+  --type-body-b2-font-size: 0.875rem;
+  --type-body-b2-line-height: 1.25rem;
+  --type-body-b2-letter-spacing: 0;
+  --type-body-b2-font-weight: 500;
+  --type-body-b3-font-size: 1rem;
+  --type-body-b3-line-height: 1.5rem;
+  --type-body-b3-letter-spacing: 0;
+  --type-body-b3-font-weight: 500;
+  --type-body-b4-font-size: 1.25rem;
+  --type-body-b4-line-height: 1.75rem;
+  --type-body-b4-letter-spacing: 0;
+  --type-body-b4-font-weight: 500;
+  --type-body-b5-font-size: 1.5rem;
+  --type-body-b5-line-height: 2rem;
+  --type-body-b5-letter-spacing: 0;
+  --type-body-b5-font-weight: 500;
+  --type-body-b6-font-size: 1.75rem;
+  --type-body-b6-line-height: 2.25rem;
+  --type-body-b6-letter-spacing: 0;
+  --type-body-b6-font-weight: 500;
+
+  /* Section Title */
+  --type-section-title-md-font-size: 0.875rem;
+  --type-section-title-md-line-height: 1rem;
+  --type-section-title-md-letter-spacing: 0.145em;
+  --type-section-title-md-font-weight: 600;
+  --type-section-title-sm-font-size: 0.75rem;
+  --type-section-title-sm-line-height: 1rem;
+  --type-section-title-sm-letter-spacing: 0.165em;
+  --type-section-title-sm-font-weight: 600;
+
+  /* Button */
+  --type-button-bt-1-font-size: 0.75rem;
+  --type-button-bt-1-line-height: 1rem;
+  --type-button-bt-1-letter-spacing: 0;
+  --type-button-bt-1-font-weight: 600;
+  --type-button-bt-2-font-size: 0.875rem;
+  --type-button-bt-2-line-height: 1.25rem;
+  --type-button-bt-2-letter-spacing: 0;
+  --type-button-bt-2-font-weight: 600;
+  --type-button-bt-3-font-size: 1rem;
+  --type-button-bt-3-line-height: 1.5rem;
+  --type-button-bt-3-letter-spacing: 0;
+  --type-button-bt-3-font-weight: 600;
+
+  /* Link Button */
+  --type-link-l1-font-size: 0.75rem;
+  --type-link-l1-line-height: 1.125rem;
+  --type-link-l1-letter-spacing: 0.02em;
+  --type-link-l1-font-weight: 600;
+  --type-link-l2-font-size: 0.875rem;
+  --type-link-l2-line-height: 1.25rem;
+  --type-link-l2-letter-spacing: 0;
+  --type-link-l2-font-weight: 600;
+
+  /* Amount */
+  --type-amount-a1-font-size: 0.875rem;
+  --type-amount-a1-line-height: 0.875rem;
+  --type-amount-a1-letter-spacing: -0.03em;
+  --type-amount-a1-font-weight: 700;
+  --type-amount-a2-font-size: 1rem;
+  --type-amount-a2-line-height: 1rem;
+  --type-amount-a2-letter-spacing: -0.03em;
+  --type-amount-a2-font-weight: 700;
+  --type-amount-a3-font-size: 1.25rem;
+  --type-amount-a3-line-height: 1.25rem;
+  --type-amount-a3-letter-spacing: -0.05em;
+  --type-amount-a3-font-weight: 700;
+  --type-amount-a4-font-size: 1.5rem;
+  --type-amount-a4-line-height: 1.5rem;
+  --type-amount-a4-letter-spacing: -0.04em;
+  --type-amount-a4-font-weight: 700;
+  --type-amount-a5-font-size: 1.75rem;
+  --type-amount-a5-line-height: 1.75rem;
+  --type-amount-a5-letter-spacing: -0.05em;
+  --type-amount-a5-font-weight: 700;
+  --type-amount-a6-font-size: 2rem;
+  --type-amount-a6-line-height: 2rem;
+  --type-amount-a6-letter-spacing: -0.05em;
+  --type-amount-a6-font-weight: 700;
+  --type-amount-a7-font-size: 2.25rem;
+  --type-amount-a7-line-height: 2.25rem;
+  --type-amount-a7-letter-spacing: -0.05em;
+  --type-amount-a7-font-weight: 700;
+  --type-amount-a8-font-size: 2.5rem;
+  --type-amount-a8-line-height: 2.5rem;
+  --type-amount-a8-letter-spacing: -0.05em;
+  --type-amount-a8-font-weight: 700;
+
+  /* Decimal */
+  --type-decimal-d1-font-size: 0.625rem;
+  --type-decimal-d1-line-height: 1.25rem;
+  --type-decimal-d1-letter-spacing: 0;
+  --type-decimal-d1-font-weight: 400;
+  --type-decimal-d2-font-size: 0.75rem;
+  --type-decimal-d2-line-height: 1rem;
+  --type-decimal-d2-letter-spacing: 0;
+  --type-decimal-d2-font-weight: 400;
+  --type-decimal-d3-font-size: 1rem;
+  --type-decimal-d3-line-height: 1.5rem;
+  --type-decimal-d3-letter-spacing: 0;
+  --type-decimal-d3-font-weight: 400;
+  --type-decimal-d4-font-size: 1.25rem;
+  --type-decimal-d4-line-height: 1.75rem;
+  --type-decimal-d4-letter-spacing: 0;
+  --type-decimal-d4-font-weight: 400;
+  --type-decimal-d5-font-size: 1.5rem;
+  --type-decimal-d5-line-height: 2.25rem;
+  --type-decimal-d5-letter-spacing: 0;
+  --type-decimal-d5-font-weight: 400;
+  --type-decimal-d6-font-size: 1.75rem;
+  --type-decimal-d6-line-height: 2.25rem;
+  --type-decimal-d6-letter-spacing: 0;
+  --type-decimal-d6-font-weight: 400;
+  --type-decimal-d7-font-size: 2rem;
+  --type-decimal-d7-line-height: 2.5rem;
+  --type-decimal-d7-letter-spacing: 0;
+  --type-decimal-d7-font-weight: 400;
+  --type-decimal-d8-font-size: 2.5rem;
+  --type-decimal-d8-line-height: 3rem;
+  --type-decimal-d8-letter-spacing: 0;
+  --type-decimal-d8-font-weight: 400;
+
+  /* Symbol */
+  --type-symbol-s1-font-size: 0.875rem;
+  --type-symbol-s1-line-height: 1.125rem;
+  --type-symbol-s1-letter-spacing: 0;
+  --type-symbol-s1-font-weight: 600;
+  --type-symbol-s2-font-size: 1rem;
+  --type-symbol-s2-line-height: 1.375rem;
+  --type-symbol-s2-letter-spacing: 0;
+  --type-symbol-s2-font-weight: 600;
+  --type-symbol-s3-font-size: 1.25rem;
+  --type-symbol-s3-line-height: 1.75rem;
+  --type-symbol-s3-letter-spacing: 0;
+  --type-symbol-s3-font-weight: 600;
+  --type-symbol-s4-font-size: 1.5rem;
+  --type-symbol-s4-line-height: 2rem;
+  --type-symbol-s4-letter-spacing: 0;
+  --type-symbol-s4-font-weight: 600;
+  --type-symbol-s5-font-size: 1.75rem;
+  --type-symbol-s5-line-height: 2.25rem;
+  --type-symbol-s5-letter-spacing: 0;
+  --type-symbol-s5-font-weight: 600;
+  --type-symbol-s6-font-size: 2rem;
+  --type-symbol-s6-line-height: 2.5rem;
+  --type-symbol-s6-letter-spacing: 0;
+  --type-symbol-s6-font-weight: 600;
+  --type-symbol-s7-font-size: 2.25rem;
+  --type-symbol-s7-line-height: 2.75rem;
+  --type-symbol-s7-letter-spacing: 0;
+  --type-symbol-s7-font-weight: 600;
+  --type-symbol-s8-font-size: 2.5rem;
+  --type-symbol-s8-line-height: 3rem;
+  --type-symbol-s8-letter-spacing: 0;
+  --type-symbol-s8-font-weight: 600;
+}
+
+@media (width >= 476px) {
+  :root {
+    /* Display */
+    --type-display-df-1-medium-font-size: 2.25rem;
+    --type-display-df-1-medium-line-height: 2.75rem;
+    --type-display-df-1-medium-letter-spacing: -0.025em;
+    --type-display-df-1-semibold-font-size: 2.25rem;
+    --type-display-df-1-semibold-line-height: 3rem;
+    --type-display-df-1-semibold-letter-spacing: -0.025em;
+    --type-display-df-2-medium-font-size: 1.75rem;
+    --type-display-df-2-medium-line-height: 2.25rem;
+    --type-display-df-2-medium-letter-spacing: 0;
+    --type-display-df-2-semibold-font-size: 1.75rem;
+    --type-display-df-2-semibold-line-height: 2.25rem;
+    --type-display-df-2-semibold-letter-spacing: 0;
+
+    /* Headline */
+    --type-headline-h1-font-size: 0.75rem;
+    --type-headline-h1-line-height: 1.125rem;
+    --type-headline-h1-letter-spacing: 0;
+    --type-headline-h2-font-size: 0.875rem;
+    --type-headline-h2-line-height: 1.25rem;
+    --type-headline-h2-letter-spacing: 0;
+    --type-headline-h3-font-size: 1rem;
+    --type-headline-h3-line-height: 1.5rem;
+    --type-headline-h3-letter-spacing: 0;
+    --type-headline-h4-font-size: 1.25rem;
+    --type-headline-h4-line-height: 1.75rem;
+    --type-headline-h4-letter-spacing: -0.02em;
+    --type-headline-h5-font-size: 1.5rem;
+    --type-headline-h5-line-height: 2rem;
+    --type-headline-h5-letter-spacing: 0;
+    --type-headline-h6-font-size: 1.75rem;
+    --type-headline-h6-line-height: 2.25rem;
+    --type-headline-h6-letter-spacing: -0.025em;
+    --type-headline-h7-font-size: 2rem;
+    --type-headline-h7-line-height: 2.5rem;
+    --type-headline-h7-letter-spacing: -0.025em;
+
+    /* Body */
+    --type-body-b1-font-size: 0.75rem;
+    --type-body-b1-line-height: 1rem;
+    --type-body-b1-letter-spacing: 0.017em;
+    --type-body-b2-font-size: 1rem;
+    --type-body-b2-line-height: 1.5rem;
+    --type-body-b2-letter-spacing: 0;
+    --type-body-b3-font-size: 1.25rem;
+    --type-body-b3-line-height: 1.75rem;
+    --type-body-b3-letter-spacing: 0;
+    --type-body-b4-font-size: 1.5rem;
+    --type-body-b4-line-height: 2rem;
+    --type-body-b4-letter-spacing: 0;
+    --type-body-b5-font-size: 1.75rem;
+    --type-body-b5-line-height: 2.25rem;
+    --type-body-b5-letter-spacing: 0;
+    --type-body-b6-font-size: 2rem;
+    --type-body-b6-line-height: 2.5rem;
+    --type-body-b6-letter-spacing: 0;
+
+    /* Section Title */
+    --type-section-title-md-font-size: 1rem;
+    --type-section-title-md-line-height: 1.5rem;
+    --type-section-title-md-letter-spacing: 0.165em;
+    --type-section-title-sm-font-size: 0.875rem;
+    --type-section-title-sm-line-height: 1rem;
+    --type-section-title-sm-letter-spacing: 0.145em;
+
+    /* Button */
+    --type-button-bt-1-font-size: 0.75rem;
+    --type-button-bt-1-line-height: 1rem;
+    --type-button-bt-1-letter-spacing: 0;
+    --type-button-bt-2-font-size: 0.875rem;
+    --type-button-bt-2-line-height: 1.25rem;
+    --type-button-bt-2-letter-spacing: 0;
+    --type-button-bt-3-font-size: 1rem;
+    --type-button-bt-3-line-height: 1.5rem;
+    --type-button-bt-3-letter-spacing: 0;
+
+    /* Link Button */
+    --type-link-l1-font-size: 0.875rem;
+    --type-link-l1-line-height: 1rem;
+    --type-link-l1-letter-spacing: 0;
+    --type-link-l2-font-size: 1rem;
+    --type-link-l2-line-height: 1.25rem;
+    --type-link-l2-letter-spacing: 0;
+
+    /* Amount */
+    --type-amount-a1-font-size: 1rem;
+    --type-amount-a1-line-height: 1rem;
+    --type-amount-a1-letter-spacing: -0.03em;
+    --type-amount-a2-font-size: 1.25rem;
+    --type-amount-a2-line-height: 1.25rem;
+    --type-amount-a2-letter-spacing: -0.05em;
+    --type-amount-a3-font-size: 1.5rem;
+    --type-amount-a3-line-height: 1.5rem;
+    --type-amount-a3-letter-spacing: -0.04em;
+    --type-amount-a4-font-size: 1.75rem;
+    --type-amount-a4-line-height: 1.75rem;
+    --type-amount-a4-letter-spacing: -0.05em;
+    --type-amount-a5-font-size: 2rem;
+    --type-amount-a5-line-height: 2rem;
+    --type-amount-a5-letter-spacing: -0.05em;
+    --type-amount-a6-font-size: 2.25rem;
+    --type-amount-a6-line-height: 2.25rem;
+    --type-amount-a6-letter-spacing: -0.05em;
+    --type-amount-a7-font-size: 2.5rem;
+    --type-amount-a7-line-height: 2.5rem;
+    --type-amount-a7-letter-spacing: -0.05em;
+    --type-amount-a8-font-size: 2.75rem;
+    --type-amount-a8-line-height: 2.75rem;
+    --type-amount-a8-letter-spacing: -0.05em;
+
+    /* Decimal */
+    --type-decimal-d1-font-size: 0.75rem;
+    --type-decimal-d1-line-height: 1rem;
+    --type-decimal-d1-letter-spacing: 0;
+    --type-decimal-d2-font-size: 1rem;
+    --type-decimal-d2-line-height: 1.5rem;
+    --type-decimal-d2-letter-spacing: 0;
+    --type-decimal-d3-font-size: 1.25rem;
+    --type-decimal-d3-line-height: 1.75rem;
+    --type-decimal-d3-letter-spacing: 0;
+    --type-decimal-d4-font-size: 1.5rem;
+    --type-decimal-d4-line-height: 2.25rem;
+    --type-decimal-d4-letter-spacing: 0;
+    --type-decimal-d5-font-size: 1.75rem;
+    --type-decimal-d5-line-height: 2.25rem;
+    --type-decimal-d5-letter-spacing: 0;
+    --type-decimal-d6-font-size: 2rem;
+    --type-decimal-d6-line-height: 2.5rem;
+    --type-decimal-d6-letter-spacing: 0;
+    --type-decimal-d7-font-size: 2.5rem;
+    --type-decimal-d7-line-height: 3rem;
+    --type-decimal-d7-letter-spacing: 0;
+    --type-decimal-d8-font-size: 2.75rem;
+    --type-decimal-d8-line-height: 3.25rem;
+    --type-decimal-d8-letter-spacing: 0;
+
+    /* Symbol */
+    --type-symbol-s1-font-size: 1rem;
+    --type-symbol-s1-line-height: 1.375rem;
+    --type-symbol-s1-letter-spacing: 0;
+    --type-symbol-s2-font-size: 1.25rem;
+    --type-symbol-s2-line-height: 1.75rem;
+    --type-symbol-s2-letter-spacing: 0;
+    --type-symbol-s3-font-size: 1.5rem;
+    --type-symbol-s3-line-height: 2rem;
+    --type-symbol-s3-letter-spacing: 0;
+    --type-symbol-s4-font-size: 1.75rem;
+    --type-symbol-s4-line-height: 2.25rem;
+    --type-symbol-s4-letter-spacing: 0;
+    --type-symbol-s5-font-size: 2rem;
+    --type-symbol-s5-line-height: 2.5rem;
+    --type-symbol-s5-letter-spacing: 0;
+    --type-symbol-s6-font-size: 2.25rem;
+    --type-symbol-s6-line-height: 2.75rem;
+    --type-symbol-s6-letter-spacing: 0;
+    --type-symbol-s7-font-size: 2.5rem;
+    --type-symbol-s7-line-height: 3rem;
+    --type-symbol-s7-letter-spacing: 0;
+    --type-symbol-s8-font-size: 2.75rem;
+    --type-symbol-s8-line-height: 3.25rem;
+    --type-symbol-s8-letter-spacing: 0;
+  }
+}
+
+@media (width >= 1366px) {
+  :root {
+    /* Display */
+    --type-display-df-1-medium-font-size: 2.5rem;
+    --type-display-df-1-medium-line-height: 3rem;
+    --type-display-df-1-medium-letter-spacing: -0.025em;
+    --type-display-df-1-semibold-font-size: 2.5rem;
+    --type-display-df-1-semibold-line-height: 3.25rem;
+    --type-display-df-1-semibold-letter-spacing: -0.025em;
+    --type-display-df-2-medium-font-size: 2.75rem;
+    --type-display-df-2-medium-line-height: 3.25rem;
+    --type-display-df-2-medium-letter-spacing: -0.01em;
+    --type-display-df-2-semibold-font-size: 2.75rem;
+    --type-display-df-2-semibold-line-height: 3.5rem;
+    --type-display-df-2-semibold-letter-spacing: -0.01em;
+
+    /* Headline */
+    --type-headline-h1-font-size: 0.75rem;
+    --type-headline-h1-line-height: 1.125rem;
+    --type-headline-h1-letter-spacing: 0;
+    --type-headline-h2-font-size: 0.875rem;
+    --type-headline-h2-line-height: 1.25rem;
+    --type-headline-h2-letter-spacing: 0;
+    --type-headline-h3-font-size: 1rem;
+    --type-headline-h3-line-height: 1.5rem;
+    --type-headline-h3-letter-spacing: 0;
+    --type-headline-h4-font-size: 1.25rem;
+    --type-headline-h4-line-height: 1.75rem;
+    --type-headline-h4-letter-spacing: -0.02em;
+    --type-headline-h5-font-size: 1.5rem;
+    --type-headline-h5-line-height: 2rem;
+    --type-headline-h5-letter-spacing: 0;
+    --type-headline-h6-font-size: 1.75rem;
+    --type-headline-h6-line-height: 2.25rem;
+    --type-headline-h6-letter-spacing: -0.025em;
+    --type-headline-h7-font-size: 2rem;
+    --type-headline-h7-line-height: 2.5rem;
+    --type-headline-h7-letter-spacing: -0.025em;
+
+    /* Body */
+    --type-body-b1-font-size: 0.875rem;
+    --type-body-b1-line-height: 1.125rem;
+    --type-body-b1-letter-spacing: 0;
+    --type-body-b2-font-size: 1rem;
+    --type-body-b2-line-height: 1.5rem;
+    --type-body-b2-letter-spacing: 0;
+    --type-body-b3-font-size: 1.25rem;
+    --type-body-b3-line-height: 1.75rem;
+    --type-body-b3-letter-spacing: 0;
+    --type-body-b4-font-size: 1.5rem;
+    --type-body-b4-line-height: 2rem;
+    --type-body-b4-letter-spacing: 0;
+    --type-body-b5-font-size: 1.75rem;
+    --type-body-b5-line-height: 2.25rem;
+    --type-body-b5-letter-spacing: 0;
+    --type-body-b6-font-size: 2rem;
+    --type-body-b6-line-height: 2.5rem;
+    --type-body-b6-letter-spacing: 0;
+
+    /* Section Title */
+    --type-section-title-md-font-size: 1.25rem;
+    --type-section-title-md-line-height: 1.75rem;
+    --type-section-title-md-letter-spacing: 0.165em;
+    --type-section-title-sm-font-size: 1rem;
+    --type-section-title-sm-line-height: 1.5rem;
+    --type-section-title-sm-letter-spacing: 0.145em;
+
+    /* Button */
+    --type-button-bt-1-font-size: 0.75rem;
+    --type-button-bt-1-line-height: 1rem;
+    --type-button-bt-1-letter-spacing: 0;
+    --type-button-bt-2-font-size: 0.875rem;
+    --type-button-bt-2-line-height: 1.25rem;
+    --type-button-bt-2-letter-spacing: 0;
+    --type-button-bt-3-font-size: 1rem;
+    --type-button-bt-3-line-height: 1.5rem;
+    --type-button-bt-3-letter-spacing: 0;
+
+    /* Link Button */
+    --type-link-l1-font-size: 0.875rem;
+    --type-link-l1-line-height: 1.25rem;
+    --type-link-l1-letter-spacing: 0;
+    --type-link-l2-font-size: 1rem;
+    --type-link-l2-line-height: 1.5rem;
+    --type-link-l2-letter-spacing: 0;
+
+    /* Amount */
+    --type-amount-a1-font-size: 1.25rem;
+    --type-amount-a1-line-height: 1.25rem;
+    --type-amount-a1-letter-spacing: -0.05em;
+    --type-amount-a2-font-size: 1.5rem;
+    --type-amount-a2-line-height: 1.5rem;
+    --type-amount-a2-letter-spacing: -0.04em;
+    --type-amount-a3-font-size: 1.75rem;
+    --type-amount-a3-line-height: 1.75rem;
+    --type-amount-a3-letter-spacing: -0.05em;
+    --type-amount-a4-font-size: 2rem;
+    --type-amount-a4-line-height: 2rem;
+    --type-amount-a4-letter-spacing: -0.05em;
+    --type-amount-a5-font-size: 2.25rem;
+    --type-amount-a5-line-height: 2.25rem;
+    --type-amount-a5-letter-spacing: -0.05em;
+    --type-amount-a6-font-size: 2.5rem;
+    --type-amount-a6-line-height: 2.5rem;
+    --type-amount-a6-letter-spacing: -0.05em;
+    --type-amount-a7-font-size: 2.75rem;
+    --type-amount-a7-line-height: 2.75rem;
+    --type-amount-a7-letter-spacing: -0.05em;
+    --type-amount-a8-font-size: 3rem;
+    --type-amount-a8-line-height: 3rem;
+    --type-amount-a8-letter-spacing: -0.05em;
+
+    /* Decimal */
+    --type-decimal-d1-font-size: 0.875rem;
+    --type-decimal-d1-line-height: 1rem;
+    --type-decimal-d1-letter-spacing: 0;
+    --type-decimal-d2-font-size: 1rem;
+    --type-decimal-d2-line-height: 1.5rem;
+    --type-decimal-d2-letter-spacing: 0;
+    --type-decimal-d3-font-size: 1.25rem;
+    --type-decimal-d3-line-height: 1.75rem;
+    --type-decimal-d3-letter-spacing: 0;
+    --type-decimal-d4-font-size: 1.5rem;
+    --type-decimal-d4-line-height: 2rem;
+    --type-decimal-d4-letter-spacing: 0;
+    --type-decimal-d5-font-size: 1.75rem;
+    --type-decimal-d5-line-height: 2.25rem;
+    --type-decimal-d5-letter-spacing: 0;
+    --type-decimal-d6-font-size: 2rem;
+    --type-decimal-d6-line-height: 2.5rem;
+    --type-decimal-d6-letter-spacing: 0;
+    --type-decimal-d7-font-size: 2.5rem;
+    --type-decimal-d7-line-height: 3rem;
+    --type-decimal-d7-letter-spacing: 0;
+    --type-decimal-d8-font-size: 2.75rem;
+    --type-decimal-d8-line-height: 3.25rem;
+    --type-decimal-d8-letter-spacing: 0;
+
+    /* Symbol */
+    --type-symbol-s1-font-size: 1rem;
+    --type-symbol-s1-line-height: 1.375rem;
+    --type-symbol-s1-letter-spacing: 0;
+    --type-symbol-s2-font-size: 1.25rem;
+    --type-symbol-s2-line-height: 1.75rem;
+    --type-symbol-s2-letter-spacing: 0;
+    --type-symbol-s3-font-size: 1.5rem;
+    --type-symbol-s3-line-height: 2rem;
+    --type-symbol-s3-letter-spacing: 0;
+    --type-symbol-s4-font-size: 1.75rem;
+    --type-symbol-s4-line-height: 2.25rem;
+    --type-symbol-s4-letter-spacing: 0;
+    --type-symbol-s5-font-size: 2rem;
+    --type-symbol-s5-line-height: 2.5rem;
+    --type-symbol-s5-letter-spacing: 0;
+    --type-symbol-s6-font-size: 2.25rem;
+    --type-symbol-s6-line-height: 2.75rem;
+    --type-symbol-s6-letter-spacing: 0;
+    --type-symbol-s7-font-size: 2.5rem;
+    --type-symbol-s7-line-height: 3rem;
+    --type-symbol-s7-letter-spacing: 0;
+    --type-symbol-s8-font-size: 2.75rem;
+    --type-symbol-s8-line-height: 3.25rem;
+    --type-symbol-s8-letter-spacing: 0;
+  }
+}
+
+@media (width >= 1920px) {
+  :root {
+    /* Display */
+    --type-display-df-1-medium-font-size: 2.75rem;
+    --type-display-df-1-medium-line-height: 3.25rem;
+    --type-display-df-1-medium-letter-spacing: -0.01em;
+    --type-display-df-1-semibold-font-size: 2.75rem;
+    --type-display-df-1-semibold-line-height: 3.5rem;
+    --type-display-df-1-semibold-letter-spacing: -0.01em;
+    --type-display-df-2-medium-font-size: 2.75rem;
+    --type-display-df-2-medium-line-height: 3.25rem;
+    --type-display-df-2-medium-letter-spacing: -0.01em;
+    --type-display-df-2-semibold-font-size: 2.75rem;
+    --type-display-df-2-semibold-line-height: 3.5rem;
+    --type-display-df-2-semibold-letter-spacing: -0.01em;
+
+    /* Headline */
+    --type-headline-h1-font-size: 0.875rem;
+    --type-headline-h1-line-height: 1.25rem;
+    --type-headline-h1-letter-spacing: 0;
+    --type-headline-h2-font-size: 1rem;
+    --type-headline-h2-line-height: 1.5rem;
+    --type-headline-h2-letter-spacing: 0;
+    --type-headline-h3-font-size: 1.25rem;
+    --type-headline-h3-line-height: 1.75rem;
+    --type-headline-h3-letter-spacing: 0;
+    --type-headline-h4-font-size: 1.5rem;
+    --type-headline-h4-line-height: 2rem;
+    --type-headline-h4-letter-spacing: 0;
+    --type-headline-h5-font-size: 1.75rem;
+    --type-headline-h5-line-height: 2.25rem;
+    --type-headline-h5-letter-spacing: -0.02em;
+    --type-headline-h6-font-size: 2rem;
+    --type-headline-h6-line-height: 2.5rem;
+    --type-headline-h6-letter-spacing: 0;
+    --type-headline-h7-font-size: 2.25rem;
+    --type-headline-h7-line-height: 2.75rem;
+    --type-headline-h7-letter-spacing: -0.025em;
+
+    /* Body */
+    --type-body-b1-font-size: 1rem;
+    --type-body-b1-line-height: 1.5rem;
+    --type-body-b1-letter-spacing: 0;
+    --type-body-b2-font-size: 1.25rem;
+    --type-body-b2-line-height: 1.75rem;
+    --type-body-b2-letter-spacing: 0;
+    --type-body-b3-font-size: 1.5rem;
+    --type-body-b3-line-height: 2rem;
+    --type-body-b3-letter-spacing: 0;
+    --type-body-b4-font-size: 1.75rem;
+    --type-body-b4-line-height: 2.25rem;
+    --type-body-b4-letter-spacing: 0;
+    --type-body-b5-font-size: 2rem;
+    --type-body-b5-line-height: 2.5rem;
+    --type-body-b5-letter-spacing: 0;
+    --type-body-b6-font-size: 2.25rem;
+    --type-body-b6-line-height: 3rem;
+    --type-body-b6-letter-spacing: 0;
+
+    /* Section Title */
+    --type-section-title-md-font-size: 1.25rem;
+    --type-section-title-md-line-height: 1.75rem;
+    --type-section-title-md-letter-spacing: 0.165em;
+    --type-section-title-sm-font-size: 1rem;
+    --type-section-title-sm-line-height: 1.5rem;
+    --type-section-title-sm-letter-spacing: 0.145em;
+
+    /* Button */
+    --type-button-bt-1-font-size: 0.875rem;
+    --type-button-bt-1-line-height: 1.25rem;
+    --type-button-bt-1-letter-spacing: 0;
+    --type-button-bt-2-font-size: 1rem;
+    --type-button-bt-2-line-height: 1.5rem;
+    --type-button-bt-2-letter-spacing: 0;
+    --type-button-bt-3-font-size: 1.25rem;
+    --type-button-bt-3-line-height: 1.75rem;
+    --type-button-bt-3-letter-spacing: 0;
+
+    /* Link Button */
+    --type-link-l1-font-size: 1rem;
+    --type-link-l1-line-height: 1.5rem;
+    --type-link-l1-letter-spacing: 0;
+    --type-link-l2-font-size: 1.25rem;
+    --type-link-l2-line-height: 1.75rem;
+    --type-link-l2-letter-spacing: 0;
+
+    /* Amount */
+    --type-amount-a1-font-size: 1.5rem;
+    --type-amount-a1-line-height: 1.5rem;
+    --type-amount-a1-letter-spacing: -0.04em;
+    --type-amount-a2-font-size: 1.75rem;
+    --type-amount-a2-line-height: 1.75rem;
+    --type-amount-a2-letter-spacing: -0.05em;
+    --type-amount-a3-font-size: 2rem;
+    --type-amount-a3-line-height: 2rem;
+    --type-amount-a3-letter-spacing: -0.05em;
+    --type-amount-a4-font-size: 2.25rem;
+    --type-amount-a4-line-height: 2.25rem;
+    --type-amount-a4-letter-spacing: -0.05em;
+    --type-amount-a5-font-size: 2.5rem;
+    --type-amount-a5-line-height: 2.5rem;
+    --type-amount-a5-letter-spacing: -0.05em;
+    --type-amount-a6-font-size: 2.75rem;
+    --type-amount-a6-line-height: 2.75rem;
+    --type-amount-a6-letter-spacing: -0.05em;
+    --type-amount-a7-font-size: 3rem;
+    --type-amount-a7-line-height: 3rem;
+    --type-amount-a7-letter-spacing: -0.05em;
+    --type-amount-a8-font-size: 3.25rem;
+    --type-amount-a8-line-height: 3.25rem;
+    --type-amount-a8-letter-spacing: -0.05em;
+
+    /* Decimal */
+    --type-decimal-d1-font-size: 0.875rem;
+    --type-decimal-d1-line-height: 1rem;
+    --type-decimal-d1-letter-spacing: 0;
+    --type-decimal-d2-font-size: 1rem;
+    --type-decimal-d2-line-height: 1.5rem;
+    --type-decimal-d2-letter-spacing: 0;
+    --type-decimal-d3-font-size: 1.25rem;
+    --type-decimal-d3-line-height: 1.75rem;
+    --type-decimal-d3-letter-spacing: 0;
+    --type-decimal-d4-font-size: 1.5rem;
+    --type-decimal-d4-line-height: 2.25rem;
+    --type-decimal-d4-letter-spacing: 0;
+    --type-decimal-d5-font-size: 1.75rem;
+    --type-decimal-d5-line-height: 2.25rem;
+    --type-decimal-d5-letter-spacing: 0;
+    --type-decimal-d6-font-size: 2rem;
+    --type-decimal-d6-line-height: 2.5rem;
+    --type-decimal-d6-letter-spacing: 0;
+    --type-decimal-d7-font-size: 2.5rem;
+    --type-decimal-d7-line-height: 3rem;
+    --type-decimal-d7-letter-spacing: 0;
+    --type-decimal-d8-font-size: 2.75rem;
+    --type-decimal-d8-line-height: 3.25rem;
+    --type-decimal-d8-letter-spacing: 0;
+
+    /* Symbol */
+    --type-symbol-s1-font-size: 1rem;
+    --type-symbol-s1-line-height: 1.375rem;
+    --type-symbol-s1-letter-spacing: 0;
+    --type-symbol-s2-font-size: 1.25rem;
+    --type-symbol-s2-line-height: 1.75rem;
+    --type-symbol-s2-letter-spacing: 0;
+    --type-symbol-s3-font-size: 1.5rem;
+    --type-symbol-s3-line-height: 2rem;
+    --type-symbol-s3-letter-spacing: 0;
+    --type-symbol-s4-font-size: 1.75rem;
+    --type-symbol-s4-line-height: 2.25rem;
+    --type-symbol-s4-letter-spacing: 0;
+    --type-symbol-s5-font-size: 2rem;
+    --type-symbol-s5-line-height: 2.5rem;
+    --type-symbol-s5-letter-spacing: 0;
+    --type-symbol-s6-font-size: 2.25rem;
+    --type-symbol-s6-line-height: 2.75rem;
+    --type-symbol-s6-letter-spacing: 0;
+    --type-symbol-s7-font-size: 2.5rem;
+    --type-symbol-s7-line-height: 3rem;
+    --type-symbol-s7-letter-spacing: 0;
+    --type-symbol-s8-font-size: 2.75rem;
+    --type-symbol-s8-line-height: 3.25rem;
+    --type-symbol-s8-letter-spacing: 0;
+  }
+}
