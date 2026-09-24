@@ -151,8 +151,12 @@ export function decorateButtons(main) {
  * `.hero-badge` pill and wires up the "Get Lumpsum Return" style dropdown lists.
  * @param {Element} main The main element
  */
-function decorateHeroBanner(main) {
+export function decorateHeroBanner(main) {
   main.querySelectorAll('.section.hero-banner').forEach((section) => {
+    // guard against re-decoration when sections are re-processed (e.g. Universal Editor patches)
+    if (section.dataset.heroBannerDecorated) return;
+    section.dataset.heroBannerDecorated = 'true';
+
     const wrapper = section.querySelector(':scope > .default-content-wrapper') || section;
 
     // 1. Badge Pill Handling
@@ -263,7 +267,7 @@ function decorateHeroBanner(main) {
  * act like an EDS hero banner without needing a dedicated block.
  * @param {Element} main The main element
  */
-function decorateSectionBackgrounds(main) {
+export function decorateSectionBackgrounds(main) {
   main.querySelectorAll(':scope > .section').forEach((section) => {
     const {
       desktopImage, desktopImageAlt, mobileImage, mobileImageAlt,

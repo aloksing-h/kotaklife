@@ -8,7 +8,12 @@ import {
   loadSections,
 } from './aem.js';
 import { decorateRichtext } from './editor-support-rte.js';
-import { decorateButtons, decorateMain } from './scripts.js';
+import {
+  decorateButtons,
+  decorateHeroBanner,
+  decorateMain,
+  decorateSectionBackgrounds,
+} from './scripts.js';
 
 let promiseChanges$ = Promise.resolve();
 
@@ -40,13 +45,16 @@ async function applyChanges(event) {
       if (!newMain) return false;
       newMain.style.display = 'none';
       element.insertAdjacentElement('afterend', newMain);
-      decorateMain(newMain);
-      decorateRichtext(newMain);
-      await loadSections(newMain);
-      element.remove();
-      newMain.style.display = null;
-      // eslint-disable-next-line no-use-before-define
-      attachEventListeners(newMain);
+      try {
+        decorateMain(newMain);
+        decorateRichtext(newMain);
+        await loadSections(newMain);
+        element.remove();
+        // eslint-disable-next-line no-use-before-define
+        attachEventListeners(newMain);
+      } finally {
+        newMain.style.display = null;
+      }
       return true;
     }
 
@@ -57,13 +65,16 @@ async function applyChanges(event) {
       if (newBlock) {
         newBlock.style.display = 'none';
         block.insertAdjacentElement('afterend', newBlock);
-        decorateButtons(newBlock);
-        decorateIcons(newBlock);
-        decorateBlock(newBlock);
-        decorateRichtext(newBlock);
-        await loadBlock(newBlock);
-        block.remove();
-        newBlock.style.display = null;
+        try {
+          decorateButtons(newBlock);
+          decorateIcons(newBlock);
+          decorateBlock(newBlock);
+          decorateRichtext(newBlock);
+          await loadBlock(newBlock);
+          block.remove();
+        } finally {
+          newBlock.style.display = null;
+        }
         return true;
       }
     } else {
@@ -75,14 +86,19 @@ async function applyChanges(event) {
           const [newSection] = newElements;
           newSection.style.display = 'none';
           element.insertAdjacentElement('afterend', newSection);
-          decorateButtons(newSection);
-          decorateIcons(newSection);
-          decorateRichtext(newSection);
-          decorateSections(parentElement);
-          decorateBlocks(parentElement);
-          await loadSections(parentElement);
-          element.remove();
-          newSection.style.display = null;
+          try {
+            decorateButtons(newSection);
+            decorateIcons(newSection);
+            decorateRichtext(newSection);
+            decorateSections(parentElement);
+            decorateSectionBackgrounds(parentElement);
+            decorateBlocks(parentElement);
+            decorateHeroBanner(parentElement);
+            await loadSections(parentElement);
+            element.remove();
+          } finally {
+            newSection.style.display = null;
+          }
         } else {
           element.replaceWith(...newElements);
           decorateButtons(parentElement);

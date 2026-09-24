@@ -353,6 +353,11 @@ main>.section.section-has-background>.section-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+
+  /* override the content-width constraints from `main>.section>div` so the bg is full-bleed */
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 main>.section.section-has-background>.section-background picture,
