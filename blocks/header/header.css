@@ -1460,7 +1460,7 @@ nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop) .inner-chil
 
 nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1::after,
 nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop)[aria-expanded='true'] .inner-child::after {
-  transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(360deg);
   background-image: url('../../icons/large-downarrow-red.svg');
 }
 
@@ -1521,7 +1521,7 @@ nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-lis
 }
 
 nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list button[aria-selected='true']::before {
-  transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(360deg);
   background-image: url('../../icons/large-downarrow-red.svg');
 }
 
@@ -1709,28 +1709,6 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner-2 {
   border-color: var(--foreground-fg-secondary, #414651);
 }
 
-@media screen and (width >=900px) {
-  nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
-  nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
-    color: var(--text-text-white, #FFF);
-  }
-
-  nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1::after,
-  nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child::after {
-    background-image: url('../../icons/white-chevron-down.svg');
-  }
-
-  nav[aria-expanded='true'].white-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
-  nav[aria-expanded='true'].white-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
-    color: var(--text-text-primary, #181D27);
-  }
-
-  nav[aria-expanded='true'].white-nav .nav-sections .nav-drop .inner-child-1::after,
-  nav[aria-expanded='true'].white-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child::after {
-    background-image: url('../../icons/large-downarrow-black.svg');
-  }
-}
-
 /******************  ******************/
 
 /* Active State display block / flex */
@@ -1802,6 +1780,10 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     height: 32px;
     padding: 0.531px 3.936px 1.534px 1.871px;
     margin-left: 48px;
+  }
+
+  .nav-brand * {
+    width: 100%;
   }
 
   .nav-header-top {
@@ -2027,6 +2009,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
   nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1::after,
   nav[aria-expanded='true'] .nav-sections .list-item>li:not(.nav-drop)[aria-expanded='true'] .inner-child::after {
     background-image: url('../../icons/large-downarrow-black.svg');
+    transform: translateY(-50%) rotate(180deg);
   }
 
   nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .inner-child-1::before {
@@ -2467,5 +2450,38 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     right: 50%;
     max-width: unset;
     padding: 0 48px;
+  }
+}
+
+@media screen and (900px <=width <=950px) {
+  header nav[aria-expanded='true'] {
+    gap: 0 20px;
+  }
+}
+
+/***********  ***********/
+
+/* check white / Grey Desktop */
+
+/***********  ***********/
+@media screen and (width >=900px) {
+  nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
+  nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
+    color: var(--text-text-white, #FFF);
+  }
+
+  nav[aria-expanded='true'].grey-nav .nav-sections .nav-drop .inner-child-1::after,
+  nav[aria-expanded='true'].grey-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child::after {
+    background-image: url('../../icons/white-chevron-down.svg');
+  }
+
+  nav[aria-expanded='true'].white-nav .nav-sections .nav-drop .inner-child-1.inner-child:first-of-type,
+  nav[aria-expanded='true'].white-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child {
+    color: var(--text-text-primary, #181D27);
+  }
+
+  nav[aria-expanded='true'].white-nav .nav-sections .nav-drop .inner-child-1::after,
+  nav[aria-expanded='true'].white-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child::after {
+    background-image: url('../../icons/large-downarrow-black.svg');
   }
 }

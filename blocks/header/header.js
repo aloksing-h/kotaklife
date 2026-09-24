@@ -707,7 +707,7 @@ export default async function decorate(block) {
                   // Clone the ulElement to ensure we get a clean copy
                   // This prevents issues with element already being in DOM
                   const ulClone = ulElement.cloneNode(true);
-                  
+
                   // Append cloned ul into wrapper
                   tabWrapper.appendChild(ulClone);
 
@@ -720,7 +720,7 @@ export default async function decorate(block) {
                   // Verify the operation was successful
                   const verifyWrapper = tabListWrapper.querySelector('.tab-wrapper');
                   const verifyUl = tabListWrapper.querySelector('.tab-wrapper ul');
-                  
+
                   if (verifyWrapper && verifyUl) {
                     // Operation successful - tab-wrapper is properly created and ul is inside it
                     console.log('✓ tab-wrapper created and ul properly appended', { tabListWrapper, tabWrapper, ul: verifyUl });
