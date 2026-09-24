@@ -953,37 +953,48 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "col1_bgimage",
+        "name": "col1_bgDesktopimage",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "description": "Desktop background image for the hero section"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "col1_bgimageAlt",
         "label": "Alt",
-        "value": ""
+        "value": "",
+        "description": "Alt text for the desktop & mobile background image"
       },
       {
         "component": "reference",
         "valueType": "string",
         "name": "col1_bgMbimage",
         "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "col1_bgMbimageAlt",
-        "label": "Alt",
-        "value": ""
+        "multi": false,
+        "description": "Mobile background image for the hero section"
       },
       {
         "component": "richtext",
         "name": "col1_text",
         "value": "",
         "label": "Text",
-        "valueType": "string"
+        "valueType": "string",
+        "description": "Main text content for the hero section"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "col1_ButtonLink",
+        "label": "Button",
+        "description": "Link for the hero section button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "col1_ButtonLinkText",
+        "label": "Button",
+        "description": "Text for the hero section button"
       },
       {
         "component": "text",
@@ -992,18 +1003,6 @@
         "label": "Text",
         "valueType": "string",
         "description": "Additional text for T&C , mins required , name , description, Title"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "col1_ButtonLink",
-        "label": "Button"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "col1_ButtonLinkText",
-        "label": "Button"
       }
     ]
   },
