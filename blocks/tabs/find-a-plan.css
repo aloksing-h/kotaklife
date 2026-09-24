@@ -391,7 +391,9 @@
 @media (width >=900px) {
     .find-a-plan.tabs-container {
         margin-top: 157px;
-        margin-bottom: 50px;
+
+        /* margin-bottom: 50px; */
+        margin-bottom: 100px;
     }
 
     .find-a-plan.tabs-container .tabs-wrapper .tabs .tabs-panel>div .custom-cards>ul>li {
