@@ -175,11 +175,12 @@
     box-sizing: border-box;
 }
 
-.growing-insurance-company .cards>ul>li:hover {
-    transform: translateY(-4px);
+/* .growing-insurance-company .cards>ul>li:hover {
+    transform: translateY(-4px); */
 
     /* box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); */
-}
+    
+/* } */
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(3) p {
     color: #475467;
@@ -817,12 +818,8 @@
     .growing-insurance-company .cards>ul>li:nth-child(1) .cards-card-image img {
         height: 239px;
         min-height: 239px;
-        
-        /* object-fit: unset;
-        object-position: unset; */
-
-        object-fit: contain;
-        object-position: bottom right;
+        object-fit: cover;
+        object-position: top left;
     }
 
     .growing-insurance-company .cards-wrapper ul li:nth-child(1) h4 {
