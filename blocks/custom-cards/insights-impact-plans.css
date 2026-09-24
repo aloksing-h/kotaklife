@@ -320,7 +320,8 @@
 /* ==========================================================================
    Section Level Scoped Styles (.insights-impact-plans)
    ========================================================================== */
-@media (width >=768px) {
+/* stylelint-disable media-feature-range-notation -- Supports Safari versions without range-context media queries. */
+@media screen and (min-width: 768px) {
     .insights-impact-plans.custom-cards-container {
         padding: 48px 0;
         background-color: #fff;
@@ -513,23 +514,10 @@
     }
 }
 
-@media (width >=768px) and (width <=1023px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
         font-size: 18px;
         line-height: 24px;
     }
 }
-
-/* Targets Desktop Safari (Width >= 768px) */
-@supports (hanging-punctuation: first) and (font: -apple-system-body) and (-webkit-appearance: none) {
-  @media (width >= 768px) {
-    .insights-impact-plans .custom-cards > ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-  }
-}
+/* stylelint-enable media-feature-range-notation */
