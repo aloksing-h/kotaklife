@@ -170,6 +170,7 @@
 
 /* Card Artwork / Media Area */
 .insights-impact-plans.section.custom-cards-container .custom-cards-card-image {
+    width: 100%;
     position: absolute;
     right: -5px;
     bottom: 0;

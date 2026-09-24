@@ -545,7 +545,8 @@
         top: 2px;
         bottom: 2px;
         width: 3px;
-        background-color: #E1122D;
+        /* background-color: #E1122D; */
+        background-color: #FA1432;
     }
 
     .invest-form.section.invest-form-container fieldset.checkbox-field label {
