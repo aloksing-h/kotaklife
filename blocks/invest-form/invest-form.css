@@ -1,12 +1,19 @@
 /* Container & Layered Outer Concentric Borders */
 .invest-form.section.invest-form-container {
-    max-width: 1045px;
+    /* max-width: 1045px; */
+    max-width: 1065px;
     width: calc(100% - 60px);
     margin: 40px auto;
     background: #FFF;
-    border: 1.5px solid #6C9EE4;
-    border-radius: 130px;
-    padding: 86px 128px 48px 44px;
+
+    /* border: 1.5px solid #6C9EE4; */
+    border: 1px solid #6C9EE4;
+
+    /* border-radius: 130px; */
+    border-radius: 150px;
+
+    /* padding: 86px 128px 48px 44px; */
+    padding: 88px 128px 88px 48px;
     box-sizing: border-box;
     position: relative;
 
@@ -22,8 +29,12 @@
 .invest-form.section.invest-form-container::before {
     content: "";
     position: absolute;
-    inset: 0 -11px 0 -25px;
-    border-radius: 141px;
+
+    /* inset: 0 -11px 0 -25px; */
+    inset: 0 0 0 -18px;
+
+    /* border-radius: 141px; */
+    border-radius: 150px;
     border: none !important;
     padding: 0.5px;
     background: linear-gradient(to right, rgb(108 158 228 / 60%) 0%, rgb(108 158 228 / 60%) 35%, transparent 70%);
@@ -38,7 +49,9 @@
 .invest-form.section.invest-form-container::after {
     content: "";
     position: absolute;
-    inset: -1px -23px -1px -50px;
+
+    /* inset: -1px -23px -1px -50px; */
+    inset: 0 0 0 -35px;
     border-radius: 153px;
     border: none !important;
     padding: 0.5px;
@@ -122,10 +135,14 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
     color: var(--text-text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
-    font-size: var(--font-size-body-2, 14px);
+
+    /* font-size: var(--font-size-body-2, 14px); */
+    font-size: var(--font-size-body-2, 16px);
     font-style: normal;
     font-weight: 500;
-    line-height: var(--line-height-body-1, 18px);
+
+    /* line-height: var(--line-height-body-1, 18px); */
+    line-height: var(--line-height-body-1, 20px);
     margin: 0;
     padding: 4px 0 35px;
 }
@@ -153,7 +170,9 @@
     content: "";
     width: 3px;
     height: 15px;
-    background-color: #E1122D;
+
+    /* background-color: #E1122D; */
+    background-color: #FA1432;
     border-radius: 0;
     transform: skewY(-20deg);
     transform-origin: center;
@@ -218,7 +237,7 @@
   color: #717680;
 }
 
-.invest-form.section.invest-form-container .form .form-field+.form-field {
+.invest-form.section.invest-form-container .form .form-field+.form-field:not(.checkbox-field) {
     margin: 0;
 }
 
@@ -267,7 +286,9 @@
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
     order: 5;
-    margin-top: 12px;
+
+    /* margin-top: 12px; */
+    margin-top: 8px;
 }
 
 .invest-form.section.invest-form-container fieldset.checkbox-field {
@@ -290,6 +311,7 @@
     align-items: center;
     border-radius: var(--radius-full, 999px);
     background: #E1122D;
+    margin-bottom: 6px;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
@@ -407,10 +429,16 @@
 @media (width <=899px) {
     .invest-form.section.invest-form-container {
         width: calc(100% - 32px);
-        margin: 20px auto;
-        padding: 41px 24px 180px;
+
+        /* margin: 20px auto; */
+        margin: 23px auto;
+
+        /* padding: 41px 24px 180px; */
+        padding: 41px 24px 164px;
         flex-direction: column;
-        border-radius: 65px;
+
+        /* border-radius: 65px; */
+        border-radius: 50px;
         border: 0.652px solid #E6E6E6;
     }
 
@@ -418,8 +446,12 @@
     .invest-form.section.invest-form-container::before {
         content: "";
         position: absolute;
-        inset: -11px 0;
-        border-radius: 68px;
+
+        /* inset: -11px 0; */
+        inset: -12px 0;
+
+        /* border-radius: 68px; */
+        border-radius: 50px;
 
         /* Applies to all 4 corners */
         border: none !important;
@@ -440,8 +472,12 @@
     .invest-form.section.invest-form-container::after {
         content: "";
         position: absolute;
-        inset: -22px 0; /* top/bottom -22px, left/right 0 */
-        border-radius: 72px;
+
+        /* inset: -22px 0; top/bottom -22px, left/right 0 */
+        inset: -23px 0; /* top/bottom -22px, left/right 0 */
+
+        /* border-radius: 72px; */
+        border-radius: 50px;
         border: none !important;
         padding: 1.5px;
 
@@ -540,14 +576,25 @@
         background-color: #E1122D;
     }
 
-    .invest-form.section.invest-form-container fieldset.checkbox-field label {
-        padding-top: 2px;
+    .invest-form.section.invest-form-container .button-wrapper{
+        margin-top: 12px;
     }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field{
+        margin: 2px 0 0;
+    }
+
+    /* .invest-form.section.invest-form-container fieldset.checkbox-field label {
+        padding-top: 2px;
+    } */
 
     .invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
         top: 40%;
     }
 
+    .invest-form.section.invest-form-container .button-wrapper button.button{
+        height: 38px;
+    }
 
 }
 

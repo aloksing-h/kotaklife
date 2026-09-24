@@ -447,7 +447,8 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 @media (width >=900px) {
   .visual-pulse.section {
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    padding-top: 22px;
   }
 
   .visual-pulse.bg-white.section{
@@ -456,11 +457,23 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
   .visual-pulse.section .default-content-wrapper {
     padding: 0;
+    height: 256px;
   }
 
   .visual-pulse.section .default-content-wrapper p:first-of-type {
     margin: 0;
-    margin-bottom: -8px;
+    
+    /* margin-bottom: -8px; */
+  }
+
+  .visual-pulse.section .default-content-wrapper p picture{
+    width: 100%;
+    height: 100%;
+  }
+
+  .visual-pulse.section .default-content-wrapper p picture img{
+    width: 100%;
+    height: 100%;
   }
 
   .visual-pulse.bg-white.section .default-content-wrapper{
