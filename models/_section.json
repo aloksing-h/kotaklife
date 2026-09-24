@@ -219,28 +219,28 @@
          {
           "component": "reference",
           "valueType": "string",
-          "name": "desktopImage",
+          "name": "desktop-image",
           "label": "Desktop BG Image",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "desktopImageAlt",
+          "name": "desktop-image-alt",
           "label": "Desktop BG Image Alt",
           "value": ""
         },
         {
           "component": "reference",
           "valueType": "string",
-          "name": "mobileImage",
+          "name": "mobile-image",
           "label": "Mobile BG Image",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "mobileImageAlt",
+          "name": "mobile-image-alt",
           "label": "Mobile BG Image Alt",
           "value": ""
         }
