@@ -26,6 +26,172 @@
         "name": "keywords",
         "multi": true,
         "label": "Keywords"
+      },
+      {
+        "component": "text",
+        "name": "lang",
+        "label": "Language Tag",
+        "value": "en-IN"
+      },
+      {
+        "component": "text",
+        "name": "json-ld",
+        "label": "ALL Schema JSON"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Page Description"
+      },
+      {
+        "component": "text",
+        "name": "schcode",
+        "label": "SCH Code"
+      },
+      {
+        "component": "select",
+        "valueType": "string[]",
+        "name": "cq:robotsTags",
+        "label": "Robot Tags",
+        "multiple": true,
+        "options": [
+          {
+            "id": "index",
+            "name": "Index"
+          },
+          {
+            "id": "noindex",
+            "name": "No Index"
+          },
+          {
+            "id": "follow",
+            "name": "Follow"
+          },
+          {
+            "id": "nofollow",
+            "name": "No Follow"
+          },
+          {
+            "id": "noarchive",
+            "name": "No Archive"
+          },
+          {
+            "id": "nosnippet",
+            "name": "No Snippet"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "canonical",
+        "label": "Canonical URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:title",
+        "label": "OG Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:type",
+        "label": "OG Type"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:url",
+        "label": "OG URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:description",
+        "label": "OG Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:image",
+        "label": "OG Image"
+      },
+      {
+        "component": "text",
+        "name": "featuredPage",
+        "label": "Featured Image Url",
+        "valueType": "string"
+      },
+      {
+        "component": "radio-group",
+        "label": "Exclude page from navigation",
+        "name": "excludePage",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "true"
+          },
+          {
+            "name": "No",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:card",
+        "label": "Page Twitter Card"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:site",
+        "label": "Page Twitter Site"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:url",
+        "label": "Page Twitter URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:title",
+        "label": "Page Twitter title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:description",
+        "label": "Page Twitter Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "twitter:image",
+        "label": "Page Twitter Image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:site",
+        "label": "Page OG Site"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "og:site_name",
+        "label": "Page OG Site Name"
       }
     ]
   },

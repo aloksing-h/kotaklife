@@ -104,10 +104,19 @@ export function initializeModalHandlers() {
     const isThankYouPopupLink = /thank[-_\s]?you[-_\s]?popup/i.test(link.href);
     if (link.href.includes('/modals/') || isThankYouPopupLink) {
       e.preventDefault();
+
+      // Check if this click is from the desktop-hamburger icon
+      const isDesktopHamburgerClick = link.querySelector('.icon-desktop-hamburger')
+        || e.target.closest('.icon-desktop-hamburger');
+
       await openModal(link.href);
-      // eslint-disable-next-line import/no-cycle
-      const { modalHeaderBreadCrumb } = await import('../header/header.js');
-      await modalHeaderBreadCrumb();
+
+      // Only apply desk-hamburger modal logic if clicked from desktop-hamburger icon
+      if (isDesktopHamburgerClick) {
+        // eslint-disable-next-line import/no-cycle
+        const { modalHeaderBreadCrumb } = await import('../header/header.js');
+        await modalHeaderBreadCrumb();
+      }
     }
   });
 }
