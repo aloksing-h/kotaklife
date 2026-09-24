@@ -210,7 +210,8 @@
     height: 20px;
 } */
 
-@media (width >=900px) {
+/* stylelint-disable media-feature-range-notation -- Supports Safari versions without range-context media queries. */
+@media screen and (min-width: 900px) {
   .life-advisor.section.profile-cta-container {
     margin: 0;
     padding-top: 95px;
@@ -218,7 +219,7 @@
   }
 }
 
-@media (width >=1024px) {
+@media screen and (min-width: 1024px) {
   .profile-cta {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "image text" "image cta";
@@ -294,7 +295,7 @@
   }
 }
 
-@media (width <=1023px) {
+@media screen and (max-width: 1023px) {
   .life-advisor.profile-cta-container .profile-cta-wrapper {
     padding: 0;
     padding-inline: 50px;
@@ -346,7 +347,7 @@
   }
 }
 
-@media (width <=767px) {
+@media screen and (max-width: 767px) {
   .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
     width: 100%;
     margin-bottom: 15px;
@@ -369,3 +370,4 @@
     gap: 12px;
   }
 }
+/* stylelint-enable media-feature-range-notation */
