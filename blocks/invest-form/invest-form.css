@@ -329,7 +329,7 @@
   width: 16px;
   height: 16px;
   border: 2px solid #ff1744; /* Red border color */
-  border-radius: 6px;       /* Rounded corners matching the image */
+  border-radius: 4px;       /* Rounded corners matching the image */
   background-color: #fff;
   box-sizing: border-box;
   position: relative;
@@ -339,7 +339,8 @@
 
 /* Optional: Filled background when checked */
 .invest-form.section .checkbox-field input[type="checkbox"]:checked + span {
-  background-color: #fff; /* Keep white background or change to #ff1744 for solid red */
+  color: #fff; /* Keep white background or change to #ff1744 for solid red */
+  background-color: #FA1432;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
@@ -609,15 +610,16 @@
 
 /* Checkmark effect when checked */
 .invest-form.section .checkbox-field input[type="checkbox"]:checked + span::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-    top: 1px;
-    width: 2px;
-    height: 7px;
-  border: solid #ff1744;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 3.5px;
+    width: 7px;
+    height: 3px;
+    border: solid #fff;
+    border-width: 0 0 2px 2px;
+    transform: rotate(-45deg);
+    border-radius: 1px;
 }
 
 /* ==========================================================================
