@@ -42,7 +42,7 @@
   .column-left-section.section {
     width: 65%;
     float: left;
-    padding-right: 40px;
+    padding: 0 40px 0 0;
     margin-bottom: 0;
   }
 
@@ -60,6 +60,30 @@
   }
 }
 
+
+@media (width >= 1200px) {
+  .hero-banner.section,
+  .popular-search.section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 65% of 1200px = 780px. 
+     The margin pushes it inward exactly as if it were in a centered container */
+  .column-left-section.section {
+    width: 780px;
+    margin-left: calc((100% - 1200px) / 2);
+  }
+
+  /* 35% of 1200px = 420px. 
+     The right margin mirrors the left column to align perfectly */
+  .bookmark-section.section {
+    width: 420px;
+    margin-right: calc((100% - 1200px) / 2);
+  }
+}
+
 /* ==========================================================================
    Hero Banner (section style: "hero-banner")
    Full-bleed intro banner authored as plain section content, structure:
@@ -69,7 +93,7 @@
    ========================================================================== */
 
 main .section.hero-banner {
-  margin: 0;
+  margin: 0 auto;
   padding: 48px 0 40px;
   background-color: var(--light-color);
   text-align: center;
