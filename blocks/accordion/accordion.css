@@ -2,6 +2,7 @@
 .accordion.faq-accordion,
 .disclaimer.block {
   counter-reset: accordion-counter;
+  margin: 40px 0;
 }
 
 .accordion.faq-accordion h3, .accordion.block h3 {

@@ -365,6 +365,7 @@ main .section.popular-search .default-content-wrapper {
   border-radius: 8px;
   padding: 0;
   margin-top: 40px;
+  max-width: 1100px;
 }
 
 main .section.popular-search .default-content-wrapper>ul {
