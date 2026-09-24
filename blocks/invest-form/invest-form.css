@@ -1,12 +1,19 @@
 /* Container & Layered Outer Concentric Borders */
 .invest-form.section.invest-form-container {
-    max-width: 1045px;
+    /* max-width: 1045px; */
+    max-width: 1065px;
     width: calc(100% - 60px);
     margin: 40px auto;
     background: #FFF;
-    border: 1.5px solid #6C9EE4;
-    border-radius: 130px;
-    padding: 86px 128px 48px 44px;
+
+    /* border: 1.5px solid #6C9EE4; */
+    border: 1px solid #6C9EE4;
+
+    /* border-radius: 130px; */
+    border-radius: 150px;
+
+    /* padding: 86px 128px 48px 44px; */
+    padding: 88px 128px 88px 48px;
     box-sizing: border-box;
     position: relative;
 
@@ -22,8 +29,12 @@
 .invest-form.section.invest-form-container::before {
     content: "";
     position: absolute;
-    inset: 0 -11px 0 -25px;
-    border-radius: 141px;
+
+    /* inset: 0 -11px 0 -25px; */
+    inset: 0 0 0 -18px;
+
+    /* border-radius: 141px; */
+    border-radius: 150px;
     border: none !important;
     padding: 0.5px;
     background: linear-gradient(to right, rgb(108 158 228 / 60%) 0%, rgb(108 158 228 / 60%) 35%, transparent 70%);
@@ -38,7 +49,9 @@
 .invest-form.section.invest-form-container::after {
     content: "";
     position: absolute;
-    inset: -1px -23px -1px -50px;
+
+    /* inset: -1px -23px -1px -50px; */
+    inset: 0 0 0 -35px;
     border-radius: 153px;
     border: none !important;
     padding: 0.5px;
@@ -64,6 +77,18 @@
     margin: 0;
     margin-top: 40px;
     padding: 0;
+}
+
+/* Days Container */
+.invest-form .flatpickr-days > div{
+  width: 100% ;
+  min-width: 100% ;
+  max-width: 100% ;
+  display: flex ;
+  flex-wrap: wrap ;
+  justify-content: space-around;
+  justify-content: unset;
+  gap: 0;
 }
 
 /* Left Column Flexbox Container */
@@ -110,10 +135,14 @@
 .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
     color: var(--text-text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
-    font-size: var(--font-size-body-2, 14px);
+
+    /* font-size: var(--font-size-body-2, 14px); */
+    font-size: var(--font-size-body-2, 16px);
     font-style: normal;
     font-weight: 500;
-    line-height: var(--line-height-body-1, 18px);
+
+    /* line-height: var(--line-height-body-1, 18px); */
+    line-height: var(--line-height-body-1, 20px);
     margin: 0;
     padding: 4px 0 35px;
 }
@@ -141,7 +170,9 @@
     content: "";
     width: 3px;
     height: 15px;
-    background-color: #E1122D;
+
+    /* background-color: #E1122D; */
+    background-color: #FA1432;
     border-radius: 0;
     transform: skewY(-20deg);
     transform-origin: center;
@@ -206,7 +237,7 @@
   color: #717680;
 }
 
-.invest-form.section.invest-form-container .form .form-field+.form-field {
+.invest-form.section.invest-form-container .form .form-field+.form-field:not(.checkbox-field) {
     margin: 0;
 }
 
@@ -218,13 +249,13 @@
     border-color: #FDA29B;
 }
 
-/* .invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
+.invest-form.section.invest-form-container .form-field input[aria-invalid="true"] {
     border-color: #E1122D;
 }
 
 .invest-form.section.invest-form-container .field-error {
-    margin: 4px 0 0;
-    color: #E1122D;
+    margin: 6px 0 0;
+    color: #D92D20;
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: 12px;
     font-weight: 500;
@@ -238,7 +269,7 @@
     font-weight: 600;
     line-height: var(--line-height-body-1, 18px);
     margin: 0;
-} */
+}
 
 /* Date Field Calendar Icon */
 .invest-form.section.invest-form-container .form-field.date-field input {
@@ -255,7 +286,9 @@
 /* Button & Checkbox Order */
 .invest-form.section.invest-form-container .button-wrapper {
     order: 5;
-    margin-top: 12px;
+
+    /* margin-top: 12px; */
+    margin-top: 8px;
 }
 
 .invest-form.section.invest-form-container fieldset.checkbox-field {
@@ -278,16 +311,17 @@
     align-items: center;
     border-radius: var(--radius-full, 999px);
     background: #E1122D;
+    margin-bottom: 6px;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
     background-color: #c90e26;
 }
 
-/* .invest-form.section.invest-form-container .button-wrapper button.button:disabled {
+.invest-form.section.invest-form-container .button-wrapper button.button:disabled {
     background: #D5D7DA;
     cursor: not-allowed;
-} */
+}
 
 /* Custom checkbox box */
 .invest-form.section .checkbox-field input[type="checkbox"] + span {
@@ -295,7 +329,7 @@
   width: 16px;
   height: 16px;
   border: 2px solid #ff1744; /* Red border color */
-  border-radius: 6px;       /* Rounded corners matching the image */
+  border-radius: 4px;       /* Rounded corners matching the image */
   background-color: #fff;
   box-sizing: border-box;
   position: relative;
@@ -305,7 +339,8 @@
 
 /* Optional: Filled background when checked */
 .invest-form.section .checkbox-field input[type="checkbox"]:checked + span {
-  background-color: #fff; /* Keep white background or change to #ff1744 for solid red */
+  color: #fff; /* Keep white background or change to #ff1744 for solid red */
+  background-color: #FA1432;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button>span:first-child {
@@ -394,10 +429,16 @@
 @media (width <=899px) {
     .invest-form.section.invest-form-container {
         width: calc(100% - 32px);
-        margin: 20px auto;
-        padding: 41px 24px 180px;
+
+        /* margin: 20px auto; */
+        margin: 23px auto;
+
+        /* padding: 41px 24px 180px; */
+        padding: 41px 24px 164px;
         flex-direction: column;
-        border-radius: 65px;
+
+        /* border-radius: 65px; */
+        border-radius: 50px;
         border: 0.652px solid #E6E6E6;
     }
 
@@ -405,8 +446,12 @@
     .invest-form.section.invest-form-container::before {
         content: "";
         position: absolute;
-        inset: -11px 0;
-        border-radius: 68px;
+
+        /* inset: -11px 0; */
+        inset: -12px 0;
+
+        /* border-radius: 68px; */
+        border-radius: 50px;
 
         /* Applies to all 4 corners */
         border: none !important;
@@ -427,8 +472,12 @@
     .invest-form.section.invest-form-container::after {
         content: "";
         position: absolute;
-        inset: -22px 0; /* top/bottom -22px, left/right 0 */
-        border-radius: 72px;
+
+        /* inset: -22px 0; top/bottom -22px, left/right 0 */
+        inset: -23px 0; /* top/bottom -22px, left/right 0 */
+
+        /* border-radius: 72px; */
+        border-radius: 50px;
         border: none !important;
         padding: 1.5px;
 
@@ -527,14 +576,25 @@
         background-color: #E1122D;
     }
 
-    .invest-form.section.invest-form-container fieldset.checkbox-field label {
-        padding-top: 2px;
+    .invest-form.section.invest-form-container .button-wrapper{
+        margin-top: 12px;
     }
+
+    .invest-form.section.invest-form-container fieldset.checkbox-field{
+        margin: 2px 0 0;
+    }
+
+    /* .invest-form.section.invest-form-container fieldset.checkbox-field label {
+        padding-top: 2px;
+    } */
 
     .invest-form.section.invest-form-container fieldset.checkbox-field input[type="checkbox"] {
         top: 40%;
     }
 
+    .invest-form.section.invest-form-container .button-wrapper button.button{
+        height: 38px;
+    }
 
 }
 
@@ -550,13 +610,331 @@
 
 /* Checkmark effect when checked */
 .invest-form.section .checkbox-field input[type="checkbox"]:checked + span::after {
-  content: "";
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 3.5px;
+    width: 7px;
+    height: 3px;
+    border: solid #fff;
+    border-width: 0 0 2px 2px;
+    transform: rotate(-45deg);
+    border-radius: 1px;
+}
+
+/* ==========================================================================
+   Datepicker Component - Scoped under .invest-form
+   ========================================================================== */
+
+/* Container & Wrapper */
+.invest-form .datepicker-container {
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+
+.invest-form .datepicker-container * {
+  box-sizing: border-box;
+}
+
+/* Field Label */
+.invest-form .form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.invest-form .required-asterisk {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+/* Input Field Wrapper */
+.invest-form .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.invest-form .input-wrapper:focus-within,
+.invest-form .input-wrapper.active {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px #ef444426;
+}
+
+/* Calendar Icons in Input */
+.invest-form .input-icon {
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .invest-form .input-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentcolor;
+  fill: none;
+  stroke-width: 1.8;
+} */
+
+/* Actual Date Text Input */
+.invest-form .date-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  padding: 0 10px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+
+/* Hint Text */
+.invest-form .hint-text {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Datepicker Customization - Scoped to .invest-form
+   ========================================================================== */
+
+/* Date Field Container */
+.invest-form .form-field.date-field {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.invest-form .form-field.date-field .flatpickr-wrapper {
+        display: block;
+}
+
+/* Field Input Box */
+.invest-form .form-field.date-field input.input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px 12px 42px; /* Extra left padding for calendar icon */
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%209CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 20px;
+}
+
+/* .invest-form .form-field.date-field input.input:focus,
+.invest-form .form-field.date-field input.input.active {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px #ef444426;
+} */
+
+/* Position Calendar Directly Below Date Input */
+.invest-form .form-field.date-field .flatpickr-calendar {
   position: absolute;
+  top: 100%;
   left: 5px;
-    top: 1px;
-    width: 2px;
-    height: 7px;
-  border: solid #ff1744;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  right: 0;
+  max-width: 320px;
+  z-index: 99;
+  margin-top: 6px;
+  background: #F5F5F5;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px #0000001a, 0 8px 10px -6px #0000000d;
+  border: 1px solid #f3f4f6;
+  padding: 12px 6.55px;
+  box-sizing: border-box;
+  width: 96.3%;
+}
+
+/* Hide Default Triangles */
+.invest-form .flatpickr-calendar::before,
+.invest-form .flatpickr-calendar::after {
+  display: none;
+}
+
+/* Calendar Header Layout */
+.invest-form .flatpickr-months {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.invest-form .flatpickr-months .flatpickr-month {
+  height: auto !important;
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.invest-form .flatpickr-current-month {
+  position: static;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: unset;
+}
+
+.flatpickr-months .flatpickr-next-month {
+    margin-left: 3.5px;
+}
+
+.flatpickr-months .flatpickr-prev-month {
+    margin-right: 3.5px;
+}
+
+.flatpickr-months .flatpickr-prev-month.flatpickr-next-month, .flatpickr-months .flatpickr-next-month.flatpickr-next-month {
+  display: flex !important;
+}
+
+.flatpickr-months .flatpickr-prev-month.flatpickr-next-month.flatpickr-disabled, .flatpickr-months .flatpickr-next-month.flatpickr-next-month.flatpickr-disabled {
+  opacity: 0.5;
+} 
+
+/* Chevrons (< and >) */
+.invest-form .flatpickr-months .flatpickr-prev-month,
+.invest-form .flatpickr-months .flatpickr-next-month {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 6.88px 8.44px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.invest-form .flatpickr-months .flatpickr-prev-month::before {
+    content: '';
+    background-image: url("/icons/calendar-prev-icon.svg");
+    width: 8px;
+    height: 8px;
+}
+
+.invest-form .flatpickr-months .flatpickr-next-month::before {
+    content: '';
+    background-image: url("/icons/calendar-next-icon.svg");
+    width: 8px;
+    height: 8px;
+        background-position: right;
+}
+
+.invest-form .flatpickr-months .flatpickr-prev-month svg,
+.invest-form .flatpickr-months .flatpickr-next-month svg {
+    display: none;
+}
+
+/* .invest-form .flatpickr-months .flatpickr-prev-month:hover,
+.invest-form .flatpickr-months .flatpickr-next-month:hover {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+} */
+
+/* Custom Dropdown Selects */
+.invest-form .custom-header-select {
+    font-family: var(--font-family-font-family-display, Manrope);
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
+  padding: 3.52px 4.23px;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  outline: none;
+  width: 50%;
+}
+
+/* Weekday Row Header */
+.invest-form .flatpickr-weekdays {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: unset;
+}
+
+.invest-form span.flatpickr-weekday {
+    font-family: var(--font-family-font-family-display, Manrope);
+  color: #374151;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 14px;
+    height: unset;
+        padding: 1px 12.5px;
+    margin-inline-end: 1.45px;
+}
+
+.invest-form .flatpickr-weekdays .flatpickr-weekdaycontainer {
+    flex: unset;
+}
+
+.invest-form .flatpickr-day {
+  font-family: var(--font-family-font-family-display, Manrope);
+  width: unset;
+  height: unset;
+  line-height: 14px;
+  font-weight: 400  ;
+  border: none;
+  color: #111827;
+  font-size: 12px;
+  margin-block-end: 1.8px;
+  margin-inline-end: 1.45px;
+  background-color: #fff;
+  padding: 1px 20px;
+border-radius: 2px;
+display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invest-form .flatpickr-day:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.invest-form .flatpickr-day.flatpickr-disabled {
+  color: #9ca3af !important;
+}
+
+.invest-form .flatpickr-day.selected,
+.invest-form .flatpickr-day.selected:hover {
+  background-color: #FA1432 !important;
+  color: #fff;
+  font-weight: 600;
+  display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }

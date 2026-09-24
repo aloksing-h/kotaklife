@@ -61,7 +61,8 @@
     margin: 0 !important;
     transition: all 0.3s ease;
     border-radius: var(--radius-full, 999px);
-    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    
+    /* border: 1px solid var(--foreground-fg-quaternary, #A4A7AE); */
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {
@@ -325,6 +326,10 @@
         background-color: #fff;
     }
 
+    .insights-impact-plans .custom-cards .swiper-pagination {
+        display: none;
+    }
+
     /* Top Header Layout (Title + Subtitle) */
     .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
     .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
@@ -426,7 +431,9 @@
     .insights-impact-plans .custom-cards>ul>li {
         padding: 24px;
         min-height: 334px;
-        border-radius: 20px;
+
+        /* border-radius: 20px; */
+        border-radius: var(--radius-md, 8px);
     }
 
     /* Card Title */

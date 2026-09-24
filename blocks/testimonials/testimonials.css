@@ -143,6 +143,7 @@
 /* Expanded State */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
   flex: 6;
+  max-width: 828px;
 }
 
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] .testimonial-col-1 {
@@ -156,6 +157,7 @@
 
 .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
   flex: 0 0 12.198%;
+  max-width: 120px;
 }
 
 /* Collapsed State */
@@ -179,7 +181,9 @@
   top: 16px;
   right: 16px;
   margin: 0;
-  background-color: #e31837;
+
+  /* background-color: #e31837; */
+  background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
   border-radius: 50%;
   max-width: 32px;
   width: 100%;

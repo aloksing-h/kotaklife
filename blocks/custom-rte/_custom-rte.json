@@ -78,7 +78,11 @@
             },
             {
               "name": "Promotion",
-              "value":"promotion"
+              "value": "promotion"
+            },
+            {
+              "name": "Nav Redirection",
+              "value": "nav-redirection"
             }
           ]
         }
@@ -134,6 +138,11 @@
           "value": "",
           "label": "RTE Text",
           "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Redirection URL"
         }
       ]
     }
