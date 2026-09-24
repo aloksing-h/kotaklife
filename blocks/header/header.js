@@ -685,25 +685,56 @@ export default async function decorate(block) {
             // Handle tab list wrapper creation
             const tabListWrapper = fragmentContainer.querySelector('.tablist-wrapper');
             if (tabListWrapper) {
+              // Defensive check: ensure tablist-wrapper is properly appended to DOM
+              if (!tabListWrapper.parentElement) {
+                console.warn('tablist-wrapper is not attached to DOM');
+              }
+
               const ulElement = tabListWrapper.querySelector('ul');
               if (ulElement) {
-                // Create wrapper div
-                const tabWrapper = document.createElement('div');
-                tabWrapper.className = 'tab-wrapper';
+                try {
+                  // Create wrapper div
+                  const tabWrapper = document.createElement('div');
+                  tabWrapper.className = 'tab-wrapper';
 
-                // Create h4 with the category text (from the last li of nav-sections)
-                const heading = document.createElement('h4');
-                heading.textContent = categoryText;
+                  // Create h4 with the category text (from the last li of nav-sections)
+                  const heading = document.createElement('h4');
+                  heading.textContent = categoryText || '';
 
-                // Append h4 to wrapper
-                tabWrapper.appendChild(heading);
+                  // Append h4 to wrapper first
+                  tabWrapper.appendChild(heading);
 
-                // Move ul into wrapper
-                tabWrapper.appendChild(ulElement);
+                  // Clone the ulElement to ensure we get a clean copy
+                  // This prevents issues with element already being in DOM
+                  const ulClone = ulElement.cloneNode(true);
+                  
+                  // Append cloned ul into wrapper
+                  tabWrapper.appendChild(ulClone);
 
-                // Prepend wrapper into tablist-wrapper
-                tabListWrapper.prepend(tabWrapper);
+                  // Remove the original ul from tablist-wrapper
+                  ulElement.remove();
+
+                  // Prepend wrapper into tablist-wrapper
+                  tabListWrapper.prepend(tabWrapper);
+
+                  // Verify the operation was successful
+                  const verifyWrapper = tabListWrapper.querySelector('.tab-wrapper');
+                  const verifyUl = tabListWrapper.querySelector('.tab-wrapper ul');
+                  
+                  if (verifyWrapper && verifyUl) {
+                    // Operation successful - tab-wrapper is properly created and ul is inside it
+                    console.log('✓ tab-wrapper created and ul properly appended', { tabListWrapper, tabWrapper, ul: verifyUl });
+                  } else {
+                    console.error('✗ tab-wrapper creation failed - wrapper or ul not found in expected location');
+                  }
+                } catch (error) {
+                  console.error('Error creating tab-wrapper:', error);
+                }
+              } else {
+                console.warn('No ul element found inside tablist-wrapper');
               }
+            } else {
+              console.warn('tablist-wrapper not found in fragment');
             }
 
             // Prevent clicks inside fragment from bubbling up
