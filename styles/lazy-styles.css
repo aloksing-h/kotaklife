@@ -62,7 +62,6 @@
 
 
 @media (width >= 1200px) {
-  .hero-banner.section,
   .popular-search.section {
     max-width: 1200px;
     margin-left: auto;
@@ -93,7 +92,7 @@
    ========================================================================== */
 
 main .section.hero-banner {
-  margin: 0 auto;
+  margin: 0 ;
   padding: 48px 0 40px;
   background-color: var(--light-color);
   text-align: center;
