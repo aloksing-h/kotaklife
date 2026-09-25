@@ -311,7 +311,9 @@
     align-items: center;
     border-radius: var(--radius-full, 999px);
     background: #E1122D;
-    margin-bottom: 6px;
+
+    /* margin-bottom: 6px; */
+    margin-bottom: 3px;
 }
 
 .invest-form.section.invest-form-container .button-wrapper button.button:hover {
@@ -719,7 +721,8 @@
 /* Date Field Container */
 .invest-form .form-field.date-field {
   position: relative;
-  margin-bottom: 16px;
+
+  /* margin-bottom: 16px; */
 }
 
 .invest-form .form-field.date-field .flatpickr-wrapper {
