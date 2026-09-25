@@ -13,7 +13,18 @@ function scrollToLookingFor() {
     + window.scrollY
     - headerHeight
     - targetMarginTop;
+
+  // Start smooth scroll first
   window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+  // Delay class change to sync with scroll animation (transition happens during scroll)
+  setTimeout(() => {
+    const nav = document.querySelector('nav#nav');
+    if (nav) {
+      nav.classList.remove('grey-nav');
+      nav.classList.add('white-nav');
+    }
+  }, 100); // 100ms delay so class change transitions smoothly during scroll
 }
 
 async function resolveMediaUrl(href) {

@@ -106,8 +106,8 @@ export function initializeModalHandlers() {
       e.preventDefault();
 
       // Check if this click is from the desktop-hamburger icon
-      const isDesktopHamburgerClick = link.querySelector('.icon-desktop-hamburger')
-        || e.target.closest('.icon-desktop-hamburger');
+      const isDesktopHamburgerClick = link.querySelector('.icon-hamburger-black-desktop, .icon-hamburger-white-desktop')
+        || e.target.closest('.icon-hamburger-black-desktop, .icon-hamburger-white-desktop');
 
       await openModal(link.href);
 

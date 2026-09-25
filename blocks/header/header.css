@@ -826,7 +826,7 @@ header {
 
 header .nav-wrapper {
   width: 100%;
-  z-index: 100;
+  z-index: 500;
   position: fixed;
 }
 
@@ -876,7 +876,9 @@ nav a:any-link {
   margin: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
+
+  /* background-color: var(--background-color); */
+  background-color: transparent;
   color: inherit;
   overflow: initial;
   text-overflow: initial;
@@ -888,7 +890,6 @@ nav a:any-link {
 
 .nav-hamburger button .nav-hamburger-icon::before {
   content: "";
-  background-image: url('../../icons/desktop-hamburger.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1321,6 +1322,10 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   margin-left: 16px;
 }
 
+.nav-brand .default-content-wrapper p.brand-item {
+  display: none;
+}
+
 .nav-brand picture {
   line-height: 0;
   height: 100%;
@@ -1336,13 +1341,13 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   grid-area: tools;
 }
 
-.nav-tools p:first-of-type,
-.nav-tools p:first-of-type a {
+.nav-tools .tool-item-1,
+.nav-tools .tool-item-1 a.tool-inner {
   display: flex;
   justify-content: end;
 }
 
-.nav-tools p:first-of-type a {
+.nav-tools .tool-item-1 a.tool-inner {
   border-radius: var(--radius-full, 999px);
   background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
   padding: 8px 12px;
@@ -1353,13 +1358,21 @@ nav[aria-expanded='true'] .nav-hamburger button .nav-hamburger-icon::before {
   line-height: var(--line-height-body-2, 16px);
 }
 
+.nav-tools ul.tool-item-2 {
+  padding: 0;
+  margin: 0;
+}
+
+
 /* display: none;
 } */
 
 nav[aria-expanded='true'] .nav-brand,
 nav[aria-expanded='true'] .nav-tools,
-.nav-tools p:last-of-type {
+.nav-tools ul.tool-item-2 li.tool-inner {
   display: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-sections {
@@ -1650,6 +1663,14 @@ header .nav-wrapper:has(.grey-nav) {
   background-color: transparent;
 }
 
+.nav-wrapper:has(.white-nav) .nav-hamburger button .nav-hamburger-icon::before {
+  background-image: url('../../icons/hamburger-black-desktop.svg');
+}
+
+.nav-wrapper:has(.grey-nav) .nav-hamburger button .nav-hamburger-icon::before {
+  background-image: url('../../icons/hamburger-white-desktop.svg');
+}
+
 nav.white-nav .nav-header-top {
   background: var(--background-bg-tertiary, #F5F5F5);
 }
@@ -1707,6 +1728,14 @@ nav.white-nav .nav-header-top ul.list-item-2 li.list-inner-2 {
 nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner-1,
 nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner-2 {
   border-color: var(--foreground-fg-secondary, #414651);
+}
+
+nav.white-nav .nav-brand .default-content-wrapper p.brand-item-1 {
+  display: block;
+}
+
+nav.grey-nav .nav-brand .default-content-wrapper p.brand-item-2 {
+  display: block;
 }
 
 /******************  ******************/
@@ -1930,20 +1959,19 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     gap: 24px;
   }
 
-  .nav-tools p:first-of-type a {
+  .nav-tools .tool-item-1 a.tool-inner {
     font-size: var(--font-size-button-2, 14px);
     line-height: var(--line-height-body-2, 16px);
   }
 
-  .nav-tools p:last-of-type {
-    display: flex;
+  .nav-tools ul.tool-item-2 li.tool-inner {
     width: 40px;
     height: 40px;
     padding: 6px;
   }
 
-  .nav-tools p:last-of-type a,
-  .nav-tools p:last-of-type * {
+  .nav-tools ul.tool-item-2 li.tool-inner a.tool-child,
+  .nav-tools ul.tool-item-2 li.tool-inner * {
     width: 100%;
     height: 100%;
   }
@@ -2490,4 +2518,10 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
   nav[aria-expanded='true'].white-nav .nav-sections .list-item>li:not(.nav-drop) .inner-child::after {
     background-image: url('../../icons/large-downarrow-black.svg');
   }
+
+  nav.white-nav .nav-tools ul.tool-item-2 li.tool-inner-1,
+  nav.grey-nav .nav-tools ul.tool-item-2 li.tool-inner-2 {
+    display: flex;
+  }
+
 }
