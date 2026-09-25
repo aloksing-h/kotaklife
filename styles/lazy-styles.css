@@ -412,6 +412,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 .visual-pulse.section .default-content-wrapper {
   width: 100%;
   display: flex;
+  margin-bottom: -40px;
   justify-content: flex-end;
 }
 
