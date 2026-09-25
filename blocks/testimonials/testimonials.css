@@ -99,6 +99,15 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
+  will-change: flex-grow;
+  transition: flex-grow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .testimonials.customer-say .video-btn-wrapper img {
@@ -120,6 +129,7 @@
   border-radius: 8px;
   overflow: hidden;
   will-change: opacity;
+  transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.35s;
 }
 
 .testimonials.customer-say .short-img-mob,
@@ -151,6 +161,7 @@
   object-fit: fill;
   object-position: center !important;
   display: block;
+  transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }

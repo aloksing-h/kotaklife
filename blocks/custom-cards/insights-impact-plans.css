@@ -56,19 +56,18 @@
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
     width: 6px;
     height: 6px;
-    background-color: transparent;
-    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    background-color: #d1d5db;
     opacity: 1;
     margin: 0 !important;
+    transition: all 0.3s ease;
     border-radius: var(--radius-full, 999px);
-    cursor: pointer;
-    transition: width 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    
+    /* border: 1px solid var(--foreground-fg-quaternary, #A4A7AE); */
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {
     width: 32px;
     height: 6px;
-    border: none;
     border-radius: var(--radius-full, 999px);
     background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
 }

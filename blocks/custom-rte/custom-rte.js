@@ -28,8 +28,6 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
 
   // 1. Update card stack layers and trigger background color transitions
   cards.forEach((card, i) => {
-    card.style.transform = '';
-    card.style.transition = '';
     card.classList.remove('is-active', 'stack-layer-1', 'stack-layer-2', 'stack-hidden');
 
     const offset = (i - activeIndex + total) % total;
@@ -141,18 +139,6 @@ export default function decorate(block) {
       updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
     };
 
-    const handlePrevSlide = () => {
-      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
-    };
-
-    let startX = 0;
-    let startY = 0;
-    let diffX = 0;
-    let isDragging = false;
-    let isHorizontalSwipe = false;
-    let justDragged = false;
-
     cards.forEach((_, i) => {
       const stepBtn = document.createElement('button');
       stepBtn.type = 'button';
@@ -169,112 +155,12 @@ export default function decorate(block) {
       steps.push(stepBtn);
       stepsContainer.append(stepBtn);
 
-      // Add click listener on cards to advance stack (only if not dragging)
+      // Add click listener on cards to advance stack
       cards[i].addEventListener('click', () => {
-        if (justDragged) return;
         currentIndex = i;
         updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
       });
     });
-
-    // Touch & Pointer Drag / Swipe Gesture Handlers
-    const resetActiveCardStyle = () => {
-      const activeCard = cardsContainer.querySelector('.custom-rte-card.is-active');
-      if (activeCard) {
-        activeCard.style.transition = '';
-        activeCard.style.transform = '';
-      }
-    };
-
-    cardsContainer.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      startX = e.clientX;
-      startY = e.clientY;
-      diffX = 0;
-      isDragging = true;
-      isHorizontalSwipe = false;
-
-      // Pause timer while user is touching/holding the card
-      if (autoSlideTimer) clearInterval(autoSlideTimer);
-    });
-
-    cardsContainer.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      diffX = e.clientX - startX;
-      const diffY = e.clientY - startY;
-
-      if (!isHorizontalSwipe) {
-        // Allow vertical page scroll without capturing
-        if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-          isDragging = false;
-          if (autoSlideTimer) clearInterval(autoSlideTimer);
-          autoSlideTimer = setInterval(() => {
-            handleNextSlide();
-          }, SLIDE_DURATION);
-          return;
-        }
-
-        // Horizontal swipe detected
-        if (Math.abs(diffX) > 8) {
-          isHorizontalSwipe = true;
-          try {
-            cardsContainer.setPointerCapture(e.pointerId);
-          } catch (_) {
-            // Ignore if pointer capture is not supported
-          }
-        }
-      }
-
-      if (isHorizontalSwipe) {
-        const activeCard = cardsContainer.querySelector('.custom-rte-card.is-active');
-        if (activeCard) {
-          activeCard.style.transition = 'none';
-          activeCard.style.transform = `translate(${diffX}px, ${diffX * 0.04}px) rotate(${diffX * 0.03}deg)`;
-        }
-      }
-    });
-
-    const finishDrag = (e) => {
-      if (!isDragging && !isHorizontalSwipe) return;
-
-      const wasSwiping = isHorizontalSwipe;
-      isDragging = false;
-      isHorizontalSwipe = false;
-
-      if (e && e.pointerId && cardsContainer.hasPointerCapture && cardsContainer.hasPointerCapture(e.pointerId)) {
-        cardsContainer.releasePointerCapture(e.pointerId);
-      }
-
-      resetActiveCardStyle();
-
-      if (wasSwiping) {
-        justDragged = true;
-        setTimeout(() => {
-          justDragged = false;
-        }, 200);
-
-        const SWIPE_THRESHOLD = 45;
-        if (diffX < -SWIPE_THRESHOLD) {
-          // Swiped left: fast-forward to next card
-          handleNextSlide();
-        } else if (diffX > SWIPE_THRESHOLD) {
-          // Swiped right: go to previous card
-          handlePrevSlide();
-        } else {
-          // Insufficient distance: snap back and resume
-          updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
-        }
-      } else {
-        // Just a tap without drag: restart timer
-        if (autoSlideTimer) clearInterval(autoSlideTimer);
-        autoSlideTimer = setInterval(() => {
-          handleNextSlide();
-        }, SLIDE_DURATION);
-      }
-    };
-
-    cardsContainer.addEventListener('pointerup', finishDrag);
-    cardsContainer.addEventListener('pointercancel', finishDrag);
 
     stepsContainer.append(trackWrapper);
     paginationWrapper.append(stepsContainer);
