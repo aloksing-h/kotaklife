@@ -10,6 +10,10 @@
 
 }
 
+.section.video-banner-container:first-of-type{
+    margin: -96px auto 0;
+}
+
 .section.video-banner-container .video-banner-wrapper {
     padding: 0;
     max-width: 100%;
@@ -22,7 +26,9 @@
     z-index: 1;
     width: 100%;
     display: block;
-    height: 86vh;
+
+    /* height: 86vh; */
+    height: 79.636vh;
 
 }
 
@@ -51,7 +57,9 @@
     align-items: center;
     background: transparent;
     padding: 0 16px;
-    padding-top: 60px;
+
+    /* padding-top: 60px; */
+    padding-top: 155px;
 }
 
 .autoplay .video-banner-content>div {
@@ -221,7 +229,9 @@
     .autoplay .video-banner-content {
         width: 48%;
         height: auto;
-        padding-top: 0;
+
+        /* padding-top: 0; */
+        padding-top: 96px;
         background-color: rgb(0 0 0 / 30%);
         background-image: conic-gradient(at 1px 1px, transparent 270deg, rgb(0 0 0 / 85%) 270deg);
         backdrop-filter: blur(14.5340px);

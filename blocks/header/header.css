@@ -826,7 +826,7 @@ header {
 
 header .nav-wrapper {
   width: 100%;
-  z-index: 100;
+  z-index: 500;
   position: fixed;
 }
 
