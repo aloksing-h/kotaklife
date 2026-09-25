@@ -529,16 +529,20 @@ export default async function decorate(block) {
     //   ];
     //   dataMapKotakObj.addIndexed(navBrand);
     // }
-    const brandLink = navBrand.querySelector('.button');
-    if (brandLink) {
+    // Handle all brand links/buttons (multiple logos support)
+    const brandLinks = navBrand.querySelectorAll('.button');
+    brandLinks.forEach((brandLink) => {
       brandLink.className = '';
-      brandLink.closest('.button-container').className = '';
+      const buttonContainer = brandLink.closest('.button-container');
+      if (buttonContainer) {
+        buttonContainer.className = '';
+      }
       // Ensure brand link has alt text if it's an image (WCAG 2.2 - 1.1.1 Non-text Content)
       const brandImg = brandLink.querySelector('img');
       if (brandImg && !brandImg.getAttribute('alt')) {
         brandImg.setAttribute('alt', 'Company Logo');
       }
-    }
+    });
   }
 
   const navSections = nav.querySelector('.nav-sections');
