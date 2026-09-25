@@ -213,6 +213,46 @@
   height: 100%;
 }
 
+/* --- Video Crossfade State (Tied to aria-expanded) --- */
+.testimonials.customer-say .video-source-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Fades out instantly when collapsed */
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.testimonials.customer-say .video-source-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; 
+}
+
+/* Add a 2-second delay before fading in when expanded */
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .video-source-wrapper {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out 2s; 
+}
+
+/* Optional: Fade out the large image after 2 seconds for a clean swap */
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-mob,
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-desk {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out 2s;
+}
+
+/* Reset image instantly when collapsed */
+.testimonials.customer-say .testimonial-item[aria-expanded="false"] .large-img-mob,
+.testimonials.customer-say .testimonial-item[aria-expanded="false"] .large-img-desk {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
 @media (width >=500px) {
   .section:has(.testimonials.customer-say)>div {
     padding: 0 20px;
