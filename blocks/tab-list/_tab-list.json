@@ -52,6 +52,21 @@
                     "component": "richtext",
                     "name": "tab-label",
                     "label": "Label"
+                },
+                {
+                    "component": "multiselect",
+                    "name": "style",
+                    "label": "Style",
+                    "options": [
+                        {
+                            "name": "Find a PLan",
+                            "value": "find-plan"
+                        },
+                        {
+                            "name": "Header Tab",
+                            "value": "header-tab"
+                        }
+                    ]
                 }
             ]
         },
