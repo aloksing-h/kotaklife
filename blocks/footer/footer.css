@@ -66,9 +66,9 @@ footer .footer p {
   padding: 19px 0;
 }
 
-.mob-accordion .accordion-item[open] .accordion-item-label {
+/* .mob-accordion .accordion-item[open] .accordion-item-label {
   padding: var(--spacing-xl, 16px) 0 12px;
-}
+} */
 
 .mob-accordion .accordion-item-label::after {
   content: '';
@@ -504,7 +504,9 @@ footer .footer p {
 
   .mob-accordion .accordion-item .acrdn-list.nested {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: 171px 171px 125px 235px;
     grid-template-rows: auto auto;
     gap: 20px 32px;
   }
