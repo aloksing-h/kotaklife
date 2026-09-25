@@ -6,7 +6,6 @@
 
 import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
 
-// --- NEW: Added domain resolver to Embed block ---
 async function resolveMediaUrl(href) {
   try {
     const url = new URL(href, window.location.href);
@@ -74,10 +73,7 @@ const embedTwitter = (url) => {
   return embedHTML;
 };
 
-// --- NEW: Handle direct MP4/WebM videos from DAM ---
 const embedDirectVideo = (url, autoplay) => {
-  // If autoplay is true, add the autoplay attribute. 
-  // (Note: Modal opening via click counts as user interaction, so audio can play unmuted)
   const autoPlayAttr = autoplay ? 'autoplay' : '';
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <video src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; background-color: #000;" 
@@ -86,64 +82,45 @@ const embedDirectVideo = (url, autoplay) => {
   return embedHTML;
 };
 
-const loadEmbed = (block, link, autoplay) => {
+// FIX 1: Added 'async' keyword here
+const loadEmbed = async (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
 
   const EMBEDS_CONFIG = [
-    {
-      match: ['youtube', 'youtu.be'],
-      embed: embedYoutube,
-    },
-    {
-      match: ['vimeo'],
-      embed: embedVimeo,
-    },
-    {
-      match: ['twitter'],
-      embed: embedTwitter,
-    },
-    {
-      match: ['.mp4', '.webm', '.ogg'],
-      embed: embedDirectVideo,
-    },
+    { match: ['youtube', 'youtu.be'], embed: embedYoutube },
+    { match: ['vimeo'], embed: embedVimeo },
+    { match: ['twitter'], embed: embedTwitter },
+    { match: ['.mp4', '.webm', '.ogg'], embed: embedDirectVideo },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
-  const url = new URL(link);
+  let finalLink = link;
+  
   if (config) {
+    if (config.embed === embedDirectVideo) {
+      finalLink = await resolveMediaUrl(link);
+    }
+    // FIX 2: Create url object with base window.location for relative paths
+    const url = new URL(finalLink);
     block.innerHTML = config.embed(url, autoplay);
-    block.classList.add(`embed-${config.match[0]}`);
+    // Remove the dot for a valid class name
+    block.classList.add(`embed-${config.match[0].replace('.', '')}`);
   } else {
+    // FIX 3: Ensure 'url' is defined if no config matches
+    const url = new URL(finalLink, window.location.href);
     block.innerHTML = getDefaultEmbed(url);
   }
+  
   block.classList.add('embed-is-loaded');
 };
 
 export default function decorate(block) {
-  const link = block.querySelector('a').href;
+  const a = block.querySelector('a');
+  // FIX 4: Use getAttribute to prevent the browser from automatically rewriting the URL
+  const link = a ? (a.getAttribute('href') || a.href) : block.textContent.trim();
   block.textContent = '';
-
-  // if (placeholder) {
-  //   const wrapper = document.createElement('div');
-  //   wrapper.className = 'embed-placeholder';
-  //   wrapper.innerHTML = '<div class="embed-placeholder-play">'
-  //     + '<button type="button" title="Play"></button></div>';
-  //   wrapper.prepend(placeholder);
-  //   wrapper.addEventListener('click', () => {
-  //     loadEmbed(block, link, true);
-  //   });
-  //   block.append(wrapper);
-  // } else {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     if (entries.some((e) => e.isIntersecting)) {
-  //       observer.disconnect();
-  //       loadEmbed(block, link);
-  //     }
-  //   });
-  //   observer.observe(block);
-  // }
 
   const isCustomerSay = block.classList.contains('customer-say-video') || block.classList.contains('customer-say');
   const observer = new IntersectionObserver((entries) => {
