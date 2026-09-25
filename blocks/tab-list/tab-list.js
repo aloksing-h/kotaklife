@@ -85,6 +85,18 @@ export default async function decorate(block) {
   const tabs = [];
   const isMobile = !window.matchMedia('(min-width: 900px)').matches;
 
+  // Collect all authored style classes from first tab-panel and apply to tab-list block
+  // Copy any classes authored in AEM (e.g., highlight, premium, featured, etc.)
+  if (tabPanels.length > 0) {
+    const [, firstTabPanel] = tabPanels[0];
+    firstTabPanel.classList.forEach((className) => {
+      // Skip default AEM-generated classes
+      if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
+        block.classList.add(className);
+      }
+    });
+  }
+
   tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}`;
@@ -100,15 +112,6 @@ export default async function decorate(block) {
     tabItem.ariaExpanded = i === 0; // Accordion state (WCAG 2.2 - 4.1.2 Name, Role, Value)
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
-
-    // Apply all authored style classes from tab-panel section to the tab-list block
-    // Copy any classes authored in AEM (e.g., highlight, premium, featured, etc.)
-    tabPanel.classList.forEach((className) => {
-      // Skip default AEM-generated classes
-      if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
-        block.classList.add(className);
-      }
-    });
 
     // Add image if available
     if (image) {
