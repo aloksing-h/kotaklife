@@ -201,7 +201,9 @@
 @media (width >=900px) {
     .autoplay .video-banner-media {
         pointer-events: none;
-        height: 617px;
+
+        /* height: 617px; */
+        height: 670px;
 
         /* height: 100vh; */
     }
@@ -310,7 +312,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 0;
+    
+    /* margin-bottom: 0; */
+    margin: 0;
 }
 
 main:has(.section > .video-banner-wrapper > .autoplay) {

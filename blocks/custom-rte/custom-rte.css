@@ -15,8 +15,12 @@
     overflow: hidden;
     max-width: 1100px;
     box-sizing: border-box;
-    margin: 0 auto;
-    padding: 48px 16px;
+
+    /* margin: 0 auto; */
+    margin: 0 auto 89px;
+
+    /* padding: 48px 16px; */
+    padding: 44px 16px 28px;
 }
 
 .get-cover-plans .default-content-wrapper {
@@ -100,7 +104,9 @@
     width: 100%;
     padding: 0;
     margin: 0;
-    height: 270px;
+
+    /* height: 270px; */
+    height: 260px;
 }
 
 .get-cover-plans .custom-rte.promotion {
@@ -365,7 +371,7 @@
 
 /* Active progress animation fill */
 .get-cover-plans .promotion .progress-track-wrapper.animating .progress-bar-fill {
-    animation: progress-fill 5s linear forwards;
+    animation: progress-fill var(--slide-duration, 3s) linear forwards;
 }
 
 @keyframes progress-fill {
@@ -386,6 +392,7 @@
     .get-cover-plans.section {
         padding: 0 50px;
         margin-block: 50px;
+        margin-bottom: 110px;
     }
 }
 

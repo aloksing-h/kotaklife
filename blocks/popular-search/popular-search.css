@@ -7,7 +7,9 @@
 
 .section.popular-search-container {
   margin: 0;
-  margin-top: 125px;
+
+  /* margin-top: 125px; */
+  margin-top: 123px;
 }
 
 .popular-search h4 {
@@ -78,8 +80,7 @@
   white-space: nowrap;
   margin: 0;
   display: inline-flex;
-  
-  /* height: 32px; */
+  height: 32px;
 
   /* padding: var(--spacing-md, 8px) var(--spacing-lg, 12px); */
   padding: 7px var(--spacing-lg, 12px);
@@ -111,6 +112,7 @@
   .section.popular-search-container {
     max-width: unset;
     background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
+    margin-top: 124px;
   }
 
   .popular-search-wrapper {
@@ -141,6 +143,7 @@
     padding: 10px 20px;
     font-size: 16px;
     line-height: 20px;
+    height: 40px;
   }
 
   .popular-search ul {

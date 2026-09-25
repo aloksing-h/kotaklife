@@ -52,6 +52,7 @@
   padding: 0;
 }
 
+
 .section:has(.testimonials.customer-say) > div {
   padding: 0 16px;
 }
@@ -99,6 +100,7 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  transition: flex 0.4s ease-in-out; /* Unified from video version */
 }
 
 .testimonials.customer-say .video-btn-wrapper img {
@@ -148,7 +150,7 @@
 .testimonials.customer-say .testimonial-item picture img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: fill; /* or initial based on preference, unified to fill */
   object-position: center !important;
   display: block;
 }
@@ -203,8 +205,6 @@
   top: 16px;
   right: 16px;
   margin: 0;
-
-  /* background-color: #e31837; */
   background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
   border-radius: 50%;
   max-width: 32px;
@@ -236,7 +236,54 @@
   height: 100%;
 }
 
-/* Swiper Pagination Component - matching looking-banner */
+/* --- Video Crossfade State (Tied to aria-expanded) --- */
+.testimonials.customer-say .video-source-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Base state: completely hidden */
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.testimonials.customer-say .video-source-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; 
+}
+
+/* Keyframes force the delay to respect initial page load */
+@keyframes videofadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes imagefadeout {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Execute the 2-second delay before fading in when expanded */
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .video-source-wrapper {
+  animation: videofadein 0.5s ease-in-out 1s forwards;
+}
+
+/* Fade out the large image after 2 seconds for a clean swap */
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-mob,
+.testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-desk {
+  animation: imagefadeout 0.5s ease-in-out 1s forwards;
+}
+
+/* Reset image instantly when collapsed (Base states apply) */
+.testimonials.customer-say .testimonial-item[aria-expanded="false"] .large-img-mob,
+.testimonials.customer-say .testimonial-item[aria-expanded="false"] .large-img-desk {
+  opacity: 1;
+}
+
+/* Swiper Pagination Component */
 .testimonials.customer-say .swiper-pagination {
   position: absolute;
   left: auto;
@@ -320,6 +367,7 @@
   }
 
   .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
+    flex: 0 0 10.91%;
     flex-grow: 1;
   }
 
