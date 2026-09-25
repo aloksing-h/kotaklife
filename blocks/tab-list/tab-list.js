@@ -92,8 +92,6 @@ export default async function decorate(block) {
       // Skip default AEM-generated classes
       if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
         block.classList.add(className);
-        // Remove the class from the tab-panel section
-        tabPanel.classList.remove(className);
       }
     });
   });
