@@ -908,7 +908,8 @@ export default async function decorate(block) {
 
 export async function modalHeaderBreadCrumb() {
   // Handle desktop hamburger icon click to apply desk-hamburger class to modal
-  const desktopHamburger = document.querySelector('.icon-desktop-hamburger');
+  // Support both black and white desktop hamburger variants using CSS comma-separated selector
+  const desktopHamburger = document.querySelector('.icon-hamburger-black-desktop, .icon-hamburger-white-desktop');
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {
