@@ -1,0 +1,70 @@
+{
+  "definitions": [
+    {
+      "title": "Accessibility Button",
+      "id": "accessibility-button",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Accessibility Button",
+              "model": "accessibility-button"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "accessibility-button",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Accessibility Icon",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Icon Alt Text",
+          "value": "Accessibility options"
+        },
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Position",
+          "options": [
+            {
+              "name": "Left",
+              "value": "position-left"
+            },
+            {
+              "name": "Right",
+              "value": "position-right"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "buttonLabel",
+          "label": "Button Label",
+          "value": "Accessibility options"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "accessibility-button",
+      "components": [
+        "accessibility-button"
+      ]
+    }
+  ]
+}
