@@ -471,6 +471,47 @@
     ]
   },
   {
+    "id": "accessibility-button",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Accessibility Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Icon Alt Text",
+        "value": "Accessibility options"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Position",
+        "options": [
+          {
+            "name": "Left",
+            "value": "position-left"
+          },
+          {
+            "name": "Right",
+            "value": "position-right"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buttonLabel",
+        "label": "Button Label",
+        "value": "Accessibility options"
+      }
+    ]
+  },
+  {
     "id": "accordion",
     "fields": [
       {
@@ -1193,6 +1234,21 @@
         "component": "richtext",
         "name": "tab-label",
         "label": "Label"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Find a PLan",
+            "value": "find-plan"
+          },
+          {
+            "name": "Header Tab",
+            "value": "header-tab"
+          }
+        ]
       }
     ]
   },

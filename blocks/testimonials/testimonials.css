@@ -53,6 +53,7 @@
 }
 
 .section:has(.testimonials.customer-say) > div {
+.section:has(.testimonials.customer-say) > div {
   padding: 0 16px;
 }
 
@@ -359,6 +360,10 @@
 
   .section:has(.testimonials.customer-say) > div {
     padding: 0;
+  }
+
+  .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
+    flex-grow: 6;
   }
 
   .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
