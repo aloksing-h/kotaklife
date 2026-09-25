@@ -38,7 +38,7 @@ export default function decorate(block) {
     items.forEach((item, i) => {
       const isActive = i === validIndex;
       item.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-      
+
       // Manage Background Video Play/Pause State
       const bgVideo = item.querySelector('video');
       if (bgVideo) {
