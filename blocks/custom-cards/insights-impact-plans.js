@@ -19,29 +19,28 @@ export default async function initInsightsSwiper(block) {
       ul.classList.add('swiper-wrapper');
       [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
 
-block.swiperInstance = createSwiper(block, {
-  slidesPerView: 'auto',
-  spaceBetween: 8,
-  grabCursor: true,
-  pagination: {
-    el: pagination,
-    clickable: true,
-  },
-  on: {
-    click: function (swiper) {
-      // Ensure clickedIndex is valid and numeric before sliding
-      if (typeof swiper.clickedIndex === 'number' && !isNaN(swiper.clickedIndex)) {
-        swiper.slideTo(swiper.clickedIndex);
-      }
-    },
-  },
-  breakpoints: {
-    768: {
-      spaceBetween: 16, // Spacing for screens 768px and above
-    },
-  },
-});
-
+      block.swiperInstance = createSwiper(block, {
+        slidesPerView: 'auto',
+        spaceBetween: 8,
+        grabCursor: true,
+        pagination: {
+          el: pagination,
+          clickable: true,
+        },
+        on: {
+          click(swiper) {
+            // Ensure clickedIndex is valid and numeric before sliding
+            if (typeof swiper.clickedIndex === 'number' && !Number.isNaN(swiper.clickedIndex)) {
+              swiper.slideTo(swiper.clickedIndex);
+            }
+          },
+        },
+        breakpoints: {
+          768: {
+            spaceBetween: 16, // Spacing for screens 768px and above
+          },
+        },
+      });
     }
   };
 
