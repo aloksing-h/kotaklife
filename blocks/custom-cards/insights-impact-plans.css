@@ -329,7 +329,8 @@
 @media (width >=768px) {
     .insights-impact-plans.custom-cards-container {
         padding: 48px 0;
-        background-color: #fff;
+        
+        /* background-color: #fff; */
     }
 
     .insights-impact-plans .custom-cards .swiper-pagination {
