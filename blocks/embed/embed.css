@@ -83,7 +83,8 @@
   background-color: transparent;
 } 
 
-.embed.customer-say-video  iframe{
+.embed.customer-say-video iframe,
+.embed.customer-say-video video {
   border-radius: 8px;
 }
 

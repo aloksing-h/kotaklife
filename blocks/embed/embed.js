@@ -4,6 +4,25 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
+import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
+
+// --- NEW: Added domain resolver to Embed block ---
+async function resolveMediaUrl(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    if (url.pathname.startsWith('/content/')) {
+      let domain = await getRespectiveDomain();
+      if (domain === true) {
+        domain = 'https://publish-p48457-e1275402.adobeaemcloud.com';
+      }
+      return domain + url.pathname;
+    }
+    return url.href;
+  } catch {
+    return href;
+  }
+}
+
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
   const script = document.createElement('script');
@@ -55,6 +74,18 @@ const embedTwitter = (url) => {
   return embedHTML;
 };
 
+// --- NEW: Handle direct MP4/WebM videos from DAM ---
+const embedDirectVideo = (url, autoplay) => {
+  // If autoplay is true, add the autoplay attribute. 
+  // (Note: Modal opening via click counts as user interaction, so audio can play unmuted)
+  const autoPlayAttr = autoplay ? 'autoplay' : '';
+  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+      <video src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; background-color: #000;" 
+      controls ${autoPlayAttr} playsinline name="media"></video>
+    </div>`;
+  return embedHTML;
+};
+
 const loadEmbed = (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -72,6 +103,10 @@ const loadEmbed = (block, link, autoplay) => {
     {
       match: ['twitter'],
       embed: embedTwitter,
+    },
+    {
+      match: ['.mp4', '.webm', '.ogg'],
+      embed: embedDirectVideo,
     },
   ];
 
