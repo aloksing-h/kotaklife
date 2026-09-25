@@ -1,7 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 let autoSlideTimer = null;
-const SLIDE_DURATION = 5000; // 5 seconds per card
+const SLIDE_DURATION = 3000; // 3 seconds per card
 
 /**
  * Resets and triggers the progress line animation
