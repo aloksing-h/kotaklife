@@ -306,3 +306,11 @@
 main:has(.section > .video-banner-wrapper > .autoplay) {
     max-width: 100%;
 }
+
+@media (width >= 768px) and (width <=899px) {
+    .autoplay .video-banner-media video,
+    .autoplay .video-banner-media picture,
+    .autoplay .video-banner-media img {
+        object-fit: initial;
+    }
+}
