@@ -370,4 +370,11 @@
     gap: 12px;
   }
 }
+
+@media (width >=1150px) {
+  .life-advisor.profile-cta-container .profile-cta img {
+    height: 400px;
+  }
+}
+
 /* stylelint-enable media-feature-range-notation */
