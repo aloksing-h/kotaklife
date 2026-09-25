@@ -471,7 +471,9 @@
         align-items: center;
         gap: 8px 24px;
         max-width: 1200px !important;
-        margin: 0 auto 80px !important;
+
+        /* margin: 0 auto 80px !important; */
+        margin: 0 auto 88px !important;
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -572,7 +574,9 @@
     grid-template-areas:
         "title description"
         "title button";
-    gap: 8px 32px;
+
+    /* gap: 8px 32px; */
+    gap: 3px 32px;
     align-items: start;
 }
 
