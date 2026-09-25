@@ -2451,9 +2451,9 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 }
 
 @media screen and (1024px <=width <=1200px) {
-  nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper {
+  /* nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper {
     max-width: 270px;
-  }
+  } */
 
   nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .tab-list.header-tab .custom-rte-wrapper:first-of-type div>div>ul>li {
     max-width: 44%;

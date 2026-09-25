@@ -10,7 +10,7 @@
 
 }
 
-.section.video-banner-container:first-of-type{
+main >.section.video-banner-container:first-of-type{
     margin: -96px auto 0;
 }
 
