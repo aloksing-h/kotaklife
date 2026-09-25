@@ -59,6 +59,7 @@ export default function decorate(block) {
           video.setAttribute('muted', '');
           video.muted = true; 
           video.setAttribute('playsinline', '');
+          video.setAttribute('crossorigin', 'anonymous');
           video.setAttribute('webkit-playsinline', '');
           video.setAttribute('preload', 'auto'); // Force browser to buffer early
           video.setAttribute('src', videoSrc);
