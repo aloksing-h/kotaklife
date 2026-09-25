@@ -52,7 +52,7 @@
   padding: 0;
 }
 
-.section:has(.testimonials.customer-say) > div {
+
 .section:has(.testimonials.customer-say) > div {
   padding: 0 16px;
 }
