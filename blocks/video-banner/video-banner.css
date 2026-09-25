@@ -183,7 +183,7 @@
     .autoplay .video-banner-media picture,
     .autoplay .video-banner-media img {
         object-fit: cover;
-        object-position: center;
+        object-position: bottom;
     }
 }
 
@@ -208,6 +208,13 @@
         height: 100%;
         pointer-events: auto;
         z-index: 1;
+    }
+
+    .autoplay .video-banner-media video,
+    .autoplay .video-banner-media picture,
+    .autoplay .video-banner-media img {
+        object-fit: cover;
+        object-position: center;
     }
 
     /* 3. Content panel occupies left half; text itself animates top-to-bottom via JS-driven classes */
