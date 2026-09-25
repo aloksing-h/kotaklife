@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/aem.js';
+import decorateFindAPlan from '../tabs/find-a-plan.js';
 
 let tabsIdx = 0;
 export function changeTabs(e) {
@@ -10,7 +11,7 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches;
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !targetTab.closest('.tab-list.find-plan');
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
@@ -96,6 +97,8 @@ export default async function decorate(block) {
     });
   });
 
+  const useMobileAccordion = isMobile && !block.classList.contains('find-plan');
+
   tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}`;
@@ -127,9 +130,9 @@ export default async function decorate(block) {
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
     // Add hover functionality (on desktop only, trigger tab change on hover)
-    if (window.matchMedia('(min-width: 900px)').matches) {
-      tabItem.addEventListener('mouseenter', changeTabs);
-    }
+    // if (window.matchMedia('(min-width: 900px)').matches) {
+    //   tabItem.addEventListener('mouseenter', changeTabs);
+    // }
     // Add keyboard support for Enter/Space (WCAG 2.2 - 2.1.1 Keyboard)
     tabItem.addEventListener('keydown', (e) => {
       if (e.code === 'Enter' || e.code === 'Space') {
@@ -148,7 +151,7 @@ export default async function decorate(block) {
     tabPanel.tabIndex = -1; // Allow programmatic focus on tab panels (WCAG 2.2 - 2.4.3 Focus Order)
 
     // Desktop behavior: first panel shown, others hidden
-    if (i === 0 && !isMobile) {
+    if (i === 0 && !useMobileAccordion) {
       // Desktop: show first panel
       tabItem.setAttribute('aria-current', 'true');
       tabPanel.removeAttribute('hidden');
@@ -161,7 +164,7 @@ export default async function decorate(block) {
       tabPanel.setAttribute('aria-hidden', 'true');
     }
 
-    if (isMobile) {
+    if (useMobileAccordion) {
       // Mobile: append panel inside li for accordion
       li.appendChild(tabPanel);
       // On mobile, deselect first tab and keep panel hidden
@@ -248,11 +251,15 @@ export default async function decorate(block) {
   tablistWrapper.appendChild(tabList);
 
   // Append all tab panels (desktop panels) after the tablist
-  if (!isMobile) {
+  if (!useMobileAccordion) {
     tabPanels.forEach(([, tabPanel]) => {
       tablistWrapper.appendChild(tabPanel);
     });
   }
 
   block.replaceChildren(tablistWrapper);
+
+  if (block.classList.contains('find-plan')) {
+    decorateFindAPlan(block);
+  }
 }

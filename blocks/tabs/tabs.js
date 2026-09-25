@@ -29,6 +29,13 @@ function scrollTabIntoView(tab) {
   });
 }
 
+function decorateFindPlanVariant(block) {
+  if (!block.querySelector('.find-plan .custom-cards, .find-plan.custom-cards-container')) return;
+
+  block.closest('.tabs-container')?.classList.add('find-a-plan');
+  decorateFindAPlan(block);
+}
+
 async function decorateFragmentLinks(panel) {
   const links = [...panel.querySelectorAll('a[href]')].filter((link) => isFragmentPath(link.getAttribute('href')));
 
@@ -201,9 +208,7 @@ async function decorateDefaultTabs(block) {
 
   block.prepend(tablist);
 
-  if (block.closest('.find-a-plan')) {
-    decorateFindAPlan(block);
-  }
+  decorateFindPlanVariant(block);
 }
 
 export default async function decorate(block) {
