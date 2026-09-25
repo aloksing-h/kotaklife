@@ -365,7 +365,7 @@
 
 /* Active progress animation fill */
 .get-cover-plans .promotion .progress-track-wrapper.animating .progress-bar-fill {
-    animation: progress-fill 5s linear forwards;
+    animation: progress-fill var(--slide-duration, 3s) linear forwards;
 }
 
 @keyframes progress-fill {
