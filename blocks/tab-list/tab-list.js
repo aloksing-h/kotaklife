@@ -85,17 +85,18 @@ export default async function decorate(block) {
   const tabs = [];
   const isMobile = !window.matchMedia('(min-width: 900px)').matches;
 
-  // Collect all authored style classes from first tab-panel and apply to tab-list block
-  // Copy any classes authored in AEM (e.g., highlight, premium, featured, etc.)
-  if (tabPanels.length > 0) {
-    const [, firstTabPanel] = tabPanels[0];
-    firstTabPanel.classList.forEach((className) => {
+  // Collect all authored style classes from tab-panels and apply to tab-list block
+  // Also remove these classes from the tab-panel sections
+  tabPanels.forEach(([, tabPanel]) => {
+    tabPanel.classList.forEach((className) => {
       // Skip default AEM-generated classes
       if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
         block.classList.add(className);
+        // Remove the class from the tab-panel section
+        tabPanel.classList.remove(className);
       }
     });
-  }
+  });
 
   tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
