@@ -75,7 +75,12 @@ const embedTwitter = (url) => {
 
 const embedDirectVideo = (url, autoplay) => {
   const autoPlayAttr = autoplay ? 'autoplay' : '';
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  // const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  //     <video src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; background-color: #000;" 
+  //     controls ${autoPlayAttr} playsinline name="media"></video>
+  //   </div>`;
+
+    const embedHTML = `<div style="left: 0; width: 100%; height: 100%; position: relative; min-height:inherit;">
       <video src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; background-color: #000;" 
       controls ${autoPlayAttr} playsinline name="media"></video>
     </div>`;
