@@ -123,6 +123,11 @@
     margin: 0;
     position: relative;
     height: 100%;
+    touch-action: pan-y;
+    user-select: none;
+
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-user-select: none;
 
     /* height: 340px; */
 }
