@@ -1,4 +1,21 @@
 import { openModal } from '../modal/modal.js';
+import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
+
+async function resolveMediaUrl(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    if (url.pathname.startsWith('/content/')) {
+      let domain = await getRespectiveDomain();
+      if (domain === true) {
+        domain = 'https://publish-p48457-e1275402.adobeaemcloud.com';
+      }
+      return domain + url.pathname;
+    }
+    return url.href;
+  } catch {
+    return href;
+  }
+}
 
 export default function decorate(block) {
   let activeIndex = 0;
@@ -9,7 +26,7 @@ export default function decorate(block) {
     (el) => el.nodeType === 1 && !el.classList.contains('swiper-pagination'),
   );
 
-  // Single source of truth: Switch active item & sync pagination
+  // Single source of truth: Switch active item, sync pagination, and manage video states
   const activateItem = (targetIndex) => {
     const items = getItems();
     if (items.length === 0) return;
@@ -19,9 +36,28 @@ export default function decorate(block) {
     activeIndex = validIndex;
 
     items.forEach((item, i) => {
-      item.setAttribute('aria-expanded', i === validIndex ? 'true' : 'false');
+      const isActive = i === validIndex;
+      item.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+
+      // Manage Background Video Play/Pause State
+      const bgVideo = item.querySelector('video');
+      if (bgVideo) {
+        if (isActive) {
+          if (bgVideo.readyState >= 3) {
+            bgVideo.play().catch(() => {});
+          } else {
+            bgVideo.addEventListener('canplay', () => {
+              bgVideo.play().catch(() => {});
+            }, { once: true });
+          }
+        } else {
+          bgVideo.pause();
+          bgVideo.currentTime = 0; // Reset video to start
+        }
+      }
     });
 
+    // Update Pagination Bullets
     bullets.forEach((bullet, i) => {
       if (i === validIndex) {
         bullet.classList.add('swiper-pagination-bullet-active');
@@ -32,7 +68,7 @@ export default function decorate(block) {
   };
 
   // Decorate an individual card item (idempotent)
-  const decorateItem = (row, index) => {
+  const decorateItem = async (row, index) => {
     row.classList.add('testimonial-item');
     row.setAttribute('tabindex', '0');
     row.setAttribute('role', 'button');
@@ -59,14 +95,48 @@ export default function decorate(block) {
       if (col1Elements.length >= 1) col1Elements[0].classList.add('short-img-mob');
       if (col1Elements.length >= 2) col1Elements[1].classList.add('short-img-desk');
 
-      // Decorate Column 2: Large Images & Video link
+      // Decorate Column 2: Large Images & Videos
       const col2Elements = [...col2.children];
       if (col2Elements.length >= 1) col2Elements[0].classList.add('large-img-mob');
       if (col2Elements.length >= 2) col2Elements[1].classList.add('large-img-desk');
 
-      // Play Button & Link Extraction
+      // Background Video Initialization
       if (col2Elements.length >= 3) {
-        const videoBtnWrapper = col2Elements[2];
+        col2Elements[2].classList.add('video-source-wrapper');
+        const VideoWrapper = col2Elements[2];
+        const isVideoEl = (el) => /\.(mp4|webm|ogg)(\?|$)/i.test(el?.querySelector('a')?.getAttribute('href') || '');
+
+        if (isVideoEl(VideoWrapper)) {
+          const videoAnchor = VideoWrapper.querySelector('a');
+          if (videoAnchor) {
+            const videoSrc = await resolveMediaUrl(videoAnchor.href);
+
+            const video = document.createElement('video');
+            video.setAttribute('loop', '');
+            video.setAttribute('muted', '');
+            video.muted = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('crossorigin', 'anonymous');
+            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('preload', 'auto');
+            video.setAttribute('src', videoSrc);
+
+            VideoWrapper.innerHTML = '';
+            VideoWrapper.appendChild(video);
+
+            // Trigger play if this item happens to be currently active
+            if (index === activeIndex && row.getAttribute('aria-expanded') === 'true') {
+              video.addEventListener('canplay', () => {
+                video.play().catch(() => {});
+              }, { once: true });
+            }
+          }
+        }
+      }
+
+      // Play Button & Modal Link Extraction
+      if (col2Elements.length >= 4) {
+        const videoBtnWrapper = col2Elements[3];
         videoBtnWrapper.classList.add('video-btn-wrapper');
         videoBtnWrapper.setAttribute('aria-label', 'Play video testimonial');
         videoBtnWrapper.setAttribute('role', 'button');
