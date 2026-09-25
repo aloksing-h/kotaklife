@@ -593,6 +593,7 @@
 .growing-insurance-company .default-content-wrapper h3 strong {
     color: #181d27;
     font-weight: 600;
+    display: inline-block;
 }
 
 .growing-insurance-company .default-content-wrapper a::after {
