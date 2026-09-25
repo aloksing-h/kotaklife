@@ -56,15 +56,16 @@
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
     width: 6px;
     height: 6px;
+    
     /* background-color: #d1d5db; */
-     background-color: transparent;
+    background-color: transparent;
     border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
     opacity: 1;
     margin: 0 !important;
     transition: all 0.3s ease;
     border-radius: var(--radius-full, 999px);
     cursor: pointer;
-    transition: width 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    
     /* border: 1px solid var(--foreground-fg-quaternary, #A4A7AE); */
 }
 

@@ -151,7 +151,6 @@ export default function decorate(block) {
     let isDragging = false;
     let isHorizontalSwipe = false;
     let justDragged = false;
-    
     cards.forEach((_, i) => {
       const stepBtn = document.createElement('button');
       stepBtn.type = 'button';
@@ -234,7 +233,8 @@ export default function decorate(block) {
       const wasSwiping = isHorizontalSwipe;
       isDragging = false;
       isHorizontalSwipe = false;
-      if (e && e.pointerId && cardsContainer.hasPointerCapture && cardsContainer.hasPointerCapture(e.pointerId)) {
+      if (e && e.pointerId && cardsContainer.hasPointerCapture
+        && cardsContainer.hasPointerCapture(e.pointerId)) {
         cardsContainer.releasePointerCapture(e.pointerId);
       }
       resetActiveCardStyle();
@@ -264,8 +264,6 @@ export default function decorate(block) {
     };
     cardsContainer.addEventListener('pointerup', finishDrag);
     cardsContainer.addEventListener('pointercancel', finishDrag);
-
-
     stepsContainer.append(trackWrapper);
     paginationWrapper.append(stepsContainer);
 
