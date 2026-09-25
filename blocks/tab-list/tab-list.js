@@ -101,6 +101,16 @@ export default async function decorate(block) {
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
 
+    // Apply all authored style classes from tab-panel section to the tab button and list item
+    // Copy any classes authored in AEM (e.g., highlight, premium, featured, etc.)
+    tabPanel.classList.forEach((className) => {
+      // Skip default AEM-generated classes
+      if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
+        tabItem.classList.add(className);
+        li.classList.add(className);
+      }
+    });
+
     // Add image if available
     if (image) {
       const imgElement = document.createElement('img');
