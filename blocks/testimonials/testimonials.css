@@ -212,6 +212,7 @@
   width: 100%;
   height: 100%;
 }
+
 /* --- Video Crossfade State (Tied to aria-expanded) --- */
 .testimonials.customer-say .video-source-wrapper {
   position: absolute;
@@ -232,25 +233,25 @@
 }
 
 /* Keyframes force the delay to respect initial page load */
-@keyframes videoFadeIn {
+@keyframes videofadein {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-@keyframes imageFadeOut {
+@keyframes imagefadeout {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 /* Execute the 2-second delay before fading in when expanded */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] .video-source-wrapper {
-  animation: videoFadeIn 0.5s ease-in-out 1s forwards;
+  animation: videofadein 0.5s ease-in-out 1s forwards;
 }
 
 /* Fade out the large image after 2 seconds for a clean swap */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-mob,
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] .large-img-desk {
-  animation: imageFadeOut 0.5s ease-in-out 1s forwards;
+  animation: imagefadeout 0.5s ease-in-out 1s forwards;
 }
 
 /* Reset image instantly when collapsed (Base states apply) */
@@ -258,6 +259,7 @@
 .testimonials.customer-say .testimonial-item[aria-expanded="false"] .large-img-desk {
   opacity: 1;
 }
+
 @media (width >=500px) {
   .section:has(.testimonials.customer-say)>div {
     padding: 0 20px;

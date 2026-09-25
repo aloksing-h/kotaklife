@@ -97,7 +97,7 @@ const loadEmbed = async (block, link, autoplay) => {
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   let finalLink = link;
-  
+
   if (config) {
     if (config.embed === embedDirectVideo) {
       finalLink = await resolveMediaUrl(link);
@@ -112,7 +112,7 @@ const loadEmbed = async (block, link, autoplay) => {
     const url = new URL(finalLink, window.location.href);
     block.innerHTML = getDefaultEmbed(url);
   }
-  
+
   block.classList.add('embed-is-loaded');
 };
 

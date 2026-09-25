@@ -44,12 +44,12 @@ export default function decorate(block) {
       const col2Elements = [...col2.children];
       if (col2Elements.length >= 1) col2Elements[0].classList.add('large-img-mob');
       if (col2Elements.length >= 2) col2Elements[1].classList.add('large-img-desk');
-      
+
       if (col2Elements.length >= 3) {
         col2Elements[2].classList.add('video-source-wrapper');
         const VideoWrapper = col2Elements[2];
         const isVideoEl = (el) => /\.(mp4|webm|ogg)(\?|$)/i.test(el?.querySelector('a')?.getAttribute('href') || '');
-        
+
         if (isVideoEl(VideoWrapper)) {
           const videoAnchor = VideoWrapper.querySelector('a');
           const videoSrc = await resolveMediaUrl(videoAnchor.href);
@@ -57,17 +57,16 @@ export default function decorate(block) {
           const video = document.createElement('video');
           video.setAttribute('loop', '');
           video.setAttribute('muted', '');
-          video.muted = true; 
+          video.muted = true;
           video.setAttribute('playsinline', '');
           video.setAttribute('crossorigin', 'anonymous');
           video.setAttribute('webkit-playsinline', '');
           video.setAttribute('preload', 'auto'); // Force browser to buffer early
           video.setAttribute('src', videoSrc);
-          
+
           VideoWrapper.innerHTML = '';
           VideoWrapper.appendChild(video);
 
-          // Start playing ONLY when the browser has buffered enough data to prevent initial stuttering
           if (index === 0 && row.getAttribute('aria-expanded') === 'true') {
             video.addEventListener('canplay', () => {
               video.play().catch(() => {});
@@ -87,11 +86,11 @@ export default function decorate(block) {
 
         if (link) {
           modalUrl = link.href;
-          link.removeAttribute('href'); 
+          link.removeAttribute('href');
         }
 
         videoBtnWrapper.addEventListener('click', (e) => {
-          e.stopPropagation(); 
+          e.stopPropagation();
           if (modalUrl) {
             openModal(modalUrl);
           }
@@ -121,7 +120,7 @@ export default function decorate(block) {
           bgVideo.currentTime = 0; // Reset video to start
         }
       });
-      
+
       // Expand targeted item and play video immediately
       row.setAttribute('aria-expanded', 'true');
       const activeVideo = row.querySelector('video');
