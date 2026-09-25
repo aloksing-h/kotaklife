@@ -668,3 +668,19 @@ footer .footer p {
     border-top: 1px solid var(--foreground-fg-quaternary-hover, #717680);
   }
 }
+
+/* 1. Hide native marker in WebKit (Older macOS Safari, iOS) */
+summary::-webkit-details-marker {
+  display: none !important;
+}
+
+/* 2. Hide native marker in Firefox, Chrome, and Modern Safari */
+summary::marker {
+  display: none !important;
+  content: "";
+}
+
+/* 3. Reset summary display behavior across all legacy browsers */
+summary {
+  list-style: none !important;
+}
