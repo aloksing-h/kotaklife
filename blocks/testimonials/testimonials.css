@@ -366,10 +366,6 @@
     flex-grow: 6;
   }
 
-  .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
-    flex-grow: 6;
-  }
-
   .testimonials.customer-say .testimonial-item[aria-expanded="false"] {
     flex: 0 0 10.91%;
     flex-grow: 1;
