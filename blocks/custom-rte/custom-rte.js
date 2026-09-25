@@ -9,6 +9,7 @@ const SLIDE_DURATION = 3000; // 3 seconds per card
  */
 function restartProgressAnimation(trackWrapper) {
   if (!trackWrapper) return;
+  trackWrapper.style.setProperty('--slide-duration', `${SLIDE_DURATION}ms`);
   trackWrapper.classList.remove('animating');
   // Trigger reflow to restart CSS keyframe animation
   trackWrapper.getBoundingClientRect();
