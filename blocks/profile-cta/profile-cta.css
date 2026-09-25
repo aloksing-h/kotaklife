@@ -342,9 +342,9 @@
     margin-bottom: 11px;
   }
 
-  .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
+  /* .life-advisor.profile-cta-container .profile-cta>div:nth-child(1) {
     width: 50%;
-  }
+  } */
 }
 
 @media screen and (max-width: 767px) {
