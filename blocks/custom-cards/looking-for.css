@@ -587,7 +587,8 @@
 
 .looking-for>.custom-cards-wrapper.looking-banner .custom-cards ul li .custom-cards-card-body a {
     display: inline-flex;
-    height: 32px;
+    width: 121px;
+    height: 38px;
     padding: 0 var(--spacing-xs, 4px) 0 var(--spacing-xl, 16px);
     justify-content: center;
     align-items: center;
@@ -727,7 +728,7 @@
     .looking-banner .custom-cards ul li .custom-cards-card-body .banner-cta-group {
         /* width: 62%; */
         width: 83%;
-        margin-top: 2px;
+        margin-top: -4px;
         display: flex;
         align-items: center;
         justify-content: center;
