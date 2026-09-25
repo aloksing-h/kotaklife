@@ -2025,9 +2025,13 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 
   nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true']>ul {
     /* min-width: 100%; */
-    max-width: 1102px;
+
+    /* max-width: 1102px; */
+    max-width: 1104px;
     display: block;
-    position: absolute;
+
+    /* position: absolute; */
+    position: fixed;
     left: 0;
     right: 0;
     width: calc(100% - 98px);
@@ -2035,7 +2039,9 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     /* height: 100vh; */
     height: auto;
     scroll-behavior: unset;
-    top: 100%;
+
+    /* top: 100%; */
+    top: 96px;
     white-space: initial;
     overflow: hidden;
     margin: -4px auto 0;
