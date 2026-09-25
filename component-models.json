@@ -1193,6 +1193,17 @@
         "component": "richtext",
         "name": "tab-label",
         "label": "Label"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Highlight",
+            "value": "highlight"
+          }
+        ]
       }
     ]
   },
