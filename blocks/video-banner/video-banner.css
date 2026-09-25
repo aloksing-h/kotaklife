@@ -22,7 +22,7 @@
     z-index: 1;
     width: 100%;
     display: block;
-    height: 87vh;
+    height: 86vh;
 
 }
 
@@ -30,7 +30,7 @@
 .autoplay .video-banner-media video,
 .autoplay .video-banner-media picture,
 .autoplay .video-banner-media img {
-    min-height: 670px;
+    /* min-height: 670px; */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -183,7 +183,7 @@
     .autoplay .video-banner-media picture,
     .autoplay .video-banner-media img {
         object-fit: cover;
-        object-position: center;
+        object-position: bottom;
     }
 }
 
@@ -210,6 +210,13 @@
         z-index: 1;
     }
 
+    .autoplay .video-banner-media video,
+    .autoplay .video-banner-media picture,
+    .autoplay .video-banner-media img {
+        object-fit: cover;
+        object-position: center;
+    }
+
     /* 3. Content panel occupies left half; text itself animates top-to-bottom via JS-driven classes */
     .autoplay .video-banner-content {
         width: 48%;
@@ -217,6 +224,7 @@
         padding-top: 0;
         background-color: rgb(0 0 0 / 30%);
         background-image: conic-gradient(at 1px 1px, transparent 270deg, rgb(0 0 0 / 85%) 270deg);
+        backdrop-filter: blur(14.5340px);
         background-size: 4px 4px;
         background-position: 0 0;
         justify-content: flex-end;
@@ -297,4 +305,12 @@
 
 main:has(.section > .video-banner-wrapper > .autoplay) {
     max-width: 100%;
+}
+
+@media (width >= 768px) and (width <=899px) {
+    .autoplay .video-banner-media video,
+    .autoplay .video-banner-media picture,
+    .autoplay .video-banner-media img {
+        object-fit: initial;
+    }
 }
