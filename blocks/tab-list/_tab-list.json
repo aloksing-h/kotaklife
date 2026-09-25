@@ -52,17 +52,6 @@
                     "component": "richtext",
                     "name": "tab-label",
                     "label": "Label"
-                },
-                {
-                    "component": "multiselect",
-                    "name": "style",
-                    "label": "Style",
-                    "options": [
-                        {
-                            "name": "Highlight",
-                            "value": "highlight"
-                        }
-                    ]
                 }
             ]
         },
@@ -74,6 +63,17 @@
                     "name": "classes_showAll",
                     "label": "Show All?",
                     "description": "When enabled, the tab list will prepend a show all button."
+                },
+                {
+                    "component": "multiselect",
+                    "name": "style",
+                    "label": "Style",
+                    "options": [
+                        {
+                            "name": "Highlight",
+                            "value": "highlight"
+                        }
+                    ]
                 }
             ]
         }
