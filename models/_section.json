@@ -246,7 +246,8 @@
         "timeline",
         "video-banner",
         "promo",
-        "banner-v2"
+        "banner-v2",
+        "accessibility-button"
       ]
     }
   ]
