@@ -1,0 +1,72 @@
+{
+  "definitions": [
+    {
+      "title": "Custom Tabs",
+      "id": "custom-tabs",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Custom Tabs",
+              "model": "custom-tabs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Custom Tab",
+      "id": "custom-tabs-panel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "name": "Custom Tab",
+              "model": "custom-tabs-panel",
+              "filter": "section",
+              "tab-title": "Tab Title"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "custom-tabs",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "description": "Select one or more CSS classes for custom styling.",
+          "options": [
+            {
+              "name": "Find a Plan",
+              "value": "find-plan"
+            },
+            {
+              "name": "ABC",
+              "value": "abc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom-tabs-panel",
+      "fields": [
+        {
+          "component": "text",
+          "name": "tab-title",
+          "label": "Tab Title",
+          "description": "Required label used to create this tab.",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

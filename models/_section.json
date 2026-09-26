@@ -226,6 +226,8 @@
         "cards",
         "carousel",
         "columns",
+        "custom-tabs",
+        "custom-tabs-panel",
         "custom-cards",
         "custom-rte",
         "embed",

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1064" height="250" viewBox="0 0 1064 250">
+  <rect width="1064" height="250" fill="#E2E5EA"/>
+  <g transform="translate(0 0)">
+    <rect width="532" height="250" fill="#F3F4F6"/>
+    <text x="20" y="24" fill="#888888" font-family="Arial, sans-serif" font-size="11">
+      Page &gt; Main &gt; Custom Tabs
+    </text>
+    <rect x="16" y="38" width="448" height="42" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="32" y="64" fill="#111827" font-family="Arial, sans-serif" font-size="15"
+      font-weight="700">Custom Tabs</text>
+    <text x="20" y="106" fill="#4B5563" font-family="Arial, sans-serif" font-size="13">
+      Style
+    </text>
+    <text x="20" y="121" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="11">
+      Select one or more CSS classes for custom styling.
+    </text>
+    <rect x="20" y="132" width="440" height="38" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="34" y="156" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">
+      Find a Plan, ABC
+    </text>
+    <rect x="480" width="52" height="250" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="490" y="52" width="32" height="32" rx="4" fill="#DCE8FD"/>
+    <text x="500" y="73" fill="#0265DC" font-family="Arial, sans-serif" font-size="14">
+      ■
+    </text>
+  </g>
+  <g transform="translate(532 0)">
+    <rect width="532" height="250" fill="#F3F4F6"/>
+    <text x="20" y="24" fill="#888888" font-family="Arial, sans-serif" font-size="11">
+      Page &gt; Main &gt; Custom Tab
+    </text>
+    <rect x="16" y="38" width="448" height="42" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="32" y="64" fill="#111827" font-family="Arial, sans-serif" font-size="15"
+      font-weight="700">Custom Tab</text>
+    <text x="20" y="106" fill="#4B5563" font-family="Arial, sans-serif" font-size="13">
+      Tab Title
+    </text>
+    <text x="20" y="121" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="11">
+      Required label used to create this tab.
+    </text>
+    <rect x="20" y="132" width="440" height="38" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="34" y="156" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="14">
+      Enter Tab Title
+    </text>
+    <rect x="480" width="52" height="250" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="490" y="52" width="32" height="32" rx="4" fill="#DCE8FD"/>
+    <text x="500" y="73" fill="#0265DC" font-family="Arial, sans-serif" font-size="14">
+      ■
+    </text>
+  </g>
+</svg>

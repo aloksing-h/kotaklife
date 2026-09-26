@@ -925,6 +925,39 @@
     ]
   },
   {
+    "id": "custom-tabs",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "description": "Select one or more CSS classes for custom styling.",
+        "options": [
+          {
+            "name": "Find a Plan",
+            "value": "find-plan"
+          },
+          {
+            "name": "ABC",
+            "value": "abc"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-tabs-panel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tab-title",
+        "label": "Tab Title",
+        "description": "Required label used to create this tab.",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "embed",
     "fields": [
       {
