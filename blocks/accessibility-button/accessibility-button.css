@@ -52,8 +52,8 @@
   top: 50%;
   left: 48px;
   z-index: 1001;
-  width: min(320px, calc(100vw - 64px));
-  padding: 16px;
+  width: min(200px, calc(100vw - 64px));
+  padding: 6px;
   border: 1px solid var(--gray-300, #D5D7DA);
   border-radius: 8px;
   background: var(--base-white, #FFF);
@@ -69,12 +69,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 9px;
 }
 
 .accessibility-button-panel h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .accessibility-button-close {
@@ -89,18 +89,28 @@
 .accessibility-button-options {
   display: grid;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .accessibility-button-options button {
-  min-height: 40px;
-  padding: 8px 12px;
+  /* min-height: 40px; */
+  padding: 6px 12px;
   border: 1px solid var(--gray-300, #D5D7DA);
   border-radius: 4px;
   background: var(--base-white, #FFF);
-  color: var(--text-color, #131313);
   text-align: left;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-2, 12px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--line-height-body-1, 14px);
   cursor: pointer;
+}
+
+.accessibility-button-options button:hover {
+  background: #D1E9FF;
+  font-size: var(--font-size-body-2, 12.5px);
 }
 
 .accessibility-button-close:focus-visible,
@@ -143,7 +153,7 @@
   .accessibility-button-panel {
     right: 48px;
     left: 48px;
-    width: auto;
+    width: 200px;
     transform: translateY(-50%);
   }
 }
