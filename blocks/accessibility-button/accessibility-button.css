@@ -22,6 +22,11 @@
   place-items: center;
 }
 
+.accessibility-button-control.is-before-fold {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .accessibility-button-control.position-left {
   left: 0;
   border-right: 1px solid var(--brand-red-200, #FD8A99);

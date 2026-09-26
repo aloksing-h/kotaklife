@@ -28,6 +28,32 @@ function applyPreferences() {
   });
 }
 
+function getFirstFoldElement(block) {
+  const main = block.closest('main');
+  if (!main) return null;
+
+  return main.querySelector('.banner-container, .banner-v2-container, .hero-container, .video-banner-container')
+    || main.querySelector(':scope > .section');
+}
+
+function showButtonAfterFirstFold(block, button, closePanel) {
+  const firstFoldElement = getFirstFoldElement(block);
+  if (!firstFoldElement) return;
+
+  const updateButtonVisibility = () => {
+    const firstFoldBottom = firstFoldElement.getBoundingClientRect().bottom + window.scrollY;
+    const isBeforeFold = window.scrollY < firstFoldBottom;
+    button.classList.toggle('is-before-fold', isBeforeFold);
+    button.setAttribute('aria-hidden', isBeforeFold ? 'true' : 'false');
+    button.tabIndex = isBeforeFold ? -1 : 0;
+    if (isBeforeFold) closePanel();
+  };
+
+  updateButtonVisibility();
+  window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+  window.addEventListener('resize', updateButtonVisibility);
+}
+
 function createPanel(button) {
   const panel = document.createElement('aside');
   panel.className = 'accessibility-button-panel';
@@ -117,6 +143,7 @@ export default async function decorate(block) {
   block.replaceChildren(button);
 
   const panelControls = createPanel(button);
+  showButtonAfterFirstFold(block, button, panelControls.close);
   button.addEventListener('dblclick', () => {
     button.classList.toggle('position-left');
     button.classList.toggle('position-right');
