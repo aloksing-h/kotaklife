@@ -343,38 +343,6 @@
           }
         },
         {
-          "title": "Custom Tabs",
-          "id": "custom-tabs",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Custom Tabs",
-                  "model": "custom-tabs"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Custom Tab",
-          "id": "custom-tabs-panel",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "Custom Tab",
-                  "model": "custom-tabs-panel",
-                  "filter": "section",
-                  "tab-title": "Tab Title"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Embed",
           "id": "embed",
           "plugins": {
