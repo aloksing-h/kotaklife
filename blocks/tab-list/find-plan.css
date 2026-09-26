@@ -1,13 +1,19 @@
-.tab-list.find-plan {
+/* .tab-list.find-plan {
     margin-top: 77px;
+} */
+
+.find-a-plan.section.findplan-title {
+    margin-top: 77px;
+    margin-bottom: 0;
+}
+
+.find-a-plan.findplan-title + .tab-list-container{
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .tab-list.find-plan ul li {
     list-style: none;
-}
-
-.find-a-plan.section {
-    margin-top: 157px;
 }
 
 .find-a-plan.section .default-content-wrapper {
@@ -61,7 +67,11 @@
 }
 
 /* Bottom "Browse All Plans" button (last default-content-wrapper, link-only) */
-.find-a-plan.section .default-content-wrapper:last-child {
+.find-a-plan.findplan-button {
+    margin: 0;
+}
+
+.find-a-plan.findplan-button .default-content-wrapper:last-child {
     display: flex;
     margin-top: 20px;
     margin-bottom: 0;
@@ -71,7 +81,8 @@
 
 .find-a-plan.section .default-content-wrapper:last-child p {
     margin: 0;
-    margin-top: 4px;
+
+    /* margin-top: 4px; */
 }
 
 .find-a-plan.section .default-content-wrapper:last-child a {
@@ -411,6 +422,14 @@
 
 
 @media (width >=900px) {
+    .find-a-plan.section.findplan-title {
+        margin-top: 157px;
+    }
+
+    .find-a-plan.findplan-title + .tab-list-container{
+        margin-bottom: 0;
+    }
+
     .tab-list.find-plan .tablist-wrapper>ul {
         border-radius: var(--radius-full, 999px);
         border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
@@ -497,9 +516,10 @@
         margin-top: 4px;
     }
 
-    .find-a-plan.section .default-content-wrapper:last-child p {
+    .find-a-plan.findplan-button .default-content-wrapper:last-child p {
         margin: 0;
-        margin-top: 6px;
+
+        /* margin-top: 6px; */
     }
 
     .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper .custom-cards-card-image p:first-child {
@@ -566,8 +586,9 @@
         padding-block: 0;
     }
 
-    .find-a-plan.section .default-content-wrapper:last-child {
-        margin-top: 36.5px;
+    .find-a-plan.findplan-button .default-content-wrapper:last-child {
+        /* margin-top: 36.5px; */
+        margin: 0 auto;
     }
 
     .find-a-plan.section .default-content-wrapper h1,
@@ -617,7 +638,7 @@
     .tab-list.find-plan .tablist-wrapper {
         /* padding-inline: 80px; */
         padding-block: 0;
-        min-height: 456px;
+        min-height: 449px;
     }
 
     .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper {
