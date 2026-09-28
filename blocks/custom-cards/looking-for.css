@@ -732,7 +732,9 @@
         justify-content: center;
 
         /* gap: var(--spacing-md, 8px); */
-        gap: 9px;
+
+        /* gap: 9px; */
+        gap: 11px;
     }
 
 
