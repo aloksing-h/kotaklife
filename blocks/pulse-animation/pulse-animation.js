@@ -20,8 +20,15 @@ async function loadGsap() {
 
 // 1. ONLY handles calculating coordinates and drawing the SVG line
 function drawPath() {
+  const svg = document.createElement('svg');
+  svg.setAttribute('id', 'svg-overlay');
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const pathElement = document.createElement('path');
+  pathElement.setAttribute('id', 'path');
+  pathElement.classList.add('testpath');
+  svg.appendChild(pathElement);
+  document.body.appendChild(svg);
   const sections = document.querySelectorAll('[data-animation-point]');
-  const pathElement = document.querySelector('#path');
 
   const points = [];
 
@@ -61,11 +68,11 @@ function drawPath() {
 function initAnimation(pathElement) {
   // Clear existing triggers and animations (crucial for window resizing)
   ScrollTrigger.getAll().forEach((t) => t.kill());
-  gsap.killTweensOf('.arrow');
+  gsap.killTweensOf('.pulse-animation');
   let currentDirection = 1;
 
   // Set up the scroll-linked animation
-  gsap.to('.arrow', {
+  gsap.to('.pulse-animation', {
     ease: 'none',
     motionPath: {
       path: pathElement,
@@ -81,7 +88,7 @@ function initAnimation(pathElement) {
       onUpdate: (self) => {
         if (self.direction !== currentDirection) {
           currentDirection = self.direction;
-          gsap.to('.arrow svg', {
+          gsap.to('.pulse-animation img', {
             scaleX: currentDirection === 1 ? 1 : -1,
             duration: 0.3,
             overwrite: true,
