@@ -478,9 +478,9 @@
       },
       {
         "component": "text",
-        "name": "extra-text",
-        "label": "Extra Text",
-        "description": "Optional text field. An extra container div is generated only if this field contains a value."
+        "name": "animation-point",
+        "label": "Animation Point",
+        "description": "Optional. Adds data-animation-point on the section only when a value is entered."
       }
     ]
   },

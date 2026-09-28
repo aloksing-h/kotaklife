@@ -276,20 +276,16 @@ function decorateHeroBanner(main) {
 }
 
 /**
- * Renders the optional section `extraText` field as a container div.
+ * Keeps `data-animation-point` on the section only when the authored value is not empty.
  * @param {Element} main The main element
  */
-function decorateSectionExtraText(main) {
-  main.querySelectorAll(':scope > .section[data-extra-text]').forEach((section) => {
-    const extraText = section.dataset.extraText.trim();
-    if (!extraText) return;
-
-    const extraTextContainer = document.createElement('div');
-    extraTextContainer.className = 'section-extra-text';
-    extraTextContainer.textContent = extraText;
-    section.prepend(extraTextContainer);
-  });
-}
+// function decorateSectionAnimationPoint(main) {
+//   main.querySelectorAll(':scope > .section[data-animation-point]').forEach((section) => {
+//     const animationPoint = section.dataset.animationPoint.trim();
+//     if (animationPoint) section.dataset.animationPoint = animationPoint;
+//     else delete section.dataset.animationPoint;
+//   });
+// }
 
 /**
  * Decorates the main element.
@@ -300,7 +296,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
-  decorateSectionExtraText(main);
+  decorateSectionAnimationPoint(main);
   decorateBlocks(main);
   decorateButtons(main);
   decorateHeroBanner(main);
