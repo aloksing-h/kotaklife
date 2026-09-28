@@ -2493,7 +2493,7 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
   }
 }
 
-@media screen and (1025x <=width <=1100px) {
+@media screen and (1025px <=width <=1100px) {
   header nav[aria-expanded='true'] {
     padding: 0 48px;
   }
