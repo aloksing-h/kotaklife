@@ -28,8 +28,11 @@ main >.section.video-banner-container:first-of-type{
     display: block;
 
     /* height: 86vh; */
-    height: 79.636vh;
+    
+    /* height: 79.636vh; */
 
+    height: 86dvh;
+    
 }
 
 /* Let the video drive the height based on its natural aspect ratio */
@@ -203,9 +206,10 @@ main >.section.video-banner-container:first-of-type{
         pointer-events: none;
 
         /* height: 617px; */
-        height: 670px;
+        /* height: 670px; */
 
         /* height: 100vh; */
+        height: 100dvh;
     }
 
     /* 2. Create an invisible hit-zone covering ONLY the left 50% of the video */
