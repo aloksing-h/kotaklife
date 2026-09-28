@@ -43,11 +43,13 @@ export default function decorate(block) {
     .filter(Boolean)
     .slice(0, 2);
 
-  const buttonWrapper = children.find((el) => el.querySelector('a') && !el.querySelector('picture'));
-  const buttonIndex = children.indexOf(buttonWrapper);
-  const paragraphs = children.filter((el) => el !== buttonWrapper && !el.querySelector('picture'));
-  const textBefore = paragraphs.filter((p) => buttonIndex === -1 || children.indexOf(p) < buttonIndex);
-  const terms = paragraphs.filter((p) => buttonIndex !== -1 && children.indexOf(p) > buttonIndex);
+  const buttonWrappers = children.filter((el) => el.querySelector('a') && !el.querySelector('picture'));
+  const buttonIndexes = buttonWrappers.map((el) => children.indexOf(el));
+  const firstButtonIndex = buttonIndexes.length ? Math.min(...buttonIndexes) : -1;
+  const lastButtonIndex = buttonIndexes.length ? Math.max(...buttonIndexes) : -1;
+  const paragraphs = children.filter((el) => !buttonWrappers.includes(el) && !el.querySelector('picture'));
+  const textBefore = paragraphs.filter((p) => firstButtonIndex === -1 || children.indexOf(p) < firstButtonIndex);
+  const terms = paragraphs.filter((p) => lastButtonIndex !== -1 && children.indexOf(p) > lastButtonIndex);
 
   // the alt field renders as a plain paragraph right after the images; only treat it
   // as alt text when there is still richtext content following it
@@ -86,12 +88,18 @@ export default function decorate(block) {
   const content = document.createElement('div');
   content.className = 'hero-content';
   content.append(...textBefore);
-  if (buttonWrapper) {
-    buttonWrapper.className = 'button-wrapper';
-    const link = buttonWrapper.querySelector('a');
-    link.className = 'button';
-    link.title = link.title || link.textContent.trim();
-    content.append(buttonWrapper);
+  if (buttonWrappers.length) {
+    const buttons = document.createElement('div');
+    buttons.className = 'hero-buttons';
+    buttonWrappers.forEach((buttonWrapper, i) => {
+      buttonWrapper.className = 'button-wrapper';
+      const link = buttonWrapper.querySelector('a');
+      link.className = 'button';
+      if (i > 0) link.classList.add('button-secondary');
+      link.title = link.title || link.textContent.trim();
+      buttons.append(buttonWrapper);
+    });
+    content.append(buttons);
   }
   if (content.childElementCount) block.append(content);
 

@@ -41,7 +41,7 @@
           "valueType": "string",
           "name": "col1_bgimageAlt",
           "label": "Alt",
-          "value": "",  
+          "value": "",
           "description": "Alt text for the desktop & mobile background image"
         },
         {
@@ -56,7 +56,7 @@
           "component": "aem-content",
           "valueType": "string",
           "name": "col1_ButtonLink",
-          "label": "Button",
+          "label": "Button 1",
           "description": "Link for the hero section button"
         },
         {
@@ -67,14 +67,46 @@
           "description": "Text for the hero section button"
         },
         {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "col1_ButtonLink2",
+          "label": "Button 2",
+          "description": "Link for the hero section second button"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_ButtonLinkText2",
+          "label": "Button 2 Text",
+          "description": "Text for the hero section second button"
+        },
+        {
           "component": "text",
           "name": "col1_text_others",
           "value": "",
           "label": "Text",
           "valueType": "string",
           "description": "Additional text for T&C , mins required , name , description, Title"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Centeraligned-Text",
+              "value": "centeraligned-text"
+            },
+            {
+              "name": "Rightaligned-Text",
+              "value": "rightaligned-text"
+            },
+            {
+              "name": "Leftaligned-Text",
+              "value": "leftaligned-text"
+            }
+          ]
         }
-        
       ]
     }
   ],

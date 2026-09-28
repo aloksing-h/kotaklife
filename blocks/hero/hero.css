@@ -82,6 +82,12 @@
   letter-spacing: var(--type-body-b2-letter-spacing);
 }
 
+.hero .hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
 .hero .button-wrapper {
   margin: 0;
 }
@@ -105,6 +111,19 @@
   color: var(--button-pills-inverse-text-hover);
 }
 
+/* outline pill CTA (2nd, 3rd… authored button) */
+.hero a.button.button-secondary {
+  border: 1px solid var(--button-pills-inverse-bg-base);
+  background-color: transparent;
+  color: inherit;
+}
+
+.hero a.button.button-secondary:hover,
+.hero a.button.button-secondary:focus-visible {
+  background-color: var(--button-pills-inverse-bg-base);
+  color: var(--button-pills-inverse-text-base);
+}
+
 .hero .hero-terms {
   position: relative;
   z-index: 1;
@@ -114,6 +133,46 @@
   font-weight: var(--type-headline-h2-font-weight);
   line-height: var(--type-headline-h2-line-height);
   letter-spacing: var(--type-headline-h2-letter-spacing);
+}
+
+/* left/right aligned variants: plain section, no dark overlay card */
+.hero.leftaligned-text,
+.hero.rightaligned-text {
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: var(--spacing-3xl) 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-primary-default-base);
+  text-align: left;
+}
+
+.hero.leftaligned-text .hero-image,
+.hero.rightaligned-text .hero-image {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+}
+
+.hero.leftaligned-text .hero-content,
+.hero.rightaligned-text .hero-content {
+  align-items: flex-start;
+  max-width: none;
+  text-align: left;
+}
+
+.hero.leftaligned-text .hero-text,
+.hero.rightaligned-text .hero-text {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero.leftaligned-text .hero-terms,
+.hero.rightaligned-text .hero-terms {
+  color: var(--text-primary-default-base);
 }
 
 @media (width >= 900px) {
@@ -129,5 +188,26 @@
 
   .hero .hero-image-mobile {
     display: none;
+  }
+
+  .hero.leftaligned-text,
+  .hero.rightaligned-text {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero.rightaligned-text {
+    flex-direction: row-reverse;
+  }
+
+  .hero.leftaligned-text .hero-image,
+  .hero.rightaligned-text .hero-image {
+    flex: 0 0 45%;
+  }
+
+  .hero.leftaligned-text .hero-content,
+  .hero.rightaligned-text .hero-content {
+    flex: 1;
   }
 }
