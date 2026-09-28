@@ -22,6 +22,10 @@ async function initBannerSwiper(block) {
     slidesPerView: 1,
     spaceBetween: 0,
     grabCursor: true,
+    slidesOffsetAfter: 10,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+    slideToClickedSlide: true,
     pagination: {
       el: pagination,
       clickable: true,
