@@ -1,0 +1,364 @@
+/**
+ * Color design tokens
+ * ---------------------------------------------------------------------------
+ * Generated from the Kotak Web Design System 1.0 Figma file (Color Modes).
+ * Do not hand-edit color values here without updating the source of truth in
+ * Figma first — regenerate this file when tokens change upstream.
+ *
+ * Usage: reference tokens with var(--token-name) in block/component CSS.
+ * Values are raw hex (some with alpha) as defined by the design system.
+ */
+
+:root {
+  /* Background */
+  --background-1-default-base: #fcfcfc;
+  --background-1-default-pressed: #f5f5f5;
+  --background-1-default-selected: #f5f5f5;
+  --background-1-default-active: #f5f5f5;
+  --background-1-default-hover: #f5f5f5;
+  --background-1-inverse-base: #1a1a1a;
+  --background-1-inverse-pressed: #262626;
+  --background-1-inverse-selected: #262626;
+  --background-1-inverse-active: #262626;
+  --background-1-inverse-hover: #262626;
+  --background-2-default-base: #eee;
+  --background-2-default-pressed: #e6e6e6;
+  --background-2-default-selected: #e6e6e6;
+  --background-2-default-active: #e6e6e6;
+  --background-2-default-hover: #e6e6e6;
+  --background-2-inverse-base: #121212;
+  --background-2-inverse-pressed: #1a1a1a;
+  --background-2-inverse-selected: #1a1a1a;
+  --background-2-inverse-active: #1a1a1a;
+  --background-2-inverse-hover: #1a1a1a;
+  --background-3-default-base: #e6e6e6;
+  --background-3-default-pressed: #dedede;
+  --background-3-default-selected: #dedede;
+  --background-3-default-active: #dedede;
+  --background-3-default-hover: #dedede;
+  --background-3-inverse-base: #262626;
+  --background-3-inverse-pressed: #333;
+  --background-3-inverse-selected: #333;
+  --background-3-inverse-active: #333;
+  --background-3-inverse-hover: #333;
+
+  /* Button */
+  --button-primary-default-bg-disabled: #ced3ee;
+  --button-primary-default-bg-pressed: #3e55cf;
+  --button-primary-default-bg-base: #3857ff;
+  --button-primary-default-bg-hover: #3e55cf;
+  --button-primary-inverse-bg-base: #5c74f6;
+  --button-primary-inverse-bg-pressed: #7c8ef0;
+  --button-primary-inverse-bg-disabled: #1e1f20;
+  --button-primary-inverse-bg-hover: #7c8ef0;
+  --button-primary-default-text-pressed: #e6e6e6;
+  --button-primary-default-text-disabled: #9aa7ec;
+  --button-primary-default-text-base: #fff;
+  --button-primary-default-text-hover: #e6e6e6;
+  --button-primary-inverse-text-base: #fff;
+  --button-primary-inverse-text-pressed: #e6e6e6;
+  --button-primary-inverse-text-disabled: #3e487c;
+  --button-primary-inverse-text-hover: #e6e6e6;
+  --button-tertiary-default-text-base: #3857ff;
+  --button-tertiary-default-text-disabled: #9aa7ec;
+  --button-tertiary-default-text-pressed: #3e55cf;
+  --button-tertiary-default-text-hover: #3e55cf;
+  --button-tertiary-inverse-text-disabled: #3e487c;
+  --button-tertiary-inverse-text-base: #5c74f6;
+  --button-tertiary-inverse-text-pressed: #3857ff;
+  --button-tertiary-inverse-text-hover: #3857ff;
+  --button-secondary-default-bg-base: #eee;
+  --button-secondary-default-bg-pressed: #d6d6d6;
+  --button-secondary-default-bg-disabled: #eee;
+  --button-secondary-default-bg-hover: #d6d6d6;
+  --button-secondary-default-text-base: #121212;
+  --button-secondary-default-text-pressed: #121212;
+  --button-secondary-default-text-disabled: #999;
+  --button-secondary-default-text-hover: #121212;
+  --button-secondary-inverse-bg-base: #404040;
+  --button-secondary-inverse-bg-pressed: #333;
+  --button-secondary-inverse-bg-disabled: #2e2e2e;
+  --button-secondary-inverse-bg-hover: #333;
+  --button-secondary-inverse-text-base: #fcfcfc;
+  --button-secondary-inverse-text-pressed: #fcfcfc;
+  --button-secondary-inverse-text-disabled: #737373;
+  --button-secondary-inverse-text-hover: #fcfcfc;
+  --button-primary-default-icon-base: #fff;
+  --button-primary-default-icon-pressed: #e6e6e6;
+  --button-primary-default-icon-disabled: #9aa7ec;
+  --button-primary-default-icon-hover: #e6e6e6;
+  --button-primary-inverse-icon-base: #fff;
+  --button-primary-inverse-icon-pressed: #e6e6e6;
+  --button-primary-inverse-icon-disabled: #3e487c;
+  --button-primary-inverse-icon-hover: #e6e6e6;
+  --button-secondary-default-icon-base: #121212;
+  --button-secondary-default-icon-pressed: #121212;
+  --button-secondary-default-icon-disabled: #999;
+  --button-secondary-default-icon-hover: #121212;
+  --button-secondary-inverse-icon-base: #fcfcfc;
+  --button-secondary-inverse-icon-pressed: #fcfcfc;
+  --button-secondary-inverse-icon-disabled: #737373;
+  --button-secondary-inverse-icon-hover: #fcfcfc;
+  --button-tertiary-default-icon-base: #3857ff;
+  --button-tertiary-default-icon-disabled: #9aa7ec;
+  --button-tertiary-default-icon-pressed: #3e55cf;
+  --button-tertiary-default-icon-hover: #3e55cf;
+  --button-tertiary-inverse-icon-base: #5c74f6;
+  --button-tertiary-inverse-icon-disabled: #3e487c;
+  --button-tertiary-inverse-icon-pressed: #3857ff;
+  --button-tertiary-inverse-icon-hover: #3857ff;
+  --button-pills-default-bg-base: #121212;
+  --button-pills-default-bg-pressed: #262626;
+  --button-pills-default-bg-hover: #262626;
+  --button-pills-default-bg-disabled: #b2b2b2;
+  --button-pills-default-text-base: #fff;
+  --button-pills-default-text-pressed: #e6e6e6;
+  --button-pills-default-text-hover: #e6e6e6;
+  --button-pills-default-text-disabled: #666;
+  --button-pills-inverse-bg-base: #fff;
+  --button-pills-inverse-bg-pressed: #e6e6e6;
+  --button-pills-inverse-bg-hover: #e6e6e6;
+  --button-pills-inverse-bg-disabled: #2e2e2e;
+  --button-pills-inverse-text-base: #121212;
+  --button-pills-inverse-text-pressed: #262626;
+  --button-pills-inverse-text-hover: #262626;
+  --button-pills-inverse-text-disabled: #b2b2b2;
+  --button-pills-default-icon-base: #fff;
+  --button-pills-default-icon-pressed: #e6e6e6;
+  --button-pills-default-icon-hover: #e6e6e6;
+  --button-pills-default-icon-disabled: #666;
+  --button-pills-inverse-icon-base: #121212;
+  --button-pills-inverse-icon-pressed: #262626;
+  --button-pills-inverse-icon-hover: #262626;
+  --button-pills-inverse-icon-disabled: #b2b2b2;
+  --button-optional-tertiary-default-text-base: #121212;
+  --button-optional-tertiary-default-text-pressed: #404040;
+  --button-optional-tertiary-default-text-hover: #404040;
+  --button-optional-tertiary-default-text-disabled: #b2b2b2;
+  --button-optional-tertiary-inverse-text-base: #f5f5f5;
+  --button-optional-tertiary-inverse-text-pressed: #ccc;
+  --button-optional-tertiary-inverse-text-hover: #ccc;
+  --button-optional-tertiary-inverse-text-disabled: #666;
+  --button-optional-tertiary-inverse-icon-base: #f5f5f5;
+  --button-optional-tertiary-inverse-icon-pressed: #ccc;
+  --button-optional-tertiary-inverse-icon-hover: #ccc;
+  --button-optional-tertiary-inverse-icon-disabled: #666;
+  --button-optional-tertiary-default-icon-base: #121212;
+  --button-optional-tertiary-default-icon-pressed: #404040;
+  --button-optional-tertiary-default-icon-hover: #404040;
+  --button-optional-tertiary-default-icon-disabled: #b2b2b2;
+  --button-pills-stroke-default-stroke-base: #121212;
+  --button-pills-stroke-default-stroke-pressed: #262626;
+  --button-pills-stroke-default-stroke-hover: #262626;
+  --button-pills-stroke-default-stroke-disabled: #8c8c8c;
+  --button-pills-stroke-default-text-base: #121212;
+  --button-pills-stroke-default-text-pressed: #262626;
+  --button-pills-stroke-default-text-hover: #262626;
+  --button-pills-stroke-default-text-disabled: #8c8c8c;
+  --button-pills-stroke-default-icon-base: #121212;
+  --button-pills-stroke-default-icon-pressed: #262626;
+  --button-pills-stroke-default-icon-hover: #262626;
+  --button-pills-stroke-default-icon-disabled: #8c8c8c;
+  --button-pills-stroke-inverse-stroke-base: #fff;
+  --button-pills-stroke-inverse-stroke-pressed: #e6e6e6;
+  --button-pills-stroke-inverse-stroke-hover: #e6e6e6;
+  --button-pills-stroke-inverse-stroke-disabled: #8c8c8c;
+  --button-pills-stroke-inverse-text-base: #fff;
+  --button-pills-stroke-inverse-text-pressed: #e6e6e6;
+  --button-pills-stroke-inverse-text-hover: #e6e6e6;
+  --button-pills-stroke-inverse-text-disabled: #8c8c8c;
+  --button-pills-stroke-inverse-icon-base: #fff;
+  --button-pills-stroke-inverse-icon-pressed: #e6e6e6;
+  --button-pills-stroke-inverse-icon-hover: #e6e6e6;
+  --button-pills-stroke-inverse-icon-disabled: #8c8c8c;
+
+  /* Text */
+  --text-primary-inverse-disabled: #666;
+  --text-primary-inverse-base: #f5f5f5;
+  --text-primary-default-disabled: #b2b2b2;
+  --text-primary-default-base: #121212;
+  --text-secondary-inverse-disabled: #404040;
+  --text-secondary-inverse-base: #bababa;
+  --text-secondary-default-disabled: #b2b2b2;
+  --text-secondary-default-base: #666;
+  --text-tertiary-inverse-disabled: #404040;
+  --text-tertiary-inverse-base: #ababab;
+  --text-tertiary-default-base: #808080;
+  --text-tertiary-default-disabled: #d6d6d6;
+
+  /* Icon */
+  --icon-primary-default-base: #121212;
+  --icon-primary-default-disabled: #b2b2b2;
+  --icon-primary-inverse-base: #f5f5f5;
+  --icon-primary-inverse-disabled: #404040;
+  --icon-secondary-default-base: #666;
+  --icon-secondary-default-disabled: #b2b2b2;
+  --icon-secondary-inverse-base: #bababa;
+  --icon-secondary-inverse-disabled: #404040;
+  --icon-tertiary-default-base: #808080;
+  --icon-tertiary-default-disabled: #d6d6d6;
+  --icon-tertiary-inverse-base: #ababab;
+  --icon-tertiary-inverse-disabled: #404040;
+
+  /* Stroke */
+  --stroke-1-default: #eee;
+  --stroke-1-inverse: #262626;
+  --stroke-2-default: #dedede;
+  --stroke-2-inverse: #333;
+  --stroke-3-default: #d6d6d6;
+  --stroke-3-inverse: #404040;
+  --stroke-4-default: #8c8c8c;
+  --stroke-4-inverse: #8c8c8c;
+
+  /* Status */
+  --status-success-secondary-default-text-base: #00ca78;
+  --status-success-secondary-default-bg-base: #f8fff7;
+  --status-success-secondary-inverse-bg-base: #153d2d;
+  --status-success-secondary-inverse-text-base: #00ca78;
+  --status-warning-secondary-default-bg-base: #fff1e5;
+  --status-warning-secondary-default-text-base: #ff6f00;
+  --status-warning-secondary-inverse-bg-base: #482b15;
+  --status-warning-secondary-inverse-text-base: #ff6f00;
+  --status-critical-secondary-default-bg-base: #fff6f6;
+  --status-critical-secondary-default-text-base: #ff3938;
+  --status-critical-secondary-inverse-bg-base: #482020;
+  --status-critical-secondary-inverse-text-base: #ff3938;
+  --status-info-secondary-default-bg-base: #eaf4fe;
+  --status-info-secondary-default-text-base: #308ef2;
+  --status-info-secondary-inverse-bg-base: #27303a;
+  --status-info-secondary-inverse-text-base: #308ef2;
+  --status-neutral-primary-default-bg-base: #bababa;
+  --status-neutral-primary-default-text-base: #4d4d4d;
+  --status-neutral-primary-inverse-bg-base: #333;
+  --status-neutral-primary-inverse-text-base: #ccc;
+  --status-critical-secondary-default-icon-base: #ff3938;
+  --status-success-secondary-default-icon-base: #00ca78;
+  --status-success-secondary-inverse-icon-base: #00ca78;
+  --status-warning-secondary-default-icon-base: #ff6f00;
+  --status-warning-secondary-inverse-icon-base: #ff6f00;
+  --status-critical-secondary-inverse-icon-base: #ff3938;
+  --status-info-secondary-default-icon-base: #308ef2;
+  --status-info-secondary-inverse-icon-base: #308ef2;
+  --status-neutral-primary-default-icon-base: #4d4d4d;
+  --status-neutral-primary-inverse-icon-base: #ccc;
+  --status-default-primary-default-bg-base: #1a1a1a;
+  --status-default-primary-default-text-base: #eee;
+  --status-default-primary-inverse-bg-base: #fcfcfc;
+  --status-default-primary-inverse-text-base: #262626;
+  --status-default-primary-default-icon-base: #eee;
+  --status-default-primary-inverse-icon-base: #262626;
+  --status-success-primary-default-bg-base: #99eac9;
+  --status-success-primary-default-text-base: #0a8452;
+  --status-success-primary-inverse-bg-base: #124f36;
+  --status-success-primary-inverse-text-base: #00ca78;
+  --status-success-primary-default-icon-base: #0a8452;
+  --status-success-primary-inverse-icon-base: #00ca78;
+  --status-warning-primary-default-bg-base: #ffc599;
+  --status-warning-primary-default-text-base: #a34d0a;
+  --status-warning-primary-inverse-bg-base: #482b15;
+  --status-warning-primary-inverse-text-base: #ff6f00;
+  --status-warning-primary-default-icon-base: #a34d0a;
+  --status-warning-primary-inverse-icon-base: #ff6f00;
+  --status-critical-primary-default-bg-base: #ffb0af;
+  --status-critical-primary-default-text-base: #a32d2c;
+  --status-critical-primary-inverse-bg-base: #482020;
+  --status-critical-primary-inverse-text-base: #ff3938;
+  --status-critical-primary-default-icon-base: #a32d2c;
+  --status-critical-primary-inverse-icon-base: #ff3938;
+  --status-info-primary-default-bg-base: #acd2fa;
+  --status-info-primary-default-text-base: #27609c;
+  --status-info-primary-inverse-bg-base: #27303a;
+  --status-info-primary-inverse-text-base: #308ef2;
+  --status-info-primary-default-icon-base: #27609c;
+  --status-info-primary-inverse-icon-base: #308ef2;
+  --status-neutral-secondary-default-bg-base: #dedede;
+  --status-neutral-secondary-default-text-base: #666;
+  --status-neutral-secondary-inverse-bg-base: #333;
+  --status-neutral-secondary-inverse-text-base: #eee;
+  --status-neutral-secondary-default-icon-base: #666;
+  --status-neutral-secondary-inverse-icon-base: #eee;
+  --status-default-secondary-default-bg-base: #1a1a1a;
+  --status-default-secondary-default-text-base: #f5f5f5;
+  --status-default-secondary-inverse-bg-base: #fcfcfc;
+  --status-default-secondary-inverse-text-base: #121212;
+  --status-default-secondary-default-icon-base: #f5f5f5;
+  --status-default-secondary-inverse-icon-base: #121212;
+
+  /* Shimmer */
+  --shimmer-bg-1-shimmer-default-1: #e6e6e6;
+  --shimmer-bg-1-shimmer-inverse-1: #1a1a1a;
+  --shimmer-bg-1-shimmer-default-2: #d6d6d6;
+  --shimmer-bg-1-shimmer-default-3: #e6e6e6;
+  --shimmer-bg-1-shimmer-inverse-2: #333;
+  --shimmer-bg-1-shimmer-inverse-3: #1a1a1a;
+  --shimmer-bg-2-shimmer-default-1: #f5f5f5;
+  --shimmer-bg-2-shimmer-default-2: #e6e6e6;
+  --shimmer-bg-2-shimmer-default-3: #f5f5f5;
+  --shimmer-bg-2-shimmer-inverse-1: #262626;
+  --shimmer-bg-2-shimmer-inverse-2: #404040;
+  --shimmer-bg-2-shimmer-inverse-3: #262626;
+  --shimmer-bg-3-shimmer-default-1: #dedede;
+  --shimmer-bg-3-shimmer-default-2: #ccc;
+  --shimmer-bg-3-shimmer-default-3: #dedede;
+  --shimmer-bg-3-shimmer-inverse-1: #333;
+  --shimmer-bg-3-shimmer-inverse-2: #404040;
+  --shimmer-bg-3-shimmer-inverse-3: #333;
+
+  /* Brand Gradient */
+  --brand-gradient-kotak-811-default-1: #ca0036;
+  --brand-gradient-kotak-811-default-2: #ff0049;
+  --brand-gradient-kotak-811-default-3: #eee;
+  --brand-gradient-kotak-mahindra-default-1: #b8071e;
+  --brand-gradient-kotak-mahindra-default-2: #db0d28;
+  --brand-gradient-kotak-mahindra-default-3: #ffe3e3;
+  --brand-gradient-kotak-blue-default-1: #002347;
+  --brand-gradient-kotak-blue-default-2: #003974;
+  --brand-gradient-kotak-blue-default-3: #d7e5f4;
+
+  /* Brand Background */
+  --brand-background-solitare-default-1: #534ca1;
+  --brand-background-solitare-default-3: #2d2a58;
+  --brand-background-solitare-default-4: #251f45;
+  --brand-background-solitare-default-2: #353166;
+  --brand-background-privyplus-default-1: #666;
+  --brand-background-privyplus-default-2: #404040;
+  --brand-background-privyplus-default-3: #262626;
+  --brand-background-privyplus-default-4: #1a1a1a;
+
+  /* Decorative Colors */
+  --decorative-colors-deco-one-20: #b8f4ff;
+  --decorative-colors-deco-one-80: #234966;
+  --decorative-colors-deco-one-90: #1a3147;
+  --decorative-colors-deco-one-40: #61e2f3;
+  --decorative-colors-deco-two-90: #631620;
+  --decorative-colors-deco-two-80: #972231;
+  --decorative-colors-deco-two-20: #fbbec6;
+  --decorative-colors-deco-two-40: #ff6f80;
+  --decorative-colors-deco-three-90: #3d3a5e;
+  --decorative-colors-deco-three-40: #c4a7ff;
+  --decorative-colors-deco-three-20: #f3f2ff;
+  --decorative-colors-deco-three-80: #8662c5;
+  --decorative-colors-deco-four-90: #a19a18;
+  --decorative-colors-deco-four-40: #e2f193;
+  --decorative-colors-deco-four-20: #ebf6d5;
+  --decorative-colors-deco-four-80: #ccbd1d;
+  --decorative-colors-deco-five-90: #0f172a;
+  --decorative-colors-deco-five-40: #94a3b8;
+  --decorative-colors-deco-five-20: #e2e8f0;
+  --decorative-colors-deco-five-80: #1e293b;
+  --decorative-colors-deco-six-90: #2f1f1a;
+  --decorative-colors-deco-six-80: #463028;
+  --decorative-colors-deco-six-20: #eaddd4;
+  --decorative-colors-deco-six-40: #bfa08c;
+
+  /* Overlay */
+  --overlay-1: #000c;
+  --overlay-2: #00000080;
+  --overlay-3: #0003;
+
+  /* Input Field */
+  --input-field-filled-color-active: #f7f9ff;
+  --input-field-filled-color-default: #f5f5f5;
+  --input-field-filled-color-error: #fff6f6;
+  --input-field-filled-color-success: #f8fff7;
+}

@@ -29,20 +29,20 @@
           "description": "Desktop background image for the hero section"
         },
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "col1_bgimageAlt",
-          "label": "Alt",
-          "value": "",  
-          "description": "Alt text for the desktop & mobile background image"
-        },
-        {
           "component": "reference",
           "valueType": "string",
           "name": "col1_bgMbimage",
           "label": "Image",
           "multi": false,
           "description": "Mobile background image for the hero section"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "col1_bgimageAlt",
+          "label": "Alt",
+          "value": "",  
+          "description": "Alt text for the desktop & mobile background image"
         },
         {
           "component": "richtext",
