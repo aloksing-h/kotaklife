@@ -4,7 +4,8 @@
 
 .growing-insurance-company.section {
     padding: 11px 0 40px;
-    background-color: #fff;
+    
+    /* background-color: #fff; */
     position: relative;
 }
 
@@ -470,7 +471,9 @@
         align-items: center;
         gap: 8px 24px;
         max-width: 1200px !important;
-        margin: 0 auto 80px !important;
+
+        /* margin: 0 auto 80px !important; */
+        margin: 0 auto 88px !important;
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -571,7 +574,9 @@
     grid-template-areas:
         "title description"
         "title button";
-    gap: 8px 32px;
+
+    /* gap: 8px 32px; */
+    gap: 3px 32px;
     align-items: start;
 }
 
@@ -593,6 +598,7 @@
 .growing-insurance-company .default-content-wrapper h3 strong {
     color: #181d27;
     font-weight: 600;
+    display: inline-block;
 }
 
 .growing-insurance-company .default-content-wrapper a::after {
@@ -622,6 +628,7 @@
     margin-top: 12px;
     line-height: 18px;
     transition: background-color 0.3s ease, color 0.3s ease, gap 0.25s ease, transform 0.25s ease;
+    height: 40px;
 }
 
 .growing-insurance-company .default-content-wrapper a.know-more-btn:hover,
@@ -913,6 +920,7 @@ line-height: 14px;
     .growing-insurance-company .default-content-wrapper a.know-more-btn {
         font-size: 14px;
         line-height: 16px;
+        height: 38px;
     }
 
     .growing-insurance-company .default-content-wrapper a::after {
