@@ -17,7 +17,8 @@
     box-sizing: border-box;
 
     /* margin: 0 auto; */
-    margin: 0 auto 89px;
+    /* margin: 0 auto 89px; */
+    margin: 42px auto 100px;
 
     /* padding: 48px 16px; */
     padding: 44px 16px 28px;
@@ -399,6 +400,7 @@
 
 @media (width >=900px) {
     .get-cover-plans.section {
+        margin-top: 100px;
         flex-direction: row;
         align-items: center;
     }
