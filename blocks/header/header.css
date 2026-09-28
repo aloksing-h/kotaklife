@@ -2410,11 +2410,11 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     padding: 4px 30px;
   }
 
-  .nav-brand {
+  nav[aria-expanded='true'] .nav-brand {
     margin-left: 30px;
   }
 
-  .nav-tools {
+  nav[aria-expanded='true'] .nav-tools {
     margin: 8px 30px 8px 0;
   }
 
@@ -2490,6 +2490,12 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
 @media screen and (900px <=width <=950px) {
   header nav[aria-expanded='true'] {
     gap: 0 20px;
+  }
+}
+
+@media screen and (1024px <=width <=1100px) {
+  header nav[aria-expanded='true'] {
+    padding: 0 48px;
   }
 }
 
