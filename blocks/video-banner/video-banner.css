@@ -28,7 +28,9 @@ main >.section.video-banner-container:first-of-type{
     display: block;
 
     /* height: 86vh; */
-    height: 79.636vh;
+    
+    /* height: 79.636vh; */
+    height: 76.396vh;
 
 }
 
