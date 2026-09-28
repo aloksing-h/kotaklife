@@ -2104,7 +2104,8 @@ nav.grey-nav .nav-header-top ul.list-item-2 li.list-inner.active .inner-child-2 
     width: 100%;
   }
 
-  nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper h4 {
+  /* nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tablist-wrapper .tab-wrapper h4 { */
+  nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .tab-list.header-tab .tablist-wrapper .tab-wrapper h4{
     display: block;
     color: var(--text-text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
