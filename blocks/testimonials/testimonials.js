@@ -45,7 +45,7 @@ export default function decorate(block) {
         if (bgVideo) {
           if (isActive) {
             // Call play directly; iOS requires this to start buffering
-            bgVideo.play().catch((err) => { console.warn('Video play blocked:', err); });
+            bgVideo.play().catch(() => {});
           } else {
             bgVideo.pause();
             bgVideo.currentTime = 0; // Reset video to start
@@ -117,6 +117,22 @@ export default function decorate(block) {
               video.setAttribute('preload', 'auto');
               video.setAttribute('autoplay', ''); // Required for smoother iOS handling
               video.setAttribute('src', videoSrc);
+
+              // Use existing image as a seamless loading poster
+              const posterImg = col2.querySelector('.large-img-desk img') || col2.querySelector('.large-img-mob img');
+              if (posterImg) {
+                video.setAttribute('poster', posterImg.src);
+              }
+
+              // Add a class ONLY when the video has buffered and is actively playing
+              video.addEventListener('playing', () => {
+                row.classList.add('video-is-playing');
+              });
+
+              // Handle pausing resetting the visual state
+              video.addEventListener('pause', () => {
+                row.classList.remove('video-is-playing');
+              });
 
               VideoWrapper.innerHTML = '';
               VideoWrapper.appendChild(video);
