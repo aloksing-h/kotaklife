@@ -473,7 +473,9 @@
         max-width: 1200px !important;
 
         /* margin: 0 auto 80px !important; */
-        margin: 0 auto 88px !important;
+
+        /* margin: 0 auto 88px !important; */
+        margin: 0 auto 98px !important; /* as per the figma 24 sept - new changes */
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -574,9 +576,9 @@
     grid-template-areas:
         "title description"
         "title button";
+    gap: 8px 32px; /* uncommented this as per figma 24 sept - new changes */
 
-    /* gap: 8px 32px; */
-    gap: 3px 32px;
+    /* gap: 3px 32px; */
     align-items: start;
 }
 
