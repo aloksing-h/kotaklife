@@ -276,6 +276,22 @@ function decorateHeroBanner(main) {
 }
 
 /**
+ * Renders the optional section `extraText` field as a container div.
+ * @param {Element} main The main element
+ */
+function decorateSectionExtraText(main) {
+  main.querySelectorAll(':scope > .section[data-extra-text]').forEach((section) => {
+    const extraText = section.dataset.extraText.trim();
+    if (!extraText) return;
+
+    const extraTextContainer = document.createElement('div');
+    extraTextContainer.className = 'section-extra-text';
+    extraTextContainer.textContent = extraText;
+    section.prepend(extraTextContainer);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -284,6 +300,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionExtraText(main);
   decorateBlocks(main);
   decorateButtons(main);
   decorateHeroBanner(main);

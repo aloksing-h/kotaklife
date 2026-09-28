@@ -475,6 +475,12 @@
             "value": "findplan-button"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "extra-text",
+        "label": "Extra Text",
+        "description": "Optional text field. An extra container div is generated only if this field contains a value."
       }
     ]
   },
