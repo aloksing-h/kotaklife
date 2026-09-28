@@ -302,7 +302,8 @@
     display: flex;
     justify-content: flex-start;
     padding-left: 4px;
-
+    margin-top: 8px;
+    
     /* margin-top: 16px; */
     margin-left: 34px;
 }
