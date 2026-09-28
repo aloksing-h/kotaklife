@@ -296,7 +296,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
-  decorateSectionAnimationPoint(main);
+  // decorateSectionAnimationPoint(main);
   decorateBlocks(main);
   decorateButtons(main);
   decorateHeroBanner(main);
