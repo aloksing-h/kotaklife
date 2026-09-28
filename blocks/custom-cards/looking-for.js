@@ -22,13 +22,19 @@ async function initBannerSwiper(block) {
     slidesPerView: 1,
     spaceBetween: 0,
     grabCursor: true,
-    slidesOffsetAfter: 10,
+    slidesOffsetAfter: 10, // Applied to mobile screens by default
     centeredSlides: true,
     centeredSlidesBounds: true,
     slideToClickedSlide: true,
     pagination: {
       el: pagination,
       clickable: true,
+    },
+    breakpoints: {
+      // When window width is >= 900px (matches your desktop CSS media query)
+      900: {
+        slidesOffsetAfter: 0, // Resets the offset for desktop
+      },
     },
   });
 }
