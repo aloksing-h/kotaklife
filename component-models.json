@@ -951,9 +951,28 @@
     "id": "hero",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Centeraligned-Text",
+            "value": "centeraligned-text"
+          },
+          {
+            "name": "Rightaligned-Text",
+            "value": "rightaligned-text"
+          },
+          {
+            "name": "Leftaligned-Text",
+            "value": "leftaligned-text"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
-        "name": "col1_bgDesktopimage",
+        "name": "col1_bgDesktopImage",
         "label": "Image",
         "multi": false,
         "description": "Desktop background image for the hero section"
@@ -961,7 +980,7 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "col1_bgMbimage",
+        "name": "col1_bgMbImage",
         "label": "Image",
         "multi": false,
         "description": "Mobile background image for the hero section"
@@ -969,7 +988,7 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "col1_bgimageAlt",
+        "name": "col1_bgImageAlternateText",
         "label": "Alt",
         "value": "",
         "description": "Alt text for the desktop & mobile background image"
@@ -1012,30 +1031,11 @@
       },
       {
         "component": "text",
-        "name": "col1_text_others",
+        "name": "col1_textOthers",
         "value": "",
         "label": "Text",
         "valueType": "string",
         "description": "Additional text for T&C , mins required , name , description, Title"
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Centeraligned-Text",
-            "value": "centeraligned-text"
-          },
-          {
-            "name": "Rightaligned-Text",
-            "value": "rightaligned-text"
-          },
-          {
-            "name": "Leftaligned-Text",
-            "value": "leftaligned-text"
-          }
-        ]
       }
     ]
   },
