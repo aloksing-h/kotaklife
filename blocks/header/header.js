@@ -375,6 +375,16 @@ export default async function decorate(block) {
   }
 
   // Apply layer classes to topHeader
+  const brandNav = nav.querySelector('.nav-brand .default-content-wrapper');
+  if (brandNav) {
+    addLayerClasses(brandNav, {
+      1: 'brand-item',
+      2: 'brand-inner',
+      3: 'brand-child',
+    });
+  }
+
+  // Apply layer classes to topHeader
   const navSection = nav.querySelector('.nav-sections .default-content-wrapper');
   if (navSection) {
     addLayerClasses(navSection, {
@@ -384,6 +394,16 @@ export default async function decorate(block) {
       4: 'inner-item',
       5: 'item',
       6: 'item-child',
+    });
+  }
+
+  // Apply layer classes to topHeader
+  const toolsNav = nav.querySelector('.nav-tools .default-content-wrapper');
+  if (toolsNav) {
+    addLayerClasses(toolsNav, {
+      1: 'tool-item',
+      2: 'tool-inner',
+      3: 'tool-child',
     });
   }
 
@@ -888,7 +908,8 @@ export default async function decorate(block) {
 
 export async function modalHeaderBreadCrumb() {
   // Handle desktop hamburger icon click to apply desk-hamburger class to modal
-  const desktopHamburger = document.querySelector('.icon-desktop-hamburger');
+  // Support both black and white desktop hamburger variants using CSS comma-separated selector
+  const desktopHamburger = document.querySelector('.icon-hamburger-black-desktop, .icon-hamburger-white-desktop');
   if (desktopHamburger) {
     const hamburgLink = desktopHamburger.closest('a');
     if (hamburgLink) {

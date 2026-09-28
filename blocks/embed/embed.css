@@ -74,16 +74,18 @@
   box-shadow: 0 10px 40px rgb(0 0 0 / 60%);
   margin: 0 auto;
   padding: 0 16px;
+  min-height: 200px;
   
 }
 
  .embed.customer-say-video > div{
-  min-height: 200px;
+  min-height: inherit;
   box-sizing: border-box;
   background-color: transparent;
 } 
 
-.embed.customer-say-video  iframe{
+.embed.customer-say-video iframe,
+.embed.customer-say-video video {
   border-radius: 8px;
 }
 
@@ -92,10 +94,12 @@
     margin: 0;
     max-width: 100%;
     max-height: inherit;
+    min-height: 446px;
   }
 
   .embed.customer-say-video > div{
     max-height: inherit;
+    min-height: inherit;
   }
 
   .embed.customer-say-video  iframe{

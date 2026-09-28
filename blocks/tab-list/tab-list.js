@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/aem.js';
+import decorateFindPlan from './find-plan.js';
 
 let tabsIdx = 0;
 export function changeTabs(e) {
@@ -10,7 +11,8 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches;
+  const isFindPlan = tabList.closest('.find-plan');
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
@@ -83,11 +85,24 @@ export default async function decorate(block) {
   tabList.setAttribute('aria-label', 'Tabbed content');
 
   const tabs = [];
-  const isMobile = !window.matchMedia('(min-width: 900px)').matches;
 
-  tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
-    const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}`;
-    const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}`;
+  // Collect all authored style classes from tab-panels and apply to tab-list block
+  // Also remove these classes from the tab-panel sections
+  tabPanels.forEach(([, tabPanel]) => {
+    tabPanel.classList.forEach((className) => {
+      // Skip default AEM-generated classes
+      if (!['section', 'tab-panel', 'default-content-wrapper', 'block'].includes(className)) {
+        block.classList.add(className);
+      }
+    });
+  });
+
+  const isMobile = !window.matchMedia('(min-width: 900px)').matches
+    && !block.classList.contains('find-plan');
+
+  tabPanels.forEach(([tabLabel, tabPanel], i) => {
+    const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;
+    const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}-${i + 1}`;
 
     // Create the list item
     const li = document.createElement('li');
@@ -101,22 +116,12 @@ export default async function decorate(block) {
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
 
-    // Add image if available
-    if (image) {
-      const imgElement = document.createElement('img');
-      // Extract just the path from the full URL (removes domain and query parameters)
-      const [imageUrl] = image.split('?');
-      imgElement.src = new URL(imageUrl).pathname;
-      imgElement.alt = tabLabel;
-      imgElement.classList.add('tab-image');
-      tabItem.appendChild(imgElement);
-    }
-
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
-    // Add hover functionality (on desktop only, trigger tab change on hover)
-    if (window.matchMedia('(min-width: 900px)').matches) {
+    // Keep find-plan tabs click-only; preserve hover activation for other variants.
+    if (!block.classList.contains('find-plan')
+      && window.matchMedia('(min-width: 900px)').matches) {
       tabItem.addEventListener('mouseenter', changeTabs);
     }
     // Add keyboard support for Enter/Space (WCAG 2.2 - 2.1.1 Keyboard)
@@ -244,4 +249,5 @@ export default async function decorate(block) {
   }
 
   block.replaceChildren(tablistWrapper);
+  if (block.classList.contains('find-plan')) decorateFindPlan(block);
 }
