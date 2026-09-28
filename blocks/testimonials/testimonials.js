@@ -44,13 +44,8 @@ export default function decorate(block) {
         const bgVideo = item.querySelector('video');
         if (bgVideo) {
           if (isActive) {
-            if (bgVideo.readyState >= 3) {
-              bgVideo.play().catch(() => {});
-            } else {
-              bgVideo.addEventListener('canplay', () => {
-                bgVideo.play().catch(() => {});
-              }, { once: true });
-            }
+            // Call play directly; iOS requires this to start buffering
+            bgVideo.play().catch((err) => { console.warn('Video play blocked:', err); });
           } else {
             bgVideo.pause();
             bgVideo.currentTime = 0; // Reset video to start
@@ -120,6 +115,7 @@ export default function decorate(block) {
               video.setAttribute('crossorigin', 'anonymous');
               video.setAttribute('webkit-playsinline', '');
               video.setAttribute('preload', 'auto');
+              video.setAttribute('autoplay', ''); // Required for smoother iOS handling
               video.setAttribute('src', videoSrc);
 
               VideoWrapper.innerHTML = '';
@@ -127,9 +123,10 @@ export default function decorate(block) {
 
               // Trigger play if this item happens to be currently active
               if (index === activeIndex && row.getAttribute('aria-expanded') === 'true') {
-                video.addEventListener('canplay', () => {
-                  video.play().catch(() => {});
-                }, { once: true });
+                video.play().catch(() => {});
+              } else {
+                // Ensure inactive videos are paused despite the autoplay attribute
+                video.pause();
               }
             }
           }
