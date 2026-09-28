@@ -112,7 +112,9 @@
   .section.popular-search-container {
     max-width: unset;
     background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
-    margin-top: 124px;
+
+    /* margin-top: 124px; */
+    margin-top: 120px; /* as per figma 24 sept - new changes */
   }
 
   .popular-search-wrapper {
