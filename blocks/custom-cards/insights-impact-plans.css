@@ -34,7 +34,7 @@
 }
 
 .insights-impact-plans .custom-cards>ul>li.swiper-slide {
-    max-width: 280px;
+    max-width: 286px;
     flex-shrink: 0;
     height: auto;
 }
@@ -96,7 +96,7 @@
 }
 
 .insights-impact-plans.custom-cards-container .default-content-wrapper p {
-    color: var(--text-text-primary, #181D27);
+    color: var(--text-text-primary, #535862);
     font-size: 14px;
     line-height: 18px;
     margin: 0;
@@ -358,7 +358,7 @@
         justify-content: space-between;
     } */
     .insights-impact-plans.custom-cards-container .default-content-wrapper:last-child {
-        margin-top: 54px;
+        margin-top: 54px !important;
         margin-bottom: 0;
         justify-content: center;
     }
@@ -381,7 +381,7 @@
         font-family: var(--heading-font-family);
         font-size: 48px;
         font-weight: 300;
-        line-height: 60px;
+        line-height: 48px;
         margin: 0;
         padding: 0;
     }
@@ -430,7 +430,7 @@
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: 20px;
     }
 
     /* Card Container Base */
@@ -561,7 +561,7 @@
     .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
     .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
         padding-inline: 50px;
-        margin: 0 auto 72px;
+        margin: 0 auto 84px;
     }
 
     .insights-impact-plans .custom-cards-wrapper {

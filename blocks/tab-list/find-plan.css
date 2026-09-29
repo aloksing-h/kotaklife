@@ -28,7 +28,7 @@
 .find-a-plan.section .default-content-wrapper h4,
 .find-a-plan.section .default-content-wrapper h5,
 .find-a-plan.section .default-content-wrapper h6 {
-    width: 83%;
+    /* width: 83%; */
     text-align: center;
     margin: 0 auto;
     padding: 0;
@@ -38,6 +38,7 @@
     font-style: normal;
     font-weight: 300;
     line-height: var(--line-height-heading-3, 36px);
+    margin-bottom: 8px;
 }
 
 .find-a-plan.section .default-content-wrapper h2 strong,
@@ -91,7 +92,10 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 8.2px 12px;
+
+    /* padding: 8.2px 12px; */
+
+    padding: 6.2px 4px 6.2px 16px;
     gap: var(--spacing-md, 8px);
     border-radius: var(--radius-full, 999px);
     border: 1px solid var(--button-btn-brand-red, #E1122D);
@@ -106,6 +110,25 @@
 .find-a-plan.section .default-content-wrapper:last-child a:hover {
     background: #e1122d;
     color: #fff;
+}
+
+.find-a-plan.section .default-content-wrapper:last-child a::after {
+        content: '';
+    width: 24px;
+    height: 24px;
+    display: flex;
+    border-radius: 856.286px;
+    background: var(--background-bg-brand-red-solid, #E1122D);
+    background-image: url("/icons/write-arrow-right.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.find-a-plan.section .default-content-wrapper:last-child a:hover::after {
+    background-color: #fff;
+    color: #e31837;
+    background-image: url("/icons/red-arrow-right.svg");
 }
 
 /* .section.tab-list-container{
@@ -178,7 +201,7 @@
 .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper .custom-cards>ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
     padding: 0;
     margin: 25px auto 0;
     list-style: none;
@@ -192,7 +215,7 @@
 
     /* max-width: 47.4%;
     flex: 0 0 47.4%; */
-    width: 47.4%;
+    width: 48.78%;
     min-height: 203px;
     flex-direction: column-reverse;
     justify-content: space-between;
@@ -438,6 +461,11 @@
         padding: 0;
     }
 
+    .find-a-plan.section .default-content-wrapper:last-child a::after {
+        width: 32px;
+        height: 32px;
+    }
+
     .tab-list.find-plan {
         /* margin-top: 157px; */
 
@@ -459,9 +487,10 @@
     }
 
     .find-a-plan.section .default-content-wrapper:last-child a {
-        padding: 10.2px 16.3px;
+        padding: 3.2px 4px 3.2px 20px;
         font-size: var(--font-size-button-1, 16px);
         line-height: var(--line-height-body-1, 18px);
+        gap: 12px;
     }
 
     .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper .custom-cards>ul>li .custom-cards-card-body>ul:last-of-type>li:last-child a {
@@ -541,9 +570,9 @@
 
     .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper .custom-cards>ul {
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
+        gap: 12px;
         padding: 0;
-        margin-top: 38.5px;
+        margin-top: 38px;
         justify-content: start;
         flex-wrap: nowrap;
     }
@@ -581,7 +610,7 @@
     }
 
     .find-a-plan.section .default-content-wrapper {
-        margin-bottom: 39px;
+        margin-bottom: 40px;
         padding-inline: 24px;
         padding-block: 0;
     }
@@ -599,6 +628,7 @@
     .find-a-plan.section .default-content-wrapper h6 {
         font-size: 48px;
         line-height: 60px;
+        margin-bottom: 8px;
     }
 
     .tab-list.find-plan .tablist-wrapper>ul li button {
