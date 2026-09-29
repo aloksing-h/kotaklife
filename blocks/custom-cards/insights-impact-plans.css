@@ -561,7 +561,6 @@
     .insights-impact-plans.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
     .insights-impact-plans.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
         padding-inline: 50px;
-        margin: 0 auto 72px;
     }
 
     .insights-impact-plans .custom-cards-wrapper {
