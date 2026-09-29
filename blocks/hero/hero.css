@@ -135,44 +135,56 @@
   letter-spacing: var(--type-headline-h2-letter-spacing);
 }
 
-/* left/right aligned variants: plain section, no dark overlay card */
+/* left/right aligned variants: same background banner, content anchored to one side */
 .hero.leftaligned-text,
 .hero.rightaligned-text {
-  aspect-ratio: auto;
-  min-height: 0;
-  padding: var(--spacing-3xl) 0;
-  border-radius: 0;
-  background: none;
-  color: var(--text-primary-default-base);
+  align-items: flex-start;
   text-align: left;
 }
 
-.hero.leftaligned-text .hero-image,
-.hero.rightaligned-text .hero-image {
-  position: relative;
-  inset: auto;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: var(--radius-2xl);
+.hero.rightaligned-text {
+  align-items: flex-end;
 }
 
 .hero.leftaligned-text .hero-content,
 .hero.rightaligned-text .hero-content {
   align-items: flex-start;
-  max-width: none;
-  text-align: left;
+  margin-block: auto;
 }
 
 .hero.leftaligned-text .hero-text,
 .hero.rightaligned-text .hero-text {
   align-items: flex-start;
-  text-align: left;
 }
 
-.hero.leftaligned-text .hero-terms,
-.hero.rightaligned-text .hero-terms {
-  color: var(--text-primary-default-base);
+/* black pill CTA on the side-aligned variants */
+.hero.leftaligned-text a.button,
+.hero.rightaligned-text a.button {
+  background-color: var(--button-pills-default-bg-base);
+  color: var(--button-pills-default-text-base);
+}
+
+.hero.leftaligned-text a.button:hover,
+.hero.leftaligned-text a.button:focus-visible,
+.hero.rightaligned-text a.button:hover,
+.hero.rightaligned-text a.button:focus-visible {
+  background-color: var(--button-pills-default-bg-hover);
+  color: var(--button-pills-default-text-hover);
+}
+
+.hero.leftaligned-text a.button.button-secondary,
+.hero.rightaligned-text a.button.button-secondary {
+  border: 1px solid var(--button-pills-stroke-default-stroke-base);
+  background-color: transparent;
+  color: var(--button-pills-stroke-default-text-base);
+}
+
+.hero.leftaligned-text a.button.button-secondary:hover,
+.hero.leftaligned-text a.button.button-secondary:focus-visible,
+.hero.rightaligned-text a.button.button-secondary:hover,
+.hero.rightaligned-text a.button.button-secondary:focus-visible {
+  background-color: var(--button-pills-default-bg-base);
+  color: var(--button-pills-default-text-base);
 }
 
 @media (width >= 900px) {
@@ -188,26 +200,5 @@
 
   .hero .hero-image-mobile {
     display: none;
-  }
-
-  .hero.leftaligned-text,
-  .hero.rightaligned-text {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .hero.rightaligned-text {
-    flex-direction: row-reverse;
-  }
-
-  .hero.leftaligned-text .hero-image,
-  .hero.rightaligned-text .hero-image {
-    flex: 0 0 45%;
-  }
-
-  .hero.leftaligned-text .hero-content,
-  .hero.rightaligned-text .hero-content {
-    flex: 1;
   }
 }
