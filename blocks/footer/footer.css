@@ -66,9 +66,9 @@ footer .footer p {
   padding: 19px 0;
 }
 
-.mob-accordion .accordion-item[open] .accordion-item-label {
+/* .mob-accordion .accordion-item[open] .accordion-item-label {
   padding: var(--spacing-xl, 16px) 0 12px;
-}
+} */
 
 .mob-accordion .accordion-item-label::after {
   content: '';
@@ -504,7 +504,9 @@ footer .footer p {
 
   .mob-accordion .accordion-item .acrdn-list.nested {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: 171px 171px 125px 235px;
     grid-template-rows: auto auto;
     gap: 20px 32px;
   }
@@ -665,4 +667,20 @@ footer .footer p {
     margin: 0;
     border-top: 1px solid var(--foreground-fg-quaternary-hover, #717680);
   }
+}
+
+/* 1. Hide native marker in WebKit (Older macOS Safari, iOS) */
+summary::-webkit-details-marker {
+  display: none !important;
+}
+
+/* 2. Hide native marker in Firefox, Chrome, and Modern Safari */
+summary::marker {
+  display: none !important;
+  content: "";
+}
+
+/* 3. Reset summary display behavior across all legacy browsers */
+summary {
+  list-style: none !important;
 }

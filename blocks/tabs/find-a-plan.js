@@ -3,7 +3,26 @@
  */
 /* eslint-disable */
 
+function decorateFindAPlanHover(block) {
+  const cards = [...block.querySelectorAll('.custom-cards > ul > li')];
+  cards.forEach((card) => {
+    let leaveTimer;
+
+    card.addEventListener('mouseenter', () => {
+      clearTimeout(leaveTimer);
+      card.classList.remove('is-leaving');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.add('is-leaving');
+      leaveTimer = setTimeout(() => card.classList.remove('is-leaving'), 700);
+    });
+  });
+}
+
 export default function decorate(block) {
+  decorateFindAPlanHover(block);
+
   const cardList = block.querySelector('.custom-rte-cards');
   if (!cardList) return;
 

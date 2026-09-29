@@ -207,6 +207,14 @@
             {
               "name": "Breadcrumb Move",
               "value": "breadcrumb-move"
+            },
+            {
+              "name": "Findplan Title",
+              "value": "findplan-title"
+            },
+            {
+              "name": "Findplan Button",
+              "value": "findplan-button"
             }
           ]
         }
@@ -246,7 +254,8 @@
         "timeline",
         "video-banner",
         "promo",
-        "banner-v2"
+        "banner-v2",
+        "accessibility-button"
       ]
     }
   ]
