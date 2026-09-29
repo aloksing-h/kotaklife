@@ -48,7 +48,8 @@
 }
 
 .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-    color: var(--text-quaternary, #717680);
+    /* color: var(--text-quaternary, #717680); */
+    color: var(--gray-600, #535862);
     font-family: var(--heading-font-family);
     font-size: var(--body-2-font-size, 14px);
     font-style: normal;
