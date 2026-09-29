@@ -427,7 +427,8 @@
     }
 
     .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-        margin: 4px 0 25px;
+        /* margin: 4px 0 25px; */
+        margin: 8px 0 20px;
     }
 
     .get-cover-plans .default-content-wrapper a.get-cover-cta {
