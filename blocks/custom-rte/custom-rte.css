@@ -17,7 +17,9 @@
     box-sizing: border-box;
 
     /* margin: 0 auto; */
-    margin: 0 auto 89px;
+    
+    /* margin: 0 auto 89px; */
+    margin: 42px auto 100px;
 
     /* padding: 48px 16px; */
     padding: 44px 16px 28px;
@@ -197,7 +199,8 @@
     width: calc(100% - 48px);
     height: 260px;
     opacity: 1;
-    box-shadow: 0 16px 32px rgb(167 25 48 / 25%);
+    
+    /* box-shadow: 0 16px 32px rgb(167 25 48 / 25%); */
 }
 
 /* Layer 1: Middle Stack Card */
@@ -299,6 +302,7 @@
     display: flex;
     justify-content: flex-start;
     padding-left: 4px;
+    margin-top: 8px;
 
     /* margin-top: 16px; */
     margin-left: 34px;
@@ -393,11 +397,13 @@
         padding: 0 50px;
         margin-block: 50px;
         margin-bottom: 110px;
+        overflow: visible;
     }
 }
 
 @media (width >=900px) {
     .get-cover-plans.section {
+        margin-top: 100px;
         flex-direction: row;
         align-items: center;
     }
