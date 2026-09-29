@@ -15,7 +15,6 @@
   text-align: center;
 }
 
-/* --- State Management via ARIA attributes --- */
 .testimonials.customer-say .testimonial-col-1 p,
 .testimonials.customer-say .testimonial-col-2 p {
   margin: 0;
@@ -24,8 +23,6 @@
 .section.testimonials-container .default-content-wrapper p:first-of-type {
   color: var(--text-text-primary, #181D27);
   text-align: center;
-
-  /* Heading 3/Semibold */
   font-family: var(--font-family-font-family-display, Manrope);
   font-size: var(--font-size-heading-3, 32px);
   font-style: normal;
@@ -80,7 +77,6 @@
   font-weight: var(--font-weight-semibold, 600);
 }
 
-/* Block acts as the main container */
 .testimonials.customer-say {
   position: relative;
   width: 100%;
@@ -90,7 +86,6 @@
   margin-bottom: 32px;
 }
 
-/* Individual Testimonial Items */
 .testimonials.customer-say .testimonial-item {
   flex: 1 1 0%;
   min-width: 0;
@@ -99,7 +94,7 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: flex 0.4s ease-in-out; /* Unified from video version */
+  transition: flex 0.4s ease-in-out; 
 }
 
 .testimonials.customer-say .video-btn-wrapper img {
@@ -108,7 +103,6 @@
   object-fit: contain;
 }
 
-/* Base Image Formatting - Bulletproof Absolute Positioning */
 .testimonials.customer-say .testimonial-col-1,
 .testimonials.customer-say .testimonial-col-2 {
   position: absolute;
@@ -133,7 +127,7 @@
   display: block;
   position: relative;
   border-radius: 8px;
-  transition: opacity 0.5s ease-in-out; /* Transition for fading out once video plays */
+  transition: opacity 0.5s ease-in-out; 
 }
 
 .testimonials.customer-say .testimonial-item picture {
@@ -150,12 +144,11 @@
 .testimonials.customer-say .testimonial-item picture img {
   width: 100%;
   height: 100%;
-  object-fit: fill; /* UPDATED: Fixes aspect ratio stretching */
+  object-fit: fill; 
   object-position: center !important;
   display: block;
 }
 
-/* Expanded State */
 .testimonials.customer-say .testimonial-item[aria-expanded="true"] {
   flex: 6;
   max-width: 828px;
@@ -193,13 +186,11 @@
   pointer-events: none;
 }
 
-/* Hide low-res Mobile short image and Desktop large image by default (Mobile First) */
 .testimonials.customer-say .short-img-mob,
 .testimonials.customer-say .large-img-desk {
-  display: none; /* UPDATED: Swapped short-img-desk to short-img-mob to fix pixelation */
+  display: none; 
 }
 
-/* Play Button Styling */
 .testimonials.customer-say .video-btn-wrapper {
   position: absolute;
   top: 16px;
@@ -236,14 +227,13 @@
   height: 100%;
 }
 
-/* --- Video Crossfade State (Tied to JS video-is-playing class) --- */
 .testimonials.customer-say .video-source-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0; /* Base state: completely hidden */
+  opacity: 0; 
   border-radius: 8px;
   overflow: hidden;
   z-index: 5;
@@ -253,22 +243,19 @@
 .testimonials.customer-say .video-source-wrapper video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* UPDATED: Fixes video aspect ratio stretching */
+  object-fit: cover; 
   object-position: top;
 }
 
-/* ONLY fade in the video when JS confirms it is actively playing */
 .testimonials.customer-say .testimonial-item.video-is-playing[aria-expanded="true"] .video-source-wrapper {
   opacity: 1;
 }
 
-/* ONLY fade out the large image when JS confirms the video is actively playing */
 .testimonials.customer-say .testimonial-item.video-is-playing[aria-expanded="true"] .large-img-mob,
 .testimonials.customer-say .testimonial-item.video-is-playing[aria-expanded="true"] .large-img-desk {
   opacity: 0;
 }
 
-/* Swiper Pagination Component */
 .testimonials.customer-say .swiper-pagination {
   position: absolute;
   left: auto;
@@ -308,7 +295,6 @@
   }
 }
 
-/* --- Desktop View (Side-by-Side Grid) --- */
 @media (width >= 600px) {
   .section.testimonials-container .default-content-wrapper {
     padding-bottom: 0 !important;
@@ -364,7 +350,6 @@
     justify-content: center;
   }
 
-  /* Swap Mobile and Desktop Image Visibility */
   .testimonials.customer-say .short-img-mob,
   .testimonials.customer-say .large-img-mob {
     height: 100%;
