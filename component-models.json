@@ -586,14 +586,14 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
+        "name": "desktopImage",
         "label": "Desktop Visual Image",
         "multi": false
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
+        "name": "mobileImage",
         "label": "Mobile Visual Image",
         "multi": false
       },
