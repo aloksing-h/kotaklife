@@ -1272,24 +1272,6 @@
         "name": "classes_showAll",
         "label": "Show All?",
         "description": "When enabled, the tab list will prepend a show all button."
-      },
-      {
-        "component": "boolean",
-        "name": "showPrevNext",
-        "label": "Show Previous/Next (Mobile)",
-        "description": "When enabled, previous/next navigation buttons appear on mobile for insurance-content-tab."
-      },
-      {
-        "component": "text",
-        "name": "prevLabel",
-        "label": "Previous Button Label",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "nextLabel",
-        "label": "Next Button Label",
-        "valueType": "string"
       }
     ]
   },
