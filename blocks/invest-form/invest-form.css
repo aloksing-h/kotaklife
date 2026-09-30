@@ -23,6 +23,7 @@
     justify-content: space-between;
     align-items: stretch;
     z-index: 1;
+    min-height: 500px;
 }
 
 /* Concentric outer border rings: desktop shows them on the left side only */
