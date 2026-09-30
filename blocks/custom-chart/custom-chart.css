@@ -1,0 +1,11 @@
+.custom-chart {
+	min-height: 20rem;
+	position: relative;
+}
+
+.custom-chart canvas {
+	display: block;
+	height: 20rem !important;
+	max-width: 100%;
+	width: 100% !important;
+}

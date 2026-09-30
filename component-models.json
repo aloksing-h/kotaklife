@@ -850,6 +850,23 @@
     ]
   },
   {
+    "id": "custom-chart-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "value",
+        "label": "Value",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "custom-rte",
     "fields": [
       {

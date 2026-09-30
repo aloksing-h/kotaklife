@@ -100,6 +100,12 @@
     ]
   },
   {
+    "id": "custom-charts",
+    "components": [
+      "custom-chart-item"
+    ]
+  },
+  {
     "id": "custom-rte",
     "components": [
       "custom-rte-item",
