@@ -14,21 +14,6 @@
           }
         }
       }
-    },
-    {
-      "title": "Chart Item",
-      "id": "custom-chart-item",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Chart Item",
-              "model": "custom-chart-item"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
@@ -51,11 +36,5 @@
     }
   ],
   "filters": [
-    {
-      "id": "custom-charts",
-      "components": [
-        "custom-chart-item"
-      ]
-    }
   ]
 }

@@ -297,21 +297,6 @@
           }
         },
         {
-          "title": "Chart Item",
-          "id": "custom-chart-item",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Chart Item",
-                  "model": "custom-chart-item"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Custom RTE",
           "id": "custom-rte",
           "plugins": {
