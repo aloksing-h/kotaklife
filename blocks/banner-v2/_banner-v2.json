@@ -21,6 +21,17 @@
       "id": "banner-v2",
       "fields": [
         {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Fin Calc Banner",
+              "value": "fin-calc-banner"
+            }
+          ]
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "desktopImage",
