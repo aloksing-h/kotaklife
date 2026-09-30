@@ -1,11 +1,17 @@
-.custom-chart {
-	min-height: 20rem;
+.custom-charts {
+	width: 415px;
+	height: 343px;
+	max-width: 100%;
 	position: relative;
 }
 
-.custom-chart canvas {
+.custom-charts-container canvas {
 	display: block;
-	height: 20rem !important;
-	max-width: 100%;
+	height: 100% !important;
 	width: 100% !important;
+}
+
+.custom-charts-container .custom-charts-wrapper {
+	display: flex;
+	justify-content: flex-end;
 }
