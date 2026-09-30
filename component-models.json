@@ -1255,6 +1255,10 @@
           {
             "name": "Header Tab",
             "value": "header-tab"
+          },
+          {
+            "name": "Calc Card",
+            "value": "calc-card"
           }
         ]
       }
