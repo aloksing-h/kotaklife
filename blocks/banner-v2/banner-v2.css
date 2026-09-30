@@ -68,13 +68,6 @@ main>.section:has(.banner-v2) {
   box-sizing: border-box;
 }
 
-.banner-v2.block.retire-calc-banner .banner-v2-content{
-  max-width: 633px;
-  color: #181D27;
-  padding: 0;
-  flex: 0 633px;
-}
-
 /* Content Left Column (Vertically Centered) */
 .banner-v2.block .banner-v2-content {
   position: relative;
@@ -89,8 +82,11 @@ main>.section:has(.banner-v2) {
   box-sizing: border-box;
 }
 
-.banner-v2.block.retire-calc-banner .banner-v2-title{
-  color: inherit;
+.banner-v2.block.retire-calc-banner .banner-v2-content {
+  max-width: 633px;
+  color: #181d27;
+  padding: 0;
+  flex: 0 633px;
 }
 
 /* Typography - Title */
@@ -99,7 +95,7 @@ main>.section:has(.banner-v2) {
   font-size: 52px;
   font-weight: 300;
   line-height: 60px;
-  color: #F5F5F5;
+  color: #f5f5f5;
   margin: 0 0 16px;
   letter-spacing: -0.01em;
 }
@@ -109,10 +105,8 @@ main>.section:has(.banner-v2) {
   font-weight: 600;
 }
 
-.banner-v2.block.retire-calc-banner .banner-v2-description{
-  color: #535862;
-  max-width: inherit;
-  margin: 0;
+.banner-v2.block.retire-calc-banner .banner-v2-title {
+  color: inherit;
 }
 
 /* Typography - Description */
@@ -123,6 +117,12 @@ main>.section:has(.banner-v2) {
   color: var(--gray-100, rgb(255 255 255 / 90%));
   margin: 0 0 40px;
   max-width: 440px;
+}
+
+.banner-v2.block.retire-calc-banner .banner-v2-description {
+  color: #535862;
+  max-width: inherit;
+  margin: 0;
 }
 
 /* Statistics / Metrics */
@@ -198,17 +198,17 @@ main>.section:has(.banner-v2) {
   height: 100%;
 }
 
-.banner-v2.block.retire-calc-banner .banner-v2-visual img{
-  max-width: 403px;
-  max-height: 356px;
-}
-
 .banner-v2.block .banner-v2-visual img {
   display: block;
   width: auto;
   max-width: 613px;
   object-fit: contain;
   object-position: bottom right;
+}
+
+.banner-v2.block.retire-calc-banner .banner-v2-visual img {
+  max-width: 403px;
+  max-height: 356px;
 }
 
 /* ==========================================================================
@@ -268,15 +268,15 @@ main>.section:has(.banner-v2) {
     min-height: 440px;
   }
 
-  .banner-v2.block.retire-calc-banner .banner-v2-content {
-    padding-right: 20px;
-  }
-
   .banner-v2.block .banner-v2-content {
     flex: 1 1 360px;
     max-width: 400px;
     align-self: center;
     padding: 160px 0 96px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-right: 20px;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -304,14 +304,14 @@ main>.section:has(.banner-v2) {
     font-size: 12px;
   }
 
-  .banner-v2.block.retire-calc-banner .banner-v2-visual img{
-    max-width: 350px;
-  }
-
   .banner-v2.block .banner-v2-visual img {
     height: 380px;
     max-height: 400px;
     max-width: 440px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 350px;
   }
 }
 
@@ -392,10 +392,6 @@ main>.section:has(.banner-v2) {
     justify-content: flex-end;
   }
 
-    .banner-v2.block.retire-calc-banner .banner-v2-visual img{
-      max-width: 287px;
-    }
-
   .banner-v2.block .banner-v2-visual img {
     height: 320px;
     max-height: 340px;
@@ -405,6 +401,10 @@ main>.section:has(.banner-v2) {
     object-position: bottom right;
     display: block;
   }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 287px;
+  }
 }
 
 /* Small Tablet / Large Foldable Responsive Row */
@@ -413,13 +413,13 @@ main>.section:has(.banner-v2) {
     padding: 0 0 0 20px;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-content{
-    padding-top: 0;
-  }
-
   .banner-v2.block .banner-v2-content {
     max-width: 290px;
     padding: 160px 0 50px;
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-content {
+    padding-top: 0;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -481,20 +481,6 @@ main>.section:has(.banner-v2) {
     background: transparent;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-inner{
-    min-height: 439px;
-  }
-
-  .banner-v2.block.retire-calc-banner .banner-v2-content{
-    padding-left: 16px;
-  }
-
-  .banner-v2.block.retire-calc-banner .banner-v2-inner{
-    flex-direction: row;
-    min-height: 439px;
-    justify-content: space-between;
-  }
-
   .banner-v2.block .banner-v2-inner {
     flex-direction: column;
     align-items: center;
@@ -505,11 +491,14 @@ main>.section:has(.banner-v2) {
     max-width: 100%;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-content {
-    align-self: flex-start;
-    margin: 0;
-    padding-top: 132px;
-    padding-bottom: 0;
+  .banner-v2.block.fin-calc-banner .banner-v2-inner {
+    min-height: 439px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-inner {
+    flex-direction: row;
+    min-height: 439px;
+    justify-content: space-between;
   }
 
   /* Content area: Title, Description, Stats */
@@ -524,10 +513,17 @@ main>.section:has(.banner-v2) {
     color: var(--base-white, #fff);
   }
 
-  .banner-v2.block.retire-calc-banner .banner-v2-title {
-    margin-bottom: 8px;
+  .banner-v2.block.fin-calc-banner .banner-v2-content {
+    align-self: flex-start;
+    margin: 0;
+    padding-top: 132px;
+    padding-bottom: 0;
   }
-  
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-left: 16px;
+  }
+
   .banner-v2.block .banner-v2-title {
     font-size: 32px;
     line-height: 36px;
@@ -536,13 +532,8 @@ main>.section:has(.banner-v2) {
     font-weight: 300;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-description{
-    margin-bottom: 4px;
-  }
-
-  .banner-v2.block.retire-calc-banner .banner-v2-description{
-    font-size: 14px;
-    line-height: 18px;
+  .banner-v2.block.retire-calc-banner .banner-v2-title {
+    margin-bottom: 8px;
   }
 
   .banner-v2.block .banner-v2-description {
@@ -552,6 +543,15 @@ main>.section:has(.banner-v2) {
     text-align: left;
     max-width: 100%;
     color: var(--base-white, #fff);
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-description {
+    margin-bottom: 4px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-description {
+    font-size: 14px;
+    line-height: 18px;
   }
 
   /* Stats: 3 columns with white top accent line */
@@ -602,16 +602,6 @@ main>.section:has(.banner-v2) {
     white-space: nowrap;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-visual{
-    justify-content: flex-end;
-  }
-
-  .banner-v2.block.retire-calc-banner .banner-v2-visual{
-    width: 134px;
-    height: stretch;
-    margin: 0;
-  }
-
   /* Illustration: Grounded firmly to bottom edge above subnav */
   .banner-v2.block .banner-v2-visual {
     flex: 0 0 auto;
@@ -622,6 +612,16 @@ main>.section:has(.banner-v2) {
     justify-content: center;
     align-self: center;
     line-height: 0;
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-visual {
+    justify-content: flex-end;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual {
+    width: 134px;
+    height: stretch;
+    margin: 0;
   }
 
   .banner-v2.block .banner-v2-visual .banner-v2-visual-desktop:not(.banner-v2-visual-single) {
@@ -642,15 +642,6 @@ main>.section:has(.banner-v2) {
     width: 100%;
   }
 
-  .banner-v2.block.fin-calc-banner .banner-v2-visual img {
-    width: 210px;
-    height: 187px;
-  }
-
-  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
-    max-width: 134px;
-  }
-
   .banner-v2.block .banner-v2-visual img {
     display: block;
     width: 100%;
@@ -659,6 +650,15 @@ main>.section:has(.banner-v2) {
     object-fit: contain;
     object-position: bottom center;
     margin: 0 auto;
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-visual img {
+    width: 210px;
+    height: 187px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 134px;
   }
 }
 
@@ -675,7 +675,7 @@ main>.section:has(.banner-v2) {
     margin: 0;
   } */
 
-  .banner-v2.block.retire-calc-banner .banner-v2-content{
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
     margin: 0;
     max-width: 202px;
     padding: 0;
@@ -701,15 +701,15 @@ main>.section:has(.banner-v2) {
     line-height: 30px;
   }
 
-  .banner-v2.block.retire-calc-banner .banner-v2-description {
-    font-size: 13px;
-    line-height: 17px;
-  }
-
   .banner-v2.block .banner-v2-description {
     font-size: 13px;
     line-height: 17px;
     margin-bottom: 16px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-description {
+    font-size: 13px;
+    line-height: 17px;
   }
 
   .banner-v2.block ul.banner-v2-stats,
