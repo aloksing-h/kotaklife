@@ -1,0 +1,140 @@
+/* --- Main Layout: Force Side-by-Side --- */
+.insurance-content-tab .tablist-wrapper {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  flex-wrap: nowrap; 
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  width: 100%;
+}
+
+/* --- Left Column: Tab Buttons --- */
+.insurance-content-tab ul[role="tablist"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 350px; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insurance-content-tab ul[role="tablist"] button {
+  width: 100%;
+  text-align: left;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+/* Default Right Chevron (Gray) */
+.insurance-content-tab ul[role="tablist"] button::after {
+  content: "";
+  width: 8px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Active Tab State */
+.insurance-content-tab ul[role="tablist"] button[aria-selected="true"] {
+  background-color: #e0effd; 
+  border-color: #93c5fd;
+  color: #1e3a8a;
+  font-weight: 500;
+}
+
+/* Active Tab Chevron (Red) */
+.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ef4444'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* --- Right Column: Tab Panels & Content --- */
+.insurance-content-tab div[role="tabpanel"] {
+  flex: 1 1 auto; 
+  min-width: 0; 
+  width: 100%;
+}
+
+/* Hide inactive panels */
+.insurance-content-tab div[role="tabpanel"][hidden],
+.insurance-content-tab div[role="tabpanel"].hidden {
+  display: none;
+}
+
+.insurance-content-tab .default-content-wrapper h4 {
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #111827;
+  font-weight: 600;
+}
+
+.insurance-content-tab .default-content-wrapper > p {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* --- Ordered List: "01, 02" Formatting --- */
+.insurance-content-tab .default-content-wrapper ol {
+  list-style: none;
+  counter-reset: step-counter; 
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.insurance-content-tab .default-content-wrapper ol > li {
+  position: relative;
+  padding-left: 56px; 
+  margin-bottom: 28px;
+  counter-increment: step-counter; 
+}
+
+/* The Number Box Styling */
+.insurance-content-tab .default-content-wrapper ol > li::before {
+  content: counter(step-counter, decimal-leading-zero); 
+  position: absolute;
+  left: 0;
+  top: -2px;
+  background-color: #f3f6f9; 
+  color: #2563eb; 
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Bold headings inside the list */
+.insurance-content-tab .default-content-wrapper ol > li strong {
+  display: block;
+  font-size: 18px;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+/* Nested lists */
+.insurance-content-tab .default-content-wrapper ol > li ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.insurance-content-tab .default-content-wrapper ol > li ul li {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}

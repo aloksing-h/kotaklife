@@ -1,5 +1,6 @@
 import { toClassName } from '../../scripts/aem.js';
 import decorateFindPlan from './find-plan.js';
+import decorateFormTab from './form-tab.js';
 
 let tabsIdx = 0;
 export function changeTabs(e) {
@@ -250,4 +251,7 @@ export default async function decorate(block) {
 
   block.replaceChildren(tablistWrapper);
   if (block.classList.contains('find-plan')) decorateFindPlan(block);
+  if(block.classList.contains('insurance-content-tab')){
+    decorateFormTab(block);
+  }
 }
