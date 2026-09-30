@@ -11,8 +11,10 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const isFindPlan = tabList.closest('.find-plan');
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  // const isFindPlan = tabList.closest('.find-plan');
+  // const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  const isHeaderTab = tabList.closest('.header-tab, header');
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && isHeaderTab;
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
@@ -97,8 +99,10 @@ export default async function decorate(block) {
     });
   });
 
+  // Mobile accordion (panel inside li) applies only to header tabs
   const isMobile = !window.matchMedia('(min-width: 900px)').matches
-    && !block.classList.contains('find-plan');
+  //  && !block.classList.contains('find-plan');
+    && (block.classList.contains('header-tab') || !!block.closest('header'));
 
   tabPanels.forEach(([tabLabel, tabPanel], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;

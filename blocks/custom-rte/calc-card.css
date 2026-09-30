@@ -1,0 +1,5 @@
+.section:has(.calc-card){
+    background-color: red;
+}
+
+/* .section:has(.calc-card) .tab-list .section.calc-card{} */

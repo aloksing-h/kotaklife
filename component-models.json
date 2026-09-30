@@ -869,6 +869,10 @@
           {
             "name": "Nav Redirection",
             "value": "nav-redirection"
+          },
+          {
+            "name": "Card Link",
+            "value": "card-link"
           }
         ]
       }
