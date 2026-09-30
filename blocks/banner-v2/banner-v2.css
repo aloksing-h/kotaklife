@@ -16,6 +16,12 @@ main>.section:has(.banner-v2) {
   max-width: 100%;
   margin: 0;
   margin-top: -96px;
+  position: relative;
+  background-color: var(--brand-red-500, #fa1432);
+  background-image: var(--section-bg-desktop, linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%));
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
 }
 
 .banner-v2-wrapper {
@@ -39,60 +45,12 @@ main>.section:has(.banner-v2) {
   height: 496px;
   min-height: 496px;
   border-radius: 0;
-  background-color: var(--brand-red-500, #fa1432);
-  background-image:
-    radial-gradient(circle at 85% 20%, rgb(255 255 255 / 15%) 0%, transparent 50%),
-    linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%);
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
+  background: transparent;
   color: var(--base-white, #fff);
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
-}
-
-/* Background image layer - Stretches edge-to-edge behind the block */
-.banner-v2.block .banner-v2-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.banner-v2.block .banner-v2-bg picture,
-.banner-v2.block .banner-v2-bg img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center;
-}
-
-.banner-v2.block .banner-v2-bg-desktop {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.banner-v2.block .banner-v2-bg-mobile {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
-
-/* Decorative radial overlay - only shown when there is no custom background image */
-.banner-v2.block:not(.has-custom-bg)::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 75% 40%, rgb(255 255 255 / 10%) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 2;
 }
 
 /* 2. Centered Inner Container (Confined to max-width: 1200px) */
@@ -190,7 +148,7 @@ main>.section:has(.banner-v2) {
   white-space: nowrap;
 }
 
-/* Visual Right Column - Person Image Grounded to Bottom Edge */
+/* Visual Right Column - Grounded to Bottom Edge */
 .banner-v2.block .banner-v2-visual {
   position: relative;
   z-index: 2;
@@ -201,6 +159,17 @@ main>.section:has(.banner-v2) {
   margin-left: auto;
   align-self: flex-end;
   height: 100%;
+}
+
+.banner-v2.block .banner-v2-visual .banner-v2-visual-desktop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.banner-v2.block .banner-v2-visual .banner-v2-visual-mobile {
+  display: none;
 }
 
 .banner-v2.block .banner-v2-visual picture {
@@ -271,7 +240,7 @@ main>.section:has(.banner-v2) {
   }
 
   .banner-v2.block .banner-v2-inner {
-    padding: 0 24px 0 32px;
+    padding: 0 0 0 32px;
     min-height: 440px;
   }
 
@@ -328,7 +297,7 @@ main>.section:has(.banner-v2) {
     justify-content: space-between;
     height: 100%;
     min-height: 390px;
-    padding: 0 16px 0 28px;
+    padding: 0 0 0 28px;
     max-width: 100%;
   }
 
@@ -405,7 +374,7 @@ main>.section:has(.banner-v2) {
 /* Small Tablet / Large Foldable Responsive Row */
 @media (width <=700px) and (width >=601px) {
   .banner-v2.block .banner-v2-inner {
-    padding: 0 12px 0 20px;
+    padding: 0 0 0 20px;
   }
 
   .banner-v2.block .banner-v2-content {
@@ -462,27 +431,14 @@ main>.section:has(.banner-v2) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
     margin-top: -96px;
+    background-image: var(--section-bg-mobile, var(--section-bg-desktop, linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%)));
+    background-position: center top;
   }
 
   .banner-v2.block {
     height: auto;
     min-height: auto;
-    background-image: linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%);
-    background-position: center top;
-  }
-
-  .banner-v2.block .banner-v2-bg-desktop:not(.banner-v2-bg-single) {
-    display: none;
-  }
-
-  .banner-v2.block .banner-v2-bg-mobile {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .banner-v2.block .banner-v2-bg img {
-    object-position: center top;
+    background: transparent;
   }
 
   .banner-v2.block .banner-v2-inner {
@@ -491,7 +447,7 @@ main>.section:has(.banner-v2) {
     justify-content: flex-end;
     height: auto;
     min-height: 646px;
-    padding: 0 16px;
+    padding: 0;
     max-width: 100%;
   }
 
@@ -501,7 +457,7 @@ main>.section:has(.banner-v2) {
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    padding: 0 0 32px;
+    padding: 0 16px 32px;
     text-align: left;
     box-sizing: border-box;
     color: var(--base-white, #fff);
@@ -584,6 +540,18 @@ main>.section:has(.banner-v2) {
     line-height: 0;
   }
 
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-desktop:not(.banner-v2-visual-single) {
+    display: none;
+  }
+
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-desktop.banner-v2-visual-single,
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-mobile {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+  }
+
   .banner-v2.block .banner-v2-visual picture {
     display: flex;
     align-items: flex-end;
@@ -608,7 +576,7 @@ main>.section:has(.banner-v2) {
 @media (width <=359px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    margin-top: -96PX;
+    margin-top: -96px;
   }
 
   .banner-v2.block .banner-v2-inner {
