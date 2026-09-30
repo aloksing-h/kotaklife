@@ -639,6 +639,23 @@
     ]
   },
   {
+    "id": "calculators",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Calculator name",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "form URL"
+      }
+    ]
+  },
+  {
     "id": "cards",
     "fields": [
       {
