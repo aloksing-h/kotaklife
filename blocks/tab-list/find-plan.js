@@ -3,6 +3,7 @@
  * @param {Element} block The tab-list block
  */
 export default function decorateFindPlan(block) {
+  decorateFindAPlanHover(block);
   const tabListWrapper = block.closest('.tab-list-wrapper');
 
   if (!tabListWrapper) return;
@@ -17,8 +18,14 @@ export default function decorateFindPlan(block) {
 /* eslint-disable */
 
 function decorateFindAPlanHover(block) {
-  const cards = [...block.querySelectorAll('.custom-cards > ul > li')];
-  cards.forEach((card) => {
+  const cardSelector = [
+    '.find-plan.custom-cards-container .custom-cards > ul > li'
+  ].join(', ');
+
+  const bindCards = () => [...block.querySelectorAll(cardSelector)].forEach((card) => {
+    if (card.dataset.findAPlanHoverInitialized === 'true') return;
+    card.dataset.findAPlanHoverInitialized = 'true';
+
     let leaveTimer;
 
     card.addEventListener('mouseenter', () => {
@@ -31,6 +38,14 @@ function decorateFindAPlanHover(block) {
       leaveTimer = setTimeout(() => card.classList.remove('is-leaving'), 700);
     });
   });
+
+  bindCards();
+
+  if (block.dataset.findAPlanHoverObserverInitialized === 'true') return;
+  block.dataset.findAPlanHoverObserverInitialized = 'true';
+
+  const observer = new MutationObserver(bindCards);
+  observer.observe(block, { childList: true, subtree: true });
 }
 
 // export default function decorate(block) {
