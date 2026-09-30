@@ -477,7 +477,7 @@
         /* margin: 0 auto 80px !important; */
 
         /* margin: 0 auto 88px !important; */
-        margin: 0 auto 98px !important; /* as per the figma 24 sept - new changes */
+        margin: 0 auto 102px !important; /* as per the figma 24 sept - new changes */
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -486,7 +486,7 @@
         order: 1;
         font-size: 48px !important;
         width: 75%;
-        line-height: 60px !important;
+        line-height: 48px !important;
     }
 
     .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
@@ -659,7 +659,7 @@
     margin: 0;
     display: grid;
     gap: 6px;
-    grid-template-columns: 1.5fr 0.94fr 1.127fr;
+    grid-template-columns: 1.469fr 0.827fr 1.116fr;
     grid-template-rows: auto;
     column-gap: 12px;
 }
@@ -726,7 +726,7 @@
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
-    color: #121212;
+    color: #181D27;
     font-family: var(--font-family-font-family-display, Manrope);
     font-size: 14px;
     font-weight: 600;
@@ -736,7 +736,7 @@
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(3) {
-    color: #121212;
+    color: #414651;
     font-family: var(--font-family-font-family-display, Manrope);
     font-size: 12px;
     font-weight: 500;
