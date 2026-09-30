@@ -53,11 +53,11 @@ export default async function decorate(block) {
       datasets: [{
         label: 'Your returns',
         data: dataValues,
-        borderColor: '#1E4679',        // Deep blue line
+        borderColor: '#1E4679', // Deep blue line
         borderWidth: 2.5,
-        tension: 0.4,                  // Smooth curved line
+        tension: 0.4, // Smooth curved line
         pointBackgroundColor: '#1E4679',
-        pointBorderColor: '#FFFFFF',   // White border overlay cutout around points
+        pointBorderColor: '#FFFFFF', // White border overlay cutout around points
         pointBorderWidth: 3,
         pointRadius: 6,
         pointHoverRadius: 8,
