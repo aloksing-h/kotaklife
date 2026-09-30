@@ -3,6 +3,16 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 let autoSlideTimer = null;
 const SLIDE_DURATION = 3000; // 3 seconds per card
 
+function addLayerClasses(element, classNameMap, depth = 1) {
+  if (!element || !element.children) return;
+  const className = classNameMap[depth] || `level-${depth}`;
+  Array.from(element.children).forEach((child, index) => {
+    child.classList.add(className);
+    child.classList.add(`${className}-${index + 1}`);
+    addLayerClasses(child, classNameMap, depth + 1);
+  });
+}
+
 /**
  * Resets and triggers the progress line animation
  * @param {Element} trackWrapper The progress track wrapper element
@@ -274,5 +284,43 @@ export default function decorate(block) {
 
     // Initialize stack & start progress track timer
     updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
+  }
+
+  if (block.closest('.tab-list.calc-card')) {
+    addLayerClasses(block, {
+      1: 'card-calc',
+      2: 'card-inner',
+      3: 'card-child',
+      4: 'card-item',
+    });
+    if (!block.classList.contains('card-link')) {
+      [...block.children].forEach((row) => {
+        row.children[2]?.remove();
+      });
+    } else {
+      [...block.children].forEach((row) => {
+        const [imgDiv, textDiv, linkDiv] = row.children;
+        const link = linkDiv?.querySelector('a');
+        if (!link) return;
+        link.textContent = '';
+        link.classList.add('calc-card-link');
+        linkDiv.remove();
+        link.append(imgDiv, textDiv);
+        row.append(link);
+        row.classList.add('calc-card-item');
+        const href = link.getAttribute('href');
+        row.setAttribute('role', 'button');
+        row.setAttribute('tabindex', '0');
+        row.setAttribute('aria-label', `Navigate to ${href}`);
+        // Row is the focus target, so keep the inner link out of tab order
+        link.setAttribute('tabindex', '-1');
+        row.addEventListener('keydown', (e) => {
+          if (e.code === 'Enter' || e.code === 'Space') {
+            e.preventDefault();
+            window.location.href = href;
+          }
+        });
+      });
+    }
   }
 }

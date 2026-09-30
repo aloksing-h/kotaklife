@@ -1,5 +1,9 @@
-.section:has(.calc-card){
+/* .section:has(.calc-card){
     background-color: red;
-}
+} */
 
-/* .section:has(.calc-card) .tab-list .section.calc-card{} */
+.section:has(.calc-card) .tab-list .section.calc-card .block{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
