@@ -591,6 +591,10 @@
           {
             "name": "Fin Calc Banner",
             "value": "fin-calc-banner"
+          },
+          {
+            "name": "Retire Calc Banner",
+            "value": "retire-calc-banner"
           }
         ]
       },

@@ -454,6 +454,11 @@ main>.section:has(.banner-v2) {
     max-width: 100%;
   }
 
+  .banner-v2.block.fin-calc-banner .banner-v2-content {
+    align-self: flex-start;
+    margin: 0;
+  }
+
   /* Content area: Title, Description, Stats */
   .banner-v2.block .banner-v2-content {
     flex: 0 0 auto;
@@ -531,6 +536,10 @@ main>.section:has(.banner-v2) {
     white-space: nowrap;
   }
 
+  .banner-v2.block.fin-calc-banner .banner-v2-visual{
+    justify-content: flex-end;
+  }
+
   /* Illustration: Grounded firmly to bottom edge above subnav */
   .banner-v2.block .banner-v2-visual {
     flex: 0 0 auto;
@@ -582,7 +591,7 @@ main>.section:has(.banner-v2) {
   }
 
   .banner-v2.block .banner-v2-inner {
-    padding: 0 10px;
+    padding: 0;
   }
 
   .banner-v2.block .banner-v2-title {
