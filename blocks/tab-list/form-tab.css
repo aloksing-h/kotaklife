@@ -1,28 +1,30 @@
-/* --- Main Layout: Force Side-by-Side --- */
-.insurance-content-tab .tablist-wrapper {
+/* --- Main Layout (Mobile Defaults) --- */
+.block.tab-list.insurance-content-tab .tablist-wrapper {
   display: flex;
-  flex-direction: row; 
-  align-items: flex-start; 
-  flex-wrap: nowrap; 
-  gap: 40px;
+  flex-direction: column; 
+  gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: sans-serif;
   width: 100%;
 }
 
-/* --- Left Column: Tab Buttons --- */
-.insurance-content-tab ul[role="tablist"] {
+/* --- Left Column: Tab Buttons (Mobile Defaults) --- */
+.block.tab-list.insurance-content-tab .tablist-wrapper > ul[role="tablist"] {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 0 0 350px; 
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
 }
 
-.insurance-content-tab ul[role="tablist"] button {
+/* Hide all list items EXCEPT the current active step BY DEFAULT (Mobile) */
+.block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step) {
+  display: none;
+}
+
+.block.tab-list.insurance-content-tab ul[role="tablist"] button {
   width: 100%;
   text-align: left;
   padding: 16px 20px;
@@ -39,17 +41,17 @@
 }
 
 /* Default Right Chevron (Gray) */
-.insurance-content-tab ul[role="tablist"] button::after {
+.block.tab-list.insurance-content-tab ul[role="tablist"] button::after {
   content: "";
-  width: 8px;
-  height: 12px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'%3E%3C/path%3E%3C/svg%3E");
+  width: 20px;
+  height: 20px;
+  background-image: url("../../icons/large-downarrow-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 /* Active Tab State */
-.insurance-content-tab ul[role="tablist"] button[aria-selected="true"] {
+.block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"] {
   background-color: #e0effd; 
   border-color: #93c5fd;
   color: #1e3a8a;
@@ -57,24 +59,26 @@
 }
 
 /* Active Tab Chevron (Red) */
-.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ef4444'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'%3E%3C/path%3E%3C/svg%3E");
+.block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]::after {
+  transform: rotate(90deg);
+  background-image: url("../../icons/large-downarrow-red.svg");
 }
 
-/* --- Right Column: Tab Panels & Content --- */
-.insurance-content-tab div[role="tabpanel"] {
+/* --- Right Column: Tab Panels (Mobile Defaults) --- */
+.block.tab-list.insurance-content-tab div[role="tabpanel"] {
   flex: 1 1 auto; 
   min-width: 0; 
   width: 100%;
 }
 
 /* Hide inactive panels */
-.insurance-content-tab div[role="tabpanel"][hidden],
-.insurance-content-tab div[role="tabpanel"].hidden {
+.block.tab-list.insurance-content-tab div[role="tabpanel"][hidden],
+.block.tab-list.insurance-content-tab div[role="tabpanel"].hidden {
   display: none;
 }
 
-.insurance-content-tab .default-content-wrapper h4 {
+/* --- Content Wrapper Formatting --- */
+.block.tab-list.insurance-content-tab .default-content-wrapper h4 {
   font-size: 28px;
   margin-top: 0;
   margin-bottom: 16px;
@@ -82,7 +86,7 @@
   font-weight: 600;
 }
 
-.insurance-content-tab .default-content-wrapper > p {
+.block.tab-list.insurance-content-tab .default-content-wrapper > p {
   color: #6b7280;
   font-size: 16px;
   margin-bottom: 32px;
@@ -90,14 +94,14 @@
 }
 
 /* --- Ordered List: "01, 02" Formatting --- */
-.insurance-content-tab .default-content-wrapper ol {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol {
   list-style: none;
   counter-reset: step-counter; 
   padding: 0;
   margin: 0 0 24px 0;
 }
 
-.insurance-content-tab .default-content-wrapper ol > li {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol > li {
   position: relative;
   padding-left: 56px; 
   margin-bottom: 28px;
@@ -105,7 +109,7 @@
 }
 
 /* The Number Box Styling */
-.insurance-content-tab .default-content-wrapper ol > li::before {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol > li::before {
   content: counter(step-counter, decimal-leading-zero); 
   position: absolute;
   left: 0;
@@ -119,7 +123,7 @@
 }
 
 /* Bold headings inside the list */
-.insurance-content-tab .default-content-wrapper ol > li strong {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol > li strong {
   display: block;
   font-size: 18px;
   color: #111827;
@@ -127,14 +131,95 @@
 }
 
 /* Nested lists */
-.insurance-content-tab .default-content-wrapper ol > li ul {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol > li ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.insurance-content-tab .default-content-wrapper ol > li ul li {
+.block.tab-list.insurance-content-tab .default-content-wrapper ol > li ul li {
   color: #6b7280;
   font-size: 15px;
   line-height: 1.6;
+}
+
+/* --- Mobile Arrow Navigation Styles (Mobile Defaults) --- */
+.block.tab-list.insurance-content-tab .mobile-tab-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.block.tab-list.insurance-content-tab .mobile-tab-arrows button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: opacity 0.2s;
+}
+
+.block.tab-list.insurance-content-tab .mobile-tab-arrows button:hover {
+  opacity: 0.7;
+}
+
+/* Disabled state styling */
+.block.tab-list.insurance-content-tab .mobile-tab-arrows button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none; 
+}
+
+
+/* =========================================
+   TABLET / DESKTOP LAYOUT (768px and up) 
+   Overrides mobile defaults for wider screens
+   ========================================= */
+@media (min-width: 768px) {
+  .block.tab-list.insurance-content-tab .tablist-wrapper {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    flex-wrap: nowrap; 
+    gap: 32px; 
+  }
+
+  .block.tab-list.insurance-content-tab .tablist-wrapper > ul[role="tablist"] {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 35%; 
+    max-width: 350px;
+  }
+  
+  /* OVERRIDE: Match the mobile specificity exactly to reveal inactive tabs on desktop */
+  .block.tab-list.insurance-content-tab ul[role="tablist"] li,
+  .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step) {
+    display: block;
+  }
+  
+  /* Hide mobile arrow navigation on desktop/tablet */
+  .block.tab-list.insurance-content-tab .mobile-tab-arrows {
+    display: none; 
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP LAYOUT (1024px and up) 
+   ========================================= */
+@media (min-width: 1024px) {
+  .block.tab-list.insurance-content-tab .tablist-wrapper {
+    gap: 40px; 
+  }
+
+  .block.tab-list.insurance-content-tab .tablist-wrapper > ul[role="tablist"] {
+    flex: 0 0 350px; 
+  }
 }
