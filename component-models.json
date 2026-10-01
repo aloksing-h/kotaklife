@@ -473,6 +473,10 @@
           {
             "name": "Findplan Button",
             "value": "findplan-button"
+          },
+          {
+            "name": "Insurance Tab Title",
+            "value": "insurance-tab-title"
           }
         ]
       },
@@ -1268,6 +1272,10 @@
           {
             "name": "Header Tab",
             "value": "header-tab"
+          },
+          {
+            "name": "Insurance Content Tab",
+            "value": "insurance-content-tab"
           }
         ]
       }
