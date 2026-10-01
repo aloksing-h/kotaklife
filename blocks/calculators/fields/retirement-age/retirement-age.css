@@ -1,10 +1,10 @@
-.current-age-field {
+.retirement-age-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-.current-age-field .current-age-label {
+.retirement-age-field .retirement-age-label {
     color: #414651;
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: 14px;
@@ -12,7 +12,7 @@
     line-height: 18px
 }
 
-.current-age-field .current-age-input {
+.retirement-age-field .retirement-age-input {
     border-radius: 0;
     border: 1px solid #D5D7DA;
     background: #FFF;
@@ -24,7 +24,7 @@
     line-height: 20px;
 }
 
-.current-age-field .current-age-label .required-star{
+.retirement-age-field .retirement-age-label .required-star{
 color: #FA1432;
 font-family: var(--font-family-font-family-body, Manrope);
 font-size: 14px;

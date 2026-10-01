@@ -1,1 +1,44 @@
 @import url('./fields/current-age/current-age.css');
+@import url('./fields/retirement-age/retirement-age.css');
+@import url('./fields/life-expectancy/life-expectancy.css');
+@import url('./fields/monthly-expense-wave-slider/monthly-expense-wave-slider.css');
+@import url('./fields/expected-inflation/expected-inflation.css');
+@import url('./fields/expected-return/expected-return.css');
+@import url('./fields/retirement-expense-ratio/retirement-expense-ratio.css');
+
+.calculator-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.calculator-grid  .calc-card:first-child{
+    width: 57.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 8px;
+border: 1px solid #EEE;
+background: #FFF;
+}
+
+.calculator-grid  .calc-card:last-child{
+    width: 40.6%;
+}
+
+.age-inputs-row {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.two-columns-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.two-columns-grid .slider-box {
+    width: 49%;
+    padding: 16px;
+}

@@ -1,10 +1,10 @@
-.current-age-field {
+.life-expectancy-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-.current-age-field .current-age-label {
+.life-expectancy-field .life-expectancy-label {
     color: #414651;
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: 14px;
@@ -12,7 +12,7 @@
     line-height: 18px
 }
 
-.current-age-field .current-age-input {
+.life-expectancy-field .life-expectancy-input {
     border-radius: 0;
     border: 1px solid #D5D7DA;
     background: #FFF;
@@ -24,7 +24,7 @@
     line-height: 20px;
 }
 
-.current-age-field .current-age-label .required-star{
+.life-expectancy-field .life-expectancy-label .required-star{
 color: #FA1432;
 font-family: var(--font-family-font-family-body, Manrope);
 font-size: 14px;
