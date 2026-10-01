@@ -2,23 +2,12 @@
  * Apply Find a Plan variant classes without moving authored content.
  * @param {Element} block The tab-list block
  */
-export default function decorateFindPlan(block) {
-  const tabListWrapper = block.closest('.tab-list-wrapper');
-
-  if (!tabListWrapper) return;
-
-  tabListWrapper.classList.add('find-plan');
-  block.classList.add('find-plan-ready');
-}
-
-/**
- * AEM Edge Delivery Services (EDS) - Promotion / 3D Card Stack Block
- */
-/* eslint-disable */
 
 function decorateFindAPlanHover(block) {
-  const cards = [...block.querySelectorAll('.custom-cards > ul > li')];
-  cards.forEach((card) => {
+  const bindCards = () => [...block.querySelectorAll('.find-plan.custom-cards-container .custom-cards > ul > li')].forEach((card) => {
+    if (card.dataset.findAPlanHoverInitialized === 'true') return;
+    card.dataset.findAPlanHoverInitialized = 'true';
+
     let leaveTimer;
 
     card.addEventListener('mouseenter', () => {
@@ -31,7 +20,30 @@ function decorateFindAPlanHover(block) {
       leaveTimer = setTimeout(() => card.classList.remove('is-leaving'), 700);
     });
   });
+
+  bindCards();
+
+  if (block.dataset.findAPlanHoverObserverInitialized === 'true') return;
+  block.dataset.findAPlanHoverObserverInitialized = 'true';
+
+  const observer = new MutationObserver(bindCards);
+  observer.observe(block, { childList: true, subtree: true });
 }
+
+export default function decorateFindPlan(block) {
+  decorateFindAPlanHover(block);
+  const tabListWrapper = block.closest('.tab-list-wrapper');
+
+  if (!tabListWrapper) return;
+
+  tabListWrapper.classList.add('find-plan');
+  block.classList.add('find-plan-ready');
+}
+
+/**
+ * AEM Edge Delivery Services (EDS) - Promotion / 3D Card Stack Block
+ */
+/* eslint-disable */
 
 // export default function decorate(block) {
 //   decorateFindAPlanHover(block);
