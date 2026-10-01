@@ -15,7 +15,13 @@ main>.section:has(.banner-v2) {
   padding: 0;
   max-width: 100%;
   margin: 0;
-  margin-top: -96px;
+  
+  /* /* margin-top: -96px;  for temporary testing purpose */
+  position: relative;
+  background-image: var(--section-bg-desktop);
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
 }
 
 .banner-v2-wrapper {
@@ -39,60 +45,12 @@ main>.section:has(.banner-v2) {
   height: 496px;
   min-height: 496px;
   border-radius: 0;
-  background-color: var(--brand-red-500, #fa1432);
-  background-image:
-    radial-gradient(circle at 85% 20%, rgb(255 255 255 / 15%) 0%, transparent 50%),
-    linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%);
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
+  background: transparent;
   color: var(--base-white, #fff);
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
   font-family: var(--body-font-family, 'Manrope', sans-serif);
-}
-
-/* Background image layer - Stretches edge-to-edge behind the block */
-.banner-v2.block .banner-v2-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.banner-v2.block .banner-v2-bg picture,
-.banner-v2.block .banner-v2-bg img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center;
-}
-
-.banner-v2.block .banner-v2-bg-desktop {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.banner-v2.block .banner-v2-bg-mobile {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
-
-/* Decorative radial overlay - only shown when there is no custom background image */
-.banner-v2.block:not(.has-custom-bg)::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 75% 40%, rgb(255 255 255 / 10%) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 2;
 }
 
 /* 2. Centered Inner Container (Confined to max-width: 1200px) */
@@ -125,13 +83,20 @@ main>.section:has(.banner-v2) {
   box-sizing: border-box;
 }
 
+.banner-v2.block.retire-calc-banner .banner-v2-content {
+  max-width: 633px;
+  color: #181d27;
+  padding: 0;
+  flex: 0 633px;
+}
+
 /* Typography - Title */
 .banner-v2.block .banner-v2-title {
   font-family: var(--heading-font-family, 'Manrope', sans-serif);
   font-size: 52px;
   font-weight: 300;
   line-height: 60px;
-  color: #F5F5F5;
+  color: #f5f5f5;
   margin: 0 0 16px;
   letter-spacing: -0.01em;
 }
@@ -139,6 +104,10 @@ main>.section:has(.banner-v2) {
 .banner-v2.block .banner-v2-title strong,
 .banner-v2.block .banner-v2-title b {
   font-weight: 600;
+}
+
+.banner-v2.block.retire-calc-banner .banner-v2-title {
+  color: inherit;
 }
 
 /* Typography - Description */
@@ -149,6 +118,12 @@ main>.section:has(.banner-v2) {
   color: var(--gray-100, rgb(255 255 255 / 90%));
   margin: 0 0 40px;
   max-width: 440px;
+}
+
+.banner-v2.block.retire-calc-banner .banner-v2-description {
+  color: #535862;
+  max-width: inherit;
+  margin: 0;
 }
 
 /* Statistics / Metrics */
@@ -190,7 +165,7 @@ main>.section:has(.banner-v2) {
   white-space: nowrap;
 }
 
-/* Visual Right Column - Person Image Grounded to Bottom Edge */
+/* Visual Right Column - Grounded to Bottom Edge */
 .banner-v2.block .banner-v2-visual {
   position: relative;
   z-index: 2;
@@ -201,6 +176,20 @@ main>.section:has(.banner-v2) {
   margin-left: auto;
   align-self: flex-end;
   height: 100%;
+}
+
+.banner-v2.block .banner-v2-visual .banner-v2-visual-desktop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 613px;
+}
+
+.banner-v2.block .banner-v2-visual .banner-v2-visual-mobile {
+  display: none;
 }
 
 .banner-v2.block .banner-v2-visual picture {
@@ -216,6 +205,11 @@ main>.section:has(.banner-v2) {
   max-width: 613px;
   object-fit: contain;
   object-position: bottom right;
+}
+
+.banner-v2.block.retire-calc-banner .banner-v2-visual img {
+  max-width: 403px;
+  max-height: 356px;
 }
 
 /* ==========================================================================
@@ -271,7 +265,7 @@ main>.section:has(.banner-v2) {
   }
 
   .banner-v2.block .banner-v2-inner {
-    padding: 0 24px 0 32px;
+    padding: 0 0 0 32px;
     min-height: 440px;
   }
 
@@ -280,6 +274,10 @@ main>.section:has(.banner-v2) {
     max-width: 400px;
     align-self: center;
     padding: 160px 0 96px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-right: 20px;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -312,6 +310,10 @@ main>.section:has(.banner-v2) {
     max-height: 400px;
     max-width: 440px;
   }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 350px;
+  }
 }
 
 /* Tablet Portrait & Mid-Screen Responsive Row (covers 768px & 769px) */
@@ -328,7 +330,7 @@ main>.section:has(.banner-v2) {
     justify-content: space-between;
     height: 100%;
     min-height: 390px;
-    padding: 0 16px 0 28px;
+    padding: 0 0 0 28px;
     max-width: 100%;
   }
 
@@ -400,17 +402,25 @@ main>.section:has(.banner-v2) {
     object-position: bottom right;
     display: block;
   }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 287px;
+  }
 }
 
 /* Small Tablet / Large Foldable Responsive Row */
 @media (width <=700px) and (width >=601px) {
   .banner-v2.block .banner-v2-inner {
-    padding: 0 12px 0 20px;
+    padding: 0 0 0 20px;
   }
 
   .banner-v2.block .banner-v2-content {
     max-width: 290px;
     padding: 160px 0 50px;
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-content {
+    padding-top: 0;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -461,28 +471,15 @@ main>.section:has(.banner-v2) {
 @media (width <=600px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    margin-top: -96px;
+    /* margin-top: -96px; for temporary testing purpose */
+    background-image: var(--section-bg-mobile, var(--section-bg-desktop));
+    background-position: center top;
   }
 
   .banner-v2.block {
     height: auto;
     min-height: auto;
-    background-image: linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%);
-    background-position: center top;
-  }
-
-  .banner-v2.block .banner-v2-bg-desktop:not(.banner-v2-bg-single) {
-    display: none;
-  }
-
-  .banner-v2.block .banner-v2-bg-mobile {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .banner-v2.block .banner-v2-bg img {
-    object-position: center top;
+    background: transparent;
   }
 
   .banner-v2.block .banner-v2-inner {
@@ -491,8 +488,18 @@ main>.section:has(.banner-v2) {
     justify-content: flex-end;
     height: auto;
     min-height: 646px;
-    padding: 0 16px;
+    padding: 0;
     max-width: 100%;
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-inner {
+    min-height: 439px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-inner {
+    flex-direction: row;
+    min-height: 439px;
+    justify-content: space-between;
   }
 
   /* Content area: Title, Description, Stats */
@@ -501,10 +508,21 @@ main>.section:has(.banner-v2) {
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    padding: 0 0 32px;
+    padding: 0 16px 32px;
     text-align: left;
     box-sizing: border-box;
     color: var(--base-white, #fff);
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-content {
+    align-self: flex-start;
+    margin: 0;
+    padding-top: 132px;
+    padding-bottom: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-left: 16px;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -515,6 +533,10 @@ main>.section:has(.banner-v2) {
     font-weight: 300;
   }
 
+  .banner-v2.block.retire-calc-banner .banner-v2-title {
+    margin-bottom: 8px;
+  }
+
   .banner-v2.block .banner-v2-description {
     font-size: 16px;
     line-height: 20px;
@@ -522,6 +544,15 @@ main>.section:has(.banner-v2) {
     text-align: left;
     max-width: 100%;
     color: var(--base-white, #fff);
+  }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-description {
+    margin-bottom: 4px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-description {
+    font-size: 14px;
+    line-height: 18px;
   }
 
   /* Stats: 3 columns with white top accent line */
@@ -584,6 +615,27 @@ main>.section:has(.banner-v2) {
     line-height: 0;
   }
 
+  .banner-v2.block.fin-calc-banner .banner-v2-visual {
+    justify-content: flex-end;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual {
+    width: 134px;
+    height: stretch;
+    margin: 0;
+  }
+
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-desktop:not(.banner-v2-visual-single) {
+    display: none;
+  }
+
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-desktop.banner-v2-visual-single,
+  .banner-v2.block .banner-v2-visual .banner-v2-visual-mobile {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
   .banner-v2.block .banner-v2-visual picture {
     display: flex;
     align-items: flex-end;
@@ -600,6 +652,36 @@ main>.section:has(.banner-v2) {
     object-position: bottom center;
     margin: 0 auto;
   }
+
+  .banner-v2.block.fin-calc-banner .banner-v2-visual img {
+    width: 210px;
+    height: 187px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    max-width: 134px;
+  }
+}
+
+@media (width <= 400px) {
+  /* .banner-v2.block.retire-calc-banner .banner-v2-visual img{
+    max-width: 100px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-inner {
+    justify-content: space-between;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual {
+    margin: 0;
+  } */
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    margin: 0;
+    max-width: 202px;
+    padding: 0;
+    margin-left: 16px;
+  }
 }
 
 /* ==========================================================================
@@ -608,11 +690,11 @@ main>.section:has(.banner-v2) {
 @media (width <=359px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    margin-top: -96PX;
+    /* margin-top: -96px; for temporary testing purpose */
   }
 
   .banner-v2.block .banner-v2-inner {
-    padding: 0 10px;
+    padding: 0;
   }
 
   .banner-v2.block .banner-v2-title {
@@ -624,6 +706,11 @@ main>.section:has(.banner-v2) {
     font-size: 13px;
     line-height: 17px;
     margin-bottom: 16px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-description {
+    font-size: 13px;
+    line-height: 17px;
   }
 
   .banner-v2.block ul.banner-v2-stats,

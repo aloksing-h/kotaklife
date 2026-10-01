@@ -76,59 +76,29 @@ export default async function decorate(block) {
     block.classList.add('is-editor');
   }
 
-  // Collect all picture elements in the block
-  const pictures = [...block.querySelectorAll('picture')];
-
-  let desktopBgPicture = null;
-  let mobileBgPicture = null;
-  let personPicture = null;
-
-  if (pictures.length >= 3) {
-    // 3 images: [Desktop BG, Mobile BG, Person Image]
-    [desktopBgPicture, mobileBgPicture, personPicture] = pictures;
-  } else if (pictures.length === 2) {
-    // 2 images: [Desktop BG, Person Image]
-    [desktopBgPicture, personPicture] = pictures;
-  } else if (pictures.length === 1) {
-    // 1 image: Only Person Image (default theme gradient is used)
-    [personPicture] = pictures;
+  // Set section background CSS variables if defined in section dataset
+  const section = block.closest('.section');
+  if (section) {
+    const desktopBg = section.dataset.backgroundImage;
+    const mobileBg = section.dataset.backgroundimageMobile;
+    if (desktopBg) {
+      section.style.setProperty('--section-bg-desktop', `url('${desktopBg}')`);
+    }
+    if (mobileBg) {
+      section.style.setProperty('--section-bg-mobile', `url('${mobileBg}')`);
+    }
   }
 
-  // 1. Prepare background layer using clean DOM picture elements (zero inline styles on div!)
-  let bgWrapper = null;
-  if (desktopBgPicture || mobileBgPicture) {
-    block.classList.add('has-custom-bg');
-    bgWrapper = document.createElement('div');
-    bgWrapper.className = 'banner-v2-bg';
+  // Collect visual pictures authored in the block
+  const pictures = [...block.querySelectorAll('picture')];
 
-    if (desktopBgPicture && mobileBgPicture) {
-      const desktopBg = document.createElement('div');
-      desktopBg.className = 'banner-v2-bg-desktop';
-      const p1 = desktopBgPicture.parentElement;
-      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
-        moveInstrumentation(p1, desktopBg);
-      }
-      desktopBg.appendChild(desktopBgPicture);
+  let desktopVisual = null;
+  let mobileVisual = null;
 
-      const mobileBg = document.createElement('div');
-      mobileBg.className = 'banner-v2-bg-mobile';
-      const p2 = mobileBgPicture.parentElement;
-      if (p2 && (p2.tagName === 'P' || p2.tagName === 'DIV')) {
-        moveInstrumentation(p2, mobileBg);
-      }
-      mobileBg.appendChild(mobileBgPicture);
-
-      bgWrapper.append(desktopBg, mobileBg);
-    } else if (desktopBgPicture) {
-      const desktopBg = document.createElement('div');
-      desktopBg.className = 'banner-v2-bg-desktop banner-v2-bg-single';
-      const p1 = desktopBgPicture.parentElement;
-      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
-        moveInstrumentation(p1, desktopBg);
-      }
-      desktopBg.appendChild(desktopBgPicture);
-      bgWrapper.appendChild(desktopBg);
-    }
+  if (pictures.length >= 2) {
+    [desktopVisual, mobileVisual] = pictures;
+  } else if (pictures.length === 1) {
+    [desktopVisual] = pictures;
   }
 
   // Create content wrapper
@@ -199,16 +169,41 @@ export default async function decorate(block) {
     contentWrapper.appendChild(statsList);
   }
 
-  // Prepare person visual wrapper
+  // Prepare visual wrapper (Desktop & Mobile)
   let visualWrapper = null;
-  if (personPicture) {
+  if (desktopVisual || mobileVisual) {
     visualWrapper = document.createElement('div');
     visualWrapper.className = 'banner-v2-visual';
-    const parent = personPicture.parentElement;
-    if (parent && parent.tagName === 'P') {
-      moveInstrumentation(parent, visualWrapper);
+
+    if (desktopVisual && mobileVisual) {
+      const deskContainer = document.createElement('div');
+      deskContainer.className = 'banner-v2-visual-desktop';
+      const p1 = desktopVisual.parentElement;
+      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
+        moveInstrumentation(p1, deskContainer);
+      }
+      deskContainer.appendChild(desktopVisual);
+
+      const mobContainer = document.createElement('div');
+      mobContainer.className = 'banner-v2-visual-mobile';
+      const p2 = mobileVisual.parentElement;
+      if (p2 && (p2.tagName === 'P' || p2.tagName === 'DIV')) {
+        moveInstrumentation(p2, mobContainer);
+      }
+      mobContainer.appendChild(mobileVisual);
+
+      visualWrapper.append(deskContainer, mobContainer);
+    } else if (desktopVisual) {
+      const deskContainer = document.createElement('div');
+      deskContainer.className = 'banner-v2-visual-desktop banner-v2-visual-single';
+      const p1 = desktopVisual.parentElement;
+      if (p1 && (p1.tagName === 'P' || p1.tagName === 'DIV')) {
+        moveInstrumentation(p1, deskContainer);
+      }
+      deskContainer.appendChild(desktopVisual);
+
+      visualWrapper.appendChild(deskContainer);
     }
-    visualWrapper.appendChild(personPicture);
   }
 
   // Prepare centered 1200px inner container (confines content + visual to 1200px)
@@ -221,10 +216,6 @@ export default async function decorate(block) {
     innerWrapper.appendChild(visualWrapper);
   }
 
-  // Re-assemble block cleanly with zero empty blocks or DOM conflicts
-  block.replaceChildren();
-  if (bgWrapper) {
-    block.appendChild(bgWrapper);
-  }
-  block.appendChild(innerWrapper);
+  // Re-assemble block cleanly
+  block.replaceChildren(innerWrapper);
 }
