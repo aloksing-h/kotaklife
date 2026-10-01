@@ -3,7 +3,7 @@ import retirementCalculator from './retirement-calculator.js';
 
 const legacyFields = [
   'text', 'link', 'linkCompound', 'linkFire', 'linkTerm', 'resultTitle',
-  'resultValue', 'resultSubtitle', 'resultImage', 'resultImageAlt',
+  'resultValue', 'resultSubtitle', 'resultImage',
   'savingsMonthlyLabel', 'savingsYearlyLabel', 'summaryTitle',
   'detail1Label', 'detail1Value', 'detail2Label', 'detail2Value',
   'detail3Label', 'detail3Value', 'detail4Label', 'detail4Value',
@@ -30,8 +30,10 @@ export default async function decorate(block) {
       || key === 'summaryTitle' || key === 'actionLabel' || key === 'actionUrl') {
       const authoredValue = value.querySelector('a[href]')?.getAttribute('href')
         || value.querySelector('img')?.getAttribute('src') || value.textContent.trim();
-      if (authoredValue || !resultContent[key]) resultContent[key] = authoredValue;
-      if (key === 'resultImage') resultContent.resultImageAlt = value.querySelector('img')?.alt || '';
+      if (authoredValue) resultContent[key] = authoredValue;
+      if (key === 'resultImage' && value.querySelector('img')?.alt) {
+        resultContent.resultImageAlt = value.querySelector('img').alt;
+      }
     }
   });
 
