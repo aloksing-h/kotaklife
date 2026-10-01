@@ -87,6 +87,18 @@
             {
               "name": "Card Link",
               "value": "card-link"
+            },
+            {
+              "name": "Common Text",
+              "value": "cmmn-txt"
+            },
+            {
+              "name": "Common Text Row",
+              "value": "cmmn-txt-row"
+            },
+            {
+              "name": "Common Text Column",
+              "value": "cmmn-txt-column"
             }
           ]
         }
