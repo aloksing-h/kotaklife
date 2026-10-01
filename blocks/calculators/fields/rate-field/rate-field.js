@@ -1,35 +1,24 @@
-/**
- * Path: fields/expected-return/expected-return.js
- */
-export function createExpectedReturnField(options = {}) {
+export default function createRateField(options = {}) {
   const {
-    id = 'returnInput',
-    label = 'Expected return',
+    id,
+    label,
+    infoText = '',
     value = 5,
     min = 0,
     max = 15,
     step = 1,
-    milestones = [
-      { val: 0, text: '0%' },
-      { val: 5, text: '5%' },
-      { val: 10, text: '10%' },
-      { val: 15, text: '15%' }
-    ],
-    onChange
+    milestones = [0, 5, 10, 15].map((val) => ({ val, text: `${val}%` })),
+    onChange,
   } = options;
 
   let currentValue = value;
-
-  // Create Container
   const container = document.createElement('div');
-  container.className = 'expected-return-box';
-
-  // Build HTML Markup
+  container.className = 'rate-field';
   container.innerHTML = `
     <div class="slider-header-row">
       <span class="slider-label-text">
         ${label}
-        <span class="info-circle" title="Anticipated annual return on investment">i</span>
+        <img src="/icons/information-icon.svg" alt="" title="${infoText}">
       </span>
       <div class="value-display-badge badge-small">
         <input type="text" id="${id}" class="badge-input" value="${currentValue}" inputmode="numeric" autocomplete="off" aria-label="${label}">
@@ -39,14 +28,10 @@ export function createExpectedReturnField(options = {}) {
 
     <div class="wedge-track-wrapper">
       <svg class="wedge-svg" viewBox="0 0 253 30" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Inactive Background Wedge Track -->
         <path d="M171.699 14.7506C199.978 13.2151 232.296 10.8022 253 7V18.9427H2.61928e-05H0C0 18.786 5.65554e-06 18.771 1.20082e-05 18.8063C8.62522e-06 18.7634 4.58885e-06 18.7122 0 18.6514C63.1132 17.7388 143.642 16.2741 171.699 14.7506Z" fill="#E9EAEB"/>
-        
-        <!-- Active Red Wedge Track Clipped to Thumb Position -->
         <g clip-path="url(#clip0_${id})">
           <path d="M171.699 14.7506C199.978 13.2151 232.296 10.8022 253 7V18.9427H2.61928e-05H0C0 18.786 5.65554e-06 18.771 1.20082e-05 18.8063C8.62522e-06 18.7634 4.58885e-06 18.7122 0 18.6514C63.1132 17.7388 143.642 16.2741 171.699 14.7506Z" fill="#FA1432"/>
         </g>
-        
         <defs>
           <clipPath id="clip0_${id}">
             <rect class="wedge-clip-rect" width="84" height="19" fill="white"/>
@@ -54,7 +39,6 @@ export function createExpectedReturnField(options = {}) {
         </defs>
       </svg>
 
-      <!-- Pill Thumb Handle -->
       <div class="wedge-pill-handle">
         <svg width="17" height="30" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="17" height="30" rx="8.5" fill="url(#paint0_linear_${id})"/>
@@ -72,7 +56,7 @@ export function createExpectedReturnField(options = {}) {
     </div>
 
     <div class="wedge-scale-row">
-      ${milestones.map(m => `<span>${m.text}</span>`).join('')}
+      ${milestones.map((milestone) => `<span>${milestone.text}</span>`).join('')}
     </div>
   `;
 
@@ -83,39 +67,32 @@ export function createExpectedReturnField(options = {}) {
 
   function renderTrack() {
     const ratio = Math.max(0, Math.min(1, (currentValue - min) / (max - min)));
-    const pct = ratio * 100;
-    
-    // Position handle and update clip rectangle
-    pillHandle.style.left = `${pct}%`;
+    pillHandle.style.left = `${ratio * 100}%`;
     clipRect.setAttribute('width', `${ratio * 253}`);
   }
 
   function updateValue(num) {
     currentValue = num;
     renderTrack();
-    if (typeof onChange === 'function') {
-      onChange(currentValue);
-    }
+    if (typeof onChange === 'function') onChange(currentValue);
   }
 
-  // Mouse & Touch Drag Event Handling
-  function updatePosFromEvent(e) {
-    if (e.cancelable) e.preventDefault();
+  function updatePosFromEvent(event) {
+    if (event.cancelable) event.preventDefault();
     const rect = trackWrapper.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
     const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     const rawVal = min + ratio * (max - min);
     const steppedVal = Math.round(rawVal / step) * step;
-
     inputEl.value = steppedVal;
     updateValue(steppedVal);
   }
 
-  function onStart(e) {
-    updatePosFromEvent(e);
+  function onStart(event) {
+    updatePosFromEvent(event);
 
-    function onMove(evt) {
-      updatePosFromEvent(evt);
+    function onMove(moveEvent) {
+      updatePosFromEvent(moveEvent);
     }
 
     function onEnd() {
@@ -133,21 +110,19 @@ export function createExpectedReturnField(options = {}) {
 
   trackWrapper.addEventListener('mousedown', onStart);
   trackWrapper.addEventListener('touchstart', onStart, { passive: false });
-
-  // Input Box Sanitization
   inputEl.addEventListener('focus', () => inputEl.select());
 
-  inputEl.addEventListener('keydown', (e) => {
+  inputEl.addEventListener('keydown', (event) => {
     const allowed = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End'];
-    if (allowed.includes(e.key) || e.ctrlKey || e.metaKey) {
-      if (e.key === 'Enter') inputEl.blur();
+    if (allowed.includes(event.key) || event.ctrlKey || event.metaKey) {
+      if (event.key === 'Enter') inputEl.blur();
       return;
     }
-    if (!/^[0-9]$/.test(e.key)) e.preventDefault();
+    if (!/^[0-9]$/.test(event.key)) event.preventDefault();
   });
 
   inputEl.addEventListener('input', () => {
-    let cleanVal = inputEl.value.replace(/[^0-9]/g, '');
+    const cleanVal = inputEl.value.replace(/[^0-9]/g, '');
     if (cleanVal === '') return;
     let num = parseInt(cleanVal, 10);
     if (num > max) num = max;
@@ -155,15 +130,14 @@ export function createExpectedReturnField(options = {}) {
   });
 
   inputEl.addEventListener('blur', () => {
-    let cleanVal = inputEl.value.replace(/[^0-9]/g, '');
+    const cleanVal = inputEl.value.replace(/[^0-9]/g, '');
     let num = parseInt(cleanVal, 10);
-    if (isNaN(num) || num < min) num = min;
+    if (Number.isNaN(num) || num < min) num = min;
     if (num > max) num = max;
     inputEl.value = num;
     updateValue(num);
   });
 
-  // Initial render
   renderTrack();
 
   return {
@@ -173,6 +147,6 @@ export function createExpectedReturnField(options = {}) {
       currentValue = val;
       inputEl.value = val;
       renderTrack();
-    }
+    },
   };
 }

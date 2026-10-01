@@ -1,0 +1,37 @@
+.age-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.age-field .age-label {
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.age-field .age-input {
+  border-radius: 0;
+  border: 1px solid #d5d7da;
+  background: #fff;
+  padding: 10px 16px;
+  color: #181d27;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.age-field .age-label .required-star {
+  color: #fa1432;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.age-inputs-row .field-group {
+  width: 31.57%;
+}

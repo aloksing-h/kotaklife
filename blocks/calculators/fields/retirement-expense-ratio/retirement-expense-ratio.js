@@ -1,6 +1,4 @@
-/**
- * Path: fields/retirement-expense-ratio/retirement-expense-ratio.js
- */
+
 export function createRetirementExpenseRatioField(options = {}) {
   const {
     id = 'expPercentInput',

@@ -1,30 +1,33 @@
 /**
  * Path: retirement-calculator.js
  */
-import { createCurrentAgeField } from './fields/current-age/current-age.js';
-import { createRetirementAgeField } from './fields/retirement-age/retirement-age.js';
-import { createLifeExpectancyField } from './fields/life-expectancy/life-expectancy.js';
+import createAgeField from './fields/age-field/age-field.js';
 import { createMonthlyExpenseWaveSlider } from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
-import { createExpectedInflationField } from './fields/expected-inflation/expected-inflation.js';
-import { createExpectedReturnField } from './fields/expected-return/expected-return.js';
+import createRateField from './fields/rate-field/rate-field.js';
 import { createRetirementExpenseRatioField } from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
 export default function retirementCalculator(block) {
 
-  const currentAgeField = createCurrentAgeField({
+  const currentAgeField = createAgeField({
+    id: 'currentAge',
+    label: 'Current age',
     value: 30,
     min: 18,
     max: 100,
     onChange: calculateRetirementPlan
   });
 
-  const retirementAgeField = createRetirementAgeField({
+  const retirementAgeField = createAgeField({
+  id: 'retireAge',
+  label: 'Retirement age',
   value: 60,
   min: 40,
   max: 80,
   onChange: calculateRetirementPlan
 });
 
-const lifeExpectancyField = createLifeExpectancyField({
+const lifeExpectancyField = createAgeField({
+  id: 'lifeExpect',
+  label: 'Life expected (age)',
   value: 80,
   min: 60,
   max: 100,
@@ -44,7 +47,9 @@ const expenseWaveSlider = createMonthlyExpenseWaveSlider({
   onChange: calculateRetirementPlan
 });
 
-const inflationField = createExpectedInflationField({
+const inflationField = createRateField({
+  id: 'inflationInput',
+  label: 'Expected inflation rate',
     value: 5,
     min: 0,
     max: 15,
@@ -52,8 +57,10 @@ const inflationField = createExpectedInflationField({
     onChange: calculateRetirementPlan
   });
 
-  const returnField = createExpectedReturnField({
+  const returnField = createRateField({
     id: 'returnInput',
+    label: 'Expected return',
+    infoText: 'Anticipated annual return on investment',
     value: 5, min: 0, max: 15, step: 1, onChange: calculateRetirementPlan
   });
 
