@@ -205,6 +205,19 @@
               ]
             },
             {
+              "name": "Calculators",
+              "children": [
+                {
+                  "name": "Calculator Main",
+                  "value": "calculator-main"
+                },
+                {
+                  "name": "Retirement Calculator",
+                  "value": "retirement-calculator"
+                }
+              ]
+            },
+            {
               "name": "Breadcrumb Move",
               "value": "breadcrumb-move"
             },
