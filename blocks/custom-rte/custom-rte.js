@@ -374,6 +374,10 @@ export default async function decorate(block) {
           grabCursor: true,
           observer: true,
           observeParents: true,
+          grid: {
+            rows: 2,
+            fill: 'row',
+          },
           pagination: {
             el: pagination,
             clickable: true,

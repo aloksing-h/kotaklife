@@ -42,7 +42,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     font-weight: 600;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block {
+.section:has(.calc-card) .tab-list .section.calc-card .block:not(.swiper) {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
