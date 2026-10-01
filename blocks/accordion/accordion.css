@@ -179,3 +179,278 @@
   opacity: 0;
   padding: 0 0 0 40px;
 }
+
+/* ==========================================================================
+   FAQ V2 Variant (Figma Design 5401:9683 & 5401:9932)
+   ========================================================================== */
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* Accordion block layout */
+.accordion.block.faq-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.accordion.block.faq-v2 > div {
+  width: 100%;
+}
+
+/* Accordion item details card */
+.accordion.block.faq-v2 details {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--brand-blue-50, #d2dae4);
+  padding: 16px;
+  border-radius: 4px;
+  transition: border-color 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion.block.faq-v2 details::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(181deg, #FFF 68.45%, #9CC7FF 269.19%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion.block.faq-v2 details.is-open {
+  border-color: var(--brand-blue-50, #d2dae4);
+  z-index: 2;
+}
+
+.accordion.block.faq-v2 details.is-open::before {
+  opacity: 1;
+}
+
+/* Hide bottom border of upper accordion when next accordion is open to prevent 2px double border */
+.accordion.block.faq-v2 > div:has(+ div > details.is-open) details {
+  border-bottom-color: transparent;
+}
+
+/* Summary element */
+.accordion.block.faq-v2 details summary {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--gray-900, #181d27);
+  text-align: left;
+}
+
+.accordion.block.faq-v2 details summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion.block.faq-v2 details summary::marker {
+  content: '';
+}
+
+.accordion.block.faq-v2 .accordion-item-number {
+  display: none;
+}
+
+/* Question text row */
+.accordion.block.faq-v2 details summary p,
+.accordion.block.faq-v2 details summary h1,
+.accordion.block.faq-v2 details summary h2,
+.accordion.block.faq-v2 details summary h3,
+.accordion.block.faq-v2 details summary h4,
+.accordion.block.faq-v2 details summary h5,
+.accordion.block.faq-v2 details summary h6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+}
+
+/* Icon container wrapper */
+.accordion.block.faq-v2 .accordion-item-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  flex-shrink: 0;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.accordion.block.faq-v2 .accordion-item-icon-wrapper .icon {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 999px;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion.block.faq-v2 .accordion-item-icon-wrapper .icon img {
+  width: 16px;
+  height: 16px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* Icon toggling & smooth rotation animation */
+.accordion.block.faq-v2 details:not(.is-open) .accordion-item-icon-wrapper .icon.icon-plus {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+.accordion.block.faq-v2 details:not(.is-open) .accordion-item-icon-wrapper .icon.icon-minus {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+  pointer-events: none;
+}
+
+.accordion.block.faq-v2 details.is-open .accordion-item-icon-wrapper .icon.icon-plus {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+  pointer-events: none;
+}
+
+.accordion.block.faq-v2 details.is-open .accordion-item-icon-wrapper .icon.icon-minus {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+/* Body container and smooth CSS Grid height transition */
+.accordion.block.faq-v2 details .accordion-item-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.28s;
+}
+
+.accordion.block.faq-v2 details.is-open .accordion-item-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--gray-700, #414651);
+  margin: 0;
+  text-align: left;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content p {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  text-align: inherit;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content p + p {
+  margin-top: 8px;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content p:first-child {
+  margin-top: 8px;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content a {
+  color: var(--brand-blue-500, #1e4679);
+  text-decoration: underline;
+}
+
+.accordion.block.faq-v2 details .accordion-item-body-content ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+/* Desktop styles (width >= 900px) */
+@media (width >= 900px) {
+  .accordion.block.faq-v2 {
+    gap: 0;
+  }
+
+  .accordion.block.faq-v2 details summary {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .accordion.block.faq-v2 .accordion-item-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .accordion.block.faq-v2 .accordion-item-icon-wrapper .icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion.block.faq-v2 details .accordion-item-body-content {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
