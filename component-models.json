@@ -475,8 +475,8 @@
             "value": "findplan-button"
           },
           {
-            "name": "Insurance Tab Modal",
-            "value": "insurance-tab-modal"
+            "name": "Insurance Tab Title",
+            "value": "insurance-tab-title"
           }
         ]
       }
