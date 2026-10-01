@@ -475,10 +475,36 @@
             "value": "findplan-button"
           },
           {
+            "name": "Insurance Tab Title",
+            "value": "insurance-tab-title"
+          },
+          {
             "name": "Calc Card",
             "value": "calc-card"
           }
         ]
+      },
+      {
+        "component": "reference",
+        "name": "background-image",
+        "label": "Background Image for /desktop",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "background-imageAlt",
+        "label": "Background Image Alt Text /desktop"
+      },
+      {
+        "component": "reference",
+        "name": "backgroundimage-mobile",
+        "label": "Background Image for /mobile",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "backgroundimage-mobileAlt",
+        "label": "Background Image Alt Text /mobile"
       }
     ]
   },
@@ -538,6 +564,10 @@
           {
             "name": "FAQ",
             "value": "faq-accordion"
+          },
+          {
+            "name": "FAQ V2",
+            "value": "faq-v2"
           }
         ]
       }
@@ -566,46 +596,33 @@
     "id": "banner-v2",
     "fields": [
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "desktopBg",
-        "label": "Desktop Background Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "desktopBgAlt",
-        "label": "Desktop Background Alt Text",
-        "value": ""
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "mobileBg",
-        "label": "Mobile Background Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "mobileBgAlt",
-        "label": "Mobile Background Alt Text",
-        "value": ""
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Fin Calc Banner",
+            "value": "fin-calc-banner"
+          },
+          {
+            "name": "Retire Calc Banner",
+            "value": "retire-calc-banner"
+          }
+        ]
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
-        "label": "Person / Foreground Image",
+        "name": "desktopImage",
+        "label": "Desktop Visual Image",
         "multi": false
       },
       {
-        "component": "text",
+        "component": "reference",
         "valueType": "string",
-        "name": "imageAlt",
-        "label": "Person Image Alt Text",
-        "value": ""
+        "name": "mobileImage",
+        "label": "Mobile Visual Image",
+        "multi": false
       },
       {
         "component": "richtext",
@@ -1275,6 +1292,10 @@
           {
             "name": "Header Tab",
             "value": "header-tab"
+          },
+          {
+            "name": "Insurance Content Tab",
+            "value": "insurance-content-tab"
           },
           {
             "name": "Calc Card",
