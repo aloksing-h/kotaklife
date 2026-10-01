@@ -477,6 +477,10 @@
           {
             "name": "Insurance Tab Title",
             "value": "insurance-tab-title"
+          },
+          {
+            "name": "Calc Card",
+            "value": "calc-card"
           }
         ]
       },
@@ -886,6 +890,22 @@
           {
             "name": "Nav Redirection",
             "value": "nav-redirection"
+          },
+          {
+            "name": "Card Link",
+            "value": "card-link"
+          },
+          {
+            "name": "Common Text",
+            "value": "cmmn-txt"
+          },
+          {
+            "name": "Common Text Row",
+            "value": "cmmn-txt-row"
+          },
+          {
+            "name": "Common Text Column",
+            "value": "cmmn-txt-column"
           }
         ]
       }
@@ -1276,6 +1296,10 @@
           {
             "name": "Insurance Content Tab",
             "value": "insurance-content-tab"
+          },
+          {
+            "name": "Calc Card",
+            "value": "calc-card"
           }
         ]
       }
