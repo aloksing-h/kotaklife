@@ -215,6 +215,10 @@
             {
               "name": "Findplan Button",
               "value": "findplan-button"
+            },
+            {
+              "name": "Calc Card",
+              "value": "calc-card"
             }
           ]
         }
