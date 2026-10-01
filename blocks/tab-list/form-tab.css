@@ -37,7 +37,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.2s ease;
 }
 
 /* Default Right Chevron (Gray) */
@@ -165,10 +164,6 @@
   cursor: pointer;
   padding: 8px 0;
   transition: opacity 0.2s;
-}
-
-.block.tab-list.insurance-content-tab .mobile-tab-arrows button:hover {
-  opacity: 0.7;
 }
 
 /* Disabled state styling */
