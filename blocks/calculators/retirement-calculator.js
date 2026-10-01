@@ -87,7 +87,8 @@ const inflationField = createRateField({
 
     fundResult.textContent = formatIndianCurrency(estimatedFund);
     savingsTitle.textContent = freqToggle.checked
-      ? 'Required yearly savings' : 'Required monthly savings';
+      ? (resultContent.savingsYearlyLabel || 'Required yearly savings')
+      : (resultContent.savingsMonthlyLabel || 'Required monthly savings');
     savingsResult.textContent = formatIndianCurrency(freqToggle.checked
       ? monthlySavings * 12 : monthlySavings);
   }

@@ -31,14 +31,15 @@
           "component": "aem-content",
           "name": "link",
           "label": "Retirement form URL",
-          "condition": { "!": [{ "var": "classes" }] }
+          "condition": { "in": [{ "var": "classes" }, ["retirement", ""]] }
         },
         {
           "component": "select",
           "name": "classes",
           "label": "Result layout",
+          "value": "retirement",
           "options": [
-            { "name": "Retirement", "value": "" },
+            { "name": "Retirement", "value": "retirement" },
             { "name": "Compound", "value": "compound" },
             { "name": "FIRE", "value": "fire" },
             { "name": "Term insurance", "value": "term" }
@@ -65,8 +66,7 @@
         {
           "component": "text",
           "name": "resultTitle",
-          "label": "Result title",
-          "condition": { "in": [{ "var": "classes" }, ["compound", "fire", "term"]] }
+          "label": "Result title"
         },
         {
           "component": "text",
@@ -84,14 +84,24 @@
           "component": "reference",
           "name": "resultImage",
           "label": "Result chart or image",
-          "multi": false,
-          "condition": { "in": [{ "var": "classes" }, ["compound", "fire", "term"]] }
+          "multi": false
         },
         {
           "component": "text",
           "name": "resultImageAlt",
-          "label": "Result image alt text",
-          "condition": { "in": [{ "var": "classes" }, ["compound", "fire", "term"]] }
+          "label": "Result image alt text"
+        },
+        {
+          "component": "text",
+          "name": "savingsMonthlyLabel",
+          "label": "Monthly savings label",
+          "condition": { "in": [{ "var": "classes" }, ["retirement", ""]] }
+        },
+        {
+          "component": "text",
+          "name": "savingsYearlyLabel",
+          "label": "Yearly savings label",
+          "condition": { "in": [{ "var": "classes" }, ["retirement", ""]] }
         },
         {
           "component": "text",
@@ -150,14 +160,12 @@
         {
           "component": "text",
           "name": "actionLabel",
-          "label": "Result action label",
-          "condition": { "in": [{ "var": "classes" }, ["compound", "fire", "term"]] }
+          "label": "Result action label"
         },
         {
           "component": "text",
           "name": "actionUrl",
-          "label": "Result action URL",
-          "condition": { "in": [{ "var": "classes" }, ["compound", "fire", "term"]] }
+          "label": "Result action URL"
         }
       ]
     }

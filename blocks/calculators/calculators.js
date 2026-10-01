@@ -19,7 +19,8 @@ export default async function decorate(block) {
     if (['link', 'linkCompound', 'linkFire', 'linkTerm'].includes(key) && key !== formField) {
       row.remove();
     }
-    if (key.startsWith('result') || key.startsWith('detail') || key === 'summaryTitle' || key === 'actionLabel') {
+    if (key.startsWith('result') || key.startsWith('detail') || key.startsWith('savings')
+      || key === 'summaryTitle' || key === 'actionLabel') {
       resultContent[key] = value.querySelector('a, img')?.href || value.querySelector('img')?.src || value.textContent.trim();
       row.remove();
     }

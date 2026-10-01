@@ -43,19 +43,28 @@ export default function renderCalculatorResult(variant = 'retirement', content =
       ${action}
     </div>`;
   }
-  return `
-    <div class="fund-estimate-box">
-      <p class="fund-estimate-label">Estimated retirement fund</p>
-      <div class="fund-estimate-value" id="fundResult">₹ 97,04,512</div>
-    </div>
-
-    <div class="illustration-wrap">
-      <svg class="couple-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const image = String(content.resultImage || '');
+  const retirementMedia = /^(https?:\/\/|\/)/.test(image)
+    ? `<img class="result-media" src="${escapeHtml(image)}" alt="${escapeHtml(content.resultImageAlt)}" loading="lazy">`
+    : `<svg class="couple-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="55" cy="40" r="14" stroke="currentColor" stroke-width="2.2" fill="none"/>
         <path d="M32 98 C32 75, 78 75, 78 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
         <circle cx="105" cy="42" r="13" stroke="currentColor" stroke-width="2.2" fill="none"/>
         <path d="M84 98 C84 77, 126 77, 126 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
+      </svg>`;
+  const actionUrl = String(content.actionUrl || '');
+  const actionLabel = escapeHtml(content.actionLabel || 'Start Your Planning Now');
+  const action = /^(https?:\/\/|\/)/.test(actionUrl)
+    ? `<a class="cta-plan-btn" href="${escapeHtml(actionUrl)}"><span>${actionLabel}</span><span class="btn-circle-arrow">&rarr;</span></a>`
+    : `<button class="cta-plan-btn" type="button"><span>${actionLabel}</span><span class="btn-circle-arrow">&rarr;</span></button>`;
+  return `
+    <div class="fund-estimate-box">
+      <p class="fund-estimate-label">${escapeHtml(content.resultTitle || 'Estimated retirement fund')}</p>
+      <div class="fund-estimate-value" id="fundResult">₹ 97,04,512</div>
+    </div>
+
+    <div class="illustration-wrap">
+      ${retirementMedia}
     </div>
 
     <div class="savings-summary-box">
@@ -72,9 +81,6 @@ export default function renderCalculatorResult(variant = 'retirement', content =
       <div class="savings-amount-text" id="savingsResult">₹ 26,957</div>
     </div>
 
-    <button class="cta-plan-btn" type="button">
-      <span>Start Your Planning Now</span>
-      <span class="btn-circle-arrow">&rarr;</span>
-    </button>
+    ${action}
   `;
 }

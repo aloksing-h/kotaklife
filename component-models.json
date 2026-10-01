@@ -683,10 +683,14 @@
         "name": "link",
         "label": "Retirement form URL",
         "condition": {
-          "!": [
+          "in": [
             {
               "var": "classes"
-            }
+            },
+            [
+              "retirement",
+              ""
+            ]
           ]
         }
       },
@@ -694,10 +698,11 @@
         "component": "select",
         "name": "classes",
         "label": "Result layout",
+        "value": "retirement",
         "options": [
           {
             "name": "Retirement",
-            "value": ""
+            "value": "retirement"
           },
           {
             "name": "Compound",
@@ -755,19 +760,7 @@
       {
         "component": "text",
         "name": "resultTitle",
-        "label": "Result title",
-        "condition": {
-          "in": [
-            {
-              "var": "classes"
-            },
-            [
-              "compound",
-              "fire",
-              "term"
-            ]
-          ]
-        }
+        "label": "Result title"
       },
       {
         "component": "text",
@@ -807,33 +800,41 @@
         "component": "reference",
         "name": "resultImage",
         "label": "Result chart or image",
-        "multi": false,
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "resultImageAlt",
+        "label": "Result image alt text"
+      },
+      {
+        "component": "text",
+        "name": "savingsMonthlyLabel",
+        "label": "Monthly savings label",
         "condition": {
           "in": [
             {
               "var": "classes"
             },
             [
-              "compound",
-              "fire",
-              "term"
+              "retirement",
+              ""
             ]
           ]
         }
       },
       {
         "component": "text",
-        "name": "resultImageAlt",
-        "label": "Result image alt text",
+        "name": "savingsYearlyLabel",
+        "label": "Yearly savings label",
         "condition": {
           "in": [
             {
               "var": "classes"
             },
             [
-              "compound",
-              "fire",
-              "term"
+              "retirement",
+              ""
             ]
           ]
         }
@@ -958,36 +959,12 @@
       {
         "component": "text",
         "name": "actionLabel",
-        "label": "Result action label",
-        "condition": {
-          "in": [
-            {
-              "var": "classes"
-            },
-            [
-              "compound",
-              "fire",
-              "term"
-            ]
-          ]
-        }
+        "label": "Result action label"
       },
       {
         "component": "text",
         "name": "actionUrl",
-        "label": "Result action URL",
-        "condition": {
-          "in": [
-            {
-              "var": "classes"
-            },
-            [
-              "compound",
-              "fire",
-              "term"
-            ]
-          ]
-        }
+        "label": "Result action URL"
       }
     ]
   },
