@@ -2,15 +2,15 @@
 /* stylelint-disable no-descending-specificity */
 
 /* if we have to keep this in center then give max-width:1200px and mx-auto */
-.fragment-wrapper:has(.subnav) {
-    padding: 0 !important;
-    max-width: unset;
+
+main>.section.rte-container:has(.subnav) {
     margin: 0;
 }
 
-main>.section.fragment-container {
+main>.section>.rte-wrapper:has(.subnav) {
+    padding: 0;
     margin: 0;
-
+    max-width: unset;
 }
 
 .subnav.rte ul {
@@ -18,7 +18,7 @@ main>.section.fragment-container {
     gap: 16px;
     list-style: none;
     margin: 0;
-    padding: 0 24px;
+    padding: 0 16px;
     background-color: var(--info-50);
     box-shadow: var(--shadow-sm);
     overflow-x: auto;
@@ -340,11 +340,16 @@ main>.section.fragment-container {
    ============================================ */
 }
 
+@media (width >=768px) {
+    .subnav.rte ul {
+        gap: 34px;
+    }
+}
+
 @media (width >=900px) {
     .subnav.rte ul {
         justify-content: center;
         padding: 0;
-        gap: 34px;
     }
 }
 
