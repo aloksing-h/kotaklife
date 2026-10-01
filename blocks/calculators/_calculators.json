@@ -31,6 +31,21 @@
           "component": "aem-content",
           "name": "link",
           "label": "form URL"
+        },
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "options": [
+            {
+              "name": "calculator-main",
+              "value": "calculator-main"
+            },
+            {
+              "name": "Retirement Calculator",
+              "value": "retirement-calculator"
+            }
+          ]
         }
       ]
     }
