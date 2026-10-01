@@ -49,6 +49,12 @@
     ]
   },
   {
+    "id": "accordion-v2",
+    "components": [
+      "accordion-item"
+    ]
+  },
+  {
     "id": "accordion",
     "components": [
       "accordion-item"
