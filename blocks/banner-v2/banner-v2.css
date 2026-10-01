@@ -15,6 +15,7 @@ main>.section:has(.banner-v2) {
   padding: 0;
   max-width: 100%;
   margin: 0;
+  
   /* /* margin-top: -96px;  for temporary testing purpose */
   position: relative;
   background-image: var(--section-bg-desktop);
