@@ -269,4 +269,28 @@ export default async function decorate(block) {
   if (block.classList.contains('insurance-content-tab')) {
     decorateFormTab(block);
   }
+
+  if (block.classList.contains('calc-card')) {
+    console.log('sdcfv');
+    const tabListWrapper = block.querySelector('.tablist-wrapper');
+    const tabUl = tabListWrapper.querySelector('ul');
+    const tabWrapper = document.createElement('div');
+    tabWrapper.classList.add('tab-wrapper');
+    tabWrapper.append(tabUl);
+    const tabIndicator = document.createElement('div');
+    tabIndicator.classList.add('tab-indicator');
+    const tabPaddles = document.createElement('div');
+    tabPaddles.classList.add('tab-paddles');
+    const paddlePrev = document.createElement('button');
+    paddlePrev.classList.add('paddle-btn', 'paddle-prev');
+    paddlePrev.setAttribute('aria-label', 'Previous');
+    paddlePrev.tabIndex = -1;
+    const paddleNext = document.createElement('button');
+    paddleNext.classList.add('paddle-btn', 'paddle-next');
+    paddleNext.setAttribute('aria-label', 'Next');
+    paddleNext.tabIndex = -1;
+    tabPaddles.append(paddlePrev, paddleNext);
+    tabWrapper.append(tabUl, tabIndicator, tabPaddles);
+    tabListWrapper.prepend(tabWrapper);
+  }
 }
