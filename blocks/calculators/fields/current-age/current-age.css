@@ -1,0 +1,51 @@
+/* Path: fields/current-age/current-age.css */
+
+.current-age-field {
+  display: flex;
+  flex-direction: column;
+  width: 105px;
+  font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Segoe UI", Roboto, sans-serif;
+}
+
+.current-age-field .current-age-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #3b506a;
+  line-height: 1.2;
+  margin-bottom: 6px; /* 6px vertical spacing under label */
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.current-age-field .required-star {
+  color: #ef4444;
+  margin-left: 2px;
+  font-weight: 600;
+}
+
+.current-age-field .current-age-input {
+  width: 105px; /* 105px width matching design */
+  height: 42px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  appearance: textfield;
+}
+
+.current-age-field .current-age-input::-webkit-outer-spin-button,
+.current-age-field .current-age-input::-webkit-inner-spin-button {
+  margin: 0;
+}
+
+.current-age-field .current-age-input:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px #dc262626;
+}
