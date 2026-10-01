@@ -5,7 +5,8 @@ import createAgeField from './fields/age-field/age-field.js';
 import { createMonthlyExpenseWaveSlider } from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
 import createRateField from './fields/rate-field/rate-field.js';
 import { createRetirementExpenseRatioField } from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
-export default function retirementCalculator(block) {
+import renderCalculatorResult from './calculator-result.js';
+export default function retirementCalculator(block, variant = 'retirement', resultContent = {}) {
 
   const currentAgeField = createAgeField({
     id: 'currentAge',
@@ -72,6 +73,7 @@ const inflationField = createRateField({
 
 // 3. Central Recalculation Trigger
   function calculateRetirementPlan() {
+    if (variant !== 'retirement') return;
     const currentAge = Math.max(1, currentAgeField.getValue() || 30);
     const retireAge = Math.max(currentAge, retirementAgeField.getValue() || 60);
     const lifeExpect = Math.max(retireAge, lifeExpectancyField.getValue() || 80);
@@ -108,40 +110,7 @@ const inflationField = createRateField({
       </div>
 
       <div class="calc-card">
-
-        <div class="fund-estimate-box">
-          <p class="fund-estimate-label">Estimated retirement fund</p>
-          <div class="fund-estimate-value" id="fundResult">₹ 97,04,512</div>
-        </div>
-
-        <div class="illustration-wrap">
-          <svg class="couple-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="55" cy="40" r="14" stroke="currentColor" stroke-width="2.2" fill="none"/>
-            <path d="M32 98 C32 75, 78 75, 78 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-            <circle cx="105" cy="42" r="13" stroke="currentColor" stroke-width="2.2" fill="none"/>
-            <path d="M84 98 C84 77, 126 77, 126 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-
-        <div class="savings-summary-box">
-          <div class="toggle-row">
-            <span>Monthly</span>
-            <label class="switch-label">
-              <input type="checkbox" id="freqToggle">
-              <span class="switch-knob"></span>
-            </label>
-            <span>Yearly</span>
-          </div>
-
-          <p class="savings-title-text" id="savingsTitle">Required monthly savings</p>
-          <div class="savings-amount-text" id="savingsResult">₹ 26,957</div>
-        </div>
-
-        <button class="cta-plan-btn" type="button">
-          <span>Start Your Planning Now</span>
-          <span class="btn-circle-arrow">&rarr;</span>
-        </button>
-
+        ${renderCalculatorResult(variant, resultContent)}
       </div>
 
     </div>
@@ -159,7 +128,7 @@ const inflationField = createRateField({
   const savingsTitle = block.querySelector('#savingsTitle');
   const savingsResult = block.querySelector('#savingsResult');
   const freqToggle = block.querySelector('#freqToggle');
-  freqToggle.addEventListener('change', calculateRetirementPlan);
+  if (freqToggle) freqToggle.addEventListener('change', calculateRetirementPlan);
   calculateRetirementPlan();
 
 }

@@ -31,6 +31,98 @@
           "component": "aem-content",
           "name": "link",
           "label": "form URL"
+        },
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Result layout",
+          "options": [
+            { "name": "Retirement", "value": "" },
+            { "name": "Compound", "value": "compound" },
+            { "name": "FIRE", "value": "fire" },
+            { "name": "Term insurance", "value": "term" }
+          ]
+        },
+        {
+          "component": "text",
+          "name": "resultTitle",
+          "label": "Result title"
+        },
+        {
+          "component": "text",
+          "name": "resultValue",
+          "label": "Result value"
+        },
+        {
+          "component": "text",
+          "name": "resultSubtitle",
+          "label": "Result subtitle"
+        },
+        {
+          "component": "reference",
+          "name": "resultImage",
+          "label": "Result chart or image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "resultImageAlt",
+          "label": "Result image alt text"
+        },
+        {
+          "component": "text",
+          "name": "summaryTitle",
+          "label": "FIRE summary title"
+        },
+        {
+          "component": "text",
+          "name": "detail1Label",
+          "label": "FIRE detail 1 label"
+        },
+        {
+          "component": "text",
+          "name": "detail1Value",
+          "label": "FIRE detail 1 value"
+        },
+        {
+          "component": "text",
+          "name": "detail2Label",
+          "label": "FIRE detail 2 label"
+        },
+        {
+          "component": "text",
+          "name": "detail2Value",
+          "label": "FIRE detail 2 value"
+        },
+        {
+          "component": "text",
+          "name": "detail3Label",
+          "label": "FIRE detail 3 label"
+        },
+        {
+          "component": "text",
+          "name": "detail3Value",
+          "label": "FIRE detail 3 value"
+        },
+        {
+          "component": "text",
+          "name": "detail4Label",
+          "label": "FIRE detail 4 label"
+        },
+        {
+          "component": "text",
+          "name": "detail4Value",
+          "label": "FIRE detail 4 value"
+        },
+        {
+          "component": "text",
+          "name": "actionLabel",
+          "label": "Result action label"
+        },
+        {
+          "component": "text",
+          "name": "actionUrl",
+          "label": "Result action URL"
         }
       ]
     }
