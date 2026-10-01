@@ -184,10 +184,55 @@
    FAQ V2 Variant (Figma Design 5401:9683 & 5401:9932)
    ========================================================================== */
 
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* Section header styling for sections containing faq-v2 */
+.section:has(.accordion.faq-v2) > .default-content-wrapper,
+.accordion-container:has(.faq-v2) > .default-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  box-sizing: border-box;
+}
+
+.section:has(.accordion.faq-v2) > .default-content-wrapper h1,
+.section:has(.accordion.faq-v2) > .default-content-wrapper h2,
+.accordion-container:has(.faq-v2) > .default-content-wrapper h1,
+.accordion-container:has(.faq-v2) > .default-content-wrapper h2 {
+  font-family: var(--heading-font-family, 'Manrope', sans-serif);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  color: var(--gray-900, #181d27);
+  margin: 0 0 8px;
+}
+
+.section:has(.accordion.faq-v2) > .default-content-wrapper h1 strong,
+.section:has(.accordion.faq-v2) > .default-content-wrapper h2 strong,
+.accordion-container:has(.faq-v2) > .default-content-wrapper h1 strong,
+.accordion-container:has(.faq-v2) > .default-content-wrapper h2 strong {
+  font-weight: 600;
+}
+
+.section:has(.accordion.faq-v2) > .default-content-wrapper p,
+.accordion-container:has(.faq-v2) > .default-content-wrapper p {
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--gray-600, #535862);
+  margin: 0;
+}
+
+/* Accordion block layout */
 .accordion.faq-v2 {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -198,33 +243,66 @@
   width: 100%;
 }
 
+/* Accordion item details card */
 .accordion.faq-v2 details {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   border-bottom: 1px solid var(--brand-blue-50, #d2dae4);
   padding: 16px;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 4px;
+  transition: border-color 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.accordion.faq-v2 details[open] {
-  border: 1px solid var(--brand-blue-50, #d2dae4);
-  background: linear-gradient(180deg, #fff 69%, #9cc7ff 100%);
+.accordion.faq-v2 details::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(181deg, #FFF 68.45%, #9CC7FF 269.19%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.accordion.faq-v2 details.is-open::before {
+  opacity: 1;
+}
+
+.accordion.faq-v2 details.is-open {
+  border-color: var(--brand-blue-50, #d2dae4);
+  z-index: 2;
+}
+
+/* Hide bottom border of upper accordion when next accordion is open to prevent 2px double border */
+.accordion.faq-v2 > div:has(+ div > details.is-open) details {
+  border-bottom-color: transparent;
+}
+
+/* Summary element */
 .accordion.faq-v2 details summary {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  width: 100%;
   cursor: pointer;
   list-style: none;
   user-select: none;
   padding: 0;
   margin: 0;
   outline: none;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--gray-900, #181d27);
+  text-align: left;
 }
 
 .accordion.faq-v2 details summary::-webkit-details-marker {
@@ -235,73 +313,165 @@
   content: '';
 }
 
+.accordion.faq-v2 details summary::after {
+  display: none;
+}
+
 .accordion.faq-v2 .accordion-item-number {
   display: none;
 }
 
-.accordion.faq-v2 details summary,
+/* Question text row */
+.accordion.faq-v2 details summary p,
 .accordion.faq-v2 details summary h1,
 .accordion.faq-v2 details summary h2,
 .accordion.faq-v2 details summary h3,
 .accordion.faq-v2 details summary h4,
 .accordion.faq-v2 details summary h5,
-.accordion.faq-v2 details summary h6,
-.accordion.faq-v2 details summary p {
-  font-family: var(--body-font-family, 'Manrope', sans-serif);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--gray-900, #181d27);
+.accordion.faq-v2 details summary h6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
   margin: 0;
   padding: 0;
-  text-align: left;
+  text-align: inherit;
 }
 
-.accordion.faq-v2 details summary::after {
-  content: '';
+/* Icon container wrapper */
+.accordion.faq-v2 .accordion-item-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   min-width: 20px;
   flex-shrink: 0;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.accordion.faq-v2 .accordion-item-icon-wrapper .icon {
+  position: absolute;
+  inset: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M10 4.16669V15.8334M4.16669 10H15.8334' stroke='%23181D27' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20px 20px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   border-radius: 999px;
   box-sizing: border-box;
-  transition: background-image 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.accordion.faq-v2 details[open] summary::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M4.16669 10H15.8334' stroke='%23181D27' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+.accordion.faq-v2 .accordion-item-icon-wrapper .icon img {
+  width: 16px;
+  height: 16px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
+/* Fallback if wrapper is not present */
+.accordion.faq-v2 details summary > .icon,
+.accordion.faq-v2 details summary p > .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.accordion.faq-v2 details summary > .icon img,
+.accordion.faq-v2 details summary p > .icon img {
+  width: 16px;
+  height: 16px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* Icon toggling & smooth rotation animation */
+.accordion.faq-v2 details:not(.is-open) .accordion-item-icon-wrapper .icon.icon-plus {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+.accordion.faq-v2 details:not(.is-open) .accordion-item-icon-wrapper .icon.icon-minus {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+  pointer-events: none;
+}
+
+.accordion.faq-v2 details.is-open .accordion-item-icon-wrapper .icon.icon-plus {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+  pointer-events: none;
+}
+
+.accordion.faq-v2 details.is-open .accordion-item-icon-wrapper .icon.icon-minus {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+/* Fallback icon visibility if wrapper not used */
+.accordion.faq-v2 details:not(.is-open) > summary > .icon-minus,
+.accordion.faq-v2 details:not(.is-open) > summary p > .icon-minus {
+  display: none;
+}
+
+.accordion.faq-v2 details.is-open > summary > .icon-plus,
+.accordion.faq-v2 details.is-open > summary p > .icon-plus {
+  display: none;
+}
+
+/* Body container and smooth CSS Grid height transition */
 .accordion.faq-v2 details .accordion-item-body {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  padding: 0;
-  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
+  overflow: hidden;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.28s;
 }
 
-.accordion.faq-v2 details[open] .accordion-item-body {
+.accordion.faq-v2 details.is-open .accordion-item-body {
   grid-template-rows: 1fr;
   opacity: 1;
-  padding-top: 8px;
-}
-
-.accordion.faq-v2 details.closing .accordion-item-body {
-  grid-template-rows: 0fr;
-  opacity: 0;
-  padding-top: 0;
+  visibility: visible;
 }
 
 .accordion.faq-v2 details .accordion-item-body-content {
   min-height: 0;
   overflow: hidden;
+  padding-top: 0;
+  transition: padding-top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion.faq-v2 details.is-open .accordion-item-body-content {
+  padding-top: 8px;
 }
 
 .accordion.faq-v2 details .accordion-item-body-content p,
@@ -329,32 +499,60 @@
   margin: 8px 0;
 }
 
+/* Desktop styles (>= 900px) */
 @media (min-width: 900px) {
-  .accordion.faq-v2 {
-    gap: 4px;
+  .section:has(.accordion.faq-v2) > .default-content-wrapper,
+  .accordion-container:has(.faq-v2) > .default-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 32px;
   }
 
-  .accordion.faq-v2 details summary,
-  .accordion.faq-v2 details summary h1,
-  .accordion.faq-v2 details summary h2,
-  .accordion.faq-v2 details summary h3,
-  .accordion.faq-v2 details summary h4,
-  .accordion.faq-v2 details summary h5,
-  .accordion.faq-v2 details summary h6,
-  .accordion.faq-v2 details summary p {
+  .section:has(.accordion.faq-v2) > .default-content-wrapper h1,
+  .section:has(.accordion.faq-v2) > .default-content-wrapper h2,
+  .accordion-container:has(.faq-v2) > .default-content-wrapper h1,
+  .accordion-container:has(.faq-v2) > .default-content-wrapper h2 {
+    font-size: 48px;
+    line-height: 1em;
+    max-width: 633px;
+    margin: 0;
+  }
+
+  .section:has(.accordion.faq-v2) > .default-content-wrapper p,
+  .accordion-container:has(.faq-v2) > .default-content-wrapper p {
+    font-size: 16px;
+    line-height: 20px;
+    max-width: 353px;
+    text-align: right;
+  }
+
+  .accordion.faq-v2 {
+    gap: 0;
+  }
+
+  .accordion.faq-v2 details summary {
     font-size: 16px;
     line-height: 20px;
   }
 
-  .accordion.faq-v2 details summary::after {
+  .accordion.faq-v2 .accordion-item-icon-wrapper {
     width: 32px;
     height: 32px;
     min-width: 32px;
-    background-size: 20px 20px;
   }
 
-  .accordion.faq-v2 details summary:hover::after {
-    background-color: var(--gray-100, #f5f5f5);
+  .accordion.faq-v2 details summary .icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .accordion.faq-v2 .accordion-item-icon-wrapper .icon img,
+  .accordion.faq-v2 details summary .icon img {
+    width: 20px;
+    height: 20px;
   }
 
   .accordion.faq-v2 details .accordion-item-body-content p,
