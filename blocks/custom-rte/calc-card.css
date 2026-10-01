@@ -2,8 +2,68 @@
     background-color: red;
 } */
 
-.section:has(.calc-card) .tab-list .section.calc-card .block{
+.section:has(.calc-card) .tab-list .section.calc-card .block {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-calc {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-3xl, 24px);
+    flex-direction: column;
+    padding: var(--spacing-xl, 16px) var(--spacing-lg, 12px);
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
+    background: var(--decorative-blue-decorative-blue-25, #F5FAFF);
+    position: relative;
+    min-height: 176px;
+    flex: 1;
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 * {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-1 {
+    margin: 0;
+    color: var(--text-text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-1, 16px);
+    font-weight: 600;
+    line-height: var(--line-height-sub-heading-2, 20px);
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-2 {
+    margin: 0;
+    color: var(--text-text-tertiary, #535862);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-caption, 12px);
+    font-weight: 500;
+    line-height: var(--line-height-caption, 14px);
+}
+
+.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-3 {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    margin: 0;
+    display: flex;
+    width: 24px;
+    height: 24px;
 }
