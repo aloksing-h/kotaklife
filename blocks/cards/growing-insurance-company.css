@@ -477,7 +477,7 @@
         /* margin: 0 auto 80px !important; */
 
         /* margin: 0 auto 88px !important; */
-        margin: 0 auto 98px !important; /* as per the figma 24 sept - new changes */
+        margin: 0 auto 98px !important;
     }
 
     .growing-insurance-company .default-content-wrapper h3 {
@@ -486,7 +486,9 @@
         order: 1;
         font-size: 48px !important;
         width: 75%;
-        line-height: 60px !important;
+
+        /* line-height: 60px !important; */
+        line-height: 48px !important;
     }
 
     .growing-insurance-company .default-content-wrapper p:not(.button-wrapper) {
@@ -500,17 +502,19 @@
     .growing-insurance-company.section .default-content-wrapper p:has(a) {
         justify-self: end;
         grid-area: 2 / 2 / 3 / 3;
-        margin-top: -32px;
+        
+        /* margin-top: -32px; */
         position: unset;
         left: unset;
         transform: unset;
+        margin-top: 8px;
     }
 
     /* Desktop 3-Column Asymmetric Grid */
     .growing-insurance-company .cards>ul {
-        grid-template-columns: 1.35fr 1fr 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: 1.35fr 1fr 1fr !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        gap: var(--spacing-2xl, 20px) !important;
     }
 
     .growing-insurance-company .cards>ul>li:nth-child(1) {
@@ -629,7 +633,8 @@
     text-decoration: none;
     font-weight: 800;
     font-size: 16px;
-    margin-top: 12px;
+
+    /* margin-top: 12px; */
     line-height: 18px;
     transition: background-color 0.3s ease, color 0.3s ease, gap 0.25s ease, transform 0.25s ease;
     height: 40px;
@@ -726,7 +731,8 @@
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(2) {
-    color: #121212;
+    /* color: #121212; */
+    color: var(--text-text-primary, #181D27);
     font-family: var(--font-family-font-family-display, Manrope);
     font-size: 14px;
     font-weight: 600;
@@ -736,7 +742,8 @@
 }
 
 .growing-insurance-company .cards-wrapper ul li:nth-child(1) p:nth-of-type(3) {
-    color: #121212;
+    /* color: #121212; */
+    color: var(--text-text-secondary, #414651);
     font-family: var(--font-family-font-family-display, Manrope);
     font-size: 12px;
     font-weight: 500;
@@ -869,14 +876,16 @@
     }
 
     .growing-insurance-company .cards>ul>li:nth-child(2) h4 {
-        color: #F5F5F5;
+        /* color: #F5F5F5; */
+        color: var(--text-text-white, #FFF);
         font-size: 24px;
         font-weight: 600;
         line-height: 28px;
     }
-
+    
     .growing-insurance-company.section .cards>ul>li:nth-child(2) p {
-        color: #F5F5F5;
+        /* color: #F5F5F5; */
+        color: var(--text-text-white, #FFF);
         font-family: var(--font-family-font-family-display, Manrope);
         font-size: 12px;
         font-weight: 600;
@@ -902,14 +911,16 @@
     }
 
     .growing-insurance-company .cards>ul>li:nth-child(4) h4 {
-        color: #F5F5F5;
+        /* color: #F5F5F5; */
+        color: var(--text-text-white, #FFF);
         font-size: 14px;
         font-weight: 600;
         line-height: 18px;
     }
 
     .growing-insurance-company.section .cards>ul>li:nth-child(4) p {
-        color: #F5F5F5;
+        /* color: #F5F5F5; */
+        color: var(--text-text-white, #FFF);
 font-size: 12px;
 font-weight: 600;
 line-height: 14px;

@@ -84,9 +84,9 @@ main >.section.video-banner-container:first-of-type{
 /* Typography - Mobile defaults */
 .autoplay .video-banner-content p {
     margin: 0;
-    color: var(--text-primary-inverse-base, #F5F5F5);
 
-    /* color: var(--text-text-white, #FFF) new changes commented; */
+    /* color: var(--text-primary-inverse-base, #F5F5F5); */
+    color: var(--text-text-white, #FFF);
     font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-3, 32px);
     font-style: normal;
@@ -95,9 +95,8 @@ main >.section.video-banner-container:first-of-type{
 }
 
 .autoplay .video-banner-content p>strong {
-    color: var(--text-primary-inverse-base, #F5F5F5);
-
-    /* color: var(--text-text-white, #FFF) new changes commented; */
+    /* color: var(--text-primary-inverse-base, #F5F5F5); */
+    color: var(--text-text-white, #FFF);
     font-family: var(--heading-font-family);
     font-size: var(--font-size-heading-3, 32px);
     font-style: normal;
@@ -108,9 +107,8 @@ main >.section.video-banner-container:first-of-type{
 
 /* Second paragraph configuration */
 .autoplay .video-banner-content p:nth-child(4) {
-    margin-top: 22px;
-
-    /* margin-top: 20px new changes commented; */
+    /* margin-top: 22px; */
+    margin-top: 20px;
 }
 
 .autoplay .video-banner-content p:nth-child(4) span {
@@ -265,21 +263,25 @@ main >.section.video-banner-container:first-of-type{
     }
 
     .autoplay .video-banner-content p {
-        font-size: var(--font-size-heading-1, 48px);
+        /* font-size: var(--font-size-heading-1, 48px);
+        line-height: var(--line-height-heading-1, 60px); */
+
+        font-size: var(--font-size-title, 52px);
         line-height: var(--line-height-heading-1, 60px);
-
-        /* font-size: var(--font-size-title, 52px);
-        line-height: var(--line-height-heading-1, 60px) new changes commented; */
     }
-
+    
     .autoplay .video-banner-content p:nth-child(4) {
         margin-top: 12px;
     }
-
+    
     .autoplay .video-banner-content p strong {
         font-weight: 600;
-        font-size: var(--font-size-heading-1, 48px);
+
+        /* font-size: var(--font-size-heading-1, 48px);
+        line-height: var(--line-height-heading-1, 60px); */
+        font-size: var(--font-size-title, 52px);
         line-height: var(--line-height-heading-1, 60px);
+        display: inline-block;
     }
 
     .autoplay .video-banner-content p:nth-child(4) span {

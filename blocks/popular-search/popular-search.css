@@ -38,7 +38,8 @@
 }
 
 .popular-search>div:first-child p {
-  color: #717680;
+  /* color: #717680; */
+  color: var(--text-text-tertiary, #535862);;
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: 14px;
   font-style: normal;
@@ -128,9 +129,15 @@
     gap: 40px;
   }
 
+  .popular-search >div:first-of-type {
+    max-width: 260px;
+  }
+
   .popular-search h4 {
     font-size: 48px;
-    margin: 0 0 4px;
+
+    /* margin: 0 0 4px; */
+    margin: 0 0 8px;
     line-height: 60px;
   }
 
@@ -149,6 +156,8 @@
   }
 
   .popular-search ul {
-    gap: 10px 8px;
+    /* gap: 10px 8px; */
+    gap: 8px;
+    margin-right: 59px;
   }
 }

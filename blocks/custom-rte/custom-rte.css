@@ -48,9 +48,8 @@
 }
 
 .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-    color: var(--text-quaternary, #717680);
-    
-    /* color: var(--gray-600, #535862) new changes commneted; */
+    /* color: var(--text-quaternary, #717680); */
+    color: var(--text-text-tertiary, #535862);
     font-family: var(--heading-font-family);
     font-size: var(--body-2-font-size, 14px);
     font-style: normal;
@@ -429,9 +428,8 @@
     }
 
     .get-cover-plans .default-content-wrapper p:not(.button-wrapper) {
-        margin: 4px 0 25px;
-
-        /* margin: 8px 0 20px; New changes commented */
+        /* margin: 4px 0 25px; */
+        margin: 8px 0 20px;
     }
 
     .get-cover-plans .default-content-wrapper a.get-cover-cta {

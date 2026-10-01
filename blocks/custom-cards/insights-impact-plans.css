@@ -381,7 +381,9 @@
         font-family: var(--heading-font-family);
         font-size: 48px;
         font-weight: 300;
-        line-height: 60px;
+
+        /* line-height: 60px; */
+        line-height: 48px;
         margin: 0;
         padding: 0;
     }
@@ -430,7 +432,9 @@
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+
+        /* gap: 16px; */
+        gap: 20px;
     }
 
     /* Card Container Base */
