@@ -101,7 +101,7 @@ export default function decorate(block) {
       const section = block.closest('.section');
       const hasMobAccordionClass = section && section.classList.contains('mob-accordion');
 
-      if (isDesktop && hasMobAccordionClass && details.hasAttribute('open')) {
+      if (!block.classList.contains('faq-v2') && isDesktop && hasMobAccordionClass && details.hasAttribute('open')) {
         return; // Prevent closing on desktop (unless section has mob-accordion class)
       }
 
@@ -147,8 +147,19 @@ export default function decorate(block) {
     index += 1;
   });
 
+  // For faq-v2: open first accordion item by default unless explicitly configured otherwise
+  if (block.classList.contains('faq-v2')) {
+    const isExplicitlyCollapsed = block.classList.contains('collapsed') || block.classList.contains('all-closed');
+    if (!isExplicitlyCollapsed) {
+      const firstDetails = block.querySelector('.accordion-item');
+      if (firstDetails) {
+        firstDetails.setAttribute('open', '');
+      }
+    }
+  }
+
   // Desktop: open all accordions by default (unless section has mob-accordion class)
-  if (isDesktop) {
+  if (isDesktop && !block.classList.contains('faq-v2')) {
     const section = block.closest('.section');
     const hasMobAccordionClass = section && section.classList.contains('mob-accordion');
 
@@ -161,3 +172,4 @@ export default function decorate(block) {
     }
   }
 }
+
