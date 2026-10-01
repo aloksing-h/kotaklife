@@ -40,7 +40,8 @@
       "promo",
       "banner-v2",
       "accessibility-button",
-      "accordion-v2"
+      "accordion-v2",
+      "carousel-v2"
     ]
   },
   {
@@ -77,6 +78,12 @@
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel-v2",
+    "components": [
+      "carousel-v2-slide"
     ]
   },
   {
