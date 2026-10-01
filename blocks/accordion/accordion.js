@@ -19,7 +19,6 @@ function closeFaqItem(details) {
       clearTimeout(Number(details.dataset.closeTimer));
       delete details.dataset.closeTimer;
     }
-    body.removeEventListener('transitionend', onTransitionEnd);
     if (!details.classList.contains('is-open')) {
       details.removeAttribute('open');
     }
@@ -27,6 +26,7 @@ function closeFaqItem(details) {
 
   const onTransitionEnd = (e) => {
     if (e.target === body && (e.propertyName === 'grid-template-rows' || e.propertyName === 'opacity')) {
+      body.removeEventListener('transitionend', onTransitionEnd);
       finishClose();
     }
   };
@@ -34,7 +34,10 @@ function closeFaqItem(details) {
   body.addEventListener('transitionend', onTransitionEnd);
 
   // Safety fallback matching transition duration
-  const timer = setTimeout(finishClose, 300);
+  const timer = setTimeout(() => {
+    body.removeEventListener('transitionend', onTransitionEnd);
+    finishClose();
+  }, 300);
   details.dataset.closeTimer = timer;
 }
 
