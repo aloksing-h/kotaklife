@@ -80,7 +80,7 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
  * Decorates custom-rte block in get-cover-plans section
  * @param {Element} block The custom-rte block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   if (block.classList.contains('promotion')) {
     const section = block.closest('.get-cover-plans');
 
@@ -286,7 +286,7 @@ export default function decorate(block) {
     updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
   }
 
-  if (block.closest('.tab-list.calc-card')) {
+  if (block.closest('.section.calc-card')) {
     addLayerClasses(block, {
       1: 'card-calc',
       2: 'card-inner',
@@ -321,6 +321,74 @@ export default function decorate(block) {
           }
         });
       });
+    }
+
+    const cards = [...block.children];
+    if (cards.length > 4) {
+      const mobileQuery = window.matchMedia('(max-width: 768px)');
+      let isInitializingSwiper = false;
+
+      const disableSwiper = () => {
+        if (block.swiperInstance) {
+          block.swiperInstance.destroy(true, true);
+          block.swiperInstance = null;
+        }
+
+        const swiperWrapper = block.querySelector(':scope > .swiper-wrapper');
+        cards.forEach((card) => {
+          card.classList.remove('swiper-slide');
+          block.append(card);
+        });
+        swiperWrapper?.remove();
+        block.querySelector(':scope > .swiper-pagination')?.remove();
+        block.classList.remove('swiper');
+      };
+
+      const enableSwiper = async () => {
+        if (block.swiperInstance || isInitializingSwiper) return;
+        isInitializingSwiper = true;
+
+        block.classList.add('swiper');
+        const swiperWrapper = document.createElement('div');
+        swiperWrapper.className = 'swiper-wrapper';
+        cards.forEach((card) => {
+          card.classList.add('swiper-slide');
+          swiperWrapper.append(card);
+        });
+
+        const pagination = document.createElement('div');
+        pagination.className = 'swiper-pagination';
+        block.append(swiperWrapper, pagination);
+
+        const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
+        if (!mobileQuery.matches) {
+          disableSwiper();
+          isInitializingSwiper = false;
+          return;
+        }
+
+        block.swiperInstance = createSwiper(block, {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+          spaceBetween: 8,
+          grabCursor: true,
+          observer: true,
+          observeParents: true,
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+        });
+        isInitializingSwiper = false;
+      };
+
+      const toggleSwiper = () => {
+        if (mobileQuery.matches) enableSwiper();
+        else disableSwiper();
+      };
+
+      toggleSwiper();
+      mobileQuery.addEventListener('change', toggleSwiper);
     }
   }
 }
