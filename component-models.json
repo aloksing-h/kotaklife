@@ -681,7 +681,14 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "form URL"
+        "label": "Retirement form URL",
+        "condition": {
+          "!": [
+            {
+              "var": "classes"
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -707,85 +714,280 @@
         ]
       },
       {
+        "component": "aem-content",
+        "name": "linkCompound",
+        "label": "Compound form URL",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "compound"
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "linkFire",
+        "label": "FIRE form URL",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "linkTerm",
+        "label": "Term insurance form URL",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "term"
+          ]
+        }
+      },
+      {
         "component": "text",
         "name": "resultTitle",
-        "label": "Result title"
+        "label": "Result title",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "text",
         "name": "resultValue",
-        "label": "Result value"
+        "label": "Result value",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "text",
         "name": "resultSubtitle",
-        "label": "Result subtitle"
+        "label": "Result subtitle",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "reference",
         "name": "resultImage",
         "label": "Result chart or image",
-        "multi": false
+        "multi": false,
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "text",
         "name": "resultImageAlt",
-        "label": "Result image alt text"
+        "label": "Result image alt text",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "text",
         "name": "summaryTitle",
-        "label": "FIRE summary title"
+        "label": "FIRE summary title",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail1Label",
-        "label": "FIRE detail 1 label"
+        "label": "FIRE detail 1 label",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail1Value",
-        "label": "FIRE detail 1 value"
+        "label": "FIRE detail 1 value",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail2Label",
-        "label": "FIRE detail 2 label"
+        "label": "FIRE detail 2 label",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail2Value",
-        "label": "FIRE detail 2 value"
+        "label": "FIRE detail 2 value",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail3Label",
-        "label": "FIRE detail 3 label"
+        "label": "FIRE detail 3 label",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail3Value",
-        "label": "FIRE detail 3 value"
+        "label": "FIRE detail 3 value",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail4Label",
-        "label": "FIRE detail 4 label"
+        "label": "FIRE detail 4 label",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "detail4Value",
-        "label": "FIRE detail 4 value"
+        "label": "FIRE detail 4 value",
+        "condition": {
+          "==": [
+            {
+              "var": "classes"
+            },
+            "fire"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "actionLabel",
-        "label": "Result action label"
+        "label": "Result action label",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       },
       {
         "component": "text",
         "name": "actionUrl",
-        "label": "Result action URL"
+        "label": "Result action URL",
+        "condition": {
+          "in": [
+            {
+              "var": "classes"
+            },
+            [
+              "compound",
+              "fire",
+              "term"
+            ]
+          ]
+        }
       }
     ]
   },
