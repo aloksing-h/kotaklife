@@ -101,7 +101,7 @@ export default async function decorate(block) {
   const isMobile = !window.matchMedia('(min-width: 900px)').matches
     && !block.classList.contains('find-plan');
 
-  tabPanels.forEach(([tabLabel, tabPanel], i) => {
+  tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}-${i + 1}`;
 
@@ -116,6 +116,17 @@ export default async function decorate(block) {
     tabItem.ariaExpanded = i === 0; // Accordion state (WCAG 2.2 - 4.1.2 Name, Role, Value)
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
+
+    // Add image if available
+    if (image) {
+      const imgElement = document.createElement('img');
+      // Extract just the path from the full URL (removes domain and query parameters)
+      const [imageUrl] = image.split('?');
+      imgElement.src = new URL(imageUrl).pathname;
+      imgElement.alt = tabLabel;
+      imgElement.classList.add('tab-image');
+      tabItem.appendChild(imgElement);
+    }
 
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));
