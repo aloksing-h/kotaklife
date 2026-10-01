@@ -112,22 +112,41 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (width < 769px) {
-    .section:has(.calc-card) .tab-list .section.calc-card .block.swiper .swiper-pagination {
+    .section.calc-card .block.swiper .swiper-wrapper {
+        padding-bottom: 26px;
+    }
+
+    .section.calc-card .block.swiper .swiper-pagination {
+        left: unset;
+        top: unset;
         bottom: 0;
-    }
-
-    .section:has(.calc-card) .tab-list .section.calc-card .block.swiper .swiper-pagination-bullet {
-        width: 6px;
+        right: 1px;
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs, 4px);
         height: 6px;
-        background: #a4a7ae;
-        opacity: 1;
-        transition: width 0.2s ease;
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block.swiper .swiper-pagination-bullet-active {
-        width: 36px;
-        border-radius: 999px;
-        background: #ed1b3a;
+    .section.calc-card .block.swiper .swiper-pagination-bullet {
+        margin: 0;
+        opacity: 1;
+        width: 4px;
+        height: 4px;
+        border-radius: var(--radius-full, 999px);
+        outline: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+        background: transparent;
+        display: flex;
+        
+        /* transition: width 0.2s ease; */
+    }
+
+    .section.calc-card .block.swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        width: 32px;
+        height: 6px;
+        outline: none;
+        border-radius: var(--radius-full, 999px);
+        background: var(--gradient-red-button, linear-gradient(180deg, var(--decorative-red-decorative-red-800, #AF0E23) 0%, var(--decorative-red-decorative-red-400, #FB2C47) 100%));
     }
 }
 
