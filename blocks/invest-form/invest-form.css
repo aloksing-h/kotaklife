@@ -310,7 +310,9 @@
     order: 6;
     border: none;
     padding: 0;
-    margin: 4px 0 0;
+
+    /* margin: 4px 0 0; */
+    margin: 6px 0 0;
 }
 
 /* Submit Button Styling */
@@ -410,12 +412,18 @@
     gap: 5px;
     cursor: pointer;
     padding-left: 0;
-    color: var(--text-quaternary, #717680);
+
+    /* color: var(--text-quaternary, #717680);
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-disclaimer, 10px);
     font-style: normal;
     font-weight: 400;
-    line-height: var(--line-height-disclaimer, 12px);
+    line-height: var(--line-height-disclaimer, 12px); */
+    color: var(--text-text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-caption, 12px);
+    font-weight: 500;
+    line-height: var(--line-height-caption, 14px); /* 116.667% */
 }
 
 /* Hide the native checkbox visually but keep it accessible */
@@ -578,14 +586,17 @@
     }
 
     .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(2) {
-        color: var(--text-text-quaternary, #717680);
+        /* color: var(--text-text-quaternary, #717680); */
+        color: var(--text-text-tertiary, #535862);
         font-family: var(--font-family-font-family-body, Manrope);
         font-size: var(--font-size-body-2, 14px);
         font-style: normal;
         font-weight: 500;
         line-height: var(--line-height-body-1, 18px);
         margin: 0;
-        padding: 8px 0 35px;
+
+        /* padding: 8px 0 35px; */
+        padding: 8px 0 36px;
     }
 
     .invest-form.section.invest-form-container .custom-rte>div>div:nth-child(2)>p:nth-child(3)::before {

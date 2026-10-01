@@ -80,9 +80,8 @@
 }
 
 .find-a-plan.section .default-content-wrapper:last-child p {
-    margin: 0;
-
-    /* margin-top: 4px; */
+    /* margin: 0; */
+    margin-top: 8px;
 }
 
 .find-a-plan.section .default-content-wrapper:last-child a {
@@ -178,7 +177,9 @@
 .tab-list.find-plan .tablist-wrapper .find-plan .custom-cards-wrapper .custom-cards>ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+
+    /* gap: 12px; */
+    gap: 9px;
     padding: 0;
     margin: 25px auto 0;
     list-style: none;
@@ -192,7 +193,9 @@
 
     /* max-width: 47.4%;
     flex: 0 0 47.4%; */
-    width: 47.4%;
+
+    /* width: 47.4%; */
+    width: 48.6%;
     min-height: 203px;
     flex-direction: column-reverse;
     justify-content: space-between;
@@ -543,7 +546,9 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         padding: 0;
-        margin-top: 38.5px;
+
+        /* margin-top: 38.5px; */
+        margin-top: 38px;
         justify-content: start;
         flex-wrap: nowrap;
     }
@@ -581,7 +586,8 @@
     }
 
     .find-a-plan.section .default-content-wrapper {
-        margin-bottom: 39px;
+        /* margin-bottom: 39px; */
+        margin-bottom: 40px;
         padding-inline: 24px;
         padding-block: 0;
     }
