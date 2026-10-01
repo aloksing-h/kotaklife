@@ -287,12 +287,16 @@ export default async function decorate(block) {
   }
 
   if (block.closest('.section.calc-card')) {
-    addLayerClasses(block, {
-      1: 'card-calc',
-      2: 'card-inner',
-      3: 'card-child',
-      4: 'card-item',
-    });
+    const isCommonText = block.classList.contains('cmmn-txt')
+      || block.classList.contains('cmmn-txt-row');
+    if (!isCommonText) {
+      addLayerClasses(block, {
+        1: 'card-calc',
+        2: 'card-inner',
+        3: 'card-child',
+        4: 'card-item',
+      });
+    }
     if (!block.classList.contains('card-link')) {
       [...block.children].forEach((row) => {
         row.children[2]?.remove();

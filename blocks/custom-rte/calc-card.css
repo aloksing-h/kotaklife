@@ -42,13 +42,15 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     font-weight: 600;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block:not(.swiper) {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block:not(.swiper) { */
+.section.calc-card .block:not(.swiper) {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-calc {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
+.section.calc-card .block .card-calc {
     display: flex;
     justify-content: space-between;
     gap: var(--spacing-3xl, 24px);
@@ -65,25 +67,29 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     width: 100%;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 { */
+.section.calc-card .block .card-inner-1 {
     width: 32px;
     height: 32px;
     padding: 4px;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 * {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 * { */
+.section.calc-card .block .card-inner-1 * {
     width: 100%;
     height: 100%;
     display: flex;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 { */
+.section.calc-card .block .card-inner-2 {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-1 {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-1 { */
+.section.calc-card .block .card-inner-2 .card-child-1 {
     margin: 0;
     color: var(--text-text-primary, #181D27);
     font-family: var(--font-family-font-family-body, Manrope);
@@ -92,7 +98,8 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     line-height: var(--line-height-sub-heading-2, 20px);
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-2 {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-2 { */
+.section.calc-card .block .card-inner-2 .card-child-2 {
     margin: 0;
     color: var(--text-text-tertiary, #535862);
     font-family: var(--font-family-font-family-body, Manrope);
@@ -101,7 +108,8 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     line-height: var(--line-height-caption, 14px);
 }
 
-.section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-3 {
+/* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-3 { */
+.section.calc-card .block .card-inner-2 .card-child-3 {
     position: absolute;
     top: 20px;
     right: 12px;
@@ -169,47 +177,55 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         padding: 12px 20px;
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block { */
+    .section.calc-card .block {
         justify-content: center;
         gap: 20px;
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
+    .section.calc-card .block .card-calc {
         border-radius: var(--radius-xl, 16px);
         padding: var(--spacing-xl, 16px);
         min-height: auto;
         max-width: 23.637%;
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-1 { */
+    .section.calc-card .block .card-inner-1 {
         width: 40px;
         height: 40px;
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 { */
+    .section.calc-card .block .card-inner-2 {
         gap: var(--spacing-md, 8px);
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-1 {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-1 { */
+    .section.calc-card .block .card-inner-2 .card-child-1 {
         font-size: var(--font-size-sub-heading-2, 18px);
         line-height: var(--line-height-sub-heading-2, 20px);
     }
 
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-2 {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-inner-2 .card-child-2 { */
+    .section.calc-card .block .card-inner-2 .card-child-2 {
         font-size: var(--font-size-body-2, 14px);
         line-height: var(--line-height-body-1, 18px);
     }
 }
 
 @media screen and (768px <=width <=1000px) {
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
+    .section.calc-card .block .card-calc {
         /* max-width: 30.637%; */
         max-width: 31.5%;
     }
 }
 
 @media screen and (1000px <=width <=1200px) {
-    .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc {
+    /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
+    .section.calc-card .block .card-calc {
         max-width: 23.4%;
     }
 }
