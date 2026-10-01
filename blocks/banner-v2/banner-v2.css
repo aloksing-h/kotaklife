@@ -15,8 +15,7 @@ main>.section:has(.banner-v2) {
   padding: 0;
   max-width: 100%;
   margin: 0;
-  
-  /* /* margin-top: -96px;  for temporary testing purpose */
+  margin-top: -96px;  
   position: relative;
   background-image: var(--section-bg-desktop);
   background-size: cover;
@@ -471,7 +470,7 @@ main>.section:has(.banner-v2) {
 @media (width <=600px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    /* margin-top: -96px; for temporary testing purpose */
+    margin-top: -96px; 
     background-image: var(--section-bg-mobile, var(--section-bg-desktop));
     background-position: center top;
   }
@@ -690,7 +689,7 @@ main>.section:has(.banner-v2) {
 @media (width <=359px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    /* margin-top: -96px; for temporary testing purpose */
+    margin-top: -96px; 
   }
 
   .banner-v2.block .banner-v2-inner {
