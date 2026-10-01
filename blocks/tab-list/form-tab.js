@@ -9,15 +9,15 @@ export default function decorateFormTab(block) {
 
   // --- NEW FIX: Correct DOM structure on first load ---
   if (tablistWrapper) {
-    tabPanels.forEach(panel => {
+    tabPanels.forEach((panel) => {
       if (panel.parentElement && panel.parentElement.tagName.toUpperCase() === 'LI') {
-        tablistWrapper.appendChild(panel); 
+        tablistWrapper.appendChild(panel);
       }
     });
   }
 
-  // STRIP EXISTING HOVER LISTENERS: 
-  const tabButtons = Array.from(originalTabButtons).map(button => {
+  // STRIP EXISTING HOVER LISTENERS:
+  const tabButtons = Array.from(originalTabButtons).map((button) => {
     const cleanButton = button.cloneNode(true);
     button.parentNode.replaceChild(cleanButton, button);
     return cleanButton;
@@ -25,9 +25,9 @@ export default function decorateFormTab(block) {
 
   // --- FETCH AUTHORED NAV FROM LAST TAB PANEL ---
   const lastPanel = tabPanels[tabPanels.length - 1];
-  
-  const authoredPrev = lastPanel ? (lastPanel.querySelector('a[title="Previous"]') || Array.from(lastPanel.querySelectorAll('a')).find(a => a.textContent.includes('Previous'))) : null;
-  const authoredNext = lastPanel ? (lastPanel.querySelector('a[title="Next"]') || Array.from(lastPanel.querySelectorAll('a')).find(a => a.textContent.includes('Next'))) : null;
+
+  const authoredPrev = lastPanel ? (lastPanel.querySelector('a[title="Previous"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Previous'))) : null;
+  const authoredNext = lastPanel ? (lastPanel.querySelector('a[title="Next"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Next'))) : null;
 
   // Inject Mobile Arrow Navigation
   const mobileNav = document.createElement('div');
@@ -36,11 +36,11 @@ export default function decorateFormTab(block) {
   const btnPrev = document.createElement('button');
   btnPrev.className = 'nav-prev';
   btnPrev.type = 'button';
-  
+
   if (authoredPrev) {
     btnPrev.innerHTML = authoredPrev.innerHTML;
     const wrapper = authoredPrev.closest('p');
-    if (wrapper) wrapper.remove(); 
+    if (wrapper) wrapper.remove();
   } else {
     btnPrev.textContent = 'Previous';
   }
@@ -48,11 +48,11 @@ export default function decorateFormTab(block) {
   const btnNext = document.createElement('button');
   btnNext.className = 'nav-next';
   btnNext.type = 'button';
-  
+
   if (authoredNext) {
     btnNext.innerHTML = authoredNext.innerHTML;
     const wrapper = authoredNext.closest('p');
-    if (wrapper) wrapper.remove(); 
+    if (wrapper) wrapper.remove();
   } else {
     btnNext.textContent = 'Next';
   }
@@ -70,7 +70,7 @@ export default function decorateFormTab(block) {
 
     tabButtons.forEach((btn, i) => {
       const isTarget = i === index;
-      
+
       // Manage mobile visibility class on the parent LI
       const li = btn.closest('li');
       if (li) {
@@ -80,14 +80,14 @@ export default function decorateFormTab(block) {
           li.classList.remove('mobile-active-step');
         }
       }
-      
+
       // Update accessibility states
       btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
       btn.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
-      
+
       const targetPanelId = btn.getAttribute('aria-controls');
       const targetPanel = block.querySelector(`#${targetPanelId}`);
-      
+
       if (targetPanel) {
         if (isTarget) {
           targetPanel.removeAttribute('hidden');
@@ -107,7 +107,7 @@ export default function decorateFormTab(block) {
   };
 
   // 1. Initialize Default State
-  const activeIndex = tabButtons.findIndex(btn => btn.getAttribute('aria-selected') === 'true');
+  const activeIndex = tabButtons.findIndex((btn) => btn.getAttribute('aria-selected') === 'true');
   switchTab(activeIndex > -1 ? activeIndex : 0);
 
   // 2. Desktop Tab Click Listener
@@ -115,7 +115,7 @@ export default function decorateFormTab(block) {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       const isAlreadyActive = button.getAttribute('aria-selected') === 'true';
-      
+
       if (!isAlreadyActive) {
         switchTab(i);
       } else {
@@ -134,14 +134,14 @@ export default function decorateFormTab(block) {
 
   // 3. Mobile Arrow Click Listeners
   btnPrev.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!btnPrev.disabled) {
       switchTab(currentIndex - 1);
     }
   });
 
   btnNext.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!btnNext.disabled) {
       switchTab(currentIndex + 1);
     }

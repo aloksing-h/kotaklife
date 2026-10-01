@@ -251,7 +251,7 @@ export default async function decorate(block) {
 
   block.replaceChildren(tablistWrapper);
   if (block.classList.contains('find-plan')) decorateFindPlan(block);
-  if(block.classList.contains('insurance-content-tab')){
+  if (block.classList.contains('insurance-content-tab')) {
     decorateFormTab(block);
   }
 }
