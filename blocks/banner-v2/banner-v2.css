@@ -15,9 +15,9 @@ main>.section:has(.banner-v2) {
   padding: 0;
   max-width: 100%;
   margin: 0;
-  margin-top: -96px;
+  /* /* margin-top: -96px;  for temporary testing purpose */
   position: relative;
-  background-image: var(--section-bg-desktop, linear-gradient(135deg, #181d27 0%, #fa1432 45%, #8b0a1a 100%));
+  background-image: var(--section-bg-desktop);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -470,8 +470,8 @@ main>.section:has(.banner-v2) {
 @media (width <=600px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    margin-top: -96px;
-    background-image: var(--section-bg-mobile, var(--section-bg-desktop, linear-gradient(180deg, #181d27 0%, #d80c26 35%, #980a1c 100%)));
+    /* margin-top: -96px; for temporary testing purpose */
+    background-image: var(--section-bg-mobile, var(--section-bg-desktop));
     background-position: center top;
   }
 
@@ -689,7 +689,7 @@ main>.section:has(.banner-v2) {
 @media (width <=359px) {
   main>.section.banner-v2-container,
   main>.section:has(.banner-v2) {
-    margin-top: -96px;
+    /* margin-top: -96px; for temporary testing purpose */
   }
 
   .banner-v2.block .banner-v2-inner {
