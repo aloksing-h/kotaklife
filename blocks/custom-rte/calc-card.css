@@ -39,7 +39,11 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     bottom: 0;
     top: 0;
     height: 36px;
-    transition: left 0.3s ease, width 0.3s ease;
+    
+    /* transition: left 0.3s ease, width 0.3s ease; */
+    transition-property: left, width;
+    transition-duration: 320ms;
+    transition-timing-function: ease-out;
     pointer-events: none;
     border-radius: var(--radius-full, 999px);
     border: 1px solid #1E4679;
@@ -53,7 +57,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     align-items: center;
     justify-content: space-between;
     pointer-events: none;
-    padding: 0 1px;
+    padding: 0 0.8px;
 }
 
 .section:has(.calc-card) .tab-list .tab-paddles .paddle-btn {

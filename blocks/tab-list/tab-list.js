@@ -4,7 +4,7 @@ import decorateFormTab from './form-tab.js';
 
 let tabsIdx = 0;
 
-export function updateTabIndicator(tabList = document.querySelector('.tab-list.calc-card [role="tablist"]')) {
+export function updateTabIndicator(tabList = document.querySelector('.tab-list.calc-card [role="tablist"]'), isInitialMeasurement = false) {
   if (!tabList) return;
   const wrapper = tabList.closest('.tab-wrapper');
   const indicator = wrapper?.querySelector('.tab-indicator');
@@ -17,8 +17,9 @@ export function updateTabIndicator(tabList = document.querySelector('.tab-list.c
   const tabRect = selectedTab.getBoundingClientRect();
   const rootRect = positionRoot.getBoundingClientRect();
   const scrollLeft = mask && !isContents ? mask.scrollLeft : tabList.scrollLeft;
+  const mobileOffset = window.matchMedia('(max-width: 767px)').matches ? 4 : 0;
   indicator.style.left = `${tabRect.left - rootRect.left + scrollLeft}px`;
-  indicator.style.width = `${tabRect.width}px`;
+  indicator.style.width = `${tabRect.width + (isInitialMeasurement ? mobileOffset * 2 : 0)}px`;
 
   const tabs = [...tabList.querySelectorAll(':scope > li > [role="tab"]')];
   const selectedIndex = tabs.indexOf(selectedTab);
@@ -371,7 +372,7 @@ export default async function decorate(block) {
     window.addEventListener('resize', () => updateTabIndicator(tabUl), { passive: true });
 
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => updateTabIndicator(tabUl));
+      requestAnimationFrame(() => updateTabIndicator(tabUl, true));
     });
   }
 }
