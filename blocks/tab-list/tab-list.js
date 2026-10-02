@@ -42,30 +42,23 @@ export function scrollTabIntoView(e) {
   const scrollContainer = targetTab.closest('.tab-mask') || tabList;
   const listRect = scrollContainer.getBoundingClientRect();
   const tabRect = targetTab.getBoundingClientRect();
-  const visibleLeft = listRect.left + 16;
-  const visibleRight = listRect.right - 16;
-  let scrollDelta = 0;
-
-  if (tabRect.left < visibleLeft) {
-    scrollDelta = tabRect.left - visibleLeft;
-  } else if (tabRect.right > visibleRight) {
-    scrollDelta = tabRect.right - visibleRight;
+  if (tabList.closest('.tab-list.calc-card')) {
+    const currentScroll = scrollContainer.scrollLeft;
+    const maxScroll = Math.max(0, scrollContainer.scrollWidth - scrollContainer.clientWidth);
+    const tabCenter = tabRect.left + tabRect.width / 2;
+    const listCenter = listRect.left + listRect.width / 2;
+    const centeredScroll = currentScroll + tabCenter - listCenter;
+    const nextScroll = Math.max(0, Math.min(maxScroll, centeredScroll));
+    scrollContainer.scrollBy({ left: nextScroll - currentScroll, behavior: 'smooth' });
+    return;
   }
 
-  const tabs = [...tabList.querySelectorAll(':scope > li > [role="tab"]')];
-  const nextTab = tabs[tabs.indexOf(targetTab) + 1];
-  if (nextTab) {
-    const peekWidth = 36;
-    const nextTabLeft = nextTab.getBoundingClientRect().left - scrollDelta;
-    const peekPosition = listRect.right - 44 - peekWidth;
-    if (nextTabLeft > peekPosition) {
-      const availableScroll = Math.max(0, tabRect.left - visibleLeft);
-      scrollDelta += Math.min(nextTabLeft - peekPosition, availableScroll);
-    }
-  }
-
-  if (scrollDelta) {
-    scrollContainer.scrollBy({ left: scrollDelta, behavior: 'smooth' });
+  const overflowLeft = tabRect.left - listRect.left;
+  const overflowRight = listRect.right - tabRect.right;
+  if (overflowLeft < 0) {
+    scrollContainer.scrollBy({ left: overflowLeft - 16, behavior: 'smooth' });
+  } else if (overflowRight < 0) {
+    scrollContainer.scrollBy({ left: -overflowRight + 16, behavior: 'smooth' });
   }
 }
 
