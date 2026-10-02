@@ -3,6 +3,25 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     padding: 0 16px;
 }
 
+.section:has(.calc-card) .tab-list .tab-wrapper {
+    position: relative;
+    overflow-x: hidden;
+    max-width: max-content;
+    margin: 0 auto;
+}
+
+.section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
+    position: absolute;
+    bottom: 0;
+    top: 0.5px;
+    height: 36px;
+    transition: left 0.3s ease, width 0.3s ease;
+    pointer-events: none;
+    border-radius: var(--radius-full, 999px);
+    border: 1px solid #1E4679;
+    background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
+}
+
 .section:has(.calc-card) .tab-list ul {
     margin: 0 auto;
     list-style: none;
@@ -11,7 +30,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
     background: var(--background-bg-tertiary, #F5F5F5);
     margin-bottom: 20px;
-    overflow: auto;
+    overflow: hidden;
     scrollbar-width: none;
     padding: 0;
     max-width: max-content;
@@ -35,10 +54,11 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 
 .section:has(.calc-card) .tab-list ul li button[aria-selected='true'] {
     padding: 8px;
-    border-radius: var(--radius-full, 999px);
+
+    /* border-radius: var(--radius-full, 999px);
     border: 1px solid #1E4679;
     background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
-    color: var(--text-text-brand-blue, #1E4679);
+    color: var(--text-text-brand-blue, #1E4679); */
     font-weight: 600;
 }
 
@@ -145,7 +165,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         outline: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
         background: transparent;
         display: flex;
-        
+
         /* transition: width 0.2s ease; */
     }
 
@@ -162,6 +182,11 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     main .section:has(.calc-card)>.tab-list-wrapper {
         max-width: 1132px;
         padding: 0 16px;
+    }
+
+    .section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
+        top: 0;
+        height: 44px;
     }
 
     .section:has(.calc-card) .tab-list ul {

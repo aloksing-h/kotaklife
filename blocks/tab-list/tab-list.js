@@ -3,6 +3,45 @@ import decorateFindPlan from './find-plan.js';
 import decorateFormTab from './form-tab.js';
 
 let tabsIdx = 0;
+
+export function updateTabIndicator() {
+  const indicator = document.querySelector('.tab-indicator');
+  if (!indicator) return;
+  const wrapper = indicator.closest('.tab-wrapper');
+  if (!wrapper) return;
+  const selectedTab = wrapper.querySelector('[role="tab"][aria-selected="true"]');
+  const tabList = wrapper.querySelector('ul[role="tablist"]');
+  if (!selectedTab || !tabList) return;
+  const tabRect = selectedTab.getBoundingClientRect();
+  const listRect = tabList.getBoundingClientRect();
+  const listStyle = getComputedStyle(tabList);
+  const padLeft = parseFloat(listStyle.paddingLeft) || 0;
+  const padRight = parseFloat(listStyle.paddingRight) || 0;
+  const scrollLeft = tabList.scrollLeft;
+  const left = tabRect.left - listRect.left - padLeft + scrollLeft;
+  const width = tabRect.width;
+  indicator.style.left = `${left}px`;
+  indicator.style.width = `${width}px`;
+}
+
+export function scrollTabIntoView(e) {
+  const targetTab = e.currentTarget;
+  const tabList = targetTab.closest('[role="tablist"]');
+  if (!tabList) return;
+  // Only auto-scroll on mobile where tabs can overflow and be hidden
+  const isMobile = !window.matchMedia('(min-width: 900px)').matches;
+  if (!isMobile) return;
+  const listRect = tabList.getBoundingClientRect();
+  const tabRect = targetTab.getBoundingClientRect();
+  const overflowLeft = tabRect.left - listRect.left;
+  const overflowRight = listRect.right - tabRect.right;
+  if (overflowLeft < 0) {
+    tabList.scrollLeft += overflowLeft - 16;
+  } else if (overflowRight < 0) {
+    tabList.scrollLeft -= Math.abs(overflowRight) - 16;
+  }
+}
+
 export function changeTabs(e) {
   const targetTab = e.currentTarget;
   const targetTabPanelIds = (targetTab.getAttribute('aria-controls') || '')
@@ -57,6 +96,7 @@ export function changeTabs(e) {
       panel.setAttribute('aria-hidden', 'false');
     }
   });
+  updateTabIndicator();
 }
 /**
  * Decorate the tab-list block.
@@ -270,7 +310,7 @@ export default async function decorate(block) {
     decorateFormTab(block);
   }
 
-  if (block.classList.contains('calc-card')) {
+if (block.classList.contains('calc-card')) {
     console.log('sdcfv');
     const tabListWrapper = block.querySelector('.tablist-wrapper');
     const tabUl = tabListWrapper.querySelector('ul');
@@ -284,13 +324,28 @@ export default async function decorate(block) {
     const paddlePrev = document.createElement('button');
     paddlePrev.classList.add('paddle-btn', 'paddle-prev');
     paddlePrev.setAttribute('aria-label', 'Previous');
-    paddlePrev.tabIndex = -1;
+    paddlePrev.tabIndex = 0;
     const paddleNext = document.createElement('button');
     paddleNext.classList.add('paddle-btn', 'paddle-next');
     paddleNext.setAttribute('aria-label', 'Next');
-    paddleNext.tabIndex = -1;
+    paddleNext.tabIndex = 0;
     tabPaddles.append(paddlePrev, paddleNext);
     tabWrapper.append(tabUl, tabIndicator, tabPaddles);
     tabListWrapper.prepend(tabWrapper);
+
+    const scrollByTab = (dir) => {
+      const tabs = [...tabUl.querySelectorAll(':scope > li > [role="tab"]')];
+      const activeIdx = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
+      let nextIdx = activeIdx + (dir === 'next' ? 1 : -1);
+      if (nextIdx < 0) nextIdx = tabs.length - 1;
+      if (nextIdx >= tabs.length) nextIdx = 0;
+      if (tabs[nextIdx]) tabs[nextIdx].click();
+    };
+    paddlePrev.addEventListener('click', () => scrollByTab('prev'));
+    paddleNext.addEventListener('click', () => scrollByTab('next'));
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(updateTabIndicator);
+    });
   }
 }
