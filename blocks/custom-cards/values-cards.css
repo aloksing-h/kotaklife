@@ -288,7 +288,7 @@
 
   .values-cards-hover .custom-cards>ul>li:hover {
     transform: scale(1.15, 1.2);
-    padding: 16px; 
+    padding: 30px 16px; 
   }
 
   .values-cards-hover .custom-cards>ul>li:hover .custom-cards-card-body h4 {
