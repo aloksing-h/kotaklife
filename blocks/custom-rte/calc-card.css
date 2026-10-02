@@ -4,20 +4,40 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 .section:has(.calc-card) .tab-list .tab-wrapper {
+    /* max-width: max-content; */
+    max-width: 328px;
     position: relative;
-    overflow-x: hidden;
-    max-width: max-content;
-    margin: 0 auto;
+
+    /* overflow-x: hidden; */
+    /* overflow: hidden; */
+    margin: 0 auto 20px;
+    width: 100%;
+    overflow: visible;
 }
 
 .section:has(.calc-card) .tab-list .tab-mask {
-    display: contents;
+    /* display: contents; */
+    border-radius: var(--radius-2xl, 32px);
+    border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
+    background: var(--background-bg-tertiary, #F5F5F5);
+    position: relative;
+    display: block;
+    width: 100%;
+
+    /* overflow: auto hidden; */
+    overflow: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
 }
 
-.section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
+.section:has(.calc-card) .tab-list .tab-mask::-webkit-scrollbar {
+    display: none;
+}
+
+.section:has(.calc-card) .tab-list .tab-mask .tab-indicator {
     position: absolute;
     bottom: 0;
-    top: 0.5px;
+    top: 0;
     height: 36px;
     transition: left 0.3s ease, width 0.3s ease;
     pointer-events: none;
@@ -26,18 +46,83 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
 }
 
+.section:has(.calc-card) .tab-list .tab-paddles {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    padding: 0 1px;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    pointer-events: auto;
+    position: relative;
+    display: grid;
+    width: 48px;
+    height: 36px;
+    padding: 0;
+    place-items: center;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn.paddle-next {
+    background: linear-gradient(90deg, rgba(245, 245, 245, 0.00) 0%, #F5F5F5 20.83%);
+    border-radius: 0 50% 50% 0;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn.paddle-prev {
+    background: linear-gradient(270deg, rgba(245, 245, 245, 0.00) 0%, #F5F5F5 21.87%);
+    border-radius: 50% 0 0 50%;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn:disabled {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn::before {
+    content: '';
+    background-image: url('../../icons/small-downarrow-black.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    width: 48px;
+    height: 38px;
+    display: flex;
+    padding: 0;
+    border: none;
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn.paddle-prev::before {
+    transform: rotate(90deg);
+    /* background-image: url('../../icons/small-downarrow-black.svg'), linear-gradient(90deg, rgb(245 245 245 / 0%) 0%, #F5F5F5 20.83%) ; */
+}
+
+.section:has(.calc-card) .tab-list .tab-paddles .paddle-btn.paddle-next::before {
+    transform: rotate(-90deg);
+    /* background-image: url('../../icons/small-downarrow-black.svg'), linear-gradient(270deg, rgb(245 245 245 / 0%) 0%, #F5F5F5 21.87%); */
+}
+
+
 .section:has(.calc-card) .tab-list ul {
     margin: 0 auto;
     list-style: none;
     display: flex;
-    border-radius: var(--radius-2xl, 32px);
+
+    /* border-radius: var(--radius-2xl, 32px);
     border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
     background: var(--background-bg-tertiary, #F5F5F5);
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
     overflow: hidden;
     scrollbar-width: none;
     padding: 0;
-    max-width: max-content;
+    width: max-content;
+
+    /* max-width: max-content; */
 }
 
 .section:has(.calc-card) .tab-list ul>li {
@@ -183,27 +268,27 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (width < 900px) {
-    .section:has(.calc-card) .tab-list .tab-wrapper {
+    /* .section:has(.calc-card) .tab-list .tab-wrapper {
         width: 100%;
         max-width: 100%;
         margin: 0;
         overflow: visible;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .tab-mask {
+    /* .section:has(.calc-card) .tab-list .tab-mask {
         position: relative;
         display: block;
         width: 100%;
         overflow: auto hidden;
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .tab-mask::-webkit-scrollbar {
+    /* .section:has(.calc-card) .tab-list .tab-mask::-webkit-scrollbar {
         display: none;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list ul {
+    /* .section:has(.calc-card) .tab-list ul {
         width: max-content;
         max-width: none;
         margin: 0;
@@ -211,32 +296,32 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         border: 0;
         border-radius: 0;
         background: transparent;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list ul li button,
+    /* .section:has(.calc-card) .tab-list ul li button,
     .section:has(.calc-card) .tab-list ul li button[aria-selected='true'] {
         padding: 9px 12px;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
+    /* .section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
         top: auto;
         bottom: 0;
         height: 2px;
         border: 0;
         border-radius: 0;
         background: #1E4679;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .tab-paddles {
+    /* .section:has(.calc-card) .tab-list .tab-paddles {
         position: absolute;
         inset: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
         pointer-events: none;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .paddle-btn {
+    /* .section:has(.calc-card) .tab-list .paddle-btn {
         position: relative;
         display: grid;
         width: 28px;
@@ -248,23 +333,23 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         background: rgb(255 255 255 / 92%);
         color: #1E4679;
         pointer-events: auto;
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .paddle-btn::before {
+    /* .section:has(.calc-card) .tab-list .paddle-btn::before {
         width: 7px;
         height: 7px;
         border-top: 1.5px solid currentcolor;
         border-right: 1.5px solid currentcolor;
         content: '';
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .paddle-prev::before {
+    /* .section:has(.calc-card) .tab-list .paddle-prev::before {
         transform: rotate(-135deg);
-    }
+    } */
 
-    .section:has(.calc-card) .tab-list .paddle-next::before {
+    /* .section:has(.calc-card) .tab-list .paddle-next::before {
         transform: rotate(45deg);
-    }
+    } */
 
     .section:has(.calc-card) .tab-list .paddle-btn:disabled {
         visibility: hidden;
@@ -283,15 +368,28 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         padding: 0 16px;
     }
 
+    .section:has(.calc-card) .tab-list .tab-wrapper {
+        max-width: unset;
+        margin: 0 auto 28px;
+    }
+
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
         top: 0;
         height: 44px;
     }
 
-    .section:has(.calc-card) .tab-list ul {
-        margin-bottom: 28px;
+    .section:has(.calc-card) .tab-list .tab-wrapper .tab-mask {
+        width: max-content;
+        margin: 0 auto;
         border-radius: var(--radius-full, 999px);
     }
+
+    .section:has(.calc-card) .tab-list .tab-wrapper .tab-paddles {
+        display: none;
+    }
+
+    /* .section:has(.calc-card) .tab-list ul {
+    } */
 
     .section:has(.calc-card) .tab-list ul li button {
         padding: 13px 20px;
@@ -340,6 +438,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (768px <=width <=1000px) {
+
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         /* max-width: 30.637%; */
@@ -348,13 +447,14 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (1000px <=width <=1200px) {
+
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         max-width: 23.4%;
     }
 }
 
-@media screen and (width < 900px) {
+/* @media screen and (width < 900px) {
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-indicator {
         top: auto;
         bottom: 0;
