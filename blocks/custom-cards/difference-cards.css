@@ -3,7 +3,7 @@
     padding-inline-start: var(--spacing-xl, 16px);
 }
 
-.difference-cards.section{
+.difference-cards.section {
     margin: 82px auto 77px;
 }
 
@@ -66,19 +66,21 @@
 .difference-cards .custom-cards .swiper-pagination-bullet-active {
     width: 32px;
     height: 6px;
-    background: linear-gradient(180deg,#AF0E23 0%,  #FB2C47 100%);
+    background: linear-gradient(180deg, #AF0E23 0%, #FB2C47 100%);
     border-radius: var(--radius-full);
     border: none;
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper:not(:has([data-aue-type="richtext"])),
 .difference-cards.custom-cards-container .default-content-wrapper:has([data-aue-type="richtext"]) [data-aue-type="richtext"] {
-     padding: 0 var(--spacing-3xl, 24px) 0 var(--spacing-xl, 16px);
+    padding: 0 var(--spacing-3xl, 24px) 0 var(--spacing-xl, 16px);
     display: flex;
     flex-direction: column;
     padding-inline: var(--spacing-xl, 16px);
     gap: var(--spacing-md, 8px);
-    margin-bottom: var(--spacing-3xl, 24px);
+
+    /* margin-bottom: var(--spacing-3xl, 24px); */
+    margin-bottom: 20px;
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper h1,
@@ -97,8 +99,9 @@
 .difference-cards.custom-cards-container .default-content-wrapper h1 strong,
 .difference-cards.custom-cards-container .default-content-wrapper h2 strong,
 .difference-cards.custom-cards-container .default-content-wrapper h3 strong,
-.difference-cards.custom-cards-container .default-content-wrapper h4 strong{
-  font-weight: var(--font-weight-semibold, 600);
+.difference-cards.custom-cards-container .default-content-wrapper h4 strong {
+    font-weight: var(--font-weight-semibold, 600);
+    display: block;
 }
 
 .difference-cards.custom-cards-container .default-content-wrapper p {
@@ -328,7 +331,7 @@
    Section Level Scoped Styles (.difference-cards)
    ========================================================================== */
 /* stylelint-disable-next-line media-feature-range-notation */
-@media ( min-width :768px) {
+@media (min-width :768px) {
     .difference-cards.custom-cards-container {
         padding: var(--spacing-6xl, 48px) 0;
         margin: 130px auto 125px;
@@ -356,11 +359,11 @@
         align-items: center;
         justify-content: space-between;
     } */
-.difference-cards.custom-cards-container .default-content-wrapper:last-child {
-    margin-top: 54px;
-    margin-bottom: 0;
-    justify-content: center;
-}
+    .difference-cards.custom-cards-container .default-content-wrapper:last-child {
+        margin-top: 54px;
+        margin-bottom: 0;
+        justify-content: center;
+    }
 
     .difference-cards.custom-cards-container .default-content-wrapper h1,
     .difference-cards.custom-cards-container .default-content-wrapper h2,
@@ -374,6 +377,13 @@
         line-height: var(--heading-1-line-height, 60px);
         margin: 0;
         padding: 0;
+    }
+
+    .difference-cards.custom-cards-container .default-content-wrapper h1 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h2 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h3 strong,
+    .difference-cards.custom-cards-container .default-content-wrapper h4 strong {
+        display: inline;
     }
 
     .difference-cards.custom-cards-container .default-content-wrapper:last-child a {
@@ -391,10 +401,10 @@
         text-align: center;
     }
 
-    .difference-cards .custom-cards>ul>li.is-active-card{
+    .difference-cards .custom-cards>ul>li.is-active-card {
         transform: scale(1.1161, 1.1166);
     }
-    
+
     /* ==========================================================================
    Block & Cards Layout
    ========================================================================== */
@@ -408,11 +418,11 @@
         padding-block: 0;
     }
 
-    .difference-cards .custom-cards .swiper-pagination{
+    .difference-cards .custom-cards .swiper-pagination {
         display: none;
     }
 
-    .difference-cards .custom-cards> ul {
+    .difference-cards .custom-cards>ul {
         list-style: none;
         margin: 0;
         display: grid;
@@ -458,7 +468,7 @@
         transition: transform 0.3s ease;
     }
 
-    .difference-cards.section.custom-cards-container .custom-cards-card-image{
+    .difference-cards.section.custom-cards-container .custom-cards-card-image {
         bottom: 30px;
         max-width: 203px;
         max-height: 116px;
@@ -493,8 +503,8 @@
 
     .difference-cards .custom-cards>ul>li:hover {
         background: var(--gradient-red-card, linear-gradient(7deg, var(--decorative-red-400, #FB2C47) -43.93%, var(--decorative-red-500, #FA1432) 3.36%, var(--decorative-red-900, #7F2224) 88.98%));
-         transform: scale(1.1371, 1.1166);
-         z-index: 1;
+        transform: scale(1.1371, 1.1166);
+        z-index: 1;
     }
 
     .difference-cards .custom-cards>ul>li:hover p:last-child {
@@ -517,15 +527,16 @@
         color: var(--base-white, #fff);
     }
 }
+
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (min-width : 1024px) {
-   .difference-cards.custom-cards-container .custom-cards-card-body h4 {
-    font-size: var(--heading-4-font-size, 24px);
-    line-height: var(--heading-4-line-height, 28px);
-   }
+    .difference-cards.custom-cards-container .custom-cards-card-body h4 {
+        font-size: var(--heading-4-font-size, 24px);
+        line-height: var(--heading-4-line-height, 28px);
+    }
 
-   .difference-cards.custom-cards-container .custom-cards-card-body p{
-    font-size: var(--body-2-font-size, 14px);
-    line-height: var(--body-2-line-height, 18px);
-   }
+    .difference-cards.custom-cards-container .custom-cards-card-body p {
+        font-size: var(--body-2-font-size, 14px);
+        line-height: var(--body-2-line-height, 18px);
+    }
 }

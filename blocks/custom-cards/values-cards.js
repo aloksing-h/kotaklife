@@ -26,7 +26,7 @@ export default async function initValuesSwiper(block) {
         // 3. Define the base/default Swiper configuration
         const swiperConfig = {
           slidesPerView: 'auto',
-          spaceBetween: 12,
+          spaceBetween: 8,
           grabCursor: true,
           centeredSlides: true,
           centeredSlidesBounds: true,

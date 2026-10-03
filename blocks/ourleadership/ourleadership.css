@@ -81,9 +81,13 @@
 .leadership>.default-content-wrapper {
   position: static;
   text-align: center;
-  max-width: 1200px;
+
+  /* max-width: 1200px; */
+  max-width: 726px;
   margin: 0 auto 52px;
-  padding: 0 50px;
+  
+  /* padding: 0 50px; */
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -95,7 +99,9 @@
   line-height: 48px;
   font-weight: 400;
   color: #fff;
-  margin: 0 0 12px;
+
+  /* margin: 0 0 12px; */
+  margin: 0 0 8px;
   letter-spacing: -0.02em;
 }
 
@@ -112,7 +118,8 @@
   line-height: 20px;
   font-weight: 500;
   color: #fff;
-  max-width: 586px;
+
+  /* max-width: 586px; */
   margin: 0 auto;
 }
 
@@ -418,7 +425,9 @@
   .leadership>.default-content-wrapper p:not(:nth-child(1), :nth-child(2)) {
     font-size: 14px;
     line-height: 18px;
-    max-width: 316px;
+
+    /* max-width: 316px; */
+    max-width: 328px;
   }
 
   /* Mobile Card: Stacked column */
@@ -493,7 +502,9 @@
 
   .leadership .profile-cta>div:nth-child(2) p:nth-of-type(3) {
     font-size: 14px;
-    line-height: 16px;
+
+    /* line-height: 16px; */
+    line-height: 18px;
     color: #181d27;
     margin-bottom: 22px;
     text-align: center;
@@ -513,7 +524,9 @@
     color: var(--brand-red-600, #e1122d);
     font-family: var(--font-family-manrope, 'Manrope', sans-serif);
     font-size: 14px;
-    line-height: 18px;
+
+    /* line-height: 18px; */
+    line-height: 16px;
     font-weight: 800;
     cursor: pointer;
     text-decoration: none;

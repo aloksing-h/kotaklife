@@ -48,7 +48,9 @@
 .values-cards-hover .custom-cards>ul {
   display: flex;
   flex-flow: row nowrap;
-  padding: 30px 0 28px;
+
+  /* padding: 30px 0 28px; */
+  padding: 28px 0;
   justify-content: space-between;
   gap: 0;
 
@@ -286,7 +288,8 @@
   }
 
   .values-cards-hover.custom-cards-container .default-content-wrapper{
-    padding-bottom: var(--spacing-5xl, 40px);
+    /* padding-bottom: var(--spacing-5xl, 40px); */
+    padding-bottom: 5px;
   }
 
   .values-cards-hover.custom-cards-container .default-content-wrapper h1,

@@ -110,6 +110,7 @@
     margin-left: auto;
     font-size: var(--body-1-font-size);
     line-height: var(--sub-heading-2-line-height);
+    text-align: right;
   }
 }
 

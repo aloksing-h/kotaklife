@@ -461,7 +461,8 @@
   }
 
   .timeline.awards.block .timeline-cards {
-    padding: 34px 0 0;
+    /* padding: 34px 0 0; */
+    padding: 52px 0 0;
   }
 
   .timeline.awards.block .timeline-cards-list {
@@ -549,7 +550,9 @@
   /* first row-div of the section holds the default-content h1; take it out of flow so the timeline block below starts at the section top and shares its row */
   .slider-title.section>.default-content-wrapper {
     position: absolute;
-    max-width: 342px;
+
+    /* max-width: 342px; */
+    max-width: 352px;
     margin: 0;
     padding: 0 0 0 50px;
     z-index: 5;
