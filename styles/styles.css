@@ -356,7 +356,7 @@ main .section.highlight {
 }
 
 @media (width >=1200px) {
-main>.section:first-of-type {
+  main>.section:first-of-type {
     /* margin-top: 35px; */
     margin-top: 16px;
   }
