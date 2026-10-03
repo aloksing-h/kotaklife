@@ -199,10 +199,10 @@ export default async function decorate(block) {
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
     // Keep find-plan tabs click-only; preserve hover activation for other variants.
-    if (!block.classList.contains('find-plan')
-      && window.matchMedia('(min-width: 900px)').matches) {
-      tabItem.addEventListener('mouseenter', changeTabs);
-    }
+    // if (!block.classList.contains('find-plan')
+    //   && window.matchMedia('(min-width: 900px)').matches) {
+    //   tabItem.addEventListener('mouseenter', changeTabs);
+    // }
     // Add keyboard support for Enter/Space (WCAG 2.2 - 2.1.1 Keyboard)
     tabItem.addEventListener('keydown', (e) => {
       if (e.code === 'Enter' || e.code === 'Space') {
