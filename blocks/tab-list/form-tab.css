@@ -336,3 +336,123 @@
     line-height: var(--body-1-line-height, 1.25rem);
   }
 }
+
+/* =========================================
+   DYNAMIC TAB MODAL (FULL SCREEN OVERRIDES)
+   ========================================= */
+
+/* Force dialog to fill the entire mobile screen with a white background */
+.modal:has(.dynamic-tab-modal) dialog {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: var(--base-white, #ffffff);
+}
+
+.modal:has(.dynamic-tab-modal) .modal-content {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+}
+
+/* Position Close Cross at the top right */
+.modal:has(.dynamic-tab-modal) .close-button {
+  position: absolute;
+  top: var(--spacing-xl, 16px);
+  right: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 6px;
+  height: 40px;
+  width: 40px;
+  margin-bottom: 8px;
+}
+.modal:has(.dynamic-tab-modal) .close-button .icon.icon-close{
+  content: '';
+  max-width: 28px;
+  max-height: 28px;
+  height: 100%;
+  width: 100%;
+}
+/* Container Spacing & Title Removal */
+.modal .dynamic-tab-modal {
+  padding-top: 60px; /* Leave space for the close button above */
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal .dynamic-tab-modal h3 {
+  display: none; /* Hide the title as per the reference design */
+}
+
+/* List Structure */
+.modal .dynamic-tab-modal ul {
+  list-style: none;
+  padding: 0 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal .dynamic-tab-modal ul li {
+  border-bottom: 1px solid var(--gray-200, #e5e7eb);
+}
+
+/* Base Link Styling */
+.modal .dynamic-tab-modal ul li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 21.5px 8px;
+  text-decoration: none;
+  color: var(--gray-900, #181D27);
+  font-size: var(--body-2-font-size, 0.875rem);
+  line-height: var(--body-2-line-height);
+  font-weight: 500;
+  background-color: var(--base-white, #fff);
+  transition: background-color 0.2s ease;
+}
+
+/* Right Chevron (Default) */
+.modal .dynamic-tab-modal ul li a::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("../../icons/large-downarrow-black.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(-90deg); /* Point chevron to the right */
+}
+
+/* Active State Link */
+.modal .dynamic-tab-modal ul li a.active-tab-link {
+  background-color: var(--blue-100, #D1E9FF);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* Active State Chevron (Red) */
+.modal .dynamic-tab-modal ul li a.active-tab-link::after {
+  background-color: var(--brand-red-500, #FA1432);
+  background-image: none;
+  /* stylelint-disable property-no-vendor-prefix -- needed for iOS Safari < 15.4 mask support */
+  -webkit-mask-image: url("../../icons/large-downarrow-black.svg");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  /* stylelint-enable property-no-vendor-prefix */
+  mask-image: url("../../icons/large-downarrow-black.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  opacity: 1;
+}
