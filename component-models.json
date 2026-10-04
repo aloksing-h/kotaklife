@@ -481,10 +481,6 @@
           {
             "name": "Calc Card",
             "value": "calc-card"
-          },
-          {
-            "name": "Insurance Content Tab Modal",
-            "value": "insurance-tab-modal"
           }
         ]
       },
