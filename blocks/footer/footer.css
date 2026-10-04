@@ -85,6 +85,12 @@ footer .footer p {
   content: unset;
 }
 
+footer .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
 .mob-accordion .accordion-item[open] .accordion-item-label::after {
   transform: rotate(180deg);
 }
@@ -134,7 +140,7 @@ footer .footer p {
   font-weight: 500;
   line-height: var(--line-height-caption, 14px);
   width: 100%;
-  opacity: 0.8;
+  opacity: 1;
   display: flex;
   text-decoration: none;
   text-decoration-line: unset;

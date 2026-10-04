@@ -141,13 +141,19 @@ export default async function decorate(block) {
           if (activeMediaEl.getAttribute('src') !== currentData.src) {
             activeMediaEl.setAttribute('src', currentData.src);
             activeMediaEl.load(); // Forces the browser to load the new video src
-            activeMediaEl.play().catch(() => {}); // Ensure it autoplay continues
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              activeMediaEl.play().catch(() => {});
+            }
           }
         } else {
         // Create the single video tag for the first time
           mediaWrapper.innerHTML = ''; // clear wrapper
           const video = document.createElement('video');
-          video.setAttribute('autoplay', '');
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            video.setAttribute('autoplay', '');
+          }
+          video.controls = true;
+          video.setAttribute('aria-label', 'Kotak Life background animation');
           video.setAttribute('loop', '');
           video.setAttribute('muted', '');
           video.muted = true;

@@ -35,6 +35,7 @@ export default async function initdifferenceSwiper(block) {
         // 3. Define the base/default Swiper configuration
         // 3. Define the base/default Swiper configuration
         const swiperConfig = {
+          a11y: { slideRole: 'listitem' },
           slidesPerView: 'auto',
           spaceBetween: 8,
           grabCursor: true,

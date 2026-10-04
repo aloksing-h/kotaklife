@@ -52,12 +52,14 @@
 }
 
 .insights-impact-plans .custom-cards .swiper-pagination-bullet {
-    width: 6px;
-    height: 6px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
     
     /* background-color: #d1d5db; */
     background-color: transparent;
-    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    border: none;
     opacity: 1;
     margin: 0 !important;
     transition: all 0.3s ease;
@@ -67,7 +69,23 @@
     /* border: 1px solid var(--foreground-fg-quaternary, #A4A7AE); */
 }
 
+.insights-impact-plans .custom-cards .swiper-pagination-bullet::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: auto;
+    border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+    border-radius: var(--radius-full, 999px);
+}
+
 .insights-impact-plans .custom-cards .swiper-pagination-bullet-active {
+    width: 32px;
+    height: 24px;
+    background: transparent;
+}
+
+.insights-impact-plans .custom-cards .swiper-pagination-bullet-active::before {
     width: 32px;
     height: 6px;
     border: none;
@@ -118,7 +136,7 @@
     cursor: pointer;
 }
 
-.insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+.insights-impact-plans.custom-cards-container .custom-cards-card-body :is(h2, h3, h4) {
     font-size: 18px;
     line-height: 20px;
     font-family: var(--heading-font-family);
@@ -149,7 +167,7 @@
     margin-bottom: 15px;
 }
 
-.insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
+.insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) :is(h2, h3, h4)+p,
 .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
     font-size: 14px;
     line-height: 18px;
@@ -236,7 +254,7 @@
 }
 
 /* Title and Text Active State */
-.insights-impact-plans .custom-cards>ul>li.is-active-card .custom-cards-card-body h4,
+.insights-impact-plans .custom-cards>ul>li.is-active-card .custom-cards-card-body :is(h2, h3, h4),
 .insights-impact-plans.section .custom-cards>ul>li.is-active-card .custom-cards-card-body p:nth-child(3) {
     color: #fff;
 }
@@ -443,7 +461,7 @@
     }
 
     /* Card Title */
-    .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+    .insights-impact-plans.custom-cards-container .custom-cards-card-body :is(h2, h3, h4) {
         font-size: 24px;
         line-height: 28px;
     }
@@ -455,7 +473,7 @@
     }
 
     /* Card Description */
-    .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) h4+p,
+    .insights-impact-plans .custom-cards-card-body:not(:has([data-aue-type="richtext"])) :is(h2, h3, h4)+p,
     .insights-impact-plans .custom-cards-card-body:has([data-aue-type="richtext"]) [data-aue-type="richtext"]>p {
         font-size: 16px;
         line-height: 20px;
@@ -521,7 +539,7 @@
         background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
     }
 
-    .insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body h4,
+    .insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body :is(h2, h3, h4),
     .insights-impact-plans .custom-cards>ul>li:hover .custom-cards-card-body p:nth-child(3) {
         color: #fff;
     }
@@ -544,14 +562,14 @@
         background: linear-gradient(92deg, var(--decorative-colors-deco-five-deco-four-e, #8EBBFF) -54.86%, var(--foreground-fg-white, #FFF) 40.44%, var(--foreground-fg-white, #FFF) 135.74%);
     }
 
-    .insights-impact-plans .custom-cards>ul:not(:has(>li:hover))>li.is-active-card .custom-cards-card-body h4,
+    .insights-impact-plans .custom-cards>ul:not(:has(>li:hover))>li.is-active-card .custom-cards-card-body :is(h2, h3, h4),
     .insights-impact-plans .custom-cards>ul:not(:has(>li:hover))>li.is-active-card .custom-cards-card-body p:nth-child(3) {
         color: #fff;
     }
 }
 
 @media (width >=600px) and (width <=1023px) {
-    .insights-impact-plans.custom-cards-container .custom-cards-card-body h4 {
+    .insights-impact-plans.custom-cards-container .custom-cards-card-body :is(h2, h3, h4) {
         font-size: 18px;
         line-height: 24px;
     }

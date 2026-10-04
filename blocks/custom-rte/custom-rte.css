@@ -324,7 +324,9 @@
     background: none;
     border: none;
     padding: 0;
-    color: var(--text-text-quaternary, #717680);
+    color: var(--text-text-tertiary, #535862);
+    min-width: 24px;
+    min-height: 24px;
     text-align: center;
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-body-2, 14px);
@@ -333,7 +335,7 @@
     line-height: var(--line-height-body-1, 18px);
     cursor: pointer;
     transition: color 0.3s ease, font-size 0.3s ease;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .get-cover-plans .promotion .step-indicator.is-active {

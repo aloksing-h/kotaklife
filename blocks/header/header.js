@@ -6,6 +6,11 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+function setDisclosureExpanded(item, expanded) {
+  item.setAttribute('aria-expanded', expanded);
+  item.querySelector(':scope > .nav-disclosure')?.setAttribute('aria-expanded', expanded);
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -16,7 +21,7 @@ function closeOnEscape(e) {
     if (navSectionExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
+      (navSectionExpanded.querySelector('.nav-disclosure') || navSectionExpanded).focus();
       document.body.classList.remove('no-scroll');
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
@@ -68,7 +73,7 @@ function closeAllListInnerItems(navSections) {
   if (!navSections) return;
   // Set all .list-inner elements to aria-expanded="false"
   navSections.querySelectorAll('.list-inner').forEach((listInner) => {
-    listInner.setAttribute('aria-expanded', 'false');
+    setDisclosureExpanded(listInner, 'false');
   });
 }
 
@@ -80,10 +85,10 @@ function resetTabsInNavDrop(navDrop) {
   if (!navDrop) return;
 
   // Find all tabs inside this nav-drop
-  const tabs = navDrop.querySelectorAll('[role="tab"]');
+  const tabs = navDrop.querySelectorAll('.tab-control');
   tabs.forEach((tab) => {
     // Reset tab state
-    tab.setAttribute('aria-selected', 'false');
+    if (tab.getAttribute('role') === 'tab') tab.setAttribute('aria-selected', 'false');
     tab.setAttribute('aria-expanded', 'false');
 
     // Hide all associated panels
@@ -107,12 +112,12 @@ function showFirstTabInNavDrop(navDrop) {
   if (!navDrop) return;
 
   // Find all tabs inside this nav-drop
-  const tabs = navDrop.querySelectorAll('[role="tab"]');
+  const tabs = navDrop.querySelectorAll('.tab-control');
   if (tabs.length === 0) return;
 
   // Reset all tabs first
   tabs.forEach((tab) => {
-    tab.setAttribute('aria-selected', 'false');
+    if (tab.getAttribute('role') === 'tab') tab.setAttribute('aria-selected', 'false');
     tab.setAttribute('aria-expanded', 'false');
 
     // Hide all associated panels
@@ -129,7 +134,7 @@ function showFirstTabInNavDrop(navDrop) {
 
   // Now show the first tab
   const firstTab = tabs[0];
-  firstTab.setAttribute('aria-selected', 'true');
+  if (firstTab.getAttribute('role') === 'tab') firstTab.setAttribute('aria-selected', 'true');
   firstTab.setAttribute('aria-expanded', 'true');
   firstTab.setAttribute('aria-current', 'true');
 
@@ -153,7 +158,7 @@ function showFirstTabInNavDrop(navDrop) {
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
+    setDisclosureExpanded(section, expanded);
     // Update aria-label for screen readers to announce state
     const button = section.querySelector('button');
     if (button) {
@@ -187,6 +192,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   // Update button aria-label for screen readers (WCAG 2.2 - 1.3.1 Info and Relationships)
   button.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
   button.setAttribute('aria-pressed', expanded ? 'false' : 'true');
+  button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
 
   // enable nav dropdown keyboard accessibility
   if (navSections) {
@@ -203,14 +209,10 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
     // collapse menu on focus lost (ONLY ON DESKTOP, not on mobile)
-    if (isDesktop.matches) {
-      nav.addEventListener('focusout', closeOnFocusLost);
-    }
+    nav.addEventListener('focusout', closeOnFocusLost);
   } else {
     window.removeEventListener('keydown', closeOnEscape);
-    if (isDesktop.matches) {
-      nav.removeEventListener('focusout', closeOnFocusLost);
-    }
+    nav.removeEventListener('focusout', closeOnFocusLost);
   }
 }
 
@@ -411,16 +413,20 @@ export default async function decorate(block) {
   // WCAG 2.2: Initialize all .list-inner elements with aria-expanded and role
   const allListInner = nav.querySelectorAll('.list-inner');
   allListInner.forEach((listInner) => {
-    listInner.setAttribute('aria-expanded', 'false');
-    // Make all list-inner elements keyboard accessible
-    if (!listInner.hasAttribute('tabindex')) {
-      listInner.setAttribute('tabindex', '0');
-    }
-    // Only add role if not already present
-    if (!listInner.hasAttribute('role')) {
-      listInner.setAttribute('role', 'button');
-    }
+    const trigger = listInner.firstElementChild;
+    if (!trigger || trigger.matches('a, ul') || trigger.querySelector('a, button')) return;
+    trigger.classList.add('nav-disclosure');
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('tabindex', '0');
+    setDisclosureExpanded(listInner, 'false');
   });
+
+  nav.querySelector('.nav-header-top .list-item-2 > .list-inner-1 > .nav-disclosure')
+    ?.setAttribute('aria-label', 'Search');
+  nav.querySelector('.nav-header-top .list-item-2 > .list-inner-2 > .nav-disclosure')
+    ?.setAttribute('aria-label', 'Contact via WhatsApp');
+  nav.querySelector('a[href$="/hamburger-desktop"]')
+    ?.setAttribute('aria-label', 'Open navigation menu');
 
   // Handle header-top list-inner click functionality (both mobile and desktop)
   // Only target specific list-inner items: list-inner-1, list-inner-2, and list-inner-4
@@ -433,6 +439,7 @@ export default async function decorate(block) {
     // Add click listeners to these specific list-inner items
     headerTopListInners.forEach((listInner) => {
       const handleListInnerToggle = (e) => {
+        if (e.target.closest('.nav-disclosure') !== listInner.firstElementChild) return;
         e.stopPropagation();
         // Check if the clicked item already has the active class
         const isAlreadyActive = listInner.classList.contains('active');
@@ -440,20 +447,18 @@ export default async function decorate(block) {
         headerTopListInners.forEach((item) => {
           item.classList.remove('active');
           // WCAG 2.2: Update aria-expanded for accessibility
-          item.setAttribute('aria-expanded', 'false');
+          setDisclosureExpanded(item, 'false');
         });
         // If it wasn't active, add active class to clicked item (toggle behavior)
         if (!isAlreadyActive) {
           listInner.classList.add('active');
           // WCAG 2.2: Update aria-expanded state
-          listInner.setAttribute('aria-expanded', 'true');
+          setDisclosureExpanded(listInner, 'true');
         }
       };
 
       // WCAG 2.2: Set proper ARIA attributes and keyboard accessibility
-      listInner.setAttribute('aria-expanded', 'false');
-      listInner.setAttribute('role', 'button');
-      listInner.setAttribute('tabindex', '0');
+      setDisclosureExpanded(listInner, 'false');
 
       // Mouse click
       listInner.addEventListener('click', handleListInnerToggle);
@@ -478,7 +483,7 @@ export default async function decorate(block) {
         headerTopListInners.forEach((item) => {
           item.classList.remove('active');
           // WCAG 2.2: Update aria-expanded state
-          item.setAttribute('aria-expanded', 'false');
+          setDisclosureExpanded(item, 'false');
         });
       }
     });
@@ -488,7 +493,7 @@ export default async function decorate(block) {
       if (e.code === 'Escape') {
         headerTopListInners.forEach((item) => {
           item.classList.remove('active');
-          item.setAttribute('aria-expanded', 'false');
+          setDisclosureExpanded(item, 'false');
         });
       }
     });
@@ -536,6 +541,11 @@ export default async function decorate(block) {
 
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
+    navBrand.querySelectorAll('img').forEach((image) => {
+      if (!image.alt || /^(red brand image|white brand image|company logo)$/i.test(image.alt)) {
+        image.alt = 'Kotak Life';
+      }
+    });
     // --- Section 1: Data Indexing and Button Cleanup (from your snippet) ---
 
     // Set up the class prefixes for your dataMapKotakObj utility.
@@ -567,8 +577,7 @@ export default async function decorate(block) {
 
   if (navSections) {
     // WCAG 2.2: Add proper ARIA attributes to nav-sections (4.1.2 Name, Role, Value)
-    navSections.setAttribute('role', 'menubar');
-    navSections.setAttribute('aria-label', 'Main navigation menu');
+    navSections.removeAttribute('role');
 
     // Get the last li from nav-sections once and extract its text
     const navSectionsUl = navSections.querySelector('.default-content-wrapper > ul');
@@ -600,15 +609,14 @@ export default async function decorate(block) {
 
         // WCAG 2.2: Make nav-drop focusable with default browser focus outline
         // Set tabindex="0" and role="button" so it's keyboard accessible like header-top elements
-        navDrop.setAttribute('tabindex', '0');
-        navDrop.setAttribute('role', 'button');
-        navDrop.setAttribute('aria-expanded', 'false');
+        setDisclosureExpanded(navDrop, 'false');
 
-        const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
+        const dropButton = navDrop.querySelector(':scope > .nav-disclosure');
         if (dropButton) {
-          dropButton.setAttribute('aria-haspopup', 'true');
+          const panel = navDrop.querySelector(':scope > ul');
+          panel.id = `navdrop-${navDrop.classList.contains('list-inner') ? [...navDrop.parentElement.children].indexOf(navDrop) : navDrop.textContent.trim().toLowerCase().replace(/\W+/g, '-')}`;
           dropButton.setAttribute('aria-expanded', 'false');
-          dropButton.setAttribute('aria-controls', `navdrop-${Math.random().toString(36).substr(2, 9)}`);
+          dropButton.setAttribute('aria-controls', panel.id);
         }
 
         // Check if this nav-drop has a fragment link
@@ -680,9 +688,6 @@ export default async function decorate(block) {
                       // Make the entire item clickable
                       item.classList.add('nav-link-wrap');
                       item.style.cursor = 'pointer';
-                      item.setAttribute('role', 'button');
-                      item.setAttribute('tabindex', '0');
-                      item.setAttribute('aria-label', `Navigate to ${href}`);
 
                       // Click handler - redirect on click
                       item.addEventListener('click', (e) => {
@@ -691,12 +696,6 @@ export default async function decorate(block) {
                       });
 
                       // WCAG 2.2: Keyboard accessibility (Enter and Space)
-                      item.addEventListener('keydown', (e) => {
-                        if (e.code === 'Enter' || e.code === 'Space') {
-                          e.preventDefault();
-                          window.location.href = href;
-                        }
-                      });
                     }
                   }
                 });
@@ -740,6 +739,7 @@ export default async function decorate(block) {
               });
 
               fragmentContainer.addEventListener('mouseleave', () => {
+                if (navDrop.contains(document.activeElement)) return;
                 leaveTimer = setTimeout(() => {
                   toggleAllNavSections(navSections, false);
                   document.body.classList.remove('no-scroll');
@@ -767,15 +767,15 @@ export default async function decorate(block) {
           // Open current menu
           if (navDrop.querySelector('ul')) {
             // Check if tabs exist (fragment must be loaded)
-            const tabs = navDrop.querySelectorAll('[role="tab"]');
+            const tabs = navDrop.querySelectorAll('.tab-control');
             if (tabs.length > 0) {
               // Show first tab in tab-list on desktop only if tabs exist
               showFirstTabInNavDrop(navDrop);
             }
-            navDrop.setAttribute('aria-expanded', 'true');
+            setDisclosureExpanded(navDrop, 'true');
             navDrop.setAttribute('data-aria-expanded', 'true');
             // WCAG 2.2: Update aria-haspopup button
-            const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
+            const dropButton = navDrop.querySelector(':scope > .nav-disclosure');
             if (dropButton) {
               dropButton.setAttribute('aria-expanded', 'true');
               // Add aria-busy to indicate content is loading
@@ -788,12 +788,13 @@ export default async function decorate(block) {
       // --- Desktop Mouse Leave Logic ---
       navDrop.addEventListener('mouseleave', () => {
         if (isDesktop.matches) {
+          if (navDrop.contains(document.activeElement)) return;
           // Set a timer to close the menu after a delay
           leaveTimer = setTimeout(() => {
-            navDrop.setAttribute('aria-expanded', 'false');
+            setDisclosureExpanded(navDrop, 'false');
             navDrop.setAttribute('data-aria-expanded', 'false');
             // WCAG 2.2: Update aria-haspopup button
-            const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
+            const dropButton = navDrop.querySelector(':scope > .nav-disclosure');
             if (dropButton) {
               dropButton.setAttribute('aria-expanded', 'false');
               dropButton.setAttribute('aria-busy', 'false');
@@ -805,19 +806,20 @@ export default async function decorate(block) {
 
       // WCAG 2.2: Desktop keyboard support (Arrow keys for navigation + Enter to open)
       navDrop.addEventListener('keydown', (e) => {
+        if (e.target !== navDrop.querySelector(':scope > .nav-disclosure')) return;
         if (isDesktop.matches) {
           const allDrops = Array.from(navSections.querySelectorAll('.nav-drop'));
           const currentIndex = allDrops.indexOf(navDrop);
 
           if (e.code === 'ArrowRight' && currentIndex < allDrops.length - 1) {
             e.preventDefault();
-            allDrops[currentIndex + 1].focus();
+            allDrops[currentIndex + 1].querySelector('.nav-disclosure')?.focus();
             allDrops[currentIndex + 1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
           } else if (e.code === 'ArrowLeft' && currentIndex > 0) {
             e.preventDefault();
-            allDrops[currentIndex - 1].focus();
+            allDrops[currentIndex - 1].querySelector('.nav-disclosure')?.focus();
             allDrops[currentIndex - 1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-          } else if (e.code === 'Enter') {
+          } else if (e.code === 'Enter' || e.code === 'Space') {
             // WCAG 2.2: Enter key opens nav-drop on desktop
             e.preventDefault();
             navDrop.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -827,6 +829,7 @@ export default async function decorate(block) {
 
       // --- Mobile Click Logic ---
       navDrop.addEventListener('click', (e) => {
+        if (e.target.closest('.nav-disclosure') !== navDrop.firstElementChild) return;
         if (!isDesktop.matches) {
           // Allow tab-list interactions without toggling nav-drop
           const clickedInsideTabList = e.target.closest('[role="tab"], [role="tablist"], .tablist-wrapper');
@@ -841,13 +844,13 @@ export default async function decorate(block) {
           // Toggle nav-drop for any other click inside it
           const expanded = navDrop.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
-          navDrop.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          setDisclosureExpanded(navDrop, expanded ? 'false' : 'true');
           // Reset tabs when opening nav-drop
           if (!expanded) {
             resetTabsInNavDrop(navDrop);
           }
           // Update aria-haspopup button
-          const dropButton = navDrop.querySelector('a') || navDrop.querySelector('button');
+          const dropButton = navDrop.querySelector(':scope > .nav-disclosure');
           if (dropButton) {
             dropButton.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
@@ -858,14 +861,15 @@ export default async function decorate(block) {
 
       // WCAG 2.2: Mobile keyboard support (Enter key on nav-drop)
       navDrop.addEventListener('keydown', (e) => {
-        if (!isDesktop.matches && e.code === 'Enter') {
+        if (e.target !== navDrop.querySelector(':scope > .nav-disclosure')) return;
+        if (!isDesktop.matches && (e.code === 'Enter' || e.code === 'Space')) {
           e.preventDefault();
           const clickEvent = new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
             view: window,
           });
-          navDrop.dispatchEvent(clickEvent);
+          e.target.dispatchEvent(clickEvent);
         }
       });
     });

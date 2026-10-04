@@ -19,6 +19,7 @@ async function resolveMediaUrl(href) {
 
 export default function decorate(block) {
   if (block.classList.contains('customer-say')) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let activeIndex = 0;
     let bullets = [];
 
@@ -43,7 +44,7 @@ export default function decorate(block) {
         // Manage Background Video Play/Pause State
         const bgVideo = item.querySelector('video');
         if (bgVideo) {
-          if (isActive) {
+          if (isActive && !reducedMotion.matches) {
             // Call play directly; iOS requires this to start buffering
             bgVideo.play().catch(() => {});
           } else {
@@ -66,8 +67,9 @@ export default function decorate(block) {
     // Decorate an individual card item (idempotent)
     const decorateItem = async (row, index) => {
       row.classList.add('testimonial-item');
-      row.setAttribute('tabindex', '0');
-      row.setAttribute('role', 'button');
+      row.removeAttribute('tabindex');
+      row.setAttribute('role', 'group');
+      row.setAttribute('aria-label', `Customer testimonial ${index + 1}`);
       if (!row.hasAttribute('aria-expanded')) {
         row.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
       }
@@ -115,7 +117,11 @@ export default function decorate(block) {
               video.setAttribute('crossorigin', 'anonymous');
               video.setAttribute('webkit-playsinline', '');
               video.setAttribute('preload', 'auto');
-              video.setAttribute('autoplay', ''); // Required for smoother iOS handling
+              if (!reducedMotion.matches) video.setAttribute('autoplay', '');
+              video.controls = true;
+              video.setAttribute('aria-label', `Customer testimonial ${index + 1} video preview`);
+              video.addEventListener('click', (event) => event.stopPropagation());
+              video.addEventListener('keydown', (event) => event.stopPropagation());
               video.setAttribute('src', videoSrc);
 
               // Use existing image as a seamless loading poster
@@ -138,7 +144,7 @@ export default function decorate(block) {
               VideoWrapper.appendChild(video);
 
               // Trigger play if this item happens to be currently active
-              if (index === activeIndex && row.getAttribute('aria-expanded') === 'true') {
+              if (!reducedMotion.matches && index === activeIndex && row.getAttribute('aria-expanded') === 'true') {
                 video.play().catch(() => {});
               } else {
                 // Ensure inactive videos are paused despite the autoplay attribute
@@ -190,7 +196,7 @@ export default function decorate(block) {
         });
       }
 
-      row.addEventListener('focus', () => {
+      row.addEventListener('focusin', () => {
         const items = getItems();
         const currentIndex = items.indexOf(row);
         if (currentIndex !== -1) activateItem(currentIndex);
@@ -205,6 +211,7 @@ export default function decorate(block) {
 
       // Keyboard support
       row.addEventListener('keydown', (e) => {
+        if (e.target !== row) return;
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           const items = getItems();
@@ -237,7 +244,8 @@ export default function decorate(block) {
       // Clear existing bullets and regenerate to match current items.length
       pagination.innerHTML = '';
       bullets = items.map((_, index) => {
-        const bullet = document.createElement('span');
+        const bullet = document.createElement('button');
+        bullet.type = 'button';
         bullet.className = `swiper-pagination-bullet${index === activeIndex ? ' swiper-pagination-bullet-active' : ''}`;
         bullet.setAttribute('role', 'button');
         bullet.setAttribute('tabindex', '0');

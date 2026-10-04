@@ -10,16 +10,19 @@ export function changeTabs(e) {
     .filter(Boolean);
   if (!targetTabPanelIds.length) return;
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
-  const tabList = targetTab.closest('[role="tablist"]');
+  const tabList = targetTab.closest('[role="tablist"], .tabs-accordion');
   if (!tabList) return;
   // const isFindPlan = tabList.closest('.find-plan');
   // const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
-  const isHeaderTab = tabList.closest('.header-tab, header');
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && isHeaderTab;
-  const isSelected = targetTab.getAttribute('aria-selected') === 'true';
+  const mobileAccordion = tabList.classList.contains('tabs-accordion');
+  const isSelected = targetTab.getAttribute(mobileAccordion ? 'aria-expanded' : 'aria-selected') === 'true';
+  tabList.querySelectorAll('.tab-control').forEach((tab) => {
+    tab.tabIndex = mobileAccordion || tab === targetTab ? 0 : -1;
+    tab.setAttribute('aria-expanded', tab === targetTab ? 'true' : 'false');
+  });
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
-    targetTab.setAttribute('aria-selected', 'false');
+    targetTab.setAttribute('aria-expanded', 'false');
     targetTab.removeAttribute('aria-current');
     targetTabPanelIds.forEach((id) => {
       const panel = document.querySelector(`#${CSS.escape(id)}`);
@@ -33,17 +36,17 @@ export function changeTabs(e) {
   }
   // Remove all current selected tabs
   tabList
-    .querySelectorAll(':scope [role="tab"][aria-selected="true"]')
+    .querySelectorAll(':scope .tab-control[aria-selected="true"]')
     .forEach((t) => {
       t.setAttribute('aria-selected', false);
       t.removeAttribute('aria-current');
     });
   // Set this tab as selected
-  targetTab.setAttribute('aria-selected', true);
+  if (targetTab.getAttribute('role') === 'tab') targetTab.setAttribute('aria-selected', true);
   targetTab.setAttribute('aria-current', 'true');
   // Hide all tab panels
   document
-    .querySelectorAll(`[role="tabpanel"][id^="${tabGroupPrefix}-panel-"]`)
+    .querySelectorAll(`[id^="${tabGroupPrefix}-panel-"]`)
     .forEach((p) => {
       p.setAttribute('hidden', '');
       p.classList.add('hidden');
@@ -105,18 +108,26 @@ export default async function decorate(block) {
   //  && !block.classList.contains('find-plan');
     && (block.classList.contains('header-tab') || !!block.closest('header'));
 
+  if (isMobile) {
+    tabList.setAttribute('role', 'presentation');
+    tabList.removeAttribute('aria-label');
+    tabList.classList.add('tabs-accordion');
+  }
+
   tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}-${i + 1}`;
 
     // Create the list item
     const li = document.createElement('li');
+    li.setAttribute('role', 'presentation');
 
     // Build the tab button
     const tabItem = document.createElement('button');
+    tabItem.classList.add('tab-control');
     tabItem.id = tabId;
-    tabItem.role = 'tab';
-    tabItem.ariaSelected = i === 0;
+    tabItem.role = isMobile ? 'button' : 'tab';
+    if (!isMobile) tabItem.ariaSelected = i === 0;
     tabItem.ariaExpanded = i === 0; // Accordion state (WCAG 2.2 - 4.1.2 Name, Role, Value)
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
@@ -127,7 +138,7 @@ export default async function decorate(block) {
       // Extract just the path from the full URL (removes domain and query parameters)
       const [imageUrl] = image.split('?');
       imgElement.src = new URL(imageUrl).pathname;
-      imgElement.alt = tabLabel;
+      imgElement.alt = '';
       imgElement.classList.add('tab-image');
       tabItem.appendChild(imgElement);
     }
@@ -154,7 +165,7 @@ export default async function decorate(block) {
     // Update the tab panel attributes
     tabPanel.id = tabPanelId;
     tabPanel.setAttribute('aria-labelledby', tabId);
-    tabPanel.role = 'tabpanel';
+    tabPanel.role = isMobile ? 'region' : 'tabpanel';
     tabPanel.tabIndex = -1; // Allow programmatic focus on tab panels (WCAG 2.2 - 2.4.3 Focus Order)
 
     // Desktop behavior: first panel shown, others hidden
@@ -175,7 +186,7 @@ export default async function decorate(block) {
       // Mobile: append panel inside li for accordion
       li.appendChild(tabPanel);
       // On mobile, deselect first tab and keep panel hidden
-      tabItem.setAttribute('aria-selected', 'false');
+      tabItem.tabIndex = 0;
       tabItem.setAttribute('aria-expanded', 'false');
     }
 
@@ -194,6 +205,7 @@ export default async function decorate(block) {
       .join(' ');
     // build the tabs as buttons and append them to the tab list
     const tabItem = document.createElement('button');
+    tabItem.classList.add('tab-control');
     tabItem.id = tabId;
     tabItem.role = 'tab';
     tabItem.tabIndex = 0;
@@ -201,6 +213,7 @@ export default async function decorate(block) {
     tabItem.textContent = 'All';
     tabItem.addEventListener('click', changeTabs);
     const li = document.createElement('li');
+    li.setAttribute('role', 'presentation');
     li.appendChild(tabItem);
     tabList.prepend(li);
     tabs.unshift(tabItem);
@@ -211,6 +224,10 @@ export default async function decorate(block) {
   // Enable arrow navigation between tabs in the tab list (WCAG 2.2 - 2.1.1 Keyboard)
   let tabFocus = 0;
   tabList.addEventListener('keydown', (e) => {
+    if (tabList.classList.contains('tabs-accordion')) return;
+    const currentIndex = tabs.indexOf(e.target);
+    if (currentIndex === -1) return;
+    tabFocus = currentIndex;
     // Move right
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
       e.preventDefault();

@@ -5,6 +5,8 @@ const EMAIL_MAX_LENGTH = 30;
 const MOBILE_LENGTH = 10;
 const MIN_AGE = 18;
 const MAX_AGE = 65;
+let formIndex = 0;
+const visibleDateInputs = new WeakMap();
 
 /**
  * Creates an HTML element with an optional class name
@@ -153,17 +155,29 @@ function validateConsent(checked) {
  */
 function setFieldError(wrapper, input, message) {
   if (!wrapper || !input) return;
+  const visibleInput = visibleDateInputs.get(input) || input;
   let error = wrapper.querySelector('.field-error');
   if (message) {
     if (!error) {
       error = createElement('p', 'field-error');
+      error.id = `${input.id}-error`;
+      error.setAttribute('aria-live', 'polite');
       wrapper.append(error);
     }
     error.textContent = message;
     input.setAttribute('aria-invalid', 'true');
+    visibleInput.setAttribute('aria-invalid', 'true');
+    const descriptions = new Set((visibleInput.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+    descriptions.add(error.id);
+    visibleInput.setAttribute('aria-describedby', [...descriptions].join(' '));
   } else if (error) {
+    const descriptions = (visibleInput.getAttribute('aria-describedby') || '').split(/\s+/)
+      .filter((id) => id && id !== error.id);
+    if (descriptions.length) visibleInput.setAttribute('aria-describedby', descriptions.join(' '));
+    else visibleInput.removeAttribute('aria-describedby');
     error.remove();
     input.removeAttribute('aria-invalid');
+    visibleInput.removeAttribute('aria-invalid');
   }
 }
 
@@ -256,6 +270,14 @@ async function initializeDatePicker(input) {
         input.dispatchEvent(new Event('input', { bubbles: true }));
       },
     });
+
+    if (instance.altInput) {
+      visibleDateInputs.set(input, instance.altInput);
+      instance.altInput.id = `${input.id}-display`;
+      instance.altInput.setAttribute('aria-label', 'Date of birth');
+      const label = dateFieldWrapper.querySelector('label');
+      if (label) label.htmlFor = instance.altInput.id;
+    }
 
     const currentMonthElement = instance.calendarContainer.querySelector('.flatpickr-current-month');
     if (!currentMonthElement) return;
@@ -375,6 +397,23 @@ export default async function decorate(block) {
     return;
   }
 
+  formIndex += 1;
+  [
+    [nameInput, 'Name', 'name'],
+    [emailInput, 'Email', 'email'],
+    [mobileInput, 'Phone number', 'tel'],
+    [dobInput, 'Date of birth', 'bday'],
+  ].forEach(([input, text, autocomplete]) => {
+    if (!input.id) input.id = `invest-${formIndex}-${autocomplete}`;
+    const wrapper = input.closest('.form-field');
+    const label = wrapper.querySelector('label') || createElement('label');
+    if (!label.textContent.trim()) label.textContent = text;
+    label.htmlFor = input.id;
+    label.classList.add('invest-field-label');
+    if (!label.parentElement) wrapper.prepend(label);
+    ensureAttr(input, 'autocomplete', autocomplete);
+  });
+
   ensureAttr(nameInput, 'placeholder', 'Enter your full name');
   ensureAttr(nameInput, 'maxlength', String(NAME_MAX_LENGTH));
   ensureAttr(nameInput, 'required', '');
@@ -482,7 +521,7 @@ export default async function decorate(block) {
     event.preventDefault();
     const results = validators.map((validate) => validate());
     if (results.includes(false)) {
-      const firstInvalid = form.querySelector('[aria-invalid="true"]');
+      const firstInvalid = form.querySelector('[aria-invalid="true"]:not([type="hidden"])');
       if (firstInvalid) firstInvalid.focus();
       return;
     }
@@ -502,6 +541,7 @@ export default async function decorate(block) {
     if (success) {
       form.replaceChildren();
       const successMessage = createElement('p', 'form-success-message');
+      successMessage.setAttribute('role', 'status');
       successMessage.textContent = 'Thank you! Our expert will get in touch with you shortly.';
       form.append(successMessage);
     } else {

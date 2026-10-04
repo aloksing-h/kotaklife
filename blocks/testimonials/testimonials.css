@@ -283,18 +283,35 @@
 }
 
 .testimonials.customer-say .swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   margin: 0 !important;
   border-radius: var(--radius-full, 999px);
-  border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+  border: none;
   background-color: transparent;
   opacity: 1;
   cursor: pointer;
   transition: width 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
+.testimonials.customer-say .swiper-pagination-bullet::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: auto;
+  border: 1px solid var(--foreground-fg-quaternary, #A4A7AE);
+  border-radius: var(--radius-full, 999px);
+}
+
 .testimonials.customer-say .swiper-pagination-bullet-active {
+  width: 32px;
+  height: 24px;
+  background: transparent;
+}
+
+.testimonials.customer-say .swiper-pagination-bullet-active::before {
   width: 32px;
   height: 6px;
   border: none;

@@ -1,4 +1,19 @@
 /* Container & Layered Outer Concentric Borders */
+.invest-form.block .form-field label.invest-field-label {
+    display: block;
+    color: #414651;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+
+.invest-form.block input:focus-visible,
+.invest-form.block select:focus-visible,
+.invest-form.block button:focus-visible {
+    outline: 2px solid #1e4679;
+    outline-offset: 2px;
+}
+
 .invest-form.section.invest-form-container {
     /* max-width: 1045px; */
     max-width: 1065px;

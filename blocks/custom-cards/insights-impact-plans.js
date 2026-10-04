@@ -3,6 +3,17 @@ export default async function initInsightsSwiper(block) {
   if (!ul) return;
 
   const cards = [...ul.children];
+  const sectionHeading = block.closest('.section')?.querySelector('.default-content-wrapper :is(h1, h2, h3)');
+  if (sectionHeading) {
+    const level = Number(sectionHeading.tagName.slice(1)) + 1;
+    block.querySelectorAll('.custom-cards-card-body h4').forEach((heading) => {
+      if (level >= 4) return;
+      const replacement = document.createElement(`h${level}`);
+      [...heading.attributes].forEach(({ name, value }) => replacement.setAttribute(name, value));
+      replacement.append(...heading.childNodes);
+      heading.replaceWith(replacement);
+    });
+  }
 
   // Click handler: clicking a card toggles it active and deactivates others
   cards.forEach((card, index) => {
@@ -60,6 +71,7 @@ export default async function initInsightsSwiper(block) {
         }
 
         block.swiperInstance = createSwiper(block, {
+          a11y: { slideRole: 'listitem' },
           slidesPerView: 'auto',
           spaceBetween: 8,
           grabCursor: true,

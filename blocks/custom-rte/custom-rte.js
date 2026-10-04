@@ -1,6 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-let autoSlideTimer = null;
 const SLIDE_DURATION = 3000; // 3 seconds per card
 
 function addLayerClasses(element, classNameMap, depth = 1) {
@@ -19,6 +18,10 @@ function addLayerClasses(element, classNameMap, depth = 1) {
  */
 function restartProgressAnimation(trackWrapper) {
   if (!trackWrapper) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    trackWrapper.classList.remove('animating');
+    return;
+  }
   trackWrapper.style.setProperty('--slide-duration', `${SLIDE_DURATION}ms`);
   trackWrapper.classList.remove('animating');
   // Trigger reflow to restart CSS keyframe animation
@@ -32,9 +35,8 @@ function restartProgressAnimation(trackWrapper) {
  * @param {Array<Element>} steps List of step button elements
  * @param {Element} trackWrapper Progress track line element
  * @param {number} activeIndex Currently selected card index
- * @param {Function} onAutoAdvance Callback for timer completion
  */
-function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance) {
+function updateCardStack(cards, steps, trackWrapper, activeIndex) {
   const total = cards.length;
 
   // 1. Update card stack layers and trigger background color transitions
@@ -60,6 +62,7 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
   steps.forEach((step, i) => {
     const isActive = i === activeIndex;
     step.classList.toggle('is-active', isActive);
+    step.setAttribute('aria-pressed', String(isActive));
 
     if (isActive && trackWrapper) {
       // Position the progress track immediately after the active step button
@@ -67,13 +70,7 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
     }
   });
 
-  // 3. Restart progress bar fill animation & auto-slide timer
   restartProgressAnimation(trackWrapper);
-
-  if (autoSlideTimer) clearInterval(autoSlideTimer);
-  autoSlideTimer = setInterval(() => {
-    if (onAutoAdvance) onAutoAdvance();
-  }, SLIDE_DURATION);
 }
 
 /**
@@ -149,12 +146,12 @@ export default async function decorate(block) {
 
     const handleNextSlide = () => {
       currentIndex = (currentIndex + 1) % cards.length;
-      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+      updateCardStack(cards, steps, trackWrapper, currentIndex);
     };
 
     const handlePrevSlide = () => {
       currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-      updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+      updateCardStack(cards, steps, trackWrapper, currentIndex);
     };
     let startX = 0;
     let startY = 0;
@@ -172,7 +169,7 @@ export default async function decorate(block) {
       stepBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         currentIndex = i;
-        updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+        updateCardStack(cards, steps, trackWrapper, currentIndex);
       });
 
       steps.push(stepBtn);
@@ -182,7 +179,7 @@ export default async function decorate(block) {
       cards[i].addEventListener('click', () => {
         if (justDragged) return;
         currentIndex = i;
-        updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+        updateCardStack(cards, steps, trackWrapper, currentIndex);
       });
     });
 
@@ -202,8 +199,6 @@ export default async function decorate(block) {
       diffX = 0;
       isDragging = true;
       isHorizontalSwipe = false;
-      // Pause timer while user is touching/holding the card
-      if (autoSlideTimer) clearInterval(autoSlideTimer);
     });
 
     cardsContainer.addEventListener('pointermove', (e) => {
@@ -214,10 +209,6 @@ export default async function decorate(block) {
         // Allow vertical page scroll without capturing
         if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
           isDragging = false;
-          if (autoSlideTimer) clearInterval(autoSlideTimer);
-          autoSlideTimer = setInterval(() => {
-            handleNextSlide();
-          }, SLIDE_DURATION);
           return;
         }
         // Horizontal swipe detected
@@ -263,14 +254,8 @@ export default async function decorate(block) {
           handlePrevSlide();
         } else {
           // Insufficient distance: snap back and resume
-          updateCardStack(cards, steps, trackWrapper, currentIndex, handleNextSlide);
+          updateCardStack(cards, steps, trackWrapper, currentIndex);
         }
-      } else {
-        // Just a tap without drag: restart timer
-        if (autoSlideTimer) clearInterval(autoSlideTimer);
-        autoSlideTimer = setInterval(() => {
-          handleNextSlide();
-        }, SLIDE_DURATION);
       }
     };
     cardsContainer.addEventListener('pointerup', finishDrag);
@@ -282,8 +267,7 @@ export default async function decorate(block) {
     block.textContent = '';
     block.append(cardsContainer, paginationWrapper);
 
-    // Initialize stack & start progress track timer
-    updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
+    updateCardStack(cards, steps, trackWrapper, 0);
   }
 
   if (block.closest('.section.calc-card')) {

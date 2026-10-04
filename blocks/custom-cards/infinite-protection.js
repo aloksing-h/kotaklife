@@ -16,6 +16,7 @@ export default async function decorateInfiniteProtection(block) {
   [...ul.children].forEach((li) => li.classList.add('swiper-slide'));
 
   block.swiperInstance = createSwiper(block, {
+    a11y: { slideRole: 'listitem' },
     slidesPerView: 1,
     spaceBetween: 18,
     grabCursor: true,

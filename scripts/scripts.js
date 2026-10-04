@@ -12,6 +12,7 @@ import {
   loadCSS,
   buildBlock,
 } from './aem.js';
+import { observeMissingImageAlt } from './accessibility-fix.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -374,6 +375,18 @@ async function loadAutoForm(doc) {
 }
 
 async function loadPage() {
+  observeMissingImageAlt(document);
+  const main = document.querySelector('main');
+  if (main && !document.querySelector('.skip-link')) {
+    if (!main.id) main.id = 'main-content';
+    main.tabIndex = -1;
+    const skipLink = document.createElement('a');
+    skipLink.className = 'skip-link';
+    skipLink.href = `#${main.id}`;
+    skipLink.textContent = 'Skip to main content';
+    skipLink.addEventListener('click', () => main.focus());
+    document.body.prepend(skipLink);
+  }
   await loadEager(document);
   await loadLazy(document);
   await loadAutoForm(document);
