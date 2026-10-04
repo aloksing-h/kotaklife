@@ -1,15 +1,15 @@
-import { createModal } from '../../blocks/modal/modal.js'; 
+import { createModal } from '../modal/modal.js';
 
 function addLongPressListener(element, callback, duration = 600) {
   let timer;
 
   const start = (e) => {
     if (!window.matchMedia('(max-width: 767px)').matches) {
-      return; 
+      return;
     }
 
-    if (e.type === 'mousedown' && e.button !== 0) return; 
-    
+    if (e.type === 'mousedown' && e.button !== 0) return;
+
     timer = setTimeout(() => {
       if (navigator.vibrate) navigator.vibrate(50);
       callback(e);
@@ -28,7 +28,7 @@ function addLongPressListener(element, callback, duration = 600) {
   element.addEventListener('mouseup', cancel);
   element.addEventListener('mouseleave', cancel);
   element.addEventListener('mousemove', cancel);
-  
+
   element.addEventListener('contextmenu', (e) => {
     if (window.matchMedia('(max-width: 767px)').matches) {
       e.preventDefault();
@@ -51,7 +51,7 @@ export default function decorateFormTab(block) {
 
   const tabButtons = Array.from(originalTabButtons).map((button) => {
     const cleanButton = button.cloneNode(true);
-    cleanButton.style.userSelect = 'none'; 
+    cleanButton.style.userSelect = 'none';
     cleanButton.style.webkitUserSelect = 'none';
     button.parentNode.replaceChild(cleanButton, button);
     return cleanButton;
@@ -65,7 +65,7 @@ export default function decorateFormTab(block) {
 
   // --- DESKTOP "SHOW MORE" LOGIC ---
   const tabListUl = block.querySelector('ul[role="tablist"]');
-  
+
   if (authoredShowMore && tabListUl) {
     const showMoreLi = document.createElement('li');
     showMoreLi.className = 'show-more-item';
@@ -73,7 +73,7 @@ export default function decorateFormTab(block) {
     const btnShowMore = document.createElement('button');
     btnShowMore.className = 'desktop-show-more-btn';
     btnShowMore.type = 'button';
-    
+
     // Pass the entire authored HTML (text + icon) into the button
     btnShowMore.innerHTML = authoredShowMore.innerHTML;
 
@@ -191,17 +191,17 @@ export default function decorateFormTab(block) {
     addLongPressListener(button, async () => {
       const modalContainer = document.createElement('div');
       modalContainer.className = 'dynamic-tab-modal';
-      
+
       const title = document.createElement('h3');
       title.textContent = 'Select Step';
       modalContainer.appendChild(title);
 
       const list = document.createElement('ul');
-      
+
       tabButtons.forEach((btn, btnIndex) => {
         const li = document.createElement('li');
         const link = document.createElement('a');
-        
+
         link.textContent = btn.textContent.trim();
         link.href = '#';
 
@@ -215,11 +215,11 @@ export default function decorateFormTab(block) {
           const activeDialog = document.querySelector('dialog[open]');
           if (activeDialog) activeDialog.close();
         });
-        
+
         li.appendChild(link);
         list.appendChild(li);
       });
-      
+
       modalContainer.appendChild(list);
 
       const { showModal } = await createModal([modalContainer]);
