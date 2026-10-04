@@ -463,15 +463,24 @@
             ]
           },
           {
-            "name": "section vh",
+            "name": "Height Adjustment",
             "children": [
               {
-                "name": "100vh",
-                "value": "100vh"
+                "name": "Full Height",
+                "value": "full-height"
               },
               {
-                "name": "50vh",
-                "value": "50vh"
+                "name": "Half Height",
+                "value": "half-height"
+              }
+            ]
+          },
+          {
+            "name": "Scroll Animation",
+            "children": [
+              {
+                "name": "Scroll Animation Section",
+                "value": "animation-section"
               }
             ]
           },
