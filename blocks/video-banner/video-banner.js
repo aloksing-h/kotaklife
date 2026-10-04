@@ -115,6 +115,28 @@ export default async function decorate(block) {
 
     // Keep track of the currently rendered single tag
     let activeMediaEl = null;
+    let playbackPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const syncPlaybackState = () => {
+      const paused = activeMediaEl?.paused ?? true;
+      mediaWrapper.setAttribute('aria-pressed', String(paused));
+      mediaWrapper.title = paused ? 'Resume background animation' : 'Pause background animation';
+    };
+
+    const togglePlayback = () => {
+      if (activeMediaEl?.tagName !== 'VIDEO') return;
+      playbackPaused = !activeMediaEl.paused;
+      if (playbackPaused) activeMediaEl.pause();
+      else activeMediaEl.play().catch(() => {});
+    };
+
+    mediaWrapper.addEventListener('click', togglePlayback);
+    mediaWrapper.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        togglePlayback();
+      }
+    });
 
     // Function to render or update the single media tag based on screen width
     const renderResponsiveMedia = () => {
@@ -126,7 +148,13 @@ export default async function decorate(block) {
 
       // Handle Image Fallback
       if (currentData.type === 'image') {
+        mediaWrapper.removeAttribute('role');
+        mediaWrapper.removeAttribute('tabindex');
+        mediaWrapper.removeAttribute('aria-label');
+        mediaWrapper.removeAttribute('aria-pressed');
+        mediaWrapper.removeAttribute('title');
         if (activeMediaEl !== currentData.el) {
+          if (activeMediaEl?.tagName === 'VIDEO') activeMediaEl.pause();
           mediaWrapper.innerHTML = ''; // clear wrapper
           mediaWrapper.appendChild(currentData.el);
           activeMediaEl = currentData.el;
@@ -136,12 +164,15 @@ export default async function decorate(block) {
 
       // Handle Video (The core requirement)
       if (currentData.type === 'video') {
+        mediaWrapper.setAttribute('role', 'button');
+        mediaWrapper.setAttribute('tabindex', '0');
+        mediaWrapper.setAttribute('aria-label', 'Pause background animation');
         if (activeMediaEl && activeMediaEl.tagName === 'VIDEO') {
         // If the single video tag already exists, just update its source and reload
           if (activeMediaEl.getAttribute('src') !== currentData.src) {
             activeMediaEl.setAttribute('src', currentData.src);
             activeMediaEl.load(); // Forces the browser to load the new video src
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (!playbackPaused && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
               activeMediaEl.play().catch(() => {});
             }
           }
@@ -149,10 +180,12 @@ export default async function decorate(block) {
         // Create the single video tag for the first time
           mediaWrapper.innerHTML = ''; // clear wrapper
           const video = document.createElement('video');
-          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          if (!playbackPaused && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             video.setAttribute('autoplay', '');
           }
-          video.controls = true;
+          video.controls = false;
+          video.addEventListener('play', syncPlaybackState);
+          video.addEventListener('pause', syncPlaybackState);
           video.setAttribute('aria-label', 'Kotak Life background animation');
           video.setAttribute('loop', '');
           video.setAttribute('muted', '');
@@ -164,6 +197,7 @@ export default async function decorate(block) {
           mediaWrapper.appendChild(video);
           activeMediaEl = video;
         }
+        syncPlaybackState();
       }
     };
 

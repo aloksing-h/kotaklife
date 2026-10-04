@@ -34,6 +34,15 @@ main >.section.video-banner-container:first-of-type{
     height: 86dvh;
 }
 
+.video-banner .video-banner-media[role='button'] {
+    cursor: pointer;
+}
+
+.video-banner .video-banner-media:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: -6px;
+}
+
 /* Let the video drive the height based on its natural aspect ratio */
 .autoplay .video-banner-media video,
 .autoplay .video-banner-media picture,
