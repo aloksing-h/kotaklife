@@ -12,8 +12,10 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const isFindPlan = tabList.closest('.find-plan');
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  // const isFindPlan = tabList.closest('.find-plan');
+  // const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  const isHeaderTab = tabList.closest('.header-tab, header');
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && isHeaderTab;
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
@@ -98,10 +100,12 @@ export default async function decorate(block) {
     });
   });
 
+  // Mobile accordion (panel inside li) applies only to header tabs
   const isMobile = !window.matchMedia('(min-width: 900px)').matches
-    && !block.classList.contains('find-plan');
+  //  && !block.classList.contains('find-plan');
+    && (block.classList.contains('header-tab') || !!block.closest('header'));
 
-  tabPanels.forEach(([tabLabel, tabPanel], i) => {
+  tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}-${i + 1}`;
 
@@ -116,6 +120,17 @@ export default async function decorate(block) {
     tabItem.ariaExpanded = i === 0; // Accordion state (WCAG 2.2 - 4.1.2 Name, Role, Value)
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
+
+    // Add image if available
+    if (image) {
+      const imgElement = document.createElement('img');
+      // Extract just the path from the full URL (removes domain and query parameters)
+      const [imageUrl] = image.split('?');
+      imgElement.src = new URL(imageUrl).pathname;
+      imgElement.alt = tabLabel;
+      imgElement.classList.add('tab-image');
+      tabItem.appendChild(imgElement);
+    }
 
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));

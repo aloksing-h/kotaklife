@@ -68,6 +68,33 @@ function createStatItem(element) {
 }
 
 /**
+ * Optimizes a background image URL to use AEM's modern webply format and target width.
+ * @param {string} url The authored image URL
+ * @param {string} [width] Target width (e.g. '2000' for desktop, '750' for mobile)
+ * @returns {string} The optimized URL requesting webply format
+ */
+function getOptimizedBgUrl(url, width = '750') {
+  if (!url) return '';
+  try {
+    const parsed = new URL(url, window.location.href);
+    parsed.searchParams.set('format', 'webply');
+    parsed.searchParams.set('optimize', 'medium');
+    if (width) parsed.searchParams.set('width', width);
+    return parsed.href;
+  } catch {
+    let optUrl = url.replace(/format=[a-z0-9]+/i, 'format=webply');
+    if (!optUrl.includes('format=webply')) {
+      const sep = optUrl.includes('?') ? '&' : '?';
+      optUrl += `${sep}format=webply&optimize=medium`;
+    }
+    if (width && optUrl.includes('width=')) {
+      optUrl = optUrl.replace(/width=\d+/i, `width=${width}`);
+    }
+    return optUrl;
+  }
+}
+
+/**
  * Decorates the banner-v2 block
  * @param {Element} block The banner-v2 block element
  */
@@ -82,10 +109,10 @@ export default async function decorate(block) {
     const desktopBg = section.dataset.backgroundImage;
     const mobileBg = section.dataset.backgroundimageMobile;
     if (desktopBg) {
-      section.style.setProperty('--section-bg-desktop', `url('${desktopBg}')`);
+      section.style.setProperty('--section-bg-desktop', `url('${getOptimizedBgUrl(desktopBg, '2000')}')`);
     }
     if (mobileBg) {
-      section.style.setProperty('--section-bg-mobile', `url('${mobileBg}')`);
+      section.style.setProperty('--section-bg-mobile', `url('${getOptimizedBgUrl(mobileBg, '750')}')`);
     }
   }
 
