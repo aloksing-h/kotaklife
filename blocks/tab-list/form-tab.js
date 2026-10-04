@@ -61,7 +61,39 @@ export default function decorateFormTab(block) {
 
   const authoredPrev = lastPanel ? (lastPanel.querySelector('a[title="Previous"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Previous'))) : null;
   const authoredNext = lastPanel ? (lastPanel.querySelector('a[title="Next"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Next'))) : null;
+  const authoredShowMore = lastPanel ? (lastPanel.querySelector('a[title="Show More"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.toLowerCase().includes('show more'))) : null;
 
+  // --- DESKTOP "SHOW MORE" LOGIC ---
+  const tabListUl = block.querySelector('ul[role="tablist"]');
+  
+  if (authoredShowMore && tabListUl) {
+    const showMoreLi = document.createElement('li');
+    showMoreLi.className = 'show-more-item';
+
+    const btnShowMore = document.createElement('button');
+    btnShowMore.className = 'desktop-show-more-btn';
+    btnShowMore.type = 'button';
+    
+    // Pass the entire authored HTML (text + icon) into the button
+    btnShowMore.innerHTML = authoredShowMore.innerHTML;
+
+    btnShowMore.addEventListener('click', (e) => {
+      e.preventDefault();
+      block.classList.add('tabs-expanded');
+    });
+
+    showMoreLi.appendChild(btnShowMore);
+    tabListUl.appendChild(showMoreLi);
+
+    const wrapper = authoredShowMore.closest('p');
+    if (wrapper) wrapper.remove();
+  }
+
+  if (tabButtons.length > 8) {
+    block.classList.add('has-many-tabs');
+  }
+
+  // --- INJECT MOBILE ARROW NAVIGATION ---
   const mobileNav = document.createElement('div');
   mobileNav.className = 'mobile-tab-arrows';
 
@@ -138,7 +170,6 @@ export default function decorateFormTab(block) {
   switchTab(activeIndex > -1 ? activeIndex : 0);
 
   tabButtons.forEach((button, i) => {
-    
     button.addEventListener('click', (e) => {
       e.preventDefault();
       const isAlreadyActive = button.getAttribute('aria-selected') === 'true';
@@ -174,7 +205,6 @@ export default function decorateFormTab(block) {
         link.textContent = btn.textContent.trim();
         link.href = '#';
 
-        // Replaced inline styles with a class assignment
         if (btn.getAttribute('aria-selected') === 'true') {
           link.classList.add('active-tab-link');
         }

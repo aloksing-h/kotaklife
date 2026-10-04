@@ -50,7 +50,7 @@
     transform: rotate(180deg);
 }
 
-.block.tab-list.insurance-content-tab ul[role="tablist"] button {
+.block.tab-list.insurance-content-tab ul[role="tablist"] button:not(.desktop-show-more-btn) {
   width: 100%;
   text-align: left;
   padding: var(--spacing-xl, 16px);
@@ -67,8 +67,8 @@
   font-weight: var(--font-weight-medium, 500);
 }
 
-/* Default Right Chevron (Gray) */
-.block.tab-list.insurance-content-tab ul[role="tablist"] button::after {
+/* Default Right Chevron (Gray), excluded for the show-more button which has its own icon */
+.block.tab-list.insurance-content-tab ul[role="tablist"] button:not(.desktop-show-more-btn)::after {
   content: "";
   width: var(--spacing-2xl, 20px);
   height: var(--spacing-2xl, 20px);
@@ -244,6 +244,11 @@
   margin-top: var(--spacing-2xl, 20px);
 }
 
+/* Hidden completely on mobile */
+.block.tab-list.insurance-content-tab .show-more-item {
+  display: none;
+}
+
 
 /* =========================================
    TABLET / DESKTOP LAYOUT (768px and up) 
@@ -290,8 +295,9 @@
   }
   
   /* OVERRIDE: Match the mobile specificity exactly to reveal inactive tabs on desktop */
-  .block.tab-list.insurance-content-tab ul[role="tablist"] li,
-  .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step) {
+  /* Exclude .show-more-item so its visibility stays controlled by the has-many-tabs rules below */
+  .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.show-more-item),
+  .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step):not(.show-more-item) {
     display: block;
   }
   
@@ -302,6 +308,46 @@
 
   .section.tab-list-container:has(.tab-list.block.insurance-content-tab) {
     margin-top: 50px;
+  }
+
+  .block.tab-list.insurance-content-tab.has-many-tabs:not(.tabs-expanded) ul[role="tablist"] li:nth-child(n+9):not(.show-more-item) {
+    display: none;
+  }
+
+  /* Show the 'Show More' button only if > 8 tabs and not expanded */
+  .block.tab-list.insurance-content-tab.has-many-tabs:not(.tabs-expanded) .show-more-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Style the button container */
+  .block.tab-list.insurance-content-tab .desktop-show-more-btn {
+    background: none;
+    border: none;
+    color: var(--gray-900, #181D27);
+    font-weight: 800;
+    font-size: var(--button-2-font-size);
+    line-height: var(--button-2-line-height);
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Spacing between authored text and authored icon */
+    cursor: pointer;
+    padding: 6px 0;
+  }
+
+  /* Control the size and alignment of the authored SVG icon */
+  .block.tab-list.insurance-content-tab .desktop-show-more-btn .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .block.tab-list.insurance-content-tab .desktop-show-more-btn .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
@@ -318,7 +364,7 @@
     gap: var(--spacing-xs, 4px);
   }
 
-  .block.tab-list.insurance-content-tab ul[role="tablist"] button{
+  .block.tab-list.insurance-content-tab ul[role="tablist"] button:not(.desktop-show-more-btn){
     padding: var(--spacing-2xl, 20px);
   }
 
