@@ -1,38 +1,10 @@
-/* .pulse-animation picture {
-  display: block;
-  line-height: 0;
-}
-
-.pulse-animation img {
+.pulse-animation {
   width: 100%;
-  height: auto;
-  animation: pulse-animation-pulse 2.4s ease-in-out infinite;
+  position: relative;
 }
 
-@keyframes pulse-animation-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
 
-  50% {
-    opacity: 0.82;
-    transform: scale(1.04);
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .pulse-animation img {
-    animation: none;
-  }
-} */
-
-body {
-  margin: 0;
-  background-color: #f0f0f0;
-  overflow-x: hidden;
-}
 
 .page-container {
   position: relative;
@@ -69,11 +41,14 @@ body {
   pointer-events: none; /* Lets you click things underneath the SVG */
 }
 
-.arrow {
+.svg-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  margin: 0;
+  padding: 0;
+  z-index: 100; /* Ensure it stays above other content */
+  display: flex;
 }
 
 .testpath {
