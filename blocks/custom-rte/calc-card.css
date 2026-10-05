@@ -40,7 +40,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     bottom: 0;
     top: 0;
     height: 36px;
-    
+
     /* transition: left 0.3s ease, width 0.3s ease; */
     transition-property: left, width;
     transition-duration: 320ms;
@@ -231,11 +231,11 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     height: 24px;
 }
 
-.section.calc-card .block .card-inner-2 .card-child-3 .card-item-2{
+.section.calc-card .block .card-inner-2 .card-child-3 .card-item-2 {
     display: none;
 }
 
-.section.calc-card .block .card-inner-2 .card-child-3 *{
+.section.calc-card .block .card-inner-2 .card-child-3 * {
     width: 100%;
     height: 100%;
     display: flex;
@@ -392,11 +392,23 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     }
 
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-mask {
-        /* width: 100%; */
+        width: max-content;
+        max-width: 100%;
         margin: 0 auto;
+        min-width: 0;
         border-radius: var(--radius-full, 999px);
-        
-        /* overflow-x: auto; */
+
+        /* overflow-x: auto;
+        overflow-y: hidden; */
+
+        /* overflow: auto hidden; */
+        overflow: hidden;
+    }
+
+    .section:has(.calc-card) .tab-list ul {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
     }
 
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-paddles {
@@ -462,16 +474,17 @@ main .section:has(.calc-card)>.tab-list-wrapper {
         border: 1px solid var(--red-600);
     }
 
-    .section.calc-card .block .card-calc:hover .card-inner-2 .card-child-3 .card-item-1{
+    .section.calc-card .block .card-calc:hover .card-inner-2 .card-child-3 .card-item-1 {
         display: none;
     }
 
-    .section.calc-card .block .card-calc:hover .card-inner-2 .card-child-3 .card-item-2{
+    .section.calc-card .block .card-calc:hover .card-inner-2 .card-child-3 .card-item-2 {
         display: flex;
     }
 }
 
 @media screen and (768px <=width <=1000px) {
+
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         /* max-width: 30.637%; */
@@ -480,6 +493,7 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (1000px <=width <=1200px) {
+
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         max-width: 23.4%;
