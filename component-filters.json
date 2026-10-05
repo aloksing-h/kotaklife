@@ -41,7 +41,8 @@
       "banner-v2",
       "accessibility-button",
       "calculators",
-      "result-summary-panel"
+      "result-summary-panel",
+      "result-summary-with-canvas"
     ]
   },
   {
