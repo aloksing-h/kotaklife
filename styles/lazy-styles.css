@@ -394,17 +394,17 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
   background: linear-gradient(0deg, var(--background-bg-tertiary, #F5F5F5) 0%, var(--background-bg-tertiary, #F5F5F5) 100%), var(--background-bg-active, #FAFAFA);
 }
 
-.visual-pulse.bg-white.section{
+.visual-pulse.bg-white.section {
   background: var(--base-white);
   padding: 0;
 }
 
-.visual-pulse.bg-white.section .default-content-wrapper{
+.visual-pulse.bg-white.section .default-content-wrapper {
   max-width: 100%;
   padding: 0;
 }
 
-.visual-pulse.bg-white.section picture{
+.visual-pulse.bg-white.section picture {
   width: 100%;
   height: auto;
 }
@@ -453,7 +453,7 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
     padding-top: 22px;
   }
 
-  .visual-pulse.bg-white.section{
+  .visual-pulse.bg-white.section {
     margin-bottom: -86px;
   }
 
@@ -464,34 +464,130 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
   .visual-pulse.section .default-content-wrapper p:first-of-type {
     margin: 0;
-    
+
     /* margin-bottom: -8px; */
   }
 
-  .visual-pulse.section .default-content-wrapper p picture{
+  .visual-pulse.section .default-content-wrapper p picture {
     width: 100%;
     height: 100%;
   }
 
-  .visual-pulse.section .default-content-wrapper p picture img{
+  .visual-pulse.section .default-content-wrapper p picture img {
     width: 100%;
     height: 100%;
   }
 
-  .visual-pulse.bg-white.section .default-content-wrapper{
+  .visual-pulse.bg-white.section .default-content-wrapper {
     height: 341px;
   }
 
-  .visual-pulse.bg-white.section .default-content-wrapper p:first-of-type{
-  width: 100%;
-  height: 100%;
+  .visual-pulse.bg-white.section .default-content-wrapper p:first-of-type {
+    width: 100%;
+    height: 100%;
   }
 
-  .visual-pulse.bg-white.section img{
+  .visual-pulse.bg-white.section img {
     height: 100%;
     width: 100%;
     object-fit: fill;
     object-position: right -30px;
   }
 
+}
+
+
+/* Custom RTE Block - Common Text With variation */
+.block.custom-rte.cmmn-txt >div>div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.block.custom-rte.cmmn-txt >div>div h2 {
+  margin: 0;
+  color: var(--text-text-primary, #181D27);
+  font-family: var(--font-family-font-family-display, Manrope);
+  font-size: var(--font-size-heading-3, 32px);
+  font-weight: 300;
+  line-height: var(--line-height-heading-3, 36px);
+}
+
+.block.custom-rte.cmmn-txt >div>div h2 strong {
+  font-weight: 600;
+  display: inline-block;
+}
+
+.block.custom-rte.cmmn-txt >div>div p {
+  margin: 0;
+  color: var(--text-text-tertiary, #535862);
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: var(--font-size-body-2, 14px);
+  font-weight: 500;
+  line-height: var(--line-height-body-1, 18px);
+}
+
+/* Column Variation */
+.block.custom-rte.cmmn-txt.cmmn-txt-column >div>div h2,
+.block.custom-rte.cmmn-txt.cmmn-txt-column >div>div p {
+  text-align: center;
+}
+
+/* Row Variation */
+.block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2,
+.block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+  text-align: left;
+}
+
+@media screen and (width >=768px) {
+  .block.custom-rte.cmmn-txt >div>div {
+    margin-bottom: 50px;
+  }
+
+  .block.custom-rte.cmmn-txt >div>div h2 {
+    font-size: var(--font-size-heading-1, 48px);
+    line-height: var(--line-height-heading-1, 60px);
+  }
+
+  .block.custom-rte.cmmn-txt >div>div p {
+    font-size: var(--font-size-body-1, 16px);
+    line-height: var(--line-height-sub-heading-2, 20px);
+  }
+
+  /* Column Variation */
+  .block.custom-rte.cmmn-txt.cmmn-txt-column >div>div {
+    max-width: 726px;
+    width: 100%;
+    margin: 0 auto 50px;
+  }
+
+  /* Row Variation */
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2 {
+    max-width: 633px;
+    width: 100%;
+  }
+
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+    width: 100%;
+    max-width: 353px;
+  }
+}
+
+@media screen and (768px <=width <=850px) {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div {
+    flex-direction: column;
+  }
+
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2,
+  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+    max-width: 100%;
+  }
 }
