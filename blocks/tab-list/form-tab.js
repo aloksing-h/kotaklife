@@ -37,6 +37,21 @@ function addLongPressListener(element, callback, duration = 600) {
 }
 
 export default function decorateFormTab(block) {
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+  
+  const handleViewChange = (e) => {
+    if (e.matches) {
+      block.classList.add('mobile-view');
+    } else {
+      block.classList.remove('mobile-view');
+    }
+  };
+
+  // Set initial state
+  handleViewChange(mediaQuery);
+
+  // Listen for window resize events
+  mediaQuery.addEventListener('change', handleViewChange);
   const originalTabButtons = block.querySelectorAll('button[role="tab"]');
   const tabPanels = block.querySelectorAll('div[role="tabpanel"]');
   const tablistWrapper = block.querySelector('.tablist-wrapper');

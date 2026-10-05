@@ -218,7 +218,9 @@
   color: var(--gray-900);
   font-weight: var(--font-weight-medium, 500);
 }
-
+.block.tab-list.insurance-content-tab.mobile-view ul[role="tablist"] button[aria-selected="true"]::after{
+  transform: rotate(180deg);
+}
 /* Active Tab Chevron (Red) */
 .block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]::after {
   transform: rotate(270deg);
