@@ -364,6 +364,7 @@ export default async function decorate(block) {
     tabPaddles.append(paddlePrev, paddleNext);
     tabWrapper.append(tabMask, tabPaddles);
     tabListWrapper.prepend(tabWrapper);
+    tabIndicator.style.visibility = 'hidden';
 
     const activateAdjacentTab = (direction) => {
       const tabItems = [...tabUl.querySelectorAll(':scope > li > [role="tab"]')];
@@ -378,7 +379,10 @@ export default async function decorate(block) {
 
     const measureInitialIndicator = () => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => updateTabIndicator(tabUl, true));
+        requestAnimationFrame(() => {
+          updateTabIndicator(tabUl, true);
+          tabIndicator.style.removeProperty('visibility');
+        });
       });
     };
     const measureSelectedIndicator = () => {
@@ -390,7 +394,10 @@ export default async function decorate(block) {
     tabUl.querySelectorAll(':scope > li > [role="tab"]').forEach((tab) => {
       indicatorResizeObserver.observe(tab);
     });
-    measureInitialIndicator();
-    document.fonts?.ready.then(measureInitialIndicator);
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(measureInitialIndicator);
+    } else {
+      measureInitialIndicator();
+    }
   }
 }
