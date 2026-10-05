@@ -1,72 +1,129 @@
 /* ==========================================================================
-   Columns Variant: Steps (How it Works)
+   Base Layout: Side-by-Side Columns
    ========================================================================== */
-
-/* Left Column: Vertical alignment */
-.columns.steps > div > div:first-child {
+.columns-v2 > div {
   display: flex;
   flex-direction: column;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 900px) {
+  .columns-v2 > div {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .columns-v2 > div > div {
+    flex: 1; /* Forces both sides to take exactly 50% width */
+  }
+}
+
+/* ==========================================================================
+   Steps Layout Variant (.steps)
+   ========================================================================== */
+
+/* --- Left Column: Typography & Button --- */
+.columns-v2.steps > div > div:first-child {
+  padding-right: 2rem;
+}
+
+.columns-v2.steps > div > div:first-child h2 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.columns-v2.steps > div > div:first-child h2 strong {
+  font-weight: 700;
+  display: block;
+}
+
+/* Convert standard link into the Red Kotak Button */
+.columns-v2.steps > div > div:first-child a {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e31837; /* Kotak Red */
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  gap: 12px;
+  transition: background-color 0.2s;
+}
+
+.columns-v2.steps > div > div:first-child a:hover {
+  background-color: #c0142e;
+}
+
+/* Add the circular arrow icon inside the button */
+.columns-v2.steps > div > div:first-child a::after {
+  content: '→';
+  background-color: #ffffff;
+  color: #e31837;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding-right: 40px;
+  font-weight: bold;
 }
 
-.columns.steps > div > div:first-child h2 {
-  font-size: 42px;
-  font-weight: 300; /* For the thin "How does Term" text */
-  margin-bottom: 16px;
-}
-
-.columns.steps > div > div:first-child h2 strong {
-  font-weight: 700; /* For the bold "Insurance work?" */
-}
-
-/* Right Column: Custom Numbered List */
-.columns.steps > div > div:nth-child(2) ol {
-  list-style-type: none; /* Hide default numbers */
-  counter-reset: step-counter; /* Initialize custom counter */
+/* --- Right Column: Numbered Circles --- */
+.columns-v2.steps > div > div:nth-child(2) ol {
+  list-style-type: none; /* Hides default 1, 2, 3 */
+  counter-reset: step-counter; /* Starts custom counter */
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
 }
 
-.columns.steps > div > div:nth-child(2) ol li {
+.columns-v2.steps > div > div:nth-child(2) ol li {
   position: relative;
-  padding-left: 76px; /* Make room for the circle */
+  padding-left: 80px; /* Makes room for the circle */
   counter-increment: step-counter;
 }
 
-/* The Blue Gradient Circle */
-.columns.steps > div > div:nth-child(2) ol li::before {
-  content: "0" counter(step-counter); /* Adds the leading zero */
+/* Custom Gradient Circles (01, 02, 03...) */
+.columns-v2.steps > div > div:nth-child(2) ol li::before {
+  content: "0" counter(step-counter); /* Adds leading zero */
   position: absolute;
   left: 0;
   top: 0;
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e6f0ff 0%, #ffffff 100%);
-  border: 1px solid #b3d1ff;
+  background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%);
+  border: 1px solid #cce0ff;
   color: #0056b3;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1.1rem;
 }
 
 /* Step Typography */
-.columns.steps > div > div:nth-child(2) ol li strong {
+.columns-v2.steps > div > div:nth-child(2) ol li strong {
   display: block;
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 4px;
+  font-size: 1.15rem;
+  color: #222;
+  margin-bottom: 0.25rem;
 }
 
-.columns.steps > div > div:nth-child(2) ol li p {
+.columns-v2.steps > div > div:nth-child(2) ol li p {
   margin: 0;
   color: #666;
-  font-size: 14px;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
