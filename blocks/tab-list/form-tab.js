@@ -61,7 +61,7 @@ export default function decorateFormTab(block) {
 
   const authoredPrev = lastPanel ? (lastPanel.querySelector('a[title="Previous"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Previous'))) : null;
   const authoredNext = lastPanel ? (lastPanel.querySelector('a[title="Next"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Next'))) : null;
-  
+
   // Fetch both Show More and Show Less authored links
   const authoredShowMore = lastPanel ? (lastPanel.querySelector('a[title="Show More"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.toLowerCase().includes('show more'))) : null;
   const authoredShowLess = lastPanel ? (lastPanel.querySelector('a[title="Show Less"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.toLowerCase().includes('show less'))) : null;
@@ -100,7 +100,7 @@ export default function decorateFormTab(block) {
     // Clean up both authored paragraphs from the DOM
     const wrapperMore = authoredShowMore.closest('p');
     if (wrapperMore) wrapperMore.remove();
-    
+
     if (authoredShowLess) {
       const wrapperLess = authoredShowLess.closest('p');
       if (wrapperLess) wrapperLess.remove();

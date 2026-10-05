@@ -210,7 +210,7 @@
 .block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"] {
   background-color: var(--blue-100, #D1E9FF); 
   border-color: var(--brand-blue-500, #1E4679);
-  color: #1e3a8a;
+  color: var(--gray-900);
   font-weight: var(--font-weight-medium, 500);
 }
 
@@ -323,7 +323,7 @@
   box-shadow: inset 0 0 7px 0 rgb(0 0 0 / 10%); 
   color: var(--brand-blue-500, #1E4679); 
   font-weight: var(--font-weight-semibold, 600);
-  border-radius: var(--radius-sm, 6px);
+  border-radius: var(--radius-md, 8px);
   width: 100%;
   height: 100%;
   max-width: 28px;
@@ -409,6 +409,7 @@
 
   .block.tab-list.insurance-content-tab .default-content-wrapper ol{
     margin: var(--spacing-3xl, 24px) 0;
+     gap: var(--spacing-2xl,20px);
   }
 
   .block.tab-list.insurance-content-tab .default-content-wrapper > p{
@@ -423,6 +424,7 @@
   .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step, .show-more-item) {
     display: block;
   }
+
   .block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]{
     pointer-events: none;
   }
@@ -430,6 +432,10 @@
   /* Hide mobile arrow navigation on desktop/tablet */
   .block.tab-list.insurance-content-tab .mobile-tab-arrows {
     display: none; 
+  }
+
+  .block.tab-list.insurance-content-tab ul[role="tablist"] button:not(.desktop-show-more-btn)::after{
+    transform: rotate(270deg);
   }
 
   .section.tab-list-container:has(.tab-list.block.insurance-content-tab) {
