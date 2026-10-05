@@ -5,10 +5,63 @@
 
 .calculator-grid {
     display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
-.calculator-grid  .calc-card:first-child{
+.calculator-grid .calc-card:first-child{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 12px;
+    border-radius: 8px;
+border: 1px solid #EEE;
+background: #FFF;
+max-height: 356px;
+overflow: auto;
+}
+
+.calculator-grid .calc-card:last-child{
+    width: 100%;
+}
+
+.age-inputs-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px 6px;
+}
+
+.two-columns-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.two-columns-grid .slider-box {
+    width: 100%;
+    padding: 16px;
+}
+
+.age-inputs-row .field-group {
+    width: 48.9%;
+}
+
+.age-inputs-row .field-group:last-child {
+    width: 100%;
+}
+
+@media (width >= 900px) {
+    .calculator-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.calculator-grid .calc-card:first-child{
     width: 57.5%;
     display: flex;
     flex-direction: column;
@@ -17,14 +70,17 @@
     border-radius: 8px;
 border: 1px solid #EEE;
 background: #FFF;
+max-height: unset;
+overflow: visible;
 }
 
-.calculator-grid  .calc-card:last-child{
+.calculator-grid .calc-card:last-child{
     width: 40.6%;
 }
 
 .age-inputs-row {
     display: flex;
+    flex-wrap: nowrap;
     align-self: center;
     justify-content: space-between;
     width: 100%;
@@ -32,10 +88,12 @@ background: #FFF;
 
 .two-columns-grid {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
 .two-columns-grid .slider-box {
     width: 49%;
     padding: 16px;
+}
 }

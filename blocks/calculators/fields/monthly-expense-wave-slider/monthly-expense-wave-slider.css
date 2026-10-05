@@ -1,6 +1,6 @@
 /* Path: fields/monthly-expense-wave-slider/monthly-expense-wave-slider.css */
 .slider-box {
-    padding: 16px 16px 29px;
+    padding: 12px;
     border-radius: 8px;
 border: 1px solid #D5D7DA;
 }
@@ -168,4 +168,10 @@ line-height: 14px;
   .wave-slider-field .wave-slider-value-display {
     font-size: 20px;
   }
+}
+
+@media (width <= 899px) {
+    .wave-slider-field .wave-slider-header {
+        margin-bottom: 8px;
+    }
 }
