@@ -484,7 +484,6 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (768px <=width <=1000px) {
-
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         /* max-width: 30.637%; */
@@ -493,7 +492,6 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 }
 
 @media screen and (1000px <=width <=1200px) {
-
     /* .section:has(.calc-card) .tab-list .section.calc-card .block .card-calc { */
     .section.calc-card .block .card-calc {
         max-width: 23.4%;
