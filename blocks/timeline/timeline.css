@@ -439,7 +439,9 @@
   /* margin-left leaves room for the absolutely positioned slider-title heading */
   .timeline.awards.block .timeline-track {
     gap: 112px;
-    margin: 0 0 0 419px
+
+    /* margin: 0 0 0 419px */
+    margin: 0 0 0 400px;
   }
 
   .timeline.awards.block .timeline-markers {
