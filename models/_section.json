@@ -214,6 +214,10 @@
                 {
                   "name": "Retirement Calculator",
                   "value": "retirement-calculator"
+                },
+                {
+                  "name": "Compound Calculator",
+                  "value": "compound-calculator"
                 }
               ]
             },
