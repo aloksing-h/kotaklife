@@ -116,10 +116,11 @@ width: 100%;
   font-weight: 500;
   color: #717680;
   white-space: nowrap;
-  transition: color 0.15s ease, font-weight 0.15s ease;
+  transition: top 0.2s ease, color 0.15s ease, font-weight 0.15s ease;
 }
 
 .calculator-main .wave-slider-field .wave-slider-milestone-label.active {
+  top: -8px;
   color: #181D27;
 text-align: center;
 font-family: var(--font-family-font-family-body, Manrope);
@@ -179,5 +180,10 @@ line-height: 14px;
 
     .calculator-main .slider-box {
         padding: 16px 16px 32px;
+    }
+
+    .calculator-main .wave-slider-field .wave-slider-milestone-label {
+        font-size: 12px;
+        line-height: 14px;
     }
 }
