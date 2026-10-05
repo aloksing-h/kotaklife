@@ -19,6 +19,7 @@ export function updateTabIndicator(tabList = document.querySelector('.tab-list.c
   const scrollLeft = mask && !isContents ? mask.scrollLeft : tabList.scrollLeft;
   const borderOffset = mask && !isContents ? mask.clientLeft : 0;
   const measuredLeft = tabRect.left - rootRect.left + scrollLeft - borderOffset;
+  // eslint-disable-next-line no-nested-ternary
   const initialWidthOffset = isInitialMeasurement
     ? (window.matchMedia('(max-width: 767px)').matches ? 8 : 3)
     : 0;
