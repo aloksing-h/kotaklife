@@ -22,14 +22,15 @@
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;
-  position: relative;
+
+  /* position: relative; */
 }
 
 /* Position Close Cross at the top right */
 .modal:has(.dynamic-tab-modal) .close-button {
-  position: absolute;
-  top: var(--spacing-xl, 16px);
-  right: 22px;
+  /* position: absolute; */
+  top: 8px;
+  right: 16px;
   background: transparent;
   border: none;
   cursor: pointer;
