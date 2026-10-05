@@ -1,1 +1,27 @@
 @import url('./retirement-calculator.css');
+
+.calculator-main {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+}
+
+.calculator-main .calculators-wrapper {
+    max-width: unset;
+    padding: 0;
+    margin: 0;
+}
+
+@media (width >=899px) {
+    .calculator-main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 50px;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .calculator-main .calculators-wrapper {
+        width: 57.55%;
+    }
+}

@@ -6,6 +6,9 @@ import { createMonthlyExpenseWaveSlider } from './fields/monthly-expense-wave-sl
 import createRateField from './fields/rate-field/rate-field.js';
 import { createRetirementExpenseRatioField } from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
 export default function retirementCalculator(block) {
+  function onPlanInputChange() {
+    block.dispatchEvent(new Event('retirement-plan-input-change'));
+  }
 
   const currentAgeField = createAgeField({
     id: 'currentAge',
@@ -13,7 +16,7 @@ export default function retirementCalculator(block) {
     value: 30,
     min: 18,
     max: 100,
-    onChange: calculateRetirementPlan
+    onChange: onPlanInputChange
   });
 
   const retirementAgeField = createAgeField({
@@ -22,7 +25,7 @@ export default function retirementCalculator(block) {
   value: 60,
   min: 40,
   max: 80,
-  onChange: calculateRetirementPlan
+  onChange: onPlanInputChange
 });
 
 const lifeExpectancyField = createAgeField({
@@ -31,7 +34,7 @@ const lifeExpectancyField = createAgeField({
   value: 80,
   min: 60,
   max: 100,
-  onChange: calculateRetirementPlan
+  onChange: onPlanInputChange
 });
 
 const expenseWaveSlider = createMonthlyExpenseWaveSlider({
@@ -44,7 +47,7 @@ const expenseWaveSlider = createMonthlyExpenseWaveSlider({
   max: 90000,
   step: 5000,
   milestones: [10000, 30000, 50000, 70000, 90000],
-  onChange: calculateRetirementPlan
+  onChange: onPlanInputChange
 });
 
 const inflationField = createRateField({
@@ -54,41 +57,36 @@ const inflationField = createRateField({
     min: 0,
     max: 15,
     step: 1,
-    onChange: calculateRetirementPlan
+    onChange: onPlanInputChange
   });
 
   const returnField = createRateField({
     id: 'returnInput',
     label: 'Expected return',
     infoText: 'Anticipated annual return on investment',
-    value: 5, min: 0, max: 15, step: 1, onChange: calculateRetirementPlan
+    value: 5, min: 0, max: 15, step: 1, onChange: onPlanInputChange
   });
 
   const retirementExpenseRatio = createRetirementExpenseRatioField({
     id: 'expPercentInput',
-    value: 50, min: 0, max: 100, step: 1, onChange: calculateRetirementPlan
+    value: 50, min: 0, max: 100, step: 1, onChange: onPlanInputChange
   });
 
+  function publishRetirementPlanInputs() {
+    const planInputs = {
+      currentAge: currentAgeField.getValue(),
+      retirementAge: retirementAgeField.getValue(),
+      lifeExpectancy: lifeExpectancyField.getValue(),
+      monthlyExpense: expenseWaveSlider.getValue(),
+      retirementExpenseRatio: retirementExpenseRatio.getValue(),
+    };
+    const scope = block.closest('.retirement-calculator') || block.closest('.section') || document;
 
-// 3. Central Recalculation Trigger
-  function calculateRetirementPlan() {
-    const currentAge = Math.max(1, currentAgeField.getValue() || 30);
-    const retireAge = Math.max(currentAge, retirementAgeField.getValue() || 60);
-    const lifeExpect = Math.max(retireAge, lifeExpectancyField.getValue() || 80);
-    const yearsToRetire = Math.max(0, retireAge - currentAge);
-    const retirementDurationYears = Math.max(0, lifeExpect - retireAge);
-    const annualExpensePostRetirement = expenseWaveSlider.getValue()
-      * (retirementExpenseRatio.getValue() / 100) * 12;
-    const estimatedFund = annualExpensePostRetirement * retirementDurationYears;
-    const monthlySavings = yearsToRetire > 0 ? estimatedFund / (yearsToRetire * 12) : 0;
-    const formatIndianCurrency = (amount) => `₹ ${Math.round(amount).toLocaleString('en-IN')}`;
-
-    fundResult.textContent = formatIndianCurrency(estimatedFund);
-    savingsTitle.textContent = freqToggle.checked
-      ? 'Required yearly savings' : 'Required monthly savings';
-    savingsResult.textContent = formatIndianCurrency(freqToggle.checked
-      ? monthlySavings * 12 : monthlySavings);
+    scope.retirementPlanInputs = planInputs;
+    scope.dispatchEvent(new CustomEvent('retirement-plan-update', { detail: planInputs }));
   }
+
+  block.addEventListener('retirement-plan-input-change', publishRetirementPlanInputs);
 
   let retirecalc= ` <div class="calculator-modal">
     <div class="calculator-grid">
@@ -106,45 +104,6 @@ const inflationField = createRateField({
         </div>
         <div class="slider-box" id="retirement-ration"></div>
       </div>
-
-      <div class="calc-card">
-
-        <div class="fund-estimate-box">
-          <p class="fund-estimate-label">Estimated retirement fund</p>
-          <div class="fund-estimate-value" id="fundResult">₹ 97,04,512</div>
-        </div>
-
-        <div class="illustration-wrap">
-          <svg class="couple-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="55" cy="40" r="14" stroke="currentColor" stroke-width="2.2" fill="none"/>
-            <path d="M32 98 C32 75, 78 75, 78 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-            <circle cx="105" cy="42" r="13" stroke="currentColor" stroke-width="2.2" fill="none"/>
-            <path d="M84 98 C84 77, 126 77, 126 98" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-
-        <div class="savings-summary-box">
-          <div class="toggle-row">
-            <span>Monthly</span>
-            <label class="switch-label">
-              <input type="checkbox" id="freqToggle">
-              <span class="switch-knob"></span>
-            </label>
-            <span>Yearly</span>
-          </div>
-
-          <p class="savings-title-text" id="savingsTitle">Required monthly savings</p>
-          <div class="savings-amount-text" id="savingsResult">₹ 26,957</div>
-        </div>
-
-        <button class="cta-plan-btn" type="button">
-          <span>Start Your Planning Now</span>
-          <span class="btn-circle-arrow">&rarr;</span>
-        </button>
-
-      </div>
-
-    </div>
   </div>`;
   block.innerHTML = retirecalc;
   block.querySelector('#currentAgeFieldSlot').appendChild(currentAgeField.element);
@@ -155,11 +114,6 @@ const inflationField = createRateField({
   block.querySelector('#expected-return').appendChild(returnField.element);
   block.querySelector('#retirement-ration').appendChild(retirementExpenseRatio.element);
 
-  const fundResult = block.querySelector('#fundResult');
-  const savingsTitle = block.querySelector('#savingsTitle');
-  const savingsResult = block.querySelector('#savingsResult');
-  const freqToggle = block.querySelector('#freqToggle');
-  freqToggle.addEventListener('change', calculateRetirementPlan);
-  calculateRetirementPlan();
+  publishRetirementPlanInputs();
 
 }

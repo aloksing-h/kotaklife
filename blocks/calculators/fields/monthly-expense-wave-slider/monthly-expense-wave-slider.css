@@ -1,11 +1,11 @@
 /* Path: fields/monthly-expense-wave-slider/monthly-expense-wave-slider.css */
-.slider-box {
-    padding: 12px;
+.calculator-main .slider-box {
+    padding: 12px 12px 24px;
     border-radius: 8px;
 border: 1px solid #D5D7DA;
 }
 
-.wave-slider-field {
+.calculator-main .wave-slider-field {
   display: flex;
   flex-direction: column;
 
@@ -15,14 +15,14 @@ border: 1px solid #D5D7DA;
   font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Segoe UI", Roboto, sans-serif;
 }
 
-.wave-slider-field .wave-slider-header {
+.calculator-main .wave-slider-field .wave-slider-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
-.wave-slider-field .wave-slider-title {
+.calculator-main .wave-slider-field .wave-slider-title {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -33,17 +33,17 @@ font-weight: 500;
 line-height: 18px;
 }
 
-.wave-slider-field .required-star {
+.calculator-main .wave-slider-field .required-star {
   color: #ef4444;
   font-weight: 600;
 }
 
-.wave-slider-field img {
+.calculator-main .wave-slider-field img {
   width: 12px;
   height: 12px;
 }
 
-.wave-slider-field .info-circle {
+.calculator-main .wave-slider-field .info-circle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +57,7 @@ line-height: 18px;
   cursor: help;
 }
 
-.wave-slider-field .wave-slider-value-display {
+.calculator-main .wave-slider-field .wave-slider-value-display {
   font-size: 18px;
   font-weight: 700;
   color: #1e293b;
@@ -67,18 +67,18 @@ line-height: 18px;
   border-radius: 8px;
 }
 
-.wave-slider-field .wave-slider-value-display.badge-expense {
+.calculator-main .wave-slider-field .wave-slider-value-display.badge-expense {
   display: flex;
   align-items: center;
   gap: 4px;
   border-radius: 0;
 border: 1px solid #D5D7DA;
 background: #FFF;
-padding: 10px 16px;
+padding: 9.2px 16px;
 max-width: 100px;
 }
 
-.wave-slider-field .wave-slider-value-display .badge-affix {
+.calculator-main .wave-slider-field .wave-slider-value-display .badge-affix {
 color: #181D27;
 font-family: var(--font-family-font-family-body, Manrope);
 font-size: 16px;
@@ -86,7 +86,7 @@ font-weight: 500;
 line-height: 20px;
 }
 
-.wave-slider-field .wave-slider-value-input {
+.calculator-main .wave-slider-field .wave-slider-value-input {
   border: none;
   outline: none;
   background: transparent;
@@ -100,24 +100,26 @@ line-height: 20px;
 width: 100%;
 }
 
-.wave-slider-field .wave-slider-labels-row {
+.calculator-main .wave-slider-field .wave-slider-labels-row {
   position: relative;
   width: 100%;
-  height: 8px;
+
+  /* height: 8px; */
 }
 
-.wave-slider-field .wave-slider-milestone-label {
+.calculator-main .wave-slider-field .wave-slider-milestone-label {
   position: absolute;
   top: 0;
   transform: translateX(-50%);
-  font-size: 12px;
+  font-size: 10px;
+  line-height: 12px;
   font-weight: 500;
   color: #717680;
   white-space: nowrap;
   transition: color 0.15s ease, font-weight 0.15s ease;
 }
 
-.wave-slider-field .wave-slider-milestone-label.active {
+.calculator-main .wave-slider-field .wave-slider-milestone-label.active {
   color: #181D27;
 text-align: center;
 font-family: var(--font-family-font-family-body, Manrope);
@@ -126,21 +128,21 @@ font-weight: 500;
 line-height: 14px;
 }
 
-.wave-slider-field .wave-slider-track-wrapper {
+.calculator-main .wave-slider-field .wave-slider-track-wrapper {
   position: relative;
   width: 100%;
-  height: 44px;
+  height: 62px;
   cursor: pointer;
   touch-action: none;
 }
 
-.wave-slider-field .wave-slider-track-wrapper:focus-visible {
+.calculator-main .wave-slider-field .wave-slider-track-wrapper:focus-visible {
   outline: 2px solid #dc2626;
   outline-offset: 2px;
   border-radius: 8px;
 }
 
-.wave-slider-field .wave-slider-svg-canvas {
+.calculator-main .wave-slider-field .wave-slider-svg-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -149,9 +151,9 @@ line-height: 14px;
   pointer-events: none;
 }
 
-.wave-slider-field .wave-slider-thumb-handle {
+.calculator-main .wave-slider-field .wave-slider-thumb-handle {
   position: absolute;
-  top: 42px;
+  top: 60px;
   width: 17px;
   height: 30px;
   transform: translate(-50%, -50%);
@@ -160,18 +162,22 @@ line-height: 14px;
   touch-action: none;
 }
 
-.wave-slider-field .wave-slider-thumb-handle:active {
+.calculator-main .wave-slider-field .wave-slider-thumb-handle:active {
   cursor: grabbing;
 }
 
 @media (width >=600px) {
-  .wave-slider-field .wave-slider-value-display {
+  .calculator-main .wave-slider-field .wave-slider-value-display {
     font-size: 20px;
   }
 }
 
-@media (width <= 899px) {
-    .wave-slider-field .wave-slider-header {
-        margin-bottom: 8px;
+@media (width >= 900px) {
+    .calculator-main .wave-slider-field .wave-slider-header {
+        margin-bottom: 14px;
+    }
+
+    .calculator-main .slider-box {
+        padding: 16px 16px 32px;
     }
 }

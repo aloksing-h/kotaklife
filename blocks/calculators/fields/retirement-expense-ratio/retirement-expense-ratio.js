@@ -25,7 +25,7 @@ export function createRetirementExpenseRatioField(options = {}) {
     <div class="slider-header-row">
       <span class="slider-label-text">
         ${label}
-        <span class="info-circle" title="Percentage of current expense required post retirement">i</span>
+        <img src="/icons/information-icon.svg" alt="" title="Anticipated annual return on investment">
       </span>
       <div class="value-display-badge badge-small">
         <input type="text" id="${id}" class="badge-input" value="${currentValue}" inputmode="numeric" autocomplete="off" aria-label="${label}">
