@@ -392,9 +392,11 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     }
 
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-mask {
-        width: max-content;
+        /* width: 100%; */
         margin: 0 auto;
         border-radius: var(--radius-full, 999px);
+        
+        /* overflow-x: auto; */
     }
 
     .section:has(.calc-card) .tab-list .tab-wrapper .tab-paddles {

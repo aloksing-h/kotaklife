@@ -38,8 +38,8 @@ export function scrollTabIntoView(e) {
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
   // Only auto-scroll on mobile where tabs can overflow and be hidden
-  const isMobile = !window.matchMedia('(min-width: 900px)').matches;
-  if (!isMobile) return;
+  // const isMobile = !window.matchMedia('(min-width: 900px)').matches;
+  // if (!isMobile) return;
   const scrollContainer = targetTab.closest('.tab-mask') || tabList;
   const listRect = scrollContainer.getBoundingClientRect();
   const tabRect = targetTab.getBoundingClientRect();
