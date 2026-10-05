@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Base Layout: Side-by-Side Columns
+   Base Layout: Side-by-Side Flexbox
    ========================================================================== */
-.columns-v2 > div {
+.columns-v2 {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Stacks vertically on mobile */
   gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -11,12 +11,13 @@
 }
 
 @media (min-width: 900px) {
-  .columns-v2 > div {
-    flex-direction: row;
+  .columns-v2 {
+    flex-direction: row; /* Places them side-by-side on desktop */
     align-items: flex-start;
   }
   
-  .columns-v2 > div > div {
+  /* Target the two main direct child divs (Left Column & Right Column) */
+  .columns-v2 > div {
     flex: 1; /* Forces both sides to take exactly 50% width */
   }
 }
@@ -25,12 +26,12 @@
    Steps Layout Variant (.steps)
    ========================================================================== */
 
-/* --- Left Column: Typography & Button --- */
-.columns-v2.steps > div > div:first-child {
+/* --- Left Column: Typography --- */
+.columns-v2.steps > div:first-child {
   padding-right: 2rem;
 }
 
-.columns-v2.steps > div > div:first-child h2 {
+.columns-v2.steps > div:first-child h2 {
   font-size: 3.5rem;
   line-height: 1.1;
   font-weight: 300;
@@ -38,13 +39,9 @@
   margin-bottom: 1rem;
 }
 
-.columns-v2.steps > div > div:first-child h2 strong {
-  font-weight: 700;
-  display: block;
-}
-
-/* Convert standard link into the Red Kotak Button */
-.columns-v2.steps > div > div:first-child a {
+/* --- Left Column: Red Kotak Button --- */
+/* Your HTML wrapped the link in a <p> tag, so we target it this way */
+.columns-v2.steps > div:first-child p > a {
   display: inline-flex;
   align-items: center;
   background-color: #e31837; /* Kotak Red */
@@ -56,15 +53,15 @@
   font-size: 1rem;
   margin-top: 1.5rem;
   gap: 12px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
 }
 
-.columns-v2.steps > div > div:first-child a:hover {
+.columns-v2.steps > div:first-child p > a:hover {
   background-color: #c0142e;
 }
 
-/* Add the circular arrow icon inside the button */
-.columns-v2.steps > div > div:first-child a::after {
+/* The circular arrow icon inside the button */
+.columns-v2.steps > div:first-child p > a::after {
   content: '→';
   background-color: #ffffff;
   color: #e31837;
@@ -78,7 +75,7 @@
 }
 
 /* --- Right Column: Numbered Circles --- */
-.columns-v2.steps > div > div:nth-child(2) ol {
+.columns-v2.steps > div:nth-child(2) ol {
   list-style-type: none; /* Hides default 1, 2, 3 */
   counter-reset: step-counter; /* Starts custom counter */
   padding: 0;
@@ -88,14 +85,14 @@
   gap: 2rem;
 }
 
-.columns-v2.steps > div > div:nth-child(2) ol li {
+.columns-v2.steps > div:nth-child(2) ol li {
   position: relative;
-  padding-left: 80px; /* Makes room for the circle */
+  padding-left: 80px; /* Makes room for the absolute positioned circle */
   counter-increment: step-counter;
 }
 
 /* Custom Gradient Circles (01, 02, 03...) */
-.columns-v2.steps > div > div:nth-child(2) ol li::before {
+.columns-v2.steps > div:nth-child(2) ol li::before {
   content: "0" counter(step-counter); /* Adds leading zero */
   position: absolute;
   left: 0;
@@ -113,15 +110,17 @@
   font-size: 1.1rem;
 }
 
-/* Step Typography */
-.columns-v2.steps > div > div:nth-child(2) ol li strong {
+/* Step Title Typography */
+.columns-v2.steps > div:nth-child(2) ol li strong {
   display: block;
   font-size: 1.15rem;
   color: #222;
   margin-bottom: 0.25rem;
 }
 
-.columns-v2.steps > div > div:nth-child(2) ol li p {
+/* Step Description Typography */
+.columns-v2.steps > div:nth-child(2) ol li p,
+.columns-v2.steps > div:nth-child(2) ol li {
   margin: 0;
   color: #666;
   font-size: 0.95rem;
