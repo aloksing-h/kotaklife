@@ -158,7 +158,7 @@
   font-weight: var(--font-weight-extrabold, 800);
   font-size: var(--body-2-font-size, 0.875rem);
   line-height: var(--button-2-line-height, 1rem);
-  color: #111827;
+  color: var(--gray-900);
   cursor: pointer;
   padding: var(--spacing-md, 8px) 0;
   transition: opacity 0.2s;
@@ -423,6 +423,9 @@
   .block.tab-list.insurance-content-tab ul[role="tablist"] li:not(.mobile-active-step, .show-more-item) {
     display: block;
   }
+  .block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]{
+    pointer-events: none;
+  }
   
   /* Hide mobile arrow navigation on desktop/tablet */
   .block.tab-list.insurance-content-tab .mobile-tab-arrows {
@@ -437,10 +440,31 @@
     display: none;
   }
 
-  /* Show the 'Show More' button only if > 8 tabs and not expanded */
+  /* Show the show-more-item container whenever there are many tabs, expanded or not */
+
+  /* (split into two rules matching specificity of the base li:not(.mobile-active-step) hide rule) */
   .block.tab-list.insurance-content-tab.has-many-tabs:not(.tabs-expanded) .show-more-item {
     display: flex;
     justify-content: center;
+  }
+
+  .block.tab-list.insurance-content-tab.has-many-tabs.tabs-expanded .show-more-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Default state: show the "Show More" button, hide the "Show Less" button */
+  .block.tab-list.insurance-content-tab .show-more-item .show-less-btn {
+    display: none;
+  }
+
+  /* Expanded state: hide the "Show More" button, show the "Show Less" button */
+  .block.tab-list.insurance-content-tab.tabs-expanded .show-more-item .show-more-btn {
+    display: none;
+  }
+
+  .block.tab-list.insurance-content-tab.tabs-expanded .show-more-item .show-less-btn {
+    display: flex;
   }
 
   /* Style the button container */

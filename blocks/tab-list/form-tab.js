@@ -61,32 +61,50 @@ export default function decorateFormTab(block) {
 
   const authoredPrev = lastPanel ? (lastPanel.querySelector('a[title="Previous"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Previous'))) : null;
   const authoredNext = lastPanel ? (lastPanel.querySelector('a[title="Next"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.includes('Next'))) : null;
+  
+  // Fetch both Show More and Show Less authored links
   const authoredShowMore = lastPanel ? (lastPanel.querySelector('a[title="Show More"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.toLowerCase().includes('show more'))) : null;
+  const authoredShowLess = lastPanel ? (lastPanel.querySelector('a[title="Show Less"]') || Array.from(lastPanel.querySelectorAll('a')).find((a) => a.textContent.toLowerCase().includes('show less'))) : null;
 
-  // --- DESKTOP "SHOW MORE" LOGIC ---
+  // --- DESKTOP "SHOW MORE / SHOW LESS" LOGIC ---
   const tabListUl = block.querySelector('ul[role="tablist"]');
 
   if (authoredShowMore && tabListUl) {
     const showMoreLi = document.createElement('li');
     showMoreLi.className = 'show-more-item';
 
-    const btnShowMore = document.createElement('button');
-    btnShowMore.className = 'desktop-show-more-btn';
-    btnShowMore.type = 'button';
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.className = 'desktop-show-more-btn show-more-btn';
+    showMoreBtn.type = 'button';
+    showMoreBtn.innerHTML = authoredShowMore.innerHTML;
 
-    // Pass the entire authored HTML (text + icon) into the button
-    btnShowMore.innerHTML = authoredShowMore.innerHTML;
+    const showLessBtn = document.createElement('button');
+    showLessBtn.className = 'desktop-show-more-btn show-less-btn';
+    showLessBtn.type = 'button';
+    showLessBtn.innerHTML = authoredShowLess ? authoredShowLess.innerHTML : 'Show Less';
 
-    btnShowMore.addEventListener('click', (e) => {
+    showMoreBtn.addEventListener('click', (e) => {
       e.preventDefault();
       block.classList.add('tabs-expanded');
     });
 
-    showMoreLi.appendChild(btnShowMore);
+    showLessBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      block.classList.remove('tabs-expanded');
+    });
+
+    showMoreLi.appendChild(showMoreBtn);
+    showMoreLi.appendChild(showLessBtn);
     tabListUl.appendChild(showMoreLi);
 
-    const wrapper = authoredShowMore.closest('p');
-    if (wrapper) wrapper.remove();
+    // Clean up both authored paragraphs from the DOM
+    const wrapperMore = authoredShowMore.closest('p');
+    if (wrapperMore) wrapperMore.remove();
+    
+    if (authoredShowLess) {
+      const wrapperLess = authoredShowLess.closest('p');
+      if (wrapperLess) wrapperLess.remove();
+    }
   }
 
   if (tabButtons.length > 8) {
