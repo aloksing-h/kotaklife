@@ -9,10 +9,16 @@ export default function retirementCalculator(block) {
   function onPlanInputChange() {
     block.dispatchEvent(new Event('retirement-plan-input-change'));
   }
-
+let currentAgeLabel = block.querySelector(".current-age-field label").innerText.trim();
+let retirementAgeLabel = block.querySelector(".retirement-age-field label").innerText.trim();
+let lifeExpectedLabel = block.querySelector(".life-expected-field label").innerText.trim();
+let monthlyExpenseLabel = block.querySelector(".monthly-expense-field label").innerText.trim();
+let inflationRateLabel = block.querySelector(".inflation-rate-field label").innerText.trim();
+let expectedReturnLabel = block.querySelector(".expected-return-field label").innerText.trim();
+let expectedExpenseLabel = block.querySelector(".expected-expense-field label").innerText.trim();
   const currentAgeField = createAgeField({
     id: 'currentAge',
-    label: 'Current age',
+    label: currentAgeLabel,
     value: 30,
     min: 18,
     max: 100,
@@ -21,7 +27,7 @@ export default function retirementCalculator(block) {
 
   const retirementAgeField = createAgeField({
   id: 'retireAge',
-  label: 'Retirement age',
+  label: retirementAgeLabel,
   value: 60,
   min: 40,
   max: 80,
@@ -30,7 +36,7 @@ export default function retirementCalculator(block) {
 
 const lifeExpectancyField = createAgeField({
   id: 'lifeExpect',
-  label: 'Life expected (age)',
+  label: lifeExpectedLabel,
   value: 80,
   min: 60,
   max: 100,
@@ -38,21 +44,21 @@ const lifeExpectancyField = createAgeField({
 });
 
 const expenseWaveSlider = createMonthlyExpenseWaveSlider({
-  title: 'My monthly expense',
+  title: monthlyExpenseLabel,
   required: true,
   infoText: 'Your current monthly cost of living',
   editable: true,
   value: 50000,
-  min: 10000,
-  max: 90000,
+  min: 0,
+  max: 500000,
   step: 5000,
-  milestones: [10000, 30000, 50000, 70000, 90000],
+  milestones: [0, 100000, 200000, 300000,400000, 500000],
   onChange: onPlanInputChange
 });
 
 const inflationField = createRateField({
   id: 'inflationInput',
-  label: 'Expected inflation rate',
+  label: inflationRateLabel,
     value: 5,
     min: 0,
     max: 15,
@@ -62,13 +68,14 @@ const inflationField = createRateField({
 
   const returnField = createRateField({
     id: 'returnInput',
-    label: 'Expected return',
+    label: expectedReturnLabel,
     infoText: 'Anticipated annual return on investment',
     value: 5, min: 0, max: 15, step: 1, onChange: onPlanInputChange
   });
 
   const retirementExpenseRatio = createRetirementExpenseRatioField({
     id: 'expPercentInput',
+    label: expectedExpenseLabel,
     value: 50, min: 0, max: 100, step: 1, onChange: onPlanInputChange
   });
 
