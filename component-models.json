@@ -789,6 +789,38 @@
     ]
   },
   {
+    "id": "columns-v2",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Column Style",
+        "options": [
+          {
+            "name": "Default (Standard 50/50)",
+            "value": "default"
+          },
+          {
+            "name": "Steps Layout (How it works)",
+            "value": "steps"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "column1",
+        "label": "Left Column (Heading & Button)",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "column2",
+        "label": "Right Column (Numbered List for Steps)",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {

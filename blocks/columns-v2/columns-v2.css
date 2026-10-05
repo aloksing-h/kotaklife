@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Columns Variant: Steps (How it Works)
+   ========================================================================== */
+
+/* Left Column: Vertical alignment */
+.columns.steps > div > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+.columns.steps > div > div:first-child h2 {
+  font-size: 42px;
+  font-weight: 300; /* For the thin "How does Term" text */
+  margin-bottom: 16px;
+}
+
+.columns.steps > div > div:first-child h2 strong {
+  font-weight: 700; /* For the bold "Insurance work?" */
+}
+
+/* Right Column: Custom Numbered List */
+.columns.steps > div > div:nth-child(2) ol {
+  list-style-type: none; /* Hide default numbers */
+  counter-reset: step-counter; /* Initialize custom counter */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.columns.steps > div > div:nth-child(2) ol li {
+  position: relative;
+  padding-left: 76px; /* Make room for the circle */
+  counter-increment: step-counter;
+}
+
+/* The Blue Gradient Circle */
+.columns.steps > div > div:nth-child(2) ol li::before {
+  content: "0" counter(step-counter); /* Adds the leading zero */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e6f0ff 0%, #ffffff 100%);
+  border: 1px solid #b3d1ff;
+  color: #0056b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Step Typography */
+.columns.steps > div > div:nth-child(2) ol li strong {
+  display: block;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.columns.steps > div > div:nth-child(2) ol li p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
