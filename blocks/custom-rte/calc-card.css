@@ -23,7 +23,10 @@ main .section:has(.calc-card)>.tab-list-wrapper {
     background: var(--background-bg-tertiary, #F5F5F5);
     position: relative;
     display: block;
-    width: 100%;
+
+     /* width: 100%; */
+    width: max-content;
+    max-width: 100%;
 
     /* overflow: auto hidden; */
     overflow: hidden;
@@ -111,7 +114,8 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 
 
 .section:has(.calc-card) .tab-list ul {
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin: 0;
     list-style: none;
     display: flex;
 
