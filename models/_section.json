@@ -221,8 +221,12 @@
               "name": "Scroll Animation",
               "children": [
                 {
-                  "name": "Scroll Animation Section",
-                  "value": "animation-section"
+                  "name": "Scroll Animation Section-1",
+                  "value": "animation-section-1"
+                },
+                {
+                  "name": "Scroll Animation Section-2",
+                  "value": "animation-section-2"
                 }
               ]
             },
