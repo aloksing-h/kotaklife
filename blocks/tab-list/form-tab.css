@@ -2,6 +2,18 @@
    DYNAMIC TAB MODAL (FULL SCREEN OVERRIDES)
    ========================================= */
 
+@keyframes tab-panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Force dialog to fill the entire mobile screen with a white background */
 .modal:has(.dynamic-tab-modal) dialog {
   width: 100vw;
@@ -209,6 +221,7 @@
   background-image: url("../../icons/large-downarrow-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
+  transition: transform 0.2s ease;
 }
 
 /* Active Tab State */
@@ -218,9 +231,7 @@
   color: var(--gray-900);
   font-weight: var(--font-weight-medium, 500);
 }
-.block.tab-list.insurance-content-tab.mobile-view ul[role="tablist"] button[aria-selected="true"]::after{
-  transform: rotate(180deg);
-}
+
 /* Active Tab Chevron (Red) */
 .block.tab-list.insurance-content-tab ul[role="tablist"] button[aria-selected="true"]::after {
   transform: rotate(270deg);
@@ -236,6 +247,10 @@
   mask-repeat: no-repeat;
 }
 
+.block.tab-list.insurance-content-tab.mobile-view ul[role="tablist"] button[aria-selected="true"]::after{
+  transform: rotate(180deg);
+}
+
 /* --- Right Column: Tab Panels (Mobile Defaults) --- */
 .block.tab-list.insurance-content-tab div[role="tabpanel"] {
   flex: 1 1 auto; 
@@ -247,6 +262,17 @@
 .block.tab-list.insurance-content-tab div[role="tabpanel"][hidden],
 .block.tab-list.insurance-content-tab div[role="tabpanel"].hidden {
   display: none;
+}
+
+/* Smooth open/close transition when switching the active tab panel */
+.block.tab-list.insurance-content-tab div[role="tabpanel"]:not([hidden]) {
+  animation: tab-panel-fade-in 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block.tab-list.insurance-content-tab div[role="tabpanel"]:not([hidden]) {
+    animation: none;
+  }
 }
 
 .insurance-tab-title.section{
@@ -408,6 +434,8 @@
     max-width: 340px;
   }
 
+  /* Smooth transition when switching the active tab panel on desktop/tablet handled globally above */
+
   .block.tab-list.insurance-content-tab .default-content-wrapper h4{
     font-size: var(--heading-4-font-size, 1.5rem);
     line-height: var(--heading-4-line-height, 1.75rem);
@@ -502,6 +530,10 @@
     justify-content: center;
     width: var(--spacing-2xl, 20px);
     height: var(--spacing-2xl, 20px);
+  }
+
+  .block.tab-list.insurance-content-tab.tabs-expanded .show-more-item .show-less-btn .icon {
+    opacity: 0.5;
   }
 
   .block.tab-list.insurance-content-tab .desktop-show-more-btn .icon img {

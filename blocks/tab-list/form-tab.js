@@ -2,6 +2,9 @@ import { createModal } from '../modal/modal.js';
 
 function addLongPressListener(element, callback, duration = 600) {
   let timer;
+  let startX = 0;
+  let startY = 0;
+  const moveTolerance = 10; // allow small finger jitter without cancelling the press
 
   const start = (e) => {
     if (!window.matchMedia('(max-width: 767px)').matches) {
@@ -9,6 +12,10 @@ function addLongPressListener(element, callback, duration = 600) {
     }
 
     if (e.type === 'mousedown' && e.button !== 0) return;
+
+    const point = e.touches ? e.touches[0] : e;
+    startX = point.clientX;
+    startY = point.clientY;
 
     timer = setTimeout(() => {
       if (navigator.vibrate) navigator.vibrate(50);
@@ -20,14 +27,23 @@ function addLongPressListener(element, callback, duration = 600) {
     clearTimeout(timer);
   };
 
+  const handleMove = (e) => {
+    const point = e.touches ? e.touches[0] : e;
+    const deltaX = Math.abs(point.clientX - startX);
+    const deltaY = Math.abs(point.clientY - startY);
+    if (deltaX > moveTolerance || deltaY > moveTolerance) {
+      cancel();
+    }
+  };
+
   element.addEventListener('touchstart', start, { passive: true });
   element.addEventListener('touchend', cancel);
-  element.addEventListener('touchmove', cancel, { passive: true });
+  element.addEventListener('touchmove', handleMove, { passive: true });
 
   element.addEventListener('mousedown', start);
   element.addEventListener('mouseup', cancel);
   element.addEventListener('mouseleave', cancel);
-  element.addEventListener('mousemove', cancel);
+  element.addEventListener('mousemove', handleMove);
 
   element.addEventListener('contextmenu', (e) => {
     if (window.matchMedia('(max-width: 767px)').matches) {
@@ -38,7 +54,7 @@ function addLongPressListener(element, callback, duration = 600) {
 
 export default function decorateFormTab(block) {
   const mediaQuery = window.matchMedia('(max-width: 767px)');
-  
+
   const handleViewChange = (e) => {
     if (e.matches) {
       block.classList.add('mobile-view');
