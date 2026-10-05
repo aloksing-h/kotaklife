@@ -82,6 +82,10 @@ main>.section:has(.banner-v2) {
   box-sizing: border-box;
 }
 
+.banner-v2.block.fin-calc-banner .banner-v2-content{
+  color: var(--base-white, #fff);
+}
+
 .banner-v2.block.retire-calc-banner .banner-v2-content {
   max-width: 633px;
   color: #181d27;
@@ -98,6 +102,10 @@ main>.section:has(.banner-v2) {
   color: #f5f5f5;
   margin: 0 0 16px;
   letter-spacing: -0.01em;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-title {
+  color: inherit;
 }
 
 .banner-v2.block .banner-v2-title strong,
@@ -117,6 +125,10 @@ main>.section:has(.banner-v2) {
   color: var(--gray-100, rgb(255 255 255 / 90%));
   margin: 0 0 40px;
   max-width: 440px;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-description{
+  color: inherit;
 }
 
 .banner-v2.block.retire-calc-banner .banner-v2-description {
@@ -204,6 +216,11 @@ main>.section:has(.banner-v2) {
   max-width: 613px;
   object-fit: contain;
   object-position: bottom right;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-visual img {
+  width: 593px;
+  height: 377px;
 }
 
 .banner-v2.block.retire-calc-banner .banner-v2-visual img {
@@ -547,6 +564,9 @@ main>.section:has(.banner-v2) {
 
   .banner-v2.block.fin-calc-banner .banner-v2-description {
     margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
   }
 
   .banner-v2.block.retire-calc-banner .banner-v2-description {
