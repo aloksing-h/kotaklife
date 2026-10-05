@@ -7,10 +7,10 @@ export function createFrequencyDropdownField(options = {}) {
     label = 'Frequency',
     value = '30',
     optionsList = [
-      { label: 'Monthly (30 Days)', value: '30' },
-      { label: 'Quarterly (90 Days)', value: '90' },
-      { label: 'Semi-Annually (180 Days)', value: '180' },
-      { label: 'Annually (365 Days)', value: '365' }
+      { label: '30', value: '30' },
+      { label: '90', value: '90' },
+      { label: '180', value: '180' },
+      { label: '365', value: '365' }
     ],
     onChange
   } = options;

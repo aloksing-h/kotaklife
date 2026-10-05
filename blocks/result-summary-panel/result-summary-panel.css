@@ -197,7 +197,7 @@
 
 /* Optional: change background color when active/checked if desired */
 .switch-label input:checked + .switch-knob {
-  background-color: #ff0033;
+  background-color: #FA1432;
 }
 
 
