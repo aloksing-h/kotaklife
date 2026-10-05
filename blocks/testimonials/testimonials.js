@@ -1,5 +1,7 @@
 import { openModal } from '../modal/modal.js';
 import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
+// NEW: Import loadFragment to swap modal contents dynamically
+import { loadFragment } from '../fragment/fragment.js'; 
 
 async function resolveMediaUrl(href) {
   try {
@@ -159,23 +161,96 @@ export default function decorate(block) {
           const link = videoBtnWrapper.querySelector('a');
           if (link) {
             modalUrl = link.href;
+            row.dataset.modalUrl = modalUrl;
             link.removeAttribute('href');
           }
 
-          videoBtnWrapper.addEventListener('click', (e) => {
+          const triggerModal = async (e) => {
+            e.preventDefault();
             e.stopPropagation();
             if (modalUrl) {
-              openModal(modalUrl);
-            }
-          });
+              const allItems = getItems();
+              const allUrls = allItems.map(item => item.dataset.modalUrl).filter(Boolean);
+              
+              // FIX: Use the exact row index instead of searching by URL.
+              // This guarantees the arrows work properly even if multiple cards use the same video link.
+              let currentIndex = allItems.indexOf(row);
 
+              await openModal(allUrls[currentIndex]);
+
+              if (allUrls.length > 1) {
+                const dialog = document.querySelector('.modal.block dialog');
+                if (!dialog || dialog.querySelector('.modal-nav')) return; // Avoid duplicates
+
+                const dialogContent = dialog.querySelector('.modal-content');
+
+                const modalBtnWrap = document.createElement('div');
+                modalBtnWrap.className = 'modal-nav-wrap'
+
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'modal-nav prev';
+                prevBtn.setAttribute('aria-label', 'Previous video');
+                // prevBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`;
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'modal-nav next';
+                nextBtn.setAttribute('aria-label', 'Next video');
+                // nextBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>`;
+
+                // dialog.appendChild(prevBtn);
+                // dialog.appendChild(nextBtn);
+
+                modalBtnWrap.append(prevBtn, nextBtn);
+                dialog.append(modalBtnWrap);
+
+                const updateNav = () => {
+                  prevBtn.disabled = currentIndex === 0;
+                  nextBtn.disabled = currentIndex === allUrls.length - 1;
+                };
+                updateNav();
+
+                const swapContent = async (newIndex) => {
+                  currentIndex = newIndex;
+                  updateNav();
+                  
+                  const newUrl = allUrls[currentIndex];
+                  const path = newUrl.startsWith('http') ? new URL(newUrl, window.location).pathname : newUrl;
+                  const fragment = await loadFragment(path);
+                  
+                  if (fragment && dialogContent) {
+                    // Prevent memory leak: Properly destroy the old video stream before swapping
+                    const oldVideo = dialogContent.querySelector('video');
+                    if (oldVideo) {
+                      oldVideo.pause();
+                      oldVideo.removeAttribute('src'); 
+                      oldVideo.load();
+                    }
+
+                    const closeBtn = dialogContent.querySelector('.close-button');
+                    dialogContent.innerHTML = '';
+                    if (closeBtn) dialogContent.appendChild(closeBtn); // Preserve close button
+                    dialogContent.append(...fragment.childNodes);
+                    dialogContent.scrollTop = 0;
+                  }
+                };
+
+                prevBtn.addEventListener('click', (ev) => {
+                  ev.stopPropagation();
+                  if (currentIndex > 0) swapContent(currentIndex - 1);
+                });
+
+                nextBtn.addEventListener('click', (ev) => {
+                  ev.stopPropagation();
+                  if (currentIndex < allUrls.length - 1) swapContent(currentIndex + 1);
+                });
+              }
+            }
+          };
+
+          videoBtnWrapper.addEventListener('click', triggerModal);
           videoBtnWrapper.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              e.stopPropagation();
-              if (modalUrl) {
-                openModal(modalUrl);
-              }
+              triggerModal(e);
             }
           });
         }
