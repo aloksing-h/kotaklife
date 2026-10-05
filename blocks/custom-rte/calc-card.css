@@ -149,8 +149,8 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 
     /* border-radius: var(--radius-full, 999px);
     border: 1px solid #1E4679;
-    background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
-    color: var(--text-text-brand-blue, #1E4679); */
+    background: linear-gradient(90deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%); */
+    color: var(--text-text-brand-blue, #1E4679);
     font-weight: 600;
 }
 
