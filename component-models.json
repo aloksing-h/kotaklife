@@ -852,6 +852,10 @@
           {
             "name": "Tab Six",
             "value": "tab-six"
+          },
+          {
+            "name": "Steps Layout (How it works)",
+            "value": "steps"
           }
         ]
       },
