@@ -19,12 +19,12 @@ export function updateTabIndicator(tabList = document.querySelector('.tab-list.c
   const scrollLeft = mask && !isContents ? mask.scrollLeft : tabList.scrollLeft;
   const borderOffset = mask && !isContents ? mask.clientLeft : 0;
   const measuredLeft = tabRect.left - rootRect.left + scrollLeft - borderOffset;
-  // eslint-disable-next-line no-nested-ternary
-  const initialWidthOffset = isInitialMeasurement
-    ? (window.matchMedia('(max-width: 767px)').matches ? 8 : 3)
-    : 0;
+  if (isInitialMeasurement) indicator.style.transition = 'none';
   indicator.style.left = `${isInitialMeasurement ? 0 : measuredLeft}px`;
-  indicator.style.width = `${tabRect.width + initialWidthOffset}px`;
+  indicator.style.width = `${tabRect.width}px`;
+  if (isInitialMeasurement) {
+    requestAnimationFrame(() => indicator.style.removeProperty('transition'));
+  }
 
   const tabs = [...tabList.querySelectorAll(':scope > li > [role="tab"]')];
   const selectedIndex = tabs.indexOf(selectedTab);
@@ -376,8 +376,21 @@ export default async function decorate(block) {
     tabMask.addEventListener('scroll', () => updateTabIndicator(tabUl), { passive: true });
     window.addEventListener('resize', () => updateTabIndicator(tabUl), { passive: true });
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => updateTabIndicator(tabUl, true));
+    const measureInitialIndicator = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => updateTabIndicator(tabUl, true));
+      });
+    };
+    const measureSelectedIndicator = () => {
+      const firstTab = tabUl.querySelector(':scope > li > [role="tab"]');
+      const selectedTab = tabUl.querySelector('[role="tab"][aria-selected="true"]');
+      updateTabIndicator(tabUl, selectedTab === firstTab);
+    };
+    const indicatorResizeObserver = new ResizeObserver(measureSelectedIndicator);
+    tabUl.querySelectorAll(':scope > li > [role="tab"]').forEach((tab) => {
+      indicatorResizeObserver.observe(tab);
     });
+    measureInitialIndicator();
+    document.fonts?.ready.then(measureInitialIndicator);
   }
 }
