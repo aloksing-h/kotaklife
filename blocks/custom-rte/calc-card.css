@@ -5,7 +5,9 @@ main .section:has(.calc-card)>.tab-list-wrapper {
 
 .section:has(.calc-card) .tab-list .tab-wrapper {
     /* max-width: max-content; */
-    max-width: 328px;
+
+    /* max-width: 328px; */
+    max-width: 100%;
     position: relative;
 
     /* overflow-x: hidden; */
