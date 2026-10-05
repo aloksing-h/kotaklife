@@ -232,6 +232,10 @@
             {
               "name":"Insurance Tab Title",
               "value":"insurance-tab-title"
+            },
+            {
+              "name": "Calc Card",
+              "value": "calc-card"
             }
           ]
         },

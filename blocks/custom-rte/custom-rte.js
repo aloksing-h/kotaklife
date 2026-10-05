@@ -3,6 +3,16 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 let autoSlideTimer = null;
 const SLIDE_DURATION = 3000; // 3 seconds per card
 
+function addLayerClasses(element, classNameMap, depth = 1) {
+  if (!element || !element.children) return;
+  const className = classNameMap[depth] || `level-${depth}`;
+  Array.from(element.children).forEach((child, index) => {
+    child.classList.add(className);
+    child.classList.add(`${className}-${index + 1}`);
+    addLayerClasses(child, classNameMap, depth + 1);
+  });
+}
+
 /**
  * Resets and triggers the progress line animation
  * @param {Element} trackWrapper The progress track wrapper element
@@ -70,7 +80,7 @@ function updateCardStack(cards, steps, trackWrapper, activeIndex, onAutoAdvance)
  * Decorates custom-rte block in get-cover-plans section
  * @param {Element} block The custom-rte block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   if (block.classList.contains('promotion')) {
     const section = block.closest('.get-cover-plans');
 
@@ -274,5 +284,119 @@ export default function decorate(block) {
 
     // Initialize stack & start progress track timer
     updateCardStack(cards, steps, trackWrapper, 0, handleNextSlide);
+  }
+
+  if (block.closest('.section.calc-card')) {
+    const isCommonText = block.classList.contains('cmmn-txt')
+      || block.classList.contains('cmmn-txt-row');
+    if (!isCommonText) {
+      addLayerClasses(block, {
+        1: 'card-calc',
+        2: 'card-inner',
+        3: 'card-child',
+        4: 'card-item',
+      });
+    }
+    if (!block.classList.contains('card-link')) {
+      [...block.children].forEach((row) => {
+        row.children[2]?.remove();
+      });
+    } else {
+      [...block.children].forEach((row) => {
+        const [imgDiv, textDiv, linkDiv] = row.children;
+        const link = linkDiv?.querySelector('a');
+        if (!link) return;
+        link.textContent = '';
+        link.classList.add('calc-card-link');
+        linkDiv.remove();
+        link.append(imgDiv, textDiv);
+        row.append(link);
+        row.classList.add('calc-card-item');
+        const href = link.getAttribute('href');
+        row.setAttribute('role', 'button');
+        row.setAttribute('tabindex', '0');
+        row.setAttribute('aria-label', `Navigate to ${href}`);
+        // Row is the focus target, so keep the inner link out of tab order
+        link.setAttribute('tabindex', '-1');
+        row.addEventListener('keydown', (e) => {
+          if (e.code === 'Enter' || e.code === 'Space') {
+            e.preventDefault();
+            window.location.href = href;
+          }
+        });
+      });
+    }
+
+    const cards = [...block.children];
+    if (cards.length > 4) {
+      const mobileQuery = window.matchMedia('(max-width: 768px)');
+      let isInitializingSwiper = false;
+
+      const disableSwiper = () => {
+        if (block.swiperInstance) {
+          block.swiperInstance.destroy(true, true);
+          block.swiperInstance = null;
+        }
+
+        const swiperWrapper = block.querySelector(':scope > .swiper-wrapper');
+        cards.forEach((card) => {
+          card.classList.remove('swiper-slide');
+          block.append(card);
+        });
+        swiperWrapper?.remove();
+        block.querySelector(':scope > .swiper-pagination')?.remove();
+        block.classList.remove('swiper');
+      };
+
+      const enableSwiper = async () => {
+        if (block.swiperInstance || isInitializingSwiper) return;
+        isInitializingSwiper = true;
+
+        block.classList.add('swiper');
+        const swiperWrapper = document.createElement('div');
+        swiperWrapper.className = 'swiper-wrapper';
+        cards.forEach((card) => {
+          card.classList.add('swiper-slide');
+          swiperWrapper.append(card);
+        });
+
+        const pagination = document.createElement('div');
+        pagination.className = 'swiper-pagination';
+        block.append(swiperWrapper, pagination);
+
+        const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
+        if (!mobileQuery.matches) {
+          disableSwiper();
+          isInitializingSwiper = false;
+          return;
+        }
+
+        block.swiperInstance = createSwiper(block, {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+          spaceBetween: 8,
+          grabCursor: true,
+          observer: true,
+          observeParents: true,
+          grid: {
+            rows: 2,
+            fill: 'row',
+          },
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+        });
+        isInitializingSwiper = false;
+      };
+
+      const toggleSwiper = () => {
+        if (mobileQuery.matches) enableSwiper();
+        else disableSwiper();
+      };
+
+      toggleSwiper();
+      mobileQuery.addEventListener('change', toggleSwiper);
+    }
   }
 }

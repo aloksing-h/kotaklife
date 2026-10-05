@@ -3,6 +3,67 @@ import decorateFindPlan from './find-plan.js';
 import decorateFormTab from './form-tab.js';
 
 let tabsIdx = 0;
+
+export function updateTabIndicator(tabList = document.querySelector('.tab-list.calc-card [role="tablist"]'), isInitialMeasurement = false) {
+  if (!tabList) return;
+  const wrapper = tabList.closest('.tab-wrapper');
+  const indicator = wrapper?.querySelector('.tab-indicator');
+  const selectedTab = tabList.querySelector('[role="tab"][aria-selected="true"]');
+  if (!indicator || !selectedTab) return;
+
+  const mask = indicator.closest('.tab-mask');
+  const isContents = mask && getComputedStyle(mask).display === 'contents';
+  const positionRoot = isContents ? wrapper : mask || wrapper;
+  const tabRect = selectedTab.getBoundingClientRect();
+  const rootRect = positionRoot.getBoundingClientRect();
+  const scrollLeft = mask && !isContents ? mask.scrollLeft : tabList.scrollLeft;
+  const borderOffset = mask && !isContents ? mask.clientLeft : 0;
+  const mobileOffset = window.matchMedia('(max-width: 767px)').matches ? 4 : 0;
+  indicator.style.left = `${tabRect.left - rootRect.left + scrollLeft - borderOffset}px`;
+  indicator.style.width = `${tabRect.width + (isInitialMeasurement ? mobileOffset * 2 : 0)}px`;
+
+  const tabs = [...tabList.querySelectorAll(':scope > li > [role="tab"]')];
+  const selectedIndex = tabs.indexOf(selectedTab);
+  const previous = wrapper.querySelector('.paddle-prev');
+  const next = wrapper.querySelector('.paddle-next');
+  if (previous && next && selectedIndex >= 0) {
+    previous.disabled = selectedIndex === 0;
+    previous.classList.toggle('paddle-hidden', previous.disabled);
+    next.disabled = selectedIndex === tabs.length - 1;
+    next.classList.toggle('paddle-hidden', next.disabled);
+  }
+}
+
+export function scrollTabIntoView(e) {
+  const targetTab = e.currentTarget;
+  const tabList = targetTab.closest('[role="tablist"]');
+  if (!tabList) return;
+  // Only auto-scroll on mobile where tabs can overflow and be hidden
+  // const isMobile = !window.matchMedia('(min-width: 900px)').matches;
+  // if (!isMobile) return;
+  const scrollContainer = targetTab.closest('.tab-mask') || tabList;
+  const listRect = scrollContainer.getBoundingClientRect();
+  const tabRect = targetTab.getBoundingClientRect();
+  if (tabList.closest('.tab-list.calc-card')) {
+    const currentScroll = scrollContainer.scrollLeft;
+    const maxScroll = Math.max(0, scrollContainer.scrollWidth - scrollContainer.clientWidth);
+    const tabCenter = tabRect.left + tabRect.width / 2;
+    const listCenter = listRect.left + listRect.width / 2;
+    const centeredScroll = currentScroll + tabCenter - listCenter;
+    const nextScroll = Math.max(0, Math.min(maxScroll, centeredScroll));
+    scrollContainer.scrollBy({ left: nextScroll - currentScroll, behavior: 'smooth' });
+    return;
+  }
+
+  const overflowLeft = tabRect.left - listRect.left;
+  const overflowRight = listRect.right - tabRect.right;
+  if (overflowLeft < 0) {
+    scrollContainer.scrollBy({ left: overflowLeft - 16, behavior: 'smooth' });
+  } else if (overflowRight < 0) {
+    scrollContainer.scrollBy({ left: -overflowRight + 16, behavior: 'smooth' });
+  }
+}
+
 export function changeTabs(e) {
   const targetTab = e.currentTarget;
   const targetTabPanelIds = (targetTab.getAttribute('aria-controls') || '')
@@ -12,8 +73,10 @@ export function changeTabs(e) {
   const [tabGroupPrefix] = targetTabPanelIds[0].split('-panel-');
   const tabList = targetTab.closest('[role="tablist"]');
   if (!tabList) return;
-  const isFindPlan = tabList.closest('.find-plan');
-  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  // const isFindPlan = tabList.closest('.find-plan');
+  // const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && !isFindPlan;
+  const isHeaderTab = tabList.closest('.header-tab, header');
+  const mobileAccordion = !window.matchMedia('(min-width: 900px)').matches && isHeaderTab;
   const isSelected = targetTab.getAttribute('aria-selected') === 'true';
   if (mobileAccordion && isSelected) {
     // Accordion: toggle off
@@ -55,6 +118,10 @@ export function changeTabs(e) {
       panel.setAttribute('aria-hidden', 'false');
     }
   });
+  if (tabList.closest('.tab-list.calc-card')) {
+    scrollTabIntoView({ currentTarget: targetTab });
+    updateTabIndicator(tabList);
+  }
 }
 /**
  * Decorate the tab-list block.
@@ -98,10 +165,11 @@ export default async function decorate(block) {
     });
   });
 
+  // Mobile accordion (panel inside li) applies only to header tabs
   const isMobile = !window.matchMedia('(min-width: 900px)').matches
-    && !block.classList.contains('find-plan');
+    && (block.classList.contains('header-tab') || !!block.closest('header'));
 
-  tabPanels.forEach(([tabLabel, tabPanel], i) => {
+  tabPanels.forEach(([tabLabel, tabPanel, image], i) => {
     const tabId = `${tabsPrefix}-tab-${toClassName(tabLabel)}-${i + 1}`;
     const tabPanelId = `${tabsPrefix}-panel-${toClassName(tabLabel)}-${i + 1}`;
 
@@ -117,14 +185,25 @@ export default async function decorate(block) {
     tabItem.tabIndex = i === 0 ? 0 : -1;
     tabItem.setAttribute('aria-controls', tabPanelId);
 
+    // Add image if available
+    if (image) {
+      const imgElement = document.createElement('img');
+      // Extract just the path from the full URL (removes domain and query parameters)
+      const [imageUrl] = image.split('?');
+      imgElement.src = new URL(imageUrl).pathname;
+      imgElement.alt = tabLabel;
+      imgElement.classList.add('tab-image');
+      tabItem.appendChild(imgElement);
+    }
+
     // Add text content
     tabItem.appendChild(document.createTextNode(tabLabel));
     tabItem.addEventListener('click', changeTabs);
     // Keep find-plan tabs click-only; preserve hover activation for other variants.
-    if (!block.classList.contains('find-plan')
-      && window.matchMedia('(min-width: 900px)').matches) {
-      tabItem.addEventListener('mouseenter', changeTabs);
-    }
+    // if (!block.classList.contains('find-plan')
+    //   && window.matchMedia('(min-width: 900px)').matches) {
+    //   tabItem.addEventListener('mouseenter', changeTabs);
+    // }
     // Add keyboard support for Enter/Space (WCAG 2.2 - 2.1.1 Keyboard)
     tabItem.addEventListener('keydown', (e) => {
       if (e.code === 'Enter' || e.code === 'Space') {
@@ -253,5 +332,48 @@ export default async function decorate(block) {
   if (block.classList.contains('find-plan')) decorateFindPlan(block);
   if (block.classList.contains('insurance-content-tab')) {
     decorateFormTab(block);
+  }
+
+  if (block.classList.contains('calc-card')) {
+    const tabListWrapper = block.querySelector('.tablist-wrapper');
+    const tabUl = tabListWrapper.querySelector('ul');
+    const tabWrapper = document.createElement('div');
+    tabWrapper.classList.add('tab-wrapper');
+    const tabMask = document.createElement('div');
+    tabMask.classList.add('tab-mask');
+    tabMask.append(tabUl);
+    const tabIndicator = document.createElement('div');
+    tabIndicator.classList.add('tab-indicator');
+    tabMask.append(tabIndicator);
+    const tabPaddles = document.createElement('div');
+    tabPaddles.classList.add('tab-paddles');
+    const paddlePrev = document.createElement('button');
+    paddlePrev.classList.add('paddle-btn', 'paddle-prev');
+    paddlePrev.type = 'button';
+    paddlePrev.setAttribute('aria-label', 'Previous item');
+    paddlePrev.tabIndex = -1;
+    const paddleNext = document.createElement('button');
+    paddleNext.classList.add('paddle-btn', 'paddle-next');
+    paddleNext.type = 'button';
+    paddleNext.setAttribute('aria-label', 'Next item');
+    paddleNext.tabIndex = -1;
+    tabPaddles.append(paddlePrev, paddleNext);
+    tabWrapper.append(tabMask, tabPaddles);
+    tabListWrapper.prepend(tabWrapper);
+
+    const activateAdjacentTab = (direction) => {
+      const tabItems = [...tabUl.querySelectorAll(':scope > li > [role="tab"]')];
+      const activeIndex = tabItems.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
+      const adjacentTab = tabItems[activeIndex + direction];
+      adjacentTab?.click();
+    };
+    paddlePrev.addEventListener('click', () => activateAdjacentTab(-1));
+    paddleNext.addEventListener('click', () => activateAdjacentTab(1));
+    tabMask.addEventListener('scroll', () => updateTabIndicator(tabUl), { passive: true });
+    window.addEventListener('resize', () => updateTabIndicator(tabUl), { passive: true });
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => updateTabIndicator(tabUl, true));
+    });
   }
 }
