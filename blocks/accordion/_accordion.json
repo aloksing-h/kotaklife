@@ -47,7 +47,10 @@
             {
               "name": "FAQ",
               "value": "faq-accordion"
-
+            },
+            {
+              "name": "FAQ V2",
+              "value": "faq-v2"
             }
           ]
         }
