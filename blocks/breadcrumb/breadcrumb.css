@@ -208,6 +208,16 @@ main .breadcrumb-container .breadcrumb-wrapper {
 
 /* Desktop: Dynamic hugging width with semi-transparent gradient */
 @media (width >= 900px) {
+  .section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav {
+    padding: 12px 16px 12px 50px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-height: 38px;
+  }
+}
+
+/* Desktop: Dynamic hugging width with semi-transparent gradient */
+@media (width >= 600px) {
   .section:has(.banner-v2.fin-calc-banner) .breadcrumb-container {
     width: fit-content;
     max-width: 100%;
@@ -216,7 +226,6 @@ main .breadcrumb-container .breadcrumb-wrapper {
   }
 
   .section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav {
-    padding: 12px 16px 12px 50px;
     flex-wrap: nowrap;
     white-space: nowrap;
     min-height: 38px;
