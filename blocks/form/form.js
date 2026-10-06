@@ -695,7 +695,7 @@ export default function decorate(block) {
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Could not build form from', source, error);
-            block.parentElement.remove();
+            // block.parentElement.remove();
           }
           observer.disconnect();
         }
@@ -706,7 +706,7 @@ export default function decorate(block) {
   } else {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    block.parentElement.remove();
+    // block.parentElement.remove();
   }
 }
 
@@ -722,7 +722,7 @@ export async function loadForm(block) {
   if (!source) {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    block.parentElement.remove();
+    // block.parentElement.remove();
     return null;
   }
 
