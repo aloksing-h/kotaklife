@@ -1246,6 +1246,10 @@
           {
             "name": "Sub Navigation",
             "value": "subnav"
+          },
+          {
+            "name": "Tabs Table",
+            "value": "tabs-table"
           }
         ]
       }
