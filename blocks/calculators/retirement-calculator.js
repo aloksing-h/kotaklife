@@ -64,6 +64,7 @@ export default function retirementCalculator(block) {
     min: 1,
     max: 7,
     step: 1,
+    milestones: [1, 3, 5, 7].map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 
@@ -75,6 +76,7 @@ export default function retirementCalculator(block) {
     min: 1,
     max: 15,
     step: 1,
+    milestones: [0, 5, 10, 15].map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 
@@ -82,9 +84,10 @@ export default function retirementCalculator(block) {
     id: 'expPercentInput',
     label: expectedExpenseLabel,
     value: 75,
-    min: 0,
+    min: 10,
     max: 100,
     step: 1,
+    milestones: [10, 100].map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 
