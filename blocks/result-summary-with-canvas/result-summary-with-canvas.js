@@ -1,4 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { loadScript } from '../../scripts/aem.js';
 
 const DEFAULTS = {
   resultLabel: 'You may get',
@@ -6,6 +7,25 @@ const DEFAULTS = {
   chartLabel: 'Your returns',
   ctaLabel: 'Invest Now',
 };
+
+const charts = new WeakMap();
+let chartLibraryPromise;
+
+function loadChartJs() {
+  if (window.Chart) return Promise.resolve(window.Chart);
+  if (!chartLibraryPromise) {
+    chartLibraryPromise = loadScript(`${window.hlx.codeBasePath}/scripts/chart.js`)
+      .then(() => {
+        if (!window.Chart) throw new Error('Chart.js failed to initialize.');
+        return window.Chart;
+      })
+      .catch((error) => {
+        chartLibraryPromise = undefined;
+        throw error;
+      });
+  }
+  return chartLibraryPromise;
+}
 
 function formatCurrency(value) {
   const amount = Number(value);
@@ -19,10 +39,6 @@ function getFrequencyLabel(frequency) {
     2: 'every six months',
     1: 'yearly',
   }[frequency] || '';
-}
-
-function formatAxisValue(value) {
-  return Math.round(value).toLocaleString('en-IN');
 }
 
 export default function decorate(block) {
@@ -45,9 +61,11 @@ export default function decorate(block) {
       <div class="result-chart">
         <div class="chart-legend">
           <span class="chart-legend-dot" aria-hidden="true"></span>
-          <span class="chart-legend-label"></span>
+          <p class="chart-legend-label"></p>
         </div>
-        <canvas class="chart-canvas" width="600" height="360" role="img"></canvas>
+        <div class="chart-plot">
+          <canvas class="chart-canvas" role="img"></canvas>
+        </div>
       </div>
       <a class="result-cta"><span class="cta-label"></span></a>
     </div>`;
@@ -56,7 +74,7 @@ export default function decorate(block) {
   const summaryElement = block.querySelector('.investment-summary');
   const amountElement = block.querySelector('.result-amount');
   const chartLabelElement = block.querySelector('.chart-legend-label');
-  const chart = block.querySelector('.chart-canvas');
+  const chartCanvas = block.querySelector('.chart-canvas');
   const cta = block.querySelector('.result-cta');
 
   resultLabelElement.textContent = resultLabel;
@@ -70,93 +88,107 @@ export default function decorate(block) {
       if (authoredRows[index]) moveInstrumentation(authoredRows[index], target);
     });
 
-  function drawChart(data) {
-    const context = chart.getContext('2d');
-    const bounds = chart.getBoundingClientRect();
-    if (!context || !bounds.width || !bounds.height) return;
+  async function updateLineChart(canvas, label, points) {
+    const Chart = await loadChartJs();
+    const existingChart = charts.get(canvas);
+    const labels = points.map((point) => String(point.year));
+    const values = points.map((point) => Number(point.balance));
 
-    const pixelRatio = window.devicePixelRatio || 1;
-    chart.width = Math.round(bounds.width * pixelRatio);
-    chart.height = Math.round(bounds.height * pixelRatio);
-    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    context.clearRect(0, 0, bounds.width, bounds.height);
-
-    const points = (data || []).filter((point) => (
-      Number.isFinite(Number(point.year)) && Number.isFinite(Number(point.balance))
-    ));
-    chart.setAttribute('aria-label', points.length
-      ? `${chartLabel}: ${points.map((point) => `${point.year}, ${formatCurrency(point.balance)}`).join('; ')}`
-      : chartLabel);
-    if (!points.length) return;
-
-    const plotLeft = bounds.width * 0.23;
-    const plotRight = bounds.width * 0.98;
-    const plotTop = bounds.height * 0.08;
-    const plotBottom = bounds.height * 0.78;
-    const plotWidth = plotRight - plotLeft;
-    const plotHeight = plotBottom - plotTop;
-    const maximum = Math.max(...points.map((point) => Number(point.balance)), 1);
-    const axisMaximum = maximum * 1.08;
-    const styles = getComputedStyle(block);
-    const gridColor = styles.getPropertyValue('--brand-blue-50').trim();
-    const lineColor = styles.getPropertyValue('--brand-blue-600').trim();
-    const labelColor = styles.getPropertyValue('--gray-600').trim();
-    const fontSize = Number.parseFloat(styles.fontSize) * 0.7;
-
-    context.font = `${fontSize}px ${styles.fontFamily}`;
-    context.textAlign = 'right';
-    context.textBaseline = 'middle';
-    context.fillStyle = labelColor;
-    context.strokeStyle = gridColor;
-    context.lineWidth = 1;
-
-    for (let tick = 0; tick <= 4; tick += 1) {
-      const fraction = tick / 4;
-      const y = plotBottom - plotHeight * fraction;
-      context.beginPath();
-      context.moveTo(plotLeft, y);
-      context.lineTo(plotRight, y);
-      context.stroke();
-      context.fillText(formatAxisValue(axisMaximum * fraction), plotLeft - bounds.width * 0.03, y);
+    if (existingChart) {
+      existingChart.data.labels = labels;
+      existingChart.data.datasets[0].label = label;
+      existingChart.data.datasets[0].data = values;
+      existingChart.update('none');
+      return;
     }
 
-    context.strokeStyle = gridColor;
-    points.forEach((point, index) => {
-      const x = points.length === 1
-        ? plotLeft + plotWidth / 2
-        : plotLeft + (plotWidth * index) / (points.length - 1);
-      context.beginPath();
-      context.moveTo(x, plotTop);
-      context.lineTo(x, plotBottom);
-      context.stroke();
-      context.textAlign = 'center';
-      context.fillStyle = labelColor;
-      context.fillText(String(point.year), x, bounds.height * 0.9);
+    const styles = getComputedStyle(block);
+    const lineColor = styles.getPropertyValue('--brand-blue-600').trim();
+    const gridColor = styles.getPropertyValue('--brand-blue-50').trim();
+    const tickColor = styles.getPropertyValue('--gray-600').trim();
+    const chart = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label,
+          data: values,
+          borderColor: lineColor,
+          backgroundColor: lineColor,
+          borderWidth: 3,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.35,
+          pointBackgroundColor: lineColor,
+          pointBorderColor: '#FFFFFF',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 6,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => `${label}: ${formatCurrency(context.parsed.y)}`,
+            },
+          },
+        },
+        scales: {
+          x: {
+            grid: { color: gridColor },
+            border: { display: false },
+            ticks: {
+              autoSkip: true,
+              maxRotation: 0,
+              color: tickColor,
+              font: { family: styles.fontFamily },
+            },
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: gridColor },
+            border: { display: false },
+            ticks: {
+              count: 5,
+              color: tickColor,
+              callback: (value) => Math.round(Number(value)).toLocaleString('en-IN'),
+              font: { family: styles.fontFamily },
+            },
+          },
+        },
+      },
     });
+    charts.set(canvas, chart);
+  }
 
-    context.beginPath();
-    points.forEach((point, index) => {
-      const x = points.length === 1
-        ? plotLeft + plotWidth / 2
-        : plotLeft + (plotWidth * index) / (points.length - 1);
-      const y = plotBottom - (Number(point.balance) / axisMaximum) * plotHeight;
-      if (index === 0) context.moveTo(x, y);
-      else context.lineTo(x, y);
-    });
-    context.strokeStyle = lineColor;
-    context.lineWidth = Math.max(1, bounds.width * 0.006);
-    context.stroke();
+  let pendingChartUpdate;
+  let chartIsVisible = !('IntersectionObserver' in window);
+  let chartUpdateQueued = false;
 
-    points.forEach((point, index) => {
-      const x = points.length === 1
-        ? plotLeft + plotWidth / 2
-        : plotLeft + (plotWidth * index) / (points.length - 1);
-      const y = plotBottom - (Number(point.balance) / axisMaximum) * plotHeight;
-      context.beginPath();
-      context.arc(x, y, Math.max(2, bounds.width * 0.012), 0, Math.PI * 2);
-      context.fillStyle = lineColor;
-      context.fill();
-    });
+  function flushChartUpdate() {
+    chartUpdateQueued = false;
+    if (!chartIsVisible || !pendingChartUpdate) return;
+
+    const { canvas, label, points } = pendingChartUpdate;
+    pendingChartUpdate = undefined;
+    updateLineChart(canvas, label, points)
+      .catch(() => chartCanvas.setAttribute('aria-label', chartLabel));
+  }
+
+  function scheduleChartUpdate(canvas, label, points) {
+    pendingChartUpdate = { canvas, label, points };
+    if (!chartIsVisible || chartUpdateQueued) return;
+
+    chartUpdateQueued = true;
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(flushChartUpdate, { timeout: 1000 });
+    } else {
+      window.setTimeout(flushChartUpdate, 0);
+    }
   }
 
   function updateSummary(inputs) {
@@ -176,19 +208,25 @@ export default function decorate(block) {
     if (!inputs || !result) return;
     amountElement.textContent = formatCurrency(result.finalAmount);
     updateSummary(inputs);
-    drawChart(result.yearlyData);
+    scheduleChartUpdate(chartCanvas, chartLabel, result.yearlyData);
   }
 
   const scope = block.closest('.compound-calculator') || block.closest('.section') || document;
+  if ('IntersectionObserver' in window) {
+    const chartObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      chartIsVisible = true;
+      chartObserver.disconnect();
+      if (pendingChartUpdate) {
+        const { canvas, label, points } = pendingChartUpdate;
+        scheduleChartUpdate(canvas, label, points);
+      }
+    });
+    chartObserver.observe(chartCanvas);
+  }
+
   scope.addEventListener('compound-plan-update', (event) => {
     updateResult(event.detail, event.detail);
   });
   updateResult(scope.compoundPlanInputs, scope.compoundPlanResult);
-
-  if ('ResizeObserver' in window) {
-    const resizeObserver = new ResizeObserver(() => {
-      drawChart(scope.compoundPlanResult?.yearlyData);
-    });
-    resizeObserver.observe(chart);
-  }
 }

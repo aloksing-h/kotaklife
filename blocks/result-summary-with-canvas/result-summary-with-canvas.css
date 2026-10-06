@@ -1,3 +1,8 @@
+.calculator-main.compound-calculator .result-summary-with-canvas-wrapper{
+    padding: 0;
+    width: 40.64%;
+}
+
 .result-summary-with-canvas .result-card {
   display: grid;
   gap: var(--spacing-lg);
@@ -38,7 +43,7 @@
 
 .result-summary-with-canvas .result-chart {
   min-width: 0;
-  padding: var(--spacing-lg);
+  padding: 16px 18px 24px;
   border-radius: var(--radius-sm);
   background: var(--base-white);
 }
@@ -53,6 +58,10 @@
   font-size: var(--body-font-size-xs);
 }
 
+.result-summary-with-canvas .chart-legend-label {
+  margin: 0;
+}
+
 .result-summary-with-canvas .chart-legend-dot {
   width: var(--spacing-sm);
   height: var(--spacing-sm);
@@ -60,10 +69,15 @@
   background: var(--brand-blue-600);
 }
 
+.result-summary-with-canvas .chart-plot {
+  position: relative;
+  height: 343px;
+}
+
 .result-summary-with-canvas .chart-canvas {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   color: var(--brand-blue-600);
 }
 
