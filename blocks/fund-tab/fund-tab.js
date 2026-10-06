@@ -3,6 +3,7 @@ export default function decorate(block) {
 
   const rows = [...block.children];
   const tabList = document.createElement('ul');
+  tabList.className = 'tablist-wrap';
   tabList.setAttribute('role', 'tablist');
   tabList.setAttribute('aria-label', 'Tabbed content');
 
@@ -17,6 +18,7 @@ export default function decorate(block) {
     if (!tabList.id) tabList.id = `${tabId}-tablist`;
 
     const listItem = document.createElement('li');
+    listItem.className = 'tablist-btn';
     const button = document.createElement('button');
     const isSelected = tabList.children.length === 0;
 
