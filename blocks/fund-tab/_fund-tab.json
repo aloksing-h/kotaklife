@@ -45,7 +45,7 @@
         },
         {
           "component": "text",
-          "name": "id",
+          "name": "textId",
           "label": "Enter tab Id"
         }
       ]
