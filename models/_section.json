@@ -259,6 +259,12 @@
           "description": "Optional. Adds data-animation-point on the section only when a value is entered."
         },
         {
+          "component": "text",
+          "name": "animation-point-mobile",
+          "label": "Animation Point mobile",
+          "description": "Optional. Adds data-animation-point-mobile on the section only when a value is entered."
+        },
+        {
           "component": "reference",
           "name": "background-image",
           "label": "Background Image for /desktop",

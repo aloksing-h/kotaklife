@@ -276,18 +276,6 @@ function decorateHeroBanner(main) {
 }
 
 /**
- * Keeps `data-animation-point` on the section only when the authored value is not empty.
- * @param {Element} main The main element
- */
-// function decorateSectionAnimationPoint(main) {
-//   main.querySelectorAll(':scope > .section[data-animation-point]').forEach((section) => {
-//     const animationPoint = section.dataset.animationPoint.trim();
-//     if (animationPoint) section.dataset.animationPoint = animationPoint;
-//     else delete section.dataset.animationPoint;
-//   });
-// }
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */

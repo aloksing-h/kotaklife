@@ -70,8 +70,12 @@ function drawPath(block) {
   const points = [];
 
   sections.forEach((section) => {
-    const data = section.getAttribute('data-animation-point');
+    let data = section.getAttribute('data-animation-point');
+    const dataMobile = section.getAttribute('data-animation-point-mobile');
     if (!data) return;
+    if (window.innerWidth < 768 && dataMobile) {
+      data = dataMobile;
+    }
     const rawPoints = data.split('|');
 
     rawPoints.forEach((p) => {
