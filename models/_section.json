@@ -227,6 +227,11 @@
           ]
         },
         {
+          "component": "text",
+          "name": "id",
+          "label": "Enter Section Id"
+        },
+        {
           "component": "reference",
           "name": "background-image",
           "label": "Background Image for /desktop",
