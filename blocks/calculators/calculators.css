@@ -1,6 +1,13 @@
 @import url('./retirement-calculator.css');
 @import url('./fields/dropdown-field/dropdown-field.css');
 
+
+.calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
+    margin-top: -83px;
+    position: relative;
+    z-index: 9;
+}
+
 .calculator-main {
     display: flex;
     flex-direction: column;
@@ -20,6 +27,10 @@
 }
 
 @media (width >=899px) {
+    .calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
+        margin-top: -188px;
+    }
+    
     .calculator-main {
         max-width: 1200px;
         margin: 0 auto;
