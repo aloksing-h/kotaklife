@@ -18,9 +18,13 @@ export function updateTabIndicator(tabList = document.querySelector('.tab-list.c
   const rootRect = positionRoot.getBoundingClientRect();
   const scrollLeft = mask && !isContents ? mask.scrollLeft : tabList.scrollLeft;
   const borderOffset = mask && !isContents ? mask.clientLeft : 0;
-  const mobileOffset = window.matchMedia('(max-width: 767px)').matches ? 4 : 0;
-  indicator.style.left = `${tabRect.left - rootRect.left + scrollLeft - borderOffset}px`;
-  indicator.style.width = `${tabRect.width + (isInitialMeasurement ? mobileOffset * 2 : 0)}px`;
+  const measuredLeft = tabRect.left - rootRect.left + scrollLeft - borderOffset;
+  if (isInitialMeasurement) indicator.style.transition = 'none';
+  indicator.style.left = `${isInitialMeasurement ? 0 : measuredLeft}px`;
+  indicator.style.width = `${tabRect.width}px`;
+  if (isInitialMeasurement) {
+    requestAnimationFrame(() => indicator.style.removeProperty('transition'));
+  }
 
   const tabs = [...tabList.querySelectorAll(':scope > li > [role="tab"]')];
   const selectedIndex = tabs.indexOf(selectedTab);
@@ -360,6 +364,7 @@ export default async function decorate(block) {
     tabPaddles.append(paddlePrev, paddleNext);
     tabWrapper.append(tabMask, tabPaddles);
     tabListWrapper.prepend(tabWrapper);
+    tabIndicator.style.visibility = 'hidden';
 
     const activateAdjacentTab = (direction) => {
       const tabItems = [...tabUl.querySelectorAll(':scope > li > [role="tab"]')];
@@ -372,8 +377,27 @@ export default async function decorate(block) {
     tabMask.addEventListener('scroll', () => updateTabIndicator(tabUl), { passive: true });
     window.addEventListener('resize', () => updateTabIndicator(tabUl), { passive: true });
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => updateTabIndicator(tabUl, true));
+    const measureInitialIndicator = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updateTabIndicator(tabUl, true);
+          tabIndicator.style.removeProperty('visibility');
+        });
+      });
+    };
+    const measureSelectedIndicator = () => {
+      const firstTab = tabUl.querySelector(':scope > li > [role="tab"]');
+      const selectedTab = tabUl.querySelector('[role="tab"][aria-selected="true"]');
+      updateTabIndicator(tabUl, selectedTab === firstTab);
+    };
+    const indicatorResizeObserver = new ResizeObserver(measureSelectedIndicator);
+    tabUl.querySelectorAll(':scope > li > [role="tab"]').forEach((tab) => {
+      indicatorResizeObserver.observe(tab);
     });
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(measureInitialIndicator);
+    } else {
+      measureInitialIndicator();
+    }
   }
 }
