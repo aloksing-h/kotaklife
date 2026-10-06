@@ -5,6 +5,7 @@ const EMAIL_MAX_LENGTH = 30;
 const MOBILE_LENGTH = 10;
 const MIN_AGE = 18;
 const MAX_AGE = 65;
+const LEAD_SUBMIT_URL = 'https://apigw-uat.mykotaklife.com/kli-customer-onboarding/api/v1/IntRestServices/LeadSquare.svc/LeadSquare';
 
 /**
  * Creates an HTML element with an optional class name
@@ -317,42 +318,112 @@ async function initializeDatePicker(input) {
 }
 
 /**
- * Converts a YYYY-MM-DD date string to DD-MM-YYYY format
- * @param {string} isoDateStr - Date in YYYY-MM-DD format (e.g. "2008-09-04")
- * @returns {string} Date in DD-MM-YYYY format (e.g. "04-09-2008")
+ * Builds the LeadSquare attribute array from validated form values.
+ * @param {Object} values
+ * @returns {Array<Object>}
  */
-function formatDateToDDMMYYYY(isoDateStr) {
-  if (!isoDateStr) return '';
-  const [year, month, day] = isoDateStr.split('-');
-  return `${day}-${month}-${year}`;
+function buildLeadPayload(values) {
+  const attributes = {
+    mx_Quote_ID: '01N2365809',
+    Source: 'ulip_organic',
+    mx_IP_Address: '',
+    mx_utm_lp_url: 'https://www.kotaklife.com/life-insurance-plans/#/buy-e-invest-ulip-plan-online?utm_source=ulip_organic&utm_medium=website&utm_campaign=top_menu&utm_term=%2F',
+    mx_utm_campaign: 'top_menu',
+    mx_UTM_Keyword: '',
+    mx_utm_gclid: '',
+    mx_utm_devicemodel: 'desktop-Chrome-Windows',
+    mx_Product_Code: 'U04',
+    mx_Product_Name: 'Kotak e-Invest Plus',
+    mx_Plan_Option: 'Maximizer',
+    mx_Last_Page_Filled: 'personal',
+    mx_Last_Online_Date: '2025-08-28 12:37:20',
+    mx_utm_ad_group: '',
+    mx_Investment_Amount: '5000',
+    mx_Investing_For: 'wealth creation',
+    mx_Fund_Strategy: 'Age Based Strategy',
+    mx_Classic_Opportunities: '70',
+    mx_Frontline_Equity: '0',
+    mx_Balanced: '0',
+    mx_Dynamic_Bond: '30',
+    mx_Dynamic_Guilt: '0',
+    mx_Money_Market: '0',
+    mx_Dynamic_floating_Rate: '0',
+    Phone: values.mobile,
+    FirstName: values.firstName,
+    LastName: values.lastName,
+    mx_Pincode: '',
+    mx_Nominee_Full_Name: '',
+    mx_Nominee_Relation: '',
+    mx_Nominee_DOB: '',
+    mx_Nominee_Percentage: '',
+    mx_Appointee: '',
+    mx_Appointee_Full_Name: '',
+    mx_Appointee_Relation: '',
+    mx_Appointee_DOB: '',
+    mx_Gender: 'Male',
+    mx_DOB: values.dob,
+    mx_lead_source_1: 'ulip_organic',
+    EmailAddress: values.email,
+    mx_Proposal_Number: '79299669',
+    mx_Risk_Apetite: 'Aggressive',
+    mx_Policy_Term: '20',
+    mx_ppt: '20',
+    SourceMedium: 'website',
+    SourceContent: '',
+    mx_Aadhar_PAN_linking_status: '',
+    mx_Income_Ranges: '5-7 Lakhs',
+    mx_Kotak_Midcap_Advantage_Fund: '0',
+    mx_Everify: 'No',
+    mx_Future_Payment_Method: '',
+    mx_call_recommendation: 'High',
+    mx_media_risk_leve: 'Green',
+    mx_trans_id: '1756363371348',
+    mx_Keyword: '',
+    mx_Kotak_Nifty_500_Multicap_Momentum_Quality_50_Index: '0',
+    mx_Premium_Mode: 'Monthly',
+  };
+  return Object.entries(attributes).map(([Attribute, Value]) => ({ Value, Attribute }));
 }
 
 /**
- * Simulates a lead submission call. Posts to the authored form URL if present,
- * otherwise falls back to a dummy resolved response for FE-only testing.
+ * Posts lead attributes to the configured submission endpoint.
  * @param {string} submitUrl
- * @param {Object} payload
- * @returns {Promise<boolean>}
+ * @param {Array<Object>} payload
+ * @returns {Promise<{success: boolean, dummy: boolean, data?: Object}>}
  */
 async function submitLead(submitUrl, payload) {
+  const dummyResponse = {
+    success: true,
+    dummy: true,
+    data: {
+      statusCode: 200,
+      message: {
+        Status: 'Success',
+        Message: {
+          AffectedRows: 1,
+        },
+      },
+    },
+  };
   if (!submitUrl) {
-    // eslint-disable-next-line no-console
-    console.log('[invest-form] Dummy API submission', payload);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(true), 500);
-    });
+    return dummyResponse;
   }
   try {
     const response = await fetch(submitUrl, {
       method: 'POST',
-      body: JSON.stringify({ data: payload }),
-      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        Source: 'EinsuranceD2C',
+        correlationId: '61817',
+      },
     });
-    return response.ok;
+    const data = await response.json().catch(() => null);
+    return { success: response.ok, dummy: false, data };
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('[invest-form] submission failed', error);
-    return false;
+    console.warn('[invest-form] API unavailable; showing dummy response', error);
+    return dummyResponse;
   }
 }
 
@@ -488,21 +559,26 @@ export default async function decorate(block) {
     }
 
     const { firstName, lastName } = splitNameForBackend(nameInput.value.trim());
-    const payload = {
+    const payload = buildLeadPayload({
       firstName,
       lastName,
       mobile: mobileInput.value,
       email: emailInput.value.trim(),
-      dob: formatDateToDDMMYYYY(dobInput.value),
-      consent: consentInput.checked,
-    };
+      dob: dobInput.value,
+    });
 
     submitButton.disabled = true;
-    const success = await submitLead(form.dataset.action || '', payload);
+    const result = await submitLead(LEAD_SUBMIT_URL, payload);
+    const { success, dummy } = result;
+    // eslint-disable-next-line no-console
+    console.log(dummy ? '[invest-form] Dummy response:' : '[invest-form] Response:', result.data);
     if (success) {
       form.replaceChildren();
       const successMessage = createElement('p', 'form-success-message');
-      successMessage.textContent = 'Thank you! Our expert will get in touch with you shortly.';
+      successMessage.setAttribute('role', 'status');
+      successMessage.textContent = dummy
+        ? 'Demo response: The service is unavailable. Your details have not been submitted.'
+        : 'Thank you! Our expert will get in touch with you shortly.';
       form.append(successMessage);
     } else {
       refreshSubmitState();
