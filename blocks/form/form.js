@@ -739,6 +739,6 @@ export async function loadForm(block) {
     // eslint-disable-next-line no-console
     console.error('Could not build form from', source, error);
     // block.parentElement.remove();
-    return null;
+    // return null;
   }
 }
