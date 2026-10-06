@@ -240,6 +240,10 @@
             {
               "name": "Calc Card",
               "value": "calc-card"
+            },
+            {
+              "name": "Protection With Riders",
+              "value": "protection-with-riders"
             }
           ]
         },
