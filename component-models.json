@@ -1034,6 +1034,23 @@
     ]
   },
   {
+    "id": "fund-tab-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "value": "",
+        "label": "Tab Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "Enter tab Id"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {

@@ -108,6 +108,12 @@
     ]
   },
   {
+    "id": "fund-tab",
+    "components": [
+      "fund-tab-item"
+    ]
+  },
+  {
     "id": "popular-search",
     "components": [
       "popular-search"
