@@ -1,0 +1,199 @@
+/* --- Main Container --- */
+.request-call-back.block.form {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 32px;
+  margin-top: 30px;
+}
+
+/* --- Form Flexbox Layout (No Grid) --- */
+.request-call-back.form.block form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px; /* Space between rows and columns */
+}
+
+/* Every field takes up 50% minus half the gap */
+.request-call-back.form.block .form-field {
+  width: calc(50% - 10px);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.request-call-back.form.block .form-field+.form-field{
+    margin: 0;
+}
+
+/* Full width fields */
+.request-call-back.form.block .checkbox-field,
+.request-call-back.form.block .button-wrapper {
+  width: 100%;
+}
+
+/* --- Input Fields (Text, Tel, Email, Date, Select) --- */
+.request-call-back.form.block input[type="text"],
+.request-call-back.form.block input[type="tel"],
+.request-call-back.form.block input[type="email"],
+.request-call-back.form.block select {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #374151;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  height: 50px;
+  outline: none;
+}
+
+.request-call-back.form.block input::placeholder {
+  color: #6b7280;
+}
+
+.request-call-back.form.block input:focus,
+.request-call-back.form.block select:focus {
+  border-color: #e31837;
+}
+
+
+/* --- Radio Buttons (Gender) --- */
+.request-call-back.form.block .radio-field legend {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+
+
+.request-call-back.form.block .radio-field label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0;
+  color: #111827;
+  padding: 0;
+}
+
+/* Hide native radio */
+.request-call-back.form.block .radio-field input[type="radio"] {
+  display: none;
+}
+
+/* Custom radio circle */
+.request-call-back.form.block .radio-field input[type="radio"] + span {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #e31837; /* Red border */
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  position: relative;
+}
+
+/* Custom radio selected dot */
+.request-call-back.form.block .radio-field input[type="radio"]:checked + span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #e31837;
+  border-radius: 50%;
+}
+
+/* --- Checkbox (Consent) --- */
+.request-call-back.form.block .checkbox-field legend {
+  display: none;
+}
+
+.request-call-back.form.block .form-field.checkbox-field label {
+  display: flex;
+  align-items: flex-start;
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* Hide native checkbox */
+.request-call-back .checkbox-field input[type="checkbox"] {
+  display: none;
+}
+
+/* Custom checkbox square */
+.request-call-back .checkbox-field input[type="checkbox"] + span {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #e31837;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 12px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  position: relative;
+  background: #ffffff;
+}
+
+
+
+/* Link formatting inside checkbox text */
+.request-call-back .checkbox-field label a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- Submit Button --- */
+.request-call-back .button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.request-call-back .button {
+  background-color: #e31837; /* Red */
+  color: #ffffff;
+  border: none;
+  border-radius: 50px; /* Pill shape */
+  padding: 6px 6px 6px 24px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.request-call-back .button:hover {
+  background-color: #c91430;
+}
+
+/* White Circle Icon Wrapper inside button */
+.request-call-back .button-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+  .request-call-back .form-field {
+    width: 100%; /* Stacks items vertically on mobile */
+  }
+}
