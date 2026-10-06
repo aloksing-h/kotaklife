@@ -1,3 +1,4 @@
 helix-importer-ui
 dompurify.min.js
 *.min.js
+scripts/chart.js
