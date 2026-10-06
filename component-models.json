@@ -1593,6 +1593,11 @@
         "label": "Video URL"
       },
       {
+        "component": "text",
+        "name": "play_button_text",
+        "label": "Play Button Text"
+      },
+      {
         "component": "select",
         "name": "classes",
         "label": "Playback",
