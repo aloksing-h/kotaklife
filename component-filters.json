@@ -40,6 +40,9 @@
       "promo",
       "banner-v2",
       "accessibility-button",
+      "calculators",
+      "result-summary-panel",
+      "result-summary-with-canvas",
       "fund-tab"
     ]
   },

@@ -205,6 +205,23 @@
               ]
             },
             {
+              "name": "Calculators",
+              "children": [
+                {
+                  "name": "Calculator Main",
+                  "value": "calculator-main"
+                },
+                {
+                  "name": "Retirement Calculator",
+                  "value": "retirement-calculator"
+                },
+                {
+                  "name": "Compound Calculator",
+                  "value": "compound-calculator"
+                }
+              ]
+            },
+            {
               "name": "Breadcrumb Move",
               "value": "breadcrumb-move"
             },
@@ -295,6 +312,9 @@
         "promo",
         "banner-v2",
         "accessibility-button",
+        "calculators",
+        "result-summary-panel",
+        "result-summary-with-canvas",
         "fund-tab"
       ]
     }

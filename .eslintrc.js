@@ -19,5 +19,9 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', { section: 5 }],
+    'xwalk/max-cells': ['error', {
+      'result-summary-panel': 9,
+      'result-summary-with-canvas': 5,
+    }],
   },
 };
