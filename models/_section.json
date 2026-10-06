@@ -56,10 +56,6 @@
               "value": "dsp-none"
             },
             {
-              "name": "Fund Tab Content",
-              "value": "fund-tab-content"
-            },
-            {
               "name": "Footer Mobile Accordion Only",
               "value": "mob-accordion"
             },
@@ -227,6 +223,10 @@
             {
               "name": "Calc Card",
               "value": "calc-card"
+            },
+            {
+              "name": "Fund Tab Content",
+              "value": "fund-tab-content"
             }
           ]
         },
