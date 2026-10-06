@@ -23,7 +23,7 @@ export default function decorate(block) {
     const isSelected = tabList.children.length === 0;
 
     button.id = tabId;
-    button.className = tabClass || '';
+    button.className = tabClass ? tabClass.split(/[\s,]+/).filter(Boolean).join(' ') : '';
     button.type = 'button';
     button.textContent = label;
     button.setAttribute('role', 'tab');

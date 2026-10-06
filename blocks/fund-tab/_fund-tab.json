@@ -49,11 +49,21 @@
           "label": "Enter tab Id"
         },
         {
-          "component": "text",
+          "component": "multiselect",
           "name": "class",
-          "value": "fund-tab",
           "label": "Tab Class",
-          "readOnly": true
+          "valueType": "array",
+          "value": ["fund-tab"],
+          "options": [
+            {
+              "name": "Fund Tab",
+              "value": "fund-tab"
+            },
+            {
+              "name": "Fund Tab V2",
+              "value": "fund-tab-v2"
+            }
+          ]
         }
       ]
     }
