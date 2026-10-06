@@ -52,7 +52,8 @@
           "component": "text",
           "name": "textClass",
           "value": "fund-tab",
-          "label": "Tab Class"
+          "label": "Tab Class",
+          "readOnly": true
         }
       ]
     }
