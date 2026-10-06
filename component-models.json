@@ -502,6 +502,10 @@
           {
             "name": "Fund Tab Content",
             "value": "fund-tab-content"
+          },
+          {
+            "name": "Fund Tab Content v2",
+            "value": "fund-tab-content-v2"
           }
         ]
       },
