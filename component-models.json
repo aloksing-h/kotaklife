@@ -314,6 +314,10 @@
             "value": "dsp-none"
           },
           {
+            "name": "Fund Tab Content",
+            "value": "fund-tab-content"
+          },
+          {
             "name": "Footer Mobile Accordion Only",
             "value": "mob-accordion"
           },
