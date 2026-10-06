@@ -1045,12 +1045,12 @@
       },
       {
         "component": "text",
-        "name": "textId",
+        "name": "id",
         "label": "Enter tab Id"
       },
       {
         "component": "text",
-        "name": "textClass",
+        "name": "class",
         "value": "fund-tab",
         "label": "Tab Class",
         "readOnly": true
