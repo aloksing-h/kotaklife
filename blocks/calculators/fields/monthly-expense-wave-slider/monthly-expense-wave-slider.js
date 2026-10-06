@@ -18,7 +18,7 @@ function formatCurrency(num) {
   return `₹ ${num}`;
 }
 
-export function createMonthlyExpenseWaveSlider(options = {}) {
+export default function createMonthlyExpenseWaveSlider(options = {}) {
   const {
     id = 'waveSlider',
     title = '',
@@ -45,7 +45,7 @@ export function createMonthlyExpenseWaveSlider(options = {}) {
     <div class="wave-slider-header">
       <span class="wave-slider-title">
         ${title}${required ? ' <span class="required-star">*</span>' : ''}
-        ${infoText ? `<img src="/icons/information-icon.svg" alt="info-icon">` : ''}
+        ${infoText ? '<img src="/icons/information-icon.svg" alt="info-icon">' : ''}
       </span>
       ${editable ? `
       <div class="wave-slider-value-display badge-expense">
@@ -119,8 +119,6 @@ export function createMonthlyExpenseWaveSlider(options = {}) {
     }
 
     const curvePathD = `M 0,${baselineY} L ${wavePoints.join(' L ')} L 1000,${baselineY}`;
-    const glowFillD = `M 0,${baselineY} L ${wavePoints.join(' L ')} L 1000,${baselineY} Z`;
-
     // Arching ruler ticks with a visible gap above the wave line
     let ticksSvg = '';
     const totalTicks = 85;

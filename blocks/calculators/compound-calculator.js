@@ -1,7 +1,7 @@
-import { createFrequencyDropdownField } from './fields/dropdown-field/dropdown-field.js';
-import { createMonthlyExpenseWaveSlider } from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
+import createFrequencyDropdownField from './fields/dropdown-field/dropdown-field.js';
+import createMonthlyExpenseWaveSlider from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
 import createRateField from './fields/rate-field/rate-field.js';
-import { createRetirementExpenseRatioField } from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
+import createRetirementExpenseRatioField from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
 
 export function calculateCompoundInterest({
   investmentAmount, investmentYears, holdingYears, rate, frequency = 12,
@@ -89,9 +89,9 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
-//   [investmentYearsField, holdingYearsField].forEach((field) => {
-//     field.element.querySelector('.badge-affix').textContent = 'years';
-//   });
+  //   [investmentYearsField, holdingYearsField].forEach((field) => {
+  //     field.element.querySelector('.badge-affix').textContent = 'years';
+  //   });
 
   const interestRateField = createRetirementExpenseRatioField({
     id: 'interestRateInput',

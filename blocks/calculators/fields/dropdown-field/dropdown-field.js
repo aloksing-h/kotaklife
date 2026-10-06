@@ -1,7 +1,7 @@
 /**
  * Path: fields/frequency-dropdown/frequency-dropdown.js
  */
-export function createFrequencyDropdownField(options = {}) {
+export default function createFrequencyDropdownField(options = {}) {
   const {
     id = 'frequencySelect',
     label = 'Frequency',
@@ -10,9 +10,9 @@ export function createFrequencyDropdownField(options = {}) {
       { label: '30', value: '30' },
       { label: '90', value: '90' },
       { label: '180', value: '180' },
-      { label: '365', value: '365' }
+      { label: '365', value: '365' },
     ],
-    onChange
+    onChange,
   } = options;
 
   let currentValue = value;
@@ -29,11 +29,10 @@ export function createFrequencyDropdownField(options = {}) {
     <div class="select-wrapper">
       <select id="${id}" class="frequency-dropdown-select">
         ${optionsList
-          .map(
-            (opt) =>
-              `<option value="${opt.value}" ${opt.value === currentValue ? 'selected' : ''}>${opt.label}</option>`
-          )
-          .join('')}
+    .map(
+      (opt) => `<option value="${opt.value}" ${opt.value === currentValue ? 'selected' : ''}>${opt.label}</option>`,
+    )
+    .join('')}
       </select>
       <span class="custom-arrow">
         <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,6 +58,6 @@ export function createFrequencyDropdownField(options = {}) {
     setValue: (val) => {
       currentValue = val;
       selectEl.value = val;
-    }
+    },
   };
 }

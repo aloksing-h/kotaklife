@@ -2,81 +2,90 @@
  * Path: retirement-calculator.js
  */
 import createAgeField from './fields/age-field/age-field.js';
-import { createMonthlyExpenseWaveSlider } from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
+import createMonthlyExpenseWaveSlider from './fields/monthly-expense-wave-slider/monthly-expense-wave-slider.js';
 import createRateField from './fields/rate-field/rate-field.js';
-import { createRetirementExpenseRatioField } from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
+import createRetirementExpenseRatioField from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
+
 export default function retirementCalculator(block) {
   function onPlanInputChange() {
     block.dispatchEvent(new Event('retirement-plan-input-change'));
   }
-let currentAgeLabel = block.querySelector(".current-age-field label").innerText.trim();
-let retirementAgeLabel = block.querySelector(".retirement-age-field label").innerText.trim();
-let lifeExpectedLabel = block.querySelector(".life-expected-field label").innerText.trim();
-let monthlyExpenseLabel = block.querySelector(".monthly-expense-field label").innerText.trim();
-let inflationRateLabel = block.querySelector(".inflation-rate-field label").innerText.trim();
-let expectedReturnLabel = block.querySelector(".expected-return-field label").innerText.trim();
-let expectedExpenseLabel = block.querySelector(".expected-expense-field label").innerText.trim();
+  const currentAgeLabel = block.querySelector('.current-age-field label').innerText.trim();
+  const retirementAgeLabel = block.querySelector('.retirement-age-field label').innerText.trim();
+  const lifeExpectedLabel = block.querySelector('.life-expected-field label').innerText.trim();
+  const monthlyExpenseLabel = block.querySelector('.monthly-expense-field label').innerText.trim();
+  const inflationRateLabel = block.querySelector('.inflation-rate-field label').innerText.trim();
+  const expectedReturnLabel = block.querySelector('.expected-return-field label').innerText.trim();
+  const expectedExpenseLabel = block.querySelector('.expected-expense-field label').innerText.trim();
   const currentAgeField = createAgeField({
     id: 'currentAge',
     label: currentAgeLabel,
     value: 30,
     min: 18,
     max: 100,
-    onChange: onPlanInputChange
+    onChange: onPlanInputChange,
   });
 
   const retirementAgeField = createAgeField({
-  id: 'retireAge',
-  label: retirementAgeLabel,
-  value: 60,
-  min: 40,
-  max: 80,
-  onChange: onPlanInputChange
-});
+    id: 'retireAge',
+    label: retirementAgeLabel,
+    value: 60,
+    min: 40,
+    max: 80,
+    onChange: onPlanInputChange,
+  });
 
-const lifeExpectancyField = createAgeField({
-  id: 'lifeExpect',
-  label: lifeExpectedLabel,
-  value: 80,
-  min: 60,
-  max: 100,
-  onChange: onPlanInputChange
-});
+  const lifeExpectancyField = createAgeField({
+    id: 'lifeExpect',
+    label: lifeExpectedLabel,
+    value: 80,
+    min: 60,
+    max: 100,
+    onChange: onPlanInputChange,
+  });
 
-const expenseWaveSlider = createMonthlyExpenseWaveSlider({
-  title: monthlyExpenseLabel,
-  required: true,
-  infoText: 'Your current monthly cost of living',
-  editable: true,
-  value: 50000,
-  min: 0,
-  max: 500000,
-  step: 5000,
-  milestones: [0, 100000, 200000, 300000,400000, 500000],
-  onChange: onPlanInputChange
-});
+  const expenseWaveSlider = createMonthlyExpenseWaveSlider({
+    title: monthlyExpenseLabel,
+    required: true,
+    infoText: 'Your current monthly cost of living',
+    editable: true,
+    value: 50000,
+    min: 0,
+    max: 500000,
+    step: 5000,
+    milestones: [0, 100000, 200000, 300000, 400000, 500000],
+    onChange: onPlanInputChange,
+  });
 
-const inflationField = createRateField({
-  id: 'inflationInput',
-  label: inflationRateLabel,
+  const inflationField = createRateField({
+    id: 'inflationInput',
+    label: inflationRateLabel,
     value: 5,
     min: 0,
     max: 15,
     step: 1,
-    onChange: onPlanInputChange
+    onChange: onPlanInputChange,
   });
 
   const returnField = createRateField({
     id: 'returnInput',
     label: expectedReturnLabel,
     infoText: 'Anticipated annual return on investment',
-    value: 5, min: 0, max: 15, step: 1, onChange: onPlanInputChange
+    value: 5,
+    min: 0,
+    max: 15,
+    step: 1,
+    onChange: onPlanInputChange,
   });
 
   const retirementExpenseRatio = createRetirementExpenseRatioField({
     id: 'expPercentInput',
     label: expectedExpenseLabel,
-    value: 50, min: 0, max: 100, step: 1, onChange: onPlanInputChange
+    value: 50,
+    min: 0,
+    max: 100,
+    step: 1,
+    onChange: onPlanInputChange,
   });
 
   function publishRetirementPlanInputs() {
@@ -95,7 +104,7 @@ const inflationField = createRateField({
 
   block.addEventListener('retirement-plan-input-change', publishRetirementPlanInputs);
 
-  let retirecalc= ` <div class="calculator-modal">
+  const retirecalc = ` <div class="calculator-modal">
     <div class="calculator-grid">
       <div class="calc-card">
         <div class="age-inputs-row">
@@ -122,5 +131,4 @@ const inflationField = createRateField({
   block.querySelector('#retirement-ration').appendChild(retirementExpenseRatio.element);
 
   publishRetirementPlanInputs();
-
 }

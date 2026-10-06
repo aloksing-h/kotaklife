@@ -1,5 +1,4 @@
-
-export function createRetirementExpenseRatioField(options = {}) {
+export default function createRetirementExpenseRatioField(options = {}) {
   const {
     id = 'expPercentInput',
     label = 'Your expected expenses can be your retirement expenses?',
@@ -9,9 +8,9 @@ export function createRetirementExpenseRatioField(options = {}) {
     step = 1,
     milestones = [
       { val: 0, text: '0%' },
-      { val: 100, text: '100%' }
+      { val: 100, text: '100%' },
     ],
-    onChange
+    onChange,
   } = options;
 
   let currentValue = value;
@@ -68,7 +67,7 @@ export function createRetirementExpenseRatioField(options = {}) {
     </div>
 
     <div class="wedge-scale-row">
-      ${milestones.map(m => `<span>${m.text}</span>`).join('')}
+      ${milestones.map((m) => `<span>${m.text}</span>`).join('')}
     </div>
   `;
 
@@ -143,7 +142,7 @@ export function createRetirementExpenseRatioField(options = {}) {
   });
 
   inputEl.addEventListener('input', () => {
-    let cleanVal = inputEl.value.replace(/[^0-9]/g, '');
+    const cleanVal = inputEl.value.replace(/[^0-9]/g, '');
     if (cleanVal === '') return;
     let num = parseInt(cleanVal, 10);
     if (num > max) num = max;
@@ -151,9 +150,9 @@ export function createRetirementExpenseRatioField(options = {}) {
   });
 
   inputEl.addEventListener('blur', () => {
-    let cleanVal = inputEl.value.replace(/[^0-9]/g, '');
+    const cleanVal = inputEl.value.replace(/[^0-9]/g, '');
     let num = parseInt(cleanVal, 10);
-    if (isNaN(num) || num < min) num = min;
+    if (Number.isNaN(num) || num < min) num = min;
     if (num > max) num = max;
     inputEl.value = num;
     updateValue(num);
@@ -169,6 +168,6 @@ export function createRetirementExpenseRatioField(options = {}) {
       currentValue = val;
       inputEl.value = val;
       renderTrack();
-    }
+    },
   };
 }
