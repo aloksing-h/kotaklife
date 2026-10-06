@@ -760,6 +760,72 @@ main>.section:has(.banner-v2) {
 }
 
 /* ==========================================================================
+   Retirement calculator banner (Figma 5401:9725 @1200px)
+   The illustration is one wide image (calculator + thread) anchored to the
+   1200px frame. Its right side is clipped by the viewport and is revealed
+   as the viewport grows. 601px-1199px scales the frame fluidly.
+   ========================================================================== */
+@media (width >= 601px) {
+  .banner-v2.block.retire-calc-banner {
+    height: calc(224px + 22.67vw);
+    min-height: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-inner {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    align-self: flex-start;
+    flex: 0 1 633px;
+    max-width: min(633px, calc(66.42vw - 60px));
+    padding: 136px 20px 0 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual,
+  .banner-v2.block.retire-calc-banner .banner-v2-visual .banner-v2-visual-desktop {
+    position: static;
+    height: auto;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual picture {
+    display: block;
+    height: auto;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    position: absolute;
+    left: 66.42vw;
+    bottom: calc(0vw - 1px);
+    width: calc(267px + 70.43vw);
+    height: auto;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+@media (width >= 1200px) {
+  .banner-v2.block.retire-calc-banner {
+    height: 496px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-title {
+    font-size: 48px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-right: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    left: 797px;
+    bottom: 0px;
+    width: 1112px;
+  }
+}
+
+/* ==========================================================================
    6. Universal Editor / Authoring Mode
    ========================================================================== */
 .banner-v2.block.is-editor {
