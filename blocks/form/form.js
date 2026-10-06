@@ -161,7 +161,7 @@ function buildOptions(field, controlled) {
   }
   fieldset.append(buildLabel(label, 'legend', null, required === 'true'));
 
-  options.split(',').forEach((o) => {
+  options.split(' , ').forEach((o) => {
     const option = o.trim();
     const input = buildOptionInput(field, option);
     const span = createElement('span');
