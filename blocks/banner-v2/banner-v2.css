@@ -22,6 +22,9 @@ main>.section:has(.banner-v2) {
   background-position: center right;
   background-repeat: no-repeat;
 }
+main>.section:has(.banner-v2.retire-calc-banner){
+  margin-top: -56px;
+}
 
 .banner-v2-wrapper {
   width: 100%;
@@ -780,7 +783,7 @@ main>.section:has(.banner-v2) {
     align-self: flex-start;
     flex: 0 1 633px;
     max-width: min(633px, calc(66.42vw - 60px));
-    padding: 136px 20px 0 0;
+    padding: 96px 20px 0 0;
   }
 
   .banner-v2.block.retire-calc-banner .banner-v2-visual,
