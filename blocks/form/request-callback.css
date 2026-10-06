@@ -1,6 +1,6 @@
 /* --- Main Container --- */
 .request-call-back.block.form {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 24px;
@@ -14,9 +14,9 @@
   gap: 16px 20px; /* Space between rows and columns */
 }
 
-/* Every field takes up 50% minus half the gap */
+/* Every field takes up full width on mobile */
 .request-call-back.form.block .form-field {
-  width: calc(50% - 10px);
+  width: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -45,14 +45,13 @@
   font-size: 14px;
   line-height: 18px;
   color: #374151;
-  background-color: #ffffff;
+  background-color: #fff;
   box-sizing: border-box;
   outline: none;
 }
 
 .request-call-back.form.block select{
-    appearance: none;
-  -webkit-appearance: none;
+  appearance: none;
   background-image: url("../../icons/grey-arrow-down-1.svg");
   background-repeat: no-repeat;
   background-position: right 16px center;
@@ -74,11 +73,13 @@
 .request-call-back.form.block select:focus {
   border-color: #e31837;
 }
+
 .request-call-back.form.block .checkbox-field label{
   position: relative;
 }
 
 /* --- Override Global Base CSS for Native Inputs --- */
+
 /* Visually hide native inputs safely without breaking clicks or accessibility */
 .request-call-back.form.block .radio-field label input[type="radio"],
 .request-call-back.form.block .checkbox-field label input[type="checkbox"] {
@@ -88,7 +89,7 @@
   height: 1px;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   border: 0;
   pointer-events: none; /* Allows clicks to pass through to the label safely */
 }
@@ -150,6 +151,7 @@
   width: 8px;
   height: 8px;
   border: 5px solid #FA1432;
+
   /* background-color: #e31837; */
   border-radius: 50%;
 }
@@ -169,6 +171,14 @@
 .request-call-back.form.block .form-field.checkbox-field label p{
   margin: 0;
 }
+
+/* Link formatting inside checkbox text */
+.request-call-back.form.block .checkbox-field label a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .request-call-back.form.block .form-field.checkbox-field label p a{
   color:#175CD3;
   font-weight: 800;
@@ -183,7 +193,7 @@
   border-radius: 4px;
   margin-right: 8px;
   margin-top: 2px;
-  background: #ffffff;
+  background: #fff;
 }
 
 /* Checkbox selected state (The Checkmark) */
@@ -198,13 +208,6 @@
   font-weight: bold;
 }
 
-/* Link formatting inside checkbox text */
-.request-call-back.form.block .checkbox-field label a {
-  color: #0056b3;
-  text-decoration: none;
-  font-weight: 600;
-}
-
 /* --- Submit Button --- */
 .request-call-back.form.block .button-wrapper {
   display: flex;
@@ -214,7 +217,7 @@
 
 .request-call-back.form.block .button {
   background-color: #e31837; /* Red */
-  color: #ffffff;
+  color: #fff;
   border: none;
   border-radius: 50px; /* Pill shape */
   padding: 6px 6px 6px 24px;
@@ -223,9 +226,11 @@
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  width: unset;
 }
 
 .request-call-back.form.block .button:hover {
@@ -236,21 +241,21 @@
 .request-call-back.form.block .button-icon {
   width: 32px;
   height: 32px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-  .request-call-back.form.block .form-field {
-    width: 100%; /* Stacks items vertically on mobile */
-  }
-
-  .request-call-back.form.block .button {
-    justify-content: center;
-    width: unset;
+/* --- Tablet and Desktop --- */
+@media (width >= 768px) {
+  .request-call-back.form.block .form-field.text-field,
+  .request-call-back.form.block .form-field.email-field,
+  .request-call-back.form.block .form-field.tel-field,
+  .request-call-back.form.block .form-field.date-field,
+  .request-call-back.form.block .form-field.select-field,
+  .request-call-back.form.block .form-field.radio-field {
+    width: calc(50% - 10px); /* Two columns side by side */
   }
 }

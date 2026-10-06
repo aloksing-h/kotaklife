@@ -41,7 +41,7 @@
         },
         {
           "component": "text",
-          "name": "play_button_text",
+          "name": "playbutton_text",
           "label": "Play Button Text"
         },
         {

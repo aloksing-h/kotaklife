@@ -431,13 +431,16 @@ main>.section>.rte-wrapper:has(.subnav) {
         line-height: var(--button-1-line-height);
     }
 }
+
 .rte.tabs-table.block{
     margin-top: 16px;
 }
+
 .rte.block.tabs-table > div > div{
     max-height: 1092px;
     overflow-y: auto;
 }
+
 /* 1. Set up the main table with the rounded outer border */
 .rte.block.tabs-table table {
   border-collapse: separate; 
@@ -462,7 +465,6 @@ main>.section>.rte-wrapper:has(.subnav) {
   font-size: 14px;
   line-height: 18px; 
   font-weight: 400;
-  word-break: break-word;
   overflow-wrap: break-word;
 }
 
@@ -470,6 +472,7 @@ main>.section>.rte-wrapper:has(.subnav) {
 .rte.block.tabs-table table td:last-child {
   border-right: none;
 }
+
 .rte.block.tabs-table table tr td:first-child{
     padding: 16px;
     font-size: 14px;
@@ -477,6 +480,7 @@ main>.section>.rte-wrapper:has(.subnav) {
     font-weight: 600;
     color: #181D27;
 }
+
 /* 4. Remove the bottom border on the last row so it doesn't double up with the outer table border */
 .rte.block.tabs-table table tr:last-child td {
   border-bottom: none;
@@ -490,10 +494,12 @@ main>.section>.rte-wrapper:has(.subnav) {
   font-weight: 600;
   color: #181D27;
 }
+
 @media (width >= 768px) {
     .rte.tabs-table.block{
         margin-top: 24px;
     }
+
     .rte.block.tabs-table > div > div{
         max-height: unset;
     }
