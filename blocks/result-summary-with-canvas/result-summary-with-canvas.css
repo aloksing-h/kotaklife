@@ -192,6 +192,12 @@ line-height: 18px;
 
 .result-summary-with-canvas .result-cta {
   margin-top: 24px;
+  color: #FFF;
+font-family: var(--font-family-font-family-body, Manrope);
+font-size: 16px;
+font-weight: 800;
+line-height: 18px;
+padding: 4px 4px 4px 20px;
 }
 
 .result-summary-with-canvas .result-total {
@@ -223,4 +229,8 @@ font-size: 16px;
 line-height: 20px;
 }
 
+.result-summary-with-canvas .result-cta::after {
+  height: 32px;
+  width: 32px;
+}
 }

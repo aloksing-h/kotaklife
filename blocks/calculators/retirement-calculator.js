@@ -53,10 +53,10 @@ export default function retirementCalculator(block) {
     infoText: 'Your current monthly cost of living',
     editable: true,
     value: 40000,
-    min: 1000,
+    min: 10000,
     max: 1000000,
     step: 5000,
-    milestones: [0, 200000, 400000, 600000, 800000, 1000000],
+    milestones: [10000, 200000, 400000, 600000, 800000, 1000000],
     required: true,
     onChange: onPlanInputChange,
   });
@@ -80,7 +80,7 @@ export default function retirementCalculator(block) {
     min: 1,
     max: 15,
     step: 1,
-    milestones: [0, 5, 10, 15].map((val) => ({ val, text: `${val}%` })),
+    milestones: [1, 5, 10, 15].map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 

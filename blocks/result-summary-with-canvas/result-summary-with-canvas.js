@@ -273,7 +273,9 @@ export default function decorate(block) {
 
   function updateResult(inputs, result) {
     if (!inputs || !result) return;
-    amountElement.textContent = formatCurrency(result.finalAmount);
+    const finalAmount = Number(result.finalAmount);
+    const formattedAmount = Math.round(Number.isFinite(finalAmount) ? finalAmount : 0).toLocaleString('en-IN');
+    amountElement.textContent = `\u20B9 ${formattedAmount}`;
     updateSummary(inputs);
     scheduleChartUpdate(chartCanvas, chartLabel, result.yearlyData);
   }
