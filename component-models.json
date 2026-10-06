@@ -1020,6 +1020,17 @@
         "component": "aem-content",
         "name": "submit",
         "label": "Submit URL"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Request A Call Back",
+            "value": "request-call-back"
+          }
+        ]
       }
     ]
   },
