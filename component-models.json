@@ -856,6 +856,10 @@
           {
             "name": "Steps Layout (How it works)",
             "value": "steps"
+          },
+          {
+            "name": "Term Insurance work",
+            "value": "term-insurance-work"
           }
         ]
       },
