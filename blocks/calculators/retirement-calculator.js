@@ -53,7 +53,7 @@ export default function retirementCalculator(block) {
     min: 1000,
     max: 1000000,
     step: 5000,
-    milestones: [0, 100000, 200000, 300000, 400000, 500000],
+    milestones: [0, 200000, 400000, 600000, 800000, 1000000],
     onChange: onPlanInputChange,
   });
 
