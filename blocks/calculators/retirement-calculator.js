@@ -23,6 +23,7 @@ export default function retirementCalculator(block) {
     value: 30,
     min: 1,
     max: 80,
+    required: true,
     onChange: onPlanInputChange,
   });
 
@@ -32,6 +33,7 @@ export default function retirementCalculator(block) {
     value: 60,
     min: 30,
     max: 60,
+    required: true,
     onChange: onPlanInputChange,
   });
 
@@ -41,6 +43,7 @@ export default function retirementCalculator(block) {
     value: 80,
     min: 60,
     max: 100,
+    required: true,
     onChange: onPlanInputChange,
   });
 
@@ -54,6 +57,7 @@ export default function retirementCalculator(block) {
     max: 1000000,
     step: 5000,
     milestones: [0, 200000, 400000, 600000, 800000, 1000000],
+    required: true,
     onChange: onPlanInputChange,
   });
 

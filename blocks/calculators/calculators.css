@@ -13,7 +13,8 @@
     margin: 0;
 }
 
-.calculator-main .slider-box:last-child {
+.calculator-main #retirement-ration,
+.calculator-main #interest-rate {
   padding: 0;
   border: none;
 }

@@ -51,12 +51,12 @@ export default function compoundCalculator(block) {
     id: 'frequencySelect',
     label: getLabel('.frequency-field', 'Frequency'),
     value: '30',
+    required: true,
     onChange: onCompoundInputChange,
   });
 
   const amountInvestedSlider = createMonthlyExpenseWaveSlider({
     title: getLabel('.invest-amount-field', 'Investment amount'),
-    required: true,
     infoText: 'Amount contributed at the start of each selected investment period',
     editable: true,
     value: 50000,

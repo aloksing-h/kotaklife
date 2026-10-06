@@ -130,6 +130,7 @@ export default function decorate(block) {
     const lineColor = styles.getPropertyValue('--info-800').trim();
     const gridColor = styles.getPropertyValue('--gray-400').trim();
     const baselineColor = styles.getPropertyValue('--brand-blue-50').trim() || '#D2DAE4';
+    const baselineOffset = 12;
     const tickColor = styles.getPropertyValue('--Text-text-secondary').trim() || '#414651';
     const amountFontSize = parseFloat(styles.getPropertyValue('--Font-size-Disclaimer')) || 10;
     const amountLineHeight = styles.getPropertyValue('--Line-height-Disclaimer').trim() || '12px';
@@ -139,7 +140,7 @@ export default function decorate(block) {
         id: 'full-width-baseline',
         afterDraw: (chartInstance) => {
           const { ctx, chartArea, scales } = chartInstance;
-          const baselineY = chartArea.bottom + 12;
+          const baselineY = chartArea.bottom + baselineOffset;
           ctx.save();
           ctx.beginPath();
           ctx.strokeStyle = gridColor;
@@ -192,10 +193,13 @@ export default function decorate(block) {
           x: {
             grid: { color: gridColor, drawTicks: false },
             border: { display: false },
+            afterFit: (scale) => {
+              scale.height -= scale.options.ticks.padding;
+            },
             ticks: {
               autoSkip: true,
               maxRotation: 0,
-              padding: 18,
+              padding: () => baselineOffset + (window.matchMedia('(min-width: 900px)').matches ? 17 : 8),
               color: '#414651',
               font: {
                 family: styles.fontFamily,
