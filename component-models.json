@@ -1047,6 +1047,12 @@
         "component": "text",
         "name": "textId",
         "label": "Enter tab Id"
+      },
+      {
+        "component": "text",
+        "name": "textClass",
+        "value": "fund-tab",
+        "label": "Tab Class"
       }
     ]
   },
