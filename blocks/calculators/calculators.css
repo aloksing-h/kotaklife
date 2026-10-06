@@ -13,6 +13,11 @@
     margin: 0;
 }
 
+.calculator-main .slider-box:last-child {
+  padding: 0;
+  border: none;
+}
+
 @media (width >=899px) {
     .calculator-main {
         max-width: 1200px;

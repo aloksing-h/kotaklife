@@ -53,13 +53,28 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
+  width: 100%;
+  margin: 0 0 var(--spacing-md);
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--gray-600);
+  font: inherit;
   font-size: var(--body-font-size-xs);
+  cursor: pointer;
+}
+
+.result-summary-with-canvas .chart-legend:focus-visible {
+  outline: 2px solid var(--brand-blue-600);
+  outline-offset: var(--spacing-xs);
 }
 
 .result-summary-with-canvas .chart-legend-label {
   margin: 0;
+}
+
+.result-summary-with-canvas .chart-legend[aria-pressed='false'] .chart-legend-label {
+  text-decoration: line-through;
 }
 
 .result-summary-with-canvas .chart-legend-dot {
