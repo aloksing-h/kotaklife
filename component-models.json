@@ -1078,17 +1078,19 @@
   },
   {
     "id": "fund-tab",
-    "fields": {
-      "component": "select",
-      "name": "classes",
-      "label": "Select Class",
-      "options": [
-        {
-          "name": "Custom Tab",
-          "value": "custom-tab"
-        }
-      ]
-    }
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Select Class",
+        "options": [
+          {
+            "name": "Custom Tab",
+            "value": "custom-tab"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "fund-tab-item",
