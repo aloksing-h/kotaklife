@@ -46,7 +46,8 @@ function writeHelpText(text, inputId) {
  */
 function buildLabel(text, type = 'label', id = null, required = false) {
   const label = createElement(type);
-  label.textContent = text;
+  // label.textContent = text;
+  label.innerHTML = text;
   if (id && type === 'label') label.setAttribute('for', id);
   if (required) label.dataset.required = 'true';
   return label;
