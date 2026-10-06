@@ -1,1 +1,16 @@
 @import url('./find-plan.css');
+@import url("./form-tab.css");
+
+.tab-list.calc-card .tab-wrapper {
+    position: relative;
+}
+
+.tab-list.calc-card .tab-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    border: 1px solid var(--text-text-brand-blue, #1E4679);
+    background: transparent;
+    transition: left 0.3s ease, width 0.3s ease;
+    pointer-events: none;
+}

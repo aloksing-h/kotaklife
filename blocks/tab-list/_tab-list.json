@@ -65,6 +65,14 @@
                         {
                             "name": "Header Tab",
                             "value": "header-tab"
+                        },
+                        {
+                            "name":"Insurance Content Tab",
+                            "value":"insurance-content-tab"
+                        },
+                        {
+                            "name": "Calc Card",
+                            "value": "calc-card"
                         }
                     ]
                 }

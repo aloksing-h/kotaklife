@@ -1,0 +1,86 @@
+.calculator-main .age-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculator-main .age-field .age-label {
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .age-field .age-input {
+  border-radius: 0;
+  border: 1px solid #d5d7da;
+  background: #fff;
+  padding: 5.2px 16px;
+  color: #181d27;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.calculator-main .age-field .age-label .required-star {
+  color: #fa1432;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .age-inputs-row .field-group {
+   width: 47%;
+}
+
+.calculator-main .age-inputs-row .field-group:last-child {
+  width: 100%;
+}
+
+
+@media (width >= 900px) {
+    .calculator-main .age-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculator-main .age-inputs-row .field-group {
+  width: 31.57%;
+}
+
+.calculator-main .age-inputs-row .field-group:last-child {
+    width: 31.57%;
+}
+
+.calculator-main .age-field .age-label {
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .age-field .age-input {
+  border-radius: 0;
+  border: 1px solid #d5d7da;
+  background: #fff;
+  padding: 10px 16px;
+  color: #181d27;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.calculator-main .age-field .age-label .required-star {
+  color: #fa1432;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+}

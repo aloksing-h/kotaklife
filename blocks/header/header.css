@@ -1498,7 +1498,9 @@ nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-lis
 nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list.header-tab button {
   display: flex;
   align-items: center;
-  gap: 4px;
+
+  /* gap: 4px; */
+  gap: 46px;
   padding: 10px 0;
   width: 100%;
   border: none;
@@ -1513,8 +1515,9 @@ nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-lis
   cursor: pointer;
 }
 
-nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list button[aria-selected='false'] {
-  gap: 46px;
+nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list button[aria-selected='true'] {
+  /* gap: 46px; */
+  gap: 4px;
 }
 
 nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .tab-list button::before {
