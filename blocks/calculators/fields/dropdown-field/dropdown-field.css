@@ -40,10 +40,6 @@ width: 100%;
 appearance: none;
 }
 
-.calculator-main .frequency-dropdown-field .frequency-dropdown-select {
-
-}
-
 .calculator-main .frequency-dropdown-field .frequency-dropdown-select::after {
     content: '';
     background-image: url("/icons/calculator-dropdown-icon.svg");
