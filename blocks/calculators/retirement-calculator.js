@@ -21,8 +21,8 @@ export default function retirementCalculator(block) {
     id: 'currentAge',
     label: currentAgeLabel,
     value: 30,
-    min: 18,
-    max: 100,
+    min: 1,
+    max: 80,
     onChange: onPlanInputChange,
   });
 
@@ -30,8 +30,8 @@ export default function retirementCalculator(block) {
     id: 'retireAge',
     label: retirementAgeLabel,
     value: 60,
-    min: 40,
-    max: 80,
+    min: 30,
+    max: 60,
     onChange: onPlanInputChange,
   });
 
@@ -49,9 +49,9 @@ export default function retirementCalculator(block) {
     required: true,
     infoText: 'Your current monthly cost of living',
     editable: true,
-    value: 50000,
-    min: 0,
-    max: 500000,
+    value: 40000,
+    min: 1000,
+    max: 1000000,
     step: 5000,
     milestones: [0, 100000, 200000, 300000, 400000, 500000],
     onChange: onPlanInputChange,
@@ -61,8 +61,8 @@ export default function retirementCalculator(block) {
     id: 'inflationInput',
     label: inflationRateLabel,
     value: 5,
-    min: 0,
-    max: 15,
+    min: 1,
+    max: 7,
     step: 1,
     onChange: onPlanInputChange,
   });
@@ -72,7 +72,7 @@ export default function retirementCalculator(block) {
     label: expectedReturnLabel,
     infoText: 'Anticipated annual return on investment',
     value: 5,
-    min: 0,
+    min: 1,
     max: 15,
     step: 1,
     onChange: onPlanInputChange,
@@ -81,7 +81,7 @@ export default function retirementCalculator(block) {
   const retirementExpenseRatio = createRetirementExpenseRatioField({
     id: 'expPercentInput',
     label: expectedExpenseLabel,
-    value: 50,
+    value: 75,
     min: 0,
     max: 100,
     step: 1,
