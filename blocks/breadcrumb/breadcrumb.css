@@ -302,16 +302,17 @@ main .breadcrumb-container .breadcrumb-wrapper {
 }
 
 @media (width >= 900px) {
-      .section:has(.banner-v2.retire-calc-banner) .breadcrumb-container{
- bottom: 194px;
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb-container{
+    bottom: 194px;
   }
+  
   .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
     padding-left: 32px;
   }
 }
 
 @media (width >= 1101px) {
-    .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
     padding-left: 50px;
   }
   

@@ -7,6 +7,7 @@
     position: relative;
     z-index: 9;
 }
+
 .calculator-main {
     display: flex;
     flex-direction: column;
@@ -23,6 +24,7 @@
     .calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
         margin-top: -188px;
     }
+    
     .calculator-main {
         max-width: 1200px;
         margin: 0 auto;

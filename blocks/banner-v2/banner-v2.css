@@ -22,6 +22,7 @@ main>.section:has(.banner-v2) {
   background-position: center right;
   background-repeat: no-repeat;
 }
+
 main>.section:has(.banner-v2.retire-calc-banner){
   margin-top: -56px;
 }
@@ -823,7 +824,7 @@ main>.section:has(.banner-v2.retire-calc-banner){
 
   .banner-v2.block.retire-calc-banner .banner-v2-visual img {
     left: 797px;
-    bottom: 0px;
+    bottom: 0;
     width: 1112px;
   }
 }
