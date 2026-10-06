@@ -463,6 +463,23 @@
             ]
           },
           {
+            "name": "Calculators",
+            "children": [
+              {
+                "name": "Calculator Main",
+                "value": "calculator-main"
+              },
+              {
+                "name": "Retirement Calculator",
+                "value": "retirement-calculator"
+              },
+              {
+                "name": "Compound Calculator",
+                "value": "compound-calculator"
+              }
+            ]
+          },
+          {
             "name": "Breadcrumb Move",
             "value": "breadcrumb-move"
           },
@@ -656,6 +673,23 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "calculators",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Calculator name",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "form URL"
       }
     ]
   },
@@ -1158,6 +1192,107 @@
         "value": "",
         "label": "Attribution",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "result-summary-panel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "fund-title",
+        "label": "Fund title",
+        "value": "Estimated retirement fund",
+        "description": "Label shown above the calculated retirement fund."
+      },
+      {
+        "component": "reference",
+        "name": "illustration",
+        "label": "Illustration",
+        "multi": false,
+        "description": "Optional image shown between the fund and savings summary."
+      },
+      {
+        "component": "text",
+        "name": "illustration-description",
+        "label": "Illustration description",
+        "value": "",
+        "description": "Describe the illustration, or leave blank if decorative."
+      },
+      {
+        "component": "text",
+        "name": "monthly-label",
+        "label": "Monthly toggle label",
+        "value": "Monthly"
+      },
+      {
+        "component": "text",
+        "name": "yearly-label",
+        "label": "Yearly toggle label",
+        "value": "Yearly"
+      },
+      {
+        "component": "text",
+        "name": "monthly-savings-title",
+        "label": "Monthly savings title",
+        "value": "Required monthly savings"
+      },
+      {
+        "component": "text",
+        "name": "yearly-savings-title",
+        "label": "Yearly savings title",
+        "value": "Required yearly savings"
+      },
+      {
+        "component": "text",
+        "name": "cta-label",
+        "label": "CTA label",
+        "value": "Start Your Planning Now"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta-link",
+        "label": "CTA destination",
+        "description": "Page or URL opened by the call-to-action button."
+      }
+    ]
+  },
+  {
+    "id": "result-summary-with-canvas",
+    "fields": [
+      {
+        "component": "text",
+        "name": "result-label",
+        "label": "Result label",
+        "value": "You may get",
+        "description": "Label shown above the calculated amount."
+      },
+      {
+        "component": "text",
+        "name": "investment-summary-template",
+        "label": "Investment summary template",
+        "value": "If you invest {investmentAmount} {frequency} for {investmentYears} years at {rate}% p.a.",
+        "description": "Supports {investmentAmount}, {frequency}, {investmentYears}, {holdingYears}, and {rate} placeholders."
+      },
+      {
+        "component": "text",
+        "name": "chart-series-label",
+        "label": "Chart series label",
+        "value": "Your returns",
+        "description": "Legend label shown above the dynamic returns chart."
+      },
+      {
+        "component": "text",
+        "name": "cta-label",
+        "label": "CTA label",
+        "value": "Invest Now",
+        "description": "Text displayed on the call-to-action button."
+      },
+      {
+        "component": "aem-content",
+        "name": "cta-link",
+        "label": "CTA destination",
+        "description": "Page or fragment opened by the call-to-action button."
       }
     ]
   },

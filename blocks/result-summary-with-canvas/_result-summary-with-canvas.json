@@ -1,0 +1,61 @@
+{
+  "definitions": [
+    {
+      "title": "Result Summary With Canvas",
+      "id": "result-summary-with-canvas",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Result Summary With Canvas",
+              "model": "result-summary-with-canvas"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "result-summary-with-canvas",
+      "fields": [
+        {
+          "component": "text",
+          "name": "result-label",
+          "label": "Result label",
+          "value": "You may get",
+          "description": "Label shown above the calculated amount."
+        },
+        {
+          "component": "text",
+          "name": "investment-summary-template",
+          "label": "Investment summary template",
+          "value": "If you invest {investmentAmount} {frequency} for {investmentYears} years at {rate}% p.a.",
+          "description": "Supports {investmentAmount}, {frequency}, {investmentYears}, {holdingYears}, and {rate} placeholders."
+        },
+        {
+          "component": "text",
+          "name": "chart-series-label",
+          "label": "Chart series label",
+          "value": "Your returns",
+          "description": "Legend label shown above the dynamic returns chart."
+        },
+        {
+          "component": "text",
+          "name": "cta-label",
+          "label": "CTA label",
+          "value": "Invest Now",
+          "description": "Text displayed on the call-to-action button."
+        },
+        {
+          "component": "aem-content",
+          "name": "cta-link",
+          "label": "CTA destination",
+          "description": "Page or fragment opened by the call-to-action button."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
