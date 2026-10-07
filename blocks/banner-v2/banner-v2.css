@@ -617,13 +617,16 @@ main>.section:has(.banner-v2.retire-calc-banner){
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .stat-label {
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   /* Illustration: Grounded firmly to bottom edge above subnav */
@@ -749,12 +752,15 @@ main>.section:has(.banner-v2.retire-calc-banner){
   .banner-v2.block .stat-value {
     font-size: 14px;
     line-height: 18px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .stat-label {
     font-size: 10px;
     line-height: 13px;
     white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .banner-v2-visual img {
