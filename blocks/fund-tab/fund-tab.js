@@ -5,7 +5,7 @@ export default function decorate(block) {
     const rows = [...block.children];
     const tabList = document.createElement('ul');
     // tabList.className = 'tablist-wrap';
-    tabList.className = block.classList.contains('custom-tab-v2') ? 'tablist-wrap-v2' : 'tablist-wrap'
+    tabList.className = block.classList.contains('custom-tab-v2') ? 'tablist-wrap-v2' : 'tablist-wrap';
     tabList.setAttribute('role', 'tablist');
     tabList.setAttribute('aria-label', 'Tabbed content');
 
@@ -41,20 +41,16 @@ export default function decorate(block) {
 
     block.replaceChildren(tabList);
 
-    // const tabs = [...tabList.querySelectorAll('[role="tab"]')];
-    let tabs = [];
-    let tabsV2 = [];
-
-    if (tabList.classList.contains('tablist-wrap')) {
-      tabs = [...tabList.querySelectorAll('[role="tab"]')];
-    } else {
-      tabsV2 = [...tabList.querySelectorAll('[role="tab"]')];
-    }
-    const contentSections = [...document.querySelectorAll('.fund-tab-content')];
+    const tabs = [...tabList.querySelectorAll('[role="tab"]')];
+    const isV2 = block.classList.contains('custom-tab-v2');
+    const tabIds = new Set(tabs.map((tab) => tab.id));
+    const contentSections = [...document.querySelectorAll(
+      isV2 ? '.fund-tab-content-v2' : '.fund-tab-content',
+    )].filter((section) => tabIds.has(section.id));
     const contentSectionsV2 = [...document.querySelectorAll('.fund-tab-content-v2')];
 
-    const activateTab = (activeTab, wholeTab) => {
-      wholeTab.forEach((tab) => {
+    const activateTab = (activeTab) => {
+      tabs.forEach((tab) => {
         const isSelected = tab === activeTab;
         tab.setAttribute('aria-selected', String(isSelected));
         tab.setAttribute('aria-expanded', String(isSelected));
@@ -66,51 +62,33 @@ export default function decorate(block) {
         }
       });
 
-      // contentSections.forEach((section) => {
-      //   section.hidden = section.id !== activeTab.id;
-      // });
+      const parentSection = block.closest('.fund-tab-content');
+      contentSections.forEach((section) => {
+        section.hidden = section.id !== activeTab.id || (isV2 && !!parentSection?.hidden);
 
-      if (tabList.classList.contains('tablist-wrap')) {
-        contentSections.forEach((section) => {
-          section.hidden = section.id !== activeTab.id;
-          // check if outer section exist any inner tab also then hide that with outer section
-          const innerTabPart = section.querySelector('.custom-tab')
-          if (innerTabPart) {
-            if (!section.hasAttribute('hidden')) {
-              let selectedId;
-              innerTabPart.querySelectorAll('.fund-tab-v2').forEach((innerTab) => {
-                if (innerTab.getAttribute('aria-selected') === 'true') {
-                  selectedId = innerTab.id;
-                }
+        if (!isV2) {
+          section.querySelectorAll('.custom-tab-v2').forEach((innerBlock) => {
+            const innerTabs = [...innerBlock.querySelectorAll('[role="tab"]')];
+            const innerIds = innerTabs.length
+              ? innerTabs.map((tab) => tab.id)
+              : [...innerBlock.children]
+                .filter((row) => row.children[0]?.textContent.trim())
+                .map((row) => row.children[1]?.textContent.trim()).filter(Boolean);
+            const selectedId = innerTabs.find((tab) => tab.getAttribute('aria-selected') === 'true')?.id
+              || innerIds[0];
+            contentSectionsV2.filter((innerSection) => innerIds.includes(innerSection.id))
+              .forEach((innerSection) => {
+                innerSection.hidden = section.hidden || innerSection.id !== selectedId;
               });
-              contentSectionsV2.forEach((innerTabSection) => {
-                if (selectedId == innerTabSection.id) {
-                  innerTabSection.hidden = false;
-                } else {
-                  innerTabSection.hidden = true;
-                }
-              });
-            } else {
-              contentSectionsV2.forEach((innerTabSection) => innerTabSection.hidden = true);
-            }
-          }
-        });
-      } else {
-        contentSectionsV2.forEach((section) => {
-          section.hidden = section.id !== activeTab.id;
-        });
-      }
+          });
+        }
+      });
     };
 
     tabs.forEach((tab) => {
-      tab.addEventListener('click', () => activateTab(tab, tabs));
+      tab.addEventListener('click', () => activateTab(tab));
     });
 
-    tabsV2.forEach((v2Tab) => {
-      v2Tab.addEventListener('click', () => activateTab(v2Tab, tabsV2));
-    });
-
-    if (tabs[0]) activateTab(tabs[0], tabs);
-    if (tabsV2[0]) activateTab(tabsV2[0], tabsV2);
+    if (tabs[0]) activateTab(tabs[0]);
   }
 }
