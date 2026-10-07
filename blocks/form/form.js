@@ -1,5 +1,6 @@
 import { toCamelCase, toClassName } from '../../scripts/aem.js';
 import initDatePicker from '../../scripts/date-picker.js';
+import { initRequestCallBackValidations } from './request-call-back.js'; // NEW IMPORT
 
 /**
  * Creates an HTML element with an optional class name
@@ -47,7 +48,6 @@ function writeHelpText(text, inputId) {
  */
 function buildLabel(text, type = 'label', id = null, required = false) {
   const label = createElement(type);
-  // label.textContent = text;
   label.innerHTML = text;
   if (id && type === 'label') label.setAttribute('for', id);
   if (required) label.dataset.required = 'true';
@@ -60,13 +60,12 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  * @returns {HTMLInputElement} Input element
  */
 function buildInput(field) {
-  // Restored your exact original destructuring, just adding min, max, validationRegex
   const {
-    type, field: fieldName, required, default: defaultValue, placeholder, min, max, validationRegex
+    type, field: fieldName, name, required, default: defaultValue, placeholder, min, max, validationRegex
   } = field;
 
   const input = createElement('input');
-  input.id = generateId(fieldName); // Original logic
+  input.id = generateId(fieldName || name); 
   input.name = input.id;
   input.required = required === 'true';
   if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
@@ -80,27 +79,16 @@ function buildInput(field) {
     input.setAttribute('min', min);
   }
 
-  // Fallback: Hardcode max 10 for mobile if the spreadsheet column fails
   if (type === 'tel' && !max) {
     input.setAttribute('maxlength', '10');
   }
 
-  // Store Regex
+  // Store Regex for validation scripts to read
   if (validationRegex) {
     input.dataset.regex = validationRegex;
   }
 
-  // Custom typing restrictions tied to your original fieldName logic
-  if (fieldName === 'fullName' || fieldName === 'fullname') {
-    input.addEventListener('input', (e) => {
-      let val = e.target.value;
-      if (val.startsWith(' ') || val.startsWith('.')) val = val.substring(1);
-      val = val.replace(/[^a-zA-Z\s.]/g, '').replace(/\s{2,}/g, ' ');
-      e.target.value = val;
-    });
-  }
-
-  // Date picker logic (Original)
+  // Date picker logic
   if (type === 'date') {
     input.type = 'text';
     if (placeholder) input.placeholder = placeholder;
@@ -122,6 +110,7 @@ function buildInput(field) {
 
   return input;
 }
+
 /**
  * Creates a textarea element
  * @param {Object} field - Field configuration object
@@ -129,11 +118,11 @@ function buildInput(field) {
  */
 function buildTextArea(field) {
   const {
-    field: fieldName, required, default: defaultValue, placeholder,
+    field: fieldName, name, required, default: defaultValue, placeholder,
   } = field;
 
   const textarea = createElement('textarea');
-  textarea.id = generateId(fieldName);
+  textarea.id = generateId(fieldName || name);
   textarea.name = textarea.id;
   textarea.required = required === 'true';
   textarea.rows = 5;
@@ -150,14 +139,14 @@ function buildTextArea(field) {
  */
 function buildOptionInput(field, option) {
   const {
-    type, field: fieldName, default: defaultValue, required,
+    type, field: fieldName, name, default: defaultValue, required,
   } = field;
-  const id = generateId(fieldName, option);
+  const id = generateId(fieldName || name, option);
 
   const input = createElement('input');
   input.type = type;
   input.id = id;
-  input.name = generateId(fieldName);
+  input.name = generateId(fieldName || name);
   input.value = option;
   input.checked = option === defaultValue;
   input.required = required === 'true';
@@ -225,14 +214,14 @@ async function buildOptionsFromUrl(url) {
 
 /**
  * Creates a select dropdown field
- * @param {Object} field - Field configuration object
+ * @param {Object} fieldData - Field configuration object
  * @param {string} controlled - Controlled field name
  * @returns {HTMLElement} Wrapper div containing select element
  */
-function buildSelect(field, controlled) {
+function buildSelect(fieldData, controlled) {
   const {
-    type, options, field: fieldName, label, required, placeholder,
-  } = field;
+    type, options, field: fieldName, name, label, required, placeholder, validationMessage
+  } = fieldData;
   if (!options) return null;
 
   const wrapper = createElement('div', `form-field ${type}-field`);
@@ -241,10 +230,12 @@ function buildSelect(field, controlled) {
     wrapper.dataset.controller = controller;
     wrapper.dataset.condition = controlled;
   }
-  wrapper.append(buildLabel(label, 'label', generateId(fieldName), required === 'true'));
+  
+  const selectId = generateId(fieldName || name);
+  wrapper.append(buildLabel(label, 'label', selectId, required === 'true'));
 
   const select = createElement('select');
-  select.id = generateId(fieldName);
+  select.id = selectId;
   select.name = select.id;
   select.required = required === 'true';
   wrapper.append(select);
@@ -260,9 +251,7 @@ function buildSelect(field, controlled) {
 
   try {
     const url = new URL(options);
-    buildOptionsFromUrl(url).then((os) => {
-      select.append(...os);
-    });
+    buildOptionsFromUrl(url).then((os) => { select.append(...os); });
   } catch (error) {
     options.split(',').forEach((o) => {
       const option = o.trim();
@@ -271,6 +260,12 @@ function buildSelect(field, controlled) {
       optionEl.textContent = option;
       select.append(optionEl);
     });
+  }
+
+  if (validationMessage) {
+    const errorSpan = createElement('span', 'error-message');
+    errorSpan.textContent = validationMessage;
+    wrapper.append(errorSpan);
   }
 
   return wrapper;
@@ -342,7 +337,6 @@ function buildButton(field) {
 function toggleConditional(e, controllerConfig) {
   const { target } = e;
   const controller = target.name;
-  // check if this is a controlling input
   if (controllerConfig.has(controller)) {
     const inputs = [...controllerConfig.get(controller)];
     inputs.forEach((i) => {
@@ -351,7 +345,6 @@ function toggleConditional(e, controllerConfig) {
       const conditionMet = condition.includes(toClassName(target.value));
       field.setAttribute('aria-hidden', !conditionMet);
 
-      // toggle required and tabindex based on visibility
       if (conditionMet) {
         if (i.dataset.originalRequired === 'true') {
           i.setAttribute('required', '');
@@ -359,7 +352,7 @@ function toggleConditional(e, controllerConfig) {
         i.removeAttribute('tabindex');
       } else {
         i.removeAttribute('required');
-        i.setAttribute('tabindex', '-1'); // remove from tab order when hidden
+        i.setAttribute('tabindex', '-1'); 
       }
     });
   }
@@ -371,9 +364,7 @@ function toggleConditional(e, controllerConfig) {
  * @param {Map} controllerConfig - Map of controller names to controlled fields.
  */
 function initConditionals(form, controllerConfig) {
-  // for each controller, find its current value and apply conditions
   controllerConfig.forEach((controlledInputs, controller) => {
-    // find the controlling input - could be radio/checkbox or select
     let controllerValue = null;
     const checked = form.querySelector(`[name="${controller}"]:checked`);
     const select = form.querySelector(`select[name="${controller}"]`);
@@ -385,26 +376,20 @@ function initConditionals(form, controllerConfig) {
     }
 
     if (controllerValue) {
-      // set correct visibility for each controlled field
       controlledInputs.forEach((input) => {
         const field = input.closest('.form-field');
         const { condition } = field.dataset;
         const conditionMet = condition.includes(toClassName(controllerValue));
         field.setAttribute('aria-hidden', !conditionMet);
 
-        // store original required state and toggle based on visibility
         if (input.hasAttribute('required')) {
-          // store original required state if not already stored
           if (!input.dataset.originalRequired) {
             input.dataset.originalRequired = 'true';
           }
-
           if (!conditionMet) {
             input.removeAttribute('required');
           }
         }
-
-        // remove from tab order when hidden
         if (conditionMet) {
           input.removeAttribute('tabindex');
         } else {
@@ -412,21 +397,16 @@ function initConditionals(form, controllerConfig) {
         }
       });
     } else {
-      // if no input is checked, hide all controlled fields
       controlledInputs.forEach((input) => {
         const field = input.closest('.form-field');
         field.setAttribute('aria-hidden', true);
 
-        // remove required attribute when hidden
         if (input.hasAttribute('required')) {
-          // store original required state if not already stored
           if (!input.dataset.originalRequired) {
             input.dataset.originalRequired = 'true';
           }
           input.removeAttribute('required');
         }
-
-        // remove from tab order when hidden
         input.setAttribute('tabindex', '-1');
       });
     }
@@ -438,49 +418,34 @@ function initConditionals(form, controllerConfig) {
  * @param {HTMLFormElement} form - Form element
  */
 function enableConditionals(form) {
-  // find controlled fields
   const controlled = [...form.querySelectorAll('[data-controller]')];
-
-  // create a map of controller names to controlled fields
   const controllerConfig = new Map();
 
   controlled.forEach((c) => {
     const input = c.querySelector('input, textarea, select');
     const { controller } = c.dataset;
 
-    // add to controller map
     if (!controllerConfig.has(controller)) controllerConfig.set(controller, []);
     controllerConfig.get(controller).push(input);
 
-    // set up aria relationships
     if (input && input.id) {
-      // find the controlling input(s)
       const controllerInputs = form.querySelectorAll(`[name="${controller}"]`);
-
-      // set aria-controls on controlling inputs
       controllerInputs.forEach((controllerInput) => {
-        // get existing aria-controls or initialize empty
         const existingControls = controllerInput.getAttribute('aria-controls') || '';
         const controlsArray = existingControls.split(' ').filter((ec) => ec);
 
-        // add this input's id if not already present
         if (!controlsArray.includes(input.id)) {
           controlsArray.push(input.id);
         }
 
-        // update aria-controls attribute
         controllerInput.setAttribute('aria-controls', controlsArray.join(' '));
-
-        // set aria-controlledby on the controlled input
         input.setAttribute('aria-controlledby', controllerInput.id);
       });
     }
   });
 
-  // initialize conditional visibility
   initConditionals(form, controllerConfig);
 
-  // add single event listener for ALL controlling inputs
   form.addEventListener('change', (e) => {
     toggleConditional(e, controllerConfig);
   });
@@ -551,7 +516,6 @@ async function handleSubmit(form) {
       throw new Error(error);
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error);
   } finally {
     toggleForm(form, false);
@@ -559,7 +523,7 @@ async function handleSubmit(form) {
 }
 
 /**
- * Sets up form submission handler and real-time validations
+ * Sets up standard form submission handler (Fallback)
  * @param {HTMLFormElement} form Form element
  * @param {string} submit Submit URL
  * @param {Array<Object>} fields Array of field configurations
@@ -571,91 +535,31 @@ function enableSubmission(form, submit, fields) {
     form.dataset.confirmation = confirmation.label || confirmation.default;
   }
 
-  const validateField = (input) => {
-    const wrapper = input.closest('.form-field');
-    if (!wrapper) return true;
-
-    const val = input.value.trim();
-    let isFieldValid = true;
-
-    // 1. Required Check
-    if (input.required && !val) isFieldValid = false;
-
-    // 2. Authored Regex Check (Uses dataset exactly as authored)
-    if (val && input.dataset.regex) {
-      const regex = new RegExp(input.dataset.regex);
-      if (!regex.test(val)) isFieldValid = false;
-    }
-
-    // 3. DOB Age Validation (FIX: Look at wrapper class instead of input type due to Flatpickr)
-    const isDateField = wrapper.classList.contains('date-field');
-    if (isDateField && val) {
-      const dob = new Date(val);
-      const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
-      const errorSpan = wrapper.querySelector('.error-message');
-      
-      if (age < 18) {
-        if (errorSpan) errorSpan.textContent = "Min entry age is 18 Years";
-        isFieldValid = false;
-      } else if (age > 65) {
-        if (errorSpan) errorSpan.textContent = "Max entry age is 65 years";
-        isFieldValid = false;
-      }
-    }
-
-    // Apply or remove the invalid class to trigger the CSS
-    if (!isFieldValid) wrapper.classList.add('is-invalid');
-    else wrapper.classList.remove('is-invalid');
-
-    return isFieldValid;
-  };
-
-  // Submit Validation
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let isFormValid = true;
 
-    form.querySelectorAll('.form-field input, .form-field select').forEach(input => {
-      // Skip the hidden flatpickr input, only validate visible ones
-      if (input.type === 'hidden' && input.classList.contains('flatpickr-input')) return;
-      if (!validateField(input)) isFormValid = false;
-    });
-
-    if (isFormValid) handleSubmit(form);
-    else {
-      const firstInvalid = form.querySelector('.is-invalid input, .is-invalid select');
+    const valid = form.reportValidity();
+    if (valid) {
+      handleSubmit(form);
+    } else {
+      const firstInvalid = form.querySelector(':invalid:not(fieldset)');
       if (firstInvalid) {
         firstInvalid.focus();
         firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalid.setAttribute('aria-invalid', true);
       }
     }
   });
 
-  // REAL-TIME: Blur Event (Using true/capture phase to guarantee it fires on all inputs)
-  form.addEventListener('blur', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
-      validateField(e.target);
-    }
-  }, true);
-
-  // REAL-TIME: Input typing
   form.addEventListener('input', (e) => {
-    const input = e.target;
-    const wrapper = input.closest('.form-field');
-    if (!wrapper) return;
-
-    if (input.type === 'tel') {
-      if (/\D/.test(input.value)) {
-        wrapper.classList.add('is-invalid'); // Instant error for letters
-        input.value = input.value.replace(/\D/g, ''); 
-        return; 
+    if (e.target.hasAttribute('aria-invalid')) {
+      if (e.target.validity.valid) {
+        e.target.removeAttribute('aria-invalid');
       }
     }
-    
-    // Clear the error while they are typing a valid format
-    wrapper.classList.remove('is-invalid');
   });
 }
+
 /**
  * Creates a form field based on field configuration
  * @param {Object} field - Field configuration object
@@ -663,54 +567,46 @@ function enableSubmission(form, submit, fields) {
  */
 function buildField(field) {
   const {
-    type, label, help, field: fieldName, conditional,
+    type, label, help, field: fieldName, name, conditional, validationMessage
   } = field;
   const controlled = conditional || null;
 
-  // submit/reset buttons stand alone
-  if (type === 'submit' || type === 'reset') {
-    return buildButton(field);
-  }
+  if (type === 'submit' || type === 'reset') return buildButton(field);
 
-  // radio/checkbox groups get a fieldset
   if (type === 'radio' || type === 'checkbox') {
     const fieldset = buildOptions(field, controlled);
-    if (help) {
-      const helpText = writeHelpText(help, generateId(fieldName));
-      fieldset.append(helpText);
+    if (help) fieldset.append(writeHelpText(help, generateId(fieldName || name)));
+    
+    if (validationMessage) {
+      const errorSpan = createElement('span', 'error-message');
+      errorSpan.textContent = validationMessage;
+      fieldset.append(errorSpan);
     }
     return fieldset;
   }
 
   if (type === 'toggle') {
     const toggle = buildToggle(field, controlled);
-    if (help) {
-      const helpText = writeHelpText(help, generateId(fieldName));
-      toggle.append(helpText);
-    }
+    if (help) toggle.append(writeHelpText(help, generateId(fieldName || name)));
     return toggle;
   }
 
   if (type === 'select') {
     const select = buildSelect(field, controlled);
-    if (help) {
-      const helpText = writeHelpText(help, generateId(fieldName));
-      select.append(helpText);
-    }
+    if (help) select.append(writeHelpText(help, generateId(fieldName || name)));
     return select;
   }
 
-  // inputs and textareas get a wrapper div
   const wrapper = createElement('div', `form-field ${type}-field`);
   if (controlled) {
     const controller = controlled.split('-')[0];
     wrapper.dataset.controller = controller;
     wrapper.dataset.condition = controlled;
   }
-  const inputId = generateId(fieldName);
+  
+  const inputId = generateId(fieldName || name);
   wrapper.append(buildLabel(label, 'label', inputId, field.required === 'true'));
 
-  // create help text first to get id
   let helpText;
   if (help) {
     helpText = writeHelpText(help, inputId);
@@ -719,15 +615,12 @@ function buildField(field) {
 
   const input = type === 'textarea' ? buildTextArea(field) : buildInput(field);
 
-  if (type === 'textarea') {
-    wrapper.append(input);
-  } else {
-    wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
-  }
+  if (type === 'textarea') wrapper.append(input);
+  else wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
 
-  if (field.validationMessage) {
+  if (validationMessage) {
     const errorSpan = createElement('span', 'error-message');
-    errorSpan.textContent = field.validationMessage;
+    errorSpan.textContent = validationMessage;
     wrapper.append(errorSpan);
   }
 
@@ -745,7 +638,6 @@ function buildForm(fields, submit) {
   const form = createElement('form');
   form.setAttribute('novalidate', '');
 
-  // group buttons at the end
   const buttons = [];
 
   fields.forEach((field) => {
@@ -756,7 +648,6 @@ function buildForm(fields, submit) {
     }
   });
 
-  // add buttons in a wrapper (if any)
   if (buttons.length) {
     const buttonWrapper = createElement('div', 'button-wrapper');
     buttons.forEach((button) => buttonWrapper.append(buildField(button)));
@@ -764,7 +655,6 @@ function buildForm(fields, submit) {
   }
 
   enableConditionals(form);
-
   if (submit) enableSubmission(form, submit, fields);
 
   return form;
@@ -786,14 +676,19 @@ export default function decorate(block) {
             if (!resp.ok) throw new Error(`${resp.status}: ${resp.statusText}`);
             const { data } = await resp.json();
             if (!data) throw new Error(`No form fields at ${source}`);
+            
             const form = buildForm(data, submit);
             block.replaceChildren(form);
             block.removeAttribute('style');
             initializeDateFields(form);
+
+            // NEW: Initialize custom logic if this is the Request a Call Back form
+            if (block.classList.contains('request-call-back')) {
+              initRequestCallBackValidations(form);
+            }
+
           } catch (error) {
-            // eslint-disable-next-line no-console
             console.error('Could not build form from', source, error);
-            // block.parentElement.remove();
           }
           observer.disconnect();
         }
@@ -802,25 +697,17 @@ export default function decorate(block) {
 
     observer.observe(block);
   } else {
-    // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    // block.parentElement.remove();
   }
 }
 
 export async function loadForm(block) {
-  if (block.dataset.formStatus === 'loaded') {
-    return null;
-  }
+  if (block.dataset.formStatus === 'loaded') return null;
 
-  const [source, submit] = [...block.querySelectorAll('a[href]')].map(
-    (a) => a.href,
-  );
+  const [source, submit] = [...block.querySelectorAll('a[href]')].map((a) => a.href);
 
   if (!source) {
-    // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    // block.parentElement.remove();
     return null;
   }
 
@@ -829,14 +716,19 @@ export async function loadForm(block) {
     if (!resp.ok) throw new Error(`${resp.status}: ${resp.statusText}`);
     const { data } = await resp.json();
     if (!data) throw new Error(`No form fields at ${source}`);
+    
     const form = buildForm(data, submit);
     block.replaceChildren(form);
     block.removeAttribute('style');
+
+    // NEW: Initialize custom logic if this is the Request a Call Back form
+    if (block.classList.contains('request-call-back')) {
+      initRequestCallBackValidations(form);
+    }
+
     return form;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Could not build form from', source, error);
-    // block.parentElement.remove();
     return null;
   }
 }
