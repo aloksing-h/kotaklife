@@ -42,7 +42,8 @@
       "accessibility-button",
       "calculators",
       "result-summary-panel",
-      "result-summary-with-canvas"
+      "result-summary-with-canvas",
+      "fund-tab"
     ]
   },
   {
@@ -108,6 +109,12 @@
       "custom-rte-item",
       "custom-image-item",
       "rte-image-item"
+    ]
+  },
+  {
+    "id": "fund-tab",
+    "components": [
+      "fund-tab-item"
     ]
   },
   {

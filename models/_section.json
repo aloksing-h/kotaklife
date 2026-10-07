@@ -252,8 +252,21 @@
             {
               "name": "Calculator spacing",
               "value": "std-space"
+            },
+            {
+              "name": "Fund Tab Content",
+              "value": "fund-tab-content"
+            },
+            {
+              "name": "Fund Tab Content v2",
+              "value": "fund-tab-content-v2"
             }
           ]
+        },
+        {
+          "component": "text",
+          "name": "id",
+          "label": "Enter Section Id"
         },
         {
           "component": "reference",
@@ -317,7 +330,8 @@
         "accessibility-button",
         "calculators",
         "result-summary-panel",
-        "result-summary-with-canvas"
+        "result-summary-with-canvas",
+        "fund-tab"
       ]
     }
   ]
