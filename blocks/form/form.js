@@ -61,14 +61,14 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  */
 function buildInput(field) {
   const {
-    type, field: fieldName, required, default: defaultValue, placeholder,
+    type, field: fieldName, required, default: defaultValue = field.value, placeholder,
   } = field;
 
   const input = createElement('input');
   input.id = generateId(fieldName);
   input.name = input.id;
   input.required = required === 'true';
-  if (defaultValue) input.value = defaultValue;
+  if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
 
   if (type === 'date') {
     // start as text so the custom placeholder is visible (native date inputs ignore placeholder)

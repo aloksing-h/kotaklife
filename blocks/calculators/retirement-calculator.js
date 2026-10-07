@@ -17,12 +17,27 @@ export default function retirementCalculator(block) {
   const inflationRateLabel = block.querySelector('.inflation-rate-field label').innerText.trim();
   const expectedReturnLabel = block.querySelector('.expected-return-field label').innerText.trim();
   const expectedExpenseLabel = block.querySelector('.expected-expense-field label').innerText.trim();
+
+  const currentAgerange = block.querySelector(".current-age-range-field input").value.split(",").map(val => Number(val.trim()));
+  const retireAgeRange = block.querySelector(".desired-retirement-age-range-field input").value.split(",").map(val => Number(val.trim()));
+  const expectedAgeRange = block.querySelector(".life-expectation-range-field input").value.split(",").map(val => Number(val.trim()));
+  const monthlyExpenseRange = block.querySelector(".current-monthly-expense-range-field input").value.split(",").map(val => Number(val.trim()));
+ const inflationRange = block.querySelector(".expected-inflation-range-field input").value.split(",").map(val => Number(val.trim()));
+  const expecteReturnRange = block.querySelector(".expected-return-range-field input").value.split(",").map(val => Number(val.trim()));
+   const retirementExpenseRange = block.querySelector(".expected-expense-range-field input").value.split(",").map(val => Number(val.trim()));
+
+     const monthlyExpenseMilestone = block.querySelector(".monthly-expense-milestone-field input").value.split(",").map(val => Number(val.trim()));
+ const inlfationMilestone = block.querySelector(".expected-inflation-milestone-field input").value.split(",").map(val => Number(val.trim()));
+  const expectedReturnMilestone = block.querySelector(".expected-return-millstone-field input").value.split(",").map(val => Number(val.trim()));
+   const expecteExpenseMilestone = block.querySelector(".retirement-expense-milestone-field input").value.split(",").map(val => Number(val.trim()));
+
+
   const currentAgeField = createAgeField({
     id: 'currentAge',
     label: currentAgeLabel,
     value: 30,
-    min: 1,
-    max: 80,
+    min: currentAgerange[0],
+    max: currentAgerange[1],
     required: true,
     onChange: onPlanInputChange,
   });
@@ -31,8 +46,8 @@ export default function retirementCalculator(block) {
     id: 'retireAge',
     label: retirementAgeLabel,
     value: 60,
-    min: 30,
-    max: 60,
+    min: retireAgeRange[0],
+    max: retireAgeRange[1],
     required: true,
     onChange: onPlanInputChange,
   });
@@ -41,8 +56,8 @@ export default function retirementCalculator(block) {
     id: 'lifeExpect',
     label: lifeExpectedLabel,
     value: 80,
-    min: 60,
-    max: 100,
+    min: expectedAgeRange[0],
+    max: expectedAgeRange[1],
     required: true,
     onChange: onPlanInputChange,
   });
@@ -53,10 +68,10 @@ export default function retirementCalculator(block) {
     infoText: 'Your current monthly cost of living',
     editable: true,
     value: 40000,
-    min: 10000,
-    max: 1000000,
+    min: monthlyExpenseRange[0],
+    max: monthlyExpenseRange[1],
     step: 5000,
-    milestones: [10000, 200000, 400000, 600000, 800000, 1000000],
+    milestones: monthlyExpenseMilestone,
     onChange: onPlanInputChange,
   });
 
@@ -64,10 +79,10 @@ export default function retirementCalculator(block) {
     id: 'inflationInput',
     label: inflationRateLabel,
     value: 5,
-    min: 1,
-    max: 7,
+    min: inflationRange[0],
+    max: inflationRange[1],
     step: 1,
-    milestones: [1, 3, 5, 7].map((val) => ({ val, text: `${val}%` })),
+    milestones: inlfationMilestone.map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 
@@ -76,10 +91,10 @@ export default function retirementCalculator(block) {
     label: expectedReturnLabel,
     infoText: 'Anticipated annual return on investment',
     value: 5,
-    min: 1,
-    max: 15,
+    min: expecteReturnRange[0],
+    max: expecteReturnRange[1],
     step: 1,
-    milestones: [1, 5, 10, 15].map((val) => ({ val, text: `${val}%` })),
+    milestones: expectedReturnMilestone.map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 
@@ -87,10 +102,10 @@ export default function retirementCalculator(block) {
     id: 'expPercentInput',
     label: expectedExpenseLabel,
     value: 75,
-    min: 10,
-    max: 100,
+    min: retirementExpenseRange[0],
+    max: retirementExpenseRange[1],
     step: 1,
-    milestones: [10, 100].map((val) => ({ val, text: `${val}%` })),
+    milestones: expecteExpenseMilestone.map((val) => ({ val, text: `${val}%` })),
     onChange: onPlanInputChange,
   });
 

@@ -1,5 +1,6 @@
 @import url('./retirement-calculator.css');
 @import url('./fields/dropdown-field/dropdown-field.css');
+@import url('./fire-calculator.css');
 
 .calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
     margin-top: -83px;

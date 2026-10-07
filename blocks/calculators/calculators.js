@@ -14,5 +14,5 @@ export default async function decorate(block) {
   if (block.querySelector('.frequency-field')) {
     compoundCalculator(block);
   }
-  fireCalculator(block);
+  // fireCalculator(block);
 }
