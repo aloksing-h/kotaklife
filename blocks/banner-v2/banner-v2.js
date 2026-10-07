@@ -1,4 +1,48 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { decorateIcons } from '../../scripts/aem.js';
+
+const ICON_TOKEN = /:([\w-]+):/g;
+
+/**
+ * Builds a CTA button from a paragraph like
+ * `Check Premium :right-red-filled: :right-black-filled:`.
+ * The first icon is the default one, the second is shown on hover.
+ * @param {HTMLElement} p
+ * @returns {HTMLAnchorElement}
+ */
+function createCta(p) {
+  const link = p.querySelector('a[href]');
+  const clone = p.cloneNode(true);
+  clone.querySelectorAll('span.icon').forEach((span) => {
+    const cls = [...span.classList].find((c) => c.startsWith('icon-'));
+    span.replaceWith(cls ? `:${cls.substring(5)}:` : '');
+  });
+  const text = clone.textContent;
+  const icons = [...text.matchAll(ICON_TOKEN)].map((m) => m[1]);
+  const label = text.replace(ICON_TOKEN, '').replace(/[\s:]+$/, '').replace(/\s+/g, ' ').trim();
+
+  const cta = document.createElement('a');
+  cta.className = 'banner-v2-cta';
+  cta.href = link?.getAttribute('href') || '#';
+  if (link?.title) cta.title = link.title;
+  moveInstrumentation(p, cta);
+
+  const labelSpan = document.createElement('span');
+  labelSpan.className = 'banner-v2-cta-label';
+  labelSpan.textContent = label;
+
+  const iconWrap = document.createElement('span');
+  iconWrap.className = 'banner-v2-cta-icon';
+  [icons[0] || 'right-red-filled', icons[1] || icons[0] || 'right-black-filled'].forEach((name) => {
+    const icon = document.createElement('span');
+    icon.className = `icon icon-${name}`;
+    iconWrap.append(icon);
+  });
+  decorateIcons(iconWrap);
+
+  cta.append(labelSpan, iconWrap);
+  return cta;
+}
 
 /**
  * Formats a stat item into value and label spans
@@ -137,6 +181,7 @@ export default async function decorate(block) {
   const headings = [];
   const descriptions = [];
   const statItems = [];
+  const ctaItems = [];
 
   rows.forEach((row) => {
     // Only transfer row-level instrumentation for text content rows
@@ -165,7 +210,11 @@ export default async function decorate(block) {
 
       // If paragraph contains <br> or comes after the main description, treat as stat item
       const isBrStat = p.innerHTML.includes('<br') || p.innerHTML.includes('<BR');
-      if (isBrStat || descriptions.length >= 1) {
+      const isCta = !isBrStat && descriptions.length >= 1
+        && (p.querySelector('a, span.icon') || /:[\w-]+:/.test(p.textContent));
+      if (isCta) {
+        ctaItems.push(p);
+      } else if (isBrStat || descriptions.length >= 1) {
         statItems.push(p);
       } else {
         descriptions.push(p);
@@ -195,6 +244,8 @@ export default async function decorate(block) {
     });
     contentWrapper.appendChild(statsList);
   }
+
+  ctaItems.forEach((p) => contentWrapper.appendChild(createCta(p)));
 
   // Prepare visual wrapper (Desktop & Mobile)
   let visualWrapper = null;
