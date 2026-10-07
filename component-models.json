@@ -1091,6 +1091,10 @@
           {
             "name": "Custom Tab",
             "value": "custom-tab"
+          },
+          {
+            "name": "Custom Tab V2",
+            "value": "custom-tab-v2"
           }
         ]
       }
