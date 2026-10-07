@@ -218,6 +218,10 @@
                 {
                   "name": "Compound Calculator",
                   "value": "compound-calculator"
+                },
+                {
+                  "name": "Fire Calculator",
+                  "value": "fire-calculator"
                 }
               ]
             },

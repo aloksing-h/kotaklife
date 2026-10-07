@@ -5,6 +5,7 @@ export default function createFrequencyDropdownField(options = {}) {
   const {
     id = 'frequencySelect',
     label = 'Frequency',
+    required = false,
     value = '30',
     optionsList = [
       { label: '30', value: '30' },
@@ -24,7 +25,7 @@ export default function createFrequencyDropdownField(options = {}) {
   // Build HTML Markup
   container.innerHTML = `
     <label class="frequency-dropdown-label" for="${id}">
-      ${label}<span class="required-star">*</span>
+      ${label}${required === true ? '<span class="required-star">*</span>' : ''}
     </label>
     <div class="select-wrapper">
       <select id="${id}" class="frequency-dropdown-select">
