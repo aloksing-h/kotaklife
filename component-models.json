@@ -1084,7 +1084,7 @@
     "id": "fund-tab",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "label": "Select Class",
         "options": [
