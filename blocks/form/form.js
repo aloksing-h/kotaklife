@@ -1,6 +1,6 @@
 import { toCamelCase, toClassName } from '../../scripts/aem.js';
 import initDatePicker from '../../scripts/date-picker.js';
-import { initRequestCallBackValidations } from './request-call-back.js'; // NEW IMPORT
+import initRequestCallBackValidations from './request-call-back.js';
 
 /**
  * Creates an HTML element with an optional class name
@@ -61,11 +61,12 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  */
 function buildInput(field) {
   const {
-    type, field: fieldName, name, required, default: defaultValue, placeholder, min, max, validationRegex
+    type, field: fieldName, name, required, default: defaultValue,
+    placeholder, min, max, validationRegex,
   } = field;
 
   const input = createElement('input');
-  input.id = generateId(fieldName || name); 
+  input.id = generateId(fieldName || name);
   input.name = input.id;
   input.required = required === 'true';
   if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
@@ -95,7 +96,11 @@ function buildInput(field) {
     const openPicker = () => {
       input.type = 'date';
       if (typeof input.showPicker === 'function') {
-        try { input.showPicker(); } catch (e) { }
+        try {
+          input.showPicker();
+        } catch {
+          // some browsers may throw if not user-triggered; ignore
+        }
       }
     };
     input.addEventListener('focus', openPicker);
@@ -220,7 +225,7 @@ async function buildOptionsFromUrl(url) {
  */
 function buildSelect(fieldData, controlled) {
   const {
-    type, options, field: fieldName, name, label, required, placeholder, validationMessage
+    type, options, field: fieldName, name, label, required, placeholder, validationMessage,
   } = fieldData;
   if (!options) return null;
 
@@ -230,7 +235,7 @@ function buildSelect(fieldData, controlled) {
     wrapper.dataset.controller = controller;
     wrapper.dataset.condition = controlled;
   }
-  
+
   const selectId = generateId(fieldName || name);
   wrapper.append(buildLabel(label, 'label', selectId, required === 'true'));
 
@@ -352,7 +357,7 @@ function toggleConditional(e, controllerConfig) {
         i.removeAttribute('tabindex');
       } else {
         i.removeAttribute('required');
-        i.setAttribute('tabindex', '-1'); 
+        i.setAttribute('tabindex', '-1');
       }
     });
   }
@@ -516,6 +521,7 @@ async function handleSubmit(form) {
       throw new Error(error);
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   } finally {
     toggleForm(form, false);
@@ -567,7 +573,7 @@ function enableSubmission(form, submit, fields) {
  */
 function buildField(field) {
   const {
-    type, label, help, field: fieldName, name, conditional, validationMessage
+    type, label, help, field: fieldName, name, conditional, validationMessage,
   } = field;
   const controlled = conditional || null;
 
@@ -576,7 +582,7 @@ function buildField(field) {
   if (type === 'radio' || type === 'checkbox') {
     const fieldset = buildOptions(field, controlled);
     if (help) fieldset.append(writeHelpText(help, generateId(fieldName || name)));
-    
+
     if (validationMessage) {
       const errorSpan = createElement('span', 'error-message');
       errorSpan.textContent = validationMessage;
@@ -603,7 +609,7 @@ function buildField(field) {
     wrapper.dataset.controller = controller;
     wrapper.dataset.condition = controlled;
   }
-  
+
   const inputId = generateId(fieldName || name);
   wrapper.append(buildLabel(label, 'label', inputId, field.required === 'true'));
 
@@ -676,7 +682,7 @@ export default function decorate(block) {
             if (!resp.ok) throw new Error(`${resp.status}: ${resp.statusText}`);
             const { data } = await resp.json();
             if (!data) throw new Error(`No form fields at ${source}`);
-            
+
             const form = buildForm(data, submit);
             block.replaceChildren(form);
             block.removeAttribute('style');
@@ -686,8 +692,8 @@ export default function decorate(block) {
             if (block.classList.contains('request-call-back')) {
               initRequestCallBackValidations(form);
             }
-
           } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Could not build form from', source, error);
           }
           observer.disconnect();
@@ -697,6 +703,7 @@ export default function decorate(block) {
 
     observer.observe(block);
   } else {
+    // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
   }
 }
@@ -707,6 +714,7 @@ export async function loadForm(block) {
   const [source, submit] = [...block.querySelectorAll('a[href]')].map((a) => a.href);
 
   if (!source) {
+    // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
     return null;
   }
@@ -716,7 +724,7 @@ export async function loadForm(block) {
     if (!resp.ok) throw new Error(`${resp.status}: ${resp.statusText}`);
     const { data } = await resp.json();
     if (!data) throw new Error(`No form fields at ${source}`);
-    
+
     const form = buildForm(data, submit);
     block.replaceChildren(form);
     block.removeAttribute('style');
@@ -728,6 +736,7 @@ export async function loadForm(block) {
 
     return form;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Could not build form from', source, error);
     return null;
   }

@@ -2,8 +2,7 @@
  * Initializes custom VBRD validations for the Request a Call Back form.
  * @param {HTMLFormElement} form - The form element to validate
  */
-export function initRequestCallBackValidations(form) {
-  
+export default function initRequestCallBackValidations(form) {
   // --- Core Validation Logic ---
   const validateField = (input) => {
     const wrapper = input.closest('.form-field');
@@ -32,12 +31,12 @@ export function initRequestCallBackValidations(form) {
       const dob = new Date(val);
       const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
       const errorSpan = wrapper.querySelector('.error-message');
-      
+
       if (age < 18) {
-        if (errorSpan) errorSpan.textContent = "Min entry age is 18 Years";
+        if (errorSpan) errorSpan.textContent = 'Min entry age is 18 Years';
         isFieldValid = false;
       } else if (age > 65) {
-        if (errorSpan) errorSpan.textContent = "Max entry age is 65 years";
+        if (errorSpan) errorSpan.textContent = 'Max entry age is 65 years';
         isFieldValid = false;
       }
     }
@@ -59,7 +58,7 @@ export function initRequestCallBackValidations(form) {
   // --- Real-Time Typing & Input Restrictions ---
   form.addEventListener('input', (e) => {
     const input = e.target;
-    
+
     // Full Name formatting
     if (input.name === 'fullname') {
       let val = input.value;
@@ -75,11 +74,11 @@ export function initRequestCallBackValidations(form) {
     if (input.type === 'tel') {
       if (/\D/.test(input.value)) {
         wrapper.classList.add('is-invalid'); // Instant error for letters
-        input.value = input.value.replace(/\D/g, ''); 
-        return; 
+        input.value = input.value.replace(/\D/g, '');
+        return;
       }
     }
-    
+
     wrapper.classList.remove('is-invalid');
   });
 
@@ -88,11 +87,12 @@ export function initRequestCallBackValidations(form) {
   form.addEventListener('submit', (e) => {
     let isFormValid = true;
 
-    form.querySelectorAll('.form-field input, .form-field select').forEach(input => {
+    form.querySelectorAll('.form-field input, .form-field select')
+      .forEach((input) => {
       // Skip the hidden flatpickr input, only validate visible ones
-      if (input.type === 'hidden' && input.classList.contains('flatpickr-input')) return;
-      if (!validateField(input)) isFormValid = false;
-    });
+        if (input.type === 'hidden' && input.classList.contains('flatpickr-input')) return;
+        if (!validateField(input)) isFormValid = false;
+      });
 
     if (!isFormValid) {
       e.preventDefault();
@@ -104,5 +104,5 @@ export function initRequestCallBackValidations(form) {
         firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-  }, true); 
+  }, true);
 }
