@@ -190,10 +190,6 @@
   }
 }
 
-.section.accordion-container:has(.faq-v2){
-  margin: 90px 0;
-}
-
 /* FAQ v2 Section Header (default content wrapper) */
 .section:has(.faq-v2) > .default-content-wrapper {
   display: flex;
@@ -486,10 +482,6 @@
 
 /* Desktop styles (width >= 900px) */
 @media (width >= 900px) {
-  .section.accordion-container:has(.faq-v2){
-    margin: 140px 0;
-  }
-  
   .section:has(.faq-v2) > .default-content-wrapper {
     flex-direction: row;
     align-items: center;
