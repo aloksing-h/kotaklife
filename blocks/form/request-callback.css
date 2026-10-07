@@ -61,8 +61,19 @@
   /* Uses a lighter grey (#9ca3af), thinner stroke (1.5), and rounder corners (rx='4' ry='4') */
   background-image: url("../../icons/calendar-fm.svg");
   background-size: 20px;
+  background-repeat: no-repeat;
   background-position: right 16px center;
   font-variant-ligatures: none;
+}
+
+/* Hide the native browser calendar icon while keeping the click functionality */
+.request-call-back.form.block .date-field input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 16px; /* Align click target over your custom background image */
+  width: 24px;
+  height: 24px;
 }
 
 .request-call-back.form.block input::placeholder {
@@ -195,17 +206,27 @@
   margin-top: 2px;
   background: #fff;
 }
+.request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"]:checked + span {
+  background-color: #FA1432;
+  border-color: #FA1432;
+}
 
 /* Checkbox selected state (The Checkmark) */
 .request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"]:checked + span::after {
-  content: '✓';
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #e31837;
   font-size: 14px;
+  height: 16px;
+  width: 16px;
   font-weight: bold;
+  background-image: url("../../icons/check-white.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* --- Submit Button --- */
