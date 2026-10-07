@@ -63,7 +63,7 @@ export default function fireCalculator(block) {
       currentAge: currentAgeField.getValue(),
       retireAge: retireAgeField.getValue(),
       monthlyExpense: expenseWaveSlider.getValue(),
-      fireExpenseRatio: fireExpenseRatio.getValue(),
+      inflationrate: inflationrate.getValue(),
     };
     const scope = block.closest('.fire-calculator') || block.closest('.section') || document;
 
