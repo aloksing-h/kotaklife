@@ -273,17 +273,6 @@
   flex-shrink: 0;
 }
 
-.request-call-back.form.block .radio-field legend[data-required]::after {
-  color: #FA1432;
-  padding-right: 26px; /* Creates space for the icon */
-  background-image: url('../../icons/info-icon.svg');
-  background-repeat: no-repeat;
-  background-position: right center;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 20px 18px;
-}
-
 /* --- Radio Buttons (Gender) --- */
 .request-call-back.form.block .radio-field legend {
   font-size: 14px;
