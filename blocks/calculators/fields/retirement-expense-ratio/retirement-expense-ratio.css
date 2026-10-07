@@ -16,6 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 4px;
 }
 
 .calculator-main .retirement-expense-ratio-box .slider-label-text {
@@ -25,6 +26,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.calculator-main .retirement-expense-ratio-box .required-star {
+  color: #ef4444;
+  font-weight: 600;
 }
 
 .calculator-main .retirement-expense-ratio-box .slider-label-text img {
@@ -86,6 +92,7 @@
   align-items: center;
   cursor: pointer;
   touch-action: none;
+  margin-bottom: 4px;
 }
 
 .calculator-main .retirement-expense-ratio-box .wedge-svg {
@@ -126,9 +133,4 @@ font-family: var(--font-family-font-family-body, Manrope);
 font-size: 12px;
 font-weight: 500;
 line-height: 14px;
-}
-
-.calculator-main  #retirement-ration {
-  padding: 0;
-  border: none;
 }

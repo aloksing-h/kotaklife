@@ -1,5 +1,6 @@
 import { loadForm } from '../form/form.js';
 import compoundCalculator from './compound-calculator.js';
+// import fireCalculator from './fire-calculator.js';
 import retirementCalculator from './retirement-calculator.js';
 
 export default async function decorate(block) {
@@ -13,4 +14,5 @@ export default async function decorate(block) {
   if (block.querySelector('.frequency-field')) {
     compoundCalculator(block);
   }
+  // fireCalculator(block);
 }
