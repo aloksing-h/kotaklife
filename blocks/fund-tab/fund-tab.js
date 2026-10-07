@@ -74,9 +74,22 @@ export default function decorate(block) {
         contentSections.forEach((section) => {
           section.hidden = section.id !== activeTab.id;
           // check if outer section exist any inner tab also then hide that with outer section
-          if (section.querySelector('.custom-tab')) {
+          const innerTabPart = section.querySelector('.custom-tab')
+          if (innerTabPart) {
             if (!section.hasAttribute('hidden')) {
-              contentSectionsV2.forEach((innerTabSection) => innerTabSection.hidden = false);
+              let selectedId;
+              innerTabPart.querySelectorAll('.fund-tab-v2').forEach((innerTab) => {
+                if (innerTab.getAttribute('aria-selected') === 'true') {
+                  selectedId = innerTab.id;
+                }
+              });
+              contentSectionsV2.forEach((innerTabSection) => {
+                if (selectedId == innerTabSection.id) {
+                  innerTabSection.hidden = false;
+                } else {
+                  innerTabSection.hidden = true;
+                }
+              });
             } else {
               contentSectionsV2.forEach((innerTabSection) => innerTabSection.hidden = true);
             }
@@ -93,7 +106,11 @@ export default function decorate(block) {
       tab.addEventListener('click', () => activateTab(tab, tabs));
     });
 
-    if (tabs[0]) activateTab(tabs[0]);
-    if (tabsV2[0]) activateTab(tabsV2[0]);
+    tabsV2.forEach((v2Tab) => {
+      v2Tab.addEventListener('click', () => activateTab(v2Tab, tabsV2));
+    });
+
+    if (tabs[0]) activateTab(tabs[0], tabs);
+    if (tabsV2[0]) activateTab(tabsV2[0], tabsV2);
   }
 }
