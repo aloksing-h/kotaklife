@@ -1,8 +1,73 @@
+import { toCamelCase } from '../../scripts/aem.js';
+import initDatePicker from '../../scripts/date-picker.js';
+
+/**
+ * Fetches the authored field definitions for a form block
+ * @param {HTMLElement} block
+ * @returns {Promise<Array<Object>>}
+ */
+async function fetchFields(block) {
+  const [source] = [...block.querySelectorAll('a[href]')].map((a) => a.href);
+  if (!source) return [];
+  try {
+    const resp = await fetch(new URL(source, window.location.origin));
+    if (!resp.ok) return [];
+    const { data } = await resp.json();
+    return data || [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Appends an authored validation message under a field, once
+ * @param {Element} wrapper
+ * @param {string} message
+ */
+function appendValidationMessage(wrapper, message) {
+  if (!message || !wrapper || wrapper.querySelector('.error-message')) return;
+  const errorSpan = document.createElement('span');
+  errorSpan.className = 'error-message';
+  errorSpan.textContent = message;
+  wrapper.append(errorSpan);
+}
+
+/**
+ * Layers authored min/max/regex/validation-message metadata onto the inputs
+ * built by the generic form pipeline, which doesn't know about these fields
+ * @param {HTMLFormElement} form
+ * @param {Array<Object>} fields
+ */
+function applyFieldMetadata(form, fields) {
+  fields.forEach((field) => {
+    const {
+      type, field: fieldName, min, max, validationRegex, validationMessage,
+    } = field;
+    if (!fieldName || ['submit', 'reset', 'confirmation'].includes(type)) return;
+
+    const name = toCamelCase(fieldName);
+    const inputs = [...form.querySelectorAll(`[name="${CSS.escape(name)}"]`)];
+    if (!inputs.length) return;
+
+    inputs.forEach((input) => {
+      if (max) {
+        if (type === 'date' || type === 'number') input.setAttribute('max', max);
+        else input.setAttribute('maxlength', max);
+      }
+      if (min && (type === 'date' || type === 'number')) input.setAttribute('min', min);
+      if (type === 'tel' && !max) input.setAttribute('maxlength', '10');
+      if (validationRegex) input.dataset.regex = validationRegex;
+    });
+
+    appendValidationMessage(inputs[0].closest('.form-field'), validationMessage);
+  });
+}
+
 /**
  * Initializes custom VBRD validations for the Request a Call Back form.
  * @param {HTMLFormElement} form - The form element to validate
  */
-export default function initRequestCallBackValidations(form) {
+function initRequestCallBackValidations(form) {
   // --- Core Validation Logic ---
   const validateField = (input) => {
     const wrapper = input.closest('.form-field');
@@ -105,4 +170,21 @@ export default function initRequestCallBackValidations(form) {
       }
     }
   }, true);
+}
+
+/**
+ * Builds the Request a Call Back form via the shared loadForm pipeline, then
+ * layers on authored validation metadata, the Flatpickr date picker, and the
+ * custom VBRD validations for this skin.
+ * @param {HTMLElement} block - The form block element
+ * @param {Function} loadForm - form.js' shared fetch/build/attach pipeline
+ */
+export default async function decorateRequestCallBack(block, loadForm) {
+  const fields = await fetchFields(block);
+  const form = await loadForm(block);
+  if (!form) return;
+
+  applyFieldMetadata(form, fields);
+  form.querySelectorAll('.date-field input').forEach((input) => initDatePicker(input));
+  initRequestCallBackValidations(form);
 }

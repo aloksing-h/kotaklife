@@ -1,6 +1,5 @@
 import { toCamelCase, toClassName } from '../../scripts/aem.js';
-import initDatePicker from '../../scripts/date-picker.js';
-import initRequestCallBackValidations from './request-call-back.js';
+import decorateRequestCallBack from './request-call-back.js';
 
 /**
  * Creates an HTML element with an optional class name
@@ -61,33 +60,14 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  */
 function buildInput(field) {
   const {
-    type, field: fieldName, name, required, default: defaultValue,
-    placeholder, min, max, validationRegex,
+    type, field: fieldName, required, default: defaultValue, placeholder,
   } = field;
 
   const input = createElement('input');
-  input.id = generateId(fieldName || name);
+  input.id = generateId(fieldName);
   input.name = input.id;
   input.required = required === 'true';
   if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
-
-  // Apply Min/Max dynamically
-  if (max) {
-    if (type === 'date' || type === 'number') input.setAttribute('max', max);
-    else input.setAttribute('maxlength', max);
-  }
-  if (min && (type === 'date' || type === 'number')) {
-    input.setAttribute('min', min);
-  }
-
-  if (type === 'tel' && !max) {
-    input.setAttribute('maxlength', '10');
-  }
-
-  // Store Regex for validation scripts to read
-  if (validationRegex) {
-    input.dataset.regex = validationRegex;
-  }
 
   // Date picker logic
   if (type === 'date') {
@@ -123,11 +103,11 @@ function buildInput(field) {
  */
 function buildTextArea(field) {
   const {
-    field: fieldName, name, required, default: defaultValue, placeholder,
+    field: fieldName, required, default: defaultValue, placeholder,
   } = field;
 
   const textarea = createElement('textarea');
-  textarea.id = generateId(fieldName || name);
+  textarea.id = generateId(fieldName);
   textarea.name = textarea.id;
   textarea.required = required === 'true';
   textarea.rows = 5;
@@ -144,14 +124,14 @@ function buildTextArea(field) {
  */
 function buildOptionInput(field, option) {
   const {
-    type, field: fieldName, name, default: defaultValue, required,
+    type, field: fieldName, default: defaultValue, required,
   } = field;
-  const id = generateId(fieldName || name, option);
+  const id = generateId(fieldName, option);
 
   const input = createElement('input');
   input.type = type;
   input.id = id;
-  input.name = generateId(fieldName || name);
+  input.name = generateId(fieldName);
   input.value = option;
   input.checked = option === defaultValue;
   input.required = required === 'true';
@@ -179,7 +159,7 @@ function buildOptions(field, controlled) {
   }
   fieldset.append(buildLabel(label, 'legend', null, required === 'true'));
 
-  options.split(' , ').forEach((o) => {
+  options.split(',').forEach((o) => {
     const option = o.trim();
     const input = buildOptionInput(field, option);
     const span = createElement('span');
@@ -219,14 +199,14 @@ async function buildOptionsFromUrl(url) {
 
 /**
  * Creates a select dropdown field
- * @param {Object} fieldData - Field configuration object
+ * @param {Object} field - Field configuration object
  * @param {string} controlled - Controlled field name
  * @returns {HTMLElement} Wrapper div containing select element
  */
-function buildSelect(fieldData, controlled) {
+function buildSelect(field, controlled) {
   const {
-    type, options, field: fieldName, name, label, required, placeholder, validationMessage,
-  } = fieldData;
+    type, options, field: fieldName, label, required, placeholder,
+  } = field;
   if (!options) return null;
 
   const wrapper = createElement('div', `form-field ${type}-field`);
@@ -236,7 +216,7 @@ function buildSelect(fieldData, controlled) {
     wrapper.dataset.condition = controlled;
   }
 
-  const selectId = generateId(fieldName || name);
+  const selectId = generateId(fieldName);
   wrapper.append(buildLabel(label, 'label', selectId, required === 'true'));
 
   const select = createElement('select');
@@ -265,12 +245,6 @@ function buildSelect(fieldData, controlled) {
       optionEl.textContent = option;
       select.append(optionEl);
     });
-  }
-
-  if (validationMessage) {
-    const errorSpan = createElement('span', 'error-message');
-    errorSpan.textContent = validationMessage;
-    wrapper.append(errorSpan);
   }
 
   return wrapper;
@@ -457,14 +431,6 @@ function enableConditionals(form) {
 }
 
 /**
- * Wires up the Flatpickr-based date picker on every date field in the form
- * @param {HTMLFormElement} form - Form element
- */
-function initializeDateFields(form) {
-  form.querySelectorAll('.date-field input').forEach((input) => initDatePicker(input));
-}
-
-/**
  * Enables or disables all form elements
  * @param {HTMLFormElement} form - Form element
  * @param {boolean} [disabled=true] - Whether to disable the form
@@ -573,7 +539,7 @@ function enableSubmission(form, submit, fields) {
  */
 function buildField(field) {
   const {
-    type, label, help, field: fieldName, name, conditional, validationMessage,
+    type, label, help, field: fieldName, conditional,
   } = field;
   const controlled = conditional || null;
 
@@ -581,25 +547,19 @@ function buildField(field) {
 
   if (type === 'radio' || type === 'checkbox') {
     const fieldset = buildOptions(field, controlled);
-    if (help) fieldset.append(writeHelpText(help, generateId(fieldName || name)));
-
-    if (validationMessage) {
-      const errorSpan = createElement('span', 'error-message');
-      errorSpan.textContent = validationMessage;
-      fieldset.append(errorSpan);
-    }
+    if (help) fieldset.append(writeHelpText(help, generateId(fieldName)));
     return fieldset;
   }
 
   if (type === 'toggle') {
     const toggle = buildToggle(field, controlled);
-    if (help) toggle.append(writeHelpText(help, generateId(fieldName || name)));
+    if (help) toggle.append(writeHelpText(help, generateId(fieldName)));
     return toggle;
   }
 
   if (type === 'select') {
     const select = buildSelect(field, controlled);
-    if (help) select.append(writeHelpText(help, generateId(fieldName || name)));
+    if (help) select.append(writeHelpText(help, generateId(fieldName)));
     return select;
   }
 
@@ -610,7 +570,7 @@ function buildField(field) {
     wrapper.dataset.condition = controlled;
   }
 
-  const inputId = generateId(fieldName || name);
+  const inputId = generateId(fieldName);
   wrapper.append(buildLabel(label, 'label', inputId, field.required === 'true'));
 
   let helpText;
@@ -623,12 +583,6 @@ function buildField(field) {
 
   if (type === 'textarea') wrapper.append(input);
   else wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
-
-  if (validationMessage) {
-    const errorSpan = createElement('span', 'error-message');
-    errorSpan.textContent = validationMessage;
-    wrapper.append(errorSpan);
-  }
 
   if (help) input.setAttribute('aria-describedby', helpText.id);
 
@@ -671,6 +625,12 @@ function buildForm(fields, submit) {
  * @param {HTMLElement} block - Form block element
  */
 export default function decorate(block) {
+  // the Request a Call Back skin owns its own build/validation pipeline
+  if (block.classList.contains('request-call-back')) {
+    decorateRequestCallBack(block, loadForm);
+    return;
+  }
+
   block.style.visibility = 'hidden';
   const [source, submit] = [...block.querySelectorAll('a[href]')].map((a) => a.href);
   if (source) {
@@ -686,15 +646,10 @@ export default function decorate(block) {
             const form = buildForm(data, submit);
             block.replaceChildren(form);
             block.removeAttribute('style');
-            initializeDateFields(form);
-
-            // NEW: Initialize custom logic if this is the Request a Call Back form
-            if (block.classList.contains('request-call-back')) {
-              initRequestCallBackValidations(form);
-            }
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Could not build form from', source, error);
+            block.parentElement.remove();
           }
           observer.disconnect();
         }
@@ -705,6 +660,7 @@ export default function decorate(block) {
   } else {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
+    block.parentElement.remove();
   }
 }
 
@@ -716,6 +672,7 @@ export async function loadForm(block) {
   if (!source) {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
+    block.parentElement.remove();
     return null;
   }
 
@@ -728,11 +685,6 @@ export async function loadForm(block) {
     const form = buildForm(data, submit);
     block.replaceChildren(form);
     block.removeAttribute('style');
-
-    // NEW: Initialize custom logic if this is the Request a Call Back form
-    if (block.classList.contains('request-call-back')) {
-      initRequestCallBackValidations(form);
-    }
 
     return form;
   } catch (error) {
