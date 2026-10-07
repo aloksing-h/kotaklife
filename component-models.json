@@ -628,6 +628,10 @@
           {
             "name": "Retire Calc Banner",
             "value": "retire-calc-banner"
+          },
+          {
+            "name": "Term Ins Banner",
+            "value": "term-ins-banner"
           }
         ]
       },
