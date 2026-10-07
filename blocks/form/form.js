@@ -60,36 +60,58 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  * @returns {HTMLInputElement} Input element
  */
 function buildInput(field) {
+  // Restored your exact original destructuring, just adding min, max, validationRegex
   const {
-    type, field: fieldName, required, default: defaultValue, placeholder,
+    type, field: fieldName, required, default: defaultValue, placeholder, min, max, validationRegex
   } = field;
 
   const input = createElement('input');
-  input.id = generateId(fieldName);
+  input.id = generateId(fieldName); // Original logic
   input.name = input.id;
   input.required = required === 'true';
   if (defaultValue) input.value = defaultValue;
 
+  // Apply Min/Max dynamically
+  if (max) {
+    if (type === 'date' || type === 'number') input.setAttribute('max', max);
+    else input.setAttribute('maxlength', max);
+  }
+  if (min && (type === 'date' || type === 'number')) {
+    input.setAttribute('min', min);
+  }
+
+  // Fallback: Hardcode max 10 for mobile if the spreadsheet column fails
+  if (type === 'tel' && !max) {
+    input.setAttribute('maxlength', '10');
+  }
+
+  // Store Regex
+  if (validationRegex) {
+    input.dataset.regex = validationRegex;
+  }
+
+  // Custom typing restrictions tied to your original fieldName logic
+  if (fieldName === 'fullName' || fieldName === 'fullname') {
+    input.addEventListener('input', (e) => {
+      let val = e.target.value;
+      if (val.startsWith(' ') || val.startsWith('.')) val = val.substring(1);
+      val = val.replace(/[^a-zA-Z\s.]/g, '').replace(/\s{2,}/g, ' ');
+      e.target.value = val;
+    });
+  }
+
+  // Date picker logic (Original)
   if (type === 'date') {
-    // start as text so the custom placeholder is visible (native date inputs ignore placeholder)
     input.type = 'text';
     if (placeholder) input.placeholder = placeholder;
-
     const openPicker = () => {
       input.type = 'date';
       if (typeof input.showPicker === 'function') {
-        try {
-          input.showPicker();
-        } catch (e) {
-          // some browsers may throw if not user-triggered; ignore
-        }
+        try { input.showPicker(); } catch (e) { }
       }
     };
-
     input.addEventListener('focus', openPicker);
     input.addEventListener('click', openPicker);
-
-    // revert to text (placeholder visible) if user leaves without picking a date
     input.addEventListener('blur', () => {
       if (!input.value) input.type = 'text';
     });
@@ -537,10 +559,10 @@ async function handleSubmit(form) {
 }
 
 /**
- * Sets up form submission handler
- * @param {HTMLFormElement} form - Form element
- * @param {string} submit - Submit URL
- * @param {Array<Object>} fields - Array of field configurations
+ * Sets up form submission handler and real-time validations
+ * @param {HTMLFormElement} form Form element
+ * @param {string} submit Submit URL
+ * @param {Array<Object>} fields Array of field configurations
  */
 function enableSubmission(form, submit, fields) {
   form.dataset.action = submit;
@@ -549,32 +571,91 @@ function enableSubmission(form, submit, fields) {
     form.dataset.confirmation = confirmation.label || confirmation.default;
   }
 
+  const validateField = (input) => {
+    const wrapper = input.closest('.form-field');
+    if (!wrapper) return true;
+
+    const val = input.value.trim();
+    let isFieldValid = true;
+
+    // 1. Required Check
+    if (input.required && !val) isFieldValid = false;
+
+    // 2. Authored Regex Check (Uses dataset exactly as authored)
+    if (val && input.dataset.regex) {
+      const regex = new RegExp(input.dataset.regex);
+      if (!regex.test(val)) isFieldValid = false;
+    }
+
+    // 3. DOB Age Validation (FIX: Look at wrapper class instead of input type due to Flatpickr)
+    const isDateField = wrapper.classList.contains('date-field');
+    if (isDateField && val) {
+      const dob = new Date(val);
+      const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
+      const errorSpan = wrapper.querySelector('.error-message');
+      
+      if (age < 18) {
+        if (errorSpan) errorSpan.textContent = "Min entry age is 18 Years";
+        isFieldValid = false;
+      } else if (age > 65) {
+        if (errorSpan) errorSpan.textContent = "Max entry age is 65 years";
+        isFieldValid = false;
+      }
+    }
+
+    // Apply or remove the invalid class to trigger the CSS
+    if (!isFieldValid) wrapper.classList.add('is-invalid');
+    else wrapper.classList.remove('is-invalid');
+
+    return isFieldValid;
+  };
+
+  // Submit Validation
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    let isFormValid = true;
 
-    const valid = form.reportValidity();
-    if (valid) {
-      handleSubmit(form);
-    } else {
-      const firstInvalid = form.querySelector(':invalid:not(fieldset)');
+    form.querySelectorAll('.form-field input, .form-field select').forEach(input => {
+      // Skip the hidden flatpickr input, only validate visible ones
+      if (input.type === 'hidden' && input.classList.contains('flatpickr-input')) return;
+      if (!validateField(input)) isFormValid = false;
+    });
+
+    if (isFormValid) handleSubmit(form);
+    else {
+      const firstInvalid = form.querySelector('.is-invalid input, .is-invalid select');
       if (firstInvalid) {
         firstInvalid.focus();
         firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstInvalid.setAttribute('aria-invalid', true);
       }
     }
   });
 
-  // clear aria-invalid on field change
+  // REAL-TIME: Blur Event (Using true/capture phase to guarantee it fires on all inputs)
+  form.addEventListener('blur', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
+      validateField(e.target);
+    }
+  }, true);
+
+  // REAL-TIME: Input typing
   form.addEventListener('input', (e) => {
-    if (e.target.hasAttribute('aria-invalid')) {
-      if (e.target.validity.valid) {
-        e.target.removeAttribute('aria-invalid');
+    const input = e.target;
+    const wrapper = input.closest('.form-field');
+    if (!wrapper) return;
+
+    if (input.type === 'tel') {
+      if (/\D/.test(input.value)) {
+        wrapper.classList.add('is-invalid'); // Instant error for letters
+        input.value = input.value.replace(/\D/g, ''); 
+        return; 
       }
     }
+    
+    // Clear the error while they are typing a valid format
+    wrapper.classList.remove('is-invalid');
   });
 }
-
 /**
  * Creates a form field based on field configuration
  * @param {Object} field - Field configuration object
@@ -642,6 +723,12 @@ function buildField(field) {
     wrapper.append(input);
   } else {
     wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
+  }
+
+  if (field.validationMessage) {
+    const errorSpan = createElement('span', 'error-message');
+    errorSpan.textContent = field.validationMessage;
+    wrapper.append(errorSpan);
   }
 
   if (help) input.setAttribute('aria-describedby', helpText.id);
