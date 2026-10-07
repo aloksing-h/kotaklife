@@ -1,5 +1,4 @@
 import { toCamelCase, toClassName } from '../../scripts/aem.js';
-import initDatePicker from '../../scripts/date-picker.js';
 
 /**
  * Creates an HTML element with an optional class name
@@ -47,8 +46,7 @@ function writeHelpText(text, inputId) {
  */
 function buildLabel(text, type = 'label', id = null, required = false) {
   const label = createElement(type);
-  // label.textContent = text;
-  label.innerHTML = text;
+  label.textContent = text;
   if (id && type === 'label') label.setAttribute('for', id);
   if (required) label.dataset.required = 'true';
   return label;
@@ -163,7 +161,7 @@ function buildOptions(field, controlled) {
   }
   fieldset.append(buildLabel(label, 'legend', null, required === 'true'));
 
-  options.split(' , ').forEach((o) => {
+  options.split(',').forEach((o) => {
     const option = o.trim();
     const input = buildOptionInput(field, option);
     const span = createElement('span');
@@ -465,14 +463,6 @@ function enableConditionals(form) {
 }
 
 /**
- * Wires up the Flatpickr-based date picker on every date field in the form
- * @param {HTMLFormElement} form - Form element
- */
-function initializeDateFields(form) {
-  form.querySelectorAll('.date-field input').forEach((input) => initDatePicker(input));
-}
-
-/**
  * Enables or disables all form elements
  * @param {HTMLFormElement} form - Form element
  * @param {boolean} [disabled=true] - Whether to disable the form
@@ -702,11 +692,10 @@ export default function decorate(block) {
             const form = buildForm(data, submit);
             block.replaceChildren(form);
             block.removeAttribute('style');
-            initializeDateFields(form);
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Could not build form from', source, error);
-            // block.parentElement.remove();
+            block.parentElement.remove();
           }
           observer.disconnect();
         }
@@ -717,7 +706,7 @@ export default function decorate(block) {
   } else {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    // block.parentElement.remove();
+    block.parentElement.remove();
   }
 }
 
@@ -733,7 +722,7 @@ export async function loadForm(block) {
   if (!source) {
     // eslint-disable-next-line no-console
     console.error('Unable to create form without source');
-    // block.parentElement.remove();
+    block.parentElement.remove();
     return null;
   }
 
@@ -749,7 +738,7 @@ export async function loadForm(block) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Could not build form from', source, error);
-    // block.parentElement.remove();
+    block.parentElement.remove();
     return null;
   }
 }
