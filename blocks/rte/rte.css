@@ -431,3 +431,76 @@ main>.section>.rte-wrapper:has(.subnav) {
         line-height: var(--button-1-line-height);
     }
 }
+
+.rte.tabs-table.block{
+    margin-top: 16px;
+}
+
+.rte.block.tabs-table > div > div{
+    max-height: 1092px;
+    overflow-y: auto;
+}
+
+/* 1. Set up the main table with the rounded outer border */
+.rte.block.tabs-table table {
+  border-collapse: separate; 
+  border-spacing: 0;
+  border: 1px solid #c8c8c8; /* Single outer border */
+  overflow: hidden;          /* Clips the header background to match the radius */
+  width: 100%;
+  min-width: 0;
+  border-radius: 8px;
+  margin: 0;
+}
+
+/* 2. Style the inner cells with only bottom and right borders */
+.rte.block.tabs-table table td {
+  border: none; /* Reset existing borders */
+  border-bottom: 1px solid #c8c8c8; 
+  border-right: 1px solid #c8c8c8;  
+  vertical-align: top;
+  text-align: left;
+  padding: 12px 16px;
+  color: #181D27;
+  font-size: 14px;
+  line-height: 18px; 
+  font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+/* 3. Remove the right border on the last column so it doesn't double up with the outer table border */
+.rte.block.tabs-table table td:last-child {
+  border-right: none;
+}
+
+.rte.block.tabs-table table tr td:first-child{
+    padding: 16px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    color: #181D27;
+}
+
+/* 4. Remove the bottom border on the last row so it doesn't double up with the outer table border */
+.rte.block.tabs-table table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 5. Style the first row (Header) to match the light blue/gray background */
+.rte.block.tabs-table table tr:first-child td {
+  background-color: #F5FAFF; /* Adjust hex code if you have the exact brand color */
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #181D27;
+}
+
+@media (width >= 768px) {
+    .rte.tabs-table.block{
+        margin-top: 24px;
+    }
+
+    .rte.block.tabs-table > div > div{
+        max-height: unset;
+    }
+}

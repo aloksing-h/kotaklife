@@ -1058,6 +1058,17 @@
         "component": "aem-content",
         "name": "submit",
         "label": "Submit URL"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Request A Call Back",
+            "value": "request-call-back"
+          }
+        ]
       }
     ]
   },
@@ -1385,6 +1396,10 @@
           {
             "name": "Sub Navigation",
             "value": "subnav"
+          },
+          {
+            "name": "Tabs Table",
+            "value": "tabs-table"
           }
         ]
       }
@@ -1726,6 +1741,11 @@
         "component": "aem-content",
         "name": "link",
         "label": "Video URL"
+      },
+      {
+        "component": "text",
+        "name": "playbutton_text",
+        "label": "Play Button Text"
       },
       {
         "component": "select",
