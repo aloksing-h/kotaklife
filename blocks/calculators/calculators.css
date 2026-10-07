@@ -1,5 +1,7 @@
 @import url('./retirement-calculator.css');
 @import url('./fields/dropdown-field/dropdown-field.css');
+@import url('./fields/gender-field/gender-field.css');
+@import url('./fields/tobacco-field/tobacco-field.css');
 @import url('./fire-calculator.css');
 
 .calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
