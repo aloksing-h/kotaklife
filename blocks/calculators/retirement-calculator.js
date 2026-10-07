@@ -7,6 +7,7 @@ import createRateField from './fields/rate-field/rate-field.js';
 import createRetirementExpenseRatioField from './fields/retirement-expense-ratio/retirement-expense-ratio.js';
 
 export default function retirementCalculator(block) {
+  console.log(block)
   function onPlanInputChange() {
     block.dispatchEvent(new Event('retirement-plan-input-change'));
   }

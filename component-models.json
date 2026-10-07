@@ -709,12 +709,20 @@
         "label": "Style",
         "options": [
           {
-            "name": "Retirement calculator with text",
+            "name": "Retirement calculator",
             "value": "retirement-text"
           },
           {
-            "name": "Retirement calculator with graph",
-            "value": "retirement-graph"
+            "name": "Compound calculator",
+            "value": "compound-graph"
+          },
+          {
+            "name": "Fire calculator",
+            "value": "fire-text"
+          },
+          {
+            "name": "Term insurance calculator",
+            "value": "term-inurance-text"
           }
         ]
       }
