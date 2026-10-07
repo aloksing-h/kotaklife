@@ -248,6 +248,10 @@
             {
               "name": "Calculator Details Hero",
               "value": "calculator-details-hero"
+            },
+            {
+              "name": "Calculator spacing",
+              "value": "std-space"
             }
           ]
         },
