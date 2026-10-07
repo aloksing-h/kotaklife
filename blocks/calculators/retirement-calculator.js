@@ -18,19 +18,18 @@ export default function retirementCalculator(block) {
   const expectedReturnLabel = block.querySelector('.expected-return-field label').innerText.trim();
   const expectedExpenseLabel = block.querySelector('.expected-expense-field label').innerText.trim();
 
-  const currentAgerange = block.querySelector(".current-age-range-field input").value.split(",").map(val => Number(val.trim()));
-  const retireAgeRange = block.querySelector(".desired-retirement-age-range-field input").value.split(",").map(val => Number(val.trim()));
-  const expectedAgeRange = block.querySelector(".life-expectation-range-field input").value.split(",").map(val => Number(val.trim()));
-  const monthlyExpenseRange = block.querySelector(".current-monthly-expense-range-field input").value.split(",").map(val => Number(val.trim()));
- const inflationRange = block.querySelector(".expected-inflation-range-field input").value.split(",").map(val => Number(val.trim()));
-  const expecteReturnRange = block.querySelector(".expected-return-range-field input").value.split(",").map(val => Number(val.trim()));
-   const retirementExpenseRange = block.querySelector(".expected-expense-range-field input").value.split(",").map(val => Number(val.trim()));
+  const currentAgerange = block.querySelector('.current-age-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const retireAgeRange = block.querySelector('.desired-retirement-age-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const expectedAgeRange = block.querySelector('.life-expectation-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const monthlyExpenseRange = block.querySelector('.current-monthly-expense-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const inflationRange = block.querySelector('.expected-inflation-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const expecteReturnRange = block.querySelector('.expected-return-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const retirementExpenseRange = block.querySelector('.expected-expense-range-field input').value.split(',').map((val) => Number(val.trim()));
 
-     const monthlyExpenseMilestone = block.querySelector(".monthly-expense-milestone-field input").value.split(",").map(val => Number(val.trim()));
- const inlfationMilestone = block.querySelector(".expected-inflation-milestone-field input").value.split(",").map(val => Number(val.trim()));
-  const expectedReturnMilestone = block.querySelector(".expected-return-millstone-field input").value.split(",").map(val => Number(val.trim()));
-   const expecteExpenseMilestone = block.querySelector(".retirement-expense-milestone-field input").value.split(",").map(val => Number(val.trim()));
-
+  const monthlyExpenseMilestone = block.querySelector('.monthly-expense-milestone-field input').value.split(',').map((val) => Number(val.trim()));
+  const inlfationMilestone = block.querySelector('.expected-inflation-milestone-field input').value.split(',').map((val) => Number(val.trim()));
+  const expectedReturnMilestone = block.querySelector('.expected-return-millstone-field input').value.split(',').map((val) => Number(val.trim()));
+  const expecteExpenseMilestone = block.querySelector('.retirement-expense-milestone-field input').value.split(',').map((val) => Number(val.trim()));
 
   const currentAgeField = createAgeField({
     id: 'currentAge',
