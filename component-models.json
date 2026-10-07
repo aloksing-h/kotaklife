@@ -476,6 +476,10 @@
               {
                 "name": "Compound Calculator",
                 "value": "compound-calculator"
+              },
+              {
+                "name": "Fire Calculator",
+                "value": "fire-calculator"
               }
             ]
           },
@@ -502,8 +506,25 @@
           {
             "name": "Calculator Details Hero",
             "value": "calculator-details-hero"
+          },
+          {
+            "name": "Calculator spacing",
+            "value": "std-space"
+          },
+          {
+            "name": "Fund Tab Content",
+            "value": "fund-tab-content"
+          },
+          {
+            "name": "Fund Tab Content v2",
+            "value": "fund-tab-content-v2"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "Enter Section Id"
       },
       {
         "component": "reference",
@@ -698,6 +719,26 @@
         "component": "aem-content",
         "name": "link",
         "label": "form URL"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Calculators",
+            "children": [
+              {
+                "name": "Retirement calculator with text",
+                "value": "retirement-text"
+              },
+              {
+                "name": "Retirement calculator with graph",
+                "value": "retirement-graph"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -1083,6 +1124,62 @@
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "fund-tab",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Select Class",
+        "options": [
+          {
+            "name": "Custom Tab",
+            "value": "custom-tab"
+          },
+          {
+            "name": "Custom Tab V2",
+            "value": "custom-tab-v2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fund-tab-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "value": "",
+        "label": "Tab Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "Enter tab Id"
+      },
+      {
+        "component": "multiselect",
+        "name": "class",
+        "label": "Tab Class",
+        "valueType": "array",
+        "value": [
+          "fund-tab"
+        ],
+        "options": [
+          {
+            "name": "Fund Tab",
+            "value": "fund-tab"
+          },
+          {
+            "name": "Fund Tab V2",
+            "value": "fund-tab-v2"
+          }
+        ]
       }
     ]
   },

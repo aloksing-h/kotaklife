@@ -2,6 +2,7 @@ export default function createRateField(options = {}) {
   const {
     id,
     label,
+    required = false,
     infoText = '',
     value = 5,
     min = 0,
@@ -17,7 +18,7 @@ export default function createRateField(options = {}) {
   container.innerHTML = `
     <div class="slider-header-row">
       <span class="slider-label-text">
-        ${label}
+        ${label}${required === true ? ' <span class="required-star">*</span>' : ''}
         <img src="/icons/information-icon.svg" alt="" title="${infoText}">
       </span>
       <div class="value-display-badge badge-small">

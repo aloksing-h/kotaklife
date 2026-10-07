@@ -110,6 +110,7 @@
   content: "";
   width: 20px;
   height: 20px;
+  flex-shrink: 0; /* keep the icon's size when the label text is long */
   background-image: url("../../icons/large-downarrow-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -218,6 +219,7 @@
   content: "";
   width: var(--spacing-2xl, 20px);
   height: var(--spacing-2xl, 20px);
+  flex-shrink: 0; /* keep the icon's size when the label text is long */
   background-image: url("../../icons/large-downarrow-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -276,7 +278,7 @@
 }
 
 .insurance-tab-title.section{
-  margin: 0;
+  margin: 90px 0 0;
 }
 
 .insurance-tab-title.section .default-content-wrapper{
@@ -410,6 +412,10 @@
    Overrides mobile defaults for wider screens
    ========================================= */
 @media (width >= 768px) {
+  .insurance-tab-title.section{
+    margin: 140px 0 0;
+  }
+
   .insurance-tab-title.section .default-content-wrapper h1,
   .insurance-tab-title.section .default-content-wrapper h2,
   .insurance-tab-title.section .default-content-wrapper h3,

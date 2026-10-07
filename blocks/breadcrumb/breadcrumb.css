@@ -267,8 +267,14 @@ main .breadcrumb-container .breadcrumb-wrapper {
   padding: 8px 16px;
 }
 
+/* The icon SVG is white; mask it to get the exact Figma colour. */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a {
+  background: #181d27;
+  mask: url('/icons/home-icon.svg') center / 12px 12px no-repeat;
+}
+
 .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a img {
-  filter: brightness(0);
+  opacity: 0;
 }
 
 .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a,
