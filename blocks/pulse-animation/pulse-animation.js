@@ -34,9 +34,10 @@ function createSvg() { // Removed block parameter
   // APPEND TO MAIN, NOT THE BLOCK
   const main = document.querySelector('main');
   if (main) {
-    main.style.position = 'relative'; // Ensure main is the positioning context
-    main.appendChild(svg);
+    main.classList.add('positioning-context'); // Ensure main is the positioning context
   }
+  const secFour = document.querySelector(".pulse-animation-container");
+  secFour.appendChild(svg);
   return pathElement;
 }
 
@@ -85,9 +86,26 @@ function drawPath(block) {
         const xPercent = parseFloat(coords[0].trim());
         const yPercent = parseFloat(coords[1].trim());
 
-        // Calculate exact absolute pixels based on the section's size and position
-        const absoluteX = section.offsetLeft + section.offsetWidth * (xPercent / 100);
-        const absoluteY = section.offsetTop + section.offsetHeight * (yPercent / 100);
+        const rect = section.getBoundingClientRect();
+
+        // 1. Get the actual CSS margins from the browser
+        const style = window.getComputedStyle(section);
+        const marginTop = parseFloat(style.marginTop) || 0;
+        const marginBottom = parseFloat(style.marginBottom) || 0;
+        const marginLeft = parseFloat(style.marginLeft) || 0;
+        const marginRight = parseFloat(style.marginRight) || 0;
+
+        // 2. Combine element dimensions + margins into one giant box
+        const totalWidth = rect.width + marginLeft + marginRight;
+        const totalHeight = rect.height + marginTop + marginBottom;
+
+        // 3. Find the TRUE start of this giant box (shifting back by the top/left margins)
+        const boxStartX = rect.left + window.scrollX - marginLeft;
+        const boxStartY = rect.top + window.scrollY - marginTop;
+
+        // 4. Calculate absolute pixels based on the new massive total area
+        const absoluteX = boxStartX + totalWidth * (xPercent / 100);
+        const absoluteY = boxStartY + totalHeight * (yPercent / 100);
 
         points.push({ x: absoluteX, y: absoluteY });
       }
