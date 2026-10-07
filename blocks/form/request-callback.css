@@ -187,6 +187,14 @@
   height: unset;
 }
 
+/* Flatpickr hard-codes these to a fixed 307.875px; make them fluid so the
+   calendar never clips columns when the field is narrower than that */
+/* stylelint-disable-next-line selector-class-pattern */
+.request-call-back.form.block .flatpickr-rContainer,
+.request-call-back.form.block .flatpickr-days {
+  width: 100%;
+}
+
 .request-call-back.form.block span.flatpickr-weekday {
   color: #374151;
   font-weight: 500;
@@ -208,6 +216,7 @@
 
 .request-call-back.form.block .flatpickr-day {
   width: 14.2857%;
+  max-width: none;
   height: auto;
   line-height: 28px;
   font-weight: 400;
