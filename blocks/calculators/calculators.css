@@ -1,6 +1,6 @@
 @import url('./retirement-calculator.css');
 @import url('./fields/dropdown-field/dropdown-field.css');
-
+@import url('./fire-calculator.css');
 
 .calculator-main.retirement-calculator.section.calculators-container.result-summary-panel-container{
     margin-top: -83px;
@@ -18,6 +18,12 @@
     max-width: unset;
     padding: 0;
     margin: 0;
+}
+
+.calculator-main #retirement-ration,
+.calculator-main #interest-rate {
+  padding: 0;
+  border: none;
 }
 
 @media (width >=899px) {

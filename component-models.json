@@ -476,6 +476,10 @@
               {
                 "name": "Compound Calculator",
                 "value": "compound-calculator"
+              },
+              {
+                "name": "Fire Calculator",
+                "value": "fire-calculator"
               }
             ]
           },
@@ -502,6 +506,10 @@
           {
             "name": "Calculator Details Hero",
             "value": "calculator-details-hero"
+          },
+          {
+            "name": "Calculator spacing",
+            "value": "std-space"
           }
         ]
       },
@@ -694,6 +702,26 @@
         "component": "aem-content",
         "name": "link",
         "label": "form URL"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Calculators",
+            "children": [
+              {
+                "name": "Retirement calculator with text",
+                "value": "retirement-text"
+              },
+              {
+                "name": "Retirement calculator with graph",
+                "value": "retirement-graph"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

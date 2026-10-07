@@ -44,7 +44,7 @@ export default function createMonthlyExpenseWaveSlider(options = {}) {
     ${title ? `
     <div class="wave-slider-header">
       <span class="wave-slider-title">
-        ${title}${required ? ' <span class="required-star">*</span>' : ''}
+        ${title}${required === true ? ' <span class="required-star">*</span>' : ''}
         ${infoText ? '<img src="/icons/information-icon.svg" alt="info-icon">' : ''}
       </span>
       ${editable ? `

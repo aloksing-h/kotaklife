@@ -2,6 +2,7 @@ export default function createRetirementExpenseRatioField(options = {}) {
   const {
     id = 'expPercentInput',
     label = 'Your expected expenses can be your retirement expenses?',
+    required = false,
     value = 75,
     min = 0,
     max = 100,
@@ -23,7 +24,7 @@ export default function createRetirementExpenseRatioField(options = {}) {
   container.innerHTML = `
     <div class="slider-header-row">
       <span class="slider-label-text">
-        ${label}
+        ${label}${required === true ? ' <span class="required-star">*</span>' : ''}
         <img src="/icons/information-icon.svg" alt="" title="Anticipated annual return on investment">
       </span>
       <div class="value-display-badge badge-small">

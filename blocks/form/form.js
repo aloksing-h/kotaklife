@@ -69,7 +69,7 @@ function buildInput(field) {
   input.id = generateId(fieldName); // Original logic
   input.name = input.id;
   input.required = required === 'true';
-  if (defaultValue) input.value = defaultValue;
+  if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
 
   // Apply Min/Max dynamically
   if (max) {

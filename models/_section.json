@@ -218,6 +218,10 @@
                 {
                   "name": "Compound Calculator",
                   "value": "compound-calculator"
+                },
+                {
+                  "name": "Fire Calculator",
+                  "value": "fire-calculator"
                 }
               ]
             },
@@ -244,6 +248,10 @@
             {
               "name": "Calculator Details Hero",
               "value": "calculator-details-hero"
+            },
+            {
+              "name": "Calculator spacing",
+              "value": "std-space"
             }
           ]
         },

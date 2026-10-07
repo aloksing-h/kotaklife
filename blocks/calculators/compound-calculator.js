@@ -51,19 +51,19 @@ export default function compoundCalculator(block) {
     id: 'frequencySelect',
     label: getLabel('.frequency-field', 'Frequency'),
     value: '30',
+    required: true,
     onChange: onCompoundInputChange,
   });
 
   const amountInvestedSlider = createMonthlyExpenseWaveSlider({
     title: getLabel('.invest-amount-field', 'Investment amount'),
-    required: true,
     infoText: 'Amount contributed at the start of each selected investment period',
     editable: true,
     value: 50000,
     min: 5000,
     max: 1000000,
     step: 5000,
-    milestones: [0, 200000, 400000, 600000, 800000, 1000000],
+    milestones: [5000, 200000, 400000, 600000, 800000, 1000000],
     onChange: onCompoundInputChange,
   });
 
@@ -74,7 +74,7 @@ export default function compoundCalculator(block) {
     min: 1,
     max: 30,
     step: 1,
-    milestones: [0, 5, 10, 15].map((val) => ({ val, text: `${val}` })),
+    milestones: [1, 30].map((val) => ({ val, text: `${val} Year` })),
     onChange: onCompoundInputChange,
   });
 
@@ -83,9 +83,9 @@ export default function compoundCalculator(block) {
     label: getLabel('.number-of-year-invested-for-field', 'Holding years'),
     value: 5,
     min: 1,
-    max: 30,
+    max: 50,
     step: 1,
-    milestones: [0, 5, 10, 15].map((val) => ({ val, text: `${val}` })),
+    milestones: [1, 50].map((val) => ({ val, text: `${val} Year` })),
     onChange: onCompoundInputChange,
   });
 
@@ -96,10 +96,11 @@ export default function compoundCalculator(block) {
   const interestRateField = createRetirementExpenseRatioField({
     id: 'interestRateInput',
     label: getLabel('.expected-interest-field', 'Expected annual interest rate'),
-    value: 50,
+    value: 15,
     min: 1,
     max: 30,
     step: 1,
+    milestones: [1, 30].map((val) => ({ val, text: `${val}%` })),
     onChange: onCompoundInputChange,
   });
 
