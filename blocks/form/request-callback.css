@@ -76,6 +76,166 @@
   height: 24px;
 }
 
+/* --- Flatpickr Date Picker (shared with invest-form) --- */
+.request-call-back.form.block .form-field.date-field {
+  position: relative;
+}
+
+.request-call-back.form.block .form-field.date-field .flatpickr-wrapper {
+  display: block;
+}
+
+.request-call-back.form.block .form-field.date-field .flatpickr-calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-width: 320px;
+  z-index: 99;
+  margin-top: 6px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px #0000001a, 0 8px 10px -6px #0000000d;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.request-call-back.form.block .flatpickr-calendar::before,
+.request-call-back.form.block .flatpickr-calendar::after {
+  display: none;
+}
+
+.request-call-back.form.block .flatpickr-months {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-month {
+  height: auto !important;
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.request-call-back.form.block .flatpickr-current-month {
+  position: static;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: unset;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month,
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 7px 8px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month::before {
+  content: '';
+  background-image: url("../../icons/calendar-prev-icon.svg");
+  width: 8px;
+  height: 8px;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month::before {
+  content: '';
+  background-image: url("../../icons/calendar-next-icon.svg");
+  width: 8px;
+  height: 8px;
+  background-position: right;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month svg,
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month svg {
+  display: none;
+}
+
+.request-call-back.form.block .custom-header-select {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
+  padding: 4px;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  outline: none;
+  width: 50%;
+}
+
+.request-call-back.form.block .flatpickr-weekdays {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: unset;
+}
+
+.request-call-back.form.block span.flatpickr-weekday {
+  color: #374151;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 14px;
+  height: unset;
+}
+
+.request-call-back.form.block .flatpickr-days>div {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.request-call-back.form.block .flatpickr-day {
+  width: 14.2857%;
+  height: auto;
+  line-height: 28px;
+  font-weight: 400;
+  border: none;
+  color: #111827;
+  font-size: 12px;
+  background-color: #fff;
+  border-radius: 2px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-call-back.form.block .flatpickr-day:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.request-call-back.form.block .flatpickr-day.flatpickr-disabled {
+  color: #9ca3af !important;
+}
+
+.request-call-back.form.block .flatpickr-day.selected,
+.request-call-back.form.block .flatpickr-day.selected:hover {
+  background-color: #e31837 !important;
+  color: #fff;
+  font-weight: 600;
+}
+
 .request-call-back.form.block input::placeholder {
   color: #6b7280;
 }
@@ -206,6 +366,7 @@
   margin-top: 2px;
   background: #fff;
 }
+
 .request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"]:checked + span {
   background-color: #FA1432;
   border-color: #FA1432;
