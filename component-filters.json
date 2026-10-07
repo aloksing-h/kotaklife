@@ -39,7 +39,10 @@
       "video-banner",
       "promo",
       "banner-v2",
-      "accessibility-button"
+      "accessibility-button",
+      "calculators",
+      "result-summary-panel",
+      "result-summary-with-canvas"
     ]
   },
   {

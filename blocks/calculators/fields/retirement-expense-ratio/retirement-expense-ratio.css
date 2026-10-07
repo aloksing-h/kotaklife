@@ -1,0 +1,134 @@
+/* Path: fields/retirement-expense-ratio/retirement-expense-ratio.css */
+
+/* .retirement-expense-ratio-box {
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  user-select: none;
+} */
+
+.calculator-main .retirement-expense-ratio-box .slider-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calculator-main .retirement-expense-ratio-box .slider-label-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b506a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calculator-main .retirement-expense-ratio-box .slider-label-text img {
+  height: 12px;
+  width: 12px;
+}
+
+.calculator-main .retirement-expense-ratio-box .info-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #94a3b8;
+  font-size: 10px;
+  color: #64748b;
+  cursor: help;
+}
+
+.calculator-main .retirement-expense-ratio-box .value-display-badge {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 56px;
+  height: 38px;
+}
+
+.calculator-main .retirement-expense-ratio-box .badge-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: right;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.calculator-main .retirement-expense-ratio-box .badge-affix {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-track-wrapper {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-pill-handle {
+  position: absolute;
+  top: 50%;
+  width: 17px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  z-index: 10;
+  touch-action: none;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-pill-handle:active {
+  cursor: grabbing;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-scale-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  color: #717680;
+}
+
+.calculator-main .retirement-expense-ratio-box .wedge-scale-row span {
+  color: #717680;
+font-family: var(--font-family-font-family-body, Manrope);
+font-size: 12px;
+font-weight: 500;
+line-height: 14px;
+}
+
+.calculator-main  #retirement-ration {
+  padding: 0;
+  border: none;
+}
