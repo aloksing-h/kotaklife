@@ -518,6 +518,10 @@
           {
             "name": "Fund Tab Content v2",
             "value": "fund-tab-content-v2"
+          },
+          {
+            "name": "Fund Performance Risk Management",
+            "value": "risk-management"
           }
         ]
       },

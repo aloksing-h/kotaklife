@@ -572,7 +572,7 @@ main > .section.custom-charts-container{
   .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     gap: 20px;
   }
 
@@ -584,6 +584,7 @@ main > .section.custom-charts-container{
   .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
     width: 100%;
     max-width: 353px;
+    text-align: right;
   }
 }
 
