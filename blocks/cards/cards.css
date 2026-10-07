@@ -413,7 +413,7 @@
   transition: gap 0.25s ease, transform 0.25s ease;
 }
 
-.csr-layout .default-content-wrapper a:hover{
+.csr-layout .default-content-wrapper a:hover {
   gap: 18px;
 }
 
@@ -862,5 +862,33 @@
   .cards.trust-style .cards-card-body p strong {
     margin-top: 0;
     margin-bottom: var(--spacing-2xl);
+  }
+}
+
+/* Fund Performance Risk Management */
+
+.section.risk-management .cards.trust-style>ul {
+  padding: 0;
+}
+
+.section.risk-management .cards.trust-style>ul>li {
+  padding: 17px 17px 15px;
+  min-height: 172px;
+}
+
+@media screen and (width >= 769px) {
+  .section.risk-management .cards.trust-style>ul{
+    max-width: 1100px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section.risk-management .cards.trust-style>ul>li{
+    padding: 24px 16px;
+    min-height: 230px;
+  }
+  
+  .section.risk-management .cards.trust-style .cards-card-body p strong{
+    font-size: var(--font-size-sub-heading-2, 18px);
+    line-height: var(--line-height-sub-heading-2, 20px);  
   }
 }

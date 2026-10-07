@@ -135,3 +135,8 @@
     margin-right: auto;
   }
 }
+
+/* Fund Performance Risk Management */
+.section.risk-management>div{
+  padding: 0 16px;
+}
