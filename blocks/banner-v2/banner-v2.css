@@ -836,6 +836,63 @@ main>.section:has(.banner-v2.retire-calc-banner){
 }
 
 /* ==========================================================================
+   Term insurance banner (Figma 6068:23841 @1200px)
+   Position desktop visual image for viewport width >= 601px without touching
+   mobile image display/hide logic.
+   ========================================================================== */
+@media (width >= 601px) {
+  .banner-v2.block.term-ins-banner .banner-v2-visual,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual {
+    position: static;
+    height: auto;
+  }
+
+  .banner-v2.block.term-ins-banner .banner-v2-visual-desktop,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual-desktop {
+    position: absolute;
+    left: calc(30px + 31.92vw);
+    bottom: 16px;
+    z-index: 1;
+    pointer-events: none;
+    width: auto;
+    max-width: none;
+    height: auto;
+  }
+
+  .banner-v2.block.term-ins-banner .banner-v2-visual-desktop picture,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual-desktop picture {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .banner-v2.block.term-ins-banner .banner-v2-visual-desktop img,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual-desktop img {
+    width: calc(40px + 33.33vw);
+    max-width: 440px;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: bottom left;
+    display: block;
+  }
+}
+
+@media (width >= 1200px) {
+  .banner-v2.block.term-ins-banner .banner-v2-visual-desktop,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual-desktop {
+    left: 413px;
+    bottom: 16px;
+  }
+
+  .banner-v2.block.term-ins-banner .banner-v2-visual-desktop img,
+  .banner-v2.block.term-ins-banner.fin-calc-banner .banner-v2-visual-desktop img {
+    width: 440px;
+    height: 264px;
+  }
+}
+
+/* ==========================================================================
    6. Universal Editor / Authoring Mode
    ========================================================================== */
 .banner-v2.block.is-editor {
