@@ -428,6 +428,27 @@
   justify-content: center;
 }
 
+/* 1. Hide error messages by default and style them */
+.request-call-back.form.block .error-message {
+  display: none;
+  color: #FA1432; /* KLI Red */
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* 2. Show the error message ONLY when the field is marked invalid */
+.request-call-back.form.block .form-field.is-invalid .error-message {
+  display: block;
+}
+
+/* 3. Turn the input border red when invalid */
+.request-call-back.form.block .form-field.is-invalid input,
+.request-call-back.form.block .form-field.is-invalid select {
+  border-color: #FA1432;
+}
+
 /* --- Tablet and Desktop --- */
 @media (width >= 768px) {
   .request-call-back.form.block .form-field.text-field,
