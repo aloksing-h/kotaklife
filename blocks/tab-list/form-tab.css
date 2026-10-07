@@ -276,7 +276,7 @@
 }
 
 .insurance-tab-title.section{
-  margin: 0;
+  margin: 90px 0 0 0;
 }
 
 .insurance-tab-title.section .default-content-wrapper{
@@ -410,6 +410,9 @@
    Overrides mobile defaults for wider screens
    ========================================= */
 @media (width >= 768px) {
+  .insurance-tab-title.section{
+    margin: 140px 0 0 0;
+  }
   .insurance-tab-title.section .default-content-wrapper h1,
   .insurance-tab-title.section .default-content-wrapper h2,
   .insurance-tab-title.section .default-content-wrapper h3,
