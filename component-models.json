@@ -689,6 +689,10 @@
     ]
   },
   {
+    "id": "calculator-metrics-grid",
+    "fields": []
+  },
+  {
     "id": "calculators",
     "fields": [
       {
