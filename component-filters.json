@@ -43,7 +43,8 @@
       "calculators",
       "result-summary-panel",
       "result-summary-with-canvas",
-      "fund-tab"
+      "fund-tab",
+      "calculator-metrics-grid"
     ]
   },
   {
