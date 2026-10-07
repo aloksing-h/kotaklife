@@ -115,37 +115,6 @@
           }
         },
         {
-          "title": "Accordion v2",
-          "id": "accordion-v2",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Accordion v2",
-                  "filter": "accordion-v2",
-                  "model": "accordion-v2"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Accordion Item",
-          "id": "accordion-item",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Accordion Item",
-                  "model": "accordion-item"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Accordion",
           "id": "accordion",
           "plugins": {
@@ -253,36 +222,6 @@
           }
         },
         {
-          "title": "Carousel V2",
-          "id": "carousel-v2",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Carousel V2",
-                  "filter": "carousel-v2"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Carousel V2 Slide",
-          "id": "carousel-v2-slide",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Carousel V2 Slide",
-                  "model": "carousel-v2-slide"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Carousel",
           "id": "carousel",
           "plugins": {
@@ -307,22 +246,6 @@
                 "template": {
                   "name": "Carousel Slide",
                   "model": "carousel-slide"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Columns v2",
-          "id": "columns-v2",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Columns v2",
-                  "filter": "columns-v2",
-                  "model": "columns-v2"
                 }
               }
             }

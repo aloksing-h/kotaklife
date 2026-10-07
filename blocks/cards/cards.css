@@ -897,7 +897,7 @@
     border-radius: 50%;
     object-fit: cover;
     display: block;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #e0e0e0;
 }
 
@@ -915,7 +915,7 @@
     align-self: end;
     font-size: 14px;
     line-height: 18px;
-    color: #666666;
+    color: #666;
     font-weight: var(--font-weight-regular, 400);
     padding-right: 36px;
 }
@@ -927,7 +927,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: var(--font-weight-semibold, 600);
-    color: #1a1a1a;
+    color: #181D27;
     margin-top: 2px;
     padding-right: 36px;
 }
@@ -949,7 +949,7 @@
     right: 20px;
     width: 32px;
     height: 32px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -967,7 +967,7 @@
     display: block;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .cards.prasad-pimple-reviewed ul li {
         display: flex;
         flex-direction: row;

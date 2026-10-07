@@ -42,22 +42,13 @@
       "accessibility-button",
       "calculators",
       "result-summary-panel",
-      "result-summary-with-canvas",
-      "accordion-v2",
-      "carousel-v2",
-      "columns-v2"
+      "result-summary-with-canvas"
     ]
   },
   {
     "id": "accessibility-button",
     "components": [
       "accessibility-button"
-    ]
-  },
-  {
-    "id": "accordion-v2",
-    "components": [
-      "accordion-item"
     ]
   },
   {
@@ -82,12 +73,6 @@
     "id": "cards",
     "components": [
       "card"
-    ]
-  },
-  {
-    "id": "carousel-v2",
-    "components": [
-      "carousel-v2-slide"
     ]
   },
   {

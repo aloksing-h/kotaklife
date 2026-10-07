@@ -571,49 +571,6 @@
     ]
   },
   {
-    "id": "accordion-v2",
-    "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Disclaimer",
-            "value": "disclaimer"
-          },
-          {
-            "name": "FAQ",
-            "value": "faq-accordion"
-          },
-          {
-            "name": "FAQ Test",
-            "value": "faq-test"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "accordion-item",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "label",
-        "value": "",
-        "label": "Label",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "body",
-        "value": "",
-        "label": "Body",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "accordion",
     "fields": [
       {
@@ -800,32 +757,6 @@
     ]
   },
   {
-    "id": "carousel-v2-slide",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "carousel-slide",
     "fields": [
       {
@@ -847,38 +778,6 @@
         "name": "text",
         "value": "",
         "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "columns-v2",
-    "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Column Style",
-        "options": [
-          {
-            "name": "Default (Standard 50/50)",
-            "value": "default"
-          },
-          {
-            "name": "Steps Layout (How it works)",
-            "value": "steps"
-          }
-        ]
-      },
-      {
-        "component": "richtext",
-        "name": "column1",
-        "label": "Left Column (Heading & Button)",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "column2",
-        "label": "Right Column (Numbered List for Steps)",
         "valueType": "string"
       }
     ]
@@ -915,10 +814,6 @@
           {
             "name": "Tab Six",
             "value": "tab-six"
-          },
-          {
-            "name": "Steps Layout (How it works)",
-            "value": "steps"
           },
           {
             "name": "Term Insurance work",

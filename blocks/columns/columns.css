@@ -35,95 +35,13 @@
 /* term-insurance-work */
 
 .columns.term-insurance-work>div {
-  gap: 20px;
+  gap: 30px;
   padding: 16px 12px;
 }
 
 .columns.term-insurance-work>div>div:first-child {
   padding-right: 0;
   max-width: 100%;
-}
-
-.columns.term-insurance-work>div>div:first-child h2 {
-  font-size: 26px;
-  line-height: 1.2;
-  font-weight: 300;
-  color: #333;
-  margin-bottom: 1rem;
-  margin-top: 0;
-}
-
-.columns.term-insurance-work>div>div:first-child h2 strong {
-  font-weight: 600;
-}
-
-.columns.term-insurance-work>div>div:first-child p:first-of-type {
-  font-size: 14px;
-  line-height: 20px;
-  color: #666;
-  margin-top: 8px;
-  font-weight: var(--font-weight-medium);
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type {
-  display: inline-flex;
-  align-items: center;
-  background-color: #e31837;
-  padding: 4px 4px 4px 20px;
-  border-radius: 30px;
-  margin-top: 16px;
-  gap: 10px;
-  transition: background-color 0.2s ease, gap 0.25s ease, padding-right 0.25s ease;
-  position: relative;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type:hover {
-  background-color: #c0142e;
-  gap: 16px;
-  padding-right: 6px;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 14px;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 30px;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type .icon {
-  background-color: #ffffff;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type:hover .icon {
-  background-color: #000000;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type .icon img {
-  width: 14px;
-  height: 14px;
-  transition: filter 0.2s ease-in-out;
-}
-
-.columns.term-insurance-work>div>div:first-child p:last-of-type:hover .icon img {
-  filter: brightness(0) invert(1);
 }
 
 .columns.term-insurance-work>div>div:nth-child(2) ol {
@@ -142,7 +60,7 @@
   counter-increment: step-counter;
   min-height: 34px;
   margin: 0;
-  color: #666;
+  color: #535862;
   font-size: 14px;
   line-height: 20px;
 }
@@ -155,31 +73,110 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid  #2E90FA;
-  background:linear-gradient(180deg, var(--Decorative-Blue-decorative-blue-500, rgba(46, 144, 250, 0.30)) 0%, var(--Foreground-fg-white, rgba(255, 255, 255, 0.30)) 100%);
+  border: 1px solid #2E90FA;
+  background: linear-gradient(180deg, var(--decorative-blue-decorative-blue-500, rgb(46 144 250 / 30%)) 0%, var(--foreground-fg-white, rgb(255 255 255 / 30%)) 100%);
   color: #1E4679;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 13.6px;
+}
+
+.columns.term-insurance-work>div>div:first-child h2 strong {
+  font-weight: 600;
 }
 
 .columns.term-insurance-work>div>div:nth-child(2) ol li strong {
   display: block;
   font-size: 15px;
   color: #222;
-  margin-bottom: 0.25rem;
+  margin-bottom: 4px;
 }
 
 .columns.term-insurance-work>div>div:nth-child(2) ol li p {
   margin: 0;
-  color: #666;
+  color: #535862;
   font-size: 14px;
   line-height: 20px;
 }
 
-@media (min-width: 360px) {
+.columns.term-insurance-work>div>div:first-child h2 {
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 300;
+  color: #181D27;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.columns.term-insurance-work>div>div:first-child p:first-of-type {
+  font-size: 14px;
+  line-height: 20px;
+  color: #535862;
+  margin-top: 8px;
+  font-weight: var(--font-weight-medium);
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e31837;
+  padding: 4px 4px 4px 20px;
+  border-radius: 30px;
+  margin-top: 20px;
+  gap: 10px;
+  transition: background-color 0.2s ease, gap 0.25s ease, padding-right 0.25s ease;
+  position: relative;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type:hover {
+  background-color: #c0142e;
+  gap: 16px;
+  padding-right: 6px;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type .icon {
+  background-color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type:hover .icon {
+  background-color: #000;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type .icon img {
+  width: 14px;
+  height: 14px;
+  transition: filter 0.2s ease-in-out;
+}
+
+.columns.term-insurance-work>div>div:first-child p:last-of-type:hover .icon img {
+  filter: brightness(0) invert(1);
+}
+
+@media (width >= 360px) {
   .columns.term-insurance-work>div {
     gap: 30px;
     padding: 24px 16px;
@@ -231,7 +228,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .columns.term-insurance-work>div>div:first-child {
     max-width: 100%;
   }
@@ -243,18 +240,18 @@
   .columns.term-insurance-work>div>div:nth-child(2) ol li::before {
     width: 44px;
     height: 44px;
-    font-size: 1rem;
+    font-size: 16px;
   }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .columns.term-insurance-work>div {
     align-items: flex-start;
     padding: 0;
   }
 
   .columns.term-insurance-work>div>div:first-child {
-    padding-right: 2rem;
+    padding-right: 32px;
     max-width: 447px;
   }
 
@@ -264,26 +261,28 @@
 
   .columns.term-insurance-work>div>div:nth-child(2) ol li {
     padding-left: 72px;
-    font-size: 0.95rem;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium, 500);
     min-height: 56px;
   }
 
   .columns.term-insurance-work>div>div:nth-child(2) ol li::before {
     width: 56px;
     height: 56px;
-    font-size: 1.1rem;
+    font-size: 17.6px;
   }
 
   .columns.term-insurance-work>div>div:nth-child(2) ol li strong {
     font-size: 18px;
+    font-weight:var(--font-weight-semibold, 600);
   }
 
   .columns.term-insurance-work>div>div:nth-child(2) ol li p {
-    font-size: 0.95rem;
+    font-size: 15.2px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .columns.term-insurance-work>div>div:first-child h2 {
     font-size: 48px;
     line-height: 1.1;

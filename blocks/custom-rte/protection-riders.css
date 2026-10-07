@@ -1,0 +1,192 @@
+.protection-with-riders .default-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.protection-with-riders .default-content-wrapper h1,
+.protection-with-riders .default-content-wrapper h2,
+.protection-with-riders .default-content-wrapper h3 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.2;
+    color: #181D27;
+    font-weight: 400;
+}
+
+.protection-with-riders .default-content-wrapper h1 strong,
+.protection-with-riders .default-content-wrapper h2 strong,
+.protection-with-riders .default-content-wrapper h3 strong {
+    font-weight: 600;
+}
+
+.protection-with-riders .default-content-wrapper p {
+    margin: 0;
+    color: #535862;
+    font-size: 16px;
+    font-weight: var(--font-weight-medium, 500);
+    line-height: 20px;
+}
+
+.protection-with-riders .custom-rte.block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.protection-with-riders .custom-rte.block > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 72px 12px 16px;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid #E9EAEB;
+    background: linear-gradient(180deg, #fff 0%, #EFF8FF 100%);
+    position: relative;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(picture) {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(picture) * {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 12px;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) h3 {
+    margin: 0;
+    color: var(--text-text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-1, 16px);
+    font-weight: 600;
+    line-height: var(--line-height-sub-heading-2, 20px);
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:nth-of-type(1) {
+    margin: 0;
+    color: var(--text-text-tertiary, #535862);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-caption, 14px);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    margin: 0;
+    display: flex;
+    width: 32px;
+    height: 32px;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type span.icon,
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type span.icon img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    object-fit: contain;
+}
+
+.protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type a:nth-child(2) {
+    display: none;
+}
+
+.protection-with-riders .custom-rte.block > div:hover > div:has(h3) p:last-of-type a:nth-child(1) {
+    display: none;
+}
+
+.protection-with-riders .custom-rte.block > div:hover > div:has(h3) p:last-of-type a:nth-child(2) {
+    display: flex;
+}
+
+@media screen and (width >= 768px) {
+    .protection-with-riders .default-content-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 48px;
+    }
+
+    .protection-with-riders .default-content-wrapper h1,
+    .protection-with-riders .default-content-wrapper h2,
+    .protection-with-riders .default-content-wrapper h3 {
+        font-size: 48px;
+        max-width: 50%;
+    }
+
+    .protection-with-riders .default-content-wrapper p {
+        max-width: 40%;
+        text-align: right;
+    }
+
+    .protection-with-riders .custom-rte.block {
+        gap: 20px;
+        justify-content: flex-start;
+    }
+
+    .protection-with-riders .custom-rte.block > div {
+        max-width: calc(33.333% - 14px);
+        border-radius: var(--radius-xl, 16px);
+        padding: 84px 24px 24px;
+    }
+
+    .protection-with-riders .custom-rte.block > div > div:has(picture) {
+        width: 40px;
+        height: 40px;
+        top: 24px;
+        left: 24px;
+    }
+
+    .protection-with-riders .custom-rte.block > div:hover {
+        transform: translateY(-10px);
+        border-color: var(--red-600, #AF0E23);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
+    }
+
+    .protection-with-riders .custom-rte.block > div > div:has(picture) * {
+        width: 40px;
+        height: 40px;
+    }
+
+    .protection-with-riders .custom-rte.block > div > div:has(h3) h3 {
+        font-size: var(--sub-heading-1-font-size, 20px);
+    }
+
+    .protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type {
+        top: 24px;
+        right: 24px;
+    }
+}
