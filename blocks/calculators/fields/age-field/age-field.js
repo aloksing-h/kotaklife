@@ -1,11 +1,11 @@
 export default function createAgeField({
-  id, label, value, min, max, onChange,
+  id, label, value, min, max, required = false, onChange,
 } = {}) {
   const container = document.createElement('div');
   container.className = 'age-field';
   container.innerHTML = `
     <label class="age-label" for="${id}">
-      ${label}<span class="required-star">*</span>
+      ${label}${required === true ? '<span class="required-star">*</span>' : ''}
     </label>
     <input
       type="number"

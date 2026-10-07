@@ -5,6 +5,10 @@
   padding: 0 !important;
 }
 
+main>.section.popular-search-container.std-space {
+  margin: 0;
+}
+
 .section.popular-search-container {
   margin: 0;
 

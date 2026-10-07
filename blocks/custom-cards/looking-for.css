@@ -47,14 +47,15 @@
 }
 
 .looking-for>.custom-cards-wrapper:nth-of-type(2) .custom-cards ul {
+    /* align-items: center; */
     display: inline-flex;
-    align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
     padding: 0;
     margin: 0;
     list-style: none;
+    align-items: stretch;
 }
 
 /* Tablet & Desktop override handled in the flex-nowrap rule below (width >=900px) */
@@ -63,7 +64,7 @@
     display: flex;
     flex: 0 0 156px;
     width: 156px;
-    height: 120px;
+    min-height: 120px;
     padding: var(--spacing-xl, 16px);
     flex-direction: column;
     align-items: flex-start;
@@ -302,7 +303,7 @@
         display: flex;
         flex: 0 0 174px;
         width: 174px;
-        height: 122px;
+        min-height: 122px;
         padding: var(--spacing-xl, 16px);
         flex-direction: column;
         align-items: flex-start;

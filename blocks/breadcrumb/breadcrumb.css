@@ -231,3 +231,101 @@ main .breadcrumb-container .breadcrumb-wrapper {
     min-height: 38px;
   }
 }
+
+/* ==========================================================================
+   Retirement Calculator Banner Breadcrumb Variant
+   Desktop node: 5401:9731 | Mobile node: 5401:9950
+   ========================================================================== */
+
+/* Mobile first: transparent bar pinned bottom-left, dark text */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb-container {
+  position: absolute;
+  bottom: 103px;
+  left: 0;
+  z-index: 4;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb-wrapper,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb {
+  width: 100%;
+  height: auto;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  height: auto;
+  min-height: 0;
+  padding: 8px 16px;
+}
+
+/* The icon SVG is white; mask it to get the exact Figma colour. */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a {
+  background: #181d27;
+  mask: url('/icons/home-icon.svg') center / 12px 12px no-repeat;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a img {
+  opacity: 0;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a,
+/* stylelint-disable-next-line no-descending-specificity */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav > span,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav > span:last-child,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb .breadcrumb-separator {
+  color: #181d27;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb .breadcrumb-separator {
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+/* Left padding follows the banner content edge */
+@media (width >= 601px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding: 12px 16px 12px 20px;
+  }
+}
+
+@media (width >= 700px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 28px;
+  }
+}
+
+@media (width >= 900px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb-container{
+    bottom: 194px;
+  }
+  
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 32px;
+  }
+}
+
+@media (width >= 1101px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 50px;
+  }
+  
+}
+
+@media (width >= 1200px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: max(50px, calc(50vw - 550px));
+  }
+}

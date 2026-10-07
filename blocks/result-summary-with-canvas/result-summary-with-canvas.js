@@ -27,9 +27,21 @@ function loadChartJs() {
   return chartLibraryPromise;
 }
 
-function formatCurrency(value) {
+function formatAmount(value) {
   const amount = Number(value);
-  return `\u20B9 ${Math.round(Number.isFinite(amount) ? amount : 0).toLocaleString('en-IN')}`;
+  const safeAmount = Number.isFinite(amount) ? amount : 0;
+  const absoluteAmount = Math.abs(safeAmount);
+  if (absoluteAmount >= 10000000) {
+    return `${(safeAmount / 10000000).toLocaleString('en-IN', { maximumFractionDigits: 2 })} Cr`;
+  }
+  if (absoluteAmount >= 100000) {
+    return `${(safeAmount / 100000).toLocaleString('en-IN', { maximumFractionDigits: 2 })} L`;
+  }
+  return Math.round(safeAmount).toLocaleString('en-IN');
+}
+
+function formatCurrency(value) {
+  return `\u20B9 ${formatAmount(value)}`;
 }
 
 function getFrequencyLabel(frequency) {
@@ -59,10 +71,10 @@ export default function decorate(block) {
         <p class="investment-summary"></p>
       </div>
       <div class="result-chart">
-        <div class="chart-legend">
+        <button class="chart-legend" type="button" aria-pressed="true">
           <span class="chart-legend-dot" aria-hidden="true"></span>
-          <p class="chart-legend-label"></p>
-        </div>
+          <span class="chart-legend-label"></span>
+        </button>
         <div class="chart-plot">
           <canvas class="chart-canvas" role="img"></canvas>
         </div>
@@ -73,9 +85,21 @@ export default function decorate(block) {
   const resultLabelElement = block.querySelector('.result-label');
   const summaryElement = block.querySelector('.investment-summary');
   const amountElement = block.querySelector('.result-amount');
+  const chartLegend = block.querySelector('.chart-legend');
   const chartLabelElement = block.querySelector('.chart-legend-label');
   const chartCanvas = block.querySelector('.chart-canvas');
   const cta = block.querySelector('.result-cta');
+  let returnsVisible = true;
+
+  chartLegend.addEventListener('click', () => {
+    returnsVisible = !returnsVisible;
+    chartLegend.setAttribute('aria-pressed', String(returnsVisible));
+    const chart = charts.get(chartCanvas);
+    if (chart) {
+      chart.setDatasetVisibility(0, returnsVisible);
+      chart.update('none');
+    }
+  });
 
   resultLabelElement.textContent = resultLabel;
   chartLabelElement.textContent = chartLabel;
@@ -103,16 +127,44 @@ export default function decorate(block) {
     }
 
     const styles = getComputedStyle(block);
-    const lineColor = styles.getPropertyValue('--brand-blue-600').trim();
-    const gridColor = styles.getPropertyValue('--brand-blue-50').trim();
-    const tickColor = styles.getPropertyValue('--gray-600').trim();
+    const lineColor = styles.getPropertyValue('--info-800').trim();
+    const gridColor = styles.getPropertyValue('--gray-400').trim();
+    const baselineColor = styles.getPropertyValue('--brand-blue-50').trim() || '#D2DAE4';
+    const baselineOffset = 12;
+    const tickColor = styles.getPropertyValue('--Text-text-secondary').trim() || '#414651';
+    const amountFontSize = parseFloat(styles.getPropertyValue('--Font-size-Disclaimer')) || 10;
+    const amountLineHeight = styles.getPropertyValue('--Line-height-Disclaimer').trim() || '12px';
     const chart = new Chart(canvas, {
       type: 'line',
+      plugins: [{
+        id: 'full-width-baseline',
+        afterDraw: (chartInstance) => {
+          const { ctx, chartArea, scales } = chartInstance;
+          const baselineY = chartArea.bottom + baselineOffset;
+          ctx.save();
+          ctx.beginPath();
+          ctx.strokeStyle = gridColor;
+          ctx.lineWidth = 1;
+          scales.x.ticks.forEach((tick, index) => {
+            const tickX = scales.x.getPixelForTick(index);
+            ctx.moveTo(tickX, chartArea.bottom);
+            ctx.lineTo(tickX, baselineY);
+          });
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.strokeStyle = baselineColor;
+          ctx.moveTo(0, baselineY);
+          ctx.lineTo(chartArea.right, baselineY);
+          ctx.stroke();
+          ctx.restore();
+        },
+      }],
       data: {
         labels,
         datasets: [{
           label,
           data: values,
+          hidden: !returnsVisible,
           borderColor: lineColor,
           backgroundColor: lineColor,
           borderWidth: 3,
@@ -139,24 +191,39 @@ export default function decorate(block) {
         },
         scales: {
           x: {
-            grid: { color: gridColor },
+            grid: { color: gridColor, drawTicks: false },
             border: { display: false },
+            afterFit: (scale) => {
+              scale.height -= scale.options.ticks.padding;
+            },
             ticks: {
               autoSkip: true,
               maxRotation: 0,
-              color: tickColor,
-              font: { family: styles.fontFamily },
+              padding: () => baselineOffset + (window.matchMedia('(min-width: 900px)').matches ? 17 : 8),
+              color: '#414651',
+              font: {
+                family: styles.fontFamily,
+                size: 10,
+                weight: 500,
+                lineHeight: '12px',
+              },
             },
           },
           y: {
             beginAtZero: true,
-            grid: { color: gridColor },
+            grid: { display: false },
             border: { display: false },
             ticks: {
               count: 5,
               color: tickColor,
-              callback: (value) => Math.round(Number(value)).toLocaleString('en-IN'),
-              font: { family: styles.fontFamily },
+              callback: formatAmount,
+              font: {
+                family: styles.fontFamily,
+                size: amountFontSize,
+                style: 'normal',
+                weight: 500,
+                lineHeight: amountLineHeight,
+              },
             },
           },
         },
@@ -206,7 +273,9 @@ export default function decorate(block) {
 
   function updateResult(inputs, result) {
     if (!inputs || !result) return;
-    amountElement.textContent = formatCurrency(result.finalAmount);
+    const finalAmount = Number(result.finalAmount);
+    const formattedAmount = Math.round(Number.isFinite(finalAmount) ? finalAmount : 0).toLocaleString('en-IN');
+    amountElement.textContent = `\u20B9 ${formattedAmount}`;
     updateSummary(inputs);
     scheduleChartUpdate(chartCanvas, chartLabel, result.yearlyData);
   }

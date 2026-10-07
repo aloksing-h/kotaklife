@@ -1,0 +1,101 @@
+{
+    "definitions": [
+        {
+            "title": "Fund Tab",
+            "id": "fund-tab",
+            "plugins": {
+                "xwalk": {
+                    "page": {
+                        "resourceType": "core/franklin/components/block/v1/block",
+                        "template": {
+                            "name": "Fund Tab",
+                            "filter": "fund-tab",
+                            "model": "fund-tab"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "title": "Fund Tab Item",
+            "id": "fund-tab-item",
+            "plugins": {
+                "xwalk": {
+                    "page": {
+                        "resourceType": "core/franklin/components/block/v1/block/item",
+                        "template": {
+                            "name": "Fund Tab Item",
+                            "model": "fund-tab-item"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "models": [
+        {
+            "id": "fund-tab",
+            "fields": [
+                {
+                    "component": "multiselect",
+                    "name": "classes",
+                    "label": "Select Class",
+                    "options": [
+                        {
+                            "name": "Custom Tab",
+                            "value": "custom-tab"
+                        },
+                        {
+                            "name": "Custom Tab V2",
+                            "value": "custom-tab-v2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "fund-tab-item",
+            "fields": [
+                {
+                    "component": "text",
+                    "name": "text",
+                    "value": "",
+                    "label": "Tab Label",
+                    "valueType": "string"
+                },
+                {
+                    "component": "text",
+                    "name": "id",
+                    "label": "Enter tab Id"
+                },
+                {
+                    "component": "multiselect",
+                    "name": "class",
+                    "label": "Tab Class",
+                    "valueType": "array",
+                    "value": [
+                        "fund-tab"
+                    ],
+                    "options": [
+                        {
+                            "name": "Fund Tab",
+                            "value": "fund-tab"
+                        },
+                        {
+                            "name": "Fund Tab V2",
+                            "value": "fund-tab-v2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "filters": [
+        {
+            "id": "fund-tab",
+            "components": [
+                "fund-tab-item"
+            ]
+        }
+    ]
+}

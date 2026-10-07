@@ -362,6 +362,17 @@ export default async function decorate(block) {
     }
   }
 
+  if (nav.classList.contains('grey-nav')) {
+    const updateNavColor = () => {
+      const isScrolled = window.scrollY >= 100;
+      nav.classList.toggle('white-nav', isScrolled);
+      nav.classList.toggle('grey-nav', !isScrolled);
+    };
+
+    window.addEventListener('scroll', updateNavColor, { passive: true });
+    updateNavColor();
+  }
+
   // Apply layer classes to topHeader
   const topHeader = nav.querySelector('.nav-header-top .default-content-wrapper');
   if (topHeader) {
