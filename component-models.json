@@ -522,6 +522,14 @@
           {
             "name": "Fund Performance Risk Management",
             "value": "risk-management"
+          },
+          {
+            "name": "Fund Performance Investment Team",
+            "value": "investment-team"
+          },
+          {
+            "name": "Red Logo BG",
+            "value": "red-logo-bg"
           }
         ]
       },

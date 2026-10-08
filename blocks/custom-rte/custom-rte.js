@@ -297,35 +297,35 @@ export default async function decorate(block) {
         4: 'card-item',
       });
     }
-    if (!block.classList.contains('card-link')) {
-      [...block.children].forEach((row) => {
-        row.children[2]?.remove();
-      });
-    } else {
-      [...block.children].forEach((row) => {
-        const [imgDiv, textDiv, linkDiv] = row.children;
-        const link = linkDiv?.querySelector('a');
-        if (!link) return;
-        link.textContent = '';
-        link.classList.add('calc-card-link');
-        linkDiv.remove();
-        link.append(imgDiv, textDiv);
-        row.append(link);
-        row.classList.add('calc-card-item');
-        const href = link.getAttribute('href');
-        row.setAttribute('role', 'button');
-        row.setAttribute('tabindex', '0');
-        row.setAttribute('aria-label', `Navigate to ${href}`);
-        // Row is the focus target, so keep the inner link out of tab order
-        link.setAttribute('tabindex', '-1');
-        row.addEventListener('keydown', (e) => {
-          if (e.code === 'Enter' || e.code === 'Space') {
-            e.preventDefault();
-            window.location.href = href;
-          }
-        });
-      });
-    }
+    // if (!block.classList.contains('card-link')) {
+    //   [...block.children].forEach((row) => {
+    //     row.children[2]?.remove();
+    //   });
+    // } else {
+    //   [...block.children].forEach((row) => {
+    //     const [imgDiv, textDiv, linkDiv] = row.children;
+    //     const link = linkDiv?.querySelector('a');
+    //     if (!link) return;
+    //     link.textContent = '';
+    //     link.classList.add('calc-card-link');
+    //     linkDiv.remove();
+    //     link.append(imgDiv, textDiv);
+    //     row.append(link);
+    //     row.classList.add('calc-card-item');
+    //     const href = link.getAttribute('href');
+    //     row.setAttribute('role', 'button');
+    //     row.setAttribute('tabindex', '0');
+    //     row.setAttribute('aria-label', `Navigate to ${href}`);
+    //     // Row is the focus target, so keep the inner link out of tab order
+    //     link.setAttribute('tabindex', '-1');
+    //     row.addEventListener('keydown', (e) => {
+    //       if (e.code === 'Enter' || e.code === 'Space') {
+    //         e.preventDefault();
+    //         window.location.href = href;
+    //       }
+    //     });
+    //   });
+    // }
 
     const cards = [...block.children];
     if (cards.length > 4) {
@@ -398,5 +398,49 @@ export default async function decorate(block) {
       toggleSwiper();
       mobileQuery.addEventListener('change', toggleSwiper);
     }
+  }
+
+  // Custom RTE Redirection link
+  if (!block.classList.contains('card-link')) {
+    [...block.children].forEach((row) => {
+      row.children[2]?.remove();
+    });
+  } else {
+    [...block.children].forEach((row) => {
+      const [imgDiv, textDiv, linkDiv] = row.children;
+      const link = linkDiv?.querySelector('a');
+      if (!link) return;
+      link.textContent = '';
+      link.classList.add('card-link');
+      linkDiv.remove();
+      link.append(imgDiv, textDiv);
+      row.append(link);
+      row.classList.add('card-item');
+      const href = link.getAttribute('href');
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('aria-label', `Navigate to ${href}`);
+      // Row is the focus target, so keep the inner link out of tab order
+      link.setAttribute('tabindex', '-1');
+      row.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter' || e.code === 'Space') {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      });
+    });
+  }
+
+  // Fund Performance Investment Tab - Team Component
+  const investmentTeam = block.closest('.leadership');
+  if (investmentTeam) {
+    addLayerClasses(investmentTeam.children[2], {
+      1: 'team-card',
+      2: 'team-inner',
+      3: 'team-child',
+      4: 'team-item',
+      5: 'team-inneritem',
+      6: 'item-child',
+    });
   }
 }
