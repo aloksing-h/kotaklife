@@ -311,11 +311,11 @@ function buildButton(field) {
     // Add standard AEM icon classes for decorateIcons
     const iconWrapper = createElement('span', 'icon');
     iconWrapper.classList.add(`icon-${icon}`);
-    
+
     // Retain custom class and dataset
     iconWrapper.classList.add('button-icon');
     iconWrapper.dataset.icon = icon;
-    
+
     button.append(iconWrapper);
   }
 
@@ -906,6 +906,6 @@ export default async function decorateRequestCallBack(block) {
 
   form.querySelectorAll('.date-field input').forEach((input) => initDatePicker(input));
   initRequestCallBackValidations(form);
-  
+
   decorateIcons(block);
 }
