@@ -57,7 +57,7 @@ export default async function initDatePicker(input) {
       minDate: input.min || undefined,
       maxDate: input.max || undefined,
       disableMobile: true,
-      allowInput: false,
+      allowInput: true,
       static: true,
       appendTo: dateFieldWrapper,
       clickOpens: false,

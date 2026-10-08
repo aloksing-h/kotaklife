@@ -90,28 +90,10 @@ function buildInput(field) {
   if (validationRegex) input.dataset.regex = validationRegex;
 
   if (type === 'date') {
-    // start as text so the custom placeholder is visible (native date inputs ignore placeholder)
+    // Keep as text so Flatpickr handles the calendar and users can type DD/MM/YYYY
     input.type = 'text';
+    input.setAttribute('maxlength', '10');
     if (placeholder) input.placeholder = placeholder;
-
-    const openPicker = () => {
-      input.type = 'date';
-      if (typeof input.showPicker === 'function') {
-        try {
-          input.showPicker();
-        } catch {
-          // some browsers may throw if not user-triggered; ignore
-        }
-      }
-    };
-
-    input.addEventListener('focus', openPicker);
-    input.addEventListener('click', openPicker);
-
-    // revert to text (placeholder visible) if user leaves without picking a date
-    input.addEventListener('blur', () => {
-      if (!input.value) input.type = 'text';
-    });
   } else {
     input.type = type || 'text';
     if (placeholder) input.placeholder = placeholder;
@@ -710,19 +692,37 @@ function initRequestCallBackValidations(form) {
       if (!regex.test(val)) isFieldValid = false;
     }
 
-    // 3. DOB Custom Age Validation
+    // 3. DOB Custom Age Validation (STRICT DD-MM-YYYY)
     const isDateField = wrapper.classList.contains('date-field');
-    if (isDateField && val) {
-      const dob = new Date(val);
-      const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
+    if (isDateField && val && input.type !== 'hidden') {
       const errorSpan = wrapper.querySelector('.error-message');
+      
+      // Strictly enforce DD-MM-YYYY format using regex
+      const formatRegex = /^\d{2}-\d{2}-\d{4}$/;
+      
+      if (!formatRegex.test(val)) {
+        // Triggers if they typed something incomplete or with slashes
+        if (errorSpan) errorSpan.textContent = 'Invalid date format';
+        isFieldValid = false;
+      } else {
+        // If format is exactly DD-MM-YYYY, split and check age
+        const [day, month, year] = val.split('-');
+        const dob = new Date(`${year}-${month}-${day}`); // JS needs YYYY-MM-DD to parse
 
-      if (age < 18) {
-        if (errorSpan) errorSpan.textContent = 'Min entry age is 18 Years';
-        isFieldValid = false;
-      } else if (age > 65) {
-        if (errorSpan) errorSpan.textContent = 'Max entry age is 65 years';
-        isFieldValid = false;
+        if (isNaN(dob.getTime())) {
+          if (errorSpan) errorSpan.textContent = 'Invalid date';
+          isFieldValid = false;
+        } else {
+          const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
+
+          if (age < 18) {
+            if (errorSpan) errorSpan.textContent = 'Min entry age is 18 Years';
+            isFieldValid = false;
+          } else if (age > 65) {
+            if (errorSpan) errorSpan.textContent = 'Max entry age is 65 years';
+            isFieldValid = false;
+          }
+        }
       }
     }
 
@@ -743,19 +743,25 @@ function initRequestCallBackValidations(form) {
   // --- Real-Time Typing & Input Restrictions ---
   form.addEventListener('input', (e) => {
     const input = e.target;
+    const wrapper = input.closest('.form-field');
+
+    if (!wrapper) return;
 
     // Full Name formatting
     if (input.name === 'fullname') {
+      if (/[^a-zA-Z\s.]/.test(input.value)) {
+        wrapper.classList.add('is-invalid'); // Instant error for non-characters
+        input.value = input.value.replace(/[^a-zA-Z\s.]/g, '');
+        return; 
+      }
+
       let val = input.value;
       if (val.startsWith(' ') || val.startsWith('.')) val = val.substring(1);
-      val = val.replace(/[^a-zA-Z\s.]/g, '').replace(/\s{2,}/g, ' ');
+      val = val.replace(/\s{2,}/g, ' ');
       input.value = val;
     }
 
     // Mobile Number formatting
-    const wrapper = input.closest('.form-field');
-    if (!wrapper) return;
-
     if (input.type === 'tel') {
       if (/\D/.test(input.value)) {
         wrapper.classList.add('is-invalid'); // Instant error for letters
@@ -764,11 +770,21 @@ function initRequestCallBackValidations(form) {
       }
     }
 
+    // Date formatting (Strict DD-MM-YYYY typing mask)
+    if (wrapper.classList.contains('date-field') && input.type !== 'hidden') {
+      let v = input.value.replace(/\D/g, ''); // Strip everything that isn't a number
+      
+      // Auto-insert hyphens as they type
+      if (v.length > 2) v = `${v.substring(0, 2)}-${v.substring(2)}`;
+      if (v.length > 5) v = `${v.substring(0, 5)}-${v.substring(5)}`;
+      
+      input.value = v.substring(0, 10); // Enforce exactly 10 characters
+    }
+
     wrapper.classList.remove('is-invalid');
   });
 
   // --- Submit Interceptor ---
-  // Using capture: true so this runs BEFORE the generic form.js submit logic
   form.addEventListener('submit', (e) => {
     let isFormValid = true;
 
@@ -781,7 +797,7 @@ function initRequestCallBackValidations(form) {
 
     if (!isFormValid) {
       e.preventDefault();
-      e.stopImmediatePropagation(); // Stops standard API submission in form.js
+      e.stopImmediatePropagation(); 
 
       const firstInvalid = form.querySelector('.is-invalid input, .is-invalid select');
       if (firstInvalid) {
