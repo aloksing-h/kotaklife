@@ -461,6 +461,18 @@
   border-color: #FA1432;
 }
 
+/* --- Submit Button Disabled State --- */
+.request-call-back.form.block .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+
+.request-call-back.form.block .button:disabled:hover {
+  background-color: #fca5a5; /* Prevent hover color change */
+}
+
 /* --- Tablet and Desktop --- */
 @media (width >= 768px) {
   .request-call-back.block.form {
