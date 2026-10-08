@@ -1,4 +1,4 @@
-import { toCamelCase, toClassName } from '../../scripts/aem.js';
+import { toCamelCase, toClassName, decorateIcons } from '../../scripts/aem.js';
 import initDatePicker from '../../scripts/date-picker.js';
 
 /**
@@ -308,8 +308,14 @@ function buildButton(field) {
   button.append(textSpan);
 
   if (icon) {
-    const iconWrapper = createElement('span', 'button-icon');
+    // Add standard AEM icon classes for decorateIcons
+    const iconWrapper = createElement('span', 'icon');
+    iconWrapper.classList.add(`icon-${icon}`);
+    
+    // Retain custom class and dataset
+    iconWrapper.classList.add('button-icon');
     iconWrapper.dataset.icon = icon;
+    
     button.append(iconWrapper);
   }
 
@@ -900,4 +906,6 @@ export default async function decorateRequestCallBack(block) {
 
   form.querySelectorAll('.date-field input').forEach((input) => initDatePicker(input));
   initRequestCallBackValidations(form);
+  
+  decorateIcons(block);
 }
