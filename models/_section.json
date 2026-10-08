@@ -280,6 +280,10 @@
             {
               "name": "Red Logo BG",
               "value": "red-logo-bg"
+            },
+            {
+              "name": "Fund Performance Investment Philosophy",
+              "value": "investment-philosophy"
             }
           ]
         },
