@@ -1,3 +1,3 @@
-export default function retirementCalculator(block) {
-  console.log("block", block);
+export default function termInsuranceCalculator(block) {
+  console.log('block', block);
 }
