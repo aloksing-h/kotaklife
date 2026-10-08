@@ -87,6 +87,14 @@
   height: 24px;
 }
 
+.request-call-back.form.block .form-field:not(.radio-field) label[data-required]::after, .request-call-back.form.block .form-field:not(.radio-field) legend[data-required]::after{
+  display: none;
+}
+
+.request-call-back.form.block .form-field.radio-field legend[data-required]::after{
+  color: #FA1432;
+}
+
 /* --- Flatpickr Date Picker (shared with invest-form) --- */
 .request-call-back.form.block .form-field.date-field {
   position: relative;
@@ -411,8 +419,8 @@
   background-color: #e31837; /* Red */
   color: #fff;
   border: none;
-  border-radius: 50px; /* Pill shape */
-  padding: 4px 4px 4px 24px;
+  border-radius: 999px; /* Pill shape */
+  padding: 4px 4px 4px 20px;
   font-size: 14px;
   line-height: 16px;
   font-weight: 800;
@@ -475,9 +483,12 @@
 
 /* --- Tablet and Desktop --- */
 @media (width >= 768px) {
-  .request-call-back.block.form {
+  .request-call-back.block.form{
     margin-top: 30px;
     padding: 24px;
+  }
+  .request-call-back.block.form form {
+    
     gap: 16px 20px;
   }
   .request-call-back.form.block .form-field.text-field,
@@ -498,5 +509,11 @@
   }
   .request-call-back.form.block .button-wrapper{
     margin-top: 0;
+  }
+
+  .request-call-back.form.block .button{
+    font-size: 16px;
+    line-height: 18px;
+    padding: 5px 4px 5px 24px;
   }
 }
