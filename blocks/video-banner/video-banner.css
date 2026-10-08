@@ -7,7 +7,7 @@
     position: relative;
     overflow: visible;
     display: block;
-
+    background: #fff;  
 }
 
 main >.section.video-banner-container{
