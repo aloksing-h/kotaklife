@@ -5,9 +5,18 @@
 /* Ensure the main block container is relative so absolute children map to it */
 .autoplay.video-banner {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     display: block;
 
+}
+
+main >.section.video-banner-container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
 }
 
 main >.section.video-banner-container:first-of-type{
@@ -17,7 +26,11 @@ main >.section.video-banner-container:first-of-type{
 .section.video-banner-container .video-banner-wrapper {
     padding: 0;
     max-width: 100%;
+    height: 100vh;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* The media wrapper just acts as a regular block element */
@@ -26,12 +39,21 @@ main >.section.video-banner-container:first-of-type{
     z-index: 1;
     width: 100%;
     display: block;
+}
 
-    /* height: 86vh; */
-    
-    /* height: 79.636vh; */
+/* Section-level hook the GSAP scroll animation uses to size the hero viewport */
+.animation-section-1 {
+    height: 100vh;
+}
 
-    height: 86dvh;
+/* Fills the masked shape with video/image content in any destination, hero or card */
+.video-banner-media video,
+.video-banner-media picture,
+.video-banner-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Let the video drive the height based on its natural aspect ratio */
@@ -306,13 +328,36 @@ main >.section.video-banner-container:first-of-type{
             #03111C 50%,
             #020B15 100%);
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     
     /* margin-bottom: 0; */
     margin: 0;
+}
+
+.video-banner-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: calc(100vh * (16 / 9));
+  max-height: 100vh;
+
+  --mask-size: 1000%;
+
+  will-change: mask-size;
+
+  /* stylelint-disable property-no-vendor-prefix -- needed for Safari < 18 mask support */
+  -webkit-mask-image: url('/icons/infinity_black.png');
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: var(--mask-size);
+  /* stylelint-enable property-no-vendor-prefix */
+  mask-image: url('/icons/infinity_black.png');
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: var(--mask-size);
 }
 
 main:has(.section > .video-banner-wrapper > .autoplay) {

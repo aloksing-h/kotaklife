@@ -3,30 +3,6 @@ import { getRespectiveDomain } from '../../scripts/dom-helpers.js';
 const isVideoEl = (el) => /\.(mp4|webm|ogg)(\?|$)/i.test(el?.querySelector('a')?.getAttribute('href') || '');
 const isPictureEl = (el) => !!el?.querySelector('picture');
 
-function scrollToLookingFor() {
-  const target = document.querySelector('.looking-for');
-  if (!target) return;
-
-  const headerHeight = document.querySelector('header .nav-wrapper')?.offsetHeight || 0;
-  const targetMarginTop = parseFloat(window.getComputedStyle(target).marginTop) || 0;
-  const targetTop = target.getBoundingClientRect().top
-    + window.scrollY
-    - headerHeight
-    - targetMarginTop;
-
-  // Start smooth scroll first
-  window.scrollTo({ top: targetTop, behavior: 'smooth' });
-
-  // Delay class change to sync with scroll animation (transition happens during scroll)
-  setTimeout(() => {
-    const nav = document.querySelector('nav#nav');
-    if (nav) {
-      nav.classList.remove('grey-nav');
-      nav.classList.add('white-nav');
-    }
-  }, 100); // 100ms delay so class change transitions smoothly during scroll
-}
-
 async function resolveMediaUrl(href) {
   try {
     const url = new URL(href, window.location.href);
@@ -52,29 +28,7 @@ function buildScrollIndicator(block) {
   indicator.className = 'scroll-indicator';
   indicator.innerHTML = '<button type="button" aria-label="Scroll to top"></button>';
 
-  const button = indicator.querySelector('button');
-  button.addEventListener('click', () => {
-    button.classList.add('is-active');
-    block.classList.add('video-banner-content-up');
-    scrollToLookingFor();
-  });
-
   block.append(indicator);
-}
-
-function resetScrollIndicatorOnReturn(block) {
-  const button = block.querySelector('.scroll-indicator button');
-  if (!button || !('IntersectionObserver' in window)) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      button.classList.remove('is-active');
-      block.classList.remove('video-banner-content-up');
-    });
-  }, { threshold: 0.4 });
-
-  observer.observe(block);
 }
 
 export default async function decorate(block) {
@@ -98,7 +52,7 @@ export default async function decorate(block) {
       if (!cell) return null;
 
       if (isVideoEl(cell)) {
-        return { type: 'video', src: await resolveMediaUrl(cell.querySelector('a').href) };
+        return { type: 'video', src: 'https://yesoryes.io/staging/kotak_life_r2_v6/Intro-Banner-V2/assets/loop_desk.mp4' };
       } if (isPictureEl(cell)) {
         return { type: 'image', el: cell.querySelector('picture') };
       }
@@ -118,7 +72,7 @@ export default async function decorate(block) {
 
     // Function to render or update the single media tag based on screen width
     const renderResponsiveMedia = () => {
-    // Check if screen is mobile (less than or equal to 900px)
+      // Check if screen is mobile (less than or equal to 900px)
       const isMobile = window.matchMedia('(max-width: 900px)').matches;
       const currentData = isMobile ? mobileData : desktopData;
 
@@ -137,14 +91,14 @@ export default async function decorate(block) {
       // Handle Video (The core requirement)
       if (currentData.type === 'video') {
         if (activeMediaEl && activeMediaEl.tagName === 'VIDEO') {
-        // If the single video tag already exists, just update its source and reload
+          // If the single video tag already exists, just update its source and reload
           if (activeMediaEl.getAttribute('src') !== currentData.src) {
             activeMediaEl.setAttribute('src', currentData.src);
             activeMediaEl.load(); // Forces the browser to load the new video src
-            activeMediaEl.play().catch(() => {}); // Ensure it autoplay continues
+            activeMediaEl.play().catch(() => { }); // Ensure it autoplay continues
           }
         } else {
-        // Create the single video tag for the first time
+          // Create the single video tag for the first time
           mediaWrapper.innerHTML = ''; // clear wrapper
           const video = document.createElement('video');
           video.setAttribute('autoplay', '');
@@ -170,25 +124,11 @@ export default async function decorate(block) {
     // 3. Process Overlay Text
     if (contentRow) {
       contentRow.classList.add('video-banner-content');
-
-      const lastParagraph = contentRow.querySelector('p:last-child');
-      if (lastParagraph) {
-        lastParagraph.addEventListener('click', () => {
-          scrollToLookingFor();
-        });
-      }
     }
 
     // Insert media wrapper into the block
     block.prepend(mediaWrapper);
   }
 
-  const revealDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0;
-  block.classList.add('video-banner-animate');
-  window.setTimeout(() => {
-    block.classList.add('video-banner-revealed');
-  }, revealDelay);
-
   buildScrollIndicator(block);
-  resetScrollIndicatorOnReturn(block);
 }

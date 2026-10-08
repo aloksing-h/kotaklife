@@ -72,5 +72,5 @@ export default async function decorate(block) {
   }
 
   const footerLogo = block.querySelector('.section:nth-child(5)');
-  footerLogo.classList.add('footer-logo');
+  footerLogo?.classList.add('footer-logo');
 }

@@ -58,7 +58,8 @@ export default async function decorate(block) {
   await bannerDecorate(block);
 
   if (block.closest('.infinite-protection')) {
-    await decorateInfiniteProtection(block);
+    import('../../scripts/animation/bannerAnimation.js');
+    // await decorateInfiniteProtection(block);
   }
 
   // Initialize Swiper after DOM setup
