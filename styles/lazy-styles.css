@@ -513,7 +513,6 @@ main > .section.custom-charts-container{
 
 .block.custom-rte.cmmn-txt >div>div h2 {
   margin: 0;
-  color: var(--text-text-primary, #181D27);
   font-family: var(--font-family-font-family-display, Manrope);
   font-size: var(--font-size-heading-3, 32px);
   font-weight: 300;
@@ -528,11 +527,24 @@ main > .section.custom-charts-container{
 
 .block.custom-rte.cmmn-txt >div>div p {
   margin: 0;
-  color: var(--text-text-tertiary, #535862);
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: var(--font-size-body-2, 14px);
   font-weight: 500;
   line-height: var(--line-height-body-1, 18px);
+}
+
+/* Color Variation */
+.block.custom-rte.cmmn-txt.txt-black >div>div h2 {
+  color: var(--text-text-primary, #181D27);
+}
+
+.block.custom-rte.cmmn-txt.txt-black >div>div p {
+  color: var(--text-text-tertiary, #535862);
+}
+
+.block.custom-rte.cmmn-txt.txt-white >div>div h2,
+.block.custom-rte.cmmn-txt.txt-white >div>div p {
+  color: var(--text-text-white, #FFF);
 }
 
 /* Column Variation */

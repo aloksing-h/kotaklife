@@ -99,6 +99,14 @@
             {
               "name": "Common Text Column",
               "value": "cmmn-txt-column"
+            },
+            {
+              "name": "Common Text Black",
+              "value": "txt-black"
+            },
+            {
+              "name": "Common Text White",
+              "value": "txt-white"
             }
           ]
         }

@@ -432,7 +432,7 @@ export default async function decorate(block) {
   }
 
   // Fund Performance Investment Tab - Team Component
-  const investmentTeam = block.closest('.leadership');
+  const investmentTeam = block.closest('.investment-team');
   if (investmentTeam) {
     addLayerClasses(investmentTeam.children[2], {
       1: 'team-card',

@@ -1,4 +1,4 @@
-.section.leadership .team-card {
+.section.investment-team .team-card {
     background-color: blue;
     display: grid;
     /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
@@ -7,7 +7,7 @@
     z-index: 1;
 }
 
-.section.leadership .team-card .team-inner {
+.section.investment-team .team-card .team-inner {
     border-radius: var(--radius-md, 8px);
     border: 1px solid var(--border-border-brand-blue-subtle, #D2DAE4);
     background: var(--background-bg-primary, #FFF);
@@ -15,16 +15,16 @@
     padding: 0 14px 32px;
 }
 
-.section.leadership .team-card .team-inner .team-child-1 {
+.section.investment-team .team-card .team-inner .team-child-1 {
     padding: 0 7px 11px;
     margin-top: -50px;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 {
+.section.investment-team .team-card .team-inner .team-child-2 {
     padding-top: 8px;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 .team-item-1 {
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-1 {
     color: var(--text-text-primary, #181D27);
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-body-1, 16px);
@@ -33,7 +33,7 @@
     margin: 0 0 8px;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 .team-item-2 {
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-2 {
     color: var(--text-text-tertiary, #535862);
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-body-2, 14px);
@@ -42,20 +42,20 @@
     margin: 0;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 .team-item-3 {
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-3 {
     margin: 0;
     position: absolute;
     top: 62px;
     right: 11px;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 .team-item-3,
-.section.leadership .team-card .team-inner .team-child-2 .team-item-3 * {
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-3,
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-3 * {
     width: 32px;
     height: 32px;
     display: flex;
 }
 
-.section.leadership .team-card .team-inner .team-child-2 .team-item-3 .team-inneritem-2 {
+.section.investment-team .team-card .team-inner .team-child-2 .team-item-3 .team-inneritem-2 {
     display: none;
 }
