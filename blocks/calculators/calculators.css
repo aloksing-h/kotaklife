@@ -39,9 +39,33 @@
         padding: 0 50px;
         flex-direction: row;
         gap: 20px;
+        align-items: stretch;
     }
 
     .calculator-main .calculators-wrapper {
         width: 57.55%;
+    }
+
+    .calculator-main .calculators-wrapper,
+    .calculator-main .calculator-metrics-grid-wrapper {
+        display: flex;
+    }
+
+    .calculator-main .calculators-wrapper > .calculators,
+    .calculator-main .calculator-metrics-grid-wrapper > .calculator-metrics-grid {
+        flex: 1;
+    }
+
+    .calculator-main .calculators-wrapper > .calculators,
+    .calculator-main .calculators-wrapper .calculator-modal,
+    .calculator-main .calculators-wrapper .calculator-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calculator-main .calculators-wrapper .calculator-modal,
+    .calculator-main .calculators-wrapper .calculator-grid,
+    .calculator-main .calculators-wrapper .calculator-grid .calc-card:first-child {
+        flex: 1;
     }
 }

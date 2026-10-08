@@ -198,6 +198,12 @@ line-height: 18px;
 	vertical-align: 1px;
 }
 
+@media (width >= 899px) {
+	.calculator-metrics-grid .metrics-grid-surface::after {
+		background-image: url("/icons/subtract-bg.svg");
+	}
+}
+
 @media (width >= 900px) {
 	.calculator-metrics-grid {
 		padding: 16px;
@@ -206,10 +212,6 @@ line-height: 18px;
 	.calculator-metrics-grid .metrics-grid-surface {
 		padding: 12px 0 8px;
 	}
-
-    .calculator-metrics-grid .metrics-grid-surface::after {
-    background-image: url("/icons/subtract-bg.svg");
-}
 
 	.calculator-metrics-grid .metrics-grid-hero {
 		align-items: center;
