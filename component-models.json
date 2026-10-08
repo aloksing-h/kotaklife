@@ -512,6 +512,14 @@
             "value": "std-space"
           },
           {
+            "name": "Fund Main Tab",
+            "value": "fund-main-tab"
+          },
+          {
+            "name": "Fund Main Tab v2",
+            "value": "fund-main-tab-v2"
+          },
+          {
             "name": "Fund Tab Content",
             "value": "fund-tab-content"
           },
