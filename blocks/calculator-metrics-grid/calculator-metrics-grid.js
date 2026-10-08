@@ -1,46 +1,79 @@
 export default function decorate(block) {
-  block.innerHTML = [
-    '<section class="metrics-grid-surface" aria-label="FIRE result summary">',
-    '<header class="metrics-grid-hero">',
-    '<span class="metrics-grid-hero-icon" aria-hidden="true">',
-    '<svg viewBox="0 0 32 32" focusable="false">',
-    '<rect x="6" y="3" width="20" height="25" rx="5" />',
-    '<path d="M16 9v11m-4-4 4 4 4-4" />',
-    '</svg></span><div class="metrics-grid-hero-copy">',
-    '<h2>Your F.I.R.E number</h2>',
-    '<p class="metrics-grid-hero-value">₹ 4,81,07,032</p>',
-    '<p class="metrics-grid-hero-caption">4,81 crore</p>',
-    '</div></header><div class="metrics-grid-divider" aria-hidden="true"></div>',
-    '<h3 class="metrics-grid-title">FIRE snapshot</h3>',
-    '<div class="metrics-grid-items">',
-    '<article class="metrics-grid-item">',
-    '<svg class="metrics-grid-icon" viewBox="0 0 24 24" aria-hidden="true">',
-    '<rect x="4" y="6" width="16" height="13" rx="2" />',
-    '<path d="M4 9h16m-4 5h2" /><path class="metrics-grid-accent" d="M7 4h10" />',
-    '</svg><p class="metrics-grid-label">Amount expenses today</p>',
-    '<p class="metrics-grid-value">₹ 6,00,000</p></article>',
-    '<article class="metrics-grid-item">',
-    '<svg class="metrics-grid-icon" viewBox="0 0 24 24" aria-hidden="true">',
-    '<rect x="4" y="4" width="16" height="16" rx="3" />',
-    '<path d="M4 9h16m-12-7v4m8-4v4m-9 10 3-3 2 2 4-5" />',
-    '<path class="metrics-grid-accent" d="m13 13 2-2" />',
-    '</svg><p class="metrics-grid-label">Expense age (50)</p>',
-    '<p class="metrics-grid-value">₹ 19,24,281</p></article>',
-    '<article class="metrics-grid-item">',
-    '<svg class="metrics-grid-icon" viewBox="0 0 24 24" aria-hidden="true">',
-    '<circle cx="12" cy="7" r="3" />',
-    '<path d="M5 20v-2a7 7 0 0 1 14 0v2H5Z" />',
-    '<path class="metrics-grid-accent" d="m15 15 2 2 4-4" />',
-    '</svg><p class="metrics-grid-label">Lean FIRE ',
-    '<span class="metrics-grid-info">i</span></p>',
-    '<p class="metrics-grid-value">₹ 2,88,64,219</p></article>',
-    '<article class="metrics-grid-item">',
-    '<svg class="metrics-grid-icon" viewBox="0 0 24 24" aria-hidden="true">',
-    '<path d="M7 11V6a1.5 1.5 0 0 1 3 0v4-6a1.5 1.5 0 0 1 3 0v6-4a1.5 1.5 0 0 1 3 0v5-2a1.5 1.5 0 0 1 3 0v5a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3l-3-4a1.5 1.5 0 0 1 2.5-1.7L7 15" />',
-    '<path class="metrics-grid-accent" d="M14 17h3" />',
-    '</svg><p class="metrics-grid-label">FAT fire ',
-    '<span class="metrics-grid-info">i</span></p>',
-    '<p class="metrics-grid-value">₹ 9,62,14,064</p></article>',
-    '</div></section>',
-  ].join('');
+  block.innerHTML = `
+    <section class="metrics-grid-surface" aria-label="FIRE result summary">
+      <header class="metrics-grid-hero">
+        <span class="metrics-grid-hero-icon" aria-hidden="true">
+          <img src="/icons/fire-number-icons.svg" alt="fire-number-icons">
+        </span>
+        <div class="metrics-grid-hero-copy">
+          <h2>Your F.I.R.E number</h2>
+          <p class="metrics-grid-hero-value" data-metric="standard-fire-target" aria-live="polite">--</p>
+          <p class="metrics-grid-hero-caption" data-metric="standard-fire-caption"></p>
+        </div>
+      </header>
+      <div class="metrics-grid-divider" aria-hidden="true"></div>
+      <h3 class="metrics-grid-title">FIRE snapshot</h3>
+      <div class="metrics-grid-items">
+        <div class="metrics-grid-item">
+          <div class="metrics-grid-item-heading">
+            <img src="/icons/amount-expenses-icon.svg" alt="amount-expenses-icon">
+            <p class="metrics-grid-label">Amount expenses today</p>
+          </div>
+          <p class="metrics-grid-value" data-metric="yearly-expense-today">--</p>
+        </div>
+        <div class="metrics-grid-item">
+          <div class="metrics-grid-item-heading">
+            <img src="/icons/expense-age-icon.svg" alt="expense-age-icon">
+            <p class="metrics-grid-label" data-metric="retirement-expense-label">Expenses at retirement</p>
+          </div>
+          <p class="metrics-grid-value" data-metric="yearly-expense-at-retirement">--</p>
+        </div>
+        <div class="metrics-grid-item">
+          <div class="metrics-grid-item-heading">
+            <img src="/icons/lean-fire-icon.svg" alt="lean-fire-icon">
+            <p class="metrics-grid-label">Lean FIRE <span class="metrics-grid-info">i</span></p>
+          </div>
+          <p class="metrics-grid-value" data-metric="lean-fire-target">--</p>
+        </div>
+        <div class="metrics-grid-item">
+          <div class="metrics-grid-item-heading">
+            <img src="/icons/fat-fire-icon.svg" alt="fat-fire-icon">
+            <p class="metrics-grid-label">FAT fire (50) <span class="metrics-grid-info">i</span></p>
+          </div>
+          <p class="metrics-grid-value" data-metric="fat-fire-target">--</p>
+        </div>
+      </div>
+    </section>`;
+
+  const formatCurrency = (value) => `₹ ${Math.round(value).toLocaleString('en-IN')}`;
+  const metric = (name) => block.querySelector(`[data-metric="${name}"]`);
+
+  function updateMetrics({ result, retireAge }) {
+    if (!result?.isValid) {
+      [
+        'standard-fire-target',
+        'yearly-expense-today',
+        'yearly-expense-at-retirement',
+        'lean-fire-target',
+        'fat-fire-target',
+      ].forEach((name) => { metric(name).textContent = '--'; });
+      metric('standard-fire-caption').textContent = '';
+      metric('retirement-expense-label').textContent = 'Expenses age';
+      return;
+    }
+
+    metric('standard-fire-target').textContent = formatCurrency(result.standardFireTarget);
+    metric('standard-fire-caption').textContent = `${(result.standardFireTarget / 10000000).toFixed(2)} crore`;
+    metric('yearly-expense-today').textContent = formatCurrency(result.yearlyExpenseToday);
+    metric('yearly-expense-at-retirement').textContent = formatCurrency(result.yearlyExpenseAtRetirement);
+    metric('lean-fire-target').textContent = formatCurrency(result.leanFireTarget);
+    metric('fat-fire-target').textContent = formatCurrency(result.fatFireTarget);
+    metric('retirement-expense-label').textContent = `Expenses age (${retireAge})`;
+  }
+
+  const scope = block.closest('.fire-calculator') || block.closest('.section') || document;
+  scope.addEventListener('fire-plan-update', (event) => updateMetrics(event.detail));
+  if (scope.firePlanResult) {
+    updateMetrics({ ...scope.firePlanInputs, result: scope.firePlanResult });
+  }
 }

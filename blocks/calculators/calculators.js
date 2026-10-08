@@ -17,9 +17,9 @@ export default async function decorate(block) {
     retirementCalculator(block);
   }
 
-  // if (isCompoundText) {
-  //   compoundCalculator(block);
-  // }
+  if (isCompoundText) {
+    compoundCalculator(block);
+  }
 
   if (isFireText) {
     fireCalculator(block);

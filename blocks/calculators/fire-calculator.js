@@ -123,6 +123,7 @@ export default function fireCalculator(block) {
     scope.firePlanResult = result;
     scope.dispatchEvent(new CustomEvent('fire-plan-update', {
       detail: { ...planInputs, result },
+      bubbles: true,
     }));
   }
 

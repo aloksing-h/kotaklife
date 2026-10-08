@@ -24,6 +24,12 @@
   line-height: 28px;
 }
 
+.calculator-main input[type="number"]::-webkit-outer-spin-button,
+.calculator-main input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 .calculator-main .age-field .age-label .required-star {
   color: #fa1432;
   font-family: var(--font-family-font-family-body, Manrope);
