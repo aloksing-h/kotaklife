@@ -1,0 +1,66 @@
+/* Path: fields/frequency-dropdown/frequency-dropdown.css */
+
+.calculator-main .frequency-dropdown-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calculator-main .frequency-dropdown-field .frequency-dropdown-label {
+color: #414651;
+font-family: var(--font-family-font-family-body, Manrope);
+font-size: 14px;
+font-weight: 500;
+line-height: 18px;
+margin-bottom: 6px;
+}
+
+.calculator-main .frequency-dropdown-field .required-star {
+  color: #ef4444;
+  margin-left: 2px;
+  font-weight: 600;
+}
+
+.calculator-main .frequency-dropdown-field .select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.calculator-main .frequency-dropdown-field .frequency-dropdown-select {
+border-radius: 0;
+border: 1px solid #D5D7DA;
+background: #FFF;
+padding: 10px 16px;
+color: #181D27;
+font-family: var(--font-family-font-family-body, Manrope);
+font-size: 14px;
+font-weight: 500;
+line-height: 18px;
+width: 100%;
+appearance: none;
+}
+
+.calculator-main .frequency-dropdown-field .frequency-dropdown-select::after {
+    content: '';
+    background-image: url("/icons/calculator-dropdown-icon.svg");
+    position: absolute;
+    right: 10px;
+    width: 10px;
+    height: 5px;
+}
+
+/* .calculator-main .frequency-dropdown-field .frequency-dropdown-select:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px #dc262626;
+} */
+
+.calculator-main .frequency-dropdown-field .custom-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

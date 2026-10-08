@@ -23,6 +23,10 @@ main>.section:has(.banner-v2) {
   background-repeat: no-repeat;
 }
 
+main>.section:has(.banner-v2.retire-calc-banner){
+  margin-top: -56px;
+}
+
 .banner-v2-wrapper {
   width: 100%;
   max-width: 100%;
@@ -82,6 +86,10 @@ main>.section:has(.banner-v2) {
   box-sizing: border-box;
 }
 
+.banner-v2.block.fin-calc-banner .banner-v2-content{
+  color: var(--base-white, #fff);
+}
+
 .banner-v2.block.retire-calc-banner .banner-v2-content {
   max-width: 633px;
   color: #181d27;
@@ -98,6 +106,10 @@ main>.section:has(.banner-v2) {
   color: #f5f5f5;
   margin: 0 0 16px;
   letter-spacing: -0.01em;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-title {
+  color: inherit;
 }
 
 .banner-v2.block .banner-v2-title strong,
@@ -117,6 +129,10 @@ main>.section:has(.banner-v2) {
   color: var(--gray-100, rgb(255 255 255 / 90%));
   margin: 0 0 40px;
   max-width: 440px;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-description{
+  color: inherit;
 }
 
 .banner-v2.block.retire-calc-banner .banner-v2-description {
@@ -204,6 +220,11 @@ main>.section:has(.banner-v2) {
   max-width: 613px;
   object-fit: contain;
   object-position: bottom right;
+}
+
+.banner-v2.block.fin-calc-banner .banner-v2-visual img {
+  width: 593px;
+  height: 377px;
 }
 
 .banner-v2.block.retire-calc-banner .banner-v2-visual img {
@@ -547,6 +568,9 @@ main>.section:has(.banner-v2) {
 
   .banner-v2.block.fin-calc-banner .banner-v2-description {
     margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
   }
 
   .banner-v2.block.retire-calc-banner .banner-v2-description {
@@ -593,13 +617,16 @@ main>.section:has(.banner-v2) {
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .stat-label {
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   /* Illustration: Grounded firmly to bottom edge above subnav */
@@ -725,17 +752,86 @@ main>.section:has(.banner-v2) {
   .banner-v2.block .stat-value {
     font-size: 14px;
     line-height: 18px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .stat-label {
     font-size: 10px;
     line-height: 13px;
     white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .banner-v2.block .banner-v2-visual img {
     max-height: 250px;
     max-width: 260px;
+  }
+}
+
+/* ==========================================================================
+   Retirement calculator banner (Figma 5401:9725 @1200px)
+   The illustration is one wide image (calculator + thread) anchored to the
+   1200px frame. Its right side is clipped by the viewport and is revealed
+   as the viewport grows. 601px-1199px scales the frame fluidly.
+   ========================================================================== */
+@media (width >= 601px) {
+  .banner-v2.block.retire-calc-banner {
+    height: calc(224px + 22.67vw);
+    min-height: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-inner {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    align-self: flex-start;
+    flex: 0 1 633px;
+    max-width: min(633px, calc(66.42vw - 60px));
+    padding: 96px 20px 0 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual,
+  .banner-v2.block.retire-calc-banner .banner-v2-visual .banner-v2-visual-desktop {
+    position: static;
+    height: auto;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual picture {
+    display: block;
+    height: auto;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    position: absolute;
+    left: 66.42vw;
+    bottom: calc(0vw - 1px);
+    width: calc(267px + 70.43vw);
+    height: auto;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+@media (width >= 1200px) {
+  .banner-v2.block.retire-calc-banner {
+    height: 496px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-title {
+    font-size: 48px;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-content {
+    padding-right: 0;
+  }
+
+  .banner-v2.block.retire-calc-banner .banner-v2-visual img {
+    left: 797px;
+    bottom: 0;
+    width: 1112px;
   }
 }
 

@@ -1,0 +1,462 @@
+/* --- Main Container --- */
+.request-call-back.block.form {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+}
+
+/* --- Form Flexbox Layout (No Grid) --- */
+.request-call-back.form.block form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px; /* Space between rows and columns */
+}
+
+/* Every field takes up full width on mobile */
+.request-call-back.form.block .form-field {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.request-call-back.form.block .form-field+.form-field {
+    margin: 0;
+}
+
+/* Full width fields */
+.request-call-back.form.block .checkbox-field,
+.request-call-back.form.block .button-wrapper {
+  width: 100%;
+}
+
+/* --- Input Fields (Text, Tel, Email, Date, Select) --- */
+.request-call-back.form.block input[type="text"],
+.request-call-back.form.block input[type="tel"],
+.request-call-back.form.block input[type="email"],
+.request-call-back.form.block select {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: #374151;
+  background-color: #fff;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.request-call-back.form.block select{
+  appearance: none;
+  background-image: url("../../icons/grey-arrow-down-1.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.request-call-back.form.block .date-field input {
+  /* Uses a lighter grey (#9ca3af), thinner stroke (1.5), and rounder corners (rx='4' ry='4') */
+  background-image: url("../../icons/calendar-fm.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  font-variant-ligatures: none;
+}
+
+/* Hide the native browser calendar icon while keeping the click functionality */
+.request-call-back.form.block .date-field input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 16px; /* Align click target over your custom background image */
+  width: 24px;
+  height: 24px;
+}
+
+/* --- Flatpickr Date Picker (shared with invest-form) --- */
+.request-call-back.form.block .form-field.date-field {
+  position: relative;
+}
+
+.request-call-back.form.block .form-field.date-field .flatpickr-wrapper {
+  display: block;
+}
+
+.request-call-back.form.block .form-field.date-field .flatpickr-calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-width: 320px;
+  z-index: 99;
+  margin-top: 6px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px #0000001a, 0 8px 10px -6px #0000000d;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.request-call-back.form.block .flatpickr-calendar::before,
+.request-call-back.form.block .flatpickr-calendar::after {
+  display: none;
+}
+
+.request-call-back.form.block .flatpickr-months {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-month {
+  height: auto !important;
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.request-call-back.form.block .flatpickr-current-month {
+  position: static;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: unset;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month,
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 7px 8px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month::before {
+  content: '';
+  background-image: url("../../icons/calendar-prev-icon.svg");
+  width: 8px;
+  height: 8px;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month::before {
+  content: '';
+  background-image: url("../../icons/calendar-next-icon.svg");
+  width: 8px;
+  height: 8px;
+  background-position: right;
+}
+
+.request-call-back.form.block .flatpickr-months .flatpickr-prev-month svg,
+.request-call-back.form.block .flatpickr-months .flatpickr-next-month svg {
+  display: none;
+}
+
+.request-call-back.form.block .custom-header-select {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
+  padding: 4px;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  outline: none;
+  width: 50%;
+}
+
+.request-call-back.form.block .flatpickr-weekdays {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: unset;
+}
+
+/* Flatpickr hard-codes these to a fixed 307.875px; make them fluid so the
+   calendar never clips columns when the field is narrower than that */
+/* stylelint-disable-next-line selector-class-pattern */
+.request-call-back.form.block .flatpickr-rContainer,
+.request-call-back.form.block .flatpickr-days {
+  width: 100%;
+}
+
+.request-call-back.form.block span.flatpickr-weekday {
+  color: #374151;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 14px;
+  height: unset;
+}
+
+.request-call-back.form.block .flatpickr-days>div {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.request-call-back.form.block .flatpickr-day {
+  width: 14.2857%;
+  max-width: none;
+  height: auto;
+  line-height: 28px;
+  font-weight: 400;
+  border: none;
+  color: #111827;
+  font-size: 12px;
+  background-color: #fff;
+  border-radius: 2px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-call-back.form.block .flatpickr-day:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.request-call-back.form.block .flatpickr-day.flatpickr-disabled {
+  color: #9ca3af !important;
+}
+
+.request-call-back.form.block .flatpickr-day.selected,
+.request-call-back.form.block .flatpickr-day.selected:hover {
+  background-color: #e31837 !important;
+  color: #fff;
+  font-weight: 600;
+}
+
+.request-call-back.form.block input::placeholder {
+  color: #6b7280;
+}
+
+.request-call-back.form.block input:focus,
+.request-call-back.form.block select:focus {
+  border-color: #e31837;
+}
+
+.request-call-back.form.block .checkbox-field label{
+  position: relative;
+}
+
+/* --- Override Global Base CSS for Native Inputs --- */
+
+/* Visually hide native inputs safely without breaking clicks or accessibility */
+.request-call-back.form.block .radio-field label input[type="radio"],
+.request-call-back.form.block .checkbox-field label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  pointer-events: none; /* Allows clicks to pass through to the label safely */
+}
+
+/* Ensure custom spans position correctly next to the text */
+.request-call-back.form.block .radio-field label span,
+.request-call-back.form.block .checkbox-field label span {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* --- Radio Buttons (Gender) --- */
+.request-call-back.form.block .radio-field legend {
+  font-size: 14px;
+  line-height: 18px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.request-call-back.form.block .radio-field label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 13px 0 0;
+  color: #111827;
+  padding: 0;
+}
+
+/* Custom radio circle */
+.request-call-back.form.block .radio-field input[type="radio"] + span {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #e31837; /* Red border */
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Custom radio selected dot */
+.request-call-back.form.block .radio-field input[type="radio"]:checked + span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border: 5px solid #FA1432;
+
+  /* background-color: #e31837; */
+  border-radius: 50%;
+}
+
+/* --- Checkbox (Consent) --- */
+.request-call-back.form.block .form-field.checkbox-field label {
+  display: flex;
+  align-items: flex-start;
+  font-size: 10px;
+  font-weight: 500;
+  color: #181D27;
+  line-height: 12px;
+  cursor: pointer;
+  padding: 0; /* Reset global padding if any */
+}
+
+.request-call-back.form.block .form-field.checkbox-field label p{
+  margin: 0;
+}
+
+/* Link formatting inside checkbox text */
+.request-call-back.form.block .checkbox-field label a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.request-call-back.form.block .form-field.checkbox-field label p a{
+  color:#175CD3;
+  font-weight: 800;
+}
+
+
+/* Custom checkbox square */
+.request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"] + span {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #e31837;
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-top: 2px;
+  background: #fff;
+}
+
+.request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"]:checked + span {
+  background-color: #FA1432;
+  border-color: #FA1432;
+}
+
+/* Checkbox selected state (The Checkmark) */
+.request-call-back.form.block .form-field.checkbox-field label input[type="checkbox"]:checked + span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #e31837;
+  font-size: 14px;
+  height: 16px;
+  width: 16px;
+  font-weight: bold;
+  background-image: url("../../icons/check-white.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* --- Submit Button --- */
+.request-call-back.form.block .button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.request-call-back.form.block .button {
+  background-color: #e31837; /* Red */
+  color: #fff;
+  border: none;
+  border-radius: 50px; /* Pill shape */
+  padding: 6px 6px 6px 24px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: unset;
+}
+
+.request-call-back.form.block .button:hover {
+  background-color: #c91430;
+}
+
+/* White Circle Icon Wrapper inside button */
+.request-call-back.form.block .button-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 1. Hide error messages by default and style them */
+.request-call-back.form.block .error-message {
+  display: none;
+  color: #FA1432; /* KLI Red */
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* 2. Show the error message ONLY when the field is marked invalid */
+.request-call-back.form.block .form-field.is-invalid .error-message {
+  display: block;
+}
+
+/* 3. Turn the input border red when invalid */
+.request-call-back.form.block .form-field.is-invalid input,
+.request-call-back.form.block .form-field.is-invalid select {
+  border-color: #FA1432;
+}
+
+/* --- Tablet and Desktop --- */
+@media (width >= 768px) {
+  .request-call-back.form.block .form-field.text-field,
+  .request-call-back.form.block .form-field.email-field,
+  .request-call-back.form.block .form-field.tel-field,
+  .request-call-back.form.block .form-field.date-field,
+  .request-call-back.form.block .form-field.select-field,
+  .request-call-back.form.block .form-field.radio-field {
+    width: calc(50% - 10px); /* Two columns side by side */
+  }
+}

@@ -1,0 +1,103 @@
+@import url('./fields/age-field/age-field.css');
+@import url('./fields/monthly-expense-wave-slider/monthly-expense-wave-slider.css');
+@import url('./fields/rate-field/rate-field.css');
+@import url('./fields/retirement-expense-ratio/retirement-expense-ratio.css');
+
+/* .calculator-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+} */
+
+.calculator-main .calculator-grid .calc-card:first-child{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 12px;
+    border-radius: 8px;
+border: 1px solid #EEE;
+background: #FFF;
+max-height: 356px;
+overflow: auto;
+border-bottom: none;
+border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+}
+
+.calculator-main .calculator-grid .calc-card:last-child{
+    width: 100%;
+}
+
+.calculator-main .age-inputs-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px 8px;
+}
+
+.calculator-main .two-columns-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.calculator-main .two-columns-grid .slider-box {
+    width: 100%;
+    padding: 16px;
+}
+
+/* .age-inputs-row .field-group {
+    width: 48.9%;
+} */
+
+/* .age-inputs-row .field-group:last-child {
+    width: 100%;
+} */
+
+@media (width >= 900px) {
+    /* .calculator-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+} */
+
+.calculator-main .calculator-grid .calc-card:first-child{
+    /* width: 57.5%; */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 8px;
+border: 1px solid #EEE;
+background: #FFF;
+max-height: unset;
+overflow: visible;
+}
+
+/* .calculator-grid .calc-card:last-child{
+    width: 40.6%;
+} */
+
+.calculator-main .age-inputs-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.calculator-main .two-columns-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.calculator-main .two-columns-grid .slider-box {
+    width: 49%;
+    padding: 16px;
+}
+}

@@ -5,6 +5,10 @@
   padding: 0 !important;
 }
 
+main>.section.popular-search-container.std-space {
+  margin: 0;
+}
+
 .section.popular-search-container {
   margin: 0;
 
@@ -38,7 +42,7 @@
 }
 
 .popular-search>div:first-child p {
-  color: #717680;
+  color: #535862;
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: 14px;
   font-style: normal;
