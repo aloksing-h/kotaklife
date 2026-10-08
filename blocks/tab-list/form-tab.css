@@ -329,7 +329,6 @@
   font-size: var(--body-2-font-size, 0.875rem);
   font-weight: var(--font-weight-regular, 400);
   line-height: var(--body-2-line-height, 1.125rem);
-  margin: 0;
 }
 
 /* --- Ordered List: "01, 02" Formatting --- */
@@ -516,7 +515,6 @@
 
   .block.tab-list.insurance-content-tab .default-content-wrapper > p{
     color: var(--gray-600, #535862);
-     margin: 0;
   }
   
   /* OVERRIDE: Match the mobile specificity exactly to reveal inactive tabs on desktop */

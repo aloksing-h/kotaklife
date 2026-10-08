@@ -3,15 +3,15 @@
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 24px;
-  margin-top: 30px;
+  padding: 16px;
+  margin-top: 24px;
 }
 
 /* --- Form Flexbox Layout (No Grid) --- */
 .request-call-back.form.block form {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 20px; /* Space between rows and columns */
+  gap: 12px; /* Space between rows and columns */
 }
 
 /* Every field takes up full width on mobile */
@@ -22,16 +22,26 @@
   padding: 0;
   border: none;
 }
-
-.request-call-back.form.block .form-field+.form-field {
-    margin: 0;
+.request-call-back.form.block .form-field.radio-field{
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 18px;
 }
+
+.request-call-back.form.block .form-field.checkbox-field{
+  margin-top: 12px;
+}
+
+/* .request-call-back.form.block .form-field+.form-field {
+    margin: 0;
+} */
 
 /* Full width fields */
 .request-call-back.form.block .checkbox-field,
 .request-call-back.form.block .button-wrapper {
   width: 100%;
 }
+
 
 /* --- Input Fields (Text, Tel, Email, Date, Select) --- */
 .request-call-back.form.block input[type="text"],
@@ -42,9 +52,10 @@
   padding: 11px 16px;
   border: 1px solid #d1d5db;
   border-radius: 0;
+  font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  color: #374151;
+  color: #717680;
   background-color: #fff;
   box-sizing: border-box;
   outline: none;
@@ -286,7 +297,8 @@
 .request-call-back.form.block .radio-field legend {
   font-size: 14px;
   line-height: 18px;
-  color: #374151;
+  font-weight: 500;
+  color: #414651;
   margin-bottom: 12px;
 }
 
@@ -392,7 +404,7 @@
 .request-call-back.form.block .button-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .request-call-back.form.block .button {
@@ -401,9 +413,9 @@
   border: none;
   border-radius: 50px; /* Pill shape */
   padding: 6px 6px 6px 24px;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -451,6 +463,11 @@
 
 /* --- Tablet and Desktop --- */
 @media (width >= 768px) {
+  .request-call-back.block.form {
+    margin-top: 30px;
+    padding: 24px;
+    gap: 16px 20px;
+  }
   .request-call-back.form.block .form-field.text-field,
   .request-call-back.form.block .form-field.email-field,
   .request-call-back.form.block .form-field.tel-field,
@@ -458,5 +475,16 @@
   .request-call-back.form.block .form-field.select-field,
   .request-call-back.form.block .form-field.radio-field {
     width: calc(50% - 10px); /* Two columns side by side */
+  }
+
+  .request-call-back.form.block .form-field.radio-field{
+    margin-top: 0;
+  }
+
+  .request-call-back.form.block .form-field.checkbox-field{
+    margin-top: 0;
+  }
+  .request-call-back.form.block .button-wrapper{
+    margin-top: 0;
   }
 }
