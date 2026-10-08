@@ -1,0 +1,120 @@
+/* Investment Philosophy Tabs */
+
+.section.investment-philosophy.fund-main-tab-v2:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 16px;
+    margin: 60px auto 20px;
+}
+
+.section.investment-philosophy.fund-main-tab-v2 .custom-rte-wrapper,
+.section.investment-philosophy.fund-main-tab-v2 .fund-tab-wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.section.investment-philosophy.fund-main-tab-v2 .block.custom-rte.cmmn-txt>div>div {
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.section.investment-philosophy.fund-main-tab-v2 .block.custom-rte.cmmn-txt>div>div h2,
+.section.investment-philosophy.fund-main-tab-v2 .block.custom-rte.cmmn-txt>div>div p {
+    text-align: left;
+}
+
+/* Investment Philosophy Content */
+.section.investment-philosophy.fund-tab-content-v2 {
+    margin: 0;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .block {
+    border-radius: var(--radius-md, 8px);
+    background: var(--decorative-blue-decorative-blue-25, #F5FAFF);
+    padding: 30px;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .block .philosophy-card:not(:last-of-type) {
+    border: solid var(--border-border-disabled, #D5D7DA);
+    border-width: 0 0 1px;
+    padding: 0 0 var(--spacing-3xl, 24px);
+    margin: 0 0 var(--spacing-3xl, 24px);
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-inner-1,
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-inner-1 * {
+    width: 32px;
+    height: 32px;
+    display: flex;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-inner-2 {
+    margin: 4px 0 0;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-child-1 {
+    margin: 0 0 var(--spacing-3xl, 24px);
+    color: var(--text-text-primary, #181D27);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-sub-heading-1, 20px);
+    line-height: var(--line-height-sub-heading-1, 24px);
+    font-weight: 600;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-child-2 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-child-2 .plsphy-item {
+    display: flex;
+    gap: 8px;
+    color: var(--text-text-secondary, #414651);
+    font-family: var(--font-family-font-family-body, Manrope);
+    font-size: var(--font-size-body-2, 14px);
+    line-height: var(--line-height-body-1, 18px);
+    font-weight: 500;
+}
+
+.section.investment-philosophy.fund-tab-content-v2 .philosophy-card .plsphy-item .plsphy-inneritem {
+    min-width: 16px;
+    height: 16px;
+    padding: 1.33px;
+    display: flex;
+}
+
+@media screen and (width >=769px) {
+    .section.investment-philosophy.fund-main-tab-v2:not([hidden]) {
+        flex-direction: unset;
+        justify-content: space-between;
+        align-items: end;
+        max-width: 1132px;
+        padding: 0 16px;
+        margin: 80px auto 30px;
+    }
+
+    .section.investment-philosophy.fund-main-tab-v2 .block.custom-rte.cmmn-txt>div>div {
+        margin: 0;
+    }
+
+    .section.investment-philosophy.fund-tab-content-v2 .block {
+        padding: 40px;
+        border-radius: var(--radius-xl, 16px);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(254px, 1fr));
+        gap: 65px;
+    }
+
+    .section.investment-philosophy.fund-tab-content-v2 .block .philosophy-card:not(:last-of-type){
+        margin: 0;
+        padding: 0 55px 0 0;
+        border: solid var(--border-border-disabled, #D5D7DA);;
+        border-width: 0 1px 0 0;
+        width: 319px;
+    }
+}

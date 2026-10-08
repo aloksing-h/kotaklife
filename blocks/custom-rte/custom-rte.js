@@ -1,4 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import Swiper from '../swiper/swiper-bundle.min.js'
 
 let autoSlideTimer = null;
 const SLIDE_DURATION = 3000; // 3 seconds per card
@@ -440,6 +441,88 @@ export default async function decorate(block) {
       3: 'team-child',
       4: 'team-item',
       5: 'team-inneritem',
+      6: 'item-child',
+    });
+
+    if (block.classList.contains('team-card')) {
+      const cards = [...block.children];
+      const mobileQuery = window.matchMedia('(max-width: 768px)');
+      let isInitializingSwiper = false;
+
+      const disableSwiper = () => {
+        if (block.swiperInstance) {
+          block.swiperInstance.destroy(true, true);
+          block.swiperInstance = null;
+        }
+
+        const swiperWrapper = block.querySelector(':scope > .swiper-wrapper');
+        cards.forEach((card) => {
+          card.classList.remove('swiper-slide');
+          block.append(card);
+        });
+        swiperWrapper?.remove();
+        block.querySelector(':scope > .swiper-pagination')?.remove();
+        block.classList.remove('swiper');
+      };
+
+      const enableSwiper = async () => {
+        if (block.swiperInstance || isInitializingSwiper) return;
+        isInitializingSwiper = true;
+
+        block.classList.add('swiper');
+        const swiperWrapper = document.createElement('div');
+        swiperWrapper.className = 'swiper-wrapper';
+        cards.forEach((card) => {
+          card.classList.add('swiper-slide');
+          swiperWrapper.append(card);
+        });
+
+        const pagination = document.createElement('div');
+        pagination.className = 'swiper-pagination';
+        block.append(swiperWrapper, pagination);
+
+        const { default: createSwiper } = await import('../swiper/swiper-bundle.min.js');
+        if (!mobileQuery.matches) {
+          disableSwiper();
+          isInitializingSwiper = false;
+          return;
+        }
+
+        block.swiperInstance = createSwiper(block, {
+          // slidesPerView: 1.394,
+          slidesPerView: 1.33,
+          slidesPerGroup: 1,
+          spaceBetween: 9,
+          slidesOffsetBefore: 16,
+          slidesOffsetAfter: 16,
+          grabCursor: true,
+          observer: true,
+          observeParents: true,
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+        });
+        isInitializingSwiper = false;
+      };
+
+      const toggleSwiper = () => {
+        if (mobileQuery.matches) enableSwiper();
+        else disableSwiper();
+      };
+
+      toggleSwiper();
+      mobileQuery.addEventListener('change', toggleSwiper);
+    }
+  }
+  
+  if (block.closest('.investment-philosophy.fund-tab-content-v2')) {
+    addLayerClasses(block, {
+      1: 'philosophy-card',
+      2: 'plsphy-inner',
+      3: 'plsphy-child',
+      4: 'plsphy-item',
+      5: 'plsphy-inneritem',
       6: 'item-child',
     });
   }

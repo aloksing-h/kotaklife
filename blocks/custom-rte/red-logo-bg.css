@@ -39,6 +39,10 @@
 }
 
 @media screen and (width >=769px) {
+    .section.red-logo-bg{
+        min-height: 530px;
+    }
+    
     .section.red-logo-bg .default-content-wrapper p:nth-child(1) {
         display: none;
     }
@@ -49,5 +53,6 @@
 
     .section.red-logo-bg .default-content-wrapper p img {
         object-position: right top;
+        object-fit: fill;
     }
 }

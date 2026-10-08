@@ -495,23 +495,27 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 }
 
-.section:has(.accessibility-button.position-left.block){
+.section:has(.accessibility-button.position-left.block) {
   margin: 0;
 }
 
-main > .section.custom-charts-container{
+main>.section.custom-charts-container {
   margin: 0;
 }
 
 /* Custom RTE Block - Common Text With variation */
-.block.custom-rte.cmmn-txt >div>div {
+.custom-rte-wrapper:has(.cmmn-txt) {
+  max-width: 100%;
+}
+
+.block.custom-rte.cmmn-txt>div>div {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 30px;
 }
 
-.block.custom-rte.cmmn-txt >div>div h2 {
+.block.custom-rte.cmmn-txt>div>div h2 {
   margin: 0;
   font-family: var(--font-family-font-family-display, Manrope);
   font-size: var(--font-size-heading-3, 32px);
@@ -519,13 +523,13 @@ main > .section.custom-charts-container{
   line-height: var(--line-height-heading-3, 36px);
 }
 
-.block.custom-rte.cmmn-txt >div>div h2 strong {
+.block.custom-rte.cmmn-txt>div>div h2 strong {
   font-weight: 600;
   display: inline-block;
   letter-spacing: -0.64px;
 }
 
-.block.custom-rte.cmmn-txt >div>div p {
+.block.custom-rte.cmmn-txt>div>div p {
   margin: 0;
   font-family: var(--font-family-font-family-body, Manrope);
   font-size: var(--font-size-body-2, 14px);
@@ -534,72 +538,77 @@ main > .section.custom-charts-container{
 }
 
 /* Color Variation */
-.block.custom-rte.cmmn-txt.txt-black >div>div h2 {
+.block.custom-rte.cmmn-txt.txt-black>div>div h2 {
   color: var(--text-text-primary, #181D27);
 }
 
-.block.custom-rte.cmmn-txt.txt-black >div>div p {
+.block.custom-rte.cmmn-txt.txt-black>div>div p {
   color: var(--text-text-tertiary, #535862);
 }
 
-.block.custom-rte.cmmn-txt.txt-white >div>div h2,
-.block.custom-rte.cmmn-txt.txt-white >div>div p {
+.block.custom-rte.cmmn-txt.txt-white>div>div h2,
+.block.custom-rte.cmmn-txt.txt-white>div>div p {
   color: var(--text-text-white, #FFF);
 }
 
 /* Column Variation */
-.block.custom-rte.cmmn-txt.cmmn-txt-column >div>div h2,
-.block.custom-rte.cmmn-txt.cmmn-txt-column >div>div p {
+.block.custom-rte.cmmn-txt.cmmn-txt-column>div>div h2,
+.block.custom-rte.cmmn-txt.cmmn-txt-column>div>div p {
   text-align: center;
 }
 
 /* Row Variation */
-.block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2,
-.block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+.block.custom-rte.cmmn-txt.cmmn-txt-row>div>div h2,
+.block.custom-rte.cmmn-txt.cmmn-txt-row>div>div p {
   text-align: left;
 }
 
 @media screen and (width >=768px) {
+  .custom-rte-wrapper:has(.cmmn-txt) {
+    max-width: 1132px;
+    padding: 0 16px;
+  }
+
   .block.custom-rte.cmmn-txt {
     max-width: 1100px;
     margin: 0 auto;
   }
 
-  .block.custom-rte.cmmn-txt >div>div {
+  .block.custom-rte.cmmn-txt>div>div {
     margin-bottom: 50px;
   }
 
-  .block.custom-rte.cmmn-txt >div>div h2 {
+  .block.custom-rte.cmmn-txt>div>div h2 {
     font-size: var(--font-size-heading-1, 48px);
     line-height: var(--line-height-heading-1, 60px);
   }
 
-  .block.custom-rte.cmmn-txt >div>div p {
+  .block.custom-rte.cmmn-txt>div>div p {
     font-size: var(--font-size-body-1, 16px);
     line-height: var(--line-height-sub-heading-2, 20px);
   }
 
   /* Column Variation */
-  .block.custom-rte.cmmn-txt.cmmn-txt-column >div>div {
+  .block.custom-rte.cmmn-txt.cmmn-txt-column>div>div {
     max-width: 726px;
     width: 100%;
     margin: 0 auto 50px;
   }
 
   /* Row Variation */
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div {
     flex-direction: row;
     justify-content: space-between;
     align-items: start;
     gap: 20px;
   }
 
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2 {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div h2 {
     max-width: 633px;
     width: 100%;
   }
 
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div p {
     width: 100%;
     max-width: 353px;
     text-align: right;
@@ -607,12 +616,12 @@ main > .section.custom-charts-container{
 }
 
 @media screen and (768px <=width <=850px) {
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div {
     flex-direction: column;
   }
 
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div h2,
-  .block.custom-rte.cmmn-txt.cmmn-txt-row >div>div p {
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div h2,
+  .block.custom-rte.cmmn-txt.cmmn-txt-row>div>div p {
     max-width: 100%;
     text-align: left;
   }
