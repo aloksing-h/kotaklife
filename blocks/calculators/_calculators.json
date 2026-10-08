@@ -34,21 +34,24 @@
         },
         {
           "component": "multiselect",
-          "name": "style",
+          "name": "classes",
           "label": "Style",
           "options": [
             {
-              "name": "Calculators",
-              "children": [
-                {
-                  "name": "Retirement calculator with text",
-                  "value": "retirement-text"
-                },
-                {
-                  "name": "Retirement calculator with graph",
-                  "value": "retirement-graph"
-                }
-              ]
+              "name": "Retirement calculator",
+              "value": "retirement-text"
+            },
+            {
+              "name": "Compound calculator",
+              "value": "compound-graph"
+            },
+            {
+              "name": "Fire calculator",
+              "value": "fire-text"
+            },
+            {
+              "name": "Term insurance calculator",
+              "value": "term-inurance-text"
             }
           ]
         }

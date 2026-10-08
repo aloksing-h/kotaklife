@@ -93,15 +93,15 @@ export default async function decorate(block) {
     if (!inputs) return;
     latestPlanInputs = inputs;
 
-    const currentAge = Math.max(1, Number(inputs.currentAge) || 30);
-    const retirementAge = Math.max(currentAge, Number(inputs.retirementAge) || 60);
-    const lifeExpectancy = Math.max(retirementAge, Number(inputs.lifeExpectancy) || 80);
-    const yearsToRetirement = Math.max(0, retirementAge - currentAge);
-    const retirementDuration = Math.max(0, lifeExpectancy - retirementAge);
+    const currentAge = Number(inputs.currentAge) || 30;
+    const retirementAge = Number(inputs.retirementAge) || 60;
+    const lifeExpectancy = Number(inputs.lifeExpectancy) || 80;
+    const yearsToRetirement = retirementAge - currentAge;
+    const retirementDuration = lifeExpectancy - retirementAge;
     const annualRetirementExpense = Number(inputs.monthlyExpense)
       * (Number(inputs.retirementExpenseRatio) / 100) * 12;
     const estimatedFund = annualRetirementExpense * retirementDuration;
-    const monthlySavings = yearsToRetirement > 0
+    const monthlySavings = yearsToRetirement !== 0
       ? estimatedFund / (yearsToRetirement * 12)
       : 0;
     const formatIndianCurrency = (amount) => `₹ ${Math.round(amount).toLocaleString('en-IN')}`;

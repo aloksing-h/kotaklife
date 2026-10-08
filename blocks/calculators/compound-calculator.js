@@ -8,25 +8,23 @@ export function calculateCompoundInterest({
 }) {
   if (!Number.isFinite(investmentAmount) || investmentAmount < 0
     || !Number.isInteger(investmentYears) || investmentYears < 0
-    || !Number.isInteger(holdingYears) || holdingYears < 0
+    || !Number.isInteger(holdingYears) || holdingYears < investmentYears
     || !Number.isFinite(rate) || rate < 0
     || ![1, 2, 4, 12].includes(frequency)) {
     throw new RangeError('Invalid compound interest inputs');
   }
 
-  const monthlyRate = rate / 100 / 12;
-  const contributionInterval = 12 / frequency;
+  const periodRate = rate / 100 / frequency;
   const yearlyData = [];
   const startYear = new Date().getFullYear();
-  const totalYears = Math.max(investmentYears, holdingYears);
   let currentBalance = 0;
 
-  for (let year = 1; year <= totalYears; year += 1) {
-    for (let month = 0; month < 12; month += 1) {
-      if (year <= investmentYears && month % contributionInterval === 0) {
+  for (let year = 1; year <= holdingYears; year += 1) {
+    for (let period = 0; period < frequency; period += 1) {
+      if (year <= investmentYears) {
         currentBalance += investmentAmount;
       }
-      currentBalance += currentBalance * monthlyRate;
+      currentBalance += currentBalance * periodRate;
     }
 
     yearlyData.push({
@@ -42,11 +40,32 @@ export function calculateCompoundInterest({
 }
 
 export default function compoundCalculator(block) {
+  let investmentYearsField;
+  let holdingYearsField;
+
   function onCompoundInputChange() {
+    if (holdingYearsField.getValue() < investmentYearsField.getValue()) {
+      holdingYearsField.setValue(investmentYearsField.getValue());
+    }
     block.dispatchEvent(new Event('compound-plan-input-change'));
   }
 
+  const getConfiguredValues = (selector, fallback) => {
+    const input = block.querySelector(`${selector} input`);
+    if (!input?.value.trim()) return fallback;
+    const values = input.value.split(',').map((value) => Number(value.trim()));
+    return values.every(Number.isFinite) ? values : fallback;
+  };
+
   const getLabel = (selector, fallback) => block.querySelector(`${selector} label`)?.textContent.trim() || fallback;
+  const investmentAmountRange = getConfiguredValues('.invest-amount-range-field', [5000, 1000000]);
+  const investmentYearsRange = getConfiguredValues('.want-to-invest-range-field', [1, 30]);
+  const holdingYearsRange = getConfiguredValues('.stay-invested-years-range-field', [1, 50]);
+  const interestRateRange = getConfiguredValues('.expected-interest-range-field', [1, 30]);
+  const investmentAmountMilestones = getConfiguredValues('.invest-amount-milestone-field', [5000, 200000, 400000, 600000, 800000, 1000000]);
+  const investmentYearsMilestones = getConfiguredValues('.want-to-invest-milestone-field', investmentYearsRange);
+  const holdingYearsMilestones = getConfiguredValues('.stay-invested-years-milestone-field', holdingYearsRange);
+
   const frequencyField = createFrequencyDropdownField({
     id: 'frequencySelect',
     label: getLabel('.frequency-field', 'Frequency'),
@@ -60,32 +79,32 @@ export default function compoundCalculator(block) {
     infoText: 'Amount contributed at the start of each selected investment period',
     editable: true,
     value: 50000,
-    min: 5000,
-    max: 1000000,
+    min: investmentAmountRange[0],
+    max: investmentAmountRange[1],
     step: 5000,
-    milestones: [5000, 200000, 400000, 600000, 800000, 1000000],
+    milestones: investmentAmountMilestones,
     onChange: onCompoundInputChange,
   });
 
-  const investmentYearsField = createRateField({
+  investmentYearsField = createRateField({
     id: 'investmentYearsInput',
     label: getLabel('.number-of-years-field', 'Investment years'),
     value: 5,
-    min: 1,
-    max: 30,
+    min: investmentYearsRange[0],
+    max: investmentYearsRange[1],
     step: 1,
-    milestones: [1, 30].map((val) => ({ val, text: `${val} Year` })),
+    milestones: investmentYearsMilestones.map((val) => ({ val, text: `${val} Year` })),
     onChange: onCompoundInputChange,
   });
 
-  const holdingYearsField = createRateField({
+  holdingYearsField = createRateField({
     id: 'holdingYearsInput',
     label: getLabel('.number-of-year-invested-for-field', 'Holding years'),
     value: 5,
-    min: 1,
-    max: 50,
+    min: holdingYearsRange[0],
+    max: holdingYearsRange[1],
     step: 1,
-    milestones: [1, 50].map((val) => ({ val, text: `${val} Year` })),
+    milestones: holdingYearsMilestones.map((val) => ({ val, text: `${val} Year` })),
     onChange: onCompoundInputChange,
   });
 
@@ -97,10 +116,10 @@ export default function compoundCalculator(block) {
     id: 'interestRateInput',
     label: getLabel('.expected-interest-field', 'Expected annual interest rate'),
     value: 15,
-    min: 1,
-    max: 30,
+    min: interestRateRange[0],
+    max: interestRateRange[1],
     step: 1,
-    milestones: [1, 30].map((val) => ({ val, text: `${val}%` })),
+    milestones: interestRateRange.map((val) => ({ val, text: `${val}%` })),
     onChange: onCompoundInputChange,
   });
 

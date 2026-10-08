@@ -19,7 +19,7 @@
 border: 1px solid #EEE;
 background: #FFF;
 max-height: 356px;
-overflow: auto;
+overflow: hidden auto;
 border-bottom: none;
 border-bottom-right-radius: 0;
 border-bottom-left-radius: 0;

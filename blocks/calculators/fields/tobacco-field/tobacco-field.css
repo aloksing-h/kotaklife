@@ -1,0 +1,94 @@
+.calculator-main .tobacco-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calculator-main .tobacco-field .tobacco-heading {
+  display: flex;
+  align-items: center;
+}
+
+.calculator-main .tobacco-field .tobacco-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .tobacco-field .tobacco-label img {
+  width: 12px;
+  height: 12px;
+}
+
+.calculator-main .tobacco-field .required-star {
+  color: #fa1432;
+}
+
+.calculator-main .tobacco-field .tobacco-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calculator-main .tobacco-field .tobacco-choice-label {
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.calculator-main .tobacco-field .tobacco-switch {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.calculator-main .tobacco-field .tobacco-switch input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.calculator-main .tobacco-field .tobacco-switch-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: #d5d7da;
+  pointer-events: none;
+  transition: background-color 150ms ease;
+}
+
+.calculator-main .tobacco-field .tobacco-switch-track::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  content: '';
+  transition: transform 150ms ease;
+}
+
+.calculator-main .tobacco-field .tobacco-switch input:checked + .tobacco-switch-track {
+  background: #fa1432;
+}
+
+.calculator-main .tobacco-field .tobacco-switch input:checked + .tobacco-switch-track::after {
+  transform: translateX(16px);
+}
+
+.calculator-main .tobacco-field .tobacco-switch input:focus-visible + .tobacco-switch-track {
+  outline: 2px solid #181d27;
+  outline-offset: 2px;
+}

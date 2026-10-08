@@ -1,0 +1,50 @@
+.calculator-main .gender-field .gender-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.calculator-main .gender-field .gender-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 8px;
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .gender-field .gender-label img {
+  width: 12px;
+  height: 12px;
+}
+
+.calculator-main .gender-field .required-star {
+  color: #fa1432;
+}
+
+.calculator-main .gender-field .gender-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #181d27;
+  font-family: var(--font-family-font-family-body, Manrope);
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.calculator-main .gender-field .gender-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #fa1432;
+}

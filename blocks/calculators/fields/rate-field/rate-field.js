@@ -5,6 +5,7 @@ export default function createRateField(options = {}) {
     required = false,
     infoText = '',
     value = 5,
+    suffix = '',
     min = 0,
     max = 15,
     step = 1,
@@ -23,7 +24,7 @@ export default function createRateField(options = {}) {
       </span>
       <div class="value-display-badge badge-small">
         <input type="text" id="${id}" class="badge-input" value="${currentValue}" inputmode="numeric" autocomplete="off" aria-label="${label}">
-        <span class="badge-affix">%</span>
+        ${suffix ? `<span class="badge-affix">${suffix}</span>` : ''}
       </div>
     </div>
 
