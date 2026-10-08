@@ -260,6 +260,10 @@
             {
               "name": "Fund Tab Content v2",
               "value": "fund-tab-content-v2"
+            },
+            {
+              "name": "Investment Philosophy",
+              "value": "investment-philosophy"
             }
           ]
         },
