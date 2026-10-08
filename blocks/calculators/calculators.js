@@ -1,6 +1,4 @@
-import {
-  loadForm
-} from '../form/form.js';
+import { loadForm } from '../form/form.js';
 import compoundCalculator from './compound-calculator.js';
 import fireCalculator from './fire-calculator.js';
 // import fireCalculator from './fire-calculator.js';
