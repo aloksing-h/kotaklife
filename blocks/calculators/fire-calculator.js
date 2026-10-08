@@ -19,9 +19,9 @@ export function calculateFirePlan({
 
   const yearsToRetirement = retireAge - currentAge;
   const yearlyExpenseToday = monthlyExpense * 12;
-  const yearlyExpenseAtRetirement = Math.round(
-    yearlyExpenseToday * ((1 + (inflationrate / 100)) ** yearsToRetirement),
-  );
+  const exactYearlyExpenseAtRetirement = yearlyExpenseToday
+    * ((1 + (inflationrate / 100)) ** yearsToRetirement);
+  const yearlyExpenseAtRetirement = Math.round(exactYearlyExpenseAtRetirement);
 
   return {
     isValid: true,
@@ -29,9 +29,9 @@ export function calculateFirePlan({
     yearsToRetirement,
     yearlyExpenseToday: Math.round(yearlyExpenseToday),
     yearlyExpenseAtRetirement,
-    leanFireTarget: Math.round(yearlyExpenseAtRetirement * 15),
-    standardFireTarget: Math.round(yearlyExpenseAtRetirement * 25),
-    fatFireTarget: Math.round(yearlyExpenseAtRetirement * 50),
+    leanFireTarget: Math.round(exactYearlyExpenseAtRetirement * 15),
+    standardFireTarget: Math.round(exactYearlyExpenseAtRetirement * 25),
+    fatFireTarget: Math.round(exactYearlyExpenseAtRetirement * 50),
   };
 }
 
