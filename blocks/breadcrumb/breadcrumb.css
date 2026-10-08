@@ -144,3 +144,188 @@ main .breadcrumb-container .breadcrumb-wrapper {
         background: linear-gradient(90deg, var(--foreground-fg-primary, rgb(24 29 39 / 71%)) 0%, var(--foreground-fg-primary, rgb(24 29 39 / 71%)) 70.67%, rgb(0 0 0 / 0%) 100%);
     }
 }
+
+/* ==========================================================================
+   Financial Tools Calculator Banner Breadcrumb Variant
+   Desktop node: 5401:10226 | Mobile node: 5401:10122
+   ========================================================================== */
+
+/* Mobile First: Full-width solid Kotak Red bar */
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 30px;
+  padding: 0;
+  background: #af0e23;
+}
+
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb-wrapper,
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb {
+  width: 100%;
+  height: 100%;
+}
+
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  white-space: normal;
+  height: auto;
+  min-height: 0;
+  padding: 8px 16px;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav a,
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav > span {
+  color: var(--base-white, #fff);
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav > span:last-child {
+  font-weight: 400;
+  color: var(--base-white, #fff);
+}
+
+.section:has(.banner-v2.fin-calc-banner) .breadcrumb .breadcrumb-separator {
+  color: var(--base-white, #fff);
+  font-size: 12px;
+  line-height: 14px;
+  padding-left: 8px;
+  padding-right: 4PX;
+}
+
+/* Desktop: Dynamic hugging width with semi-transparent gradient */
+@media (width >= 900px) {
+  .section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav {
+    padding: 12px 16px 12px 50px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-height: 38px;
+  }
+}
+
+/* Desktop: Dynamic hugging width with semi-transparent gradient */
+@media (width >= 600px) {
+  .section:has(.banner-v2.fin-calc-banner) .breadcrumb-container {
+    width: fit-content;
+    max-width: 100%;
+    min-height: 38px;
+    background: linear-gradient(90deg, rgb(24 29 39 / 16%) 0%, rgb(24 29 39 / 16%) 71%, rgb(0 0 0 / 0%) 100%);
+  }
+
+  .section:has(.banner-v2.fin-calc-banner) .breadcrumb > nav {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-height: 38px;
+  }
+}
+
+/* ==========================================================================
+   Retirement Calculator Banner Breadcrumb Variant
+   Desktop node: 5401:9731 | Mobile node: 5401:9950
+   ========================================================================== */
+
+/* Mobile first: transparent bar pinned bottom-left, dark text */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb-container {
+  position: absolute;
+  bottom: 103px;
+  left: 0;
+  z-index: 4;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  background: none;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb-wrapper,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb {
+  width: 100%;
+  height: auto;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  height: auto;
+  min-height: 0;
+  padding: 8px 16px;
+}
+
+/* The icon SVG is white; mask it to get the exact Figma colour. */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a {
+  background: #181d27;
+  mask: url('/icons/home-icon.svg') center / 12px 12px no-repeat;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a img {
+  opacity: 0;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav a,
+/* stylelint-disable-next-line no-descending-specificity */
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav > span,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav > span:last-child,
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb .breadcrumb-separator {
+  color: #181d27;
+  font-family: var(--body-font-family, 'Manrope', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.section:has(.banner-v2.retire-calc-banner) .breadcrumb .breadcrumb-separator {
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+/* Left padding follows the banner content edge */
+@media (width >= 601px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding: 12px 16px 12px 20px;
+  }
+}
+
+@media (width >= 700px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 28px;
+  }
+}
+
+@media (width >= 900px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb-container{
+    bottom: 194px;
+  }
+  
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 32px;
+  }
+}
+
+@media (width >= 1101px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: 50px;
+  }
+  
+}
+
+@media (width >= 1200px) {
+  .section:has(.banner-v2.retire-calc-banner) .breadcrumb > nav {
+    padding-left: max(50px, calc(50vw - 550px));
+  }
+}

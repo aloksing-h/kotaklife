@@ -322,6 +322,11 @@ main>.section {
   margin: 40px auto;
   box-sizing: border-box;
 }
+  
+main>.section.std-space {
+  padding: 0;
+  margin: 90px 0;
+}
 
 main>.section:first-of-type {
   /* margin-top: 35px; */
@@ -350,6 +355,11 @@ main .section.highlight {
 }
 
 @media (width >=1024px) {
+  main>.section.std-space {
+    padding: 0;
+    margin: 140px 0;
+  }
+
   main>.section>div {
     padding: 0 50px;
   }

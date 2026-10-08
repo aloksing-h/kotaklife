@@ -413,7 +413,6 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 .visual-pulse.section .default-content-wrapper {
   width: 100%;
   display: flex;
-  margin-bottom: -40px;
   justify-content: flex-end;
 }
 
@@ -496,6 +495,13 @@ main .section.popular-search .default-content-wrapper>ul>li>a:hover {
 
 }
 
+.section:has(.accessibility-button.position-left.block){
+  margin: 0;
+}
+
+main > .section.custom-charts-container{
+  margin: 0;
+}
 
 /* Custom RTE Block - Common Text With variation */
 .block.custom-rte.cmmn-txt >div>div {

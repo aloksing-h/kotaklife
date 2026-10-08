@@ -205,6 +205,27 @@
               ]
             },
             {
+              "name": "Calculators",
+              "children": [
+                {
+                  "name": "Calculator Main",
+                  "value": "calculator-main"
+                },
+                {
+                  "name": "Retirement Calculator",
+                  "value": "retirement-calculator"
+                },
+                {
+                  "name": "Compound Calculator",
+                  "value": "compound-calculator"
+                },
+                {
+                  "name": "Fire Calculator",
+                  "value": "fire-calculator"
+                }
+              ]
+            },
+            {
               "name": "Breadcrumb Move",
               "value": "breadcrumb-move"
             },
@@ -223,8 +244,29 @@
             {
               "name": "Calc Card",
               "value": "calc-card"
+            },
+            {
+              "name": "Calculator Details Hero",
+              "value": "calculator-details-hero"
+            },
+            {
+              "name": "Calculator spacing",
+              "value": "std-space"
+            },
+            {
+              "name": "Fund Tab Content",
+              "value": "fund-tab-content"
+            },
+            {
+              "name": "Fund Tab Content v2",
+              "value": "fund-tab-content-v2"
             }
           ]
+        },
+        {
+          "component": "text",
+          "name": "id",
+          "label": "Enter Section Id"
         },
         {
           "component": "reference",
@@ -285,7 +327,11 @@
         "video-banner",
         "promo",
         "banner-v2",
-        "accessibility-button"
+        "accessibility-button",
+        "calculators",
+        "result-summary-panel",
+        "result-summary-with-canvas",
+        "fund-tab"
       ]
     }
   ]

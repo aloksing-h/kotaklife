@@ -4,9 +4,14 @@ export default async function initInsightsSwiper(block) {
 
   const cards = [...ul.children];
 
-  // Click handler: clicking a card toggles it active and deactivates others
+  // Mobile breakpoint: below tablet (< 600px)
+  const mobileQuery = window.matchMedia('(max-width: 599px)');
+
+  // Click handler: clicking a card toggles it active and deactivates others (mobile only)
   cards.forEach((card, index) => {
     card.addEventListener('click', () => {
+      if (!mobileQuery.matches) return;
+
       const wasActive = card.classList.contains('is-active-card');
       cards.forEach((c) => c.classList.remove('is-active-card'));
       if (!wasActive) {
@@ -18,8 +23,10 @@ export default async function initInsightsSwiper(block) {
     });
   });
 
-  // Click outside handler: clicking anywhere outside cards removes the active state
+  // Click outside handler: clicking anywhere outside cards removes the active state (mobile only)
   document.addEventListener('click', (e) => {
+    if (!mobileQuery.matches) return;
+
     const clickedCard = e.target.closest('.insights-impact-plans .custom-cards > ul > li');
     if (!clickedCard || !ul.contains(clickedCard)) {
       cards.forEach((c) => c.classList.remove('is-active-card'));
@@ -33,9 +40,6 @@ export default async function initInsightsSwiper(block) {
     pagination.className = 'swiper-pagination';
     block.append(pagination);
   }
-
-  // Mobile breakpoint: below tablet (< 600px)
-  const mobileQuery = window.matchMedia('(max-width: 599px)');
 
   let isInitializingSwiper = false;
   let userSwiped = false;
@@ -111,7 +115,10 @@ export default async function initInsightsSwiper(block) {
     }
     block.classList.remove('swiper');
     ul.classList.remove('swiper-wrapper');
-    cards.forEach((li) => li.classList.remove('swiper-slide'));
+    cards.forEach((li) => {
+      li.classList.remove('swiper-slide');
+      li.classList.remove('is-active-card');
+    });
   };
 
   const handleMediaChange = (e) => {

@@ -1,5 +1,5 @@
 import { toCamelCase, toClassName } from '../../scripts/aem.js';
-
+import decorateRequestCallBack from './request-call-back.js';
 /**
  * Creates an HTML element with an optional class name
  * @param {string} tag - HTML tag name
@@ -59,14 +59,14 @@ function buildLabel(text, type = 'label', id = null, required = false) {
  */
 function buildInput(field) {
   const {
-    type, field: fieldName, required, default: defaultValue, placeholder,
+    type, field: fieldName, required, default: defaultValue = field.value, placeholder,
   } = field;
 
   const input = createElement('input');
   input.id = generateId(fieldName);
   input.name = input.id;
   input.required = required === 'true';
-  if (defaultValue) input.value = defaultValue;
+  if (defaultValue !== undefined && defaultValue !== null) input.defaultValue = defaultValue;
 
   if (type === 'date') {
     // start as text so the custom placeholder is visible (native date inputs ignore placeholder)
@@ -678,6 +678,12 @@ function buildForm(fields, submit) {
  * @param {HTMLElement} block - Form block element
  */
 export default function decorate(block) {
+  // the Request a Call Back skin has its own independent build/validation pipeline
+  if (block.classList.contains('request-call-back')) {
+    decorateRequestCallBack(block);
+    return;
+  }
+
   block.style.visibility = 'hidden';
   const [source, submit] = [...block.querySelectorAll('a[href]')].map((a) => a.href);
   if (source) {
