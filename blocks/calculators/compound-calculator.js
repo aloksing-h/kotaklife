@@ -8,7 +8,7 @@ export function calculateCompoundInterest({
 }) {
   if (!Number.isFinite(investmentAmount) || investmentAmount < 0
     || !Number.isInteger(investmentYears) || investmentYears < 0
-    || !Number.isInteger(holdingYears) || holdingYears < investmentYears
+    || !Number.isInteger(holdingYears) || holdingYears < 0
     || !Number.isFinite(rate) || rate < 0
     || ![1, 2, 4, 12].includes(frequency)) {
     throw new RangeError('Invalid compound interest inputs');
@@ -17,9 +17,10 @@ export function calculateCompoundInterest({
   const periodRate = rate / 100 / frequency;
   const yearlyData = [];
   const startYear = new Date().getFullYear();
+  const totalYears = Math.max(investmentYears, holdingYears);
   let currentBalance = 0;
 
-  for (let year = 1; year <= holdingYears; year += 1) {
+  for (let year = 1; year <= totalYears; year += 1) {
     for (let period = 0; period < frequency; period += 1) {
       if (year <= investmentYears) {
         currentBalance += investmentAmount;
@@ -40,13 +41,7 @@ export function calculateCompoundInterest({
 }
 
 export default function compoundCalculator(block) {
-  let investmentYearsField;
-  let holdingYearsField;
-
   function onCompoundInputChange() {
-    if (holdingYearsField.getValue() < investmentYearsField.getValue()) {
-      holdingYearsField.setValue(investmentYearsField.getValue());
-    }
     block.dispatchEvent(new Event('compound-plan-input-change'));
   }
 
@@ -86,7 +81,7 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
-  investmentYearsField = createRateField({
+  const investmentYearsField = createRateField({
     id: 'investmentYearsInput',
     label: getLabel('.number-of-years-field', 'Investment years'),
     value: 5,
@@ -97,7 +92,7 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
-  holdingYearsField = createRateField({
+  const holdingYearsField = createRateField({
     id: 'holdingYearsInput',
     label: getLabel('.number-of-year-invested-for-field', 'Holding years'),
     value: 5,
