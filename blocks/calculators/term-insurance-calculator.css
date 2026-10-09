@@ -1,3 +1,135 @@
-.term-insurance {
+.calculator-main .term-insurance-calculator {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    color: #181d27;
+    font-family: var(--font-family-font-family-body, Manrope), sans-serif;
+}
+
+.calculator-main .term-insurance-form,
+.calculator-main .term-insurance-fields {
+    width: 100%;
+}
+
+.calculator-main .term-insurance-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+}
+
+.calculator-main .term-frequency-label {
+    color: #414651;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 18px;
+}
+
+.calculator-main .term-frequency-switch {
+    position: relative;
+    display: inline-flex;
+    width: 34px;
+    height: 18px;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+
+.calculator-main .term-frequency-switch input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.calculator-main .term-frequency-switch-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 9px;
+    background: #d5d7da;
+    pointer-events: none;
+    transition: background-color 150ms ease;
+}
+
+.calculator-main .term-frequency-switch-track::after {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    content: '';
+    transition: transform 150ms ease;
+}
+
+.calculator-main .term-frequency-switch input:checked + .term-frequency-switch-track {
+    background: #fa1432;
+}
+
+.calculator-main .term-frequency-switch input:checked + .term-frequency-switch-track::after {
+    transform: translateX(16px);
+}
+
+.calculator-main .term-frequency-switch input:focus-visible + .term-frequency-switch-track {
+    outline: 2px solid #181d27;
+    outline-offset: 2px;
+}
+
+.calculator-main .term-insurance-cover {
+    grid-column: 1 / -1;
+}
+
+.calculator-main .term-insurance-preferences {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+}
+
+.calculator-main .term-payment-frequency {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (width >= 600px) {
+    .calculator-main .term-insurance-calculator {
+        padding: 24px;
+    }
+
+    .calculator-main .term-insurance-fields {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 14px 10px;
+    }
+
+    .calculator-main .term-insurance-fields > .term-input-slot {
+        min-width: 0;
+        grid-column: span 3;
+    }
+
+    .calculator-main .term-insurance-fields > [id="termEducationSlot"],
+    .calculator-main .term-insurance-fields > [id="termOccupationSlot"],
+    .calculator-main .term-insurance-fields > [id="termAnnualIncomeSlot"] {
+        grid-column: span 2;
+    }
+
+    .calculator-main .term-insurance-preferences {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (width >= 900px) {
+    .calculator-main .term-insurance-fields {
+        gap: 24px 16px;
+    }
+
+    .calculator-main .term-frequency-label {
+        font-size: 13px;
+    }
 }

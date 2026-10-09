@@ -8,7 +8,7 @@ export function calculateCompoundInterest({
 }) {
   if (!Number.isFinite(investmentAmount) || investmentAmount < 0
     || !Number.isInteger(investmentYears) || investmentYears < 0
-    || !Number.isInteger(holdingYears) || holdingYears < investmentYears
+    || !Number.isInteger(holdingYears) || holdingYears < 0
     || !Number.isFinite(rate) || rate < 0
     || ![1, 2, 4, 12].includes(frequency)) {
     throw new RangeError('Invalid compound interest inputs');
@@ -17,9 +17,10 @@ export function calculateCompoundInterest({
   const periodRate = rate / 100 / frequency;
   const yearlyData = [];
   const startYear = new Date().getFullYear();
+  const totalYears = Math.max(investmentYears, holdingYears);
   let currentBalance = 0;
 
-  for (let year = 1; year <= holdingYears; year += 1) {
+  for (let year = 1; year <= totalYears; year += 1) {
     for (let period = 0; period < frequency; period += 1) {
       if (year <= investmentYears) {
         currentBalance += investmentAmount;
@@ -40,13 +41,7 @@ export function calculateCompoundInterest({
 }
 
 export default function compoundCalculator(block) {
-  let investmentYearsField;
-  let holdingYearsField;
-
   function onCompoundInputChange() {
-    if (holdingYearsField.getValue() < investmentYearsField.getValue()) {
-      holdingYearsField.setValue(investmentYearsField.getValue());
-    }
     block.dispatchEvent(new Event('compound-plan-input-change'));
   }
 
@@ -57,7 +52,7 @@ export default function compoundCalculator(block) {
     return values.every(Number.isFinite) ? values : fallback;
   };
 
-  const getLabel = (selector, fallback) => block.querySelector(`${selector} label`)?.textContent.trim() || fallback;
+  const getLabel = (selector) => block.querySelector(`${selector} label`)?.textContent.trim() || '';
   const investmentAmountRange = getConfiguredValues('.invest-amount-range-field', [5000, 1000000]);
   const investmentYearsRange = getConfiguredValues('.want-to-invest-range-field', [1, 30]);
   const holdingYearsRange = getConfiguredValues('.stay-invested-years-range-field', [1, 50]);
@@ -68,14 +63,14 @@ export default function compoundCalculator(block) {
 
   const frequencyField = createFrequencyDropdownField({
     id: 'frequencySelect',
-    label: getLabel('.frequency-field', 'Frequency'),
+    label: getLabel('.frequency-field'),
     value: '30',
     required: true,
     onChange: onCompoundInputChange,
   });
 
   const amountInvestedSlider = createMonthlyExpenseWaveSlider({
-    title: getLabel('.invest-amount-field', 'Investment amount'),
+    title: getLabel('.invest-amount-field'),
     infoText: 'Amount contributed at the start of each selected investment period',
     editable: true,
     value: 50000,
@@ -86,9 +81,9 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
-  investmentYearsField = createRateField({
+  const investmentYearsField = createRateField({
     id: 'investmentYearsInput',
-    label: getLabel('.number-of-years-field', 'Investment years'),
+    label: getLabel('.number-of-years-field'),
     value: 5,
     min: investmentYearsRange[0],
     max: investmentYearsRange[1],
@@ -97,9 +92,9 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
-  holdingYearsField = createRateField({
+  const holdingYearsField = createRateField({
     id: 'holdingYearsInput',
-    label: getLabel('.number-of-year-invested-for-field', 'Holding years'),
+    label: getLabel('.number-of-year-invested-for-field'),
     value: 5,
     min: holdingYearsRange[0],
     max: holdingYearsRange[1],
@@ -114,7 +109,7 @@ export default function compoundCalculator(block) {
 
   const interestRateField = createRetirementExpenseRatioField({
     id: 'interestRateInput',
-    label: getLabel('.expected-interest-field', 'Expected annual interest rate'),
+    label: getLabel('.expected-interest-field'),
     value: 15,
     min: interestRateRange[0],
     max: interestRateRange[1],
@@ -123,18 +118,27 @@ export default function compoundCalculator(block) {
     onChange: onCompoundInputChange,
   });
 
+  const fields = [
+    ['#frequency', frequencyField],
+    ['#amountInvestedSlider', amountInvestedSlider],
+    ['#number-of-years', investmentYearsField],
+    ['#number-of-years-invested-for', holdingYearsField],
+    ['#interest-rate', interestRateField],
+  ];
+
   function publishCompoundPlanInputs() {
     const frequencies = {
       30: 12, 90: 4, 180: 2, 365: 1,
     };
     const planInputs = {
-      investmentAmount: amountInvestedSlider.getValue(),
-      investmentYears: investmentYearsField.getValue(),
-      holdingYears: holdingYearsField.getValue(),
-      rate: interestRateField.getValue(),
-      frequency: frequencies[frequencyField.getValue()],
+      ...(amountInvestedSlider && { investmentAmount: amountInvestedSlider.getValue() }),
+      ...(investmentYearsField && { investmentYears: investmentYearsField.getValue() }),
+      ...(holdingYearsField && { holdingYears: holdingYearsField.getValue() }),
+      ...(interestRateField && { rate: interestRateField.getValue() }),
+      ...(frequencyField && { frequency: frequencies[frequencyField.getValue()] }),
     };
-    const result = calculateCompoundInterest(planInputs);
+    const result = fields.every(([, field]) => field)
+      ? calculateCompoundInterest(planInputs) : null;
     const scope = block.closest('.compound-calculator') || block.closest('.section') || document;
 
     scope.compoundPlanInputs = planInputs;
@@ -146,7 +150,7 @@ export default function compoundCalculator(block) {
 
   block.addEventListener('compound-plan-input-change', publishCompoundPlanInputs);
 
-  block.innerHTML = `<div class="calculator-modal">
+  const calculatorMarkup = `<div class="calculator-modal">
     <div class="calculator-grid">
       <div class="calc-card">
         <div class="age-inputs-row">
@@ -161,11 +165,15 @@ export default function compoundCalculator(block) {
       </div>
     </div>
   </div>`;
-  block.querySelector('#frequency').appendChild(frequencyField.element);
-  block.querySelector('#amountInvestedSlider').appendChild(amountInvestedSlider.element);
-  block.querySelector('#number-of-years').appendChild(investmentYearsField.element);
-  block.querySelector('#number-of-years-invested-for').appendChild(holdingYearsField.element);
-  block.querySelector('#interest-rate').appendChild(interestRateField.element);
+  block.innerHTML = fields.some(([, field]) => field) ? calculatorMarkup : '';
+  fields.forEach(([selector, field]) => {
+    const slot = block.querySelector(selector);
+    if (field) slot.appendChild(field.element);
+    else slot?.remove();
+  });
+  block.querySelectorAll('.age-inputs-row, .two-columns-grid').forEach((group) => {
+    if (!group.children.length) group.remove();
+  });
 
   publishCompoundPlanInputs();
 }

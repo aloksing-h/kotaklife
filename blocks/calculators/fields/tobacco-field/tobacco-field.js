@@ -1,14 +1,21 @@
 export default function createTobaccoField(options = {}) {
   const {
     id = 'tobaccoUser',
-    label = 'Tobacco user',
+    label,
     required = false,
     infoText = '',
     value = null,
+    optionsList = [
+      { label: 'No', value: false },
+      { label: 'Yes', value: true },
+    ],
     onChange,
   } = options;
 
+  if (typeof label !== 'string' || !label.trim()) return null;
+
   let currentValue = value;
+  const [offOption, onOption] = optionsList;
   const container = document.createElement('div');
   container.className = 'tobacco-field';
 
@@ -42,7 +49,7 @@ export default function createTobaccoField(options = {}) {
 
   const noLabel = document.createElement('span');
   noLabel.className = 'tobacco-choice-label';
-  noLabel.textContent = 'No';
+  noLabel.textContent = offOption.label;
 
   const switchLabel = document.createElement('label');
   switchLabel.className = 'tobacco-switch';
@@ -53,9 +60,9 @@ export default function createTobaccoField(options = {}) {
   input.name = id;
   input.setAttribute('role', 'switch');
   input.setAttribute('aria-label', label);
-  input.setAttribute('aria-checked', String(value === true));
+  input.setAttribute('aria-checked', String(value === onOption.value));
   if (required) input.setAttribute('aria-required', 'true');
-  input.checked = value === true;
+  input.checked = value === onOption.value;
 
   const track = document.createElement('span');
   track.className = 'tobacco-switch-track';
@@ -63,11 +70,11 @@ export default function createTobaccoField(options = {}) {
 
   const yesLabel = document.createElement('span');
   yesLabel.className = 'tobacco-choice-label';
-  yesLabel.textContent = 'Yes';
+  yesLabel.textContent = onOption.label;
 
   input.addEventListener('change', () => {
-    currentValue = input.checked;
-    input.setAttribute('aria-checked', String(currentValue));
+    currentValue = input.checked ? onOption.value : offOption.value;
+    input.setAttribute('aria-checked', String(input.checked));
     if (typeof onChange === 'function') onChange(currentValue);
   });
 
@@ -78,8 +85,8 @@ export default function createTobaccoField(options = {}) {
     element: container,
     getValue: () => currentValue,
     setValue: (nextValue) => {
-      currentValue = nextValue === null || nextValue === undefined ? null : Boolean(nextValue);
-      input.checked = currentValue === true;
+      currentValue = nextValue;
+      input.checked = currentValue === onOption.value;
       input.setAttribute('aria-checked', String(input.checked));
     },
   };

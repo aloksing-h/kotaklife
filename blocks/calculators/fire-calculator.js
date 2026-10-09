@@ -39,7 +39,7 @@ export default function fireCalculator(block) {
   const onPlanInputChange = () => {
     block.dispatchEvent(new Event('fire-plan-input-change'));
   };
-  const getLabel = (selector, fallback) => block.querySelector(`${selector} label`)?.textContent.trim() || fallback;
+  const getLabel = (selector) => block.querySelector(`${selector} label`)?.textContent.trim() || '';
   const getConfiguredValues = (selector, fallback) => {
     const input = block.querySelector(`${selector} input`);
     if (!input?.value.trim()) return fallback;
@@ -63,7 +63,7 @@ export default function fireCalculator(block) {
 
   const currentAgeField = createAgeField({
     id: 'currentAge',
-    label: getLabel('.current-age-field', 'Current age'),
+    label: getLabel('.current-age-field'),
     value: currentAgeValue,
     min: currentAgeRange[0],
     max: currentAgeRange[1],
@@ -73,7 +73,7 @@ export default function fireCalculator(block) {
 
   const retireAgeField = createAgeField({
     id: 'retireAge',
-    label: getLabel('.retirement-age-field', 'Retirement age'),
+    label: getLabel('.retirement-age-field'),
     value: retirementAgeValue,
     min: retirementAgeRange[0],
     max: retirementAgeRange[1],
@@ -82,7 +82,7 @@ export default function fireCalculator(block) {
   });
 
   const expenseWaveSlider = createMonthlyExpenseWaveSlider({
-    title: getLabel('.monthly-expense-field', 'Monthly expense'),
+    title: getLabel('.monthly-expense-field'),
     required: true,
     infoText: 'Your current monthly cost of living',
     editable: true,
@@ -96,7 +96,7 @@ export default function fireCalculator(block) {
 
   const inflationRateField = createRetirementExpenseRatioField({
     id: 'expPercentInput',
-    label: getLabel('.inflation-rate-field', 'Inflation rate'),
+    label: getLabel('.inflation-rate-field'),
     value: clampToRange(5, inflationRange),
     min: inflationRange[0],
     max: inflationRange[1],
@@ -107,16 +107,16 @@ export default function fireCalculator(block) {
 
   function publishFirePlanInputs() {
     const planInputs = {
-      currentAge: currentAgeField.getValue(),
-      retireAge: retireAgeField.getValue(),
-      monthlyExpense: expenseWaveSlider.getValue(),
-      inflationrate: inflationRateField.getValue(),
+      ...(currentAgeField && { currentAge: currentAgeField.getValue() }),
+      ...(retireAgeField && { retireAge: retireAgeField.getValue() }),
+      ...(expenseWaveSlider && { monthlyExpense: expenseWaveSlider.getValue() }),
+      ...(inflationRateField && { inflationrate: inflationRateField.getValue() }),
     };
     const result = calculateFirePlan(planInputs);
-    const retirementAgeInput = retireAgeField.element.querySelector('input');
+    const retirementAgeInput = retireAgeField?.element.querySelector('input');
     const ageOrderInvalid = planInputs.retireAge <= planInputs.currentAge;
-    retirementAgeInput.setCustomValidity(ageOrderInvalid ? 'Retirement age must be greater than current age.' : '');
-    retirementAgeInput.setAttribute('aria-invalid', String(ageOrderInvalid));
+    retirementAgeInput?.setCustomValidity(ageOrderInvalid ? 'Retirement age must be greater than current age.' : '');
+    retirementAgeInput?.setAttribute('aria-invalid', String(ageOrderInvalid));
     const scope = block.closest('.fire-calculator') || block.closest('.section') || document;
 
     scope.firePlanInputs = planInputs;
@@ -140,11 +140,20 @@ export default function fireCalculator(block) {
         <div class="slider-box" id="retirement-ration"></div>
       </div>
   </div>`;
-  block.innerHTML = calculatorMarkup;
-  block.querySelector('#currentAgeFieldSlot').appendChild(currentAgeField.element);
-  block.querySelector('#retirementagefieldslot').appendChild(retireAgeField.element);
-  block.querySelector('#waveslider').appendChild(expenseWaveSlider.element);
-  block.querySelector('#retirement-ration').appendChild(inflationRateField.element);
+  const fields = [
+    ['#currentAgeFieldSlot', currentAgeField],
+    ['#retirementagefieldslot', retireAgeField],
+    ['#waveslider', expenseWaveSlider],
+    ['#retirement-ration', inflationRateField],
+  ];
+  block.innerHTML = fields.some(([, field]) => field) ? calculatorMarkup : '';
+  fields.forEach(([selector, field]) => {
+    const slot = block.querySelector(selector);
+    if (field) slot.appendChild(field.element);
+    else slot?.remove();
+  });
+  const ageInputsRow = block.querySelector('.age-inputs-row');
+  if (ageInputsRow && !ageInputsRow.children.length) ageInputsRow.remove();
 
   publishFirePlanInputs();
 }

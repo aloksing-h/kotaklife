@@ -1,7 +1,7 @@
 export default function createRetirementExpenseRatioField(options = {}) {
   const {
     id = 'expPercentInput',
-    label = 'Your expected expenses can be your retirement expenses?',
+    label,
     required = false,
     value = 75,
     min = 0,
@@ -13,6 +13,8 @@ export default function createRetirementExpenseRatioField(options = {}) {
     ],
     onChange,
   } = options;
+
+  if (typeof label !== 'string' || !label.trim()) return null;
 
   let currentValue = value;
 

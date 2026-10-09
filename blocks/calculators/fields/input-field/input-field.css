@@ -1,0 +1,237 @@
+.calculator-main .calculator-input-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculator-main .calculator-input-field > label {
+  color: #414651;
+  font-family: var(--font-family-font-family-body, Manrope), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.calculator-main .calculator-input-field .required-star {
+  color: #fa1432;
+}
+
+.calculator-main .calculator-input-field > input,
+.calculator-main .calculator-input-field > select,
+.calculator-main .calculator-input-field .flatpickr-wrapper,
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.calculator-main .calculator-input-field > input,
+.calculator-main .calculator-input-field > select,
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
+  height: 40px;
+  padding: 5.2px 16px;
+  border: 1px solid #d5d7da;
+  border-radius: 0;
+  background: #fff;
+  color: #181d27;
+  font-family: var(--font-family-font-family-body, Manrope), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.calculator-main .calculator-input-field > select {
+  padding: 10px 36px 10px 16px;
+  appearance: none;
+  background-image: url('/icons/calculator-dropdown-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px 5px;
+  line-height: 18px;
+}
+
+.calculator-main .calculator-input-field > input:focus-visible,
+.calculator-main .calculator-input-field > select:focus-visible,
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"]:focus-visible {
+  outline: none;
+}
+
+.calculator-main .calculator-input-field.date-field {
+  position: relative;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-wrapper {
+  display: block;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  margin-top: 6px;
+  padding: 12px 6px;
+  border: 1px solid #f3f4f6;
+  border-radius: 6px;
+  background: #f5f5f5;
+  box-shadow: 0 10px 25px -5px #0000001a, 0 8px 10px -6px #0000000d;
+  box-sizing: border-box;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar *,
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar *::before,
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar *::after {
+  box-sizing: border-box;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar::before,
+.calculator-main .calculator-input-field.date-field .flatpickr-calendar::after {
+  display: none;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-month {
+  position: relative !important;
+  height: auto !important;
+  flex: 1 !important;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-current-month {
+  position: static;
+  display: flex;
+  width: 100%;
+  height: unset;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-prev-month,
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-next-month {
+  position: static;
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 50%;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-prev-month::before,
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-next-month::before {
+  width: 8px;
+  height: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  content: '';
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-prev-month::before {
+  background-image: url('/icons/calendar-prev-icon.svg');
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-next-month::before {
+  background-image: url('/icons/calendar-next-icon.svg');
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-prev-month svg,
+.calculator-main .calculator-input-field.date-field .flatpickr-months .flatpickr-next-month svg {
+  display: none;
+}
+
+.calculator-main .calculator-input-field.date-field .custom-header-select {
+  width: 50%;
+  padding: 4px;
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
+  appearance: none;
+  background: #fff;
+  color: #111827;
+  font-family: var(--font-family-font-family-display, Manrope), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-weekdays {
+  display: flex;
+  height: unset;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calculator-main .calculator-input-field.date-field span.flatpickr-weekday {
+  height: unset;
+  flex: 1;
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: #374151;
+  font-family: var(--font-family-font-family-display, Manrope), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  text-align: center;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-days,
+.calculator-main .calculator-input-field.date-field .flatpickr-days > div {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-day {
+  width: calc(100% / 7);
+  height: 34px;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 2px;
+  background: #fff;
+  color: #111827;
+  font-family: var(--font-family-font-family-display, Manrope), sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 34px;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-day:hover {
+  background: #f3f4f6 !important;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-day.flatpickr-disabled {
+  color: #9ca3af !important;
+}
+
+.calculator-main .calculator-input-field.date-field .flatpickr-day.selected,
+.calculator-main .calculator-input-field.date-field .flatpickr-day.selected:hover {
+  background: #fa1432 !important;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (width >= 900px) {
+  .calculator-main .calculator-input-field > input,
+  .calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
+    height: 42px;
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
