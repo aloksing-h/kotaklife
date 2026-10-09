@@ -63,7 +63,7 @@
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: #d5d7da;
+  background: #fa1432;
   pointer-events: none;
   transition: background-color 150ms ease;
 }
