@@ -33,6 +33,8 @@ export default function createMonthlyExpenseWaveSlider(options = {}) {
     onChange,
   } = options;
 
+  if (typeof title !== 'string' || !title.trim()) return null;
+
   const state = { value, isDragging: false };
   let currentRatio = (value - min) / (max - min);
   let targetRatio = currentRatio;

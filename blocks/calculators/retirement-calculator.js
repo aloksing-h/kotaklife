@@ -10,30 +10,34 @@ export default function retirementCalculator(block) {
   function onPlanInputChange() {
     block.dispatchEvent(new Event('retirement-plan-input-change'));
   }
-  const currentAgeLabel = block.querySelector('.current-age-field label').innerText.trim();
-  const retirementAgeLabel = block.querySelector('.retirement-age-field label').innerText.trim();
-  const lifeExpectedLabel = block.querySelector('.life-expected-field label').innerText.trim();
-  const monthlyExpenseLabel = block.querySelector('.monthly-expense-field label').innerText.trim();
-  const inflationRateLabel = block.querySelector('.inflation-rate-field label').innerText.trim();
-  const expectedReturnLabel = block.querySelector('.expected-return-field label').innerText.trim();
-  const expectedExpenseLabel = block.querySelector('.expected-expense-field label').innerText.trim();
+  const getLabel = (selector) => block.querySelector(`${selector} label`)?.textContent.trim() || '';
+  const getConfiguredValues = (selector, fallback) => {
+    const input = block.querySelector(`${selector} input`);
+    if (!input?.value.trim()) return fallback;
+    const values = input.value.split(',').map((value) => Number(value.trim()));
+    return values.every(Number.isFinite) ? values : fallback;
+  };
+  const getRange = (selector, fallback) => {
+    const values = getConfiguredValues(selector, fallback);
+    return values.length >= 2 && values[0] < values[1] ? values.slice(0, 2) : fallback;
+  };
 
-  const currentAgerange = block.querySelector('.current-age-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const retireAgeRange = block.querySelector('.desired-retirement-age-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const expectedAgeRange = block.querySelector('.life-expectation-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const monthlyExpenseRange = block.querySelector('.current-monthly-expense-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const inflationRange = block.querySelector('.expected-inflation-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const expecteReturnRange = block.querySelector('.expected-return-range-field input').value.split(',').map((val) => Number(val.trim()));
-  const retirementExpenseRange = block.querySelector('.expected-expense-range-field input').value.split(',').map((val) => Number(val.trim()));
+  const currentAgerange = getRange('.current-age-range-field', [18, 70]);
+  const retireAgeRange = getRange('.desired-retirement-age-range-field', [25, 80]);
+  const expectedAgeRange = getRange('.life-expectation-range-field', [60, 100]);
+  const monthlyExpenseRange = getRange('.current-monthly-expense-range-field', [5000, 500000]);
+  const inflationRange = getRange('.expected-inflation-range-field', [1, 20]);
+  const expecteReturnRange = getRange('.expected-return-range-field', [1, 20]);
+  const retirementExpenseRange = getRange('.expected-expense-range-field', [1, 100]);
 
-  const monthlyExpenseMilestone = block.querySelector('.monthly-expense-milestone-field input').value.split(',').map((val) => Number(val.trim()));
-  const inlfationMilestone = block.querySelector('.expected-inflation-milestone-field input').value.split(',').map((val) => Number(val.trim()));
-  const expectedReturnMilestone = block.querySelector('.expected-return-millstone-field input').value.split(',').map((val) => Number(val.trim()));
-  const expecteExpenseMilestone = block.querySelector('.retirement-expense-milestone-field input').value.split(',').map((val) => Number(val.trim()));
+  const monthlyExpenseMilestone = getConfiguredValues('.monthly-expense-milestone-field', monthlyExpenseRange);
+  const inlfationMilestone = getConfiguredValues('.expected-inflation-milestone-field', inflationRange);
+  const expectedReturnMilestone = getConfiguredValues('.expected-return-millstone-field', expecteReturnRange);
+  const expecteExpenseMilestone = getConfiguredValues('.retirement-expense-milestone-field', retirementExpenseRange);
 
   const currentAgeField = createAgeField({
     id: 'currentAge',
-    label: currentAgeLabel,
+    label: getLabel('.current-age-field'),
     value: 30,
     min: currentAgerange[0],
     max: currentAgerange[1],
@@ -43,7 +47,7 @@ export default function retirementCalculator(block) {
 
   const retirementAgeField = createAgeField({
     id: 'retireAge',
-    label: retirementAgeLabel,
+    label: getLabel('.retirement-age-field'),
     value: 60,
     min: retireAgeRange[0],
     max: retireAgeRange[1],
@@ -53,7 +57,7 @@ export default function retirementCalculator(block) {
 
   const lifeExpectancyField = createAgeField({
     id: 'lifeExpect',
-    label: lifeExpectedLabel,
+    label: getLabel('.life-expected-field'),
     value: 80,
     min: expectedAgeRange[0],
     max: expectedAgeRange[1],
@@ -62,7 +66,7 @@ export default function retirementCalculator(block) {
   });
 
   const expenseWaveSlider = createMonthlyExpenseWaveSlider({
-    title: monthlyExpenseLabel,
+    title: getLabel('.monthly-expense-field'),
     required: true,
     infoText: 'Your current monthly cost of living',
     editable: true,
@@ -76,7 +80,7 @@ export default function retirementCalculator(block) {
 
   const inflationField = createRateField({
     id: 'inflationInput',
-    label: inflationRateLabel,
+    label: getLabel('.inflation-rate-field'),
     value: 5,
     suffix: '%',
     min: inflationRange[0],
@@ -88,7 +92,7 @@ export default function retirementCalculator(block) {
 
   const returnField = createRateField({
     id: 'returnInput',
-    label: expectedReturnLabel,
+    label: getLabel('.expected-return-field'),
     infoText: 'Anticipated annual return on investment',
     value: 5,
     suffix: '%',
@@ -101,7 +105,7 @@ export default function retirementCalculator(block) {
 
   const retirementExpenseRatio = createRetirementExpenseRatioField({
     id: 'expPercentInput',
-    label: expectedExpenseLabel,
+    label: getLabel('.expected-expense-field'),
     value: 75,
     min: retirementExpenseRange[0],
     max: retirementExpenseRange[1],
@@ -112,11 +116,13 @@ export default function retirementCalculator(block) {
 
   function publishRetirementPlanInputs() {
     const planInputs = {
-      currentAge: currentAgeField.getValue(),
-      retirementAge: retirementAgeField.getValue(),
-      lifeExpectancy: lifeExpectancyField.getValue(),
-      monthlyExpense: expenseWaveSlider.getValue(),
-      retirementExpenseRatio: retirementExpenseRatio.getValue(),
+      ...(currentAgeField && { currentAge: currentAgeField.getValue() }),
+      ...(retirementAgeField && { retirementAge: retirementAgeField.getValue() }),
+      ...(lifeExpectancyField && { lifeExpectancy: lifeExpectancyField.getValue() }),
+      ...(expenseWaveSlider && { monthlyExpense: expenseWaveSlider.getValue() }),
+      ...(retirementExpenseRatio && {
+        retirementExpenseRatio: retirementExpenseRatio.getValue(),
+      }),
     };
     const scope = block.closest('.retirement-calculator') || block.closest('.section') || document;
 
@@ -126,6 +132,15 @@ export default function retirementCalculator(block) {
 
   block.addEventListener('retirement-plan-input-change', publishRetirementPlanInputs);
 
+  const fields = [
+    ['#currentAgeFieldSlot', currentAgeField],
+    ['#retirementagefieldslot', retirementAgeField],
+    ['#ageexpectancy', lifeExpectancyField],
+    ['#waveslider', expenseWaveSlider],
+    ['#expected-inflation', inflationField],
+    ['#expected-return', returnField],
+    ['#retirement-ration', retirementExpenseRatio],
+  ];
   const retirecalc = ` <div class="calculator-modal">
     <div class="calculator-grid">
       <div class="calc-card">
@@ -143,14 +158,15 @@ export default function retirementCalculator(block) {
         <div class="slider-box" id="retirement-ration"></div>
       </div>
   </div>`;
-  block.innerHTML = retirecalc;
-  block.querySelector('#currentAgeFieldSlot').appendChild(currentAgeField.element);
-  block.querySelector('#retirementagefieldslot').appendChild(retirementAgeField.element);
-  block.querySelector('#ageexpectancy').appendChild(lifeExpectancyField.element);
-  block.querySelector('#waveslider').appendChild(expenseWaveSlider.element);
-  block.querySelector('#expected-inflation').appendChild(inflationField.element);
-  block.querySelector('#expected-return').appendChild(returnField.element);
-  block.querySelector('#retirement-ration').appendChild(retirementExpenseRatio.element);
+  block.innerHTML = fields.some(([, field]) => field) ? retirecalc : '';
+  fields.forEach(([selector, field]) => {
+    const slot = block.querySelector(selector);
+    if (field) slot.appendChild(field.element);
+    else slot?.remove();
+  });
+  block.querySelectorAll('.age-inputs-row, .two-columns-grid').forEach((group) => {
+    if (!group.children.length) group.remove();
+  });
 
   publishRetirementPlanInputs();
 }

@@ -1,6 +1,8 @@
 export default function createAgeField({
   id, label, value, min, max, required = false, onChange,
 } = {}) {
+  if (typeof label !== 'string' || !label.trim()) return null;
+
   const container = document.createElement('div');
   container.className = 'age-field';
   container.innerHTML = `

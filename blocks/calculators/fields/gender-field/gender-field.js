@@ -1,7 +1,7 @@
 export default function createGenderField(options = {}) {
   const {
     id = 'gender',
-    label = 'Gender',
+    label,
     required = false,
     infoText = '',
     value = '',
@@ -12,6 +12,8 @@ export default function createGenderField(options = {}) {
     ],
     onChange,
   } = options;
+
+  if (typeof label !== 'string' || !label.trim()) return null;
 
   let currentValue = value;
   const container = document.createElement('div');

@@ -1,7 +1,7 @@
 export default function createTobaccoField(options = {}) {
   const {
     id = 'tobaccoUser',
-    label = 'Tobacco user',
+    label,
     required = false,
     infoText = '',
     value = null,
@@ -11,6 +11,8 @@ export default function createTobaccoField(options = {}) {
     ],
     onChange,
   } = options;
+
+  if (typeof label !== 'string' || !label.trim()) return null;
 
   let currentValue = value;
   const [offOption, onOption] = optionsList;

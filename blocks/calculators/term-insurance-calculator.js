@@ -13,9 +13,9 @@ export default function termInsuranceCalculator(block) {
     if (!field) return null;
     return field.matches('input, select') ? field : field.querySelector('input, select');
   };
-  const getLabel = (selectors, fallback) => {
+  const getLabel = (selectors) => {
     const field = findField(selectors);
-    return field?.querySelector('label, legend')?.textContent.trim() || fallback;
+    return field?.querySelector('label, legend')?.textContent.trim() || '';
   };
   const getValues = (selectors, fallback) => {
     const input = getControl(selectors);
@@ -89,14 +89,14 @@ export default function termInsuranceCalculator(block) {
 
   const fullNameField = createInputField({
     id: 'termFullName',
-    label: getLabel(['.name-input-field', '.name-input'], 'Full name'),
+    label: getLabel(['.name-input-field', '.name-input']),
     placeholder: 'Name',
     required: true,
     onChange: onPlanInputChange,
   });
   const phoneField = createInputField({
     id: 'termPhone',
-    label: getLabel(['.phone-input-field', '.phone-input'], 'Phone no'),
+    label: getLabel(['.phone-input-field', '.phone-input']),
     type: 'tel',
     placeholder: '+91 9876511232',
     required: true,
@@ -104,7 +104,7 @@ export default function termInsuranceCalculator(block) {
   });
   const emailField = createInputField({
     id: 'termEmail',
-    label: getLabel(['.email-input-field', '.email-input'], 'Email'),
+    label: getLabel(['.email-input-field', '.email-input']),
     type: 'email',
     placeholder: 'name@example.com',
     required: true,
@@ -112,7 +112,7 @@ export default function termInsuranceCalculator(block) {
   });
   const dateOfBirthField = createInputField({
     id: 'termDateOfBirth',
-    label: getLabel(['.dob-input-field', '.dob-input'], 'Date of birth'),
+    label: getLabel(['.dob-input-field', '.dob-input']),
     type: 'date',
     min: minimumDateOfBirth,
     max: maximumDateOfBirth,
@@ -121,7 +121,7 @@ export default function termInsuranceCalculator(block) {
   });
   const educationField = createInputField({
     id: 'termEducation',
-    label: getLabel(['.education-select-field', '.education-select'], 'Education'),
+    label: getLabel(['.education-select-field', '.education-select']),
     type: 'select',
     value: getInitialValue(['.education-select-field', '.education-select'], educationOptions[0].value),
     options: educationOptions,
@@ -130,14 +130,14 @@ export default function termInsuranceCalculator(block) {
   });
   const occupationField = createInputField({
     id: 'termOccupation',
-    label: getLabel(['.occupation-input-field', '.occupation-input'], 'Occupation'),
+    label: getLabel(['.occupation-input-field', '.occupation-input']),
     value: getInitialValue(['.occupation-input-field', '.occupation-input'], ''),
     required: true,
     onChange: onPlanInputChange,
   });
   const annualIncomeField = createInputField({
     id: 'termAnnualIncome',
-    label: getLabel(['.annual-income-input-field', '.annual-income-input'], 'Annual income'),
+    label: getLabel(['.annual-income-input-field', '.annual-income-input']),
     type: 'number',
     value: getInitialValue('.annual-income-field', '1200000'),
     min: 0,
@@ -146,7 +146,7 @@ export default function termInsuranceCalculator(block) {
   });
   const lifeCoverSlider = createMonthlyExpenseWaveSlider({
     id: 'termLifeCover',
-    title: getLabel(['.life-cover-input-field', '.life-cover-input'], 'Life cover'),
+    title: getLabel(['.life-cover-input-field', '.life-cover-input']),
     required: true,
     infoText: 'Choose the life cover amount you need',
     editable: true,
@@ -159,7 +159,7 @@ export default function termInsuranceCalculator(block) {
   });
   const genderField = createGenderField({
     id: 'termGender',
-    label: getLabel(['.radio-input-field', '.radio-input', '.radio-field'], 'Gender'),
+    label: getLabel(['.radio-input-field', '.radio-input', '.radio-field']),
     required: true,
     value: 'male',
     optionsList: genderOptions,
@@ -167,14 +167,26 @@ export default function termInsuranceCalculator(block) {
   });
   const tobaccoField = createTobaccoField({
     id: 'termTobaccoUser',
-    label: getLabel(['.checkbox-input-field', '.checkbox-input', '.checkbox-field'], 'Tobacco user'),
+    label: getLabel(['.checkbox-input-field', '.checkbox-input', '.checkbox-field']),
     required: true,
     value: tobaccoOptions[0].value,
     optionsList: tobaccoOptions,
     onChange: onPlanInputChange,
   });
 
-  block.innerHTML = `<div class="term-insurance-calculator">
+  const fields = [
+    ['#termFullNameSlot', fullNameField],
+    ['#termPhoneSlot', phoneField],
+    ['#termEmailSlot', emailField],
+    ['#termDateOfBirthSlot', dateOfBirthField],
+    ['#termEducationSlot', educationField],
+    ['#termOccupationSlot', occupationField],
+    ['#termAnnualIncomeSlot', annualIncomeField],
+    ['#termLifeCoverSlot', lifeCoverSlider],
+    ['#termGenderSlot', genderField],
+    ['#termTobaccoSlot', tobaccoField],
+  ];
+  const calculatorMarkup = `<div class="term-insurance-calculator">
     <form class="term-insurance-form" novalidate>
       <div class="term-insurance-fields">
         <div class="term-input-slot" id="termFullNameSlot"></div>
@@ -193,29 +205,27 @@ export default function termInsuranceCalculator(block) {
     </form>
   </div>`;
 
-  block.querySelector('#termFullNameSlot').append(fullNameField.element);
-  block.querySelector('#termPhoneSlot').append(phoneField.element);
-  block.querySelector('#termEmailSlot').append(emailField.element);
-  block.querySelector('#termDateOfBirthSlot').append(dateOfBirthField.element);
-  block.querySelector('#termEducationSlot').append(educationField.element);
-  block.querySelector('#termOccupationSlot').append(occupationField.element);
-  block.querySelector('#termAnnualIncomeSlot').append(annualIncomeField.element);
-  block.querySelector('#termLifeCoverSlot').append(lifeCoverSlider.element);
-  block.querySelector('#termGenderSlot').append(genderField.element);
-  block.querySelector('#termTobaccoSlot').append(tobaccoField.element);
+  block.innerHTML = fields.some(([, field]) => field) ? calculatorMarkup : '';
+  fields.forEach(([selector, field]) => {
+    const slot = block.querySelector(selector);
+    if (field) slot.append(field.element);
+    else slot?.remove();
+  });
+  const preferences = block.querySelector('.term-insurance-preferences');
+  if (preferences && !preferences.children.length) preferences.remove();
 
   function publishTermPlanInputs() {
     const planInputs = {
-      fullName: fullNameField.input.value,
-      phone: phoneField.input.value,
-      email: emailField.input.value,
-      dateOfBirth: dateOfBirthField.input.value,
-      education: educationField.input.value,
-      occupation: occupationField.input.value,
-      annualIncome: Number(annualIncomeField.input.value),
-      lifeCover: lifeCoverSlider.getValue(),
-      gender: genderField.getValue(),
-      tobaccoUser: tobaccoField.getValue(),
+      ...(fullNameField && { fullName: fullNameField.input.value }),
+      ...(phoneField && { phone: phoneField.input.value }),
+      ...(emailField && { email: emailField.input.value }),
+      ...(dateOfBirthField && { dateOfBirth: dateOfBirthField.input.value }),
+      ...(educationField && { education: educationField.input.value }),
+      ...(occupationField && { occupation: occupationField.input.value }),
+      ...(annualIncomeField && { annualIncome: Number(annualIncomeField.input.value) }),
+      ...(lifeCoverSlider && { lifeCover: lifeCoverSlider.getValue() }),
+      ...(genderField && { gender: genderField.getValue() }),
+      ...(tobaccoField && { tobaccoUser: tobaccoField.getValue() }),
     };
     const scope = block.closest('.term-inurance-text') || block.closest('.section') || document;
     scope.termPlanInputs = planInputs;

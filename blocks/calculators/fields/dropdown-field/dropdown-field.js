@@ -4,7 +4,7 @@
 export default function createFrequencyDropdownField(options = {}) {
   const {
     id = 'frequencySelect',
-    label = 'Frequency',
+    label,
     required = false,
     value = '30',
     optionsList = [
@@ -15,6 +15,8 @@ export default function createFrequencyDropdownField(options = {}) {
     ],
     onChange,
   } = options;
+
+  if (typeof label !== 'string' || !label.trim()) return null;
 
   let currentValue = value;
 

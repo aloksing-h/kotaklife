@@ -14,6 +14,8 @@ export default function createInputField(options = {}) {
     onChange,
   } = options;
 
+  if (typeof label !== 'string' || !label.trim()) return null;
+
   const container = document.createElement('div');
   container.className = `calculator-input-field${type === 'date' ? ' date-field' : ''}`;
 

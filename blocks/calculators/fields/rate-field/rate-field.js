@@ -13,6 +13,8 @@ export default function createRateField(options = {}) {
     onChange,
   } = options;
 
+  if (typeof label !== 'string' || !label.trim()) return null;
+
   let currentValue = value;
   const container = document.createElement('div');
   container.className = 'rate-field';
