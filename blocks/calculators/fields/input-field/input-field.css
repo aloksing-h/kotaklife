@@ -7,7 +7,8 @@
 
 .calculator-main .calculator-input-field > label {
   color: #414651;
-  font-size: 12px;
+  font-family: var(--font-family-font-family-body, Manrope), sans-serif;
+  font-size: 14px;
   font-weight: 500;
   line-height: 18px;
 }
@@ -19,7 +20,7 @@
 .calculator-main .calculator-input-field > input,
 .calculator-main .calculator-input-field > select,
 .calculator-main .calculator-input-field .flatpickr-wrapper,
-.calculator-main .calculator-input-field .flatpickr-input {
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
@@ -27,22 +28,33 @@
 
 .calculator-main .calculator-input-field > input,
 .calculator-main .calculator-input-field > select,
-.calculator-main .calculator-input-field .flatpickr-input {
-  height: 38px;
-  padding: 8px 10px;
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
+  height: 40px;
+  padding: 5.2px 16px;
   border: 1px solid #d5d7da;
-  border-radius: 3px;
+  border-radius: 0;
   background: #fff;
   color: #181d27;
-  font: inherit;
-  font-size: 12px;
+  font-family: var(--font-family-font-family-body, Manrope), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.calculator-main .calculator-input-field > select {
+  padding: 10px 36px 10px 16px;
+  appearance: none;
+  background-image: url('/icons/calculator-dropdown-icon.svg');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 10px 5px;
+  line-height: 18px;
 }
 
 .calculator-main .calculator-input-field > input:focus-visible,
 .calculator-main .calculator-input-field > select:focus-visible,
-.calculator-main .calculator-input-field .flatpickr-input:focus-visible {
-  outline: 2px solid #fa1432;
-  outline-offset: 1px;
+.calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"]:focus-visible {
+  outline: none;
 }
 
 .calculator-main .calculator-input-field.date-field {
@@ -215,13 +227,11 @@
 }
 
 @media (width >= 900px) {
-  .calculator-main .calculator-input-field > label {
-    font-size: 13px;
-  }
-
   .calculator-main .calculator-input-field > input,
-  .calculator-main .calculator-input-field > select,
-  .calculator-main .calculator-input-field .flatpickr-input {
-    font-size: 13px;
+  .calculator-main .calculator-input-field .flatpickr-wrapper > input[type="text"] {
+    height: 42px;
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }

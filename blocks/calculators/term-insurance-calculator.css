@@ -80,7 +80,6 @@
 
 .calculator-main .term-insurance-cover {
     grid-column: 1 / -1;
-    padding: 12px;
 }
 
 .calculator-main .term-insurance-preferences {
@@ -100,12 +99,23 @@
 
 @media (width >= 600px) {
     .calculator-main .term-insurance-calculator {
-        padding: 16px;
+        padding: 24px;
     }
 
     .calculator-main .term-insurance-fields {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 14px 10px;
+    }
+
+    .calculator-main .term-insurance-fields > .term-input-slot {
+        min-width: 0;
+        grid-column: span 3;
+    }
+
+    .calculator-main .term-insurance-fields > [id="termEducationSlot"],
+    .calculator-main .term-insurance-fields > [id="termOccupationSlot"],
+    .calculator-main .term-insurance-fields > [id="termAnnualIncomeSlot"] {
+        grid-column: span 2;
     }
 
     .calculator-main .term-insurance-preferences {
@@ -116,7 +126,7 @@
 
 @media (width >= 900px) {
     .calculator-main .term-insurance-fields {
-        gap: 16px 12px;
+        gap: 24px 16px;
     }
 
     .calculator-main .term-frequency-label {
