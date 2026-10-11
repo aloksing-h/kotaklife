@@ -1184,6 +1184,10 @@
     ]
   },
   {
+    "id": "fund-update",
+    "fields": []
+  },
+  {
     "id": "hero",
     "fields": [
       {
