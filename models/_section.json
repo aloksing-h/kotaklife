@@ -264,7 +264,12 @@
             {
               "name": "Protection With Riders",
               "value": "protection-with-riders"
+            },
+            {
+              "name": "sticky-banner",
+              "value": "sticky-banner"
             }
+
           ]
         },
         {
