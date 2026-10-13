@@ -1,18 +1,19 @@
 .protection-with-riders .default-content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 8px;
+    margin-bottom: 30px;
 }
 
 .protection-with-riders .default-content-wrapper h1,
 .protection-with-riders .default-content-wrapper h2,
 .protection-with-riders .default-content-wrapper h3 {
     margin: 0;
-    font-size: 32px;
-    line-height: 1.2;
+    font-size: 31px;
+    line-height:36px;
     color: #181D27;
     font-weight: 400;
+    max-width:328px;
 }
 
 .protection-with-riders .default-content-wrapper h1 strong,
@@ -27,12 +28,13 @@
     font-size: 16px;
     font-weight: var(--font-weight-medium, 500);
     line-height: 20px;
+    max-width: 328px;
 }
 
 .protection-with-riders .custom-rte.block {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
 }
 
@@ -40,7 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 72px 12px 16px;
+    padding: 84px 20px 20px;
     border-radius: var(--radius-md, 8px);
     border: 1px solid #E9EAEB;
     background: linear-gradient(180deg, #fff 0%, #EFF8FF 100%);
@@ -52,9 +54,9 @@
 .protection-with-riders .custom-rte.block > div > div:has(picture) {
     position: absolute;
     top: 16px;
-    left: 12px;
-    width: 32px;
-    height: 32px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
     margin: 0;
 }
 
@@ -72,7 +74,7 @@
 .protection-with-riders .custom-rte.block > div > div:has(h3) {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     padding-right: 12px;
 }
 
@@ -90,14 +92,14 @@
     color: var(--text-text-tertiary, #535862);
     font-family: var(--font-family-font-family-body, Manrope);
     font-size: var(--font-size-caption, 14px);
-    font-weight: 400;
-    line-height: 1.4;
+    font-weight: var(--font-weight-medium, 500);
+    line-height: 18px;
 }
 
 .protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type {
     position: absolute;
     top: 20px;
-    right: 12px;
+    right: 20px;
     margin: 0;
     display: flex;
     width: 32px;
@@ -137,18 +139,19 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 48px;
+        margin-bottom: 50px;
     }
 
     .protection-with-riders .default-content-wrapper h1,
     .protection-with-riders .default-content-wrapper h2,
     .protection-with-riders .default-content-wrapper h3 {
         font-size: 48px;
+        line-height: 60px;
         max-width: 50%;
     }
 
     .protection-with-riders .default-content-wrapper p {
-        max-width: 40%;
+        max-width: 353px;
         text-align: right;
     }
 
@@ -160,14 +163,14 @@
     .protection-with-riders .custom-rte.block > div {
         max-width: calc(33.333% - 14px);
         border-radius: var(--radius-xl, 16px);
-        padding: 84px 24px 24px;
+        padding: 116px 20px 20px 20px;
     }
 
     .protection-with-riders .custom-rte.block > div > div:has(picture) {
         width: 40px;
         height: 40px;
-        top: 24px;
-        left: 24px;
+        top: 20px;
+        left: 20px;
     }
 
     .protection-with-riders .custom-rte.block > div:hover {
@@ -188,5 +191,8 @@
     .protection-with-riders .custom-rte.block > div > div:has(h3) p:last-of-type {
         top: 24px;
         right: 24px;
+    }
+    .protection-with-riders .custom-rte.block > div > div:has(h3) {
+        gap: 8px;
     }
 }

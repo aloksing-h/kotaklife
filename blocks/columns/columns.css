@@ -36,7 +36,7 @@
 
 .columns.term-insurance-work>div {
   gap: 30px;
-  padding: 16px 12px;
+  /* padding: 16px 12px; */
 }
 
 .columns.term-insurance-work>div>div:first-child {
@@ -106,7 +106,7 @@
   line-height: 1.2;
   font-weight: 300;
   color: #181D27;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   margin-top: 0;
 }
 
@@ -179,7 +179,7 @@
 @media (width >= 360px) {
   .columns.term-insurance-work>div {
     gap: 30px;
-    padding: 24px 16px;
+    /* padding: 24px 16px; */
   }
 
   .columns.term-insurance-work>div>div:first-child {
@@ -225,6 +225,7 @@
 
   .columns.term-insurance-work>div>div:nth-child(2) ol li strong {
     font-size: 16px;
+    font-weight: var(--font-weight-semibold, 600);
   }
 }
 
