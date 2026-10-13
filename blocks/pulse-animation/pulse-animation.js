@@ -1,7 +1,20 @@
 /* global gsap, MotionPathPlugin, ScrollTrigger */
 import { loadScript } from '../../scripts/aem.js';
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const TRIGGER_ID = 'pulse-animation';
+const DEFAULT_ARROW_PATH = 'M-20,-8 L5,-8 L5,-18 L25,0 L5,18 L5,8 L-20,8 Z';
+
+// sections use data-animation-point-mobile below the desktop breakpoint
+const desktopQuery = window.matchMedia('(min-width: 900px)');
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// the line and arrow are shared by the page, so they live at module level
 let gsapReady;
+let overlayPath;
+let arrow;
+let redrawTimeout;
+let layoutWatched = false;
 
 // GSAP UMD bundles must load in order: core first, then its plugins.
 async function loadGsap() {
@@ -18,131 +31,172 @@ async function loadGsap() {
   return gsapReady;
 }
 
-function createSvg() { // Removed block parameter
-  const svgNamespace = 'http://www.w3.org/2000/svg';
-  let svg = document.querySelector('#svg-overlay');
-  if (svg) {
-    return svg.querySelector('#path');
-  }
+/**
+ * Creates the SVG overlay that holds the line. It spans the whole of main,
+ * so it is appended to main rather than to the block.
+ * @param {Element} main The main element
+ */
+function createOverlay(main) {
+  if (overlayPath?.isConnected) return;
 
-  svg = document.createElementNS(svgNamespace, 'svg');
-  svg.setAttribute('id', 'svg-overlay');
-  const pathElement = document.createElementNS(svgNamespace, 'path');
-  pathElement.setAttribute('id', 'path');
-  pathElement.classList.add('testpath');
-  svg.appendChild(pathElement);
-  // APPEND TO MAIN, NOT THE BLOCK
-  const main = document.querySelector('main');
-  if (main) {
-    main.classList.add('positioning-context'); // Ensure main is the positioning context
-  }
-  const secFour = document.querySelector(".pulse-animation-container");
-  secFour.appendChild(svg);
-  return pathElement;
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.classList.add('pulse-animation-overlay');
+  svg.setAttribute('aria-hidden', 'true');
+  overlayPath = document.createElementNS(SVG_NS, 'path');
+  overlayPath.classList.add('pulse-animation-path');
+  svg.append(overlayPath);
+  main.append(svg);
 }
 
-function createArrowSVG(parent) {
-  const svgWrapper = document.createElement('div');
-  svgWrapper.classList.add('svg-wrapper');
-  const svgNS = 'http://www.w3.org/2000/svg';
-
-  const svg = document.createElementNS(svgNS, 'svg');
+// Fallback graphic used when no image is authored on the block.
+function createDefaultArrow() {
+  const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', '-25 -25 50 50');
-  svg.setAttribute('width', '40');
-  svg.setAttribute('height', '40');
-  svg.classList.add('arrow');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
 
-  const path = document.createElementNS(svgNS, 'path');
+  const path = document.createElementNS(SVG_NS, 'path');
   path.setAttribute('fill', '#E74C3C');
-  path.setAttribute('d', 'M-20,-8 L5,-8 L5,-18 L25,0 L5,18 L5,8 L-20,8 Z');
+  path.setAttribute('d', DEFAULT_ARROW_PATH);
 
-  svg.appendChild(path);
-  svgWrapper.appendChild(svg);
-  parent.appendChild(svgWrapper);
-
+  svg.append(path);
   return svg;
 }
 
-// 1. ONLY handles calculating coordinates and drawing the SVG line
-function drawPath(block) {
-  const sections = document.querySelectorAll('[data-animation-point]');
-  const pathElement = createSvg(block);
+/**
+ * Builds the arrow from the authored image. Images arrive via the Media Bus as a
+ * <picture>; SVGs are delivered as content and may render as a link, so both work.
+ * The graphic should point right (0°): autoRotate turns it along the path.
+ * @param {Element} block The pulse-animation block
+ * @returns {Promise<HTMLImageElement|null>} the arrow image, or null if none authored
+ */
+async function getAuthoredArrow(block) {
+  const img = block.querySelector('img');
+  const link = block.querySelector('a[href]');
+  const src = img?.getAttribute('src') || link?.getAttribute('href');
+  if (!src) return null;
 
+  const graphic = document.createElement('img');
+  graphic.src = src;
+  graphic.alt = img?.alt || '';
+  // wait for the intrinsic size so alignOrigin centres the graphic on the path
+  await graphic.decode().catch(() => { });
+  return graphic;
+}
+
+/**
+ * Creates the arrow that travels along the line, replacing the one of a
+ * previous decoration (e.g. a Universal Editor re-render).
+ * @param {Element} block The pulse-animation block
+ * @param {Element} main The main element
+ */
+async function createArrow(block, main) {
+  const graphic = (await getAuthoredArrow(block)) || createDefaultArrow();
+  graphic.classList.add('pulse-animation-arrow-graphic');
+
+  arrow?.remove();
+  arrow = document.createElement('div');
+  arrow.classList.add('pulse-animation-arrow');
+  arrow.append(graphic);
+  main.append(arrow);
+}
+
+/**
+ * Returns the box the authored percentages refer to: the section including its
+ * margins, in pixels relative to main (the overlay's positioning context).
+ * @param {Element} section The section element
+ * @param {DOMRect} origin The bounding rect of main
+ * @returns {{x: number, y: number, width: number, height: number}}
+ */
+function getSectionBox(section, origin) {
+  const rect = section.getBoundingClientRect();
+  const style = window.getComputedStyle(section);
+  const marginTop = parseFloat(style.marginTop) || 0;
+  const marginBottom = parseFloat(style.marginBottom) || 0;
+  const marginLeft = parseFloat(style.marginLeft) || 0;
+  const marginRight = parseFloat(style.marginRight) || 0;
+
+  return {
+    x: rect.left - origin.left - marginLeft,
+    y: rect.top - origin.top - marginTop,
+    width: rect.width + marginLeft + marginRight,
+    height: rect.height + marginTop + marginBottom,
+  };
+}
+
+/**
+ * Converts the authored section points ("x,y | x,y" in % of the section box)
+ * to pixels relative to main.
+ * @param {Element} main The main element
+ * @returns {{x: number, y: number}[]} points in document order
+ */
+function getPoints(main) {
+  const origin = main.getBoundingClientRect();
   const points = [];
 
-  sections.forEach((section) => {
-    let data = section.getAttribute('data-animation-point');
-    const dataMobile = section.getAttribute('data-animation-point-mobile');
+  main.querySelectorAll('[data-animation-point], [data-animation-point-mobile]').forEach((section) => {
+    const data = desktopQuery.matches
+      ? section.dataset.animationPoint
+      : section.dataset.animationPointMobile || section.dataset.animationPoint;
     if (!data) return;
-    if (window.innerWidth < 768 && dataMobile) {
-      data = dataMobile;
-    }
-    const rawPoints = data.split('|');
 
-    rawPoints.forEach((p) => {
-      const coords = p.split(','); // Splits "50,10" into ["50", "10"]
-
-      if (coords.length === 2) {
-        const xPercent = parseFloat(coords[0].trim());
-        const yPercent = parseFloat(coords[1].trim());
-
-        const rect = section.getBoundingClientRect();
-
-        // 1. Get the actual CSS margins from the browser
-        const style = window.getComputedStyle(section);
-        const marginTop = parseFloat(style.marginTop) || 0;
-        const marginBottom = parseFloat(style.marginBottom) || 0;
-        const marginLeft = parseFloat(style.marginLeft) || 0;
-        const marginRight = parseFloat(style.marginRight) || 0;
-
-        // 2. Combine element dimensions + margins into one giant box
-        const totalWidth = rect.width + marginLeft + marginRight;
-        const totalHeight = rect.height + marginTop + marginBottom;
-
-        // 3. Find the TRUE start of this giant box (shifting back by the top/left margins)
-        const boxStartX = rect.left + window.scrollX - marginLeft;
-        const boxStartY = rect.top + window.scrollY - marginTop;
-
-        // 4. Calculate absolute pixels based on the new massive total area
-        const absoluteX = boxStartX + totalWidth * (xPercent / 100);
-        const absoluteY = boxStartY + totalHeight * (yPercent / 100);
-
-        points.push({ x: absoluteX, y: absoluteY });
-      }
+    const box = getSectionBox(section, origin);
+    data.split('|').forEach((pair) => {
+      const [x, y] = pair.split(',').map((value) => parseFloat(value));
+      if (Number.isNaN(x) || Number.isNaN(y)) return;
+      points.push({ x: box.x + box.width * (x / 100), y: box.y + box.height * (y / 100) });
     });
   });
 
-  // Generate the curve and draw it on the screen
-  const rawPath = MotionPathPlugin.arrayToRawPath(points, { curviness: 1.5 });
-  const svgString = MotionPathPlugin.rawPathToString(rawPath);
-  pathElement.setAttribute('d', svgString);
-
-  return pathElement;
+  return points;
 }
 
-// 2. ONLY handles the GSAP MotionPath and ScrollTrigger logic
-function initAnimation(pathElement) {
+/**
+ * Draws the curve through the current breakpoint's points.
+ * @param {Element} main The main element
+ * @returns {boolean} false when there are not enough points for a line
+ */
+function drawPath(main) {
+  const points = getPoints(main);
+  if (points.length < 2) {
+    overlayPath.removeAttribute('d');
+    return false;
+  }
+
+  const rawPath = MotionPathPlugin.arrayToRawPath(points, { curviness: 1.5 });
+  overlayPath.setAttribute('d', MotionPathPlugin.rawPathToString(rawPath));
+  return true;
+}
+
+function killAnimation() {
+  const previous = ScrollTrigger.getById(TRIGGER_ID);
+  previous?.animation?.kill();
+  previous?.kill();
+}
+
+// Moves the arrow along the line, scrubbed by scroll; it flips when scrolling up.
+function animate() {
+  const graphic = arrow.querySelector('.pulse-animation-arrow-graphic');
   let currentDirection = 1;
 
-  // Set up the scroll-linked animation
-  gsap.to('.svg-wrapper', {
+  gsap.to(arrow, {
     motionPath: {
-      path: pathElement,
-      align: pathElement,
+      path: overlayPath,
+      align: overlayPath,
       alignOrigin: [0.5, 0.5],
       autoRotate: true,
     },
     scrollTrigger: {
-      trigger: '.testpath',
-      start: 'start center',
-      end: () => 'bottom center',
+      id: TRIGGER_ID,
+      trigger: overlayPath,
+      start: 'top center',
+      end: 'bottom center',
       scrub: 1,
-      invalidateOnRefresh: true,
       onUpdate: (self) => {
         if (self.direction !== currentDirection) {
           currentDirection = self.direction;
-          gsap.to('.arrow', {
-            scaleX: currentDirection === 1 ? 1 : -1,
+          gsap.to(graphic, {
+            scaleX: currentDirection,
             duration: 0.3,
             overwrite: 'auto',
           });
@@ -153,12 +207,61 @@ function initAnimation(pathElement) {
   });
 }
 
-// 3. Master function to run them in order
-function setup(block) {
-  const main = document.querySelector('main');
-  createArrowSVG(main);
-  const generatedPath = drawPath(block); // Step 1: Draw it
-  initAnimation(generatedPath); // Step 2: Animate it
+/**
+ * Redraws the line and rebuilds the arrow animation for the current layout.
+ * The tween is recreated because MotionPathPlugin reads the path when it starts.
+ * @param {Element} main The main element
+ */
+function render(main) {
+  killAnimation();
+  const hasPath = drawPath(main);
+  // with reduced motion only the static line is shown
+  arrow.hidden = !hasPath || reducedMotionQuery.matches;
+  if (!arrow.hidden) animate();
+  ScrollTrigger.refresh();
+}
+
+function scheduleRender(main) {
+  clearTimeout(redrawTimeout);
+  redrawTimeout = setTimeout(() => render(main), 150);
+}
+
+/**
+ * Re-renders when the layout changes: viewport resizes, late layout shifts
+ * (fonts, images) and switching between the mobile and desktop points.
+ * @param {Element} main The main element
+ */
+function watchLayout(main) {
+  if (layoutWatched) return;
+  layoutWatched = true;
+
+  new ResizeObserver(() => scheduleRender(main)).observe(main);
+  desktopQuery.addEventListener('change', () => render(main));
+  reducedMotionQuery.addEventListener('change', () => render(main));
+}
+
+async function setup(block, main) {
+  createOverlay(main);
+  await createArrow(block, main);
+  render(main);
+  watchLayout(main);
+}
+
+// The path editor is only for authors: inside Universal Editor or with ?pulse-edit.
+function isEditMode() {
+  return window.self !== window.top
+    || new URLSearchParams(window.location.search).has('pulse-edit');
+}
+
+async function loadEditor(main) {
+  const { default: initEditor } = await import('./pulse-editor.js');
+  initEditor({
+    main,
+    desktopQuery,
+    getSectionBox,
+    drawPath: () => drawPath(main),
+    render: () => render(main),
+  });
 }
 
 /**
@@ -166,22 +269,13 @@ function setup(block) {
  * @param {Element} block The pulse-animation block
  */
 export default async function decorate(block) {
-  // const main = document.createElement('main');
-
   await loadGsap();
+  const main = block.closest('main');
+  if (!main) return;
 
-  window.addEventListener('lazyLoaded', () => {
-    setup(block);
-    ScrollTrigger.refresh();
-    console.log('all sections loaded');
-  });
-
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      drawPath(block);
-      ScrollTrigger.refresh();
-    }, 250);
+  // Points are measured once every section is laid out. Not awaited: sections
+  // wait for decorate(), so awaiting the remaining sections here would never resolve.
+  setup(block, main).then(() => {
+    if (isEditMode()) loadEditor(main);
   });
 }

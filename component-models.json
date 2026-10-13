@@ -1187,14 +1187,16 @@
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "label": "Image",
+        "label": "Arrow Image",
+        "description": "Optional. SVG (or PNG) that travels along the line. Draw it pointing right; it rotates with the path. Leave empty for the default red arrow.",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
-        "label": "Alt",
+        "label": "Arrow Alt Text",
+        "description": "Leave empty if the arrow is decorative.",
         "value": ""
       }
     ]

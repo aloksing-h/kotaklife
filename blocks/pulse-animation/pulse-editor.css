@@ -1,0 +1,150 @@
+/* Pulse path editor: loaded only for authors, see pulse-editor.js */
+main > .pulse-editor-layer {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 900;
+
+  /* main > div gets section margins from styles.css */
+  margin: 0;
+  cursor: crosshair;
+  background: rgb(0 0 0 / 3%);
+}
+
+main > .pulse-editor-layer[hidden] {
+  display: none;
+}
+
+main > .pulse-editor-layer .pulse-editor-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 1px dashed rgb(0 120 255 / 35%);
+  pointer-events: none;
+}
+
+main > .pulse-editor-layer .pulse-editor-boundary {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed rgb(231 76 60 / 45%);
+  padding: 2px 6px;
+  font: 600 11px/1.4 sans-serif;
+  color: #c0392b;
+  pointer-events: none;
+}
+
+main > .pulse-editor-layer .pulse-editor-handle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #e74c3c;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+  color: #fff;
+  font: 700 10px/1 sans-serif;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  touch-action: none;
+}
+
+main > .pulse-editor-layer .pulse-editor-handle:active {
+  cursor: grabbing;
+}
+
+.pulse-editor-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;
+  width: min(420px, calc(100vw - 32px));
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
+  font: 13px/1.4 sans-serif;
+  color: #222;
+}
+
+.pulse-editor-panel .pulse-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pulse-editor-panel button {
+  padding: 3px 10px;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+  background: #fff;
+  color: #e74c3c;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pulse-editor-panel button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pulse-editor-panel .pulse-editor-toggle {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.pulse-editor-panel p {
+  margin: 0;
+}
+
+.pulse-editor-panel .pulse-editor-mode {
+  font-weight: 600;
+}
+
+.pulse-editor-panel .pulse-editor-help {
+  color: #666;
+  font-size: 12px;
+}
+
+.pulse-editor-panel .pulse-editor-list {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.pulse-editor-panel .pulse-editor-list li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 0;
+  border-top: 1px solid #eee;
+}
+
+.pulse-editor-panel .pulse-editor-label {
+  grid-column: 1 / -1;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.pulse-editor-panel .pulse-editor-list input {
+  min-width: 0;
+  padding: 3px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: 12px/1.4 monospace;
+}
+
+.pulse-editor-panel:not(.is-enabled) .pulse-editor-mode,
+.pulse-editor-panel:not(.is-enabled) .pulse-editor-help,
+.pulse-editor-panel:not(.is-enabled) .pulse-editor-list {
+  display: none;
+}

@@ -1,47 +1,48 @@
-.pulse-animation {
-  width: 100%;
+/* the authored image is rendered as the moving arrow, not inside the block */
+.pulse-animation > div {
+  display: none;
+}
+
+/* the line and arrow are positioned over the whole of main */
+main:has(> .pulse-animation-overlay) {
   position: relative;
 }
 
-.page-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
-.positioning-context {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
-.path-section {
-  height: 100vh;
-  width: 100%;
-}
-
-#svg-overlay {
+main > .pulse-animation-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Lets you click things underneath the SVG */
+  overflow: visible;
+  pointer-events: none;
 }
 
-.svg-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  z-index: 100; /* Ensure it stays above other content */
-  display: flex;
-}
-
-.testpath {
+main > .pulse-animation-overlay .pulse-animation-path {
   fill: none;
-  stroke: #fed0d6;
+  stroke: var(--pulse-animation-line-color, #fed0d6);
   stroke-width: 1.6;
 }
 
+main > .pulse-animation-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+main > .pulse-animation-arrow[hidden] {
+  display: none;
+}
+
+main > .pulse-animation-arrow .pulse-animation-arrow-graphic {
+  display: block;
+  
+  /* width: var(--pulse-arrow-size, 40px);
+  height: auto; */
+  width: 200px;
+  height: 100px;
+}
