@@ -1,8 +1,10 @@
 /**
  * Path editor for the pulse-animation block, loaded only for authors (inside
  * Universal Editor or with ?pulse-edit). Authors drag, add and remove points on
- * the real page, then copy each section's value into its section metadata:
- * "Animation Point" on desktop, "Animation Point mobile" below 900px.
+ * the real page, then copy each section's value into its section properties:
+ * set Pulse Path to "Custom points" and paste into "Animation Point" (desktop)
+ * or "Animation Point mobile" (below 900px). A section using a preset starts
+ * from the preset's points; editing them switches the section to custom points.
  *
  * - click on the page: add a point to the section under the cursor
  * - drag a point: move it (snaps to layout guides, hold Alt to place freely)
@@ -23,13 +25,6 @@ let renderTimeout;
 
 const round = (value) => Math.round(value * 10) / 10;
 
-function parsePoints(value = '') {
-  return value.split('|').map((pair) => {
-    const [x, y] = pair.split(',').map((v) => parseFloat(v));
-    return { x, y };
-  }).filter(({ x, y }) => !Number.isNaN(x) && !Number.isNaN(y));
-}
-
 const formatPoints = (points) => points.map(({ x, y }) => `${round(x)},${round(y)}`).join(' | ');
 
 const isDesktop = () => api.desktopQuery.matches;
@@ -43,29 +38,55 @@ function getSectionName(section, index) {
   return `${index + 1}. ${name || 'section'}`;
 }
 
-// the points the live page uses at the current breakpoint (mobile falls back to desktop)
-function readPoints(section) {
-  const { animationPoint, animationPointMobile } = section.dataset;
-  return parsePoints(isDesktop() ? animationPoint : animationPointMobile || animationPoint);
-}
+const pointsKey = () => (isDesktop() ? 'animationPoint' : 'animationPointMobile');
 
-function writePoints(section, points) {
-  const key = isDesktop() ? 'animationPoint' : 'animationPointMobile';
+// changes made here are previews; let the MutationObserver see them before re-enabling it
+function withoutObserver(change) {
   ignoreMutations = true;
-  if (points.length) section.dataset[key] = formatPoints(points);
-  else delete section.dataset[key];
-  // let the MutationObserver see the change before re-enabling it
+  change();
   setTimeout(() => { ignoreMutations = false; });
 }
 
+function writePoints(section, points) {
+  const { dataset } = section;
+  withoutObserver(() => {
+    // editing a preset switches the section to custom points; remember the preset for Clear
+    if (dataset.pulsePath !== 'custom') {
+      dataset.pulseEditorPreset = dataset.pulsePath || '';
+      dataset.pulsePath = 'custom';
+    }
+    if (points.length) dataset[pointsKey()] = formatPoints(points);
+    else delete dataset[pointsKey()];
+  });
+}
+
+// removes this breakpoint's custom points; a section switched from a preset gets it back
+function clearPoints(section) {
+  const { dataset } = section;
+  withoutObserver(() => {
+    delete dataset[pointsKey()];
+    if ('pulseEditorPreset' in dataset && !dataset.animationPoint && !dataset.animationPointMobile) {
+      if (dataset.pulseEditorPreset) dataset.pulsePath = dataset.pulseEditorPreset;
+      else delete dataset.pulsePath;
+      delete dataset.pulseEditorPreset;
+    }
+  });
+}
+
+// the points the live page uses at the current breakpoint, and where they come from
 function getModel() {
-  const origin = api.main.getBoundingClientRect();
-  return getSections().map((el, index) => ({
-    el,
-    index,
-    box: api.getSectionBox(el, origin),
-    points: readPoints(el),
-  }));
+  return getSections().map((el, index) => ({ el, index, ...api.getSectionPoints(el) }));
+}
+
+function describeSource(el, source) {
+  const { dataset } = el;
+  const notes = [];
+  if (source === 'custom') notes.push('custom points');
+  if (source === 'preset') notes.push(`preset: ${dataset.pulsePath}`);
+  if (source === 'desktop') notes.push('using desktop points');
+  if ('pulseEditorPreset' in dataset) notes.push('changed here: set Pulse Path to "Custom points"');
+  if (dataset.pulsePath === 'custom' && !dataset.animationPoint) notes.push('no desktop points yet');
+  return notes.join(', ');
 }
 
 const toPixels = (box, p) => ({
@@ -87,16 +108,7 @@ function findSectionAt(model, y) {
  * Vertical guides the line can safely run along: the side gutters, the edges
  * of the content column and the centre.
  */
-function getGuides() {
-  const origin = api.main.getBoundingClientRect();
-  const column = api.main.querySelector(':scope > .section > div');
-  if (!column) return [origin.width / 2];
-  const rect = column.getBoundingClientRect();
-  const style = window.getComputedStyle(column);
-  const left = rect.left - origin.left + (parseFloat(style.paddingLeft) || 0);
-  const right = rect.right - origin.left - (parseFloat(style.paddingRight) || 0);
-  return [left / 2, left, origin.width / 2, right, (right + origin.width) / 2];
-}
+const getGuides = () => Object.values(api.getGuides());
 
 function snapX(x, free) {
   if (free) return x;
@@ -143,14 +155,23 @@ function scheduleRender() {
 
 function updatePanel(model) {
   panel.querySelector('.pulse-editor-mode').textContent = isDesktop()
-    ? 'Desktop: paste into "Animation Point"'
-    : 'Mobile: paste into "Animation Point mobile"';
+    ? 'Desktop: Pulse Path "Custom points", paste into "Animation Point"'
+    : 'Mobile: Pulse Path "Custom points", paste into "Animation Point mobile"';
 
-  list.replaceChildren(...model.map(({ el, index, points }) => {
+  list.replaceChildren(...model.map(({
+    el, index, points, source,
+  }) => {
     const row = document.createElement('li');
     const label = document.createElement('span');
     label.className = 'pulse-editor-label';
     label.textContent = getSectionName(el, index);
+    const origin = describeSource(el, source);
+    if (origin) {
+      const note = document.createElement('small');
+      note.className = `pulse-editor-source is-${source}`;
+      note.textContent = ` (${origin})`;
+      label.append(note);
+    }
 
     const input = document.createElement('input');
     input.readOnly = true;
@@ -176,9 +197,10 @@ function updatePanel(model) {
     const clear = document.createElement('button');
     clear.type = 'button';
     clear.textContent = 'Clear';
-    clear.disabled = !points.length;
+    clear.title = 'Remove the custom points for this screen size';
+    clear.disabled = source !== 'custom';
     clear.addEventListener('click', () => {
-      writePoints(el, []);
+      clearPoints(el);
       api.render();
       // eslint-disable-next-line no-use-before-define
       refresh();
@@ -384,7 +406,7 @@ function watch() {
   }).observe(api.main, {
     childList: true,
     subtree: true,
-    attributeFilter: ['data-animation-point', 'data-animation-point-mobile'],
+    attributeFilter: ['data-animation-point', 'data-animation-point-mobile', 'data-pulse-path'],
   });
 }
 
@@ -393,7 +415,8 @@ function watch() {
  * @param {object} options
  * @param {Element} options.main The main element
  * @param {MediaQueryList} options.desktopQuery Desktop breakpoint query
- * @param {Function} options.getSectionBox Box the section percentages refer to
+ * @param {Function} options.getSectionPoints A section's points, box and their source
+ * @param {Function} options.getGuides Safe vertical lines for the path
  * @param {Function} options.drawPath Redraws the line only
  * @param {Function} options.render Redraws the line and rebuilds the animation
  */

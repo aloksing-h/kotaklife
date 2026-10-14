@@ -511,16 +511,73 @@
         ]
       },
       {
+        "component": "select",
+        "name": "pulse-path",
+        "label": "Pulse Path",
+        "description": "How the pulse line runs through this section. Presets adapt to desktop and mobile; choose Custom to enter your own points.",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Down the left side",
+            "value": "left"
+          },
+          {
+            "name": "Down the right side",
+            "value": "right"
+          },
+          {
+            "name": "Left side, then cross to the right",
+            "value": "left-to-right"
+          },
+          {
+            "name": "Right side, then cross to the left",
+            "value": "right-to-left"
+          },
+          {
+            "name": "Down the left side with a loop",
+            "value": "loop-left"
+          },
+          {
+            "name": "Down the right side with a loop",
+            "value": "loop-right"
+          },
+          {
+            "name": "Custom points",
+            "value": "custom"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "animation-point",
         "label": "Animation Point",
-        "description": "Optional. Adds data-animation-point on the section only when a value is entered."
+        "description": "Custom points for desktop. Create them on the page preview with ?pulse-edit, then copy and paste here.",
+        "condition": {
+          "===": [
+            {
+              "var": "pulse-path"
+            },
+            "custom"
+          ]
+        }
       },
       {
         "component": "text",
         "name": "animation-point-mobile",
         "label": "Animation Point mobile",
-        "description": "Optional. Adds data-animation-point-mobile on the section only when a value is entered."
+        "description": "Custom points below 900px. Leave empty to use the desktop points. Create them with ?pulse-edit.",
+        "condition": {
+          "===": [
+            {
+              "var": "pulse-path"
+            },
+            "custom"
+          ]
+        }
       },
       {
         "component": "reference",

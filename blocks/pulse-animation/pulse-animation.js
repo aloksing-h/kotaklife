@@ -3,6 +3,7 @@ import { loadScript } from '../../scripts/aem.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const TRIGGER_ID = 'pulse-animation';
+const MIN_SIDE_INSET = 24;
 const DEFAULT_ARROW_PATH = 'M-20,-8 L5,-8 L5,-18 L25,0 L5,18 L5,8 L-20,8 Z';
 
 // sections use data-animation-point-mobile below the desktop breakpoint
@@ -124,31 +125,147 @@ function getSectionBox(section, origin) {
   };
 }
 
+const toPixels = (box, p) => ({
+  x: box.x + box.width * (p.x / 100),
+  y: box.y + box.height * (p.y / 100),
+});
+
+const toPercent = (box, p) => ({
+  x: ((p.x - box.x) / box.width) * 100,
+  y: ((p.y - box.y) / box.height) * 100,
+});
+
+// parses authored points: "x,y | x,y" in % of the section box
+function parsePoints(value = '') {
+  return value.split('|').map((pair) => {
+    const [x, y] = pair.split(',').map((v) => parseFloat(v));
+    return { x, y };
+  }).filter(({ x, y }) => !Number.isNaN(x) && !Number.isNaN(y));
+}
+
 /**
- * Converts the authored section points ("x,y | x,y" in % of the section box)
- * to pixels relative to main.
+ * Vertical lines the pulse can safely run along, in pixels relative to main:
+ * the middle of each side gutter, the edges of the content column and the centre.
+ * The narrowest content column on the page is used, so full-bleed sections
+ * don't pull the line to the screen edge.
+ * @param {Element} main The main element
+ */
+function getGuides(main) {
+  const origin = main.getBoundingClientRect();
+  let contentLeft = 0;
+  main.querySelectorAll(':scope > .section > div').forEach((column) => {
+    const rect = column.getBoundingClientRect();
+    const padding = parseFloat(window.getComputedStyle(column).paddingLeft) || 0;
+    contentLeft = Math.max(contentLeft, rect.left - origin.left + padding);
+  });
+  const contentRight = origin.width - contentLeft;
+  // narrow mobile gutters would let the curve swing off-screen
+  const side = Math.max(contentLeft / 2, MIN_SIDE_INSET);
+
+  return {
+    left: side,
+    contentLeft,
+    center: origin.width / 2,
+    contentRight,
+    right: origin.width - side,
+  };
+}
+
+/**
+ * Pulse Path presets, chosen per section in its metadata. Each returns pixel
+ * points relative to main, built from the live layout, so the line keeps to the
+ * side gutters and the gaps between sections at every width.
+ */
+const PRESETS = (() => {
+  const side = (x) => (l) => [{ x, y: l.at(0.15) }, { x, y: l.at(0.85) }];
+  // runs down one side, then crosses through the gap below the section
+  const cross = (from) => (l) => [
+    { x: l.guides[from], y: l.at(0.15) },
+    { x: l.guides[from], y: l.at(0.7) },
+    { x: l.guides.center, y: l.gapBelow },
+  ];
+  // runs down one side with a loop that swings in towards the content
+  const loop = (at, direction) => (l) => {
+    const x = l.guides[at];
+    const r = l.loopRadius;
+    const d = direction * r;
+    const m = l.at(0.5);
+    return [
+      { x, y: l.at(0.15) },
+      { x, y: m },
+      { x: x + d, y: m + r },
+      { x: x + 2 * d, y: m },
+      { x: x + d, y: m - r },
+      { x, y: l.at(0.85) },
+    ];
+  };
+
+  return {
+    left: (l) => side(l.guides.left)(l),
+    right: (l) => side(l.guides.right)(l),
+    'left-to-right': cross('left'),
+    'right-to-left': cross('right'),
+    'loop-left': loop('left', 1),
+    'loop-right': loop('right', -1),
+  };
+})();
+
+function getPresetPoints(name, section, main, origin) {
+  const preset = PRESETS[name];
+  if (!preset) return null;
+
+  const rect = section.getBoundingClientRect();
+  const marginBottom = parseFloat(window.getComputedStyle(section).marginBottom) || 0;
+  const top = rect.top - origin.top;
+  return preset({
+    guides: getGuides(main),
+    at: (fraction) => top + rect.height * fraction,
+    gapBelow: top + rect.height + marginBottom / 2,
+    loopRadius: Math.min(80, origin.width * 0.1),
+  });
+}
+
+/**
+ * The points a section contributes at the current breakpoint, in % of its box.
+ * The section's Pulse Path decides: a preset is computed from the layout;
+ * "custom" uses the authored points (mobile falls back to the desktop ones).
+ * @param {Element} section The section element
+ * @param {Element} main The main element
+ * @returns {{source: string, box: object, points: {x: number, y: number}[]}}
+ *   source is 'custom', 'preset', 'desktop' or 'none'
+ */
+function getSectionPoints(section, main) {
+  const origin = main.getBoundingClientRect();
+  const box = getSectionBox(section, origin);
+  const { animationPoint, animationPointMobile, pulsePath } = section.dataset;
+
+  // Custom points are used when Pulse Path is "custom", or when it is not set
+  // but points exist (content authored before the dropdown existed).
+  if (pulsePath === 'custom' || (!pulsePath && (animationPoint || animationPointMobile))) {
+    if (!desktopQuery.matches && animationPointMobile) {
+      return { source: 'custom', box, points: parsePoints(animationPointMobile) };
+    }
+    if (desktopQuery.matches) return { source: 'custom', box, points: parsePoints(animationPoint) };
+    // mobile without its own points uses the desktop ones
+    return { source: 'desktop', box, points: parsePoints(animationPoint) };
+  }
+
+  const preset = getPresetPoints(pulsePath, section, main, origin);
+  if (preset) return { source: 'preset', box, points: preset.map((p) => toPercent(box, p)) };
+
+  return { source: 'none', box, points: [] };
+}
+
+/**
+ * Collects the points of every section, in pixels relative to main.
  * @param {Element} main The main element
  * @returns {{x: number, y: number}[]} points in document order
  */
 function getPoints(main) {
-  const origin = main.getBoundingClientRect();
-  const points = [];
-
-  main.querySelectorAll('[data-animation-point], [data-animation-point-mobile]').forEach((section) => {
-    const data = desktopQuery.matches
-      ? section.dataset.animationPoint
-      : section.dataset.animationPointMobile || section.dataset.animationPoint;
-    if (!data) return;
-
-    const box = getSectionBox(section, origin);
-    data.split('|').forEach((pair) => {
-      const [x, y] = pair.split(',').map((value) => parseFloat(value));
-      if (Number.isNaN(x) || Number.isNaN(y)) return;
-      points.push({ x: box.x + box.width * (x / 100), y: box.y + box.height * (y / 100) });
-    });
+  return [...main.querySelectorAll(':scope > .section')].flatMap((section) => {
+    const { box, points } = getSectionPoints(section, main);
+    return points.map((p) => toPixels(box, p));
   });
-
-  return points;
 }
 
 /**
@@ -258,7 +375,8 @@ async function loadEditor(main) {
   initEditor({
     main,
     desktopQuery,
-    getSectionBox,
+    getSectionPoints: (section) => getSectionPoints(section, main),
+    getGuides: () => getGuides(main),
     drawPath: () => drawPath(main),
     render: () => render(main),
   });

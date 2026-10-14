@@ -148,3 +148,12 @@ main > .pulse-editor-layer .pulse-editor-handle:active {
 .pulse-editor-panel:not(.is-enabled) .pulse-editor-list {
   display: none;
 }
+
+.pulse-editor-panel .pulse-editor-source {
+  font-weight: 400;
+  color: #666;
+}
+
+.pulse-editor-panel .pulse-editor-source.is-custom {
+  color: #c0392b;
+}
