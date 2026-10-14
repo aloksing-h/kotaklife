@@ -1,0 +1,210 @@
+.section.category-sticky-banner {
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 89px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D1E9FF;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0;
+}
+
+.category-sticky-banner > .default-content-wrapper:first-child {
+    height: 89px;
+    background-color: #122B4A;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 16px 0 12px; 
+    margin-right: 0;
+    clip-path:path('M 12 0 L 100 0 C 142 0, 123 88, 147 89 L 0 89 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
+    border-radius: 0; 
+    flex-grow: 1;
+}
+
+.category-sticky-banner > .default-content-wrapper:first-child p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: var(--font-weight-regular, 400);
+    line-height: 20px;
+    white-space: normal; 
+    max-width: 115px; 
+}
+
+.category-sticky-banner .cards-wrapper {
+    display: none; 
+}
+
+/* YAHAN FIX HAI: Wrapper ko 175px fixed width di gayi hai taaki button shake na ho */
+.category-sticky-banner > .default-content-wrapper:last-child {
+    padding: 43px 8px 8px 0;
+    flex-shrink: 0;
+    width: 175px; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.category-sticky-banner > .default-content-wrapper:last-child p {
+    margin: 0;
+}
+
+/* YAHAN FIX HAI: Button 167px ka hai, hover par 175px ka hoga (Sirf width transition) */
+.category-sticky-banner > .default-content-wrapper:last-child a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #181D27;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 14px;
+    width: 167px;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 4px 4px 4px 12px;
+    border-radius: 40px;
+    text-decoration: none;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    /* Sirf width expand hogi, margin ya padding nahi */
+    transition: width 0.25s ease, box-shadow 0.3s ease;
+    white-space: nowrap; 
+}
+
+.category-sticky-banner > .default-content-wrapper:last-child a:hover {
+    width: 175px; /* Button right me expand hoga bina shake hue */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.category-sticky-banner > .default-content-wrapper:last-child a .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    background-color: #e31837;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.category-sticky-banner > .default-content-wrapper:last-child a:hover .icon {
+    background-color: #000000;
+}
+
+.category-sticky-banner > .default-content-wrapper:last-child a .icon img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    transition: filter 0.2s ease-in-out;
+    filter: brightness(0) invert(1);
+}
+
+@media (min-width: 360px) {
+    .category-sticky-banner > .default-content-wrapper:first-child {
+        padding: 0 40px 0 16px; 
+        clip-path: path('M 12 0 L 127 0 C 160 0, 152 88, 184 89 L 0 89 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
+    }
+
+    .category-sticky-banner > .default-content-wrapper:first-child p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section.category-sticky-banner {
+        max-width: 1100px;
+        height: 58px;
+        justify-content: flex-start;
+    }
+
+    .category-sticky-banner > .default-content-wrapper:first-child {
+        height: 58px;
+        padding: 0 120px 0 16px;
+        margin-right: -40px; 
+        clip-path: path('M 12 0 L 250 -86 C 438 58, 334 52, 497 58 L 0 58 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
+        flex-grow: 0;
+    }
+
+    .category-sticky-banner > .default-content-wrapper:first-child p {
+        font-size: 18px;
+        white-space: nowrap;
+        max-width: none;
+    }
+
+    .category-sticky-banner .cards-wrapper {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        height: 100%;
+        padding: 0;
+    }
+
+    .category-sticky-banner .cards.block ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 436px;
+    }
+
+    .category-sticky-banner .cards.block ul li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: transparent;
+        border: none;
+    }
+
+    .category-sticky-banner .cards.block ul li:first-child {
+        max-width: 188px;
+    }
+
+    .category-sticky-banner .cards.block ul li:nth-child(2) {
+        max-width: 232px;
+    }
+
+    .category-sticky-banner .cards-card-image {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        display: flex;
+    }
+
+    .category-sticky-banner .cards-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .category-sticky-banner .cards-card-body p {
+        margin: 0;
+        font-size: 14px;
+        color: #181D27;
+        line-height: 18px;
+        font-weight:var(--font-weight-semibold);
+    }
+    
+    .category-sticky-banner > .default-content-wrapper:last-child {
+        padding: 10px 15px 10px 0px; 
+        align-self: center; 
+        width: 185px; /* Desktop ke liye bhi fixed width taki waha bhi shake na ho */
+    }
+
+    .category-sticky-banner > .default-content-wrapper:last-child a {
+        padding: 4px 6px 4px 16px;
+    }
+}
