@@ -11,22 +11,25 @@
     justify-content: space-between;
     background-color: #D1E9FF;
     border-radius: 12px 12px 0 0;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--brand-blue-50, #D2DAE4);
+    box-shadow: 0 -4px 16px rgba(10, 13, 18, 0.08);
     z-index: 1000;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .category-sticky-banner > .default-content-wrapper:first-child {
     height: 89px;
-    background-color: #122B4A;
+    background-color: #102A56;
     color: #ffffff;
     display: flex;
     align-items: center;
     padding: 0 16px 0 12px; 
     margin-right: 0;
-    clip-path:path('M 12 0 L 100 0 C 142 0, 123 88, 147 89 L 0 89 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
+    clip-path: path('M 12 0 L 100 0 C 142 0, 123 88, 147 89 L 0 89 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
     border-radius: 0; 
     flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .category-sticky-banner > .default-content-wrapper:first-child p {
@@ -36,13 +39,19 @@
     line-height: 20px;
     white-space: normal; 
     max-width: 115px; 
+    color: #ffffff;
+}
+
+.category-sticky-banner > .default-content-wrapper:first-child p strong,
+.category-sticky-banner > .default-content-wrapper:first-child p b {
+    font-weight: var(--font-weight-semibold, 600);
 }
 
 .category-sticky-banner .cards-wrapper {
     display: none; 
 }
 
-/* YAHAN FIX HAI: Wrapper ko 175px fixed width di gayi hai taaki button shake na ho */
+/* Wrapper fixed width to prevent button shaking */
 .category-sticky-banner > .default-content-wrapper:last-child {
     padding: 43px 8px 8px 0;
     flex-shrink: 0;
@@ -50,38 +59,39 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
+    box-sizing: border-box;
 }
 
 .category-sticky-banner > .default-content-wrapper:last-child p {
     margin: 0;
 }
 
-/* YAHAN FIX HAI: Button 167px ka hai, hover par 175px ka hoga (Sirf width transition) */
+/* Button with smooth hover width transition */
 .category-sticky-banner > .default-content-wrapper:last-child a {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
-    color: #181D27;
+    background-color: var(--base-white, #ffffff);
+    color: var(--gray-900, #181D27);
     font-family: inherit;
-    font-weight: 800;
-    font-size: 14px;
+    font-weight: var(--font-weight-extrabold, 800);
+    font-size: var(--button-2-font-size, 14px);
+    line-height: var(--button-2-line-height, 16px);
     width: 167px;
     height: 38px;
     box-sizing: border-box;
-    padding: 4px 4px 4px 12px;
-    border-radius: 40px;
+    padding: 4px 4px 4px 16px;
+    border-radius: var(--radius-full, 999px);
     text-decoration: none;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    /* Sirf width expand hogi, margin ya padding nahi */
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(10, 13, 18, 0.05);
     transition: width 0.25s ease, box-shadow 0.3s ease;
     white-space: nowrap; 
 }
 
 .category-sticky-banner > .default-content-wrapper:last-child a:hover {
-    width: 175px; /* Button right me expand hoga bina shake hue */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 175px;
+    box-shadow: 0 4px 12px rgba(10, 13, 18, 0.12);
 }
 
 .category-sticky-banner > .default-content-wrapper:last-child a .icon {
@@ -91,14 +101,14 @@
     width: 30px;
     height: 30px;
     flex-shrink: 0;
-    background-color: #e31837;
+    background-color: var(--brand-red-500, #FA1432);
     border-radius: 50%;
     pointer-events: none;
     transition: background-color 0.2s ease-in-out;
 }
 
 .category-sticky-banner > .default-content-wrapper:last-child a:hover .icon {
-    background-color: #000000;
+    background-color: var(--base-black, #000000);
 }
 
 .category-sticky-banner > .default-content-wrapper:last-child a .icon img {
@@ -126,20 +136,34 @@
         max-width: 1100px;
         height: 58px;
         justify-content: flex-start;
+        border: 1px solid var(--brand-blue-50, #D2DAE4);
+        border-bottom: none;
+        box-shadow: 0 2px 2px -1px rgba(10, 13, 18, 0.04),
+                    0 4px 6px -2px rgba(10, 13, 18, 0.03),
+                    0 -4px 16px rgba(10, 13, 18, 0.08);
     }
 
     .category-sticky-banner > .default-content-wrapper:first-child {
+        width: 469px;
         height: 58px;
-        padding: 0 120px 0 16px;
-        margin-right: -40px; 
-        clip-path: path('M 12 0 L 250 -86 C 438 58, 334 52, 497 58 L 0 58 L 0 12 C 0 5.4, 5.4 0, 12 0 Z');
+        padding: 0 0 0 16px;
+        margin-right: -51px; 
+        clip-path: path('M 0 8 C 0 3.58 3.58 0 8 0 H 338 C 340.83 0 343.6 1.02 345.78 2.88 L 385.38 36.78 C 398.65 48.14 415.27 54.84 432.71 55.87 L 469 58 H 0 Z');
         flex-grow: 0;
+        flex-shrink: 0;
     }
 
     .category-sticky-banner > .default-content-wrapper:first-child p {
-        font-size: 18px;
+        font-size: var(--sub-heading-2-font-size, 18px);
+        line-height: var(--sub-heading-2-line-height, 20px);
+        font-weight: var(--font-weight-light, 300);
         white-space: nowrap;
         max-width: none;
+    }
+
+    .category-sticky-banner > .default-content-wrapper:first-child p strong,
+    .category-sticky-banner > .default-content-wrapper:first-child p b {
+        font-weight: var(--font-weight-semibold, 600);
     }
 
     .category-sticky-banner .cards-wrapper {
@@ -167,14 +191,19 @@
         gap: 8px;
         background-color: transparent;
         border: none;
+        padding: 0;
     }
 
     .category-sticky-banner .cards.block ul li:first-child {
+        width: 188px;
         max-width: 188px;
+        flex-shrink: 0;
     }
 
     .category-sticky-banner .cards.block ul li:nth-child(2) {
+        width: 232px;
         max-width: 232px;
+        flex-shrink: 0;
     }
 
     .category-sticky-banner .cards-card-image {
@@ -182,6 +211,8 @@
         height: 34px;
         flex-shrink: 0;
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .category-sticky-banner .cards-card-image img {
@@ -192,19 +223,28 @@
 
     .category-sticky-banner .cards-card-body p {
         margin: 0;
-        font-size: 14px;
-        color: #181D27;
-        line-height: 18px;
-        font-weight:var(--font-weight-semibold);
+        font-size: var(--body-2-font-size, 14px);
+        color: var(--gray-900, #181D27);
+        line-height: var(--body-2-line-height, 18px);
+        font-weight: var(--font-weight-semibold, 600);
+    }
+
+    .category-sticky-banner .cards-card-body p strong,
+    .category-sticky-banner .cards-card-body p b {
+        font-weight: var(--font-weight-extrabold, 800);
     }
     
     .category-sticky-banner > .default-content-wrapper:last-child {
-        padding: 10px 15px 10px 0px; 
+        padding: 10px 16px 10px 0; 
         align-self: center; 
-        width: 185px; /* Desktop ke liye bhi fixed width taki waha bhi shake na ho */
+        width: 187px;
+        margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .category-sticky-banner > .default-content-wrapper:last-child a {
-        padding: 4px 6px 4px 16px;
+        padding: 4px 4px 4px 16px;
+        gap: 12px;
     }
 }
