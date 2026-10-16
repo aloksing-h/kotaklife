@@ -63,6 +63,18 @@
           "label": "Tab Title"
         },
         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Persona Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Image Alt Text"
+        },
+        {
           "component": "richtext",
           "name": "description",
           "value": "",

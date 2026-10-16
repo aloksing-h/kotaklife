@@ -53,9 +53,13 @@ export default function decorateGen2Gen(block) {
     const picture = panel.querySelector('picture');
     if (picture) {
       const parentP = picture.closest('p');
+      const parentDiv = picture.closest('div');
       mediaCol.appendChild(picture);
       if (parentP && !parentP.textContent.trim()) {
         parentP.remove();
+      }
+      if (parentDiv && parentDiv !== panel && !parentDiv.textContent.trim()) {
+        parentDiv.remove();
       }
     }
 
