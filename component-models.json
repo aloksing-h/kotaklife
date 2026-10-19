@@ -1594,10 +1594,6 @@
           {
             "name": "Timeline",
             "value": "timeline"
-          },
-          {
-            "name": "Gen2Gen",
-            "value": "gen2gen"
           }
         ]
       }
@@ -1611,18 +1607,6 @@
         "name": "title",
         "value": "",
         "label": "Tab Title"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Persona Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text"
       },
       {
         "component": "richtext",

@@ -3,7 +3,6 @@
 import { toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import decorateFindAPlan from './find-a-plan.js';
-import decorateGen2Gen from './gen2gen.js';
 
 function isFragmentPath(path) {
   return !!path && path.startsWith('/') && !path.startsWith('//');
@@ -204,10 +203,6 @@ async function decorateDefaultTabs(block) {
 
   if (block.closest('.find-a-plan')) {
     decorateFindAPlan(block);
-  }
-
-  if (block.classList.contains('gen2gen') || block.closest('.gen2gen')) {
-    decorateGen2Gen(block);
   }
 }
 
